@@ -1,1 +1,64 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~mapbox-gl/dist/mapbox-gl.css"
+@import "~@mapbox/mapbox-gl-geocoder/lib/mapbox-gl-geocoder.css"
+
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap'
+
+//NS style
+//https://www.ns.nl/platform/
+
+html
+  line-height: 1
+  margin: 0
+  padding: 0
+  text-rendering: auto
+  text-transform: none
+  min-width: 320px
+  background: #e3e7ed
+  min-height: 100% !important
+  height: 100%
+
+body
+  overflow-x: hidden
+  line-height: 1
+  margin: 0
+  padding: 0
+  text-rendering: auto
+  text-transform: none
+  min-width: 320px
+  background: #e3e7ed
+
+.btn-primary
+  background-color: var(--prBlue) !important
+  border-color: var(--prBlue) !important
+
+  &:hover, &:active, &:visited, &:focus
+    background-color: var(--prBlue) !important
+    border-color: var(--prBlue) !important
+
+.btn-outline-primary
+  border-color: var(--prBlue) !important
+
+  &:active, &:visited, &:focus
+    border-color: var(--prBlue) !important
+
+  &:hover, &:active
+    background-color: var(--prBlue) !important
+    color: white !important
+
+  color: var(--prBlue) !important
+
+th
+  background-color: #004a91
+  color: white
+
+.page-link
+  color: var(--prBlue)
+
+.page-item.active .page-link
+  background-color: var(--prBlue)
+  border-color: var(--prBlue)
+
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap'

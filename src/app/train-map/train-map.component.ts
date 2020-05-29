@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {TrainMapType} from '../models/train-map-type';
-import {interval, Observable, PartialObserver, Subject} from 'rxjs';
-import {takeUntil} from 'rxjs/operators';
+import {forkJoin, interval, merge, Observable, PartialObserver, Subject, zip} from 'rxjs';
+import {switchMap, takeUntil} from 'rxjs/operators';
 import { pausable, PausableObservable } from 'rxjs-pausable';
 import {ApiService} from '../services/api.service';
 import {Station, StationPayload} from '../models/Station';
@@ -45,6 +45,10 @@ export class TrainMapComponent implements OnInit {
     features: []
   };
   disruptedTrainTracksLayerData: GeoJSON.FeatureCollection<GeoJSON.Geometry> = {
+    type: 'FeatureCollection',
+    features: []
+  };
+  trainsLayerData: GeoJSON.FeatureCollection<GeoJSON.Geometry> = {
     type: 'FeatureCollection',
     features: []
   };
@@ -104,25 +108,43 @@ export class TrainMapComponent implements OnInit {
   onMapLoad($event) {
     this.isUpdatingMapData = true;
     console.log($event);
-    this.apiService.getBasicInformationAboutAllStations().subscribe(
-      station => {
-      console.log(station);
-      this.addStationsToMap(station.payload);
+    zip(
+      this.apiService.getBasicInformationAboutAllStations(),
+      this.apiService.getTrainTracksGeoJSON(),
+      this.apiService.getDisruptedTrainTracksGeoJSON(),
+    ).subscribe({
+      next: value => {
+        console.log(value);
+        this.addStationsToMap(value[0].payload);
+        this.trainTracksLayerData = value[1].payload;
+        this.disruptedTrainTracksLayerData = value[2].payload;
       },
-      error => console.log(error),
-      () => {
-      this.isUpdatingMapData = false;
-    });
-    this.apiService.getTrainTracksGeoJSON().subscribe(trainTracks => {
-      this.trainTracksLayerData = trainTracks.payload;
-    });
-    this.apiService.getDisruptedTrainTracksGeoJSON().subscribe(trainTracks => {
-      this.disruptedTrainTracksLayerData = trainTracks.payload;
+      error: err => {
+        console.log(err);
+      },
+      complete: () => {
+        this.getActiveTrains();
+      }
     });
   }
 
   addStationsToMap(stations: StationPayload[]) {
-    // console.log(JSON.stringify(this.helperFunctions.parseToGeoJSON(stations, ['lng', 'lat'], ['code', 'namen'])));
-    this.stationsLayerData = this.helperFunctions.parseToGeoJSON(stations, ['lng', 'lat'], ['code', 'namen']);
+    const stationGeoJSON = this.helperFunctions.parseToGeoJSON(stations, ['lng', 'lat'], ['code', 'namen']);
+    this.stationsLayerData = stationGeoJSON;
+  }
+
+  getActiveTrains() {
+    this.apiService.getBasicInformationAboutAllTrains().pipe(
+      switchMap((trains) => {
+        let trainIds = '';
+        trains.payload.treinen.forEach((train) => {
+          trainIds += train.ritId + ',';
+        });
+        return this.apiService.getTrainDetailsByRideId(trainIds);
+      })
+    ).subscribe(trains => {
+      this.isUpdatingMapData = false;
+      console.log(trains);
+    });
   }
 }

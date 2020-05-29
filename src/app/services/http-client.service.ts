@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpParams} from '@angular/common/http';
 import {CacheService} from './cache.service';
 import {Observable, of} from 'rxjs';
 import {switchMap} from 'rxjs/operators';
@@ -16,6 +16,7 @@ export class HttpOptions {
   body?: any;
   headers?: any;
   cacheMins?: number;
+  params?: HttpParams;
 }
 
 @Injectable({
@@ -49,6 +50,7 @@ export class HttpClientService {
     options.body = options.body || null;
     options.cacheMins = options.cacheMins || 0;
     options.headers = options.headers || {};
+    options.params = options.params || null;
     options.url = 'https://cors-bartvanzeist.herokuapp.com/' + options.url;
 
     if (options.cacheMins > 0) {
@@ -63,7 +65,8 @@ export class HttpClientService {
 
     return this.http.request<T>(verb, options.url, {
       body: options.body,
-      headers: options.headers
+      headers: options.headers,
+      params: options.params
     })
       .pipe(
         switchMap(response => {

@@ -1,39 +1,52 @@
 <div style="height: 100%">
-  <mgl-map
-    [style]="mapStyle"
-    [zoom]="[zoom]"
-    [center]="[lng, lat]"
-    (load)="onMapLoad($event)"
-  >
-    <mgl-layer
-    id="stations"
-    type="symbol"
-    [source]="{type: 'geojson', data: stationsLayerData}"
-    [layout]="{
-    'icon-image': 'NS',
-    'icon-size': 0.15,
-    'icon-allow-overlap': true
-    }"
-    [minzoom]="10">
-    </mgl-layer>
-    <mgl-layer
-      id="ns-railroad"
-      type="line"
-      [source]="{type: 'geojson', data: trainTracksLayerData}"
-      [layout]="{'line-join': 'round', 'line-cap': 'round'}"
-      [paint]="{'line-color': '#9C9CA6', 'line-width': 2}"
-      [before]="'stations'">
-    </mgl-layer>
-    <mgl-layer
-      id="storingen-railroad"
-      type="line"
-      [source]="{type: 'geojson', data: disruptedTrainTracksLayerData}"
-      [layout]="{'visibility': activeMapType.layerId === 'storingen-railroad' ? 'visible' : 'none',
-      'line-join': 'round', 'line-cap': 'round'}"
-      [paint]="{'line-color': '#fe0000', 'line-width': 2}"
-      [before]="'stations'">
-    </mgl-layer>
-  </mgl-map>
+<!--  <mgl-map-->
+<!--    [style]="mapStyle"-->
+<!--    [zoom]="[zoom]"-->
+<!--    [center]="[lng, lat]"-->
+<!--    (load)="onMapLoad($event)"-->
+<!--  >-->
+<!--    <mgl-layer-->
+<!--    id="stations"-->
+<!--    type="symbol"-->
+<!--    [source]="{type: 'geojson', data: stationsLayerData}"-->
+<!--    [layout]="{-->
+<!--    'icon-image': 'NS',-->
+<!--    'icon-size': 0.15,-->
+<!--    'icon-allow-overlap': true-->
+<!--    }"-->
+<!--    [minzoom]="10">-->
+<!--    </mgl-layer>-->
+<!--    <mgl-layer-->
+<!--      id="NSTrainTracks"-->
+<!--      type="line"-->
+<!--      [source]="{type: 'geojson', data: trainTracksLayerData}"-->
+<!--      [layout]="{'line-join': 'round', 'line-cap': 'round'}"-->
+<!--      [paint]="{'line-color': '#9C9CA6', 'line-width': 2}"-->
+<!--      [before]="'stations'">-->
+<!--    </mgl-layer>-->
+<!--    <mgl-layer-->
+<!--      id="disruptedTrainTracks"-->
+<!--      type="line"-->
+<!--      [source]="{type: 'geojson', data: disruptedTrainTracksLayerData}"-->
+<!--      [layout]="{'visibility': activeMapType.layerId === 'storingen-railroad' ? 'visible' : 'none',-->
+<!--      'line-join': 'round', 'line-cap': 'round'}"-->
+<!--      [paint]="{'line-color': '#fe0000', 'line-width': 2}"-->
+<!--      [before]="'stations'">-->
+<!--    </mgl-layer>-->
+<!--    <mgl-layer-->
+<!--      id="trains"-->
+<!--      type="symbol"-->
+<!--      [source]="{type: 'geojson', data: trainsLayerData}"-->
+<!--      [layout]="{-->
+<!--      'icon-image': ['get', 'imageNaam'],-->
+<!--      'icon-size': 0.40,-->
+<!--      'icon-allow-overlap': true,-->
+<!--      'icon-ignore-placement': true-->
+<!--      }"-->
+<!--      [minzoom]="6"-->
+<!--      [maxzoom]="20">-->
+<!--    </mgl-layer>-->
+<!--  </mgl-map>-->
   <div id="mapControls" *ngIf="true; else loadingMap">
     <div id="mapTypeControl" class="toggle-group border border--2 border--white bg-white shadow-darken10 z1">
       <div class="toggle-container mb-0" *ngFor="let mapType of mapTypes">

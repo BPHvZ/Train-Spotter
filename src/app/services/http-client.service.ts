@@ -50,12 +50,12 @@ export class HttpClientService {
     options.body = options.body || null;
     options.cacheMins = options.cacheMins || 0;
     options.headers = options.headers || {};
-    options.params = options.params || null;
+    const params = options.params?.toString() || null;
     options.url = 'https://cors-bartvanzeist.herokuapp.com/' + options.url;
 
     if (options.cacheMins > 0) {
       // Get data from cache
-      const data = this.cacheService.load(options.url);
+      const data = this.cacheService.load(options.url, params);
       // Return data from cache
       if (data !== null) {
         console.log('from cache');
@@ -75,6 +75,7 @@ export class HttpClientService {
             // Data will be cached
             this.cacheService.save({
               key: options.url,
+              params,
               data: response,
               expirationMins: options.cacheMins
             });

@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import {HttpParams} from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -15,13 +16,14 @@ export class CacheService {
 
     const record = {
       value: typeof options.data === 'string' ? options.data : JSON.stringify(options.data),
+      params: options.params,
       expiration: expirationMS !== 0 ? new Date().getTime() + expirationMS : null,
       hasExpiration: expirationMS !== 0
     };
     localStorage.setItem(options.key, JSON.stringify(record));
   }
 
-  load(key: string) {
+  load(key: string, params: string) {
     // Get cached data from localstorage
     const item = localStorage.getItem(key);
     if (item !== null) {
@@ -30,6 +32,8 @@ export class CacheService {
       // Expired data will return null
       if (!record || (record.hasExpiration && record.expiration <= now)) {
         this.remove(key);
+        return null;
+      } else if (record.params !== params) {
         return null;
       } else {
         return JSON.parse(record.value);
@@ -49,6 +53,7 @@ export class CacheService {
 
 export class LocalStorageSaveOptions {
   key: string;
+  params?: string;
   data: any;
   expirationMins?: number;
 }

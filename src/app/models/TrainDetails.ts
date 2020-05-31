@@ -194,8 +194,14 @@ export interface MaterieeldelenAfbeeldingsSpecs {
   width?: number;
 }
 
+export interface MaterieeldelenBakkenAfbeeldingsSpecs {
+  hoogte?: number;
+  url?: string;
+  breedte?: number;
+}
+
 export interface MaterieeldelenBakken {
-  afbeelding?: { [key: string]: any };
+  afbeelding?: MaterieeldelenBakkenAfbeeldingsSpecs;
   drukte?: Drukte;
 }
 

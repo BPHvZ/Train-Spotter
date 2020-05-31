@@ -18,7 +18,7 @@ export class ApiService {
   getBasicInformationAboutAllStations(): Observable<Station> {
     return this.http.get({
       url: 'https://gateway.apiportal.ns.nl/reisinformatie-api/api/v2/stations',
-      cacheMins: 30,
+      cacheMins: 60,
       headers: {
         'Ocp-Apim-Subscription-Key': environment.NS_Ocp_Apim_Subscription_Key
       }
@@ -46,12 +46,9 @@ export class ApiService {
   }
 
   getBasicInformationAboutAllTrains(): Observable<BasicTrain> {
-    // const trainParams = new HttpParams()
-    //   .set('ids', '2272')
-    //   .set('all', 'true');
     return this.http.get({
       url: 'https://gateway.apiportal.ns.nl/virtual-train-api/api/vehicle',
-      cacheMins: 60,
+      cacheMins: 0,
       headers: {
         'Ocp-Apim-Subscription-Key': environment.NS_Ocp_Apim_Subscription_Key
       }
@@ -64,7 +61,7 @@ export class ApiService {
       .set('all', 'false');
     return this.http.get({
       url: 'https://gateway.apiportal.ns.nl/virtual-train-api/api/v1/trein',
-      cacheMins: 60,
+      cacheMins: 0,
       headers: {
         'Ocp-Apim-Subscription-Key': environment.NS_Ocp_Apim_Subscription_Key
       },

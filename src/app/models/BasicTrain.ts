@@ -1,3 +1,6 @@
+import {TrainDetials} from './TrainDetails';
+import {MapImageData} from 'ngx-mapbox-gl';
+
 export interface BasicTrain {
   links: { [key: string]: object };
   payload: Payload;
@@ -18,4 +21,14 @@ export interface BasicTrainPayload {
   horizontaleNauwkeurigheid: number;
   type: string;
   bron: string;
+  trainDetails?: TrainDetials;
+  trainIconOnMap?: TrainIconOnMap;
+  trainIconName?: string;
+}
+
+export interface TrainIconOnMap {
+  imageName: string;
+  imageURL?: string;
+  imageData?: ImageData;
+  imageObjectURL?: string;
 }

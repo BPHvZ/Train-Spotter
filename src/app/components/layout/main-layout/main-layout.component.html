@@ -1,0 +1,10 @@
+<div id="page">
+  <app-header id="header"></app-header>
+  <main class="d-flex" role="main">
+    <div class="main-content d-flex" [style.padding]="isTrainMap ? '90px 0 0 0' : '90px 1.333rem 1.333rem 1.333rem' ">
+      <div class="container-fluid d-flex flex-column">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </main>
+</div>

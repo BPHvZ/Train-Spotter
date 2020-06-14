@@ -1,0 +1,89 @@
+<header class="navbar navbar-expand-md fixed-top">
+  <div class="container-fluid">
+    <nav class="navbar">
+      <a class="navbar-brand" [routerLink]="'kaart'" style="cursor: pointer">
+        <img src="../../../../assets/NS-white.png" height="25" alt="food" style="color: white">
+      </a>
+    </nav>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto pl-1">
+        <li class="nav-item align-self-center pr-3" style="cursor: pointer">
+          <a class="nav-link router-link-hover align-items-center d-flex" [routerLink]="'kaart'">
+            <i class="material-icons pr-2" [routerLink]="'kaart'">explore</i>
+            <strong>Kaart</strong></a>
+        </li>
+        <li class="nav-item align-self-center pr-1" ngbDropdown #navbarDropdown1="ngbDropdown">
+          <div class="d-inline" style="cursor: pointer" id="navbarDropdown1"
+               (click)="$event.stopPropagation(); navbarDropdown1.open();">
+            <strong>
+              Stations
+            </strong>
+            <div *ngIf="navbarDropdown1.isOpen(); else elseBlock" style="display: inline">
+              <svg class="bi bi-caret-up-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor"
+                   xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M7.247 4.86l-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 00.753-1.659l-4.796-5.48a1 1 0 00-1.506 0z"/>
+              </svg>
+            </div>
+            <ng-template #elseBlock>
+              <svg class="bi bi-caret-down-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor"
+                   xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 01.753 1.659l-4.796 5.48a1 1 0 01-1.506 0z"/>
+              </svg>
+            </ng-template>
+          </div>
+          <div ngbDropdownMenu aria-labelledby="navbarDropdown1" class="dropdown-menu">
+            <form class="px-4 pt-3">
+              <div class="form-group">
+                <label for="typeahead-http" style="width: max-content">Zoek naar een station:</label>
+                <input id="typeahead-http" type="text" class="form-control"
+                       [class.is-invalid]="searchFailed"
+                       [ngbTypeahead]="search"
+                       [resultFormatter]="formatToStationName"
+                       (selectItem)="selectStationFromSearch($event)"
+                       placeholder="Stationsnaam of code"/>
+                <small *ngIf="searching" class="form-text text-muted">zoeken...</small>
+              </div>
+              <div class="invalid-feedback" *ngIf="!searchFailed">Sorry, er ging wat fout bij het zoeken naar stations.</div>
+            </form>
+            <div class="dropdown-divider"></div>
+            <button ngbDropdownItem (click)="navigatToAllStations()">Alle stations</button>
+          </div>
+        </li>
+      </ul>
+      <div class="nav-item col-4 text-right">
+        <div class="d-md-inline" id="userDropdown" (click)="$event.stopPropagation(); userDropdown.open();"
+             style="cursor: pointer">
+          <strong>
+            B. Bakker
+          </strong>
+          <div *ngIf="userDropdown.isOpen(); else elseBlock" style="display: inline">
+            <svg class="bi bi-caret-up-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor"
+                 xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M7.247 4.86l-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 00.753-1.659l-4.796-5.48a1 1 0 00-1.506 0z"/>
+            </svg>
+          </div>
+          <ng-template #elseBlock>
+            <svg class="bi bi-caret-down-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor"
+                 xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 01.753 1.659l-4.796 5.48a1 1 0 01-1.506 0z"/>
+            </svg>
+          </ng-template>
+        </div>
+        <div ngbDropdown class="d-inline-block" #userDropdown="ngbDropdown">
+          <div ngbDropdownMenu aria-labelledby="userDropdown" class="dropdown-menu dropdown-menu-right">
+            <a ngbDropdownItem href="#" (click)="$event.preventDefault()">Profiel</a>
+            <a ngbDropdownItem href="#" (click)="$event.preventDefault()">Wachtwoord wijzigen</a>
+            <div class="dropdown-divider"></div>
+            <a ngbDropdownItem href="#" (click)="$event.preventDefault()">Uitloggen</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+

@@ -8,7 +8,7 @@ export class HelperFunctionsService {
 
   constructor() { }
 
-  parseToGeoJSON(data: Array<any>, point: Array<string>, properties?: Array<string>): FeatureCollection {
+  parseToGeoJSON<T>(data: Array<T>, point: Array<string>, properties?: Array<string>, allProperties: boolean = false): FeatureCollection {
     const featureCollection: FeatureCollection<Point, any> = {
       type: 'FeatureCollection',
       features: []
@@ -23,7 +23,11 @@ export class HelperFunctionsService {
           properties: {},
           type: 'Feature',
         };
-        properties.forEach((property) => {
+        let pointProperties = properties;
+        if (allProperties) {
+          pointProperties = Object.keys(feature);
+        }
+        pointProperties.forEach((property) => {
           if (feature[property] !== undefined) {
             geoFeature.properties[property] = feature[property];
           }

@@ -1,4 +1,4 @@
-export interface TrainDetials {
+export interface TrainDetails {
   bakbord?: number;
   bron?: Bron;
   crowdInfoRequest?: string;

@@ -5,6 +5,8 @@
 /* Importing Bootstrap SCSS file. */
 @import '~bootstrap/scss/bootstrap'
 
+@import "src/_globals"
+
 //NS style
 //https://www.ns.nl/platform/
 
@@ -29,36 +31,74 @@ body
   min-width: 320px
   background: #e3e7ed
 
-.btn-primary
-  background-color: var(--prBlue) !important
-  border-color: var(--prBlue) !important
+.mapboxgl-popup-tip
+  visibility: hidden
 
-  &:hover, &:active, &:visited, &:focus
-    background-color: var(--prBlue) !important
-    border-color: var(--prBlue) !important
+.mapboxgl-popup-content
+  background: unset
+  box-shadow: unset
 
-.btn-outline-primary
-  border-color: var(--prBlue) !important
-
-  &:active, &:visited, &:focus
-    border-color: var(--prBlue) !important
-
-  &:hover, &:active
-    background-color: var(--prBlue) !important
-    color: white !important
-
-  color: var(--prBlue) !important
-
-th
-  background-color: #004a91
+.button
+  display: inline-block
+  position: relative
+  padding: 18px
+  height: min-content
+  vertical-align: top
+  font-weight: normal
+  white-space: normal
+  background-color: $ns-light-blue
   color: white
+  box-shadow: 0 -2px 0 darken($ns-light-blue, 10%) inset
+  text-align: center
+  line-height: 0
+  font-size: 16px
+  border: none
+  border-radius: 4px
+  text-decoration: none
+  transition: box-shadow 0.15s ease-in-out
+
+  &:hover,
+  &:focus
+    color: white
+    text-decoration: none
+    cursor: pointer
+    box-shadow: 0 -50px 0 $button__primary__rollover inset
+
+  &:focus
+    outline: thin dotted $button__primary__background
+    outline-offset: 0
+
+    &:focus
+      outline-color: $ns-blue
+
+  &--nsYellow
+    background-color: $ns-yellow
+    color: $ns-blue
+    box-shadow: 0 -2px 0 $ns-yellow-2 inset
+
+    &:hover,
+    &:focus
+      color: $ns-blue
+      box-shadow: 0 -50px 0 $ns-yellow-2 inset
+
+    &:focus
+      outline-color: $ns-blue
+
+#mapPopup
+  margin-left: 0
+  transform: translate(-50%, 0px)
+
+#mapPopupContent
+  background-color: $ns-blue
+  padding: 20px
+  width: max-content
 
 .page-link
-  color: var(--prBlue)
+  color: $ns-blue
+
+.page-link:hover
+  color: $ns-light-blue
 
 .page-item.active .page-link
-  background-color: var(--prBlue)
-  border-color: var(--prBlue)
-
-/* Importing Bootstrap SCSS file. */
-@import '~bootstrap/scss/bootstrap'
+  background-color: $ns-light-blue
+  border-color: $ns-light-blue

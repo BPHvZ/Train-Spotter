@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {Point, FeatureCollection, Feature} from 'geojson';
+import {TrainDetails} from '../models/TrainDetails';
 
 @Injectable({
   providedIn: 'root'

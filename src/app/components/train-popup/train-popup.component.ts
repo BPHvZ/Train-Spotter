@@ -1,5 +1,5 @@
 import {Component, Input, Output, OnChanges, OnInit, SimpleChanges, EventEmitter, OnDestroy} from '@angular/core';
-import {BasicTrainPayload} from '../../models/BasicTrain';
+import {TrainInformation} from '../../models/BasicTrain';
 import {MapboxGeoJSONFeature} from 'mapbox-gl';
 
 @Component({
@@ -10,7 +10,7 @@ import {MapboxGeoJSONFeature} from 'mapbox-gl';
 export class TrainPopupComponent implements OnInit, OnChanges {
   @Output() public onClose: EventEmitter<any> = new EventEmitter();
   @Input() mapboxFeature: MapboxGeoJSONFeature;
-  trainDetails: BasicTrainPayload;
+  trainDetails: TrainInformation;
   directionArrowStyle: Map<string, any> = new Map<string, any>();
 
   constructor() { }
@@ -21,7 +21,7 @@ export class TrainPopupComponent implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
     console.log(changes);
     if (changes.mapboxFeature.currentValue) {
-      this.trainDetails = this.mapboxFeature.properties as BasicTrainPayload;
+      this.trainDetails = this.mapboxFeature.properties as TrainInformation;
       this.directionArrowStyle.set('transform', `rotate(${this.trainDetails.richting - 90}deg)`);
     }
   }

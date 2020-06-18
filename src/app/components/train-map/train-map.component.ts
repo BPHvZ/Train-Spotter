@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {TrainMapType} from '../../models/train-map-type';
+import {TrainMapType} from '../../models/TrainMapType';
 import {forkJoin, from, interval, Observable, PartialObserver, Subject, zip} from 'rxjs';
 import {map, mergeMap} from 'rxjs/operators';
 import {pausable, PausableObservable} from 'rxjs-pausable';
@@ -8,7 +8,7 @@ import {StationPayload} from '../../models/Station';
 import {HelperFunctionsService} from '../../services/helper-functions.service';
 import {GeoJSON} from 'geojson';
 import {environment} from '../../../environments/environment';
-import {BasicTrainPayload, TrainIconOnMap} from '../../models/BasicTrain';
+import {TrainInformation, TrainIconOnMap} from '../../models/BasicTrain';
 import * as Jimp from 'jimp';
 import {Map as MapBoxMap, MapboxGeoJSONFeature, MapLayerMouseEvent, MapMouseEvent} from 'mapbox-gl';
 import {HeaderEventsService} from '../../services/header-events.service';
@@ -249,8 +249,8 @@ export class TrainMapComponent implements OnInit {
    * Add all trains to the map with GeoJSON and resume train updater
    * @param detailedTrainInformation All trains currently riding
    */
-  addTrainsToMap(detailedTrainInformation: BasicTrainPayload[]) {
-    this.trainsLayerData = this.helperFunctions.parseToGeoJSON<BasicTrainPayload>(detailedTrainInformation,
+  addTrainsToMap(detailedTrainInformation: TrainInformation[]) {
+    this.trainsLayerData = this.helperFunctions.parseToGeoJSON<TrainInformation>(detailedTrainInformation,
       ['lng', 'lat'], [], true);
     this.isUpdatingMapData = false;
     this.pauseOrResumeUpdatingTrainPositions(false);
@@ -264,7 +264,7 @@ export class TrainMapComponent implements OnInit {
   getActiveTrainsAndDetails() {
     this.isUpdatingMapData = true;
     this.pauseOrResumeUpdatingTrainPositions(true);
-    let basicTrainInformation: BasicTrainPayload[];
+    let basicTrainInformation: TrainInformation[];
     this.apiService.getBasicInformationAboutAllTrains().pipe(
       mergeMap((trains) => {
         basicTrainInformation = trains.payload.treinen;
@@ -296,7 +296,7 @@ export class TrainMapComponent implements OnInit {
    * Add train to map with GeoJSON if icons already have been added
    * @param detailedTrainInformation Detailed information about all trains
    */
-  setTrainIconName(detailedTrainInformation: BasicTrainPayload[]) {
+  setTrainIconName(detailedTrainInformation: TrainInformation[]) {
     const iconURLs: Map<string, string> = new Map<string, string>();
 
     detailedTrainInformation.forEach((basicTrain) => {
@@ -346,7 +346,7 @@ export class TrainMapComponent implements OnInit {
    * @param iconURLs Icon name and url
    * @param detailedTrainInformation Detailed information about all trains
    */
-  getAndAddTrainIconsToMap(iconURLs: Map<string, string>, detailedTrainInformation: BasicTrainPayload[]) {
+  getAndAddTrainIconsToMap(iconURLs: Map<string, string>, detailedTrainInformation: TrainInformation[]) {
     const jimpImageNames: string[] = [];
     const jimpBufferObservables: Observable<Buffer>[] = [];
 
@@ -393,7 +393,7 @@ export class TrainMapComponent implements OnInit {
    * then add the trains to the map with GeoJSON
    * @param detailedTrainInformation Detailed information about all trains
    */
-  listenForTrainIcons(detailedTrainInformation: BasicTrainPayload[]) {
+  listenForTrainIcons(detailedTrainInformation: TrainInformation[]) {
     this.trainIconAdded.subscribe({
       next: trainIconName => {
         this.trainIconsAdded.add(trainIconName);

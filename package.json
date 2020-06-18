@@ -8,7 +8,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "compodoc": "npx compodoc -p tsconfig.json -w -s"
+    "compodoc": "npx compodoc -p tsconfig.json -w -s",
+    "tc-test": "ng test --single-run --reporters=teamcity"
   },
   "private": true,
   "dependencies": {
@@ -56,7 +57,9 @@
     "karma-coverage-istanbul-reporter": "~2.1.0",
     "karma-jasmine": "~3.0.1",
     "karma-jasmine-html-reporter": "^1.4.2",
+    "karma-teamcity-reporter": "^1.1.0",
     "protractor": "~7.0.0",
+    "puppeteer": "^4.0.0",
     "ts-node": "~8.3.0",
     "tslint": "~6.1.0",
     "typescript": "~3.8.3"

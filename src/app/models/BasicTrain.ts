@@ -1,17 +1,16 @@
 import {TrainDetails} from './TrainDetails';
-import {MapImageData} from 'ngx-mapbox-gl';
 
-export interface BasicTrain {
+export interface TrainInformationResponse {
   links: { [key: string]: object };
   payload: Payload;
   meta: { [key: string]: object };
 }
 
 interface Payload {
-  treinen: BasicTrainPayload[];
+  treinen: TrainInformation[];
 }
 
-export class BasicTrainPayload {
+export class TrainInformation {
   treinNummer: number;
   ritId: string;
   lat: number;

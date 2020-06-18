@@ -5,9 +5,10 @@ import {HttpClientService} from './http-client.service';
 import {environment} from '../../environments/environment';
 import {Station, StationPayload} from '../models/Station';
 import {TrainTrackGeoJSON} from '../models/TrainTrackGeoJSON';
-import {BasicTrain} from '../models/BasicTrain';
+import {TrainInformationResponse} from '../models/BasicTrain';
 import {TrainDetails} from '../models/TrainDetails';
 import {map} from 'rxjs/operators';
+import {Disruption} from '../models/Disruption';
 
 @Injectable({
   providedIn: 'root'
@@ -67,7 +68,7 @@ export class ApiService {
     });
   }
 
-  getBasicInformationAboutAllTrains(): Observable<BasicTrain> {
+  getBasicInformationAboutAllTrains(): Observable<TrainInformationResponse> {
     return this.http.get({
       url: 'https://gateway.apiportal.ns.nl/virtual-train-api/api/vehicle',
       cacheMins: 60,
@@ -88,6 +89,19 @@ export class ApiService {
         'Ocp-Apim-Subscription-Key': environment.NS_Ocp_Apim_Subscription_Key
       },
       params: trainParams
+    });
+  }
+
+  getActualDisruptions(): Observable<Disruption> {
+    const disruptionParams = new HttpParams()
+      .set('actual', 'true');
+    return this.http.get({
+      url: 'https://gateway.apiportal.ns.nl/reisinformatie-api/api/v2/disruptions',
+      cacheMins: 60,
+      headers: {
+        'Ocp-Apim-Subscription-Key': environment.NS_Ocp_Apim_Subscription_Key
+      },
+      params: disruptionParams
     });
   }
 }

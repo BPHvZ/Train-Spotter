@@ -8,7 +8,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "compodoc": "npx compodoc -p tsconfig.json -w -s",
+    "compodoc": "npx compodoc -p tsconfig.json -w -s --output ./docs",
     "tc-test": "ng test --watch=false --reporters=teamcity"
   },
   "private": true,
@@ -43,7 +43,7 @@
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^0.901.9",
-    "@angular/cli": "^9.1.8",
+    "@angular/cli": "^9.1.9",
     "@angular/compiler-cli": "^9.1.11",
     "@types/jasmine": "~3.5.0",
     "@types/jasminewd2": "~2.0.3",

@@ -3,14 +3,14 @@
  * Do not make direct changes to the file.
  */
 
-export interface definitions {
+export interface ReisinformatieAPI {
   VerstoringReisadvies: {
     titel?: string;
     advies?: string[];
     translatableTexts?: string[];
   };
   JourneyDetailLink: {
-    type?: "BTM" | "TRAIN_XML" | "TRAIN_JSON";
+    type?: 'BTM' | 'TRAIN_XML' | 'TRAIN_JSON';
     link?: {
       title?: string;
       uriBuilder?: { [key: string]: any };
@@ -26,17 +26,17 @@ export interface definitions {
     head?: string;
     text?: string;
     lead?: string;
-    type?: "MAINTENANCE" | "DISRUPTION";
+    type?: 'MAINTENANCE' | 'DISRUPTION';
     startDate?: string;
     endDate?: string;
     startTime?: string;
     endTime?: string;
   };
   BaanvakBeperking: {
-    van?: definitions["StationCode"];
-    tot?: definitions["StationCode"];
-    via?: definitions["StationCode"][];
-    richting?: "HEEN" | "HEEN_EN_TERUG";
+    van?: ReisinformatieAPI['StationCode'];
+    tot?: ReisinformatieAPI['StationCode'];
+    via?: ReisinformatieAPI['StationCode'][];
+    richting?: 'HEEN' | 'HEEN_EN_TERUG';
   };
   Stop: {
     name?: string;
@@ -69,11 +69,11 @@ export interface definitions {
   Melding: {
     id?: string;
     titel?: string;
-    type?: "prio_1" | "prio_2" | "prio_3";
+    type?: 'prio_1' | 'prio_2' | 'prio_3';
     url?: string;
-    bodyItems?: definitions["BodyItem"][];
+    bodyItems?: ReisinformatieAPI['BodyItem'][];
   };
-  DepartureArrivalMessage: { message?: string; style?: "INFO" | "WARNING" };
+  DepartureArrivalMessage: { message?: string; style?: 'INFO' | 'WARNING' };
   Product: {
     number?: string;
     categoryCode?: string;
@@ -82,17 +82,17 @@ export interface definitions {
     operatorCode?: string;
     operatorName?: string;
     type?:
-      | "TRAIN"
-      | "BUS"
-      | "TRAM"
-      | "METRO"
-      | "FERRY"
-      | "WALK"
-      | "BIKE"
-      | "CAR"
-      | "TAXI"
-      | "SUBWAY"
-      | "UNKNOWN";
+      | 'TRAIN'
+      | 'BUS'
+      | 'TRAM'
+      | 'METRO'
+      | 'FERRY'
+      | 'WALK'
+      | 'BIKE'
+      | 'CAR'
+      | 'TAXI'
+      | 'SUBWAY'
+      | 'UNKNOWN';
     displayName?: string;
   };
   StationCode: { code?: string; empty?: boolean };
@@ -104,24 +104,24 @@ export interface definitions {
   Step: {
     distanceInMeters?: number;
     durationInSeconds?: number;
-    startLocation?: definitions["Location"];
-    endLocation?: definitions["Location"];
+    startLocation?: ReisinformatieAPI['Location'];
+    endLocation?: ReisinformatieAPI['Location'];
     instructions?: string;
   };
   TravelAdvice: {
-    trips?: definitions["Trip"][];
+    trips?: ReisinformatieAPI['Trip'][];
     scrollRequestBackwardContext?: string;
     scrollRequestForwardContext?: string;
     message?: string;
     firstDeparture?: string;
     firstArrival?: string;
-    firstTrip?: definitions["Trip"];
+    firstTrip?: ReisinformatieAPI['Trip'];
     lastTripDeparture?: string;
     lastTripArrival?: string;
-    lastTrip?: definitions["Trip"];
+    lastTrip?: ReisinformatieAPI['Trip'];
   };
   LocalizableStrings: {
-    language?: "DUTCH" | "ENGLISH";
+    language?: 'DUTCH' | 'ENGLISH';
     locale?: {
       script?: string;
       country?: string;
@@ -150,14 +150,14 @@ export interface definitions {
       type?: string;
     };
     links?: { [key: string]: object };
-    payload?: definitions["Station"][];
+    payload?: ReisinformatieAPI['Station'][];
     meta?: { [key: string]: object };
   };
   EticketOption: {
     productType?: string;
     priceIncents?: number;
-    travelClass?: "FIRST_CLASS" | "SECOND_CLASS";
-    travelDiscount?: "NO_DISCOUNT" | "DISCOUNT_20" | "DISCOUNT_40";
+    travelClass?: 'FIRST_CLASS' | 'SECOND_CLASS';
+    travelDiscount?: 'NO_DISCOUNT' | 'DISCOUNT_20' | 'DISCOUNT_40';
   };
   Toeslag: { type?: string; bedrag?: number };
   RouteStation: { [key: string]: any };
@@ -168,12 +168,12 @@ export interface definitions {
     actualDateTime?: string;
     plannedTrack?: string;
     actualTrack?: string;
-    product?: definitions["Product"];
+    product?: ReisinformatieAPI['Product'];
     trainCategory?: string;
     cancelled?: boolean;
     journeyDetailRef?: string;
-    messages?: definitions["DepartureArrivalMessage"][];
-    departureStatus?: "ON_STATION" | "INCOMING" | "DEPARTED";
+    messages?: ReisinformatieAPI['DepartureArrivalMessage'][];
+    departureStatus?: 'ON_STATION' | 'INCOMING' | 'DEPARTED';
   };
   TripOriginDestination: {
     name?: string;
@@ -184,7 +184,7 @@ export interface definitions {
     uicCode?: string;
     weight?: number;
     products?: number;
-    type?: "STATION" | "ADDRESS" | "POINT_OF_INTEREST";
+    type?: 'STATION' | 'ADDRESS' | 'POINT_OF_INTEREST';
     prognosisType?: string;
     plannedTimeZoneOffset?: number;
     plannedDateTime?: string;
@@ -192,36 +192,36 @@ export interface definitions {
     actualDateTime?: string;
     plannedTrack?: string;
     actualTrack?: string;
-    exitSide?: "LEFT" | "RIGHT" | "UNKNOWN";
+    exitSide?: 'LEFT' | 'RIGHT' | 'UNKNOWN';
     checkinStatus?:
-      | "CHECKIN"
-      | "CHECKOUT"
-      | "OVERCHECK"
-      | "DETOUR"
-      | "REQUIRED_CHECK_OUT_IN"
-      | "NOTHING";
-    travelAssistanceBookingInfo?: definitions["ServiceBookingInfo"];
+      | 'CHECKIN'
+      | 'CHECKOUT'
+      | 'OVERCHECK'
+      | 'DETOUR'
+      | 'REQUIRED_CHECK_OUT_IN'
+      | 'NOTHING';
+    travelAssistanceBookingInfo?: ReisinformatieAPI['ServiceBookingInfo'];
     travelAssistanceMeetingPoints?: string[];
-    notes?: definitions["Note"][];
+    notes?: ReisinformatieAPI['Note'][];
     quayCode?: string;
     domestic?: boolean;
     latestKnownTrack?: string;
   };
   Verstoring: {
     type?:
-      | "MELDING_PRIO_1"
-      | "MELDING_PRIO_2"
-      | "MELDING_PRIO_3"
-      | "STORING"
-      | "WERKZAAMHEID"
-      | "EVENEMENT";
+      | 'MELDING_PRIO_1'
+      | 'MELDING_PRIO_2'
+      | 'MELDING_PRIO_3'
+      | 'STORING'
+      | 'WERKZAAMHEID'
+      | 'EVENEMENT';
     id?: string;
-    baanvakBeperking?: definitions["BaanvakBeperking"][];
+    baanvakBeperking?: ReisinformatieAPI['BaanvakBeperking'][];
     reden?: string;
     extraReistijd?: string;
     leafletUrl?: string;
-    reisadviezen?: definitions["Reisadviezen"];
-    geldigheidsLijst?: definitions["Geldigheid"][];
+    reisadviezen?: ReisinformatieAPI['Reisadviezen'];
+    geldigheidsLijst?: ReisinformatieAPI['Geldigheid'][];
     verwachting?: string;
     gevolg?: string;
     gevolgType?: string;
@@ -235,8 +235,8 @@ export interface definitions {
     header?: string;
     meldtijd?: string;
     periode?: string;
-    baanvakken?: definitions["Baanvak"][];
-    trajecten?: definitions["Traject"][];
+    baanvakken?: ReisinformatieAPI['Baanvak'][];
+    trajecten?: ReisinformatieAPI['Traject'][];
     versie?: string;
     volgnummer?: string;
     prioriteit?: number;
@@ -246,10 +246,10 @@ export interface definitions {
   LatLng: { lat?: number; lng?: number };
   Reisrecht: {
     reistype?: number;
-    prijsReisrecht?: definitions["PrijsReisrecht"][];
+    prijsReisrecht?: ReisinformatieAPI['PrijsReisrecht'][];
     routeaanduiding?: number;
     routeId?: string;
-    traject?: definitions["Traject"][];
+    traject?: ReisinformatieAPI['Traject'][];
   };
   Download: {
     titel?: string;
@@ -261,37 +261,37 @@ export interface definitions {
   Reisadviezen: {
     titel?: string;
     translatableTexts?: string[];
-    verstoringreisadvies?: definitions["VerstoringReisadvies"][];
-    verstoringReisAdvies?: definitions["VerstoringReisadvies"][];
+    verstoringreisadvies?: ReisinformatieAPI['VerstoringReisadvies'][];
+    verstoringReisAdvies?: ReisinformatieAPI['VerstoringReisadvies'][];
   };
   Trip: {
     uid?: string;
     plannedDurationInMinutes?: number;
     transfers?: number;
     status?:
-      | "CANCELLED"
-      | "CHANGE_NOT_POSSIBLE"
-      | "CHANGE_COULD_BE_POSSIBLE"
-      | "ALTERNATIVE_TRANSPORT"
-      | "DISRUPTION"
-      | "MAINTENANCE"
-      | "UNCERTAIN"
-      | "REPLACEMENT"
-      | "ADDITIONAL"
-      | "SPECIAL"
-      | "NORMAL";
-    legs?: definitions["Leg"][];
-    overviewPolyLine?: definitions["LatLng"][];
+      | 'CANCELLED'
+      | 'CHANGE_NOT_POSSIBLE'
+      | 'CHANGE_COULD_BE_POSSIBLE'
+      | 'ALTERNATIVE_TRANSPORT'
+      | 'DISRUPTION'
+      | 'MAINTENANCE'
+      | 'UNCERTAIN'
+      | 'REPLACEMENT'
+      | 'ADDITIONAL'
+      | 'SPECIAL'
+      | 'NORMAL';
+    legs?: ReisinformatieAPI['Leg'][];
+    overviewPolyLine?: ReisinformatieAPI['LatLng'][];
     checksum?: string;
-    crowdForecast?: "UNKNOWN" | "LOW" | "MEDIUM" | "HIGH";
+    crowdForecast?: 'UNKNOWN' | 'LOW' | 'MEDIUM' | 'HIGH';
     punctuality?: number;
     ctxRecon?: string;
     actualDurationInMinutes?: number;
     idx?: number;
     optimal?: boolean;
-    fares?: definitions["TripFare"][];
-    productFare?: definitions["TripFare"];
-    fareOptions?: definitions["TripFareOptions"];
+    fares?: ReisinformatieAPI['TripFare'][];
+    productFare?: ReisinformatieAPI['TripFare'];
+    fareOptions?: ReisinformatieAPI['TripFareOptions'];
     shareUrl?: {
       title?: string;
       uriBuilder?: { [key: string]: any };
@@ -301,19 +301,19 @@ export interface definitions {
       params?: { [key: string]: string };
       type?: string;
     };
-    type?: "NS" | "NS_ACCESSIBLE" | "NEGENTWEE" | "GOOGLE" | "PAS";
+    type?: 'NS' | 'NS_ACCESSIBLE' | 'NEGENTWEE' | 'GOOGLE' | 'PAS';
     realtime?: boolean;
-    travelAssistanceInfo?: definitions["TravelAssistanceInfo"];
+    travelAssistanceInfo?: ReisinformatieAPI['TravelAssistanceInfo'];
     routeId?: string;
-    firstLeg?: definitions["Leg"];
-    lastLeg?: definitions["Leg"];
+    firstLeg?: ReisinformatieAPI['Leg'];
+    lastLeg?: ReisinformatieAPI['Leg'];
   };
-  DepartureBoard: { departures?: definitions["Departure"][] };
+  DepartureBoard: { departures?: ReisinformatieAPI['Departure'][] };
   BodyItem: {
     objectType?: string;
     content?: string;
     titel?: string;
-    downloads?: definitions["Download"][];
+    downloads?: ReisinformatieAPI['Download'][];
   };
   ExitsideResponse: { [key: string]: any };
   Arrival: {
@@ -321,88 +321,88 @@ export interface definitions {
     name?: string;
     plannedTrack?: string;
     actualTrack?: string;
-    product?: definitions["Product"];
+    product?: ReisinformatieAPI['Product'];
     trainCategory?: string;
     cancelled?: boolean;
     journeyDetailRef?: string;
     plannedDateTime?: string;
     actualDateTime?: string;
-    messages?: definitions["DepartureArrivalMessage"][];
-    routeStations?: definitions["RouteStation"][];
+    messages?: ReisinformatieAPI['DepartureArrivalMessage'][];
+    routeStations?: ReisinformatieAPI['RouteStation'][];
     actualOrPlannedTime?: string;
   };
-  ArrivalBoard: { arrivals?: definitions["Arrival"][] };
+  ArrivalBoard: { arrivals?: ReisinformatieAPI['Arrival'][] };
   Leg: {
     idx?: string;
     name?: string;
     travelType?:
-      | "PUBLIC_TRANSIT"
-      | "WALK"
-      | "TRANSFER"
-      | "BIKE"
-      | "CAR"
-      | "KISS"
-      | "TAXI"
-      | "UNKNOWN";
+      | 'PUBLIC_TRANSIT'
+      | 'WALK'
+      | 'TRANSFER'
+      | 'BIKE'
+      | 'CAR'
+      | 'KISS'
+      | 'TAXI'
+      | 'UNKNOWN';
     direction?: string;
     distance?: number;
     cancelled?: boolean;
     changePossible?: boolean;
     alternativeTransport?: boolean;
-    journeyStatus?: "PLANNED" | "REPLACEMENT" | "ADDITIONAL" | "SPECIAL";
+    journeyStatus?: 'PLANNED' | 'REPLACEMENT' | 'ADDITIONAL' | 'SPECIAL';
     journeyDetailRef?: string;
-    origin?: definitions["TripOriginDestination"];
-    destination?: definitions["TripOriginDestination"];
-    product?: definitions["Product"];
-    notes?: definitions["Note"][];
-    messages?: definitions["Message"][];
-    stops?: definitions["Stop"][];
-    steps?: definitions["Step"][];
+    origin?: ReisinformatieAPI['TripOriginDestination'];
+    destination?: ReisinformatieAPI['TripOriginDestination'];
+    product?: ReisinformatieAPI['Product'];
+    notes?: ReisinformatieAPI['Note'][];
+    messages?: ReisinformatieAPI['Message'][];
+    stops?: ReisinformatieAPI['Stop'][];
+    steps?: ReisinformatieAPI['Step'][];
     coordinates?: number[][];
-    crowdForecast?: "UNKNOWN" | "LOW" | "MEDIUM" | "HIGH";
+    crowdForecast?: 'UNKNOWN' | 'LOW' | 'MEDIUM' | 'HIGH';
     punctuality?: number;
     crossPlatformTransfer?: boolean;
     shorterStock?: boolean;
     changeCouldBePossible?: boolean;
     shorterStockWarning?: string;
-    shorterStockClassification?: "BUSY" | "EXTRA_BUSY";
-    journeyDetail?: definitions["JourneyDetailLink"][];
+    shorterStockClassification?: 'BUSY' | 'EXTRA_BUSY';
+    journeyDetail?: ReisinformatieAPI['JourneyDetailLink'][];
     reachable?: boolean;
     plannedDurationInMinutes?: number;
-    travelAssistanceDeparture?: definitions["ServiceBookingInfo"];
-    travelAssistanceArrival?: definitions["ServiceBookingInfo"];
-    overviewPolyLine?: definitions["LatLng"][];
-    lastStop?: definitions["Stop"];
-    firstStop?: definitions["Stop"];
+    travelAssistanceDeparture?: ReisinformatieAPI['ServiceBookingInfo'];
+    travelAssistanceArrival?: ReisinformatieAPI['ServiceBookingInfo'];
+    overviewPolyLine?: ReisinformatieAPI['LatLng'][];
+    lastStop?: ReisinformatieAPI['Stop'];
+    firstStop?: ReisinformatieAPI['Stop'];
     travelOrNeccesaryWalk?: boolean;
     publicTransit?: boolean;
     punctualityInternal?: number;
   };
   TripFareOptions: {
-    eticketOptions?: definitions["EticketOption"][];
-    supplementsBasedOnSelectedFare?: definitions["TripFareSupplement"][];
+    eticketOptions?: ReisinformatieAPI['EticketOption'][];
+    supplementsBasedOnSelectedFare?: ReisinformatieAPI['TripFareSupplement'][];
     eticketBuyable?: boolean;
     internationalBookable?: boolean;
     international?: boolean;
     possibleWithOvChipkaart?: boolean;
   };
   Station: {
-    sporen?: definitions["Spoor"][];
+    sporen?: ReisinformatieAPI['Spoor'][];
     synoniemen?: string[];
     heeftFaciliteiten?: boolean;
     heeftVertrektijden?: boolean;
     heeftReisassistentie?: boolean;
     code?: string;
-    namen?: definitions["Namen"];
+    namen?: ReisinformatieAPI['Namen'];
     stationType?:
-      | "STOPTREIN_STATION"
-      | "KNOOPPUNT_STOPTREIN_STATION"
-      | "SNELTREIN_STATION"
-      | "KNOOPPUNT_SNELTREIN_STATION"
-      | "INTERCITY_STATION"
-      | "KNOOPPUNT_INTERCITY_STATION"
-      | "MEGA_STATION"
-      | "FACULTATIEF_STATION";
+      | 'STOPTREIN_STATION'
+      | 'KNOOPPUNT_STOPTREIN_STATION'
+      | 'SNELTREIN_STATION'
+      | 'KNOOPPUNT_SNELTREIN_STATION'
+      | 'INTERCITY_STATION'
+      | 'KNOOPPUNT_INTERCITY_STATION'
+      | 'MEGA_STATION'
+      | 'FACULTATIEF_STATION';
     land?: string;
     lat?: number;
     lng?: number;
@@ -417,37 +417,37 @@ export interface definitions {
   TripFare: {
     priceInCents?: number;
     product?:
-      | "OVCHIPKAART_ENKELE_REIS"
-      | "OVCHIPKAART_RETOUR"
-      | "TRAJECT_VRIJ_MAAND"
-      | "TRAJECT_VRIJ_JAAR"
-      | "BUSINESS_CARD_TRAJECT_VRIJ_JAAR"
-      | "DAL_VOORDEEL"
-      | "ALTIJD_VOORDEEL"
-      | "DAL_VRIJ"
-      | "WEEKEND_VRIJ"
-      | "ALTIJD_VRIJ"
-      | "BUSINESSCARD"
-      | "BUSINESSCARD_DAL"
-      | "STUDENT_WEEK"
-      | "STUDENT_WEEKEND"
-      | "VDU"
-      | "SAMENREISKORTING"
-      | "TRAJECT_VRIJ"
-      | "RAILRUNNER"
-      | "ETICKET_ENKELE_REIS"
-      | "ETICKET_RETOUR"
-      | "ETICKET_JOINT_JOURNEY_DISCOUNT_RETOUR"
-      | "ETICKET_JOINT_JOURNEY_DISCOUNT_ENKELE_REIS"
-      | "NSI";
-    travelClass?: "FIRST_CLASS" | "SECOND_CLASS";
+      | 'OVCHIPKAART_ENKELE_REIS'
+      | 'OVCHIPKAART_RETOUR'
+      | 'TRAJECT_VRIJ_MAAND'
+      | 'TRAJECT_VRIJ_JAAR'
+      | 'BUSINESS_CARD_TRAJECT_VRIJ_JAAR'
+      | 'DAL_VOORDEEL'
+      | 'ALTIJD_VOORDEEL'
+      | 'DAL_VRIJ'
+      | 'WEEKEND_VRIJ'
+      | 'ALTIJD_VRIJ'
+      | 'BUSINESSCARD'
+      | 'BUSINESSCARD_DAL'
+      | 'STUDENT_WEEK'
+      | 'STUDENT_WEEKEND'
+      | 'VDU'
+      | 'SAMENREISKORTING'
+      | 'TRAJECT_VRIJ'
+      | 'RAILRUNNER'
+      | 'ETICKET_ENKELE_REIS'
+      | 'ETICKET_RETOUR'
+      | 'ETICKET_JOINT_JOURNEY_DISCOUNT_RETOUR'
+      | 'ETICKET_JOINT_JOURNEY_DISCOUNT_ENKELE_REIS'
+      | 'NSI';
+    travelClass?: 'FIRST_CLASS' | 'SECOND_CLASS';
     priceInCentsExcludingSupplement?: number;
     discountType?:
-      | "NO_CHARGE"
-      | "DISCOUNT_40_PERCENT"
-      | "DISCOUNT_20_PERCENT"
-      | "FIP_DISCOUNT"
-      | "NO_DISCOUNT";
+      | 'NO_CHARGE'
+      | 'DISCOUNT_40_PERCENT'
+      | 'DISCOUNT_20_PERCENT'
+      | 'FIP_DISCOUNT'
+      | 'NO_DISCOUNT';
     supplementInCents?: number;
     link?: string;
     priceInCentsExcludingSupplementOrPrice?: number;
@@ -461,7 +461,7 @@ export interface definitions {
     afstand1eKlasse?: number;
     afstand2eKlasse?: number;
     indVolledig2eKlasse?: boolean;
-    prijsTraject?: definitions["PrijsTraject"][];
+    prijsTraject?: ReisinformatieAPI['PrijsTraject'][];
   };
   Spoor: { spoorNummer?: string };
   TripFareSupplement: {
@@ -484,52 +484,52 @@ export interface definitions {
     priceDifferenceInCentsBetweenFirstAndSecondClass?: number;
     priceDifferenceInCentsBetweenJointJourneyDiscount?: number;
     routeDesignation?: string;
-    alternativeRouteDesignations?: definitions["Price"][];
+    alternativeRouteDesignations?: ReisinformatieAPI['Price'][];
     operatorName?: string;
-    travelDiscount?: "NO_DISCOUNT" | "DISCOUNT_20" | "DISCOUNT_40";
-    travelClass?: "FIRST_CLASS" | "SECOND_CLASS";
-    reisrecht?: definitions["Reisrecht"];
+    travelDiscount?: 'NO_DISCOUNT' | 'DISCOUNT_20' | 'DISCOUNT_40';
+    travelClass?: 'FIRST_CLASS' | 'SECOND_CLASS';
+    reisrecht?: ReisinformatieAPI['Reisrecht'];
     travelProducts?: (
-      | "OVCHIPKAART_ENKELE_REIS"
-      | "OVCHIPKAART_RETOUR"
-      | "TRAJECT_VRIJ_MAAND"
-      | "TRAJECT_VRIJ_JAAR"
-      | "BUSINESS_CARD_TRAJECT_VRIJ_JAAR"
-      | "DAL_VOORDEEL"
-      | "ALTIJD_VOORDEEL"
-      | "DAL_VRIJ"
-      | "WEEKEND_VRIJ"
-      | "ALTIJD_VRIJ"
-      | "BUSINESSCARD"
-      | "BUSINESSCARD_DAL"
-      | "STUDENT_WEEK"
-      | "STUDENT_WEEKEND"
-      | "VDU"
-      | "SAMENREISKORTING"
-      | "TRAJECT_VRIJ"
-      | "RAILRUNNER"
-      | "ETICKET_ENKELE_REIS"
-      | "ETICKET_RETOUR"
-      | "ETICKET_JOINT_JOURNEY_DISCOUNT_RETOUR"
-      | "ETICKET_JOINT_JOURNEY_DISCOUNT_ENKELE_REIS"
-      | "NSI"
+      | 'OVCHIPKAART_ENKELE_REIS'
+      | 'OVCHIPKAART_RETOUR'
+      | 'TRAJECT_VRIJ_MAAND'
+      | 'TRAJECT_VRIJ_JAAR'
+      | 'BUSINESS_CARD_TRAJECT_VRIJ_JAAR'
+      | 'DAL_VOORDEEL'
+      | 'ALTIJD_VOORDEEL'
+      | 'DAL_VRIJ'
+      | 'WEEKEND_VRIJ'
+      | 'ALTIJD_VRIJ'
+      | 'BUSINESSCARD'
+      | 'BUSINESSCARD_DAL'
+      | 'STUDENT_WEEK'
+      | 'STUDENT_WEEKEND'
+      | 'VDU'
+      | 'SAMENREISKORTING'
+      | 'TRAJECT_VRIJ'
+      | 'RAILRUNNER'
+      | 'ETICKET_ENKELE_REIS'
+      | 'ETICKET_RETOUR'
+      | 'ETICKET_JOINT_JOURNEY_DISCOUNT_RETOUR'
+      | 'ETICKET_JOINT_JOURNEY_DISCOUNT_ENKELE_REIS'
+      | 'NSI'
     )[];
   };
   PrijsReisrecht: {
     idVerkoopcombinatie?: number;
     bedrag?: number;
-    toeslag?: definitions["Toeslag"][];
+    toeslag?: ReisinformatieAPI['Toeslag'][];
   };
   Note: {
     value?: string;
     key?: string;
     noteType?:
-      | "UNKNOWN"
-      | "ATTRIBUTE"
-      | "INFOTEXT"
-      | "REALTIME"
-      | "TICKET"
-      | "HINT";
+      | 'UNKNOWN'
+      | 'ATTRIBUTE'
+      | 'INFOTEXT'
+      | 'REALTIME'
+      | 'TICKET'
+      | 'HINT';
     priority?: number;
     routeIdxFrom?: number;
     routeIdxTo?: number;
@@ -542,7 +542,7 @@ export interface definitions {
       params?: { [key: string]: string };
       type?: string;
     };
-    category?: "PLATFORM_INFORMATION" | "OVERCHECK_INSTRUCTION" | "UNKNOWN";
+    category?: 'PLATFORM_INFORMATION' | 'OVERCHECK_INSTRUCTION' | 'UNKNOWN';
     alternativeTransport?: boolean;
     presentationRequired?: boolean;
   };

@@ -18,7 +18,7 @@
     'icon-allow-overlap': true
     }"
                [minzoom]="10"
-    (click)="openStationPopupOnLayerClick($event)">
+               (click)="openStationPopupOnLayerClick($event)">
     </mgl-layer>
     <mgl-layer *ngIf="trainTracksLayerData"
                id="NSTrainTracks"
@@ -37,6 +37,32 @@
                [paint]="{'line-color': '#fe0000', 'line-width': 2}"
                [before]="'stations'">
     </mgl-layer>
+    <mgl-geojson-source id="disruptionMarkersSource">
+      <mgl-marker *ngFor="let disruptionMarker of disruptionMarkersData"
+                  [lngLat]="disruptionMarker.geometry.coordinates">
+        <div style="pointer-events: auto" [ngStyle]="{'display': activeMapType.layerId === 'storingen-railroad'? 'unset': 'none'}">
+          <div id="mapPopup" class="flex-parent-inline flex-parent--center-cross flex-parent--column absolute bottom">
+            <div class="mapPopupContent mapPopupContent--disruption color-white shadow-darken10 round txt-s clip txt-truncate">
+              <div *ngIf="disruptionMarker.properties['type'] === 'werkzaamheid'; else elseDisruption">
+                <img src="../../../assets/maintenance--35x35.svg" alt="Werk aan het spoor" style="
+                position: inherit; height: 30px;"/>
+              </div>
+              <ng-template #elseDisruption>
+                <img src="../../../assets/alert--35x35.svg" alt="Storing" style="
+                position: inherit; height: 30px;"/></ng-template>
+            </div>
+            <span class="flex-child triangle triangle--d" style="color: #fe0000"></span>
+          </div>
+        </div>
+      </mgl-marker>
+    </mgl-geojson-source>
+    <mgl-layer *ngIf="disruptionMarkersData"
+      id="symbols"
+      type="symbol"
+      source="disruptionMarkersSource"
+      (click)="clickMarker($event)"
+    >
+    </mgl-layer>
     <mgl-geojson-source *ngIf="trainsLayerData" id="trainData" [data]="trainsLayerData">
     </mgl-geojson-source>
     <mgl-layer *ngIf="trainsLayerData && trainIconsForMap"
@@ -44,6 +70,7 @@
                type="symbol"
                source="trainData"
                [layout]="{
+               'visibility': activeMapType.layerId === 'ns-railroad' ? 'visible' : 'none',
       'icon-image': ['get', 'trainIconName'],
       'icon-size': 0.40,
       'icon-allow-overlap': true,

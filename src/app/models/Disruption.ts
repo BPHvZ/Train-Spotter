@@ -2,11 +2,11 @@ import {Melding} from './Calimity';
 
 export interface Disruption {
   links: { [key: string]: object };
-  payload: Payload[];
+  payload: DisruptionPayload[];
   meta: { [key: string]: object };
 }
 
-export interface Payload {
+export interface DisruptionPayload {
   id: string;
   type: DisruptionType;
   titel: string;

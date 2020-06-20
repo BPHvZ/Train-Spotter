@@ -76,9 +76,9 @@ import {TrainMapComponent} from &#x27;./components/train-map/train-map.component
 import {AllStationsComponent} from &#x27;./components/all-stations/all-stations.component&#x27;;
 
 const routes: Routes &#x3D; [
-  { path: &#x27;kaart&#x27;, component: TrainMapComponent, pathMatch: &#x27;full&#x27; },
-  { path: &#x27;stations&#x27;, component: AllStationsComponent, pathMatch: &#x27;full&#x27; },
-  { path: &#x27;&#x27;,   redirectTo: &#x27;/stations&#x27;, pathMatch: &#x27;full&#x27; }
+  { path: &#x27;kaart&#x27;, component: TrainMapComponent },
+  { path: &#x27;stations&#x27;, component: AllStationsComponent},
+  { path: &#x27;&#x27;,   redirectTo: &#x27;/kaart&#x27;, pathMatch: &#x27;full&#x27; }
 ];
 
 @NgModule({

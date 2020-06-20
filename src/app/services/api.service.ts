@@ -18,16 +18,6 @@ export class ApiService {
   constructor(private http: HttpClientService) {
   }
 
-  getBasicInformationAboutAllStations(): Observable<Station> {
-    return this.http.get({
-      url: 'https://gateway.apiportal.ns.nl/reisinformatie-api/api/v2/stations',
-      cacheMins: 60,
-      headers: {
-        'Ocp-Apim-Subscription-Key': environment.NS_Ocp_Apim_Subscription_Key
-      }
-    });
-  }
-
   searchForStation(term: string): Observable<StationPayload[]> {
     if (term === '') {
       return of([]);
@@ -59,12 +49,15 @@ export class ApiService {
   }
 
   getDisruptedTrainTracksGeoJSON(): Observable<TrainTrackGeoJSON> {
+    const disruptionParams = new HttpParams()
+      .set('actual', 'true');
     return this.http.get({
       url: 'https://gateway.apiportal.ns.nl/Spoorkaart-API/api/v1/storingen',
       cacheMins: 60,
       headers: {
         'Ocp-Apim-Subscription-Key': environment.NS_Ocp_Apim_Subscription_Key
-      }
+      },
+      params: disruptionParams
     });
   }
 

@@ -6,13 +6,15 @@ import {pausable, PausableObservable} from 'rxjs-pausable';
 import {ApiService} from '../../services/api.service';
 import {StationPayload} from '../../models/Station';
 import {HelperFunctionsService} from '../../services/helper-functions.service';
-import {GeoJSON} from 'geojson';
+import {GeoJSON, MultiLineString} from 'geojson';
 import {environment} from '../../../environments/environment';
 import {TrainInformation, TrainIconOnMap} from '../../models/BasicTrain';
 import * as Jimp from 'jimp';
 import {Map as MapBoxMap, MapboxGeoJSONFeature, MapLayerMouseEvent, MapMouseEvent} from 'mapbox-gl';
 import {HeaderEventsService} from '../../services/header-events.service';
 import {NavigationEnd, NavigationStart, Router} from '@angular/router';
+import {StationsService} from '../../services/stations.service';
+import {Disruption, DisruptionPayload} from '../../models/Disruption';
 
 const replaceColor = require('replace-color');
 
@@ -51,8 +53,11 @@ export class TrainMapComponent implements OnInit {
 
   stationsLayerData: GeoJSON.FeatureCollection<GeoJSON.Geometry>;
   trainTracksLayerData: GeoJSON.FeatureCollection<GeoJSON.Geometry>;
-  disruptedTrainTracksLayerData: GeoJSON.FeatureCollection<GeoJSON.Geometry>;
   trainsLayerData: GeoJSON.FeatureCollection<GeoJSON.Geometry>;
+
+  disruptedTrainTracksLayerData: GeoJSON.FeatureCollection<MultiLineString>;
+  disruptionMarkersData: GeoJSON.Feature<GeoJSON.Point, DisruptionPayload>[];
+  actualDisruptions: Disruption;
 
   private trainIconAddedSource = new Subject<string>();
   trainIconAdded = this.trainIconAddedSource.asObservable();
@@ -65,6 +70,7 @@ export class TrainMapComponent implements OnInit {
 
   constructor(
     private apiService: ApiService,
+    private stationsService: StationsService,
     private helperFunctions: HelperFunctionsService,
     private headerEventsService: HeaderEventsService,
     private router: Router
@@ -147,21 +153,24 @@ export class TrainMapComponent implements OnInit {
     this.trainMap = trainMap;
     this.isUpdatingMapData = true;
     zip(
-      this.apiService.getBasicInformationAboutAllStations(),
+      this.stationsService.getBasicInformationAboutAllStations(),
       this.apiService.getTrainTracksGeoJSON(),
       this.apiService.getDisruptedTrainTracksGeoJSON(),
+      this.apiService.getActualDisruptions()
     ).subscribe({
       next: value => {
         console.log(value);
         this.addStationsToMap(value[0].payload);
         this.trainTracksLayerData = value[1].payload;
-        this.disruptedTrainTracksLayerData = value[2].payload;
+        this.disruptedTrainTracksLayerData = value[2].payload as GeoJSON.FeatureCollection<MultiLineString>;
+        this.actualDisruptions = value[3];
       },
       error: err => {
         console.log(err);
       },
       complete: () => {
         this.getActiveTrainsAndDetails();
+        this.setDisruptionMarkers();
       }
     });
   }
@@ -255,6 +264,40 @@ export class TrainMapComponent implements OnInit {
     this.isUpdatingMapData = false;
     this.pauseOrResumeUpdatingTrainPositions(false);
     this.pauseOrResumeUpdatingTrainPositions(true);
+  }
+
+  setDisruptionMarkers() {
+    this.disruptionMarkersData = [];
+    console.log(this.disruptedTrainTracksLayerData.features.length);
+
+    const uniqueDisruptions = [];
+    const idMap = new Map();
+    for (const feature of this.disruptedTrainTracksLayerData.features) {
+      if (!idMap.has(feature.id)){
+        idMap.set(feature.id, true);
+        uniqueDisruptions.push(feature);
+      }
+    }
+
+    uniqueDisruptions.forEach(feature => {
+      const disruptionInfo = this.actualDisruptions.payload.find(disruption => disruption.id === feature.id);
+      if (disruptionInfo) {
+        feature.properties = disruptionInfo;
+      }
+      const linePart = feature.geometry.coordinates[0];
+      this.disruptionMarkersData.push({
+        type: 'Feature',
+        properties: feature.properties,
+        geometry: {
+          type: 'Point',
+          coordinates: linePart[Math.ceil(linePart.length / 2) - 1]
+        },
+      });
+    });
+  }
+
+  clickMarker(evt: MapMouseEvent) {
+    console.log(evt);
   }
 
   /**

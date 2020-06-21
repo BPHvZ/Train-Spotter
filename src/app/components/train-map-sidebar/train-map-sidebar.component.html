@@ -1,44 +1,49 @@
-<div id="sidebar" class="frosted left-shadow"
-     [@openClose]="isOpen ? 'open' : 'closed'"
-     (@openClose.done)="done($event)"
->
-  <div id="sidebar-content" [@openClose-content]="isOpen ? 'open' : 'closed'" class="container">
-    <div class="col">
-      <div class="row">
-        <button id="close-button" class="button"
-                (click)="toggle()">
-          <strong>&times;</strong>
-        </button>
-      </div>
-      <div class="row">
-        <div *ngIf="disruptions">
-          <div *ngFor="let disruption of disruptions" class="card bg-light mb-3" style="max-width: 18rem;">
-            <div *ngIf="disruption.type === 'verstoring' || disruption.type === 'werkzaamheid'; else elseMelding">
-              <div class="card-header headingS">
-                <div *ngIf="disruption.type === 'werkzaamheid'; else elseDisruption" style="display: inline">
-                  <img src="../../../assets/maintenance--red--35x35.svg" alt="Werk aan het spoor" style="
+<div>
+  <div id="sidebare-arrow">
+
+  </div>
+  <div id="sidebar" class="frosted left-shadow"
+       [@openClose]="isOpen ? 'open' : 'closed'"
+       (@openClose.done)="done($event)"
+  >
+    <div id="sidebar-content" [@openClose-content]="isOpen ? 'open' : 'closed'" class="container">
+      <div class="col">
+        <div class="row">
+          <button id="close-button" class="button"
+                  (click)="toggle()">
+            <strong>&times;</strong>
+          </button>
+        </div>
+        <div class="row">
+          <div *ngIf="disruptions">
+            <div *ngFor="let disruption of disruptions" class="card bg-light mb-3" style="max-width: 18rem;">
+              <div *ngIf="disruption.type === 'verstoring' || disruption.type === 'werkzaamheid'; else elseMelding">
+                <div class="card-header headingS">
+                  <div *ngIf="disruption.type === 'werkzaamheid'; else elseDisruption" style="display: inline">
+                    <img src="../../../assets/maintenance--red--35x35.svg" alt="Werk aan het spoor" style="
                 position: inherit; height: 30px; display: inline"/>
-                </div>
-                <ng-template #elseDisruption>
-                  <img src="../../../assets/alert--red--35x35.svg" alt="Storing" style="
+                  </div>
+                  <ng-template #elseDisruption>
+                    <img src="../../../assets/alert--red--35x35.svg" alt="Storing" style="
                 position: inherit; height: 30px; display: inline"/></ng-template>
-                {{disruption.titel}}
+                  {{disruption.titel}}
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title">{{disruption.verstoring.periode}}</h5>
+                  <p class="card-text">{{disruption.verstoring.gevolg}}</p>
+                </div>
               </div>
-              <div class="card-body">
-                <h5 class="card-title">{{disruption.verstoring.periode}}</h5>
-                <p class="card-text">{{disruption.verstoring.gevolg}}</p>
-              </div>
-            </div>
-            <ng-template #elseMelding>
-              <div class="card-header headingS">
-                <img src="../../../assets/alert--red--35x35.svg" alt="Storing" style="
+              <ng-template #elseMelding>
+                <div class="card-header headingS">
+                  <img src="../../../assets/alert--red--35x35.svg" alt="Storing" style="
                 position: inherit; height: 30px; display: inline"/>
-                {{disruption.titel}}
-              </div>
-              <div class="card-body">
-                <p class="card-text">{{disruption.melding.beschrijving}}</p>
-              </div>
-            </ng-template>
+                  {{disruption.titel}}
+                </div>
+                <div class="card-body">
+                  <p class="card-text">{{disruption.melding.beschrijving}}</p>
+                </div>
+              </ng-template>
+            </div>
           </div>
         </div>
       </div>

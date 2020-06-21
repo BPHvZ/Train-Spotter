@@ -49,7 +49,8 @@
     "karma-jasmine": "~3.0.1",
     "karma-jasmine-html-reporter": "^1.4.2",
     "karma-teamcity-reporter": "^1.1.0",
-    "puppeteer": "^4.0.0"
+    "puppeteer": "^4.0.0",
+    "typescript": "~3.8.3"
   },
   "devDependencies": {
     "@angular/cli": "^9.1.9",
@@ -63,7 +64,6 @@
     "jasmine-spec-reporter": "~4.2.1",
     "protractor": "~7.0.0",
     "ts-node": "~8.3.0",
-    "tslint": "~6.1.0",
-    "typescript": "~3.8.3"
+    "tslint": "~6.1.0"
   }
 }

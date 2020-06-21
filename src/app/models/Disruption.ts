@@ -17,8 +17,12 @@ export interface DisruptionPayload {
 }
 
 export enum DisruptionType {
-  Storing = 'storing',
-  Werkzaamheid = 'werkzaamheid'
+  Prio1 = 'prio_1',
+  Prio2 = 'prio_2',
+  Prio3 = 'prio_3',
+  Verstoring = 'verstoring',
+  Werkzaamheid = 'werkzaamheid',
+  Evenement = 'evenement'
 }
 
 export interface Verstoring {

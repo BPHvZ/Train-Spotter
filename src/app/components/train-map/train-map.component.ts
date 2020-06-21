@@ -48,6 +48,8 @@ export class TrainMapComponent implements OnInit {
     }
   ];
   activeMapType: TrainMapType = this.mapTypes[0];
+  sidebarIsOpen = false;
+
   selectedTrainOnMapFeature: MapboxGeoJSONFeature;
   selectedStationOnMapFeature: MapboxGeoJSONFeature;
 
@@ -164,6 +166,9 @@ export class TrainMapComponent implements OnInit {
         this.trainTracksLayerData = value[1].payload;
         this.disruptedTrainTracksLayerData = value[2].payload as GeoJSON.FeatureCollection<MultiLineString>;
         this.actualDisruptions = value[3];
+        this.actualDisruptions.payload.forEach(dis => {
+          console.log(dis.type);
+        });
       },
       error: err => {
         console.log(err);
@@ -203,6 +208,11 @@ export class TrainMapComponent implements OnInit {
       });
       event.target.getCanvas().style.cursor = features.length ? 'pointer' : '';
     }
+  }
+
+  changeMapLayerType(layer: TrainMapType) {
+    this.activeMapType = layer;
+    this.sidebarIsOpen = this.activeMapType.layerId !== 'ns-railroad';
   }
 
   /**

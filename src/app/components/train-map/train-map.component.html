@@ -1,152 +1,159 @@
-<div style="height: 100%">
-  <mgl-map
-    [style]="mapStyle"
-    [zoom]="[zoom]"
-    [center]="[lng, lat]"
-    [maxBounds]="[[-5.1804575292,45.9339846217], [15.0276942887,56.0902661419]]"
-    (load)="onMapLoad($event)"
-    (mouseMove)="onMapMouseMove($event)"
-    (zoomEvt)="onMapZoom($event)"
-  >
-    <mgl-layer *ngIf="stationsLayerData"
-               id="stations"
-               type="symbol"
-               [source]="{type: 'geojson', data: stationsLayerData}"
-               [layout]="{
+<div>
+  <div style="height: 100%; z-index: 100">
+    <mgl-map
+      [style]="mapStyle"
+      [zoom]="[zoom]"
+      [center]="[lng, lat]"
+      [maxBounds]="[[-5.1804575292,45.9339846217], [15.0276942887,56.0902661419]]"
+      (load)="onMapLoad($event)"
+      (mouseMove)="onMapMouseMove($event)"
+      (zoomEvt)="onMapZoom($event)"
+    >
+      <mgl-layer *ngIf="stationsLayerData"
+                 id="stations"
+                 type="symbol"
+                 [source]="{type: 'geojson', data: stationsLayerData}"
+                 [layout]="{
     'icon-image': 'NS',
     'icon-size': 0.15,
     'icon-allow-overlap': true
     }"
-               [minzoom]="10"
-               (click)="openStationPopupOnLayerClick($event)">
-    </mgl-layer>
-    <mgl-layer *ngIf="trainTracksLayerData"
-               id="NSTrainTracks"
-               type="line"
-               [source]="{type: 'geojson', data: trainTracksLayerData}"
-               [layout]="{'line-join': 'round', 'line-cap': 'round'}"
-               [paint]="{'line-color': '#9C9CA6', 'line-width': 2}"
-               [before]="'stations'">
-    </mgl-layer>
-    <mgl-layer *ngIf="disruptedTrainTracksLayerData"
-               id="disruptedTrainTracks"
-               type="line"
-               [source]="{type: 'geojson', data: disruptedTrainTracksLayerData}"
-               [layout]="{'visibility': activeMapType.layerId === 'storingen-railroad' ? 'visible' : 'none',
+                 [minzoom]="10"
+                 (click)="openStationPopupOnLayerClick($event)">
+      </mgl-layer>
+      <mgl-layer *ngIf="trainTracksLayerData"
+                 id="NSTrainTracks"
+                 type="line"
+                 [source]="{type: 'geojson', data: trainTracksLayerData}"
+                 [layout]="{'line-join': 'round', 'line-cap': 'round'}"
+                 [paint]="{'line-color': '#9C9CA6', 'line-width': 2}"
+                 [before]="'stations'">
+      </mgl-layer>
+      <mgl-layer *ngIf="disruptedTrainTracksLayerData"
+                 id="disruptedTrainTracks"
+                 type="line"
+                 [source]="{type: 'geojson', data: disruptedTrainTracksLayerData}"
+                 [layout]="{'visibility': activeMapType.layerId === 'storingen-railroad' ? 'visible' : 'none',
       'line-join': 'round', 'line-cap': 'round'}"
-               [paint]="{'line-color': '#fe0000', 'line-width': 2}"
-               [before]="'stations'">
-    </mgl-layer>
-    <mgl-geojson-source id="disruptionMarkersSource">
-      <mgl-marker *ngFor="let disruptionMarker of disruptionMarkersData"
-                  [lngLat]="disruptionMarker.geometry.coordinates">
-        <div style="pointer-events: auto" [ngStyle]="{'display': activeMapType.layerId === 'storingen-railroad'? 'unset': 'none'}">
-          <div id="mapPopup" class="flex-parent-inline flex-parent--center-cross flex-parent--column absolute bottom">
-            <div class="mapPopupContent mapPopupContent--disruption color-white shadow-darken10 round txt-s clip txt-truncate">
-              <div *ngIf="disruptionMarker.properties['type'] === 'werkzaamheid'; else elseDisruption">
-                <img src="../../../assets/maintenance--35x35.svg" alt="Werk aan het spoor" style="
+                 [paint]="{'line-color': '#fe0000', 'line-width': 2}"
+                 [before]="'stations'">
+      </mgl-layer>
+      <mgl-geojson-source id="disruptionMarkersSource">
+        <mgl-marker *ngFor="let disruptionMarker of disruptionMarkersData"
+                    [lngLat]="disruptionMarker.geometry.coordinates">
+          <div style="pointer-events: auto" [ngStyle]="{'display': activeMapType.layerId === 'storingen-railroad'? 'unset': 'none'}">
+            <div id="mapPopup" class="flex-parent-inline flex-parent--center-cross flex-parent--column absolute bottom">
+              <div class="mapPopupContent mapPopupContent--disruption color-white shadow-darken10 round txt-s clip txt-truncate">
+                <div *ngIf="disruptionMarker.properties['type'] === 'werkzaamheid'; else elseDisruption">
+                  <img src="../../../assets/maintenance--35x35.svg" alt="Werk aan het spoor" style="
                 position: inherit; height: 30px;"/>
-              </div>
-              <ng-template #elseDisruption>
-                <img src="../../../assets/alert--35x35.svg" alt="Storing" style="
+                </div>
+                <ng-template #elseDisruption>
+                  <img src="../../../assets/alert--35x35.svg" alt="Storing" style="
                 position: inherit; height: 30px;"/></ng-template>
+              </div>
+              <span class="flex-child triangle triangle--d" style="color: #fe0000"></span>
             </div>
-            <span class="flex-child triangle triangle--d" style="color: #fe0000"></span>
           </div>
-        </div>
-      </mgl-marker>
-    </mgl-geojson-source>
-    <mgl-layer *ngIf="disruptionMarkersData"
-      id="symbols"
-      type="symbol"
-      source="disruptionMarkersSource"
-      (click)="clickMarker($event)"
-    >
-    </mgl-layer>
-    <mgl-geojson-source *ngIf="trainsLayerData" id="trainData" [data]="trainsLayerData">
-    </mgl-geojson-source>
-    <mgl-layer *ngIf="trainsLayerData && trainIconsForMap"
-               id="trains"
-               type="symbol"
-               source="trainData"
-               [layout]="{
+        </mgl-marker>
+      </mgl-geojson-source>
+      <mgl-layer *ngIf="disruptionMarkersData"
+                 id="symbols"
+                 type="symbol"
+                 source="disruptionMarkersSource"
+                 (click)="clickMarker($event)"
+      >
+      </mgl-layer>
+      <mgl-geojson-source *ngIf="trainsLayerData" id="trainData" [data]="trainsLayerData">
+      </mgl-geojson-source>
+      <mgl-layer *ngIf="trainsLayerData && trainIconsForMap"
+                 id="trains"
+                 type="symbol"
+                 source="trainData"
+                 [layout]="{
                'visibility': activeMapType.layerId === 'ns-railroad' ? 'visible' : 'none',
       'icon-image': ['get', 'trainIconName'],
       'icon-size': 0.40,
       'icon-allow-overlap': true,
       'icon-ignore-placement': true
       }"
-               [minzoom]="6"
-               [maxzoom]="20"
-               (click)="openTrainPopupOnLayerClick($event)"
-    >
-    </mgl-layer>
-    <div *ngIf="trainIconsForMap">
-      <mgl-image *ngFor="let trainIcon of trainIconsForMap"
-                 [id]="trainIcon.imageName"
-                 [url]="trainIcon.imageObjectURL"
-                 (loaded)="onIconLoad(trainIcon.imageName)"
-                 (error)="onIconLoad(trainIcon.imageName)"
-      ></mgl-image>
-    </div>
-    <mgl-popup *ngIf="selectedTrainOnMapFeature"
-               [offset]="[0, 5]"
-               [closeButton]="false"
-               [lngLat]="selectedTrainOnMapFeature?.geometry?.coordinates">
-      <app-train-popup [mapboxFeature]="selectedTrainOnMapFeature" (onClose)="closePopup()">
-      </app-train-popup>
-    </mgl-popup>
-    <mgl-popup *ngIf="selectedStationOnMapFeature"
-               [offset]="[0, 5]"
-               [closeButton]="false"
-               [lngLat]="selectedStationOnMapFeature?.geometry?.coordinates">
-      <app-station-popup [mapboxFeature]="selectedStationOnMapFeature" (closePopup)="closePopup()">
-      </app-station-popup>
-    </mgl-popup>
-  </mgl-map>
-  <div id="mapControls" *ngIf="true; else loadingMap">
-    <div id="mapTypeControl" class="toggle-group border border--2 border--white bg-white shadow-darken10 z1">
-      <div class="toggle-container mb-0" *ngFor="let mapType of mapTypes">
-        <label for="mapTypeInput" hidden></label>
-        <input id="mapTypeInput" name="toggle" type="radio" [checked]="mapType.layerId == activeMapType.layerId"/>
-        <div id="mapTypeToggle" class="toggle txt-s py3 toggle--active-white"
-             (click)="activeMapType = mapType">
-          {{mapType.name}}</div>
+                 [minzoom]="6"
+                 [maxzoom]="20"
+                 (click)="openTrainPopupOnLayerClick($event)"
+      >
+      </mgl-layer>
+      <div *ngIf="trainIconsForMap">
+        <mgl-image *ngFor="let trainIcon of trainIconsForMap"
+                   [id]="trainIcon.imageName"
+                   [url]="trainIcon.imageObjectURL"
+                   (loaded)="onIconLoad(trainIcon.imageName)"
+                   (error)="onIconLoad(trainIcon.imageName)"
+        ></mgl-image>
       </div>
-    </div>
-    <div id="playPauseButton" class="border border--2 border--white bg-white shadow-darken10 z1"
-         (click)="pauseOrResumeUpdatingTrainPositions(!updateTrainsIsPaused)">
-      <div class="row">
-        <div id="updatePositionsLabel" class="toggle txt-s">Update posities</div>
-        <div id="playPauseIconButton"
-             *ngIf="isUpdatingMapData === false || updateTrainsIsPaused === false; else updatingMapDataSpinner">
-          <button mat-icon-button>
-            <mat-icon *ngIf="updateTrainsIsPaused === false && isUpdatingMapData === false; else playCircleIcon">
-              pause_circle_filled
-            </mat-icon>
-            <ng-template #playCircleIcon>
-              <mat-icon>play_circle_filled</mat-icon>
-            </ng-template>
-          </button>
+      <mgl-popup *ngIf="selectedTrainOnMapFeature"
+                 [offset]="[0, 5]"
+                 [closeButton]="false"
+                 [lngLat]="selectedTrainOnMapFeature?.geometry?.coordinates">
+        <app-train-popup [mapboxFeature]="selectedTrainOnMapFeature" (onClose)="closePopup()">
+        </app-train-popup>
+      </mgl-popup>
+      <mgl-popup *ngIf="selectedStationOnMapFeature"
+                 [offset]="[0, 5]"
+                 [closeButton]="false"
+                 [lngLat]="selectedStationOnMapFeature?.geometry?.coordinates">
+        <app-station-popup [mapboxFeature]="selectedStationOnMapFeature" (closePopup)="closePopup()">
+        </app-station-popup>
+      </mgl-popup>
+    </mgl-map>
+    <div id="mapControls" *ngIf="true; else loadingMap">
+      <div id="mapTypeControl" class="toggle-group border border--2 border--white bg-white shadow-darken10 z1">
+        <div class="toggle-container mb-0" *ngFor="let mapType of mapTypes">
+          <label [htmlFor]="mapType.layerId" hidden></label>
+          <input [id]="mapType.layerId" class="mapTypeInput" name="toggle" type="radio" [checked]="mapType.layerId == activeMapType.layerId"/>
+          <div class="mapTypeToggle toggle txt-s py3 toggle--active-white"
+               (click)="changeMapLayerType(mapType)">
+            {{mapType.name}}</div>
         </div>
-        <ng-template #updatingMapDataSpinner>
-          <div id="updatingMapDataSpinner" class="spinner-border spinner-border-sm" role="status">
-            <span class="sr-only">Loading...</span>
+      </div>
+      <div id="playPauseButton" class="border border--2 border--white bg-white shadow-darken10 z1"
+           (click)="pauseOrResumeUpdatingTrainPositions(!updateTrainsIsPaused)">
+        <div class="row">
+          <div id="updatePositionsLabel" class="toggle txt-s">Update posities</div>
+          <div id="playPauseIconButton"
+               *ngIf="isUpdatingMapData === false || updateTrainsIsPaused === false; else updatingMapDataSpinner">
+            <button mat-icon-button>
+              <mat-icon *ngIf="updateTrainsIsPaused === false && isUpdatingMapData === false; else playCircleIcon">
+                pause_circle_filled
+              </mat-icon>
+              <ng-template #playCircleIcon>
+                <mat-icon>play_circle_filled</mat-icon>
+              </ng-template>
+            </button>
           </div>
-        </ng-template>
-      </div>
-      <div id="updatePositionsProgressbar">
-        <div class="progress" style="height: 12px; border-radius: 6px">
-          <div class="progress-bar" role="progressbar" [ngStyle]="{width: getProgress}"
-               style=" background-color: #003082"
-               aria-valuemin="0" aria-valuemax="100"></div>
+          <ng-template #updatingMapDataSpinner>
+            <div id="updatingMapDataSpinner" class="spinner-border spinner-border-sm" role="status">
+              <span class="sr-only">Loading...</span>
+            </div>
+          </ng-template>
+        </div>
+        <div id="updatePositionsProgressbar">
+          <div class="progress" style="height: 12px; border-radius: 6px">
+            <div class="progress-bar" role="progressbar" [ngStyle]="{width: getProgress}"
+                 style=" background-color: #003082"
+                 aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
         </div>
       </div>
     </div>
+    <ng-template #loadingMap>
+      <div class="loader" style="z-index: 1">
+        <div class="bar"></div>
+      </div>
+    </ng-template>
   </div>
-  <ng-template #loadingMap>
-    <div class="loader" style="z-index: 1">
-      <div class="bar"></div>
-    </div>
-  </ng-template>
+  <div id="sidebar" *ngIf="actualDisruptions">
+    <app-train-map-sidebar [isOpen]="sidebarIsOpen"
+                           [disruptions]="actualDisruptions.payload"
+                           (closeSidebar)="sidebarIsOpen = false"></app-train-map-sidebar>
+  </div>
 </div>

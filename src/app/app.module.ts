@@ -20,6 +20,7 @@ import { NgbdSortableHeaderDirective } from './directives/ngbd-sortable-header.d
 import {FormsModule} from '@angular/forms';
 import {RouteReuseStrategy} from '@angular/router';
 import {CacheRouteReuseStrategy} from './cache-route-reuse.strategy';
+import { TrainMapSidebarComponent } from './components/train-map-sidebar/train-map-sidebar.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import {CacheRouteReuseStrategy} from './cache-route-reuse.strategy';
     TrainPopupComponent,
     StationPopupComponent,
     AllStationsComponent,
-    NgbdSortableHeaderDirective
+    NgbdSortableHeaderDirective,
+    TrainMapSidebarComponent
   ],
     imports: [
         BrowserModule,

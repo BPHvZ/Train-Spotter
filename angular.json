@@ -108,7 +108,7 @@
                 "teamcity",
                 "coverage-istanbul"
               ],
-              "browsers": "ChromeHeadless"
+              "browsers": "HeadlessChromium"
             }
           }
         },

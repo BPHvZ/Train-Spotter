@@ -42,6 +42,7 @@
     "ts-transformer-keys": "^0.4.1",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2",
+    "@angular-devkit/build-angular": "^0.901.9",
     "karma": "~5.0.0",
     "karma-chrome-launcher": "~3.1.0",
     "karma-coverage-istanbul-reporter": "~2.1.0",
@@ -51,7 +52,6 @@
     "puppeteer": "^4.0.0"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "^0.901.9",
     "@angular/cli": "^9.1.9",
     "@angular/compiler-cli": "^9.1.11",
     "@types/jasmine": "~3.5.0",

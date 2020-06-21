@@ -50,11 +50,11 @@
     "karma-jasmine-html-reporter": "^1.4.2",
     "karma-teamcity-reporter": "^1.1.0",
     "puppeteer": "^4.0.0",
-    "typescript": "~3.8.3"
+    "typescript": "~3.8.3",
+    "@angular/compiler-cli": "^9.1.11"
   },
   "devDependencies": {
     "@angular/cli": "^9.1.9",
-    "@angular/compiler-cli": "^9.1.11",
     "@types/jasmine": "~3.5.0",
     "@types/jasminewd2": "~2.0.3",
     "@types/mapbox-gl": "^1.10.4",

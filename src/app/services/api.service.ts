@@ -25,7 +25,7 @@ export class ApiService {
 
     return this.http.get<Station>({
       url: 'https://gateway.apiportal.ns.nl/reisinformatie-api/api/v2/stations',
-      cacheMins: 60,
+      cacheMins: environment.production ? 30 : 60,
       headers: {
         'Ocp-Apim-Subscription-Key': environment.NS_Ocp_Apim_Subscription_Key
       }
@@ -41,7 +41,7 @@ export class ApiService {
   getTrainTracksGeoJSON(): Observable<TrainTrackGeoJSON> {
     return this.http.get({
       url: 'https://gateway.apiportal.ns.nl/Spoorkaart-API/api/v1/spoorkaart',
-      cacheMins: 60,
+      cacheMins: environment.production ? 30 : 60,
       headers: {
         'Ocp-Apim-Subscription-Key': environment.NS_Ocp_Apim_Subscription_Key
       }
@@ -53,7 +53,7 @@ export class ApiService {
       .set('actual', 'true');
     return this.http.get({
       url: 'https://gateway.apiportal.ns.nl/Spoorkaart-API/api/v1/storingen',
-      cacheMins: 60,
+      cacheMins: environment.production ? 1 : 60,
       headers: {
         'Ocp-Apim-Subscription-Key': environment.NS_Ocp_Apim_Subscription_Key
       },
@@ -64,7 +64,7 @@ export class ApiService {
   getBasicInformationAboutAllTrains(): Observable<TrainInformationResponse> {
     return this.http.get({
       url: 'https://gateway.apiportal.ns.nl/virtual-train-api/api/vehicle',
-      cacheMins: 60,
+      cacheMins: environment.production ? 0.4 : 60,
       headers: {
         'Ocp-Apim-Subscription-Key': environment.NS_Ocp_Apim_Subscription_Key
       }
@@ -77,7 +77,7 @@ export class ApiService {
       .set('all', 'false');
     return this.http.get({
       url: 'https://gateway.apiportal.ns.nl/virtual-train-api/api/v1/trein',
-      cacheMins: 60,
+      cacheMins: environment.production ? 0.4 : 60,
       headers: {
         'Ocp-Apim-Subscription-Key': environment.NS_Ocp_Apim_Subscription_Key
       },
@@ -90,7 +90,7 @@ export class ApiService {
       .set('actual', 'true');
     return this.http.get({
       url: 'https://gateway.apiportal.ns.nl/reisinformatie-api/api/v2/disruptions',
-      cacheMins: 60,
+      cacheMins: environment.production ? 1 : 60,
       headers: {
         'Ocp-Apim-Subscription-Key': environment.NS_Ocp_Apim_Subscription_Key
       },

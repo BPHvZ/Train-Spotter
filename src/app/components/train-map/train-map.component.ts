@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {TrainMapType} from '../../models/TrainMapType';
 import {forkJoin, from, interval, Observable, PartialObserver, Subject, zip} from 'rxjs';
 import {map, mergeMap} from 'rxjs/operators';
@@ -10,11 +10,12 @@ import {GeoJSON, MultiLineString} from 'geojson';
 import {environment} from '../../../environments/environment';
 import {TrainInformation, TrainIconOnMap} from '../../models/BasicTrain';
 import * as Jimp from 'jimp';
-import {Map as MapBoxMap, MapboxGeoJSONFeature, MapLayerMouseEvent, MapMouseEvent} from 'mapbox-gl';
+import {LngLatLike, Map as MapBoxMap, MapboxGeoJSONFeature, MapLayerMouseEvent, MapMouseEvent} from 'mapbox-gl';
 import {HeaderEventsService} from '../../services/header-events.service';
 import {NavigationEnd, NavigationStart, Router} from '@angular/router';
 import {StationsService} from '../../services/stations.service';
 import {Disruption, DisruptionPayload} from '../../models/Disruption';
+import {TrainMapSidebarComponent} from '../train-map-sidebar/train-map-sidebar.component';
 
 const replaceColor = require('replace-color');
 
@@ -27,6 +28,8 @@ const replaceColor = require('replace-color');
   styleUrls: ['./train-map.component.sass']
 })
 export class TrainMapComponent implements OnInit {
+  @ViewChild(TrainMapSidebarComponent) sidebar: TrainMapSidebarComponent;
+
   trainMap: MapBoxMap;
   mapStyle = environment.MAPBOX_STYLE;
   lng = 5.4760;
@@ -48,7 +51,6 @@ export class TrainMapComponent implements OnInit {
     }
   ];
   activeMapType: TrainMapType = this.mapTypes[0];
-  sidebarIsOpen = false;
 
   selectedTrainOnMapFeature: MapboxGeoJSONFeature;
   selectedStationOnMapFeature: MapboxGeoJSONFeature;
@@ -212,7 +214,9 @@ export class TrainMapComponent implements OnInit {
 
   changeMapLayerType(layer: TrainMapType) {
     this.activeMapType = layer;
-    this.sidebarIsOpen = this.activeMapType.layerId !== 'ns-railroad';
+    if (this.activeMapType.layerId === 'storingen-railroad') {
+      this.sidebar.sidebarState = 'open';
+    }
   }
 
   /**
@@ -482,6 +486,19 @@ export class TrainMapComponent implements OnInit {
           this.selectedStationOnMapFeature = selectedFeature;
         }
       });
+    }
+  }
+
+  flyToDisruption(disruption: DisruptionPayload) {
+    if (this.trainMap && disruption) {
+
+      const marker = this.disruptionMarkersData.find(m => m.properties === disruption);
+      if (marker) {
+        this.trainMap.flyTo({
+          center: marker.geometry.coordinates as LngLatLike,
+          zoom: 11,
+        });
+      }
     }
   }
 }

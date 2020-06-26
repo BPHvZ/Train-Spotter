@@ -153,8 +153,8 @@
     </ng-template>
   </div>
   <div id="sidebar" *ngIf="actualDisruptions">
-    <app-train-map-sidebar [isOpen]="sidebarIsOpen"
-                           [disruptions]="actualDisruptions.payload"
-                           (closeSidebar)="sidebarIsOpen = false"></app-train-map-sidebar>
+    <app-train-map-sidebar [disruptions]="actualDisruptions.payload"
+    (flyToDisruption)="flyToDisruption($event)"
+    (clickOnArrow)="sidebar.changeState()"></app-train-map-sidebar>
   </div>
 </div>

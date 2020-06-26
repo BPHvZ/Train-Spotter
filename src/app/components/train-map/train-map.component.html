@@ -109,7 +109,8 @@
       <div id="mapTypeControl" class="toggle-group border border--2 border--white bg-white shadow-darken10 z1">
         <div class="toggle-container mb-0" *ngFor="let mapType of mapTypes">
           <label [htmlFor]="mapType.layerId" hidden></label>
-          <input [id]="mapType.layerId" class="mapTypeInput" name="toggle" type="radio" [checked]="mapType.layerId == activeMapType.layerId"/>
+          <input [id]="mapType.layerId" class="mapTypeInput" name="toggle" type="radio" [checked]="mapType.layerId == activeMapType.layerId"
+          [disabled]="isUpdatingMapData"/>
           <div class="mapTypeToggle toggle txt-s py3 toggle--active-white"
                (click)="changeMapLayerType(mapType)">
             {{mapType.name}}</div>

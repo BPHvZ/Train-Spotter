@@ -64,7 +64,7 @@ export class ApiService {
   getBasicInformationAboutAllTrains(): Observable<TrainInformationResponse> {
     return this.http.get({
       url: 'https://gateway.apiportal.ns.nl/virtual-train-api/api/vehicle',
-      cacheMins: environment.production ? 0.4 : 60,
+      cacheMins: environment.production ? 0 : 60,
       headers: {
         'Ocp-Apim-Subscription-Key': environment.NS_Ocp_Apim_Subscription_Key
       }
@@ -77,7 +77,7 @@ export class ApiService {
       .set('all', 'false');
     return this.http.get({
       url: 'https://gateway.apiportal.ns.nl/virtual-train-api/api/v1/trein',
-      cacheMins: environment.production ? 0.4 : 60,
+      cacheMins: environment.production ? 0 : 60,
       headers: {
         'Ocp-Apim-Subscription-Key': environment.NS_Ocp_Apim_Subscription_Key
       },

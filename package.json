@@ -31,7 +31,7 @@
     "@angular/router": "^9.1.13",
     "@ng-bootstrap/ng-bootstrap": "^6.2.0",
     "@types/geojson": "^7946.0.7",
-    "@types/jasmine": "^3.5.14",
+    "@types/jasmine": "^3.6.2",
     "bootstrap": "^4.5.3",
     "jimp": "^0.12.1",
     "jquery": "^3.5.1",
@@ -59,7 +59,7 @@
   "devDependencies": {
     "@types/jasminewd2": "~2.0.3",
     "@types/mapbox-gl": "^1.13.0",
-    "@types/node": "^12.19.12",
+    "@types/node": "^12.19.14",
     "codelyzer": "^5.1.2",
     "jasmine-core": "~3.5.0",
     "jasmine-spec-reporter": "~4.2.1",

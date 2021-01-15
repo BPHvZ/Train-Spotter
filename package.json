@@ -48,7 +48,7 @@
     "process": "^0.11.10",
     "puppeteer": "^4.0.1",
     "replace-color": "^2.3.0",
-    "rxjs": "~6.5.4",
+    "rxjs": "~6.6.3",
     "rxjs-pausable": "^1.0.0",
     "sharp": "^0.25.4",
     "ts-transformer-keys": "^0.4.3",

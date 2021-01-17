@@ -138,6 +138,7 @@ export class TrainMapComponent implements OnInit {
    * @param pause Whether to pause the train updater or not
    */
   pauseOrResumeUpdatingTrainPositions(pause: boolean) {
+    // console.log(`isUpdatingMapData: ${this.isUpdatingMapData} updateTrainsIsPaused: ${this.updateTrainsIsPaused} pause: ${pause}`);
     if (this.isUpdatingMapData === false) {
       if (pause === false) {
         this.updateTrainsTimer.resume();
@@ -331,6 +332,7 @@ export class TrainMapComponent implements OnInit {
         trains.payload.treinen.forEach((train) => {
           trainIds += train.ritId + ',';
         });
+        trainIds = trainIds.slice(0, -1);
         return this.apiService.getTrainDetailsByRideId(trainIds);
       }),
       map(trainDetails => {
@@ -363,9 +365,11 @@ export class TrainMapComponent implements OnInit {
       let imageURL = '../../assets/alternative-train.png';
 
       // If train has details about material, add the image url
-      if (basicTrain.trainDetails && basicTrain.trainDetails.materieeldelen) {
+      if (basicTrain.trainDetails && basicTrain.trainDetails.materieeldelen
+      && basicTrain.trainDetails.materieeldelen[0].afbeelding) {
         const materiaaldelen = basicTrain.trainDetails.materieeldelen;
         // Get last part of url, like 'virm_4.png', to be used as a name
+        // console.log(basicTrain);
         const urlParts = materiaaldelen[0].afbeelding.split('/');
         imageName = urlParts[urlParts.length - 1];
         const allIconNames = Array.from(iconURLs.keys());

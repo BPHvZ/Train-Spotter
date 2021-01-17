@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { TrainMapSidebarComponent } from './train-map-sidebar.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -7,7 +7,7 @@ describe('TrainMapSidebarComponent', () => {
   let component: TrainMapSidebarComponent;
   let fixture: ComponentFixture<TrainMapSidebarComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ TrainMapSidebarComponent ],
       imports: [ BrowserAnimationsModule ]

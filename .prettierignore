@@ -1,0 +1,7 @@
+# Ignore artifacts:
+coverage
+dist
+docs
+e2e
+node_modules
+package.json

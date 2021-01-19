@@ -1,0 +1,65 @@
+{
+	"root": true,
+	"ignorePatterns": ["projects/**/*"],
+	"overrides": [
+		{
+			"files": ["*.ts"],
+			"parserOptions": {
+				"project": ["tsconfig.json", "tsconfig.*?.json", "e2e/tsconfig.json"],
+				"createDefaultProgram": true
+			},
+			"extends": [
+				"plugin:@angular-eslint/recommended",
+				"plugin:@angular-eslint/template/process-inline-templates",
+				"eslint:recommended",
+				"plugin:@typescript-eslint/recommended",
+				"plugin:@typescript-eslint/recommended-requiring-type-checking",
+				// Settings for Prettier
+				"prettier/@typescript-eslint",
+				"plugin:prettier/recommended"
+			],
+			"rules": {
+				"@angular-eslint/component-selector": [
+					"error",
+					{
+						"type": "element",
+						"prefix": "app",
+						"style": "kebab-case"
+					}
+				],
+				"@angular-eslint/directive-selector": [
+					"error",
+					{
+						"type": "attribute",
+						"prefix": "app",
+						"style": "camelCase"
+					}
+				]
+			}
+		},
+		{
+			"files": ["*.html"],
+			"extends": [
+				"plugin:@angular-eslint/template/recommended",
+				"prettier/@typescript-eslint",
+				"plugin:prettier/recommended"
+			],
+			"rules": {}
+		},
+		{
+			"files": ["src/**/*.spec.ts", "src/**/*.d.ts"],
+			"parserOptions": {
+				"project": "./src/tsconfig.spec.json"
+			},
+			// Jasmine rules
+			"extends": ["plugin:jasmine/recommended"],
+			// Plugin to run Jasmine rules
+			"plugins": ["jasmine"],
+			"env": { "jasmine": true },
+			// Turn off 'no-unused-vars' rule
+			"rules": {
+				"@typescript-eslint/no-unused-vars": "off"
+			}
+		}
+	]
+}

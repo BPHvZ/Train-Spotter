@@ -1,27 +1,28 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
 
-import { TrainMapSidebarComponent } from './train-map-sidebar.component';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { TrainMapSidebarComponent } from "./train-map-sidebar.component";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
-describe('TrainMapSidebarComponent', () => {
-  let component: TrainMapSidebarComponent;
-  let fixture: ComponentFixture<TrainMapSidebarComponent>;
+describe("TrainMapSidebarComponent", () => {
+	let component: TrainMapSidebarComponent;
+	let fixture: ComponentFixture<TrainMapSidebarComponent>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      declarations: [ TrainMapSidebarComponent ],
-      imports: [ BrowserAnimationsModule ]
-    })
-    .compileComponents();
-  }));
+	beforeEach(
+		waitForAsync(() => {
+			void TestBed.configureTestingModule({
+				declarations: [TrainMapSidebarComponent],
+				imports: [BrowserAnimationsModule],
+			}).compileComponents();
+		})
+	);
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(TrainMapSidebarComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+	beforeEach(() => {
+		fixture = TestBed.createComponent(TrainMapSidebarComponent);
+		component = fixture.componentInstance;
+		fixture.detectChanges();
+	});
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+	it("should create", () => {
+		expect(component).toBeTruthy();
+	});
 });

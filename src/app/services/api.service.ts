@@ -1,100 +1,99 @@
-import {Injectable} from '@angular/core';
-import {HttpClient, HttpParams} from '@angular/common/http';
-import {Observable, of} from 'rxjs';
-import {HttpClientService} from './http-client.service';
-import {environment} from '../../environments/environment';
-import {Station, StationPayload} from '../models/Station';
-import {TrainTrackGeoJSON} from '../models/TrainTrackGeoJSON';
-import {TrainInformationResponse} from '../models/BasicTrain';
-import {TrainDetails} from '../models/TrainDetails';
-import {map} from 'rxjs/operators';
-import {Disruption} from '../models/Disruption';
+import { Injectable } from "@angular/core";
+import { HttpParams } from "@angular/common/http";
+import { Observable, of } from "rxjs";
+import { HttpClientService } from "./http-client.service";
+import { environment } from "../../environments/environment";
+import { Station, StationPayload } from "../models/Station";
+import { TrainTrackGeoJSON } from "../models/TrainTrackGeoJSON";
+import { TrainInformationResponse } from "../models/BasicTrain";
+import { TrainDetails } from "../models/TrainDetails";
+import { map } from "rxjs/operators";
+import { DisruptionsResponse } from "../models/Disruption";
 
 @Injectable({
-  providedIn: 'root'
+	providedIn: "root",
 })
 export class ApiService {
+	constructor(private http: HttpClientService) {}
 
-  constructor(private http: HttpClientService) {
-  }
+	searchForStation(term: string): Observable<StationPayload[]> {
+		if (term === "") {
+			const list: StationPayload[] = [];
+			return of(list);
+		}
 
-  searchForStation(term: string): Observable<StationPayload[]> {
-    if (term === '') {
-      return of([]);
-    }
+		return this.http
+			.get<Station>({
+				url: "https://gateway.apiportal.ns.nl/reisinformatie-api/api/v2/stations",
+				cacheMins: environment.production ? 30 : 60,
+				headers: {
+					"Ocp-Apim-Subscription-Key": environment.NS_Ocp_Apim_Subscription_Key,
+				},
+			})
+			.pipe(
+				map((response) =>
+					response.payload.filter(
+						(station) =>
+							station.namen.lang.toUpperCase().includes(term.toUpperCase()) ||
+							station.code.toUpperCase().includes(term.toUpperCase())
+					)
+				)
+			);
+	}
 
-    return this.http.get<Station>({
-      url: 'https://gateway.apiportal.ns.nl/reisinformatie-api/api/v2/stations',
-      cacheMins: environment.production ? 30 : 60,
-      headers: {
-        'Ocp-Apim-Subscription-Key': environment.NS_Ocp_Apim_Subscription_Key
-      }
-    }).pipe(
-      map(response => response.payload.filter(
-        station => station.namen.lang.toUpperCase().includes(term.toUpperCase()) ||
-          station.code.toUpperCase().includes(term.toUpperCase())
-        )
-      )
-    );
-  }
+	getTrainTracksGeoJSON(): Observable<TrainTrackGeoJSON> {
+		return this.http.get({
+			url: "https://gateway.apiportal.ns.nl/Spoorkaart-API/api/v1/spoorkaart",
+			cacheMins: environment.production ? 30 : 60,
+			headers: {
+				"Ocp-Apim-Subscription-Key": environment.NS_Ocp_Apim_Subscription_Key,
+			},
+		});
+	}
 
-  getTrainTracksGeoJSON(): Observable<TrainTrackGeoJSON> {
-    return this.http.get({
-      url: 'https://gateway.apiportal.ns.nl/Spoorkaart-API/api/v1/spoorkaart',
-      cacheMins: environment.production ? 30 : 60,
-      headers: {
-        'Ocp-Apim-Subscription-Key': environment.NS_Ocp_Apim_Subscription_Key
-      }
-    });
-  }
+	getDisruptedTrainTracksGeoJSON(): Observable<TrainTrackGeoJSON> {
+		const disruptionParams = new HttpParams().set("actual", "true");
+		return this.http.get({
+			url: "https://gateway.apiportal.ns.nl/Spoorkaart-API/api/v1/storingen",
+			cacheMins: environment.production ? 1 : 60,
+			headers: {
+				"Ocp-Apim-Subscription-Key": environment.NS_Ocp_Apim_Subscription_Key,
+			},
+			params: disruptionParams,
+		});
+	}
 
-  getDisruptedTrainTracksGeoJSON(): Observable<TrainTrackGeoJSON> {
-    const disruptionParams = new HttpParams()
-      .set('actual', 'true');
-    return this.http.get({
-      url: 'https://gateway.apiportal.ns.nl/Spoorkaart-API/api/v1/storingen',
-      cacheMins: environment.production ? 1 : 60,
-      headers: {
-        'Ocp-Apim-Subscription-Key': environment.NS_Ocp_Apim_Subscription_Key
-      },
-      params: disruptionParams
-    });
-  }
+	getBasicInformationAboutAllTrains(): Observable<TrainInformationResponse> {
+		return this.http.get({
+			url: "https://gateway.apiportal.ns.nl/virtual-train-api/api/vehicle",
+			cacheMins: environment.production ? 0 : 60,
+			headers: {
+				"Ocp-Apim-Subscription-Key": environment.NS_Ocp_Apim_Subscription_Key,
+			},
+		});
+	}
 
-  getBasicInformationAboutAllTrains(): Observable<TrainInformationResponse> {
-    return this.http.get({
-      url: 'https://gateway.apiportal.ns.nl/virtual-train-api/api/vehicle',
-      cacheMins: environment.production ? 0 : 60,
-      headers: {
-        'Ocp-Apim-Subscription-Key': environment.NS_Ocp_Apim_Subscription_Key
-      }
-    });
-  }
+	getTrainDetailsByRideId(rideIds: string): Observable<TrainDetails[]> {
+		const trainParams = new HttpParams().set("ids", rideIds).set("all", "false");
+		return this.http.get({
+			url: "https://gateway.apiportal.ns.nl/virtual-train-api/api/v1/trein",
+			cacheMins: environment.production ? 0 : 60,
+			headers: {
+				"Ocp-Apim-Subscription-Key": environment.NS_Ocp_Apim_Subscription_Key,
+			},
+			params: trainParams,
+		});
+	}
 
-  getTrainDetailsByRideId(rideIds: string): Observable<TrainDetails[]> {
-    const trainParams = new HttpParams()
-      .set('ids', rideIds)
-      .set('all', 'false');
-    return this.http.get({
-      url: 'https://gateway.apiportal.ns.nl/virtual-train-api/api/v1/trein',
-      cacheMins: environment.production ? 0 : 60,
-      headers: {
-        'Ocp-Apim-Subscription-Key': environment.NS_Ocp_Apim_Subscription_Key
-      },
-      params: trainParams
-    });
-  }
-
-  getActualDisruptions(): Observable<Disruption> {
-    const disruptionParams = new HttpParams()
-      .set('actual', 'true');
-    return this.http.get({
-      url: 'https://gateway.apiportal.ns.nl/reisinformatie-api/api/v2/disruptions',
-      cacheMins: environment.production ? 1 : 60,
-      headers: {
-        'Ocp-Apim-Subscription-Key': environment.NS_Ocp_Apim_Subscription_Key
-      },
-      params: disruptionParams
-    });
-  }
+	getActualDisruptions(): Observable<DisruptionsResponse> {
+		const disruptionParams = new HttpParams().set("actual", "true");
+		return this.http.get({
+			url: "https://gateway.apiportal.ns.nl/reisinformatie-api/api/v2/disruptions",
+			cacheMins: environment.production ? 1 : 60,
+			headers: {
+				"Ocp-Apim-Subscription-Key": environment.NS_Ocp_Apim_Subscription_Key,
+			},
+			params: disruptionParams,
+		});
+	}
 }

@@ -1,41 +1,62 @@
 <div style="pointer-events: auto" *ngIf="trainDetails">
-  <div id="mapPopup"
-       class="flex-parent-inline flex-parent--center-cross flex-parent--column absolute bottom">
-    <div class="mapPopupContent color-white shadow-darken10 round txt-s clip txt-truncate"
-         style="width: fit-content;">
-      <div class="container-fluid d-flex">
-        <div class="row" style="justify-content: space-between">
-          <div class="col">
-            <div class="row d-flex justify-content-between" style="width: max-content">
-              <h3 style="margin: unset"><strong>
-                {{trainDetails.trainDetails.vervoerder}} {{getTypeOfTrain()}}
-                trein {{trainDetails.treinNummer}}
-                <strong *ngFor="let trainPart of trainDetails.trainDetails.materieeldelen; let i = index;">
-          <span *ngIf="trainPart.materieelnummer">
-            <span *ngIf="i == 0; else other"> met {{trainPart.materieelnummer}}</span>
-            <ng-template #other>, {{trainPart.materieelnummer}}</ng-template>
-          </span>
-                </strong>
-              </strong></h3>
-              <button class="button button--nsYellow" style="margin-left: 10px; padding: 12px 10px 15px 10px" (click)="onClose.emit()">
-                <strong>&times;</strong></button>
-            </div>
-            <div class="row" style="align-items: center">
-              <span style="padding-right: 10px">Snelheid: {{trainDetails.snelheid}} km/u</span>
-              <span class="material-icons" [ngStyle]="directionArrowStyle">arrow_right_alt</span>
-              <span>{{trainDetails.richting}}&deg;</span>
-            </div>
-            <div class="row">
-              <div id="carousel">
-                <div class="slide" *ngFor="let railcar of trainDetails.trainDetails.materieeldelen; let isLast = last">
-                  <img [src]="railcar.afbeelding" alt="Trein" height="45" [ngClass]="{'pr-2': isLast}"/>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <span class="flex-child triangle triangle--d" style="color: #00337f"></span>
-  </div>
+	<div id="mapPopup" class="flex-parent-inline flex-parent--center-cross flex-parent--column absolute bottom">
+		<div
+			class="mapPopupContent color-white shadow-darken10 round txt-s clip txt-truncate"
+			style="width: fit-content"
+		>
+			<div class="container-fluid d-flex">
+				<div class="row" style="justify-content: space-between">
+					<div class="col">
+						<div class="row d-flex justify-content-between" style="width: max-content">
+							<h3 style="margin: unset">
+								<strong>
+									{{ trainDetails.trainDetails.vervoerder }} {{ getTypeOfTrain() }} trein {{
+									trainDetails.treinNummer }}
+									<strong
+										*ngFor="
+											let trainPart of trainDetails.trainDetails.materieeldelen;
+											let i = index
+										"
+									>
+										<span *ngIf="trainPart.materieelnummer">
+											<span *ngIf="i == 0; else other"> met {{ trainPart.materieelnummer }}</span>
+											<ng-template #other>, {{ trainPart.materieelnummer }}</ng-template>
+										</span>
+									</strong>
+								</strong>
+							</h3>
+							<button
+								class="button button--nsYellow"
+								style="margin-left: 10px; padding: 12px 10px 15px 10px"
+								(click)="closePopup.emit()"
+							>
+								<strong>&times;</strong>
+							</button>
+						</div>
+						<div class="row" style="align-items: center">
+							<span style="padding-right: 10px">Snelheid: {{ trainDetails.snelheid }} km/u</span>
+							<span class="material-icons" [ngStyle]="directionArrowStyle">arrow_right_alt</span>
+							<span>{{ trainDetails.richting }}&deg;</span>
+						</div>
+						<div class="row">
+							<div id="carousel">
+								<div
+									class="slide"
+									*ngFor="let railcar of trainDetails.trainDetails.materieeldelen; let isLast = last"
+								>
+									<img
+										[src]="railcar.afbeelding"
+										alt="Trein"
+										height="45"
+										[ngClass]="{ 'pr-2': isLast }"
+									/>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<span class="flex-child triangle triangle--d" style="color: #00337f"></span>
+	</div>
 </div>

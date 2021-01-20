@@ -1,38 +1,51 @@
 <div style="pointer-events: auto" *ngIf="stationInformation">
-  <div id="mapPopup"
-       class="flex-parent-inline flex-parent--center-cross flex-parent--column absolute bottom">
-    <div class="mapPopupContent color-white shadow-darken10 round txt-s clip txt-truncate"
-         style="width: fit-content;">
-      <div class="container-fluid d-flex">
-        <div class="row" style="justify-content: space-between">
-          <div class="col">
-            <div class="row d-flex justify-content-between"
-                 [ngStyle]="{'width': stationInformation.sporen.length > 3 ? 'unset': 'max-content'}">
-              <div class="col" style="padding: 0">
-                <h3 style="margin: unset; width: max-content"><strong>
-                  {{stationInformation.namen.lang}}
-                </strong></h3>
-                <h5 class="card-subtitle" style="color: #bac1c7; margin: unset"><strong>
-                  {{stationInformation.code}}
-                </strong></h5>
-              </div>
-              <button class="button button--nsYellow" style="margin-left: 10px; padding: 12px 10px 15px 10px"
-                      (click)="closePopup.emit()">
-                <strong>&times;</strong></button>
-            </div>
-            <div class="row d-flex" style="max-width: 500px; width: max-content">
-              <div *ngFor="let track of stationInformation.sporen" style="padding-right: 18px">
-                <img src="../../../assets/platform--75x75.svg" alt="Spoor" style="
-                position: absolute; height: 45px; margin-left: -10px"/>
-                <div style="z-index: 1; padding-top: 14px"
-                     [style.paddingLeft.px]="(14 - (track.spoorNummer.length * 4))"
-                >{{track.spoorNummer}}</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <span class="flex-child triangle triangle--d" style="color: #00337f"></span>
-  </div>
+	<div id="mapPopup" class="flex-parent-inline flex-parent--center-cross flex-parent--column absolute bottom">
+		<div
+			class="mapPopupContent color-white shadow-darken10 round txt-s clip txt-truncate"
+			style="width: fit-content"
+		>
+			<div class="container-fluid d-flex">
+				<div class="row" style="justify-content: space-between">
+					<div class="col">
+						<div
+							class="row d-flex justify-content-between"
+							[ngStyle]="{ width: stationInformation.sporen.length > 3 ? 'unset' : 'max-content' }"
+						>
+							<div class="col" style="padding: 0">
+								<h3 style="margin: unset; width: max-content">
+									<strong> {{ stationInformation.namen.lang }} </strong>
+								</h3>
+								<h5 class="card-subtitle" style="color: #bac1c7; margin: unset">
+									<strong> {{ stationInformation.code }} </strong>
+								</h5>
+							</div>
+							<button
+								class="button button--nsYellow"
+								style="margin-left: 10px; padding: 12px 10px 15px 10px"
+								(click)="closePopup.emit()"
+							>
+								<strong>&times;</strong>
+							</button>
+						</div>
+						<div class="row d-flex" style="max-width: 500px; width: max-content">
+							<div *ngFor="let track of stationInformation.sporen" style="padding-right: 18px">
+								<img
+									src="../../../assets/platform--75x75.svg"
+									alt="Spoor"
+									style="position: absolute; height: 45px; margin-left: -10px"
+								/>
+								<div
+									style="z-index: 1; padding-top: 14px"
+									[style.paddingLeft.px]="14 - track.spoorNummer.length * 4"
+								>
+									{{ track.spoorNummer }}
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<span class="flex-child triangle triangle--d" style="color: #00337f"></span>
+	</div>
 </div>

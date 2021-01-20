@@ -1,25 +1,26 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
 
-import { TrainPopupComponent } from './train-popup.component';
+import { TrainPopupComponent } from "./train-popup.component";
 
-describe('TrainPopupComponent', () => {
-  let component: TrainPopupComponent;
-  let fixture: ComponentFixture<TrainPopupComponent>;
+describe("TrainPopupComponent", () => {
+	let component: TrainPopupComponent;
+	let fixture: ComponentFixture<TrainPopupComponent>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      declarations: [ TrainPopupComponent ]
-    })
-    .compileComponents();
-  }));
+	beforeEach(
+		waitForAsync(() => {
+			void TestBed.configureTestingModule({
+				declarations: [TrainPopupComponent],
+			}).compileComponents();
+		})
+	);
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(TrainPopupComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+	beforeEach(() => {
+		fixture = TestBed.createComponent(TrainPopupComponent);
+		component = fixture.componentInstance;
+		fixture.detectChanges();
+	});
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+	it("should create", () => {
+		expect(component).toBeTruthy();
+	});
 });

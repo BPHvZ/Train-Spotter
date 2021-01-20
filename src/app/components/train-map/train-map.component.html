@@ -128,7 +128,7 @@
 				[closeButton]="false"
 				[lngLat]="selectedTrainOnMapFeature?.geometry?.coordinates"
 			>
-				<app-train-popup [mapboxFeature]="selectedTrainOnMapFeature" (onClose)="closePopup()">
+				<app-train-popup [mapboxFeature]="selectedTrainOnMapFeature" (closePopup)="closePopup()" >
 				</app-train-popup>
 			</mgl-popup>
 			<mgl-popup

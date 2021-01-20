@@ -12,27 +12,17 @@ import { AnimationEvent } from "@angular/animations";
 			state(
 				"open",
 				style({
-					transform: "scaleX(1)",
+					transform: "translate(0%)",
 				})
 			),
 			state(
 				"closed",
 				style({
-					transform: "scaleX(0)",
+					transform: "translate(100%)",
 				})
 			),
-			transition("open => closed", [
-				group([
-					// query('@openClose-content', animateChild()),
-					animate("0.5s cubic-bezier(0.55, 0.31, 0.15, 0.93)"),
-				]),
-			]),
-			transition("* => open", [
-				group([
-					// query('@openClose-content', animateChild()),
-					animate("0.5s cubic-bezier(0.55, 0.31, 0.15, 0.93)"),
-				]),
-			]),
+			transition("open => closed", [group([animate("0.5s cubic-bezier(0.55, 0.31, 0.15, 0.93)")])]),
+			transition("* => open", [group([animate("0.5s cubic-bezier(0.55, 0.31, 0.15, 0.93)")])]),
 		]),
 		trigger("openClose-content", [
 			state(
@@ -44,7 +34,7 @@ import { AnimationEvent } from "@angular/animations";
 			state(
 				"closed",
 				style({
-					opacity: 0,
+					opacity: 1,
 				})
 			),
 			transition("open => closed", [animate("0.3s cubic-bezier(0.55, 0.31, 0.15, 0.93)")]),
@@ -54,7 +44,7 @@ import { AnimationEvent } from "@angular/animations";
 			state(
 				"open",
 				style({
-					"margin-right": "100%",
+					"margin-right": "calc(100% - 30px)",
 				})
 			),
 			state(

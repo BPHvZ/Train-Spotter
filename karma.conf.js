@@ -10,17 +10,17 @@ module.exports = function (config) {
 			require("karma-jasmine"),
 			require("karma-chrome-launcher"),
 			require("karma-jasmine-html-reporter"),
-			require("karma-coverage-istanbul-reporter"),
+			require("karma-coverage"),
 			require("@angular-devkit/build-angular/plugins/karma"),
 			require("karma-teamcity-reporter"),
 		],
 		client: {
 			clearContext: false, // leave Jasmine Spec Runner output visible in browser
 		},
-		coverageIstanbulReporter: {
-			dir: require("path").join(__dirname, "./coverage/trainSpotter"),
-			reports: ["html", "lcovonly", "text-summary"],
-			fixWebpackSourcePaths: true,
+		coverageReporter: {
+			dir: require("path").join(__dirname, "<%= relativePathToWorkspaceRoot %>/coverage/<%= appName%>"),
+			subdir: ".",
+			reporters: [{ type: "html" }, { type: "text-summary" }],
 		},
 		reporters: ["progress", "kjhtml", "teamcity"],
 		port: 9876,

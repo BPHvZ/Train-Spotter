@@ -87,14 +87,17 @@ export class TrainMapComponent implements OnInit {
 	 * Fly to station when this component is reused and navigated to from another component with extra state parameters
 	 */
 	ngOnInit(): void {
-		this.updateTrainsTimer = interval(3000).pipe(pausable()) as PausableObservable<number>;
+		this.updateTrainsTimer = interval(10).pipe(pausable()) as PausableObservable<number>;
 		this.pauseOrResumeUpdatingTrainPositions(true);
 
 		this.timerObserver = {
-			next: () => {
-				if (this.progressNum > 0) {
-					this.progressNum -= 10;
-				} else if (this.progressNum <= 0) {
+			next: (count: number) => {
+				const timePassedInMs = 10 * count;
+				const timePassedInSec = timePassedInMs / 100;
+				const timeLeftInSec = 100 - timePassedInSec;
+				if (timeLeftInSec > 0.0) {
+					this.progressNum = timeLeftInSec;
+				} else if (timeLeftInSec < 0.0) {
 					this.progressNum = 100;
 					this.getActiveTrainsAndDetails();
 				}

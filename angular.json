@@ -97,7 +97,7 @@
 						"ci-release": {
 							"watch": false,
 							"codeCoverage": true,
-							"reporters": ["teamcity", "coverage-istanbul"],
+							"reporters": ["teamcity", "coverage"],
 							"browsers": "ChromeHeadless"
 						}
 					}

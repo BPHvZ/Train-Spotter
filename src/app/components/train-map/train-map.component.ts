@@ -4,7 +4,7 @@ import { forkJoin, from, interval, Observable, PartialObserver, Subject, zip } f
 import { map, mergeMap } from "rxjs/operators";
 import { pausable, PausableObservable } from "rxjs-pausable";
 import { ApiService } from "../../services/api.service";
-import { StationPayload } from "../../models/Station";
+import { Station, StationPayload } from "../../models/Station";
 import { HelperFunctionsService } from "../../services/helper-functions.service";
 import { GeoJSON, MultiLineString } from "geojson";
 import { environment } from "../../../environments/environment";
@@ -22,8 +22,9 @@ import {
 import { HeaderEventsService } from "../../services/header-events.service";
 import { NavigationEnd, NavigationStart, Router } from "@angular/router";
 import { StationsService } from "../../services/stations.service";
-import { DisruptionPayload } from "../../models/Disruption";
+import { DisruptionPayload, DisruptionsResponse } from "../../models/Disruption";
 import { TrainMapSidebarComponent } from "../train-map-sidebar/train-map-sidebar.component";
+import { TrainTrackGeoJSON } from "../../models/TrainTrackGeoJSON";
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires,@typescript-eslint/no-unsafe-assignment
 const replaceColor = require("replace-color");
@@ -174,7 +175,7 @@ export class TrainMapComponent implements OnInit {
 			this.apiService.getDisruptedTrainTracksGeoJSON(),
 			this.apiService.getActualDisruptions()
 		).subscribe({
-			next: (value) => {
+			next: (value: [Station, TrainTrackGeoJSON, TrainTrackGeoJSON, DisruptionsResponse]) => {
 				console.log(value);
 				this.addStationsToMap(value[0].payload);
 				this.trainTracksLayerData = value[1].payload;

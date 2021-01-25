@@ -10,19 +10,19 @@ import { MapboxGeoJSONFeature } from "mapbox-gl";
 export class TrainPopupComponent implements OnChanges {
 	@Output() public closePopup: EventEmitter<void> = new EventEmitter<void>();
 	@Input() mapboxFeature: MapboxGeoJSONFeature;
-	trainDetails: TrainInformation;
+	trainInformation: TrainInformation;
 	directionArrowStyle: Map<string, any> = new Map<string, any>();
 
 	ngOnChanges(changes: SimpleChanges): void {
 		console.log(changes);
 		if (changes.mapboxFeature.currentValue) {
-			this.trainDetails = this.mapboxFeature.properties as TrainInformation;
-			this.directionArrowStyle.set("transform", `rotate(${this.trainDetails.richting - 90}deg)`);
+			this.trainInformation = this.mapboxFeature.properties as TrainInformation;
+			this.directionArrowStyle.set("transform", `rotate(${this.trainInformation.richting - 90}deg)`);
 		}
 	}
 
 	getTypeOfTrain(): string {
-		const type = this.trainDetails.type;
+		const type = this.trainInformation.type;
 		if (type === "SPR") {
 			return "Sprinter";
 		} else if (type === "IC") {

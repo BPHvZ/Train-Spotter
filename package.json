@@ -45,7 +45,7 @@
     "karma-jasmine": "^4.0.1",
     "karma-jasmine-html-reporter": "^1.5.4",
     "karma-teamcity-reporter": "^1.1.0",
-    "mapbox-gl": "^1.13.0",
+    "mapbox-gl": "^2.0.1",
     "memoizee": "^0.4.15",
     "ngx-mapbox-gl": "5.0",
     "popper.js": "^1.16.1",

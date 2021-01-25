@@ -10,7 +10,15 @@ import { GeoJSON, MultiLineString } from "geojson";
 import { environment } from "../../../environments/environment";
 import { TrainInformation, TrainIconOnMap } from "../../models/BasicTrain";
 import * as Jimp from "jimp";
-import { LngLatLike, Map as MapBoxMap, MapboxGeoJSONFeature, MapLayerMouseEvent, MapMouseEvent } from "mapbox-gl";
+import {
+	EventData,
+	LngLatLike,
+	Map as MapBoxMap,
+	MapboxEvent,
+	MapboxGeoJSONFeature,
+	MapLayerMouseEvent,
+	MapMouseEvent,
+} from "mapbox-gl";
 import { HeaderEventsService } from "../../services/header-events.service";
 import { NavigationEnd, NavigationStart, Router } from "@angular/router";
 import { StationsService } from "../../services/stations.service";
@@ -190,7 +198,7 @@ export class TrainMapComponent implements OnInit {
 	 * Alter train icon size when zooming on train map
 	 * @param event Zoom event
 	 */
-	onMapZoom(event: MapMouseEvent): void {
+	onMapZoom(event: MapboxEvent<MouseEvent | TouchEvent | WheelEvent | undefined> & EventData): void {
 		const trainLayer = event.target.getLayer("trains");
 		if (trainLayer) {
 			const zoom = event.target.getZoom();

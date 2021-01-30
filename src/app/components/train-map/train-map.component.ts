@@ -350,22 +350,17 @@ export class TrainMapComponent implements OnInit {
 			// console.log(queriedFeatures);
 			if (queriedFeatures) {
 				this.closePopup();
-				const feature = queriedFeatures[0];
 				this.openTrainPopupOnLayerClick({
 					defaultPrevented: false,
 					lngLat: undefined,
 					originalEvent: undefined,
 					point: undefined,
+					// eslint-disable-next-line @typescript-eslint/no-empty-function
 					preventDefault(): void {},
 					target: undefined,
 					type: undefined,
 					features: queriedFeatures,
 				});
-				// const basicTrainInformation = this.trainsLayerData;
-				// // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-				// basicTrainInformation.trainDetails = JSON.parse(basicTrainInformation.trainDetails);
-				// feature.properties = basicTrainInformation;
-				// this.selectedTrainOnMapFeature = feature;
 			} else {
 				this.closePopup();
 			}

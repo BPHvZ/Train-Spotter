@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from "@angular/core";
+import { Component, EventEmitter, OnInit, ViewChild } from "@angular/core";
 import { TrainMapType } from "../../models/TrainMapType";
 import { forkJoin, from, interval, Observable, PartialObserver, Subject, zip } from "rxjs";
 import { map, mergeMap } from "rxjs/operators";
@@ -8,7 +8,7 @@ import { Station, StationPayload } from "../../models/Station";
 import { HelperFunctionsService } from "../../services/helper-functions.service";
 import { GeoJSON, MultiLineString } from "geojson";
 import { environment } from "../../../environments/environment";
-import { TrainInformation, TrainIconOnMap } from "../../models/BasicTrain";
+import { TrainIconOnMap, TrainInformation } from "../../models/BasicTrain";
 import * as Jimp from "jimp";
 import {
 	EventData,
@@ -18,6 +18,8 @@ import {
 	MapboxGeoJSONFeature,
 	MapLayerMouseEvent,
 	MapMouseEvent,
+	MapSourceDataEvent,
+	SymbolLayout,
 } from "mapbox-gl";
 import { HeaderEventsService } from "../../services/header-events.service";
 import { NavigationEnd, NavigationStart, Router } from "@angular/router";
@@ -40,14 +42,21 @@ const replaceColor = require("replace-color");
 export class TrainMapComponent implements OnInit {
 	@ViewChild(TrainMapSidebarComponent) sidebar: TrainMapSidebarComponent;
 
+	// MapBox setup
 	trainMap: MapBoxMap;
 	mapStyle = environment.MAPBOX_STYLE;
 	lng = 5.476;
 	lat = 52.1284;
 	zoom = 6.73;
+
+	// Update data countdown
 	private progressNum = 100;
 	updateTrainsIsPaused = false;
 	isUpdatingMapData = false;
+	updateTrainsTimer: PausableObservable<number>;
+	timerObserver: PartialObserver<number>;
+
+	// Map styles
 	mapTypes: TrainMapType[] = [
 		{
 			name: "Normaal",
@@ -62,25 +71,35 @@ export class TrainMapComponent implements OnInit {
 	];
 	activeMapType: TrainMapType = this.mapTypes[0];
 
+	// Map popups
 	selectedTrainOnMapFeature: MapboxGeoJSONFeature;
 	selectedStationOnMapFeature: MapboxGeoJSONFeature;
 
+	// Station layer
+	stationsLayerLayout: SymbolLayout = {
+		"icon-image": "NS",
+		"icon-size": 0.15,
+		"icon-allow-overlap": true,
+	};
 	stationsLayerData: GeoJSON.FeatureCollection<GeoJSON.Geometry>;
-	trainTracksLayerData: GeoJSON.FeatureCollection<GeoJSON.Geometry>;
-	trainsLayerData: GeoJSON.FeatureCollection<GeoJSON.Geometry>;
 
+	// Train tracks layer
+	trainTracksLayerData: GeoJSON.FeatureCollection<GeoJSON.Geometry>;
+
+	// Disruptions layer
 	disruptedTrainTracksLayerData: GeoJSON.FeatureCollection<MultiLineString>;
 	disruptionMarkersData: GeoJSON.Feature<GeoJSON.Point, DisruptionPayload>[];
 	actualDisruptions: DisruptionPayload[];
 
+	// Trains layer
+	trainsLayerData: GeoJSON.FeatureCollection<GeoJSON.Geometry>;
+
+	// Train icons
 	private trainIconAddedSource = new Subject<string>();
 	trainIconAdded = this.trainIconAddedSource.asObservable();
 	private trainIconNames: Set<string> = new Set<string>();
 	private trainIconsAdded: Set<string> = new Set<string>();
 	trainIconsForMap: TrainIconOnMap[] = [];
-
-	updateTrainsTimer: PausableObservable<number>;
-	timerObserver: PartialObserver<number>;
 
 	constructor(
 		private apiService: ApiService,
@@ -108,7 +127,9 @@ export class TrainMapComponent implements OnInit {
 					this.progressNum = timeLeftInSec;
 				} else if (timeLeftInSec < 0.0) {
 					this.progressNum = 100;
-					this.getActiveTrainsAndDetails();
+					if (this.isUpdatingMapData === false) {
+						this.getActiveTrainsAndDetails();
+					}
 				}
 			},
 		};
@@ -225,6 +246,17 @@ export class TrainMapComponent implements OnInit {
 		}
 	}
 
+	onMapSourceData(event: MapSourceDataEvent & EventData): void {
+		// console.log(event);
+		if (event.isSourceLoaded) {
+			if (event.sourceId === "trainData" && event.sourceCacheId === "symbol:trainData") {
+				// Do something when the source has finished loading
+				// console.log(event);
+				this._updateTrainPopupInformation();
+			}
+		}
+	}
+
 	changeMapLayerType(layer: TrainMapType): void {
 		this.activeMapType = layer;
 		if (this.activeMapType.layerId === "storingen-railroad") {
@@ -303,6 +335,40 @@ export class TrainMapComponent implements OnInit {
 		this.pauseOrResumeUpdatingTrainPositions(false);
 		if (environment.production === false) {
 			this.pauseOrResumeUpdatingTrainPositions(true);
+		}
+	}
+
+	_updateTrainPopupInformation(): void {
+		if (this.selectedTrainOnMapFeature) {
+			const selectedFeature = this.selectedTrainOnMapFeature;
+			const oldTrainInformation = selectedFeature.properties as TrainInformation;
+			const rideId = oldTrainInformation.ritId;
+			const queriedFeatures = this.trainMap.querySourceFeatures("trainData", {
+				// layers: ["trains"],
+				filter: ["==", ["get", "ritId"], rideId],
+			});
+			// console.log(queriedFeatures);
+			if (queriedFeatures) {
+				this.closePopup();
+				const feature = queriedFeatures[0];
+				this.openTrainPopupOnLayerClick({
+					defaultPrevented: false,
+					lngLat: undefined,
+					originalEvent: undefined,
+					point: undefined,
+					preventDefault(): void {},
+					target: undefined,
+					type: undefined,
+					features: queriedFeatures,
+				});
+				// const basicTrainInformation = this.trainsLayerData;
+				// // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+				// basicTrainInformation.trainDetails = JSON.parse(basicTrainInformation.trainDetails);
+				// feature.properties = basicTrainInformation;
+				// this.selectedTrainOnMapFeature = feature;
+			} else {
+				this.closePopup();
+			}
 		}
 	}
 

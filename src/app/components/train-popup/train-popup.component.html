@@ -34,7 +34,7 @@
 							</button>
 						</div>
 						<div class="row" style="align-items: center">
-							<span style="padding-right: 10px">Snelheid: {{ trainInformation.snelheid }} km/u</span>
+							<span style="padding-right: 10px">Snelheid: {{ trainInformation.snelheid | number:'1.0-2' }} km/u</span>
 							<span class="material-icons" [ngStyle]="directionArrowStyle">arrow_right_alt</span>
 							<span>{{ trainInformation.richting }}&deg;</span>
 						</div>

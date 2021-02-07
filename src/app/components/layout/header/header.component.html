@@ -14,7 +14,10 @@
 						<strong>Kaart</strong></a
 					>
 				</li>
-				<li class="nav-item align-self-center pr-1" ngbDropdown #navbarDropdown1="ngbDropdown">
+				<li class="nav-item align-self-center pr-1" ngbDropdown #navbarDropdown1="ngbDropdown"
+            (mouseenter)="$event.stopPropagation(); navbarDropdown1.open()"
+            (mouseleave)="$event.stopPropagation(); navbarDropdown1.close()"
+        >
 					<div
 						class="d-inline"
 						style="cursor: pointer"
@@ -51,7 +54,7 @@
 							</svg>
 						</ng-template>
 					</div>
-					<div ngbDropdownMenu aria-labelledby="navbarDropdown1" class="dropdown-menu">
+					<div ngbDropdownMenu aria-labelledby="navbarDropdown1" class="dropdown-menu mt-0">
 						<form class="px-4 pt-3">
 							<div class="form-group">
 								<label for="typeahead-http" style="width: max-content">Zoek naar een station:</label>

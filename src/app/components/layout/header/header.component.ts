@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, ElementRef, ViewChild } from "@angular/core";
 import { ApiService } from "../../../services/api.service";
 import { Observable, of } from "rxjs";
 import { catchError, debounceTime, distinctUntilChanged, switchMap, tap } from "rxjs/operators";

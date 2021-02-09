@@ -1,0 +1,5 @@
+branches:
+  - label: bug
+    name: main
+  - label: '*'
+    name: develop

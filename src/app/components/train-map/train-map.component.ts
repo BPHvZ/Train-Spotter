@@ -292,7 +292,9 @@ export class TrainMapComponent implements OnInit {
 			const selectedFeature: MapboxGeoJSONFeature = event.features[0];
 			const basicTrainInformation = selectedFeature.properties;
 			// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-			basicTrainInformation.trainDetails = JSON.parse(basicTrainInformation.trainDetails);
+			if (basicTrainInformation.trainDetails) {
+				basicTrainInformation.trainDetails = JSON.parse(basicTrainInformation.trainDetails);
+			}
 			selectedFeature.properties = basicTrainInformation;
 			this.selectedTrainOnMapFeature = selectedFeature;
 		}

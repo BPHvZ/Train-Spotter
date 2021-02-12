@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
 
 import { CalamityItemComponent } from "./calamity-item.component";
 
@@ -6,11 +6,13 @@ describe("CalamityItemComponent", () => {
 	let component: CalamityItemComponent;
 	let fixture: ComponentFixture<CalamityItemComponent>;
 
-	beforeEach(async () => {
-		await TestBed.configureTestingModule({
-			declarations: [CalamityItemComponent],
-		}).compileComponents();
-	});
+	beforeEach(
+		waitForAsync(() => {
+			void TestBed.configureTestingModule({
+				declarations: [CalamityItemComponent],
+			}).compileComponents();
+		})
+	);
 
 	beforeEach(() => {
 		fixture = TestBed.createComponent(CalamityItemComponent);

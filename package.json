@@ -20,6 +20,11 @@
     "test:release": "ng t --configuration=ci-release"
   },
   "private": true,
+  "browser": {
+    "fs": false,
+    "path": false,
+    "os": false
+  },
   "dependencies": {
     "@angular-devkit/build-angular": "^0.1102.0",
     "@angular-devkit/schematics": "^11.2.0",
@@ -42,7 +47,7 @@
     "bootstrap": "^4.5.3",
     "jimp": "0.14.0",
     "jquery": "^3.5.1",
-    "karma": "^5.2.3",
+    "karma": "~6.1.0",
     "karma-chrome-launcher": "^3.1.0",
     "karma-coverage": "^2.0.3",
     "karma-jasmine": "^4.0.1",
@@ -53,7 +58,6 @@
     "ngx-mapbox-gl": "6.0.0",
     "popper.js": "^1.16.1",
     "process": "^0.11.10",
-    "puppeteer": "^5.5.0",
     "replace-color": "^2.3.0",
     "rxjs": "~6.6.3",
     "rxjs-pausable": "^1.0.0",
@@ -69,9 +73,8 @@
     "@angular-eslint/eslint-plugin-template": "1.1.0",
     "@angular-eslint/schematics": "1.1.0",
     "@angular-eslint/template-parser": "1.1.0",
-    "@types/jasminewd2": "^2.0.8",
-    "@types/mapbox-gl": "^2.0.5",
-    "@types/node": "^14.14.27",
+    "@types/mapbox-gl": "^2.1.0",
+    "@types/node": "^12.11.1",
     "@typescript-eslint/eslint-plugin": "4.3.0",
     "@typescript-eslint/parser": "4.3.0",
     "codelyzer": "^6.0.0",
@@ -90,6 +93,6 @@
     "prettier": "^2.2.1",
     "pretty-quick": "^3.1.0",
     "protractor": "^7.0.0",
-    "ts-node": "^9.1.1"
+    "ts-node": "~8.3.0"
   }
 }

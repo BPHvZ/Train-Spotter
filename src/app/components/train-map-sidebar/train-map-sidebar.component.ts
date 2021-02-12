@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from "@angular/core";
 import { trigger, state, style, animate, transition, animateChild, query, group } from "@angular/animations";
-import { DisruptionPayload } from "../../models/Disruption";
 import { AnimationEvent } from "@angular/animations";
+import { Disruption, DisruptionBase, DisruptionsList } from "../../models/Disruptions";
 
 @Component({
 	selector: "app-train-map-sidebar",
@@ -69,9 +69,9 @@ import { AnimationEvent } from "@angular/animations";
 	],
 })
 export class TrainMapSidebarComponent {
-	@Input() disruptions: DisruptionPayload[];
+	@Input() disruptions: DisruptionsList;
 	@Output() closeSidebar = new EventEmitter();
-	@Output() flyToDisruption = new EventEmitter<DisruptionPayload>();
+	@Output() flyToDisruption = new EventEmitter<Disruption>();
 	@Output() clickOnArrow = new EventEmitter<boolean>();
 	sidebarState = "closed";
 
@@ -89,7 +89,7 @@ export class TrainMapSidebarComponent {
 	 * Change view to the train map and fly to a disruption
 	 * @param disruption Fly to this disruption
 	 */
-	flyToDisruptionOnMap(disruption: DisruptionPayload): void {
+	flyToDisruptionOnMap(disruption: Disruption): void {
 		this.flyToDisruption.emit(disruption);
 	}
 }

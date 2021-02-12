@@ -21,6 +21,8 @@ import { FormsModule } from "@angular/forms";
 import { RouteReuseStrategy } from "@angular/router";
 import { CacheRouteReuseStrategy } from "./cache-route-reuse.strategy";
 import { TrainMapSidebarComponent } from "./components/train-map-sidebar/train-map-sidebar.component";
+import { DisruptionItemComponent } from "./components/train-map-sidebar/disruption-item/disruption-item.component";
+import { CalamityItemComponent } from "./components/train-map-sidebar/calamity-item/calamity-item.component";
 
 @NgModule({
 	declarations: [
@@ -33,6 +35,8 @@ import { TrainMapSidebarComponent } from "./components/train-map-sidebar/train-m
 		AllStationsComponent,
 		NgbdSortableHeaderDirective,
 		TrainMapSidebarComponent,
+		DisruptionItemComponent,
+		CalamityItemComponent,
 	],
 	imports: [
 		BrowserModule,

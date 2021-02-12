@@ -12,60 +12,9 @@
 				</div>
 				<div class="row">
 					<div *ngIf="disruptions">
-						<div *ngFor="let disruption of disruptions" class="card bg-light mb-3" style="max-width: 18rem">
-							<div
-								*ngIf="
-									disruption.type === 'verstoring' || disruption.type === 'werkzaamheid';
-									else elseMelding
-								"
-							>
-								<div
-									(click)="flyToDisruptionOnMap(disruption)"
-									class="card-header headingS"
-									style="cursor: pointer"
-								>
-									<div
-										*ngIf="disruption.type === 'werkzaamheid'; else elseDisruption"
-										style="display: inline"
-									>
-										<img
-											alt="Werk aan het spoor"
-											src="../../../assets/maintenance--red--35x35.svg"
-											style="position: inherit; height: 30px; display: inline"
-										/>
-									</div>
-									<ng-template #elseDisruption>
-										<img
-											alt="Storing"
-											src="../../../assets/alert--red--35x35.svg"
-											style="position: inherit; height: 30px; display: inline"
-									/></ng-template>
-									{{ disruption.titel }}
-								</div>
-								<div class="card-body">
-									<div *ngIf="disruption.type === 'werkzaamheid'; else elseVerstoring">
-										<h5 class="card-title">{{ disruption.verstoring.periode }}</h5>
-										<p class="card-text">{{ disruption.verstoring.gevolg }}</p>
-									</div>
-									<ng-template #elseVerstoring>
-										<h5 class="card-title">{{ disruption.verstoring.verwachting }}</h5>
-										<p class="card-text">{{ disruption.verstoring.oorzaak }}</p>
-									</ng-template>
-								</div>
-							</div>
-							<ng-template #elseMelding>
-								<div class="card-header headingS">
-									<img
-										alt="Storing"
-										src="../../../assets/alert--red--35x35.svg"
-										style="position: inherit; height: 30px; display: inline"
-									/>
-									{{ disruption.titel }}
-								</div>
-								<div class="card-body">
-									<p class="card-text">{{ disruption.melding.beschrijving }}</p>
-								</div>
-							</ng-template>
+						<div *ngFor="let disruption of disruptions" [ngSwitch]="disruption.type" class="card bg-light mb-3" style="max-width: 18rem">
+              <app-calamity-item [calamity]="disruption" *ngSwitchCase="'CALAMITY'"></app-calamity-item>
+              <app-disruption-item [disruption]="disruption" (flyToDisruption)="flyToDisruptionOnMap($event)" *ngSwitchDefault></app-disruption-item>
 						</div>
 					</div>
 				</div>

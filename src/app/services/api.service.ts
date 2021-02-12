@@ -8,7 +8,7 @@ import { TrainTrackGeoJSON } from "../models/TrainTrackGeoJSON";
 import { TrainInformationResponse } from "../models/BasicTrain";
 import { TrainDetails } from "../models/TrainDetails";
 import { map } from "rxjs/operators";
-import { DisruptionsResponse } from "../models/Disruption";
+import { DisruptionsList } from "../models/Disruptions";
 
 @Injectable({
 	providedIn: "root",
@@ -85,10 +85,10 @@ export class ApiService {
 		});
 	}
 
-	getActualDisruptions(): Observable<DisruptionsResponse> {
-		const disruptionParams = new HttpParams().set("actual", "true");
+	getActualDisruptions(): Observable<DisruptionsList> {
+		const disruptionParams = new HttpParams().set("isActive", "true");
 		return this.http.get({
-			url: "https://gateway.apiportal.ns.nl/reisinformatie-api/api/v2/disruptions",
+			url: "https://gateway.apiportal.ns.nl/reisinformatie-api/api/v3/disruptions",
 			cacheMins: environment.production ? 1 : 60,
 			headers: {
 				"Ocp-Apim-Subscription-Key": environment.NS_Ocp_Apim_Subscription_Key,

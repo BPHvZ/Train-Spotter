@@ -24,9 +24,9 @@ import {
 import { HeaderEventsService } from "../../services/header-events.service";
 import { NavigationEnd, NavigationStart, Router } from "@angular/router";
 import { StationsService } from "../../services/stations.service";
-import { DisruptionPayload, DisruptionsResponse } from "../../models/Disruption";
 import { TrainMapSidebarComponent } from "../train-map-sidebar/train-map-sidebar.component";
 import { TrainTrackGeoJSON } from "../../models/TrainTrackGeoJSON";
+import { DisruptionBase, DisruptionsList } from "../../models/Disruptions";
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires,@typescript-eslint/no-unsafe-assignment
 const replaceColor = require("replace-color");
@@ -88,8 +88,8 @@ export class TrainMapComponent implements OnInit {
 
 	// Disruptions layer
 	disruptedTrainTracksLayerData: GeoJSON.FeatureCollection<MultiLineString>;
-	disruptionMarkersData: GeoJSON.Feature<GeoJSON.Point, DisruptionPayload>[];
-	actualDisruptions: DisruptionPayload[];
+	disruptionMarkersData: GeoJSON.Feature<GeoJSON.Point, DisruptionBase>[];
+	actualDisruptions: DisruptionsList;
 
 	// Trains layer
 	trainsLayerData: GeoJSON.FeatureCollection<GeoJSON.Geometry>;
@@ -196,15 +196,13 @@ export class TrainMapComponent implements OnInit {
 			this.apiService.getDisruptedTrainTracksGeoJSON(),
 			this.apiService.getActualDisruptions()
 		).subscribe({
-			next: (value: [Station, TrainTrackGeoJSON, TrainTrackGeoJSON, DisruptionsResponse]) => {
+			next: (value: [Station, TrainTrackGeoJSON, TrainTrackGeoJSON, DisruptionsList]) => {
 				console.log(value);
 				this.addStationsToMap(value[0].payload);
 				this.trainTracksLayerData = value[1].payload;
 				this.disruptedTrainTracksLayerData = value[2].payload as GeoJSON.FeatureCollection<MultiLineString>;
-				this.actualDisruptions = value[3].payload;
-				this.actualDisruptions.forEach((dis) => {
-					console.log(dis.type);
-				});
+				this.actualDisruptions = value[3];
+				console.log(value[3]);
 			},
 			error: (err) => {
 				console.log(err);
@@ -384,7 +382,7 @@ export class TrainMapComponent implements OnInit {
 
 		uniqueDisruptions.forEach((feature) => {
 			const disruptionInfo = this.actualDisruptions.find(
-				(disruption: DisruptionPayload) => disruption.id === feature.id
+				(disruption: DisruptionBase) => disruption.id === feature.id
 			);
 			if (disruptionInfo) {
 				const linePart = feature.geometry.coordinates[0];
@@ -595,7 +593,7 @@ export class TrainMapComponent implements OnInit {
 		}
 	}
 
-	flyToDisruption(disruption: DisruptionPayload): void {
+	flyToDisruption(disruption: DisruptionBase): void {
 		if (this.trainMap && disruption) {
 			const marker = this.disruptionMarkersData.find((m) => m.properties === disruption);
 			if (marker) {

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, Output } from "@angular/core";
+import { Component, Input, Output } from "@angular/core";
 import { EventEmitter } from "@angular/core";
 import { Disruption } from "../../../models/Disruptions";
 
@@ -7,11 +7,7 @@ import { Disruption } from "../../../models/Disruptions";
 	templateUrl: "./disruption-item.component.html",
 	styleUrls: ["./disruption-item.component.sass"],
 })
-export class DisruptionItemComponent implements OnInit {
+export class DisruptionItemComponent {
 	@Input() disruption: Disruption;
 	@Output() flyToDisruption = new EventEmitter<Disruption>();
-
-	ngOnInit(): void {
-		console.log(this.disruption);
-	}
 }

@@ -10,11 +10,11 @@
 						<div class="row d-flex justify-content-between" style="width: max-content">
 							<h3 style="margin: unset">
 								<strong>
-									{{ trainInformation.trainDetails.vervoerder }} {{ getTypeOfTrain() }} trein {{
+									{{ trainInformation.trainDetails?.vervoerder }} {{ getTypeOfTrain() }} trein {{
                   trainInformation.treinNummer }}
 									<strong
 										*ngFor="
-											let trainPart of trainInformation.trainDetails.materieeldelen;
+											let trainPart of trainInformation.trainDetails?.materieeldelen;
 											let i = index
 										"
 									>

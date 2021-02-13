@@ -1,14 +1,12 @@
-import { Component, EventEmitter, OnInit, ViewChild } from "@angular/core";
+import { Component, OnInit, ViewChild } from "@angular/core";
 import { TrainMapType } from "../../models/TrainMapType";
 import { forkJoin, from, interval, Observable, PartialObserver, Subject, zip } from "rxjs";
 import { map, mergeMap } from "rxjs/operators";
 import { pausable, PausableObservable } from "rxjs-pausable";
 import { ApiService } from "../../services/api.service";
-import { Station, StationPayload } from "../../models/Station";
 import { HelperFunctionsService } from "../../services/helper-functions.service";
 import { GeoJSON, MultiLineString } from "geojson";
 import { environment } from "../../../environments/environment";
-import { TrainIconOnMap, TrainInformation } from "../../models/BasicTrain";
 import * as Jimp from "jimp";
 import {
 	EventData,
@@ -23,10 +21,10 @@ import {
 } from "mapbox-gl";
 import { HeaderEventsService } from "../../services/header-events.service";
 import { NavigationEnd, NavigationStart, Router } from "@angular/router";
-import { StationsService } from "../../services/stations.service";
 import { TrainMapSidebarComponent } from "../train-map-sidebar/train-map-sidebar.component";
-import { TrainTrackGeoJSON } from "../../models/TrainTrackGeoJSON";
-import { DisruptionBase, DisruptionsList } from "../../models/Disruptions";
+import { DisruptionBase, DisruptionsList, Station, StationsResponse } from "../../models/ReisinformatieAPI";
+import { SpoortkaartFeatureCollection, TrainTracksGeoJSON } from "../../models/SpoortkaartAPI";
+import { DetailedTrainInformation, Train, TrainIconOnMap, TrainInformation } from "../../models/VirtualTrainAPI";
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires,@typescript-eslint/no-unsafe-assignment
 const replaceColor = require("replace-color");
@@ -84,7 +82,7 @@ export class TrainMapComponent implements OnInit {
 	stationsLayerData: GeoJSON.FeatureCollection<GeoJSON.Geometry>;
 
 	// Train tracks layer
-	trainTracksLayerData: GeoJSON.FeatureCollection<GeoJSON.Geometry>;
+	trainTracksLayerData: SpoortkaartFeatureCollection;
 
 	// Disruptions layer
 	disruptedTrainTracksLayerData: GeoJSON.FeatureCollection<MultiLineString>;
@@ -103,7 +101,6 @@ export class TrainMapComponent implements OnInit {
 
 	constructor(
 		private apiService: ApiService,
-		private stationsService: StationsService,
 		private helperFunctions: HelperFunctionsService,
 		private headerEventsService: HeaderEventsService,
 		private router: Router
@@ -191,12 +188,12 @@ export class TrainMapComponent implements OnInit {
 		this.trainMap = trainMap;
 		this.isUpdatingMapData = true;
 		zip(
-			this.stationsService.getBasicInformationAboutAllStations(),
+			this.apiService.getBasicInformationAboutAllStations(),
 			this.apiService.getTrainTracksGeoJSON(),
 			this.apiService.getDisruptedTrainTracksGeoJSON(),
 			this.apiService.getActualDisruptions()
 		).subscribe({
-			next: (value: [Station, TrainTrackGeoJSON, TrainTrackGeoJSON, DisruptionsList]) => {
+			next: (value: [StationsResponse, TrainTracksGeoJSON, TrainTracksGeoJSON, DisruptionsList]) => {
 				console.log(value);
 				this.addStationsToMap(value[0].payload);
 				this.trainTracksLayerData = value[1].payload;
@@ -275,7 +272,7 @@ export class TrainMapComponent implements OnInit {
 			stationInformation.synoniemen = JSON.parse(stationInformation.synoniemen);
 			stationInformation.sporen = JSON.parse(stationInformation.sporen);
 			/* eslint-enable @typescript-eslint/no-unsafe-assignment */
-			stationInformation = stationInformation as StationPayload;
+			stationInformation = stationInformation as Station;
 			selectedFeature.properties = stationInformation;
 			this.selectedStationOnMapFeature = selectedFeature;
 		}
@@ -310,22 +307,17 @@ export class TrainMapComponent implements OnInit {
 	 * Add stations to the map with GeoJSON
 	 * @param stations All stations
 	 */
-	addStationsToMap(stations: StationPayload[]): void {
+	addStationsToMap(stations: Station[]): void {
 		console.log(stations);
-		this.stationsLayerData = this.helperFunctions.parseToGeoJSON<StationPayload>(
-			stations,
-			["lng", "lat"],
-			[],
-			true
-		);
+		this.stationsLayerData = this.helperFunctions.parseToGeoJSON<Station>(stations, ["lng", "lat"], [], true);
 	}
 
 	/**
 	 * Add all trains to the map with GeoJSON and resume train updater
 	 * @param detailedTrainInformation All trains currently riding
 	 */
-	addTrainsToMap(detailedTrainInformation: TrainInformation[]): void {
-		this.trainsLayerData = this.helperFunctions.parseToGeoJSON<TrainInformation>(
+	addTrainsToMap(detailedTrainInformation: DetailedTrainInformation[]): void {
+		this.trainsLayerData = this.helperFunctions.parseToGeoJSON<DetailedTrainInformation>(
 			detailedTrainInformation,
 			["lng", "lat"],
 			[],
@@ -341,13 +333,11 @@ export class TrainMapComponent implements OnInit {
 	_updateTrainPopupInformation(): void {
 		if (this.selectedTrainOnMapFeature) {
 			const selectedFeature = this.selectedTrainOnMapFeature;
-			const oldTrainInformation = selectedFeature.properties as TrainInformation;
+			const oldTrainInformation = selectedFeature.properties as DetailedTrainInformation;
 			const rideId = oldTrainInformation.ritId;
 			const queriedFeatures = this.trainMap.querySourceFeatures("trainData", {
-				// layers: ["trains"],
 				filter: ["==", ["get", "ritId"], rideId],
 			});
-			// console.log(queriedFeatures);
 			if (queriedFeatures) {
 				this.closePopup();
 				this.openTrainPopupOnLayerClick({
@@ -409,12 +399,12 @@ export class TrainMapComponent implements OnInit {
 	getActiveTrainsAndDetails(): void {
 		this.isUpdatingMapData = true;
 		this.pauseOrResumeUpdatingTrainPositions(true);
-		let basicTrainInformation: TrainInformation[];
+		let allTrainInformation: DetailedTrainInformation[];
 		this.apiService
 			.getBasicInformationAboutAllTrains()
 			.pipe(
 				mergeMap((trains) => {
-					basicTrainInformation = trains.payload.treinen;
+					allTrainInformation = trains.payload.treinen;
 					let trainIds = "";
 					trains.payload.treinen.forEach((train) => {
 						trainIds += train.ritId + ",";
@@ -423,12 +413,12 @@ export class TrainMapComponent implements OnInit {
 					return this.apiService.getTrainDetailsByRideId(trainIds);
 				}),
 				map((trainDetails) => {
-					basicTrainInformation.forEach((basicTrain) => {
+					allTrainInformation.forEach((basicTrain) => {
 						basicTrain.trainDetails = trainDetails.find(
 							(details) => details.ritnummer.toString() === basicTrain.ritId
 						);
 					});
-					return basicTrainInformation;
+					return allTrainInformation;
 				})
 			)
 			.subscribe({
@@ -447,20 +437,20 @@ export class TrainMapComponent implements OnInit {
 	 * Add train to map with GeoJSON if icons already have been added
 	 * @param detailedTrainInformation Detailed information about all trains
 	 */
-	setTrainIconName(detailedTrainInformation: TrainInformation[]): void {
+	setTrainIconName(detailedTrainInformation: DetailedTrainInformation[]): void {
 		const iconURLs: Map<string, string> = new Map<string, string>();
 
-		detailedTrainInformation.forEach((basicTrain) => {
+		detailedTrainInformation.forEach((train) => {
 			let imageName = "alternative";
 			let imageURL = "../../assets/alternative-train.png";
 
 			// If train has details about material, add the image url
 			if (
-				basicTrain.trainDetails &&
-				basicTrain.trainDetails.materieeldelen &&
-				basicTrain.trainDetails.materieeldelen[0].afbeelding
+				train.trainDetails &&
+				train.trainDetails.materieeldelen &&
+				train.trainDetails.materieeldelen[0].afbeelding
 			) {
-				const materiaaldelen = basicTrain.trainDetails.materieeldelen;
+				const materiaaldelen = train.trainDetails.materieeldelen;
 				// Get last part of url, like 'virm_4.png', to be used as a name
 				// console.log(basicTrain);
 				const urlParts = materiaaldelen[0].afbeelding.split("/");
@@ -468,9 +458,6 @@ export class TrainMapComponent implements OnInit {
 				const allIconNames = Array.from(iconURLs.keys());
 				// Add the url for an icon name if it has not been added
 				if (allIconNames.includes(imageName) === false) {
-					// if (materiaaldelen.length > 1) {
-					//   console.log(basicTrain);
-					// }
 					const firstTrainPart = materiaaldelen[0];
 					if (firstTrainPart.afbeelding) {
 						imageURL = firstTrainPart.afbeelding;
@@ -481,11 +468,11 @@ export class TrainMapComponent implements OnInit {
 					iconURLs.set(imageName, imageURL);
 				}
 				// Set the icon name for this train
-				basicTrain.trainIconName = imageName;
+				train.trainIconName = imageName;
 			} else {
 				// If the train has no details set to alternative and add alternative-train.png
-				console.log(basicTrain);
-				basicTrain.trainIconName = imageName;
+				console.log(train);
+				train.trainIconName = imageName;
 				iconURLs.set(imageName, imageURL);
 			}
 		});
@@ -502,7 +489,10 @@ export class TrainMapComponent implements OnInit {
 	 * @param iconURLs Icon name and url
 	 * @param detailedTrainInformation Detailed information about all trains
 	 */
-	getAndAddTrainIconsToMap(iconURLs: Map<string, string>, detailedTrainInformation: TrainInformation[]): void {
+	getAndAddTrainIconsToMap(
+		iconURLs: Map<string, string>,
+		detailedTrainInformation: DetailedTrainInformation[]
+	): void {
 		const jimpImageNames: string[] = [];
 		const jimpBufferObservables: Observable<Buffer>[] = [];
 
@@ -556,7 +546,7 @@ export class TrainMapComponent implements OnInit {
 	 * then add the trains to the map with GeoJSON
 	 * @param detailedTrainInformation Detailed information about all trains
 	 */
-	listenForTrainIcons(detailedTrainInformation: TrainInformation[]): void {
+	listenForTrainIcons(detailedTrainInformation: DetailedTrainInformation[]): void {
 		this.trainIconAdded.subscribe({
 			next: (trainIconName) => {
 				this.trainIconsAdded.add(trainIconName);
@@ -576,7 +566,7 @@ export class TrainMapComponent implements OnInit {
 	 * Fly to a station and open a station popup
 	 * @param station The station
 	 */
-	flyToStation(station: StationPayload): void {
+	flyToStation(station: Station): void {
 		if (this.trainMap && station) {
 			this.trainMap.flyTo({
 				center: [station.lng, station.lat],

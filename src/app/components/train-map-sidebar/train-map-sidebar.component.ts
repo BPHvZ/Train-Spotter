@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from "@angular/core";
 import { trigger, state, style, animate, transition, animateChild, query, group } from "@angular/animations";
 import { AnimationEvent } from "@angular/animations";
-import { Disruption, DisruptionBase, DisruptionsList } from "../../models/Disruptions";
+import { Disruption, DisruptionsList } from "../../models/ReisinformatieAPI";
 
 @Component({
 	selector: "app-train-map-sidebar",

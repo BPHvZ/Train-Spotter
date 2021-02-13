@@ -10,7 +10,7 @@
     >
       <img
         alt="Werk aan het spoor"
-        src="../../../../assets/maintenance--red--35x35.svg"
+        src="../../../../assets/maintenance--blue--35x35.svg"
         style="position: inherit; height: 30px; display: inline"
       />
     </div>
@@ -25,7 +25,8 @@
   <div class="card-body">
     <div *ngIf="disruption.type === 'MAINTENANCE'; else disruptionDescription">
       <h5 class="card-title">{{ disruption.period }}</h5>
-      <p class="card-text">{{ disruption.impact }}</p>
+      <p class="card-text">{{ disruption.timespans[0].situation.label }}</p>
+      <p class="card-text" *ngIf="disruption.timespans[0].additionalTravelTime">{{ disruption.timespans[0].additionalTravelTime?.label }}</p>
     </div>
     <ng-template #disruptionDescription>
       <h5 class="card-title">{{ disruption.expectedDuration.description }}</h5>

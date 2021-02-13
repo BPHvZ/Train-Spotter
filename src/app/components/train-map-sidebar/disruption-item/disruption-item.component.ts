@@ -1,6 +1,6 @@
 import { Component, Input, Output } from "@angular/core";
 import { EventEmitter } from "@angular/core";
-import { Disruption } from "../../../models/Disruptions";
+import { Disruption } from "../../../models/ReisinformatieAPI";
 
 @Component({
 	selector: "app-disruption-item",

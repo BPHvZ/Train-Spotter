@@ -11,7 +11,7 @@
 							<h3 style="margin: unset">
 								<strong>
 									{{ trainInformation.trainDetails?.vervoerder }} {{ getTypeOfTrain() }} trein {{
-                  trainInformation.treinNummer }}
+                  trainInformation.ritId }}
 									<strong
 										*ngFor="
 											let trainPart of trainInformation.trainDetails?.materieeldelen;
@@ -20,7 +20,7 @@
 									>
 										<span *ngIf="trainPart.materieelnummer">
 											<span *ngIf="i == 0; else other"> met {{ trainPart.materieelnummer }}</span>
-											<ng-template #other>, {{ trainPart.materieelnummer }}</ng-template>
+											<ng-template #other>{{i == (trainInformation.trainDetails.materieeldelen.length - 1) ? ' en' : ','}} {{ trainPart.materieelnummer }}</ng-template>
 										</span>
 									</strong>
 								</strong>

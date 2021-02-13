@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from "@angular/core";
 import { MapboxGeoJSONFeature } from "mapbox-gl";
-import { StationPayload } from "../../models/Station";
+import { Station } from "../../models/ReisinformatieAPI";
 
 /**
  * Show a popup with information about a station on the train map
@@ -13,7 +13,7 @@ import { StationPayload } from "../../models/Station";
 export class StationPopupComponent implements OnChanges {
 	@Output() public closePopup: EventEmitter<void> = new EventEmitter<void>();
 	@Input() mapboxFeature: MapboxGeoJSONFeature;
-	stationInformation: StationPayload;
+	stationInformation: Station;
 
 	/**
 	 * Set the station information on changes
@@ -22,7 +22,7 @@ export class StationPopupComponent implements OnChanges {
 	ngOnChanges(changes: SimpleChanges): void {
 		console.log(changes);
 		if (changes.mapboxFeature.currentValue) {
-			this.stationInformation = this.mapboxFeature.properties as StationPayload;
+			this.stationInformation = this.mapboxFeature.properties as Station;
 		}
 	}
 }

@@ -1,7 +1,7 @@
 import { Directive, EventEmitter, HostBinding, HostListener, Input, Output } from "@angular/core";
-import { StationPayload } from "../models/Station";
+import { Station } from "../models/ReisinformatieAPI";
 
-export type SortColumn = keyof StationPayload | "";
+export type SortColumn = keyof Station | "";
 export type SortDirection = "asc" | "desc" | "";
 const rotate: { [key: string]: SortDirection } = { asc: "desc", desc: "", "": "asc" };
 

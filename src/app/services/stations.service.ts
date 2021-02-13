@@ -1,13 +1,12 @@
 import { Injectable } from "@angular/core";
 import { BehaviorSubject, Observable, Subject } from "rxjs";
-import { Station, StationPayload } from "../models/Station";
-import { environment } from "../../environments/environment";
-import { HttpClientService } from "./http-client.service";
 import { SortColumn, SortDirection } from "../directives/ngbd-sortable-header.directive";
 import { debounceTime, delay, map, switchMap, tap } from "rxjs/operators";
+import { ApiService } from "./api.service";
+import { Station } from "../models/ReisinformatieAPI";
 
 interface SearchResult {
-	stations: StationPayload[];
+	stations: Station[];
 	total: number;
 }
 
@@ -21,13 +20,13 @@ interface State {
 
 const compare = (v1: string, v2: string) => (v1 < v2 ? -1 : v1 > v2 ? 1 : 0);
 
-function sort(stations: StationPayload[], column: SortColumn, direction: string): StationPayload[] {
+function sort(stations: Station[], column: SortColumn, direction: string): Station[] {
 	if (direction === "" || column === "") {
 		return stations;
 	} else {
 		return [...stations].sort((a, b) => {
-			let aColumn = a[column];
-			let bColumn = b[column];
+			let aColumn = a[column] as string;
+			let bColumn = b[column] as string;
 			if (column === "namen") {
 				aColumn = a.namen.lang;
 				bColumn = b.namen.lang;
@@ -38,7 +37,7 @@ function sort(stations: StationPayload[], column: SortColumn, direction: string)
 	}
 }
 
-function matches(station: StationPayload, term: string) {
+function matches(station: Station, term: string) {
 	return (
 		station.namen.lang.toLowerCase().includes(term.toLowerCase()) ||
 		station.land.toLowerCase().includes(term.toLowerCase()) ||
@@ -53,7 +52,7 @@ function matches(station: StationPayload, term: string) {
 export class StationsService {
 	private _loading$ = new BehaviorSubject<boolean>(true);
 	private _search$ = new Subject<void>();
-	private _stations$ = new BehaviorSubject<StationPayload[]>([]);
+	private _stations$ = new BehaviorSubject<Station[]>([]);
 	private _total$ = new BehaviorSubject<number>(0);
 
 	private _state: State = {
@@ -64,7 +63,7 @@ export class StationsService {
 		sortDirection: "",
 	};
 
-	constructor(private http: HttpClientService) {
+	constructor(private apiService: ApiService) {
 		this._search$
 			.pipe(
 				tap(() => this._loading$.next(true)),
@@ -81,7 +80,7 @@ export class StationsService {
 		this._search$.next();
 	}
 
-	get stations$(): Observable<StationPayload[]> {
+	get stations$(): Observable<Station[]> {
 		return this._stations$.asObservable();
 	}
 	get total$(): Observable<number> {
@@ -127,7 +126,7 @@ export class StationsService {
 	private _search(): Observable<SearchResult> {
 		const { sortColumn, sortDirection, pageSize, page, searchTerm } = this._state;
 
-		return this.getBasicInformationAboutAllStations().pipe(
+		return this.apiService.getBasicInformationAboutAllStations().pipe(
 			// tap(stations => console.log(stations.payload)),
 			map((stations) => {
 				// 1. sort
@@ -142,15 +141,5 @@ export class StationsService {
 				return { stations: stationPayloads, total };
 			})
 		);
-	}
-
-	getBasicInformationAboutAllStations(): Observable<Station> {
-		return this.http.get({
-			url: "https://gateway.apiportal.ns.nl/reisinformatie-api/api/v2/stations",
-			cacheMins: 60,
-			headers: {
-				"Ocp-Apim-Subscription-Key": environment.NS_Ocp_Apim_Subscription_Key,
-			},
-		});
 	}
 }

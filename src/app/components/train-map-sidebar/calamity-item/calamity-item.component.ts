@@ -1,5 +1,5 @@
 import { Component, Input } from "@angular/core";
-import { Calamity } from "../../../models/Disruptions";
+import { Calamity } from "../../../models/ReisinformatieAPI";
 
 @Component({
 	selector: "app-calamity-item",

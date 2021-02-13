@@ -1,10 +1,10 @@
 import { Component, OnInit, QueryList, ViewChildren } from "@angular/core";
 import { NgbdSortableHeaderDirective, SortEvent } from "../../directives/ngbd-sortable-header.directive";
 import { Observable } from "rxjs";
-import { StationPayload } from "../../models/Station";
 import { StationsService } from "../../services/stations.service";
 import { take } from "rxjs/operators";
 import { Router } from "@angular/router";
+import { Station } from "../../models/ReisinformatieAPI";
 
 /**
  * Table with all NS-stations
@@ -16,7 +16,7 @@ import { Router } from "@angular/router";
 	providers: [StationsService],
 })
 export class AllStationsComponent implements OnInit {
-	stations$: Observable<StationPayload[]>;
+	stations$: Observable<Station[]>;
 	total$: Observable<number>;
 
 	@ViewChildren(NgbdSortableHeaderDirective) headers: QueryList<NgbdSortableHeaderDirective>;
@@ -40,7 +40,7 @@ export class AllStationsComponent implements OnInit {
 
 	/**
 	 * Sort when table column header is clicked
-	 * @param column Property name of {@link StationPayload} to sort on
+	 * @param column Property name of {@link Station} to sort on
 	 * @param direction Sort ascending or descending
 	 */
 	onSort({ column, direction }: SortEvent): void {
@@ -58,7 +58,7 @@ export class AllStationsComponent implements OnInit {
 	 * Change view to the train map and fly to a station
 	 * @param station Fly to this station
 	 */
-	openStationOnMap(station: StationPayload): void {
+	openStationOnMap(station: Station): void {
 		void this.router.navigate(["kaart"], { state: { station } });
 	}
 }

@@ -1,11 +1,11 @@
-import { Component, ElementRef, ViewChild } from "@angular/core";
+import { Component } from "@angular/core";
 import { ApiService } from "../../../services/api.service";
 import { Observable, of } from "rxjs";
 import { catchError, debounceTime, distinctUntilChanged, switchMap, tap } from "rxjs/operators";
-import { StationPayload } from "../../../models/Station";
 import { NgbTypeaheadSelectItemEvent } from "@ng-bootstrap/ng-bootstrap";
 import { HeaderEventsService } from "../../../services/header-events.service";
 import { Router } from "@angular/router";
+import { Station } from "../../../models/ReisinformatieAPI";
 
 /**
  * Header with links to pages and a dropdown to search for stations
@@ -30,13 +30,13 @@ export class HeaderComponent {
 	 * @param text$ Input text
 	 * @return List of stations
 	 */
-	search = (text$: Observable<string>): Observable<StationPayload[]> =>
+	search = (text$: Observable<string>): Observable<Station[]> =>
 		text$.pipe(
 			debounceTime(300),
 			distinctUntilChanged(),
 			tap(() => (this.searching = true)),
 			switchMap(
-				(term: string): Observable<StationPayload[]> =>
+				(term: string): Observable<Station[]> =>
 					this.apiService.searchForStation(term).pipe(
 						tap(() => (this.searchFailed = false)),
 						catchError(() => {
@@ -49,11 +49,11 @@ export class HeaderComponent {
 		);
 
 	/**
-	 * Get the station name from {@link StationPayload.namen}
+	 * Get the station name from {@link Station.namen}
 	 * @param station Station to get the name from
 	 * @return The station name
 	 */
-	formatToStationName(station: StationPayload): string {
+	formatToStationName(station: Station): string {
 		return station.namen.lang;
 	}
 
@@ -69,7 +69,7 @@ export class HeaderComponent {
 	/**
 	 * Navigate to the stations overview page
 	 */
-	navigatToAllStations(): void {
+	navigateToAllStations(): void {
 		void this.router.navigateByUrl("stations");
 	}
 }

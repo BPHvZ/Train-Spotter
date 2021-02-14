@@ -20,6 +20,7 @@ import { Disruption, DisruptionsList } from "../../models/ReisinformatieAPI";
 				style({
 					width: 0,
 					transform: "translate(100%)",
+					boxShadow: "unset",
 				})
 			),
 			transition("open <=> closed", [animate("0.5s cubic-bezier(0.55, 0.31, 0.15, 0.93)")]),

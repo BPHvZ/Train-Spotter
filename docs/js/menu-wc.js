@@ -55,13 +55,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="modules/AppModule.html" data-type="entity-link">AppModule</a>
                                     <li class="chapter inner">
                                         <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
-                                            'data-target="#components-links-module-AppModule-8d9d67913d041a34d6723ef7ed6b5359"' : 'data-target="#xs-components-links-module-AppModule-8d9d67913d041a34d6723ef7ed6b5359"' }>
+                                            'data-target="#components-links-module-AppModule-6e2835cdeaa5e934223a78a3c52c3ff4"' : 'data-target="#xs-components-links-module-AppModule-6e2835cdeaa5e934223a78a3c52c3ff4"' }>
                                             <span class="icon ion-md-cog"></span>
                                             <span>Components</span>
                                             <span class="icon ion-ios-arrow-down"></span>
                                         </div>
-                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-AppModule-8d9d67913d041a34d6723ef7ed6b5359"' :
-                                            'id="xs-components-links-module-AppModule-8d9d67913d041a34d6723ef7ed6b5359"' }>
+                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-AppModule-6e2835cdeaa5e934223a78a3c52c3ff4"' :
+                                            'id="xs-components-links-module-AppModule-6e2835cdeaa5e934223a78a3c52c3ff4"' }>
                                             <li class="link">
                                                 <a href="components/AllStationsComponent.html"
                                                     data-type="entity-link" data-context="sub-entity" data-context-id="modules">AllStationsComponent</a>
@@ -69,6 +69,14 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                             <li class="link">
                                                 <a href="components/AppComponent.html"
                                                     data-type="entity-link" data-context="sub-entity" data-context-id="modules">AppComponent</a>
+                                            </li>
+                                            <li class="link">
+                                                <a href="components/CalamityItemComponent.html"
+                                                    data-type="entity-link" data-context="sub-entity" data-context-id="modules">CalamityItemComponent</a>
+                                            </li>
+                                            <li class="link">
+                                                <a href="components/DisruptionItemComponent.html"
+                                                    data-type="entity-link" data-context="sub-entity" data-context-id="modules">DisruptionItemComponent</a>
                                             </li>
                                             <li class="link">
                                                 <a href="components/HeaderComponent.html"
@@ -87,6 +95,10 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                                     data-type="entity-link" data-context="sub-entity" data-context-id="modules">TrainMapComponent</a>
                                             </li>
                                             <li class="link">
+                                                <a href="components/TrainMapSidebarComponent.html"
+                                                    data-type="entity-link" data-context="sub-entity" data-context-id="modules">TrainMapSidebarComponent</a>
+                                            </li>
+                                            <li class="link">
                                                 <a href="components/TrainPopupComponent.html"
                                                     data-type="entity-link" data-context="sub-entity" data-context-id="modules">TrainPopupComponent</a>
                                             </li>
@@ -94,13 +106,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                     </li>
                                 <li class="chapter inner">
                                     <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
-                                        'data-target="#directives-links-module-AppModule-8d9d67913d041a34d6723ef7ed6b5359"' : 'data-target="#xs-directives-links-module-AppModule-8d9d67913d041a34d6723ef7ed6b5359"' }>
+                                        'data-target="#directives-links-module-AppModule-6e2835cdeaa5e934223a78a3c52c3ff4"' : 'data-target="#xs-directives-links-module-AppModule-6e2835cdeaa5e934223a78a3c52c3ff4"' }>
                                         <span class="icon ion-md-code-working"></span>
                                         <span>Directives</span>
                                         <span class="icon ion-ios-arrow-down"></span>
                                     </div>
-                                    <ul class="links collapse" ${ isNormalMode ? 'id="directives-links-module-AppModule-8d9d67913d041a34d6723ef7ed6b5359"' :
-                                        'id="xs-directives-links-module-AppModule-8d9d67913d041a34d6723ef7ed6b5359"' }>
+                                    <ul class="links collapse" ${ isNormalMode ? 'id="directives-links-module-AppModule-6e2835cdeaa5e934223a78a3c52c3ff4"' :
+                                        'id="xs-directives-links-module-AppModule-6e2835cdeaa5e934223a78a3c52c3ff4"' }>
                                         <li class="link">
                                             <a href="directives/NgbdSortableHeaderDirective.html"
                                                 data-type="entity-link" data-context="sub-entity" data-context-id="modules">NgbdSortableHeaderDirective</a>
@@ -125,16 +137,10 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="classes/AppPage.html" data-type="entity-link">AppPage</a>
                             </li>
                             <li class="link">
-                                <a href="classes/CacheRouteReuseStrategy.html" data-type="entity-link">CacheRouteReuseStrategy</a>
-                            </li>
-                            <li class="link">
                                 <a href="classes/HttpOptions.html" data-type="entity-link">HttpOptions</a>
                             </li>
                             <li class="link">
                                 <a href="classes/LocalStorageSaveOptions.html" data-type="entity-link">LocalStorageSaveOptions</a>
-                            </li>
-                            <li class="link">
-                                <a href="classes/TrainInformation.html" data-type="entity-link">TrainInformation</a>
                             </li>
                         </ul>
                     </li>
@@ -148,6 +154,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             <ul class="links collapse " ${ isNormalMode ? 'id="injectables-links"' : 'id="xs-injectables-links"' }>
                                 <li class="link">
                                     <a href="injectables/ApiService.html" data-type="entity-link">ApiService</a>
+                                </li>
+                                <li class="link">
+                                    <a href="injectables/CacheRouteReuseStrategy.html" data-type="entity-link">CacheRouteReuseStrategy</a>
                                 </li>
                                 <li class="link">
                                     <a href="injectables/CacheService.html" data-type="entity-link">CacheService</a>
@@ -175,79 +184,34 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                         </div>
                         <ul class="links collapse " ${ isNormalMode ? ' id="interfaces-links"' : 'id="xs-interfaces-links"' }>
                             <li class="link">
-                                <a href="interfaces/Baanvak.html" data-type="entity-link">Baanvak</a>
+                                <a href="interfaces/CacheRecord.html" data-type="entity-link">CacheRecord</a>
                             </li>
                             <li class="link">
-                                <a href="interfaces/BaanvakBeperking.html" data-type="entity-link">BaanvakBeperking</a>
+                                <a href="interfaces/definitions.html" data-type="entity-link">definitions</a>
                             </li>
                             <li class="link">
-                                <a href="interfaces/BodyItem.html" data-type="entity-link">BodyItem</a>
+                                <a href="interfaces/definitions-1.html" data-type="entity-link">definitions</a>
                             </li>
                             <li class="link">
-                                <a href="interfaces/Button.html" data-type="entity-link">Button</a>
+                                <a href="interfaces/definitions-2.html" data-type="entity-link">definitions</a>
                             </li>
                             <li class="link">
-                                <a href="interfaces/Calimity.html" data-type="entity-link">Calimity</a>
+                                <a href="interfaces/operations.html" data-type="entity-link">operations</a>
                             </li>
                             <li class="link">
-                                <a href="interfaces/Disruption.html" data-type="entity-link">Disruption</a>
+                                <a href="interfaces/operations-1.html" data-type="entity-link">operations</a>
                             </li>
                             <li class="link">
-                                <a href="interfaces/GeldigheidsLijst.html" data-type="entity-link">GeldigheidsLijst</a>
+                                <a href="interfaces/operations-2.html" data-type="entity-link">operations</a>
                             </li>
                             <li class="link">
-                                <a href="interfaces/GeplandeMaterieeldelen.html" data-type="entity-link">GeplandeMaterieeldelen</a>
+                                <a href="interfaces/paths.html" data-type="entity-link">paths</a>
                             </li>
                             <li class="link">
-                                <a href="interfaces/GeplandeMaterieeldelenAfbeeldingsSpecs.html" data-type="entity-link">GeplandeMaterieeldelenAfbeeldingsSpecs</a>
+                                <a href="interfaces/paths-1.html" data-type="entity-link">paths</a>
                             </li>
                             <li class="link">
-                                <a href="interfaces/GeplandeMaterieeldelenBakken.html" data-type="entity-link">GeplandeMaterieeldelenBakken</a>
-                            </li>
-                            <li class="link">
-                                <a href="interfaces/GeplandeMaterieeldelenZitplaatsInfo.html" data-type="entity-link">GeplandeMaterieeldelenZitplaatsInfo</a>
-                            </li>
-                            <li class="link">
-                                <a href="interfaces/Gevolg.html" data-type="entity-link">Gevolg</a>
-                            </li>
-                            <li class="link">
-                                <a href="interfaces/Materieeldelen.html" data-type="entity-link">Materieeldelen</a>
-                            </li>
-                            <li class="link">
-                                <a href="interfaces/MaterieeldelenAfbeeldingsSpecs.html" data-type="entity-link">MaterieeldelenAfbeeldingsSpecs</a>
-                            </li>
-                            <li class="link">
-                                <a href="interfaces/MaterieeldelenBakken.html" data-type="entity-link">MaterieeldelenBakken</a>
-                            </li>
-                            <li class="link">
-                                <a href="interfaces/MaterieeldelenBakkenAfbeeldingsSpecs.html" data-type="entity-link">MaterieeldelenBakkenAfbeeldingsSpecs</a>
-                            </li>
-                            <li class="link">
-                                <a href="interfaces/MaterieeldelenZitplaatsInfo.html" data-type="entity-link">MaterieeldelenZitplaatsInfo</a>
-                            </li>
-                            <li class="link">
-                                <a href="interfaces/Melding.html" data-type="entity-link">Melding</a>
-                            </li>
-                            <li class="link">
-                                <a href="interfaces/Names.html" data-type="entity-link">Names</a>
-                            </li>
-                            <li class="link">
-                                <a href="interfaces/Payload.html" data-type="entity-link">Payload</a>
-                            </li>
-                            <li class="link">
-                                <a href="interfaces/Payload-1.html" data-type="entity-link">Payload</a>
-                            </li>
-                            <li class="link">
-                                <a href="interfaces/PerronVoorzieningen.html" data-type="entity-link">PerronVoorzieningen</a>
-                            </li>
-                            <li class="link">
-                                <a href="interfaces/Reisadvies.html" data-type="entity-link">Reisadvies</a>
-                            </li>
-                            <li class="link">
-                                <a href="interfaces/Reisadviezen.html" data-type="entity-link">Reisadviezen</a>
-                            </li>
-                            <li class="link">
-                                <a href="interfaces/ReisinformatieAPI.html" data-type="entity-link">ReisinformatieAPI</a>
+                                <a href="interfaces/paths-2.html" data-type="entity-link">paths</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/SearchResult.html" data-type="entity-link">SearchResult</a>
@@ -259,52 +223,7 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="interfaces/State.html" data-type="entity-link">State</a>
                             </li>
                             <li class="link">
-                                <a href="interfaces/Station.html" data-type="entity-link">Station</a>
-                            </li>
-                            <li class="link">
-                                <a href="interfaces/StationCode.html" data-type="entity-link">StationCode</a>
-                            </li>
-                            <li class="link">
-                                <a href="interfaces/StationPayload.html" data-type="entity-link">StationPayload</a>
-                            </li>
-                            <li class="link">
-                                <a href="interfaces/Tracks.html" data-type="entity-link">Tracks</a>
-                            </li>
-                            <li class="link">
-                                <a href="interfaces/TrainDetails.html" data-type="entity-link">TrainDetails</a>
-                            </li>
-                            <li class="link">
-                                <a href="interfaces/TrainIconOnMap.html" data-type="entity-link">TrainIconOnMap</a>
-                            </li>
-                            <li class="link">
-                                <a href="interfaces/TrainInformationResponse.html" data-type="entity-link">TrainInformationResponse</a>
-                            </li>
-                            <li class="link">
                                 <a href="interfaces/TrainMapType.html" data-type="entity-link">TrainMapType</a>
-                            </li>
-                            <li class="link">
-                                <a href="interfaces/TrainTrackGeoJSON.html" data-type="entity-link">TrainTrackGeoJSON</a>
-                            </li>
-                            <li class="link">
-                                <a href="interfaces/Traject.html" data-type="entity-link">Traject</a>
-                            </li>
-                            <li class="link">
-                                <a href="interfaces/TreinDelen.html" data-type="entity-link">TreinDelen</a>
-                            </li>
-                            <li class="link">
-                                <a href="interfaces/TreinDelenAfbeeldingsSpecs.html" data-type="entity-link">TreinDelenAfbeeldingsSpecs</a>
-                            </li>
-                            <li class="link">
-                                <a href="interfaces/TreinDelenBakken.html" data-type="entity-link">TreinDelenBakken</a>
-                            </li>
-                            <li class="link">
-                                <a href="interfaces/TreinDelenZitplaatsInfo.html" data-type="entity-link">TreinDelenZitplaatsInfo</a>
-                            </li>
-                            <li class="link">
-                                <a href="interfaces/Verstoring.html" data-type="entity-link">Verstoring</a>
-                            </li>
-                            <li class="link">
-                                <a href="interfaces/VirtualTrainAPI.html" data-type="entity-link">VirtualTrainAPI</a>
                             </li>
                         </ul>
                     </li>

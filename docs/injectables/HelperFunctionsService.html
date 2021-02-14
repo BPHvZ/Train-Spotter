@@ -90,24 +90,6 @@
     </table>
 </section>
 
-            <section>
-    <h3 id="constructor">Constructor</h3>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-<code>constructor()</code>
-                    </td>
-                </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">src/app/services/helper-functions.service.ts:8</a></div>
-                            </td>
-                        </tr>
-
-            </tbody>
-        </table>
-</section>
 
             <section>
     
@@ -136,8 +118,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="12"
-                            class="link-to-prism">src/app/services/helper-functions.service.ts:12</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="8"
+                            class="link-to-prism">src/app/services/helper-functions.service.ts:8</a></div>
                 </td>
             </tr>
 
@@ -228,7 +210,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>    <code>FeatureCollection</code>
+                        <b>Returns : </b>    <code>FeatureCollection&lt;Point, any&gt;</code>
 
                     </div>
                     <div class="io-description">
@@ -244,47 +226,49 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
-import {Point, FeatureCollection, Feature} from &#x27;geojson&#x27;;
-import {TrainDetails} from &#x27;../models/TrainDetails&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &quot;@angular/core&quot;;
+import { Point, FeatureCollection, Feature } from &quot;geojson&quot;;
 
 @Injectable({
-  providedIn: &#x27;root&#x27;
+	providedIn: &quot;root&quot;,
 })
 export class HelperFunctionsService {
+	parseToGeoJSON&lt;T&gt;(
+		data: Array&lt;T&gt;,
+		point: Array&lt;string&gt;,
+		properties?: Array&lt;string&gt;,
+		allProperties: boolean &#x3D; false
+	): FeatureCollection&lt;Point, any&gt; {
+		const featureCollection: FeatureCollection&lt;Point, any&gt; &#x3D; {
+			type: &quot;FeatureCollection&quot;,
+			features: [],
+		};
+		data.forEach((feature) &#x3D;&gt; {
+			if (feature[point[0]] !&#x3D;&#x3D; null &amp;&amp; feature[point[1]] !&#x3D;&#x3D; null) {
+				const geoFeature: Feature&lt;Point, any&gt; &#x3D; {
+					geometry: {
+						coordinates: [feature[point[0]], feature[point[1]]],
+						type: &quot;Point&quot;,
+					},
+					properties: {},
+					type: &quot;Feature&quot;,
+				};
+				let pointProperties &#x3D; properties;
+				if (allProperties) {
+					pointProperties &#x3D; Object.keys(feature);
+				}
+				pointProperties.forEach((property) &#x3D;&gt; {
+					if (feature[property] !&#x3D;&#x3D; undefined) {
+						// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+						geoFeature.properties[property] &#x3D; feature[property];
+					}
+				});
+				featureCollection.features.push(geoFeature);
+			}
+		});
 
-  constructor() { }
-
-  parseToGeoJSON&lt;T&gt;(data: Array&lt;T&gt;, point: Array&lt;string&gt;, properties?: Array&lt;string&gt;, allProperties: boolean &#x3D; false): FeatureCollection {
-    const featureCollection: FeatureCollection&lt;Point, any&gt; &#x3D; {
-      type: &#x27;FeatureCollection&#x27;,
-      features: []
-    };
-    data.forEach((feature) &#x3D;&gt; {
-      if (feature[point[0]] !&#x3D;&#x3D; null &amp;&amp; feature[point[1]] !&#x3D;&#x3D; null) {
-        const geoFeature: Feature&lt;Point, any&gt; &#x3D; {
-          geometry: {
-            coordinates: [feature[point[0]], feature[point[1]]],
-            type: &#x27;Point&#x27;,
-          },
-          properties: {},
-          type: &#x27;Feature&#x27;,
-        };
-        let pointProperties &#x3D; properties;
-        if (allProperties) {
-          pointProperties &#x3D; Object.keys(feature);
-        }
-        pointProperties.forEach((property) &#x3D;&gt; {
-          if (feature[property] !&#x3D;&#x3D; undefined) {
-            geoFeature.properties[property] &#x3D; feature[property];
-          }
-        });
-        featureCollection.features.push(geoFeature);
-      }
-    });
-
-    return featureCollection;
-  }
+		return featureCollection;
+	}
 }
 </code></pre>
     </div>

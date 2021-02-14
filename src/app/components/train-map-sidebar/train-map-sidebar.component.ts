@@ -8,7 +8,7 @@ import { Disruption, DisruptionsList } from "../../models/ReisinformatieAPI";
 	templateUrl: "./train-map-sidebar.component.html",
 	styleUrls: ["./train-map-sidebar.component.sass"],
 	animations: [
-		trigger("openClose", [
+		trigger("openClose-sidebar", [
 			state(
 				"open",
 				style({
@@ -18,27 +18,12 @@ import { Disruption, DisruptionsList } from "../../models/ReisinformatieAPI";
 			state(
 				"closed",
 				style({
+					width: 0,
 					transform: "translate(100%)",
+					boxShadow: "unset",
 				})
 			),
-			transition("open => closed", [group([animate("0.5s cubic-bezier(0.55, 0.31, 0.15, 0.93)")])]),
-			transition("* => open", [group([animate("0.5s cubic-bezier(0.55, 0.31, 0.15, 0.93)")])]),
-		]),
-		trigger("openClose-content", [
-			state(
-				"open",
-				style({
-					opacity: 1,
-				})
-			),
-			state(
-				"closed",
-				style({
-					opacity: 1,
-				})
-			),
-			transition("open => closed", [animate("0.3s cubic-bezier(0.55, 0.31, 0.15, 0.93)")]),
-			transition("* => open", [animate("0.7s cubic-bezier(0.55, 0.31, 0.15, 0.93)")]),
+			transition("open <=> closed", [animate("0.5s cubic-bezier(0.55, 0.31, 0.15, 0.93)")]),
 		]),
 		trigger("openClose-arrow", [
 			state(
@@ -53,18 +38,14 @@ import { Disruption, DisruptionsList } from "../../models/ReisinformatieAPI";
 					"margin-right": "0%",
 				})
 			),
-			transition("open => closed", [
-				group([query("@rotatedState", animateChild()), animate("0.5s cubic-bezier(0.55, 0.31, 0.15, 0.93)")]),
-			]),
-			transition("* => open", [
+			transition("open <=> closed", [
 				group([query("@rotatedState", animateChild()), animate("0.5s cubic-bezier(0.55, 0.31, 0.15, 0.93)")]),
 			]),
 		]),
 		trigger("rotatedState", [
 			state("closed", style({ transform: "rotate(90deg)" })),
 			state("open", style({ transform: "rotate(-90deg)" })),
-			transition("open => closed", [animate("0.5s cubic-bezier(0.55, 0.31, 0.15, 0.93)")]),
-			transition("closed => open", [animate("0.5s cubic-bezier(0.55, 0.31, 0.15, 0.93)")]),
+			transition("open <=> closed", [animate("0.5s cubic-bezier(0.55, 0.31, 0.15, 0.93)")]),
 		]),
 	],
 })

@@ -191,8 +191,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="35"
-                            class="link-to-prism">src/app/services/http-client.service.ts:35</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="32"
+                            class="link-to-prism">src/app/services/http-client.service.ts:32</a></div>
                 </td>
             </tr>
 
@@ -269,8 +269,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="31"
-                            class="link-to-prism">src/app/services/http-client.service.ts:31</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="28"
+                            class="link-to-prism">src/app/services/http-client.service.ts:28</a></div>
                 </td>
             </tr>
 
@@ -349,8 +349,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="47"
-                            class="link-to-prism">src/app/services/http-client.service.ts:47</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="44"
+                            class="link-to-prism">src/app/services/http-client.service.ts:44</a></div>
                 </td>
             </tr>
 
@@ -439,8 +439,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="39"
-                            class="link-to-prism">src/app/services/http-client.service.ts:39</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="36"
+                            class="link-to-prism">src/app/services/http-client.service.ts:36</a></div>
                 </td>
             </tr>
 
@@ -517,8 +517,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="43"
-                            class="link-to-prism">src/app/services/http-client.service.ts:43</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="40"
+                            class="link-to-prism">src/app/services/http-client.service.ts:40</a></div>
                 </td>
             </tr>
 
@@ -579,92 +579,89 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
-import {HttpClient, HttpParams} from &#x27;@angular/common/http&#x27;;
-import {CacheService} from &#x27;./cache.service&#x27;;
-import {Observable, of} from &#x27;rxjs&#x27;;
-import {switchMap} from &#x27;rxjs/operators&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &quot;@angular/core&quot;;
+import { HttpClient, HttpParams } from &quot;@angular/common/http&quot;;
+import { CacheService } from &quot;./cache.service&quot;;
+import { Observable, of } from &quot;rxjs&quot;;
+import { switchMap } from &quot;rxjs/operators&quot;;
 
 export enum Verbs {
-  GET &#x3D; &#x27;GET&#x27;,
-  PUT &#x3D; &#x27;PUT&#x27;,
-  POST &#x3D; &#x27;POST&#x27;,
-  DELETE &#x3D; &#x27;DELETE&#x27;
+	GET &#x3D; &quot;GET&quot;,
+	PUT &#x3D; &quot;PUT&quot;,
+	POST &#x3D; &quot;POST&quot;,
+	DELETE &#x3D; &quot;DELETE&quot;,
 }
 
 export class HttpOptions {
-  url: string;
-  body?: any;
-  headers?: any;
-  cacheMins?: number;
-  params?: HttpParams;
+	url: string;
+	body?: any;
+	headers?: any;
+	cacheMins?: number;
+	params?: HttpParams;
 }
 
 @Injectable({
-  providedIn: &#x27;root&#x27;
+	providedIn: &quot;root&quot;,
 })
 export class HttpClientService {
-  constructor(
-    private http: HttpClient,
-    private cacheService: CacheService,
-  ) { }
+	constructor(private http: HttpClient, private cacheService: CacheService) {}
 
-  get&lt;T&gt;(options: HttpOptions): Observable&lt;T&gt; {
-    return this.httpCall(Verbs.GET, options);
-  }
+	get&lt;T&gt;(options: HttpOptions): Observable&lt;T&gt; {
+		return this.httpCall(Verbs.GET, options);
+	}
 
-  delete&lt;T&gt;(options: HttpOptions): Observable&lt;T&gt; {
-    return this.httpCall(Verbs.DELETE, options);
-  }
+	delete&lt;T&gt;(options: HttpOptions): Observable&lt;T&gt; {
+		return this.httpCall(Verbs.DELETE, options);
+	}
 
-  post&lt;T&gt;(options: HttpOptions): Observable&lt;T&gt; {
-    return this.httpCall(Verbs.POST, options);
-  }
+	post&lt;T&gt;(options: HttpOptions): Observable&lt;T&gt; {
+		return this.httpCall(Verbs.POST, options);
+	}
 
-  put&lt;T&gt;(options: HttpOptions): Observable&lt;T&gt; {
-    return this.httpCall(Verbs.PUT, options);
-  }
+	put&lt;T&gt;(options: HttpOptions): Observable&lt;T&gt; {
+		return this.httpCall(Verbs.PUT, options);
+	}
 
-  private httpCall&lt;T&gt;(verb: Verbs, options: HttpOptions): Observable&lt;T&gt; {
+	private httpCall&lt;T&gt;(verb: Verbs, options: HttpOptions): Observable&lt;T&gt; {
+		// Setup default values
+		options.body &#x3D; options.body || null;
+		options.cacheMins &#x3D; options.cacheMins || 0;
+		options.headers &#x3D; options.headers || {};
+		const params &#x3D; options.params?.toString() || null;
+		options.url &#x3D; &quot;https://cors-bartvanzeist.herokuapp.com/&quot; + options.url;
 
-    // Setup default values
-    options.body &#x3D; options.body || null;
-    options.cacheMins &#x3D; options.cacheMins || 0;
-    options.headers &#x3D; options.headers || {};
-    const params &#x3D; options.params?.toString() || null;
-    options.url &#x3D; &#x27;https://cors-bartvanzeist.herokuapp.com/&#x27; + options.url;
+		if (options.cacheMins &gt; 0) {
+			// Get data from cache
+			const data &#x3D; this.cacheService.load(options.url, params);
+			// Return data from cache
+			if (data !&#x3D;&#x3D; null) {
+				console.log(&quot;from cache&quot;);
+				return of&lt;T&gt;(data);
+			}
+		}
 
-    if (options.cacheMins &gt; 0) {
-      // Get data from cache
-      const data &#x3D; this.cacheService.load(options.url, params);
-      // Return data from cache
-      if (data !&#x3D;&#x3D; null) {
-        console.log(&#x27;from cache&#x27;);
-        return of&lt;T&gt;(data);
-      }
-    }
-
-    return this.http.request&lt;T&gt;(verb, options.url, {
-      body: options.body,
-      headers: options.headers,
-      params: options.params
-    })
-      .pipe(
-        switchMap(response &#x3D;&gt; {
-          console.log(&#x27;from url&#x27;);
-          if (options.cacheMins &gt; 0) {
-            // Data will be cached
-            this.cacheService.save({
-              key: options.url,
-              params,
-              data: response,
-              expirationMins: options.cacheMins
-            });
-          }
-          return of&lt;T&gt;(response);
-        })
-      );
-  }
+		return this.http
+			.request&lt;T&gt;(verb, options.url, {
+				body: options.body,
+				headers: options.headers,
+				params: options.params,
+			})
+			.pipe(
+				switchMap((response) &#x3D;&gt; {
+					console.log(&quot;from url&quot;);
+					if (options.cacheMins &gt; 0) {
+						// Data will be cached
+						this.cacheService.save({
+							key: options.url,
+							params,
+							data: response,
+							expirationMins: options.cacheMins,
+						});
+					}
+					return of&lt;T&gt;(response);
+				})
+			);
+	}
 }
 </code></pre>
     </div>

@@ -35,7 +35,7 @@
 
 <ol class="breadcrumb">
   <li>Components</li>
-  <li>AppComponent</li>
+  <li>CalamityItemComponent</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -61,7 +61,7 @@
     <h3>File</h3>
 </p>
 <p class="comment">
-    <code>src/app/app.component.ts</code>
+    <code>src/app/components/train-map-sidebar/calamity-item/calamity-item.component.ts</code>
 </p>
 
 
@@ -85,19 +85,19 @@
 
             <tr>
                 <td class="col-md-3">selector</td>
-                <td class="col-md-9"><code>app-root</code></td>
+                <td class="col-md-9"><code>app-calamity-item</code></td>
             </tr>
 
             <tr>
                 <td class="col-md-3">styleUrls</td>
-                <td class="col-md-9"><code>./app.component.sass</code></td>
+                <td class="col-md-9"><code>./calamity-item.component.sass</code></td>
             </tr>
 
 
 
             <tr>
                 <td class="col-md-3">templateUrl</td>
-                <td class="col-md-9"><code>./app.component.html</code></td>
+                <td class="col-md-9"><code>./calamity-item.component.html</code></td>
             </tr>
 
 
@@ -115,22 +115,22 @@
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
+
+
                 <tr>
                     <td class="col-md-4">
-                        <h6><b>Properties</b></h6>
+                        <h6><b>Inputs</b></h6>
                     </td>
                 </tr>
                 <tr>
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#title">title</a>
+                                <a href="#calamity">calamity</a>
                             </li>
                         </ul>
                     </td>
                 </tr>
-
-
 
 
 
@@ -140,81 +140,75 @@
 </section>
 
 
-
-
-
-
-
     <section>
-    
-        <h3 id="inputs">
-            Properties
-        </h3>
+    <h3 id="inputs">Inputs</h3>
         <table class="table table-sm table-bordered">
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="title"></a>
-                        <span class="name">
-                            <b>
-                            title</b>
-                            <a href="#title"><span class="icon ion-ios-link"></span></a>
-                        </span>
+                        <a name="calamity"></a>
+                        <b>calamity</b>
                     </td>
                 </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Calamity</code>
 
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Default value : </i><code>&quot;trainSpotter&quot;</code>
-                        </td>
-                    </tr>
+                    </td>
+                </tr>
                         <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">src/app/app.component.ts:9</a></div>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/app/components/train-map-sidebar/calamity-item/calamity-item.component.ts:10</a></div>
                             </td>
                         </tr>
-
-
             </tbody>
         </table>
 </section>
+
+
+
+
 
 </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component } from &quot;@angular/core&quot;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, Input } from &quot;@angular/core&quot;;
+import { Calamity } from &quot;../../../models/ReisinformatieAPI&quot;;
 
 @Component({
-	selector: &quot;app-root&quot;,
-	templateUrl: &quot;./app.component.html&quot;,
-	styleUrls: [&quot;./app.component.sass&quot;],
+	selector: &quot;app-calamity-item&quot;,
+	templateUrl: &quot;./calamity-item.component.html&quot;,
+	styleUrls: [&quot;./calamity-item.component.sass&quot;],
 })
-export class AppComponent {
-	title &#x3D; &quot;trainSpotter&quot;;
+export class CalamityItemComponent {
+	@Input() calamity: Calamity;
 }
 </code></pre>
     </div>
 
     <div class="tab-pane fade " id="c-templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;app-main-layout&gt;&lt;/app-main-layout&gt;
+        <pre class="line-numbers"><code class="language-html">&lt;div *ngIf&#x3D;&quot;calamity&quot;&gt;
+  &lt;div class&#x3D;&quot;card-header headingS&quot;&gt;
+    &lt;img
+      alt&#x3D;&quot;Storing&quot;
+      src&#x3D;&quot;../../../../assets/alert--red--35x35.svg&quot;
+      style&#x3D;&quot;position: inherit; height: 30px; display: inline&quot;
+    /&gt;
+    {{ calamity.title }}
+  &lt;/div&gt;
+  &lt;div class&#x3D;&quot;card-body&quot;&gt;
+    &lt;p class&#x3D;&quot;card-text&quot;&gt;{{ calamity.description }}&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
 </code></pre>
     </div>
 
     <div class="tab-pane fade " id="c-styleData">
                 <p class="comment">
-                    <code>./app.component.sass</code>
+                    <code>./calamity-item.component.sass</code>
                 </p>
-                <pre class="line-numbers"><code class="language-scss">app-main-layout
-  width: 100%
-  max-width: 1280px
-  margin: 0 auto
-</code></pre>
+                <pre class="line-numbers"><code class="language-scss"></code></pre>
     </div>
 
     <div class="tab-pane fade " id="c-tree">
@@ -242,10 +236,10 @@ export class AppComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><app-main-layout></app-main-layout></div>'
+        var COMPONENT_TEMPLATE = '<div><div *ngIf="calamity">  <div class="card-header headingS">    <img      alt="Storing"      src="../../../../assets/alert--red--35x35.svg"      style="position: inherit; height: 30px; display: inline"    />    {{ calamity.title }}  </div>  <div class="card-body">    <p class="card-text">{{ calamity.description }}</p>  </div></div></div>'
     var COMPONENTS = [{'name': 'AllStationsComponent', 'selector': 'app-all-stations'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'CalamityItemComponent', 'selector': 'app-calamity-item'},{'name': 'DisruptionItemComponent', 'selector': 'app-disruption-item'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'MainLayoutComponent', 'selector': 'app-main-layout'},{'name': 'StationPopupComponent', 'selector': 'app-station-popup'},{'name': 'TrainMapComponent', 'selector': 'app-train-map'},{'name': 'TrainMapSidebarComponent', 'selector': 'app-train-map-sidebar'},{'name': 'TrainPopupComponent', 'selector': 'app-train-popup'}];
     var DIRECTIVES = [{'name': 'NgbdSortableHeaderDirective', 'selector': '[appNgbdSortableHeader]'}];
-    var ACTUAL_COMPONENT = {'name': 'AppComponent'};
+    var ACTUAL_COMPONENT = {'name': 'CalamityItemComponent'};
 </script>
 <script src="../js/tree.js"></script>
 
@@ -280,7 +274,7 @@ export class AppComponent {
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
-            var COMPODOC_CURRENT_PAGE_URL = 'AppComponent.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'CalamityItemComponent.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

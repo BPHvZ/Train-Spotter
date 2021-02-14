@@ -132,7 +132,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/app/services/cache.service.ts:57</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/app/services/cache.service.ts:55</a></div>
                             </td>
                         </tr>
 
@@ -160,7 +160,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">src/app/services/cache.service.ts:58</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/app/services/cache.service.ts:56</a></div>
                             </td>
                         </tr>
 
@@ -187,7 +187,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/app/services/cache.service.ts:55</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/app/services/cache.service.ts:53</a></div>
                             </td>
                         </tr>
 
@@ -215,7 +215,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/app/services/cache.service.ts:56</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/app/services/cache.service.ts:54</a></div>
                             </td>
                         </tr>
 
@@ -234,64 +234,69 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
-import {HttpParams} from &#x27;@angular/common/http&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &quot;@angular/core&quot;;
 
 @Injectable({
-  providedIn: &#x27;root&#x27;
+	providedIn: &quot;root&quot;,
 })
 export class CacheService {
-  constructor() { }
+	save(options: LocalStorageSaveOptions): void {
+		// Set default values for optionals
+		options.expirationMins &#x3D; options.expirationMins || 0;
 
-  save(options: LocalStorageSaveOptions) {
-    // Set default values for optionals
-    options.expirationMins &#x3D; options.expirationMins || 0;
+		// Set expiration date in miliseconds
+		const expirationMS &#x3D; options.expirationMins !&#x3D;&#x3D; 0 ? options.expirationMins * 60 * 1000 : 0;
 
-    // Set expiration date in miliseconds
-    const expirationMS &#x3D; options.expirationMins !&#x3D;&#x3D; 0 ? options.expirationMins * 60 * 1000 : 0;
+		const record: CacheRecord &#x3D; {
+			value: typeof options.data &#x3D;&#x3D;&#x3D; &quot;string&quot; ? options.data : JSON.stringify(options.data),
+			params: options.params,
+			expiration: expirationMS !&#x3D;&#x3D; 0 ? new Date().getTime() + expirationMS : null,
+			hasExpiration: expirationMS !&#x3D;&#x3D; 0,
+		};
+		localStorage.setItem(options.key, JSON.stringify(record));
+	}
 
-    const record &#x3D; {
-      value: typeof options.data &#x3D;&#x3D;&#x3D; &#x27;string&#x27; ? options.data : JSON.stringify(options.data),
-      params: options.params,
-      expiration: expirationMS !&#x3D;&#x3D; 0 ? new Date().getTime() + expirationMS : null,
-      hasExpiration: expirationMS !&#x3D;&#x3D; 0
-    };
-    localStorage.setItem(options.key, JSON.stringify(record));
-  }
+	load(key: string, params: string): any {
+		// Get cached data from localstorage
+		const item &#x3D; localStorage.getItem(key);
+		if (item !&#x3D;&#x3D; null) {
+			const record &#x3D; JSON.parse(item) as CacheRecord;
+			const now &#x3D; new Date().getTime();
+			// Expired data will return null
+			if (!record || (record.hasExpiration &amp;&amp; record.expiration &lt;&#x3D; now)) {
+				this.remove(key);
+				return null;
+			} else if (record.params !&#x3D;&#x3D; params) {
+				return null;
+			} else {
+				// eslint-disable-next-line @typescript-eslint/no-unsafe-return
+				return JSON.parse(record.value);
+			}
+		}
+		return null;
+	}
 
-  load(key: string, params: string) {
-    // Get cached data from localstorage
-    const item &#x3D; localStorage.getItem(key);
-    if (item !&#x3D;&#x3D; null) {
-      const record &#x3D; JSON.parse(item);
-      const now &#x3D; new Date().getTime();
-      // Expired data will return null
-      if (!record || (record.hasExpiration &amp;&amp; record.expiration &lt;&#x3D; now)) {
-        this.remove(key);
-        return null;
-      } else if (record.params !&#x3D;&#x3D; params) {
-        return null;
-      } else {
-        return JSON.parse(record.value);
-      }
-    }
-    return null;
-  }
+	remove(key: string): void {
+		localStorage.removeItem(key);
+	}
 
-  remove(key: string) {
-    localStorage.removeItem(key);
-  }
-
-  cleanLocalStorage() {
-    localStorage.clear();
-  }
+	cleanLocalStorage(): void {
+		localStorage.clear();
+	}
 }
 
 export class LocalStorageSaveOptions {
-  key: string;
-  params?: string;
-  data: any;
-  expirationMins?: number;
+	key: string;
+	params?: string;
+	data: any;
+	expirationMins?: number;
+}
+
+export interface CacheRecord {
+	value: string;
+	params: string;
+	expiration?: number;
+	hasExpiration: boolean;
 }
 </code></pre>
     </div>

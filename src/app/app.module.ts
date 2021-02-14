@@ -23,6 +23,8 @@ import { CacheRouteReuseStrategy } from "./cache-route-reuse.strategy";
 import { TrainMapSidebarComponent } from "./components/train-map-sidebar/train-map-sidebar.component";
 import { DisruptionItemComponent } from "./components/train-map-sidebar/disruption-item/disruption-item.component";
 import { CalamityItemComponent } from "./components/train-map-sidebar/calamity-item/calamity-item.component";
+import { ServiceWorkerModule } from "@angular/service-worker";
+import { environment } from "../environments/environment";
 
 @NgModule({
 	declarations: [
@@ -50,6 +52,7 @@ import { CalamityItemComponent } from "./components/train-map-sidebar/calamity-i
 		MatIconModule,
 		HttpClientModule,
 		FormsModule,
+		ServiceWorkerModule.register("ngsw-worker.js", { enabled: environment.production }),
 	],
 	providers: [
 		{

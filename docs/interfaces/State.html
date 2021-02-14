@@ -254,135 +254,150 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {Injectable, PipeTransform} from &#x27;@angular/core&#x27;;
-import {BehaviorSubject, Observable, of, Subject} from &#x27;rxjs&#x27;;
-import {Station, StationPayload} from &#x27;../models/Station&#x27;;
-import {environment} from &#x27;../../environments/environment&#x27;;
-import {HttpClientService} from &#x27;./http-client.service&#x27;;
-import {SortColumn, SortDirection} from &#x27;../directives/ngbd-sortable-header.directive&#x27;;
-import {debounceTime, delay, map, switchMap, tap} from &#x27;rxjs/operators&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &quot;@angular/core&quot;;
+import { BehaviorSubject, Observable, Subject } from &quot;rxjs&quot;;
+import { SortColumn, SortDirection } from &quot;../directives/ngbd-sortable-header.directive&quot;;
+import { debounceTime, delay, map, switchMap, tap } from &quot;rxjs/operators&quot;;
+import { ApiService } from &quot;./api.service&quot;;
+import { Station } from &quot;../models/ReisinformatieAPI&quot;;
 
 interface SearchResult {
-  stations: StationPayload[];
-  total: number;
+	stations: Station[];
+	total: number;
 }
 
 interface State {
-  page: number;
-  pageSize: number;
-  searchTerm: string;
-  sortColumn: SortColumn;
-  sortDirection: SortDirection;
+	page: number;
+	pageSize: number;
+	searchTerm: string;
+	sortColumn: SortColumn;
+	sortDirection: SortDirection;
 }
 
-const compare &#x3D; (v1: string, v2: string) &#x3D;&gt; v1 &lt; v2 ? -1 : v1 &gt; v2 ? 1 : 0;
+const compare &#x3D; (v1: string, v2: string) &#x3D;&gt; (v1 &lt; v2 ? -1 : v1 &gt; v2 ? 1 : 0);
 
-function sort(stations: StationPayload[], column: SortColumn, direction: string): StationPayload[] {
-  if (direction &#x3D;&#x3D;&#x3D; &#x27;&#x27; || column &#x3D;&#x3D;&#x3D; &#x27;&#x27;) {
-    return stations;
-  } else {
-    return [...stations].sort((a, b) &#x3D;&gt; {
-      let aColumn &#x3D; a[column];
-      let bColumn &#x3D; b[column];
-      if (column &#x3D;&#x3D;&#x3D; &#x27;namen&#x27;) {
-        aColumn &#x3D; a.namen.lang;
-        bColumn &#x3D; b.namen.lang;
-      }
-      const res &#x3D; compare(&#x60;${aColumn}&#x60;, &#x60;${bColumn}&#x60;);
-      return direction &#x3D;&#x3D;&#x3D; &#x27;asc&#x27; ? res : -res;
-    });
-  }
+function sort(stations: Station[], column: SortColumn, direction: string): Station[] {
+	if (direction &#x3D;&#x3D;&#x3D; &quot;&quot; || column &#x3D;&#x3D;&#x3D; &quot;&quot;) {
+		return stations;
+	} else {
+		return [...stations].sort((a, b) &#x3D;&gt; {
+			let aColumn &#x3D; a[column] as string;
+			let bColumn &#x3D; b[column] as string;
+			if (column &#x3D;&#x3D;&#x3D; &quot;namen&quot;) {
+				aColumn &#x3D; a.namen.lang;
+				bColumn &#x3D; b.namen.lang;
+			}
+			const res &#x3D; compare(aColumn.toString(), bColumn.toString());
+			return direction &#x3D;&#x3D;&#x3D; &quot;asc&quot; ? res : -res;
+		});
+	}
 }
 
-function matches(station: StationPayload, term: string) {
-  return station.namen.lang.toLowerCase().includes(term.toLowerCase()) ||
-    station.land.toLowerCase().includes(term.toLowerCase()) ||
-    station.EVACode.toString().includes(term) ||
-    station.UICCode.toString().includes(term);
+function matches(station: Station, term: string) {
+	return (
+		station.namen.lang.toLowerCase().includes(term.toLowerCase()) ||
+		station.land.toLowerCase().includes(term.toLowerCase()) ||
+		station.EVACode.toString().includes(term) ||
+		station.UICCode.toString().includes(term)
+	);
 }
 
 @Injectable({
-  providedIn: &#x27;root&#x27;
+	providedIn: &quot;root&quot;,
 })
 export class StationsService {
-  private _loading$ &#x3D; new BehaviorSubject&lt;boolean&gt;(true);
-  private _search$ &#x3D; new Subject&lt;void&gt;();
-  private _stations$ &#x3D; new BehaviorSubject&lt;StationPayload[]&gt;([]);
-  private _total$ &#x3D; new BehaviorSubject&lt;number&gt;(0);
+	private _loading$ &#x3D; new BehaviorSubject&lt;boolean&gt;(true);
+	private _search$ &#x3D; new Subject&lt;void&gt;();
+	private _stations$ &#x3D; new BehaviorSubject&lt;Station[]&gt;([]);
+	private _total$ &#x3D; new BehaviorSubject&lt;number&gt;(0);
 
-  private _state: State &#x3D; {
-    page: 1,
-    pageSize: 50,
-    searchTerm: &#x27;&#x27;,
-    sortColumn: &#x27;&#x27;,
-    sortDirection: &#x27;&#x27;
-  };
+	private _state: State &#x3D; {
+		page: 1,
+		pageSize: 50,
+		searchTerm: &quot;&quot;,
+		sortColumn: &quot;&quot;,
+		sortDirection: &quot;&quot;,
+	};
 
-  constructor(private http: HttpClientService) {
-    this._search$.pipe(
-      tap(() &#x3D;&gt; this._loading$.next(true)),
-      debounceTime(200),
-      switchMap(() &#x3D;&gt; this._search()),
-      delay(200),
-      tap(() &#x3D;&gt; this._loading$.next(false))
-    ).subscribe(result &#x3D;&gt; {
-      this._stations$.next(result.stations);
-      this._total$.next(result.total);
-    });
+	constructor(private apiService: ApiService) {
+		this._search$
+			.pipe(
+				tap(() &#x3D;&gt; this._loading$.next(true)),
+				debounceTime(200),
+				switchMap(() &#x3D;&gt; this._search()),
+				delay(200),
+				tap(() &#x3D;&gt; this._loading$.next(false))
+			)
+			.subscribe((result) &#x3D;&gt; {
+				this._stations$.next(result.stations);
+				this._total$.next(result.total);
+			});
 
-    this._search$.next();
-  }
+		this._search$.next();
+	}
 
-  get stations$() { return this._stations$.asObservable(); }
-  get total$() { return this._total$.asObservable(); }
-  get loading$() { return this._loading$.asObservable(); }
+	get stations$(): Observable&lt;Station[]&gt; {
+		return this._stations$.asObservable();
+	}
+	get total$(): Observable&lt;number&gt; {
+		return this._total$.asObservable();
+	}
+	get loading$(): Observable&lt;boolean&gt; {
+		return this._loading$.asObservable();
+	}
 
-  get page() { return this._state.page; }
-  set page(page: number) { this._set({page}); }
+	get page(): number {
+		return this._state.page;
+	}
+	set page(page: number) {
+		this._set({ page });
+	}
 
-  get pageSize() { return this._state.pageSize; }
-  set pageSize(pageSize: number) { this._set({pageSize}); }
+	get pageSize(): number {
+		return this._state.pageSize;
+	}
+	set pageSize(pageSize: number) {
+		this._set({ pageSize });
+	}
 
-  get searchTerm() { return this._state.searchTerm; }
-  set searchTerm(searchTerm: string) { this._set({searchTerm}); }
+	get searchTerm(): string {
+		return this._state.searchTerm;
+	}
+	set searchTerm(searchTerm: string) {
+		this._set({ searchTerm });
+	}
 
-  set sortColumn(sortColumn: SortColumn) { this._set({sortColumn}); }
-  set sortDirection(sortDirection: SortDirection) { this._set({sortDirection}); }
+	set sortColumn(sortColumn: SortColumn) {
+		this._set({ sortColumn });
+	}
+	set sortDirection(sortDirection: SortDirection) {
+		this._set({ sortDirection });
+	}
 
-  private _set(patch: Partial&lt;State&gt;) {
-    Object.assign(this._state, patch);
-    this._search$.next();
-  }
+	private _set(patch: Partial&lt;State&gt;) {
+		Object.assign(this._state, patch);
+		this._search$.next();
+	}
 
-  private _search(): Observable&lt;SearchResult&gt; {
-    const {sortColumn, sortDirection, pageSize, page, searchTerm} &#x3D; this._state;
+	private _search(): Observable&lt;SearchResult&gt; {
+		const { sortColumn, sortDirection, pageSize, page, searchTerm } &#x3D; this._state;
 
-    return this.getBasicInformationAboutAllStations().pipe(
-      // tap(stations &#x3D;&gt; console.log(stations.payload)),
-      map(stations &#x3D;&gt; {
-        // 1. sort
-        let stationPayloads &#x3D; sort(stations.payload, sortColumn, sortDirection);
+		return this.apiService.getBasicInformationAboutAllStations().pipe(
+			// tap(stations &#x3D;&gt; console.log(stations.payload)),
+			map((stations) &#x3D;&gt; {
+				// 1. sort
+				let stationPayloads &#x3D; sort(stations.payload, sortColumn, sortDirection);
 
-        // 2. filter
-        stationPayloads &#x3D; stationPayloads.filter(station &#x3D;&gt; matches(station, searchTerm));
-        const total &#x3D; stationPayloads.length;
+				// 2. filter
+				stationPayloads &#x3D; stationPayloads.filter((station) &#x3D;&gt; matches(station, searchTerm));
+				const total &#x3D; stationPayloads.length;
 
-        // 3. paginate
-        stationPayloads &#x3D; stationPayloads.slice((page - 1) * pageSize, (page - 1) * pageSize + pageSize);
-        return {stations: stationPayloads, total};
-      })
-    );
-  }
-
-  getBasicInformationAboutAllStations(): Observable&lt;Station&gt; {
-    return this.http.get({
-      url: &#x27;https://gateway.apiportal.ns.nl/reisinformatie-api/api/v2/stations&#x27;,
-      cacheMins: 60,
-      headers: {
-        &#x27;Ocp-Apim-Subscription-Key&#x27;: environment.NS_Ocp_Apim_Subscription_Key
-      }
-    });
-  }
+				// 3. paginate
+				stationPayloads &#x3D; stationPayloads.slice((page - 1) * pageSize, (page - 1) * pageSize + pageSize);
+				return { stations: stationPayloads, total };
+			})
+		);
+	}
 }
 </code></pre>
     </div>

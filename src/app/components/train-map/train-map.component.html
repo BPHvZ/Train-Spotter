@@ -13,8 +13,6 @@
 			(zoomEvt)="onMapZoom($event)"
       (sourceData)="onMapSourceData($event)"
 		>
-      <mgl-control mglFullscreen position="top-right"></mgl-control>
-      <mgl-control mglGeocoder position="top-right"></mgl-control>
       <mgl-control mglNavigation position="top-right"></mgl-control>
 			<mgl-layer
 				*ngIf="stationsLayerData"

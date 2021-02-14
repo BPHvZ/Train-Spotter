@@ -73,12 +73,6 @@
     </p>
 
 
-    <p class="comment">
-        <h3>Implements</h3>
-    </p>
-    <p class="comment">
-                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
-    </p>
 
 
 <section>
@@ -161,10 +155,7 @@
                                 <a href="#formatToStationName">formatToStationName</a>
                             </li>
                             <li>
-                                <a href="#navigatToAllStations">navigatToAllStations</a>
-                            </li>
-                            <li>
-                                <a href="#ngOnInit">ngOnInit</a>
+                                <a href="#navigateToAllStations">navigateToAllStations</a>
                             </li>
                             <li>
                                 <a href="#selectStationFromSearch">selectStationFromSearch</a>
@@ -278,22 +269,22 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>formatToStationName(station: <a href="../interfaces/StationPayload.html">StationPayload</a>)</code>
+<code>formatToStationName(station: Station)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="57"
-                            class="link-to-prism">src/app/components/layout/header/header.component.ts:57</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="56"
+                            class="link-to-prism">src/app/components/layout/header/header.component.ts:56</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Get the station name from <a href="StationPayload.namen">StationPayload.namen</a></p>
+                    <div class="io-description"><p>Get the station name from <a href="Station.namen">Station.namen</a></p>
 </div>
 
                     <div class="io-description">
@@ -311,7 +302,7 @@
                                 <tr>
                                     <td>station</td>
                                     <td>
-                                                <code><a href="../interfaces/StationPayload.html" target="_self" >StationPayload</a></code>
+                                            <code>Station</code>
                                     </td>
 
                                     <td>
@@ -345,26 +336,26 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="navigatToAllStations"></a>
+                    <a name="navigateToAllStations"></a>
                     <span class="name">
                         <b>
-                            navigatToAllStations
+                            navigateToAllStations
                         </b>
-                        <a href="#navigatToAllStations"><span class="icon ion-ios-link"></span></a>
+                        <a href="#navigateToAllStations"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>navigatToAllStations()</code>
+<code>navigateToAllStations()</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="73"
-                            class="link-to-prism">src/app/components/layout/header/header.component.ts:73</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="72"
+                            class="link-to-prism">src/app/components/layout/header/header.component.ts:72</a></div>
                 </td>
             </tr>
 
@@ -373,45 +364,6 @@
                 <td class="col-md-4">
                     <div class="io-description"><p>Navigate to the stations overview page</p>
 </div>
-
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="ngOnInit"></a>
-                    <span class="name">
-                        <b>
-                            ngOnInit
-                        </b>
-                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>ngOnInit()</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="28"
-                            class="link-to-prism">src/app/components/layout/header/header.component.ts:28</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
 
                     <div class="io-description">
                         <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
@@ -443,8 +395,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="65"
-                            class="link-to-prism">src/app/components/layout/header/header.component.ts:65</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="64"
+                            class="link-to-prism">src/app/components/layout/header/header.component.ts:64</a></div>
                 </td>
             </tr>
 
@@ -523,7 +475,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/app/components/layout/header/header.component.ts:36</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/components/layout/header/header.component.ts:33</a></div>
                             </td>
                         </tr>
 
@@ -618,175 +570,169 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
-import {ApiService} from &#x27;../../../services/api.service&#x27;;
-import {Observable, of} from &#x27;rxjs&#x27;;
-import {catchError, debounceTime, distinctUntilChanged, switchMap, tap} from &#x27;rxjs/operators&#x27;;
-import {StationPayload} from &#x27;../../../models/Station&#x27;;
-import {NgbTypeaheadSelectItemEvent} from &#x27;@ng-bootstrap/ng-bootstrap&#x27;;
-import {HeaderEventsService} from &#x27;../../../services/header-events.service&#x27;;
-import {Router} from &#x27;@angular/router&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component } from &quot;@angular/core&quot;;
+import { ApiService } from &quot;../../../services/api.service&quot;;
+import { Observable, of } from &quot;rxjs&quot;;
+import { catchError, debounceTime, distinctUntilChanged, switchMap, tap } from &quot;rxjs/operators&quot;;
+import { NgbTypeaheadSelectItemEvent } from &quot;@ng-bootstrap/ng-bootstrap&quot;;
+import { HeaderEventsService } from &quot;../../../services/header-events.service&quot;;
+import { Router } from &quot;@angular/router&quot;;
+import { Station } from &quot;../../../models/ReisinformatieAPI&quot;;
 
 /**
  * Header with links to pages and a dropdown to search for stations
  */
 @Component({
-  selector: &#x27;app-header&#x27;,
-  templateUrl: &#x27;./header.component.html&#x27;,
-  styleUrls: [&#x27;./header.component.sass&#x27;]
+	selector: &quot;app-header&quot;,
+	templateUrl: &quot;./header.component.html&quot;,
+	styleUrls: [&quot;./header.component.sass&quot;],
 })
-export class HeaderComponent implements OnInit {
-  searching &#x3D; false;
-  searchFailed &#x3D; false;
+export class HeaderComponent {
+	searching &#x3D; false;
+	searchFailed &#x3D; false;
 
-  constructor(
-    private apiService: ApiService,
-    private headerEventsService: HeaderEventsService,
-    private router: Router
-  ) {}
+	constructor(
+		private apiService: ApiService,
+		private headerEventsService: HeaderEventsService,
+		private router: Router
+	) {}
 
-  ngOnInit(): void {
-  }
+	/**
+	 * Search stations on name or abbreviation
+	 * @param text$ Input text
+	 * @return List of stations
+	 */
+	search &#x3D; (text$: Observable&lt;string&gt;): Observable&lt;Station[]&gt; &#x3D;&gt;
+		text$.pipe(
+			debounceTime(300),
+			distinctUntilChanged(),
+			tap(() &#x3D;&gt; (this.searching &#x3D; true)),
+			switchMap(
+				(term: string): Observable&lt;Station[]&gt; &#x3D;&gt;
+					this.apiService.searchForStation(term).pipe(
+						tap(() &#x3D;&gt; (this.searchFailed &#x3D; false)),
+						catchError(() &#x3D;&gt; {
+							this.searchFailed &#x3D; true;
+							return of([]);
+						})
+					)
+			),
+			tap(() &#x3D;&gt; (this.searching &#x3D; false))
+		);
 
-  /**
-   * Search stations on name or abbreviation
-   * @param text$ Input text
-   * @return List of stations
-   */
-  search &#x3D; (text$: Observable&lt;string&gt;) &#x3D;&gt;
-    text$.pipe(
-      debounceTime(300),
-      distinctUntilChanged(),
-      tap(() &#x3D;&gt; this.searching &#x3D; true),
-      switchMap(term &#x3D;&gt;
-        this.apiService.searchForStation(term).pipe(
-          tap(() &#x3D;&gt; this.searchFailed &#x3D; false),
-          catchError(() &#x3D;&gt; {
-            this.searchFailed &#x3D; true;
-            return of([]);
-          }))
-      ),
-      tap(() &#x3D;&gt; this.searching &#x3D; false)
-    )
+	/**
+	 * Get the station name from {@link Station.namen}
+	 * @param station Station to get the name from
+	 * @return The station name
+	 */
+	formatToStationName(station: Station): string {
+		return station.namen.lang;
+	}
 
-  /**
-   * Get the station name from {@link StationPayload.namen}
-   * @param station Station to get the name from
-   * @return The station name
-   */
-  formatToStationName(station: StationPayload): string {
-    return station.namen.lang;
-  }
+	/**
+	 * Select a station and sent event to train map to fly to it
+	 * @param event Selected station from dropdown
+	 */
+	selectStationFromSearch(event: NgbTypeaheadSelectItemEvent): void {
+		event.preventDefault();
+		this.headerEventsService.selectStation(event.item);
+	}
 
-  /**
-   * Select a station and sent event to train map to fly to it
-   * @param event Selected station from dropdown
-   */
-  selectStationFromSearch(event: NgbTypeaheadSelectItemEvent) {
-    event.preventDefault();
-    this.headerEventsService.selectStation(event.item);
-  }
-
-  /**
-   * Navigate to the stations overview page
-   */
-  navigatToAllStations() {
-    this.router.navigateByUrl(&#x27;stations&#x27;);
-  }
+	/**
+	 * Navigate to the stations overview page
+	 */
+	navigateToAllStations(): void {
+		void this.router.navigateByUrl(&quot;stations&quot;);
+	}
 }
 </code></pre>
     </div>
 
     <div class="tab-pane fade " id="c-templateData">
         <pre class="line-numbers"><code class="language-html">&lt;header class&#x3D;&quot;navbar navbar-expand-md fixed-top&quot;&gt;
-  &lt;div class&#x3D;&quot;container-fluid&quot;&gt;
-    &lt;nav class&#x3D;&quot;navbar&quot;&gt;
-      &lt;a class&#x3D;&quot;navbar-brand&quot; [routerLink]&#x3D;&quot;&#x27;kaart&#x27;&quot; style&#x3D;&quot;cursor: pointer&quot;&gt;
-        &lt;img src&#x3D;&quot;../../../../assets/NS-white.png&quot; height&#x3D;&quot;25&quot; alt&#x3D;&quot;food&quot; style&#x3D;&quot;color: white&quot;&gt;
-      &lt;/a&gt;
-    &lt;/nav&gt;
+	&lt;div class&#x3D;&quot;container-fluid&quot;&gt;
+		&lt;nav class&#x3D;&quot;navbar&quot;&gt;
+			&lt;a class&#x3D;&quot;navbar-brand&quot; [routerLink]&#x3D;&quot;&#x27;kaart&#x27;&quot; style&#x3D;&quot;cursor: pointer&quot;&gt;
+				&lt;img src&#x3D;&quot;../../../../assets/NS-white.png&quot; height&#x3D;&quot;25&quot; alt&#x3D;&quot;food&quot; style&#x3D;&quot;color: white&quot; /&gt;
+			&lt;/a&gt;
+		&lt;/nav&gt;
 
-    &lt;div class&#x3D;&quot;collapse navbar-collapse&quot; id&#x3D;&quot;navbarSupportedContent&quot;&gt;
-      &lt;ul class&#x3D;&quot;navbar-nav mr-auto pl-1&quot;&gt;
-        &lt;li class&#x3D;&quot;nav-item align-self-center pr-3&quot; style&#x3D;&quot;cursor: pointer&quot;&gt;
-          &lt;a class&#x3D;&quot;nav-link router-link-hover align-items-center d-flex&quot; [routerLink]&#x3D;&quot;&#x27;kaart&#x27;&quot;&gt;
-            &lt;i class&#x3D;&quot;material-icons pr-2&quot; [routerLink]&#x3D;&quot;&#x27;kaart&#x27;&quot;&gt;explore&lt;/i&gt;
-            &lt;strong&gt;Kaart&lt;/strong&gt;&lt;/a&gt;
-        &lt;/li&gt;
-        &lt;li class&#x3D;&quot;nav-item align-self-center pr-1&quot; ngbDropdown #navbarDropdown1&#x3D;&quot;ngbDropdown&quot;&gt;
-          &lt;div class&#x3D;&quot;d-inline&quot; style&#x3D;&quot;cursor: pointer&quot; id&#x3D;&quot;navbarDropdown1&quot;
-               (click)&#x3D;&quot;$event.stopPropagation(); navbarDropdown1.open();&quot;&gt;
-            &lt;strong&gt;
-              Stations
-            &lt;/strong&gt;
-            &lt;div *ngIf&#x3D;&quot;navbarDropdown1.isOpen(); else elseBlock&quot; style&#x3D;&quot;display: inline&quot;&gt;
-              &lt;svg class&#x3D;&quot;bi bi-caret-up-fill&quot; width&#x3D;&quot;1em&quot; height&#x3D;&quot;1em&quot; viewBox&#x3D;&quot;0 0 16 16&quot; fill&#x3D;&quot;currentColor&quot;
-                   xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot;&gt;
-                &lt;path
-                  d&#x3D;&quot;M7.247 4.86l-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 00.753-1.659l-4.796-5.48a1 1 0 00-1.506 0z&quot;/&gt;
-              &lt;/svg&gt;
-            &lt;/div&gt;
-            &lt;ng-template #elseBlock&gt;
-              &lt;svg class&#x3D;&quot;bi bi-caret-down-fill&quot; width&#x3D;&quot;1em&quot; height&#x3D;&quot;1em&quot; viewBox&#x3D;&quot;0 0 16 16&quot; fill&#x3D;&quot;currentColor&quot;
-                   xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot;&gt;
-                &lt;path
-                  d&#x3D;&quot;M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 01.753 1.659l-4.796 5.48a1 1 0 01-1.506 0z&quot;/&gt;
-              &lt;/svg&gt;
-            &lt;/ng-template&gt;
-          &lt;/div&gt;
-          &lt;div ngbDropdownMenu aria-labelledby&#x3D;&quot;navbarDropdown1&quot; class&#x3D;&quot;dropdown-menu&quot;&gt;
-            &lt;form class&#x3D;&quot;px-4 pt-3&quot;&gt;
-              &lt;div class&#x3D;&quot;form-group&quot;&gt;
-                &lt;label for&#x3D;&quot;typeahead-http&quot; style&#x3D;&quot;width: max-content&quot;&gt;Zoek naar een station:&lt;/label&gt;
-                &lt;input id&#x3D;&quot;typeahead-http&quot; type&#x3D;&quot;text&quot; class&#x3D;&quot;form-control&quot;
-                       [class.is-invalid]&#x3D;&quot;searchFailed&quot;
-                       [ngbTypeahead]&#x3D;&quot;search&quot;
-                       [resultFormatter]&#x3D;&quot;formatToStationName&quot;
-                       (selectItem)&#x3D;&quot;selectStationFromSearch($event)&quot;
-                       placeholder&#x3D;&quot;Stationsnaam of code&quot;/&gt;
-                &lt;small *ngIf&#x3D;&quot;searching&quot; class&#x3D;&quot;form-text text-muted&quot;&gt;zoeken...&lt;/small&gt;
-              &lt;/div&gt;
-              &lt;div class&#x3D;&quot;invalid-feedback&quot; *ngIf&#x3D;&quot;!searchFailed&quot;&gt;Sorry, er ging wat fout bij het zoeken naar stations.&lt;/div&gt;
-            &lt;/form&gt;
-            &lt;div class&#x3D;&quot;dropdown-divider&quot;&gt;&lt;/div&gt;
-            &lt;button ngbDropdownItem (click)&#x3D;&quot;navigatToAllStations()&quot;&gt;Alle stations&lt;/button&gt;
-          &lt;/div&gt;
-        &lt;/li&gt;
-      &lt;/ul&gt;
-      &lt;div class&#x3D;&quot;nav-item col-4 text-right&quot;&gt;
-        &lt;div class&#x3D;&quot;d-md-inline&quot; id&#x3D;&quot;userDropdown&quot; (click)&#x3D;&quot;$event.stopPropagation(); userDropdown.open();&quot;
-             style&#x3D;&quot;cursor: pointer&quot;&gt;
-          &lt;strong&gt;
-            B. Bakker
-          &lt;/strong&gt;
-          &lt;div *ngIf&#x3D;&quot;userDropdown.isOpen(); else elseBlock&quot; style&#x3D;&quot;display: inline&quot;&gt;
-            &lt;svg class&#x3D;&quot;bi bi-caret-up-fill&quot; width&#x3D;&quot;1em&quot; height&#x3D;&quot;1em&quot; viewBox&#x3D;&quot;0 0 16 16&quot; fill&#x3D;&quot;currentColor&quot;
-                 xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot;&gt;
-              &lt;path
-                d&#x3D;&quot;M7.247 4.86l-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 00.753-1.659l-4.796-5.48a1 1 0 00-1.506 0z&quot;/&gt;
-            &lt;/svg&gt;
-          &lt;/div&gt;
-          &lt;ng-template #elseBlock&gt;
-            &lt;svg class&#x3D;&quot;bi bi-caret-down-fill&quot; width&#x3D;&quot;1em&quot; height&#x3D;&quot;1em&quot; viewBox&#x3D;&quot;0 0 16 16&quot; fill&#x3D;&quot;currentColor&quot;
-                 xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot;&gt;
-              &lt;path
-                d&#x3D;&quot;M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 01.753 1.659l-4.796 5.48a1 1 0 01-1.506 0z&quot;/&gt;
-            &lt;/svg&gt;
-          &lt;/ng-template&gt;
-        &lt;/div&gt;
-        &lt;div ngbDropdown class&#x3D;&quot;d-inline-block&quot; #userDropdown&#x3D;&quot;ngbDropdown&quot;&gt;
-          &lt;div ngbDropdownMenu aria-labelledby&#x3D;&quot;userDropdown&quot; class&#x3D;&quot;dropdown-menu dropdown-menu-right&quot;&gt;
-            &lt;a ngbDropdownItem href&#x3D;&quot;#&quot; (click)&#x3D;&quot;$event.preventDefault()&quot;&gt;Profiel&lt;/a&gt;
-            &lt;a ngbDropdownItem href&#x3D;&quot;#&quot; (click)&#x3D;&quot;$event.preventDefault()&quot;&gt;Wachtwoord wijzigen&lt;/a&gt;
-            &lt;div class&#x3D;&quot;dropdown-divider&quot;&gt;&lt;/div&gt;
-            &lt;a ngbDropdownItem href&#x3D;&quot;#&quot; (click)&#x3D;&quot;$event.preventDefault()&quot;&gt;Uitloggen&lt;/a&gt;
-          &lt;/div&gt;
-        &lt;/div&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
+		&lt;div class&#x3D;&quot;collapse navbar-collapse&quot; id&#x3D;&quot;navbarSupportedContent&quot;&gt;
+			&lt;ul class&#x3D;&quot;navbar-nav mr-auto pl-1&quot;&gt;
+				&lt;li class&#x3D;&quot;nav-item align-self-center pr-3&quot; style&#x3D;&quot;cursor: pointer&quot;&gt;
+					&lt;a class&#x3D;&quot;nav-link router-link-hover align-items-center d-flex&quot; [routerLink]&#x3D;&quot;&#x27;kaart&#x27;&quot;&gt;
+						&lt;i class&#x3D;&quot;material-icons pr-2&quot; [routerLink]&#x3D;&quot;&#x27;kaart&#x27;&quot;&gt;explore&lt;/i&gt;
+						&lt;strong&gt;Kaart&lt;/strong&gt;&lt;/a
+					&gt;
+				&lt;/li&gt;
+				&lt;li class&#x3D;&quot;nav-item align-self-center pr-1&quot; ngbDropdown #navbarDropdown1&#x3D;&quot;ngbDropdown&quot;
+            (mouseenter)&#x3D;&quot;$event.stopPropagation(); navbarDropdown1.open()&quot;
+            (mouseleave)&#x3D;&quot;$event.stopPropagation(); navbarDropdown1.close()&quot;
+        &gt;
+					&lt;div
+						class&#x3D;&quot;d-inline&quot;
+						style&#x3D;&quot;cursor: pointer&quot;
+						id&#x3D;&quot;navbarDropdown1&quot;
+						(click)&#x3D;&quot;$event.stopPropagation(); navbarDropdown1.open()&quot;
+					&gt;
+						&lt;strong&gt; Stations &lt;/strong&gt;
+						&lt;div *ngIf&#x3D;&quot;navbarDropdown1.isOpen(); else elseBlock&quot; style&#x3D;&quot;display: inline&quot;&gt;
+							&lt;svg
+								class&#x3D;&quot;bi bi-caret-up-fill&quot;
+								width&#x3D;&quot;1em&quot;
+								height&#x3D;&quot;1em&quot;
+								viewBox&#x3D;&quot;0 0 16 16&quot;
+								fill&#x3D;&quot;currentColor&quot;
+								xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot;
+							&gt;
+								&lt;path
+									d&#x3D;&quot;M7.247 4.86l-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 00.753-1.659l-4.796-5.48a1 1 0 00-1.506 0z&quot;
+								/&gt;
+							&lt;/svg&gt;
+						&lt;/div&gt;
+						&lt;ng-template #elseBlock&gt;
+							&lt;svg
+								class&#x3D;&quot;bi bi-caret-down-fill&quot;
+								width&#x3D;&quot;1em&quot;
+								height&#x3D;&quot;1em&quot;
+								viewBox&#x3D;&quot;0 0 16 16&quot;
+								fill&#x3D;&quot;currentColor&quot;
+								xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot;
+							&gt;
+								&lt;path
+									d&#x3D;&quot;M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 01.753 1.659l-4.796 5.48a1 1 0 01-1.506 0z&quot;
+								/&gt;
+							&lt;/svg&gt;
+						&lt;/ng-template&gt;
+					&lt;/div&gt;
+					&lt;div ngbDropdownMenu aria-labelledby&#x3D;&quot;navbarDropdown1&quot; class&#x3D;&quot;dropdown-menu mt-0&quot;&gt;
+						&lt;form class&#x3D;&quot;px-4 pt-3&quot;&gt;
+							&lt;div class&#x3D;&quot;form-group&quot;&gt;
+								&lt;label for&#x3D;&quot;typeahead-http&quot; style&#x3D;&quot;width: max-content&quot;&gt;Zoek naar een station:&lt;/label&gt;
+								&lt;input
+									id&#x3D;&quot;typeahead-http&quot;
+									type&#x3D;&quot;text&quot;
+									class&#x3D;&quot;form-control&quot;
+									[class.is-invalid]&#x3D;&quot;searchFailed&quot;
+									[ngbTypeahead]&#x3D;&quot;search&quot;
+									[resultFormatter]&#x3D;&quot;formatToStationName&quot;
+									(selectItem)&#x3D;&quot;selectStationFromSearch($event)&quot;
+									placeholder&#x3D;&quot;Stationsnaam of code&quot;
+								/&gt;
+								&lt;small *ngIf&#x3D;&quot;searching&quot; class&#x3D;&quot;form-text text-muted&quot;&gt;zoeken...&lt;/small&gt;
+							&lt;/div&gt;
+							&lt;div class&#x3D;&quot;invalid-feedback&quot; *ngIf&#x3D;&quot;!searchFailed&quot;&gt;
+								Sorry, er ging wat fout bij het zoeken naar stations.
+							&lt;/div&gt;
+						&lt;/form&gt;
+						&lt;div class&#x3D;&quot;dropdown-divider&quot;&gt;&lt;/div&gt;
+						&lt;button ngbDropdownItem (click)&#x3D;&quot;navigateToAllStations()&quot;&gt;Alle stations&lt;/button&gt;
+					&lt;/div&gt;
+				&lt;/li&gt;
+			&lt;/ul&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;
 &lt;/header&gt;
-
 </code></pre>
     </div>
 
@@ -847,8 +793,8 @@ export class HeaderComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><header class="navbar navbar-expand-md fixed-top">  <div class="container-fluid">    <nav class="navbar">      <a class="navbar-brand" [routerLink]="\'kaart\'" style="cursor: pointer">        <img src="../../../../assets/NS-white.png" height="25" alt="food" style="color: white">      </a>    </nav>    <div class="collapse navbar-collapse" id="navbarSupportedContent">      <ul class="navbar-nav mr-auto pl-1">        <li class="nav-item align-self-center pr-3" style="cursor: pointer">          <a class="nav-link router-link-hover align-items-center d-flex" [routerLink]="\'kaart\'">            <i class="material-icons pr-2" [routerLink]="\'kaart\'">explore</i>            <strong>Kaart</strong></a>        </li>        <li class="nav-item align-self-center pr-1" ngbDropdown #navbarDropdown1="ngbDropdown">          <div class="d-inline" style="cursor: pointer" id="navbarDropdown1"               (click)="$event.stopPropagation(); navbarDropdown1.open();">            <strong>              Stations            </strong>            <div *ngIf="navbarDropdown1.isOpen(); else elseBlock" style="display: inline">              <svg class="bi bi-caret-up-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor"                   xmlns="http://www.w3.org/2000/svg">                <path                  d="M7.247 4.86l-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 00.753-1.659l-4.796-5.48a1 1 0 00-1.506 0z"/>              </svg>            </div>            <ng-template #elseBlock>              <svg class="bi bi-caret-down-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor"                   xmlns="http://www.w3.org/2000/svg">                <path                  d="M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 01.753 1.659l-4.796 5.48a1 1 0 01-1.506 0z"/>              </svg>            </ng-template>          </div>          <div ngbDropdownMenu aria-labelledby="navbarDropdown1" class="dropdown-menu">            <form class="px-4 pt-3">              <div class="form-group">                <label for="typeahead-http" style="width: max-content">Zoek naar een station:</label>                <input id="typeahead-http" type="text" class="form-control"                       [class.is-invalid]="searchFailed"                       [ngbTypeahead]="search"                       [resultFormatter]="formatToStationName"                       (selectItem)="selectStationFromSearch($event)"                       placeholder="Stationsnaam of code"/>                <small *ngIf="searching" class="form-text text-muted">zoeken...</small>              </div>              <div class="invalid-feedback" *ngIf="!searchFailed">Sorry, er ging wat fout bij het zoeken naar stations.</div>            </form>            <div class="dropdown-divider"></div>            <button ngbDropdownItem (click)="navigatToAllStations()">Alle stations</button>          </div>        </li>      </ul>      <div class="nav-item col-4 text-right">        <div class="d-md-inline" id="userDropdown" (click)="$event.stopPropagation(); userDropdown.open();"             style="cursor: pointer">          <strong>            B. Bakker          </strong>          <div *ngIf="userDropdown.isOpen(); else elseBlock" style="display: inline">            <svg class="bi bi-caret-up-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor"                 xmlns="http://www.w3.org/2000/svg">              <path                d="M7.247 4.86l-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 00.753-1.659l-4.796-5.48a1 1 0 00-1.506 0z"/>            </svg>          </div>          <ng-template #elseBlock>            <svg class="bi bi-caret-down-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor"                 xmlns="http://www.w3.org/2000/svg">              <path                d="M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 01.753 1.659l-4.796 5.48a1 1 0 01-1.506 0z"/>            </svg>          </ng-template>        </div>        <div ngbDropdown class="d-inline-block" #userDropdown="ngbDropdown">          <div ngbDropdownMenu aria-labelledby="userDropdown" class="dropdown-menu dropdown-menu-right">            <a ngbDropdownItem href="#" (click)="$event.preventDefault()">Profiel</a>            <a ngbDropdownItem href="#" (click)="$event.preventDefault()">Wachtwoord wijzigen</a>            <div class="dropdown-divider"></div>            <a ngbDropdownItem href="#" (click)="$event.preventDefault()">Uitloggen</a>          </div>        </div>      </div>    </div>  </div></header></div>'
-    var COMPONENTS = [{'name': 'AllStationsComponent', 'selector': 'app-all-stations'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'MainLayoutComponent', 'selector': 'app-main-layout'},{'name': 'StationPopupComponent', 'selector': 'app-station-popup'},{'name': 'TrainMapComponent', 'selector': 'app-train-map'},{'name': 'TrainPopupComponent', 'selector': 'app-train-popup'}];
+        var COMPONENT_TEMPLATE = '<div><header class="navbar navbar-expand-md fixed-top">	<div class="container-fluid">		<nav class="navbar">			<a class="navbar-brand" [routerLink]="\'kaart\'" style="cursor: pointer">				<img src="../../../../assets/NS-white.png" height="25" alt="food" style="color: white" />			</a>		</nav>		<div class="collapse navbar-collapse" id="navbarSupportedContent">			<ul class="navbar-nav mr-auto pl-1">				<li class="nav-item align-self-center pr-3" style="cursor: pointer">					<a class="nav-link router-link-hover align-items-center d-flex" [routerLink]="\'kaart\'">						<i class="material-icons pr-2" [routerLink]="\'kaart\'">explore</i>						<strong>Kaart</strong></a					>				</li>				<li class="nav-item align-self-center pr-1" ngbDropdown #navbarDropdown1="ngbDropdown"            (mouseenter)="$event.stopPropagation(); navbarDropdown1.open()"            (mouseleave)="$event.stopPropagation(); navbarDropdown1.close()"        >					<div						class="d-inline"						style="cursor: pointer"						id="navbarDropdown1"						(click)="$event.stopPropagation(); navbarDropdown1.open()"					>						<strong> Stations </strong>						<div *ngIf="navbarDropdown1.isOpen(); else elseBlock" style="display: inline">							<svg								class="bi bi-caret-up-fill"								width="1em"								height="1em"								viewBox="0 0 16 16"								fill="currentColor"								xmlns="http://www.w3.org/2000/svg"							>								<path									d="M7.247 4.86l-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 00.753-1.659l-4.796-5.48a1 1 0 00-1.506 0z"								/>							</svg>						</div>						<ng-template #elseBlock>							<svg								class="bi bi-caret-down-fill"								width="1em"								height="1em"								viewBox="0 0 16 16"								fill="currentColor"								xmlns="http://www.w3.org/2000/svg"							>								<path									d="M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 01.753 1.659l-4.796 5.48a1 1 0 01-1.506 0z"								/>							</svg>						</ng-template>					</div>					<div ngbDropdownMenu aria-labelledby="navbarDropdown1" class="dropdown-menu mt-0">						<form class="px-4 pt-3">							<div class="form-group">								<label for="typeahead-http" style="width: max-content">Zoek naar een station:</label>								<input									id="typeahead-http"									type="text"									class="form-control"									[class.is-invalid]="searchFailed"									[ngbTypeahead]="search"									[resultFormatter]="formatToStationName"									(selectItem)="selectStationFromSearch($event)"									placeholder="Stationsnaam of code"								/>								<small *ngIf="searching" class="form-text text-muted">zoeken...</small>							</div>							<div class="invalid-feedback" *ngIf="!searchFailed">								Sorry, er ging wat fout bij het zoeken naar stations.							</div>						</form>						<div class="dropdown-divider"></div>						<button ngbDropdownItem (click)="navigateToAllStations()">Alle stations</button>					</div>				</li>			</ul>		</div>	</div></header></div>'
+    var COMPONENTS = [{'name': 'AllStationsComponent', 'selector': 'app-all-stations'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'CalamityItemComponent', 'selector': 'app-calamity-item'},{'name': 'DisruptionItemComponent', 'selector': 'app-disruption-item'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'MainLayoutComponent', 'selector': 'app-main-layout'},{'name': 'StationPopupComponent', 'selector': 'app-station-popup'},{'name': 'TrainMapComponent', 'selector': 'app-train-map'},{'name': 'TrainMapSidebarComponent', 'selector': 'app-train-map-sidebar'},{'name': 'TrainPopupComponent', 'selector': 'app-train-popup'}];
     var DIRECTIVES = [{'name': 'NgbdSortableHeaderDirective', 'selector': '[appNgbdSortableHeader]'}];
     var ACTUAL_COMPONENT = {'name': 'HeaderComponent'};
 </script>

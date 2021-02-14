@@ -184,7 +184,7 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                        <i>Default value : </i><code>&quot;&quot;</code>
                     </td>
                 </tr>
                         <tr>
@@ -210,7 +210,7 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                        <i>Default value : </i><code>&quot;&quot;</code>
                     </td>
                 </tr>
                         <tr>
@@ -258,6 +258,12 @@
                         </span>
                     </td>
                 </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </td>
+                    </tr>
                         <tr>
                             <td class="col-md-4">
                                     <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/directives/ngbd-sortable-header.directive.ts:22</a></div>
@@ -279,6 +285,12 @@
                         </span>
                     </td>
                 </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </td>
+                    </tr>
                         <tr>
                             <td class="col-md-4">
                                     <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/directives/ngbd-sortable-header.directive.ts:27</a></div>
@@ -373,44 +385,44 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {Directive, EventEmitter, HostBinding, HostListener, Input, Output} from &#x27;@angular/core&#x27;;
-import {StationPayload} from &#x27;../models/Station&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Directive, EventEmitter, HostBinding, HostListener, Input, Output } from &quot;@angular/core&quot;;
+import { Station } from &quot;../models/ReisinformatieAPI&quot;;
 
-export type SortColumn &#x3D; keyof StationPayload | &#x27;&#x27;;
-export type SortDirection &#x3D; &#x27;asc&#x27; | &#x27;desc&#x27; | &#x27;&#x27;;
-const rotate: {[key: string]: SortDirection} &#x3D; { asc: &#x27;desc&#x27;, desc: &#x27;&#x27;, &#x27;&#x27;: &#x27;asc&#x27; };
+export type SortColumn &#x3D; keyof Station | &quot;&quot;;
+export type SortDirection &#x3D; &quot;asc&quot; | &quot;desc&quot; | &quot;&quot;;
+const rotate: { [key: string]: SortDirection } &#x3D; { asc: &quot;desc&quot;, desc: &quot;&quot;, &quot;&quot;: &quot;asc&quot; };
 
 export interface SortEvent {
-  column: SortColumn;
-  direction: SortDirection;
+	column: SortColumn;
+	direction: SortDirection;
 }
 
 @Directive({
-  selector: &#x27;[appNgbdSortableHeader]&#x27;,
+	selector: &quot;[appNgbdSortableHeader]&quot;,
 })
 export class NgbdSortableHeaderDirective {
-  @Input() appNgbdSortableHeader: SortColumn &#x3D; &#x27;&#x27;;
-  @Input() direction: SortDirection &#x3D; &#x27;&#x27;;
-  @Output() sort &#x3D; new EventEmitter&lt;SortEvent&gt;();
+	@Input() appNgbdSortableHeader: SortColumn &#x3D; &quot;&quot;;
+	@Input() direction: SortDirection &#x3D; &quot;&quot;;
+	@Output() sort &#x3D; new EventEmitter&lt;SortEvent&gt;();
 
-  @HostBinding(&#x27;class.asc&#x27;)
-  get ascClass() {
-    return this.direction &#x3D;&#x3D;&#x3D; &#x27;asc&#x27;;
-  }
+	@HostBinding(&quot;class.asc&quot;)
+	get ascClass(): boolean {
+		return this.direction &#x3D;&#x3D;&#x3D; &quot;asc&quot;;
+	}
 
-  @HostBinding(&#x27;class.desc&#x27;)
-  get descClass() {
-    return this.direction &#x3D;&#x3D;&#x3D; &#x27;desc&#x27;;
-  }
+	@HostBinding(&quot;class.desc&quot;)
+	get descClass(): boolean {
+		return this.direction &#x3D;&#x3D;&#x3D; &quot;desc&quot;;
+	}
 
-  @HostListener(&#x27;click&#x27;) onClick() {
-    this.rotate();
-  }
+	@HostListener(&quot;click&quot;) onClick(): void {
+		this.rotate();
+	}
 
-  rotate() {
-    this.direction &#x3D; rotate[this.direction];
-    this.sort.emit({column: this.appNgbdSortableHeader, direction: this.direction});
-  }
+	rotate(): void {
+		this.direction &#x3D; rotate[this.direction];
+		this.sort.emit({ column: this.appNgbdSortableHeader, direction: this.direction });
+	}
 }
 </code></pre>
     </div>

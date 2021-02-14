@@ -70,22 +70,22 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { NgModule } from &#x27;@angular/core&#x27;;
-import { Routes, RouterModule } from &#x27;@angular/router&#x27;;
-import {TrainMapComponent} from &#x27;./components/train-map/train-map.component&#x27;;
-import {AllStationsComponent} from &#x27;./components/all-stations/all-stations.component&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { NgModule } from &quot;@angular/core&quot;;
+import { Routes, RouterModule } from &quot;@angular/router&quot;;
+import { TrainMapComponent } from &quot;./components/train-map/train-map.component&quot;;
+import { AllStationsComponent } from &quot;./components/all-stations/all-stations.component&quot;;
 
 const routes: Routes &#x3D; [
-  { path: &#x27;kaart&#x27;, component: TrainMapComponent },
-  { path: &#x27;stations&#x27;, component: AllStationsComponent},
-  { path: &#x27;&#x27;,   redirectTo: &#x27;/kaart&#x27;, pathMatch: &#x27;full&#x27; }
+	{ path: &quot;kaart&quot;, component: TrainMapComponent },
+	{ path: &quot;stations&quot;, component: AllStationsComponent },
+	{ path: &quot;&quot;, redirectTo: &quot;/kaart&quot;, pathMatch: &quot;full&quot; },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+	imports: [RouterModule.forRoot(routes, { relativeLinkResolution: &quot;legacy&quot; })],
+	exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
 </code></pre>
     </div>
 </div>

@@ -43,7 +43,7 @@
 
 <ol class="breadcrumb">
   <li>Interfaces</li>
-  <li>TrainMapType</li>
+  <li>CacheRecord</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -61,7 +61,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/app/models/TrainMapType.ts</code>
+            <code>src/app/services/cache.service.ts</code>
         </p>
 
 
@@ -79,13 +79,17 @@
                         <td class="col-md-4">
                             <ul class="index-list">
                                 <li>
-                                        <a href="#description">description</a>
+                                            <span class="modifier">Optional</span>
+                                        <a href="#expiration">expiration</a>
                                 </li>
                                 <li>
-                                        <a href="#layerId">layerId</a>
+                                        <a href="#hasExpiration">hasExpiration</a>
                                 </li>
                                 <li>
-                                        <a href="#name">name</a>
+                                        <a href="#params">params</a>
+                                </li>
+                                <li>
+                                        <a href="#value">value</a>
                                 </li>
                             </ul>
                         </td>
@@ -102,13 +106,76 @@
                         <tbody>
                                 <tr>
                                     <td class="col-md-4">
-                                        <a name="description"></a>
-                                        <span class="name"><b>description</b><a href="#description"><span class="icon ion-ios-link"></span></a></span>
+                                        <a name="expiration"></a>
+                                        <span class="name"><b>expiration</b><a href="#expiration"><span class="icon ion-ios-link"></span></a></span>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="col-md-4">
-                                        <code>description:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                        <code>expiration:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Optional</i>
+                                        </td>
+                                    </tr>
+
+
+
+
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="hasExpiration"></a>
+                                        <span class="name"><b>hasExpiration</b><a href="#hasExpiration"><span class="icon ion-ios-link"></span></a></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>hasExpiration:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="params"></a>
+                                        <span class="name"><b>params</b><a href="#params"><span class="icon ion-ios-link"></span></a></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>params:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
 </code>
                                     </td>
                                 </tr>
@@ -131,42 +198,13 @@
                         <tbody>
                                 <tr>
                                     <td class="col-md-4">
-                                        <a name="layerId"></a>
-                                        <span class="name"><b>layerId</b><a href="#layerId"><span class="icon ion-ios-link"></span></a></span>
+                                        <a name="value"></a>
+                                        <span class="name"><b>value</b><a href="#value"><span class="icon ion-ios-link"></span></a></span>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="col-md-4">
-                                        <code>layerId:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-</code>
-                                    </td>
-                                </tr>
-
-
-                                    <tr>
-                                        <td class="col-md-4">
-                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
-                                        </td>
-                                    </tr>
-
-
-
-
-
-                        </tbody>
-                    </table>
-                    <table class="table table-sm table-bordered">
-                        <tbody>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <a name="name"></a>
-                                        <span class="name"><b>name</b><a href="#name"><span class="icon ion-ios-link"></span></a></span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <code>name:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                        <code>value:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
 </code>
                                     </td>
                                 </tr>
@@ -190,10 +228,69 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">export interface TrainMapType {
-	name: string;
-	description: string;
-	layerId: string;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &quot;@angular/core&quot;;
+
+@Injectable({
+	providedIn: &quot;root&quot;,
+})
+export class CacheService {
+	save(options: LocalStorageSaveOptions): void {
+		// Set default values for optionals
+		options.expirationMins &#x3D; options.expirationMins || 0;
+
+		// Set expiration date in miliseconds
+		const expirationMS &#x3D; options.expirationMins !&#x3D;&#x3D; 0 ? options.expirationMins * 60 * 1000 : 0;
+
+		const record: CacheRecord &#x3D; {
+			value: typeof options.data &#x3D;&#x3D;&#x3D; &quot;string&quot; ? options.data : JSON.stringify(options.data),
+			params: options.params,
+			expiration: expirationMS !&#x3D;&#x3D; 0 ? new Date().getTime() + expirationMS : null,
+			hasExpiration: expirationMS !&#x3D;&#x3D; 0,
+		};
+		localStorage.setItem(options.key, JSON.stringify(record));
+	}
+
+	load(key: string, params: string): any {
+		// Get cached data from localstorage
+		const item &#x3D; localStorage.getItem(key);
+		if (item !&#x3D;&#x3D; null) {
+			const record &#x3D; JSON.parse(item) as CacheRecord;
+			const now &#x3D; new Date().getTime();
+			// Expired data will return null
+			if (!record || (record.hasExpiration &amp;&amp; record.expiration &lt;&#x3D; now)) {
+				this.remove(key);
+				return null;
+			} else if (record.params !&#x3D;&#x3D; params) {
+				return null;
+			} else {
+				// eslint-disable-next-line @typescript-eslint/no-unsafe-return
+				return JSON.parse(record.value);
+			}
+		}
+		return null;
+	}
+
+	remove(key: string): void {
+		localStorage.removeItem(key);
+	}
+
+	cleanLocalStorage(): void {
+		localStorage.clear();
+	}
+}
+
+export class LocalStorageSaveOptions {
+	key: string;
+	params?: string;
+	data: any;
+	expirationMins?: number;
+}
+
+export interface CacheRecord {
+	value: string;
+	params: string;
+	expiration?: number;
+	hasExpiration: boolean;
 }
 </code></pre>
     </div>
@@ -222,7 +319,7 @@
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'interface';
-            var COMPODOC_CURRENT_PAGE_URL = 'TrainMapType.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'CacheRecord.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

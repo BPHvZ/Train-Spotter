@@ -237,43 +237,44 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {Component, OnInit} from &#x27;@angular/core&#x27;;
-import {Router} from &#x27;@angular/router&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component } from &quot;@angular/core&quot;;
+import { Router } from &quot;@angular/router&quot;;
 
 /**
  * Main layout of the application
  */
 @Component({
-  selector: &#x27;app-main-layout&#x27;,
-  templateUrl: &#x27;./main-layout.component.html&#x27;,
-  styleUrls: [&#x27;./main-layout.component.sass&#x27;]
+	selector: &quot;app-main-layout&quot;,
+	templateUrl: &quot;./main-layout.component.html&quot;,
+	styleUrls: [&quot;./main-layout.component.sass&quot;],
 })
 export class MainLayoutComponent {
-  isTrainMap &#x3D; false;
+	isTrainMap &#x3D; false;
 
-  constructor(
-    private router: Router
-  ) {
-    router.events.subscribe(_ &#x3D;&gt; {
-      // if on train map remove padding
-      this.isTrainMap &#x3D; router.url.endsWith(&#x27;kaart&#x27;);
-    });
-  }
-
+	constructor(private router: Router) {
+		// eslint-disable-next-line @typescript-eslint/no-unused-vars
+		router.events.subscribe((_) &#x3D;&gt; {
+			// if on train map remove padding
+			this.isTrainMap &#x3D; router.url.endsWith(&quot;kaart&quot;);
+		});
+	}
 }
 </code></pre>
     </div>
 
     <div class="tab-pane fade " id="c-templateData">
         <pre class="line-numbers"><code class="language-html">&lt;div id&#x3D;&quot;page&quot;&gt;
-  &lt;app-header id&#x3D;&quot;header&quot;&gt;&lt;/app-header&gt;
-  &lt;main class&#x3D;&quot;d-flex&quot; role&#x3D;&quot;main&quot;&gt;
-    &lt;div class&#x3D;&quot;main-content d-flex&quot; [style.padding]&#x3D;&quot;isTrainMap ? &#x27;90px 0 0 0&#x27; : &#x27;90px 1.333rem 1.333rem 1.333rem&#x27; &quot;&gt;
-      &lt;div class&#x3D;&quot;container-fluid d-flex flex-column&quot;&gt;
-        &lt;router-outlet&gt;&lt;/router-outlet&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
-  &lt;/main&gt;
+	&lt;app-header id&#x3D;&quot;header&quot;&gt;&lt;/app-header&gt;
+	&lt;main class&#x3D;&quot;d-flex&quot; role&#x3D;&quot;main&quot;&gt;
+		&lt;div
+			class&#x3D;&quot;main-content d-flex&quot;
+			[style.padding]&#x3D;&quot;isTrainMap ? &#x27;90px 0 0 0&#x27; : &#x27;90px 1.333rem 1.333rem 1.333rem&#x27;&quot;
+		&gt;
+			&lt;div class&#x3D;&quot;container-fluid d-flex flex-column&quot;&gt;
+				&lt;router-outlet&gt;&lt;/router-outlet&gt;
+			&lt;/div&gt;
+		&lt;/div&gt;
+	&lt;/main&gt;
 &lt;/div&gt;
 </code></pre>
     </div>
@@ -333,8 +334,8 @@ main
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div id="page">  <app-header id="header"></app-header>  <main class="d-flex" role="main">    <div class="main-content d-flex" [style.padding]="isTrainMap ? \'90px 0 0 0\' : \'90px 1.333rem 1.333rem 1.333rem\' ">      <div class="container-fluid d-flex flex-column">        <router-outlet></router-outlet>      </div>    </div>  </main></div></div>'
-    var COMPONENTS = [{'name': 'AllStationsComponent', 'selector': 'app-all-stations'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'MainLayoutComponent', 'selector': 'app-main-layout'},{'name': 'StationPopupComponent', 'selector': 'app-station-popup'},{'name': 'TrainMapComponent', 'selector': 'app-train-map'},{'name': 'TrainPopupComponent', 'selector': 'app-train-popup'}];
+        var COMPONENT_TEMPLATE = '<div><div id="page">	<app-header id="header"></app-header>	<main class="d-flex" role="main">		<div			class="main-content d-flex"			[style.padding]="isTrainMap ? \'90px 0 0 0\' : \'90px 1.333rem 1.333rem 1.333rem\'"		>			<div class="container-fluid d-flex flex-column">				<router-outlet></router-outlet>			</div>		</div>	</main></div></div>'
+    var COMPONENTS = [{'name': 'AllStationsComponent', 'selector': 'app-all-stations'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'CalamityItemComponent', 'selector': 'app-calamity-item'},{'name': 'DisruptionItemComponent', 'selector': 'app-disruption-item'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'MainLayoutComponent', 'selector': 'app-main-layout'},{'name': 'StationPopupComponent', 'selector': 'app-station-popup'},{'name': 'TrainMapComponent', 'selector': 'app-train-map'},{'name': 'TrainMapSidebarComponent', 'selector': 'app-train-map-sidebar'},{'name': 'TrainPopupComponent', 'selector': 'app-train-popup'}];
     var DIRECTIVES = [{'name': 'NgbdSortableHeaderDirective', 'selector': '[appNgbdSortableHeader]'}];
     var ACTUAL_COMPONENT = {'name': 'MainLayoutComponent'};
 </script>

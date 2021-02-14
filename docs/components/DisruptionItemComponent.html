@@ -35,7 +35,7 @@
 
 <ol class="breadcrumb">
   <li>Components</li>
-  <li>AppComponent</li>
+  <li>DisruptionItemComponent</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -61,7 +61,7 @@
     <h3>File</h3>
 </p>
 <p class="comment">
-    <code>src/app/app.component.ts</code>
+    <code>src/app/components/train-map-sidebar/disruption-item/disruption-item.component.ts</code>
 </p>
 
 
@@ -85,19 +85,19 @@
 
             <tr>
                 <td class="col-md-3">selector</td>
-                <td class="col-md-9"><code>app-root</code></td>
+                <td class="col-md-9"><code>app-disruption-item</code></td>
             </tr>
 
             <tr>
                 <td class="col-md-3">styleUrls</td>
-                <td class="col-md-9"><code>./app.component.sass</code></td>
+                <td class="col-md-9"><code>./disruption-item.component.sass</code></td>
             </tr>
 
 
 
             <tr>
                 <td class="col-md-3">templateUrl</td>
-                <td class="col-md-9"><code>./app.component.html</code></td>
+                <td class="col-md-9"><code>./disruption-item.component.html</code></td>
             </tr>
 
 
@@ -115,23 +115,37 @@
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
+
+
                 <tr>
                     <td class="col-md-4">
-                        <h6><b>Properties</b></h6>
+                        <h6><b>Inputs</b></h6>
                     </td>
                 </tr>
                 <tr>
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#title">title</a>
+                                <a href="#disruption">disruption</a>
                             </li>
                         </ul>
                     </td>
                 </tr>
 
-
-
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Outputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#flyToDisruption">flyToDisruption</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
 
 
 
@@ -140,81 +154,123 @@
 </section>
 
 
-
-
-
-
-
     <section>
-    
-        <h3 id="inputs">
-            Properties
-        </h3>
+    <h3 id="inputs">Inputs</h3>
         <table class="table table-sm table-bordered">
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="title"></a>
-                        <span class="name">
-                            <b>
-                            title</b>
-                            <a href="#title"><span class="icon ion-ios-link"></span></a>
-                        </span>
+                        <a name="disruption"></a>
+                        <b>disruption</b>
                     </td>
                 </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Disruption</code>
 
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Default value : </i><code>&quot;trainSpotter&quot;</code>
-                        </td>
-                    </tr>
+                    </td>
+                </tr>
                         <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">src/app/app.component.ts:9</a></div>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/app/components/train-map-sidebar/disruption-item/disruption-item.component.ts:11</a></div>
                             </td>
                         </tr>
-
-
             </tbody>
         </table>
 </section>
+    <section>
+    <h3 id="outputs">Outputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="flyToDisruption"></a>
+                        <b>flyToDisruption</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://angular.io/api/core/EventEmitter" target="_blank" >EventEmitter</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/app/components/train-map-sidebar/disruption-item/disruption-item.component.ts:12</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
 
 </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component } from &quot;@angular/core&quot;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, Input, Output } from &quot;@angular/core&quot;;
+import { EventEmitter } from &quot;@angular/core&quot;;
+import { Disruption } from &quot;../../../models/ReisinformatieAPI&quot;;
 
 @Component({
-	selector: &quot;app-root&quot;,
-	templateUrl: &quot;./app.component.html&quot;,
-	styleUrls: [&quot;./app.component.sass&quot;],
+	selector: &quot;app-disruption-item&quot;,
+	templateUrl: &quot;./disruption-item.component.html&quot;,
+	styleUrls: [&quot;./disruption-item.component.sass&quot;],
 })
-export class AppComponent {
-	title &#x3D; &quot;trainSpotter&quot;;
+export class DisruptionItemComponent {
+	@Input() disruption: Disruption;
+	@Output() flyToDisruption &#x3D; new EventEmitter&lt;Disruption&gt;();
 }
 </code></pre>
     </div>
 
     <div class="tab-pane fade " id="c-templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;app-main-layout&gt;&lt;/app-main-layout&gt;
+        <pre class="line-numbers"><code class="language-html">&lt;div *ngIf&#x3D;&quot;disruption&quot;&gt;
+  &lt;div
+    (click)&#x3D;&quot;flyToDisruption.emit(disruption)&quot;
+    class&#x3D;&quot;card-header headingS&quot;
+    style&#x3D;&quot;cursor: pointer&quot;
+  &gt;
+    &lt;div
+      *ngIf&#x3D;&quot;disruption.type &#x3D;&#x3D;&#x3D; &#x27;MAINTENANCE&#x27;; else disruptionIcon&quot;
+      style&#x3D;&quot;display: inline&quot;
+    &gt;
+      &lt;img
+        alt&#x3D;&quot;Werk aan het spoor&quot;
+        src&#x3D;&quot;../../../../assets/maintenance--blue--35x35.svg&quot;
+        style&#x3D;&quot;position: inherit; height: 30px; display: inline&quot;
+      /&gt;
+    &lt;/div&gt;
+    &lt;ng-template #disruptionIcon&gt;
+      &lt;img
+        alt&#x3D;&quot;Storing&quot;
+        src&#x3D;&quot;../../../../assets/alert--red--35x35.svg&quot;
+        style&#x3D;&quot;position: inherit; height: 30px; display: inline&quot;
+      /&gt;&lt;/ng-template&gt;
+    {{ disruption.title }}
+  &lt;/div&gt;
+  &lt;div class&#x3D;&quot;card-body&quot;&gt;
+    &lt;div *ngIf&#x3D;&quot;disruption.type &#x3D;&#x3D;&#x3D; &#x27;MAINTENANCE&#x27;; else disruptionDescription&quot;&gt;
+      &lt;h5 class&#x3D;&quot;card-title&quot;&gt;{{ disruption.period }}&lt;/h5&gt;
+      &lt;p class&#x3D;&quot;card-text&quot;&gt;{{ disruption.timespans[0].situation.label }}&lt;/p&gt;
+      &lt;p class&#x3D;&quot;card-text&quot; *ngIf&#x3D;&quot;disruption.timespans[0].additionalTravelTime&quot;&gt;{{ disruption.timespans[0].additionalTravelTime?.label }}&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;ng-template #disruptionDescription&gt;
+      &lt;h5 class&#x3D;&quot;card-title&quot;&gt;{{ disruption.expectedDuration.description }}&lt;/h5&gt;
+      &lt;p class&#x3D;&quot;card-text&quot;&gt;{{ disruption.timespans[0].situation.label }}&lt;/p&gt;
+    &lt;/ng-template&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
 </code></pre>
     </div>
 
     <div class="tab-pane fade " id="c-styleData">
                 <p class="comment">
-                    <code>./app.component.sass</code>
+                    <code>./disruption-item.component.sass</code>
                 </p>
-                <pre class="line-numbers"><code class="language-scss">app-main-layout
-  width: 100%
-  max-width: 1280px
-  margin: 0 auto
-</code></pre>
+                <pre class="line-numbers"><code class="language-scss"></code></pre>
     </div>
 
     <div class="tab-pane fade " id="c-tree">
@@ -242,10 +298,10 @@ export class AppComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><app-main-layout></app-main-layout></div>'
+        var COMPONENT_TEMPLATE = '<div><div *ngIf="disruption">  <div    (click)="flyToDisruption.emit(disruption)"    class="card-header headingS"    style="cursor: pointer"  >    <div      *ngIf="disruption.type === \'MAINTENANCE\'; else disruptionIcon"      style="display: inline"    >      <img        alt="Werk aan het spoor"        src="../../../../assets/maintenance--blue--35x35.svg"        style="position: inherit; height: 30px; display: inline"      />    </div>    <ng-template #disruptionIcon>      <img        alt="Storing"        src="../../../../assets/alert--red--35x35.svg"        style="position: inherit; height: 30px; display: inline"      /></ng-template>    {{ disruption.title }}  </div>  <div class="card-body">    <div *ngIf="disruption.type === \'MAINTENANCE\'; else disruptionDescription">      <h5 class="card-title">{{ disruption.period }}</h5>      <p class="card-text">{{ disruption.timespans[0].situation.label }}</p>      <p class="card-text" *ngIf="disruption.timespans[0].additionalTravelTime">{{ disruption.timespans[0].additionalTravelTime?.label }}</p>    </div>    <ng-template #disruptionDescription>      <h5 class="card-title">{{ disruption.expectedDuration.description }}</h5>      <p class="card-text">{{ disruption.timespans[0].situation.label }}</p>    </ng-template>  </div></div></div>'
     var COMPONENTS = [{'name': 'AllStationsComponent', 'selector': 'app-all-stations'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'CalamityItemComponent', 'selector': 'app-calamity-item'},{'name': 'DisruptionItemComponent', 'selector': 'app-disruption-item'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'MainLayoutComponent', 'selector': 'app-main-layout'},{'name': 'StationPopupComponent', 'selector': 'app-station-popup'},{'name': 'TrainMapComponent', 'selector': 'app-train-map'},{'name': 'TrainMapSidebarComponent', 'selector': 'app-train-map-sidebar'},{'name': 'TrainPopupComponent', 'selector': 'app-train-popup'}];
     var DIRECTIVES = [{'name': 'NgbdSortableHeaderDirective', 'selector': '[appNgbdSortableHeader]'}];
-    var ACTUAL_COMPONENT = {'name': 'AppComponent'};
+    var ACTUAL_COMPONENT = {'name': 'DisruptionItemComponent'};
 </script>
 <script src="../js/tree.js"></script>
 
@@ -280,7 +336,7 @@ export class AppComponent {
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
-            var COMPODOC_CURRENT_PAGE_URL = 'AppComponent.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'DisruptionItemComponent.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

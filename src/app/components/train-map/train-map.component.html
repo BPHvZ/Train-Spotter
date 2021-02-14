@@ -13,6 +13,9 @@
 			(zoomEvt)="onMapZoom($event)"
       (sourceData)="onMapSourceData($event)"
 		>
+      <mgl-control mglFullscreen position="top-right"></mgl-control>
+      <mgl-control mglGeocoder position="top-right"></mgl-control>
+      <mgl-control mglNavigation position="top-right"></mgl-control>
 			<mgl-layer
 				*ngIf="stationsLayerData"
 				id="stations"
@@ -216,11 +219,13 @@
 			</div>
 		</ng-template>
 	</div>
-	<div id="sidebar" *ngIf="actualDisruptions">
-		<app-train-map-sidebar
-			[disruptions]="actualDisruptions"
-			(flyToDisruption)="flyToDisruption($event)"
-			(clickOnArrow)="sidebar.changeState()"
-		></app-train-map-sidebar>
-	</div>
+	<div>
+    <div id="sidebar" *ngIf="actualDisruptions">
+      <app-train-map-sidebar
+        [disruptions]="actualDisruptions"
+        (flyToDisruption)="flyToDisruption($event)"
+        (clickOnArrow)="sidebar.changeState()"
+      ></app-train-map-sidebar>
+    </div>
+  </div>
 </div>

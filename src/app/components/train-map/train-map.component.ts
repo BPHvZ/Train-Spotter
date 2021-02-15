@@ -7,7 +7,7 @@ import { ApiService } from "../../services/api.service";
 import { HelperFunctionsService } from "../../services/helper-functions.service";
 import { GeoJSON, MultiLineString } from "geojson";
 import { environment } from "../../../environments/environment";
-import * as Jimp from "jimp";
+import Jimp from "jimp";
 import {
 	EventData,
 	LngLatLike,

@@ -14,6 +14,12 @@
       (sourceData)="onMapSourceData($event)"
 		>
       <mgl-control mglNavigation position="top-right"></mgl-control>
+      <mgl-control
+        mglGeolocate
+        [trackUserLocation]="true"
+        [fitBoundsOptions]="{maxZoom:10}"
+        position="top-right"
+      ></mgl-control>
 			<mgl-layer
 				*ngIf="stationsLayerData"
 				id="stations"

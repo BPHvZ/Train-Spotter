@@ -226,8 +226,6 @@
 	<div>
     <div id="sidebar" *ngIf="actualDisruptions">
       <app-train-map-sidebar
-        [disruptions]="actualDisruptions"
-        (flyToDisruption)="flyToDisruption($event)"
         (clickOnArrow)="sidebar.changeState()"
       ></app-train-map-sidebar>
     </div>

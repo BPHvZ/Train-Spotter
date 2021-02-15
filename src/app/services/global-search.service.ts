@@ -47,7 +47,7 @@ export class GlobalSearchService {
 			results.push({
 				result: station,
 				searchField: station.namen.lang,
-				type: GlobalSearchResultType.Station,
+				resultType: GlobalSearchResultType.Station,
 			});
 		});
 
@@ -57,7 +57,7 @@ export class GlobalSearchService {
 				results.push({
 					result: train,
 					searchField: `Rit: ${train.ritId}`,
-					type: GlobalSearchResultType.TrainRideId,
+					resultType: GlobalSearchResultType.TrainRideId,
 				});
 			});
 
@@ -71,7 +71,7 @@ export class GlobalSearchService {
 				results.push({
 					result: train,
 					searchField: `Treinstel: ${trainpart[0].materieelnummer}`,
-					type: GlobalSearchResultType.TrainSetNumber,
+					resultType: GlobalSearchResultType.TrainSetNumber,
 				});
 			});
 		}

@@ -42,11 +42,18 @@ export class TrainMapComponent implements OnInit {
 	@ViewChild(TrainMapSidebarComponent) sidebar: TrainMapSidebarComponent;
 
 	// MapBox setup
-	trainMap: MapBoxMap;
 	mapStyle = environment.MAPBOX_STYLE;
 	lng = 5.476;
 	lat = 52.1284;
 	zoom = 6.73;
+
+	// Map popups
+	get selectedTrainOnMapFeature(): MapboxGeoJSONFeature {
+		return this.sharedDataService.selectedTrainOnMapFeature;
+	}
+	get selectedStationOnMapFeature(): MapboxGeoJSONFeature {
+		return this.sharedDataService.selectedStationOnMapFeature;
+	}
 
 	// Update data countdown
 	private progressNum = 100;
@@ -70,10 +77,6 @@ export class TrainMapComponent implements OnInit {
 	];
 	activeMapType: TrainMapType = this.mapTypes[0];
 
-	// Map popups
-	selectedTrainOnMapFeature: MapboxGeoJSONFeature;
-	selectedStationOnMapFeature: MapboxGeoJSONFeature;
-
 	// Station layer
 	stationsLayerLayout: SymbolLayout = {
 		"icon-image": "NS",
@@ -87,8 +90,10 @@ export class TrainMapComponent implements OnInit {
 
 	// Disruptions layer
 	disruptedTrainTracksLayerData: GeoJSON.FeatureCollection<MultiLineString>;
-	disruptionMarkersData: GeoJSON.Feature<GeoJSON.Point, DisruptionBase>[];
 	actualDisruptions: DisruptionsList;
+	get disruptionMarkersData(): GeoJSON.Feature<GeoJSON.Point, DisruptionBase>[] {
+		return this.sharedDataService.disruptionMarkersData;
+	}
 
 	// Trains layer
 	trainsLayerData: GeoJSON.FeatureCollection<GeoJSON.Geometry>;
@@ -133,7 +138,9 @@ export class TrainMapComponent implements OnInit {
 			},
 		};
 		this.updateTrainsTimer.subscribe(this.timerObserver);
-		this.headerEventsService.currentSelectedStation.subscribe((station) => this.flyToStation(station));
+		this.headerEventsService.currentSelectedStation.subscribe((station) =>
+			this.sharedDataService.flyToStation(station)
+		);
 
 		this.router.events.subscribe((event) => {
 			if (event instanceof NavigationStart) {
@@ -143,7 +150,7 @@ export class TrainMapComponent implements OnInit {
 				const navigationState = this.router.getCurrentNavigation().extras.state;
 				if (navigationState) {
 					if (navigationState.station) {
-						this.flyToStation(navigationState.station);
+						this.sharedDataService.flyToStation(navigationState.station);
 					}
 				}
 			}
@@ -187,7 +194,7 @@ export class TrainMapComponent implements OnInit {
 	 * @param trainMap information about the map on load
 	 */
 	onMapLoad(trainMap: MapBoxMap): void {
-		this.trainMap = trainMap;
+		this.sharedDataService.trainMap = trainMap;
 		this.isUpdatingMapData = true;
 		zip(
 			this.sharedDataService.getBasicInformationAboutAllStations(),
@@ -276,7 +283,7 @@ export class TrainMapComponent implements OnInit {
 			/* eslint-enable @typescript-eslint/no-unsafe-assignment */
 			stationInformation = stationInformation as Station;
 			selectedFeature.properties = stationInformation;
-			this.selectedStationOnMapFeature = selectedFeature;
+			this.sharedDataService.selectedStationOnMapFeature = selectedFeature;
 		}
 	}
 
@@ -293,7 +300,7 @@ export class TrainMapComponent implements OnInit {
 				basicTrainInformation.trainDetails = JSON.parse(basicTrainInformation.trainDetails);
 			}
 			selectedFeature.properties = basicTrainInformation;
-			this.selectedTrainOnMapFeature = selectedFeature;
+			this.sharedDataService.selectedTrainOnMapFeature = selectedFeature;
 		}
 	}
 
@@ -301,8 +308,8 @@ export class TrainMapComponent implements OnInit {
 	 * Close all popups
 	 */
 	closePopup(): void {
-		this.selectedTrainOnMapFeature = null;
-		this.selectedStationOnMapFeature = null;
+		this.sharedDataService.selectedTrainOnMapFeature = null;
+		this.sharedDataService.selectedStationOnMapFeature = null;
 	}
 
 	/**
@@ -333,11 +340,11 @@ export class TrainMapComponent implements OnInit {
 	}
 
 	_updateTrainPopupInformation(): void {
-		if (this.selectedTrainOnMapFeature) {
-			const selectedFeature = this.selectedTrainOnMapFeature;
+		if (this.sharedDataService.selectedTrainOnMapFeature) {
+			const selectedFeature = this.sharedDataService.selectedTrainOnMapFeature;
 			const oldTrainInformation = selectedFeature.properties as DetailedTrainInformation;
 			const rideId = oldTrainInformation.ritId;
-			const queriedFeatures = this.trainMap.querySourceFeatures("trainData", {
+			const queriedFeatures = this.sharedDataService.trainMap.querySourceFeatures("trainData", {
 				filter: ["==", ["get", "ritId"], rideId],
 			});
 			if (queriedFeatures) {
@@ -360,7 +367,7 @@ export class TrainMapComponent implements OnInit {
 	}
 
 	setDisruptionMarkers(): void {
-		this.disruptionMarkersData = [];
+		this.sharedDataService.disruptionMarkersData = [];
 		console.log(this.disruptedTrainTracksLayerData.features.length);
 
 		const uniqueDisruptions: GeoJSON.Feature<MultiLineString, { [p: string]: any }>[] = [];
@@ -378,7 +385,7 @@ export class TrainMapComponent implements OnInit {
 			);
 			if (disruptionInfo) {
 				const linePart = feature.geometry.coordinates[0];
-				this.disruptionMarkersData.push({
+				this.sharedDataService.disruptionMarkersData.push({
 					type: "Feature",
 					properties: disruptionInfo,
 					geometry: {
@@ -540,38 +547,5 @@ export class TrainMapComponent implements OnInit {
 				this.isUpdatingMapData = false;
 			},
 		});
-	}
-
-	/**
-	 * Fly to a station and open a station popup
-	 * @param station The station
-	 */
-	flyToStation(station: Station): void {
-		if (this.trainMap && station) {
-			this.trainMap.flyTo({
-				center: [station.lng, station.lat],
-				zoom: 15,
-			});
-			this.trainMap.once("moveend", () => {
-				const features = this.trainMap.queryRenderedFeatures(null, { layers: ["stations"] });
-				if (features.length > 0) {
-					const selectedFeature: MapboxGeoJSONFeature = features[0];
-					selectedFeature.properties = station;
-					this.selectedStationOnMapFeature = selectedFeature;
-				}
-			});
-		}
-	}
-
-	flyToDisruption(disruption: DisruptionBase): void {
-		if (this.trainMap && disruption) {
-			const marker = this.disruptionMarkersData.find((m) => m.properties === disruption);
-			if (marker) {
-				this.trainMap.flyTo({
-					center: marker.geometry.coordinates as LngLatLike,
-					zoom: 11,
-				});
-			}
-		}
 	}
 }

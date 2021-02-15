@@ -81,12 +81,35 @@
 			</ul>
       <form class="form-inline my-2 my-lg-0">
         <ng-template #rt let-r="result" let-t="term">
-          <button
-            class="button button--nsYellow"
-            style="margin-left: 10px; padding: 12px 10px 15px 10px"
-          >
-            <strong>&times;</strong>
-          </button>
+          <div [ngSwitch]="r.resultType" style="display: inline">
+            <ng-container *ngSwitchCase="0"><ng-container *ngTemplateOutlet="train"></ng-container></ng-container>
+            <ng-container *ngSwitchCase="1"><ng-container *ngTemplateOutlet="train"></ng-container></ng-container>
+            <ng-container *ngSwitchCase="2"><ng-container *ngTemplateOutlet="station"></ng-container></ng-container>
+            <ng-template #train>
+              <button
+                class="button button--nsYellow"
+                style="
+              padding: 4px 6px 6px 6px;
+              float: right;
+              margin-left: 8px"
+                (click)="flyToTrainOnMap(r.result)"
+              >
+                <fa-icon [icon]="faCrosshairs" style="font-size: small"></fa-icon>
+              </button>
+            </ng-template>
+            <ng-template #station>
+              <button
+                class="button button--nsYellow"
+                style="
+              padding: 4px 6px 6px 6px;
+              float: right;
+              margin-left: 8px"
+                (click)="flyToStationOnMap(r.result)"
+              >
+                <fa-icon [icon]="faCrosshairs" style="font-size: small"></fa-icon>
+              </button>
+            </ng-template>
+          </div>
           <ngb-highlight [result]="r.searchField" [term]="t"></ngb-highlight>
         </ng-template>
 
@@ -99,7 +122,8 @@
           [class.is-invalid]="searchGloballyFailed"
           [ngbTypeahead]="searchGlobally"
           [resultFormatter]="globalSearchResultFormatter"
-        [disabled]="!allDataLoaded"/>
+          [resultTemplate]="rt"
+          [disabled]="!allDataLoaded"/>
         <button class="button button--nsYellow" [disabled]="!allDataLoaded">Zoek</button>
       </form>
 		</div>

@@ -5,11 +5,12 @@ import { catchError, debounceTime, distinctUntilChanged, switchMap, tap } from "
 import { NgbTypeaheadSelectItemEvent } from "@ng-bootstrap/ng-bootstrap";
 import { HeaderEventsService } from "../../../services/header-events.service";
 import { Router } from "@angular/router";
-import { Station } from "../../../models/ReisinformatieAPI";
+import { Disruption, Station } from "../../../models/ReisinformatieAPI";
 import { GlobalSearchResult, GlobalSearchResultType } from "../../../models/GlobalSearch";
 import { GlobalSearchService } from "../../../services/global-search.service";
-import { Train } from "../../../models/VirtualTrainAPI";
+import { DetailedTrainInformation, Train } from "../../../models/VirtualTrainAPI";
 import { SharedDataService } from "../../../services/shared-data.service";
+import { faCrosshairs } from "@fortawesome/free-solid-svg-icons";
 
 /**
  * Header with links to pages and a dropdown to search for stations
@@ -20,6 +21,8 @@ import { SharedDataService } from "../../../services/shared-data.service";
 	styleUrls: ["./header.component.sass"],
 })
 export class HeaderComponent {
+	faCrosshairs = faCrosshairs;
+
 	searchingStations = false;
 	searchStationsFailed = false;
 
@@ -98,7 +101,7 @@ export class HeaderComponent {
 	 * @return A string to represent the result
 	 */
 	globalSearchResultFormatter(result: GlobalSearchResult): string {
-		switch (result.type) {
+		switch (result.resultType) {
 			case GlobalSearchResultType.Station: {
 				const station = result.result as Station;
 				return station.namen.lang;
@@ -127,5 +130,13 @@ export class HeaderComponent {
 	 */
 	navigateToAllStations(): void {
 		void this.router.navigateByUrl("stations");
+	}
+
+	flyToTrainOnMap(train: DetailedTrainInformation): void {
+		this.sharedDataService.flyToTrain(train);
+	}
+
+	flyToStationOnMap(station: Station): void {
+		this.sharedDataService.flyToStation(station);
 	}
 }

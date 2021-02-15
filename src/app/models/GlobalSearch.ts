@@ -8,7 +8,7 @@ export enum GlobalSearchResultType {
 }
 
 export interface GlobalSearchResult {
-	type: GlobalSearchResultType;
+	resultType: GlobalSearchResultType;
 	result: Train | Station;
 	searchField: number | string;
 }

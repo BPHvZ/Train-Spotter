@@ -6,6 +6,10 @@ import { NgbTypeaheadSelectItemEvent } from "@ng-bootstrap/ng-bootstrap";
 import { HeaderEventsService } from "../../../services/header-events.service";
 import { Router } from "@angular/router";
 import { Station } from "../../../models/ReisinformatieAPI";
+import { GlobalSearchResult, GlobalSearchResultType } from "../../../models/GlobalSearch";
+import { GlobalSearchService } from "../../../services/global-search.service";
+import { Train } from "../../../models/VirtualTrainAPI";
+import { SharedDataService } from "../../../services/shared-data.service";
 
 /**
  * Header with links to pages and a dropdown to search for stations
@@ -16,36 +20,67 @@ import { Station } from "../../../models/ReisinformatieAPI";
 	styleUrls: ["./header.component.sass"],
 })
 export class HeaderComponent {
-	searching = false;
-	searchFailed = false;
+	searchingStations = false;
+	searchStationsFailed = false;
+
+	searchingGlobally = false;
+	searchGloballyFailed = false;
 
 	constructor(
-		private apiService: ApiService,
+		private sharedDataService: SharedDataService,
+		private globalSearchService: GlobalSearchService,
 		private headerEventsService: HeaderEventsService,
 		private router: Router
 	) {}
+
+	get allDataLoaded(): boolean {
+		return this.sharedDataService.allDataLoaded;
+	}
 
 	/**
 	 * Search stations on name or abbreviation
 	 * @param text$ Input text
 	 * @return List of stations
 	 */
-	search = (text$: Observable<string>): Observable<Station[]> =>
+	searchStations = (text$: Observable<string>): Observable<Station[]> =>
 		text$.pipe(
 			debounceTime(300),
 			distinctUntilChanged(),
-			tap(() => (this.searching = true)),
+			tap(() => (this.searchingStations = true)),
 			switchMap(
 				(term: string): Observable<Station[]> =>
-					this.apiService.searchForStation(term).pipe(
-						tap(() => (this.searchFailed = false)),
+					this.globalSearchService.searchForStation(term).pipe(
+						tap(() => (this.searchStationsFailed = false)),
 						catchError(() => {
-							this.searchFailed = true;
+							this.searchStationsFailed = true;
 							return of([]);
 						})
 					)
 			),
-			tap(() => (this.searching = false))
+			tap(() => (this.searchingStations = false))
+		);
+
+	/**
+	 * Search stations on name or abbreviation
+	 * @param text$ Input text
+	 * @return List of stations
+	 */
+	searchGlobally = (text$: Observable<string>): Observable<GlobalSearchResult[]> =>
+		text$.pipe(
+			debounceTime(600),
+			distinctUntilChanged(),
+			tap(() => (this.searchingGlobally = true)),
+			switchMap(
+				(term: string): Observable<GlobalSearchResult[]> =>
+					this.globalSearchService.globalSearch(term).pipe(
+						tap(() => (this.searchGloballyFailed = false)),
+						catchError(() => {
+							this.searchGloballyFailed = true;
+							return of([]);
+						})
+					)
+			),
+			tap(() => (this.searchingGlobally = false))
 		);
 
 	/**
@@ -55,6 +90,27 @@ export class HeaderComponent {
 	 */
 	formatToStationName(station: Station): string {
 		return station.namen.lang;
+	}
+
+	/**
+	 * Get the station name from {@link Station.namen}
+	 * @param result ResultTemplateContext to get the name from
+	 * @return A string to represent the result
+	 */
+	globalSearchResultFormatter(result: GlobalSearchResult): string {
+		switch (result.type) {
+			case GlobalSearchResultType.Station: {
+				const station = result.result as Station;
+				return station.namen.lang;
+			}
+			case GlobalSearchResultType.TrainRideId: {
+				const train = result.result as Train;
+				return `Rit: ${train.ritId}`;
+			}
+			case GlobalSearchResultType.TrainSetNumber: {
+				return result.searchField as string;
+			}
+		}
 	}
 
 	/**

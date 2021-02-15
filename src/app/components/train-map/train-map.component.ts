@@ -25,6 +25,7 @@ import { TrainMapSidebarComponent } from "../train-map-sidebar/train-map-sidebar
 import { DisruptionBase, DisruptionsList, Station, StationsResponse } from "../../models/ReisinformatieAPI";
 import { SpoortkaartFeatureCollection, TrainTracksGeoJSON } from "../../models/SpoortkaartAPI";
 import { DetailedTrainInformation, Train, TrainIconOnMap, TrainInformation } from "../../models/VirtualTrainAPI";
+import { SharedDataService } from "../../services/shared-data.service";
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires,@typescript-eslint/no-unsafe-assignment
 const replaceColor = require("replace-color");
@@ -100,7 +101,8 @@ export class TrainMapComponent implements OnInit {
 	trainIconsForMap: TrainIconOnMap[] = [];
 
 	constructor(
-		private apiService: ApiService,
+		// private apiService: ApiService,
+		private sharedDataService: SharedDataService,
 		private helperFunctions: HelperFunctionsService,
 		private headerEventsService: HeaderEventsService,
 		private router: Router
@@ -188,10 +190,10 @@ export class TrainMapComponent implements OnInit {
 		this.trainMap = trainMap;
 		this.isUpdatingMapData = true;
 		zip(
-			this.apiService.getBasicInformationAboutAllStations(),
-			this.apiService.getTrainTracksGeoJSON(),
-			this.apiService.getDisruptedTrainTracksGeoJSON(),
-			this.apiService.getActualDisruptions()
+			this.sharedDataService.getBasicInformationAboutAllStations(),
+			this.sharedDataService.getTrainTracksGeoJSON(),
+			this.sharedDataService.getDisruptedTrainTracksGeoJSON(),
+			this.sharedDataService.getActiveDisruptions()
 		).subscribe({
 			next: (value: [StationsResponse, TrainTracksGeoJSON, TrainTracksGeoJSON, DisruptionsList]) => {
 				console.log(value);
@@ -399,37 +401,15 @@ export class TrainMapComponent implements OnInit {
 	getActiveTrainsAndDetails(): void {
 		this.isUpdatingMapData = true;
 		this.pauseOrResumeUpdatingTrainPositions(true);
-		let allTrainInformation: DetailedTrainInformation[];
-		this.apiService
-			.getBasicInformationAboutAllTrains()
-			.pipe(
-				mergeMap((trains) => {
-					allTrainInformation = trains.payload.treinen;
-					let trainIds = "";
-					trains.payload.treinen.forEach((train) => {
-						trainIds += train.ritId + ",";
-					});
-					trainIds = trainIds.slice(0, -1);
-					return this.apiService.getTrainDetailsByRideId(trainIds);
-				}),
-				map((trainDetails) => {
-					allTrainInformation.forEach((basicTrain) => {
-						basicTrain.trainDetails = trainDetails.find(
-							(details) => details.ritnummer.toString() === basicTrain.ritId
-						);
-					});
-					return allTrainInformation;
-				})
-			)
-			.subscribe({
-				next: (detailedTrainInformation) => {
-					console.log(detailedTrainInformation);
-					this.setTrainIconName(detailedTrainInformation);
-				},
-				error: (err) => {
-					console.log(err);
-				},
-			});
+		this.sharedDataService.getDetailedInformationAboutActiveTrains().subscribe({
+			next: (detailedTrainInformation) => {
+				console.log(detailedTrainInformation);
+				this.setTrainIconName(detailedTrainInformation);
+			},
+			error: (err) => {
+				console.log(err);
+			},
+		});
 	}
 
 	/**

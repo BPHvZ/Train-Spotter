@@ -38,6 +38,27 @@ body
   background: unset
   box-shadow: unset
 
+
+
+@mixin button--disabled
+    background-color: $button__disabled__background
+    color: $button__disabled__color
+    cursor: default
+    box-shadow: 0 toRem(-2px) 0 $button__disabled__rollover inset
+    transition: none
+    &:hover
+      color: $button__disabled__color
+      box-shadow: 0 toRem(-2px) 0 $button__disabled__rollover inset
+    &.button--arrowLeft
+      padding-left: toRem($button-horizontal-space)
+      &::after
+        display: none
+
+    &.button--arrowRight
+      padding-right: toRem($button-horizontal-space)
+      &::after
+        display: none
+
 .button
   display: inline-block
   position: relative
@@ -70,6 +91,11 @@ body
 
     &:focus
       outline-color: $ns-blue
+
+  &:disabled,
+  &.is-disabled
+    @include button--disabled
+
 
   &--nsYellow
     background-color: $ns-yellow
@@ -110,3 +136,20 @@ body
 .headingS
   font-weight: 400
   color: $ns-blue
+
+@function strip-units($number)
+  @return $number / ($number * 0 + 1)
+
+
+$old-ie:false !default
+@function toRem($pixels)
+  @if ($old-ie)
+    @return $pixels
+
+  @else if (strip-units( $pixels ) == 0)
+    @return 0
+
+  @else
+    @return $pixels/16px * 1rem
+
+

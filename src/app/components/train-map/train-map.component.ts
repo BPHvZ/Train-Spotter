@@ -338,7 +338,7 @@ export class TrainMapComponent implements OnInit {
 			const queriedFeatures = this.sharedDataService.trainMap.querySourceFeatures("trainData", {
 				filter: ["==", ["get", "ritId"], rideId],
 			});
-			if (queriedFeatures) {
+			if (queriedFeatures && !this.helperFunctions.trainsAreEqual(queriedFeatures[0], oldTrainInformation)) {
 				this.closePopup();
 				this.openTrainPopupOnLayerClick({
 					defaultPrevented: false,
@@ -350,6 +350,9 @@ export class TrainMapComponent implements OnInit {
 					target: undefined,
 					type: undefined,
 					features: queriedFeatures,
+				});
+				this.sharedDataService.trainMap.easeTo({
+					center: [queriedFeatures[0].properties.lng, queriedFeatures[0].properties.lat],
 				});
 			} else {
 				this.closePopup();

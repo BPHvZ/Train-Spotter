@@ -11,10 +11,17 @@ import { HelperFunctionsService } from "./helper-functions.service";
 	providedIn: "root",
 })
 export class GlobalSearchService {
-	private _stations: StationsResponse = this.sharedDataService.stations;
-	private _trains: DetailedTrainInformation[] = this.sharedDataService.detailedTrainInformation;
+	private _stations: StationsResponse = null;
+	private _trains: DetailedTrainInformation[] = null;
 
-	constructor(private sharedDataService: SharedDataService, private helperFunctionsService: HelperFunctionsService) {}
+	constructor(private sharedDataService: SharedDataService, private helperFunctionsService: HelperFunctionsService) {
+		this.sharedDataService.detailedTrainInformation$.subscribe((value) => {
+			this._trains = value;
+		});
+		this.sharedDataService.stations$.subscribe((value) => {
+			this._stations = value;
+		});
+	}
 
 	globalSearch(term: string): Observable<GlobalSearchResult[]> {
 		console.log(term);

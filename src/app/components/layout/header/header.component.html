@@ -1,8 +1,8 @@
-<header class="navbar navbar-expand-md fixed-top">
+<header class="navbar navbar-expand-md fixed-top mat-typography">
 	<div class="container-fluid">
 		<nav class="navbar">
 			<a class="navbar-brand" [routerLink]="'kaart'" style="cursor: pointer">
-				<img src="../../../../assets/NS-white.png" height="25" alt="food" style="color: white" />
+        <strong style="color: white">TrainSpotter</strong>
 			</a>
 		</nav>
 
@@ -10,8 +10,8 @@
 			<ul class="navbar-nav mr-auto pl-1">
 				<li class="nav-item align-self-center pr-3" style="cursor: pointer">
 					<a class="nav-link router-link-hover align-items-center d-flex" [routerLink]="'kaart'">
-						<i class="material-icons pr-2" [routerLink]="'kaart'">explore</i>
-						<strong>Kaart</strong></a
+            <img [routerLink]="'kaart'" src="../../../../assets/icons/icon-192x192.png" height="20" alt="TrainSpotter"/>
+						<strong style="padding-left: 4px">Kaart</strong></a
 					>
 				</li>
 				<li class="nav-item align-self-center pr-1" ngbDropdown #navbarDropdown1="ngbDropdown"
@@ -62,15 +62,15 @@
 									id="typeahead-http"
 									type="text"
 									class="form-control"
-									[class.is-invalid]="searchFailed"
-									[ngbTypeahead]="search"
+									[class.is-invalid]="searchGloballyFailed"
+									[ngbTypeahead]="searchStations"
 									[resultFormatter]="formatToStationName"
 									(selectItem)="selectStationFromSearch($event)"
 									placeholder="Stationsnaam of code"
 								/>
-								<small *ngIf="searching" class="form-text text-muted">zoeken...</small>
+								<small *ngIf="searchingStations" class="form-text text-muted">zoeken...</small>
 							</div>
-							<div class="invalid-feedback" *ngIf="!searchFailed">
+							<div class="invalid-feedback" *ngIf="!searchStationsFailed">
 								Sorry, er ging wat fout bij het zoeken naar stations.
 							</div>
 						</form>
@@ -79,6 +79,50 @@
 					</div>
 				</li>
 			</ul>
+      <form class="form-inline my-2 my-lg-0">
+        <ng-template #rt let-r="result" let-t="term">
+          <div [ngSwitch]="r.resultType" style="display: inline">
+            <ng-container *ngSwitchCase="0"><ng-container *ngTemplateOutlet="train"></ng-container></ng-container>
+            <ng-container *ngSwitchCase="1"><ng-container *ngTemplateOutlet="station"></ng-container></ng-container>
+            <ng-template #train>
+              <button
+                class="button button--nsYellow button--crosshair"
+                style="
+              margin-left: 8px"
+                (click)="flyToTrainOnMap(r.result)"
+              >
+                <fa-icon [icon]="faCrosshairs" style="font-size: small"></fa-icon>
+              </button>
+            </ng-template>
+            <ng-template #station>
+              <button
+                class="button button--nsYellow button--crosshair"
+                style="
+              margin-left: 8px"
+                (click)="flyToStationOnMap(r.result)"
+              >
+                <fa-icon [icon]="faCrosshairs" style="font-size: small"></fa-icon>
+              </button>
+            </ng-template>
+          </div>
+          <ngb-highlight [result]="r.searchField" [term]="t" style="vertical-align: sub"></ngb-highlight>
+        </ng-template>
+        <div id="scrollable-dropdown-menu">
+          <input
+            #globalTypeahead
+            id="global-typeahead"
+            type="text"
+            class="form-control mr-sm-2"
+            placeholder="Zoek trein, treinstel, station, vervoerder"
+            aria-label="Search"
+            [class.is-invalid]="searchGloballyFailed"
+            [ngbTypeahead]="searchGlobally"
+            [resultTemplate]="rt"
+            [disabled]="!allDataLoaded"
+            (selectItem)="selectItemFromGlobalSearch($event)"/>
+        </div>
+        <button class="button button--nsYellow" [disabled]="!allDataLoaded">Zoek</button>
+      </form>
 		</div>
 	</div>
 </header>

@@ -1,0 +1,27 @@
+// ---------------------------------------------------------------------------
+// Mixin for print behavior
+// ---------------------------------------------------------------------------
+
+@mixin print {
+    @media print {
+        @content;
+    }
+}
+@mixin screen {
+    @media screen {
+        @content;
+    }
+}
+
+
+%printOnly { // <- preferred
+    @include screen {
+        display: none !important;
+    }
+}
+
+%screenOnly { // <- preferred
+    @include print {
+        display: none !important;
+    }
+}

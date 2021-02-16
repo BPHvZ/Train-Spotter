@@ -42,6 +42,10 @@
     "@angular/platform-browser-dynamic": "^11.2.0",
     "@angular/router": "^11.2.0",
     "@angular/service-worker": "^11.2.0",
+    "@fortawesome/angular-fontawesome": "^0.8.2",
+    "@fortawesome/fontawesome-svg-core": "^1.2.34",
+    "@fortawesome/free-regular-svg-icons": "^5.15.2",
+    "@fortawesome/free-solid-svg-icons": "^5.15.2",
     "@ng-bootstrap/ng-bootstrap": "^9.0.2",
     "@types/geojson": "^7946.0.7",
     "@types/jasmine": "^3.6.0",
@@ -66,7 +70,7 @@
     "ts-transformer-keys": "^0.4.3",
     "tslib": "^2.0.0",
     "typescript": "^4.1.5",
-    "zone.js": "^0.11.3"
+    "zone.js": "^0.11.4"
   },
   "devDependencies": {
     "@angular-eslint/builder": "^1.2.0",
@@ -76,8 +80,8 @@
     "@angular-eslint/template-parser": "^1.2.0",
     "@types/mapbox-gl": "^2.1.0",
     "@types/node": "^12.20.1",
-    "@typescript-eslint/eslint-plugin": "^4.15.0",
-    "@typescript-eslint/parser": "^4.15.0",
+    "@typescript-eslint/eslint-plugin": "^4.15.1",
+    "@typescript-eslint/parser": "^4.15.1",
     "codelyzer": "^6.0.0",
     "eslint": "^7.20.0",
     "eslint-config-prettier": "^7.2.0",

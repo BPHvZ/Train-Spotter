@@ -25,6 +25,7 @@ import { DisruptionItemComponent } from "./components/train-map-sidebar/disrupti
 import { CalamityItemComponent } from "./components/train-map-sidebar/calamity-item/calamity-item.component";
 import { ServiceWorkerModule } from "@angular/service-worker";
 import { environment } from "../environments/environment";
+import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 
 @NgModule({
 	declarations: [
@@ -53,6 +54,7 @@ import { environment } from "../environments/environment";
 		HttpClientModule,
 		FormsModule,
 		ServiceWorkerModule.register("ngsw-worker.js", { enabled: environment.production }),
+		FontAwesomeModule,
 	],
 	providers: [
 		{

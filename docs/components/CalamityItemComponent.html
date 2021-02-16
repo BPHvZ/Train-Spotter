@@ -188,7 +188,7 @@ export class CalamityItemComponent {
     </div>
 
     <div class="tab-pane fade " id="c-templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;div *ngIf&#x3D;&quot;calamity&quot;&gt;
+        <pre class="line-numbers"><code class="language-html">&lt;div *ngIf&#x3D;&quot;calamity&quot; class&#x3D;&quot;mat-typography&quot;&gt;
   &lt;div class&#x3D;&quot;card-header headingS&quot;&gt;
     &lt;img
       alt&#x3D;&quot;Storing&quot;
@@ -236,7 +236,7 @@ export class CalamityItemComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div *ngIf="calamity">  <div class="card-header headingS">    <img      alt="Storing"      src="../../../../assets/alert--red--35x35.svg"      style="position: inherit; height: 30px; display: inline"    />    {{ calamity.title }}  </div>  <div class="card-body">    <p class="card-text">{{ calamity.description }}</p>  </div></div></div>'
+        var COMPONENT_TEMPLATE = '<div><div *ngIf="calamity" class="mat-typography">  <div class="card-header headingS">    <img      alt="Storing"      src="../../../../assets/alert--red--35x35.svg"      style="position: inherit; height: 30px; display: inline"    />    {{ calamity.title }}  </div>  <div class="card-body">    <p class="card-text">{{ calamity.description }}</p>  </div></div></div>'
     var COMPONENTS = [{'name': 'AllStationsComponent', 'selector': 'app-all-stations'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'CalamityItemComponent', 'selector': 'app-calamity-item'},{'name': 'DisruptionItemComponent', 'selector': 'app-disruption-item'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'MainLayoutComponent', 'selector': 'app-main-layout'},{'name': 'StationPopupComponent', 'selector': 'app-station-popup'},{'name': 'TrainMapComponent', 'selector': 'app-train-map'},{'name': 'TrainMapSidebarComponent', 'selector': 'app-train-map-sidebar'},{'name': 'TrainPopupComponent', 'selector': 'app-train-popup'}];
     var DIRECTIVES = [{'name': 'NgbdSortableHeaderDirective', 'selector': '[appNgbdSortableHeader]'}];
     var ACTUAL_COMPONENT = {'name': 'CalamityItemComponent'};

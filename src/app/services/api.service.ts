@@ -7,37 +7,13 @@ import { map } from "rxjs/operators";
 import { DisruptionsList, Station, StationsResponse } from "../models/ReisinformatieAPI";
 import { TrainTracksGeoJSON } from "../models/SpoortkaartAPI";
 import { TrainInformation, TrainInformationResponse } from "../models/VirtualTrainAPI";
+import { SharedDataService } from "./shared-data.service";
 
 @Injectable({
 	providedIn: "root",
 })
 export class ApiService {
 	constructor(private http: HttpClientService) {}
-
-	searchForStation(term: string): Observable<Station[]> {
-		if (term === "") {
-			const list: Station[] = [];
-			return of(list);
-		}
-
-		return this.http
-			.get<StationsResponse>({
-				url: "https://gateway.apiportal.ns.nl/reisinformatie-api/api/v2/stations",
-				cacheMins: environment.production ? 30 : 60,
-				headers: {
-					"Ocp-Apim-Subscription-Key": environment.NS_Ocp_Apim_Subscription_Key,
-				},
-			})
-			.pipe(
-				map((response) =>
-					response.payload.filter(
-						(station) =>
-							station.namen.lang.toUpperCase().includes(term.toUpperCase()) ||
-							station.code.toUpperCase().includes(term.toUpperCase())
-					)
-				)
-			);
-	}
 
 	getTrainTracksGeoJSON(): Observable<TrainTracksGeoJSON> {
 		return this.http.get({
@@ -83,7 +59,7 @@ export class ApiService {
 		});
 	}
 
-	getActualDisruptions(): Observable<DisruptionsList> {
+	getActiveDisruptions(): Observable<DisruptionsList> {
 		const disruptionParams = new HttpParams().set("isActive", "true");
 		return this.http.get({
 			url: "https://gateway.apiportal.ns.nl/reisinformatie-api/api/v3/disruptions",

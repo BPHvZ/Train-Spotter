@@ -7,8 +7,13 @@
 
 @import "src/_globals"
 
+@import "styles/buttons"
+
 //NS style
 //https://www.ns.nl/platform/
+
+*
+  font-family: Poppins, Roboto, "Helvetica Neue", sans-serif
 
 html
   line-height: 1
@@ -20,6 +25,7 @@ html
   background: #e3e7ed
   min-height: 100% !important
   height: 100%
+  font-family: Poppins, Roboto, "Helvetica Neue", sans-serif
 
 body
   overflow-x: hidden
@@ -30,6 +36,7 @@ body
   text-transform: none
   min-width: 320px
   background: #e3e7ed
+  font-family: Poppins, Roboto, "Helvetica Neue", sans-serif
 
 .mapboxgl-popup-tip
   visibility: hidden
@@ -38,51 +45,9 @@ body
   background: unset
   box-shadow: unset
 
-.button
-  display: inline-block
-  position: relative
-  padding: 18px
-  height: min-content
-  vertical-align: top
-  font-weight: normal
-  white-space: normal
-  background-color: $ns-light-blue
-  color: white
-  box-shadow: 0 -2px 0 darken($ns-light-blue, 10%) inset
-  text-align: center
-  line-height: 0
-  font-size: 16px
-  border: none
-  border-radius: 4px
-  text-decoration: none
-  transition: box-shadow 0.15s ease-in-out
-
-  &:hover,
-  &:focus
-    color: white
-    text-decoration: none
-    cursor: pointer
-    box-shadow: 0 -50px 0 $button__primary__rollover inset
-
-  &:focus
-    outline: thin dotted $button__primary__background
-    outline-offset: 0
-
-    &:focus
-      outline-color: $ns-blue
-
-  &--nsYellow
-    background-color: $ns-yellow
-    color: $ns-blue
-    box-shadow: 0 -2px 0 $ns-yellow-2 inset
-
-    &:hover,
-    &:focus
-      color: $ns-blue
-      box-shadow: 0 -50px 0 $ns-yellow-2 inset
-
-    &:focus
-      outline-color: $ns-blue
+#scrollable-dropdown-menu .dropdown-menu
+  max-height: 500%
+  overflow-y: auto
 
 #mapPopup
   margin-left: 0

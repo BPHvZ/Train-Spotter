@@ -1,0 +1,137 @@
+/*
+ *  Calculates the number of rem/em units based on the input pixel count.
+ *  Allows a fallback to px units later on (say for IE8 support)
+ */
+$old-ie:false !default;
+@function toRem($pixels) {
+    @if ($old-ie) {
+        @return $pixels;
+    }
+    @else if (strip-units( $pixels ) == 0) {
+        @return 0;
+    }
+    @else {
+       @return $pixels/16px * 1rem;
+    }
+}
+
+@function toEm($pixels) {
+
+    @if (strip-units( $pixels ) == 0) {
+        @return 0;
+    }
+    @else {
+        @return $pixels/16px * 1em;
+    }
+}
+
+
+
+/*
+ *  Casts a value (ie a list or a map) to a function.
+ *  Handy to convert a classList in an array to a selector.
+ */
+@function arrayToString($array, $separator: ',') {
+    $str: '';
+    $sep: '';
+    @each $item in $array {
+        $str: $str + $sep + $item + ' ';
+        $sep: $separator;
+    }
+
+    @return $str;
+}
+
+/*
+ *  Converts a string from camelCase to kebab-case.
+ *  Useful to convert from our camelCase class naming convention
+ *  to our file naming convention (kebab-case).
+ *
+ *  ps. https://www.facebook.com/events/428725190650862/
+ */
+@function strCamelToKebab($str) {
+    $length: str-length($str);
+    $out: '';
+
+    @for $i from $length through 1  {
+        $char: str-slice( $str, $i, $i);
+        $charUpper: to-upper-case($char);
+        $charLower: to-lower-case($char);
+
+        @if ($char == $charUpper) {
+            $out: '-' + $charLower + $out;
+        }
+        @else {
+            $out: $char + $out;
+        }
+    }
+
+    @return $out;
+}
+
+
+/*
+ * Converts a string from kebab-case to camelCase.
+ * Useful to convert a string file-naming-convention to classNamingConvention.
+ */
+@function strKebabToCamel($str) {
+    $length: str-length($str);
+    $out: '';
+    $capitalizeNext: false;
+
+    @for $i from 1 through $length {
+        $char: str-slice( $str, $i, $i);
+        $charIsDash: $char == '-';
+        $charUpper: to-upper-case($char);
+
+        @if ($charIsDash) {
+            $capitalizeNext: true;
+        }
+        @else if ($capitalizeNext) {
+            $out: $out + $charUpper;
+            $capitalizeNext: false;
+        }
+        @else {
+            $out: $out + $char;
+            $capitalizeNext: false;
+        }
+    }
+
+    @return $out;
+}
+
+
+/*
+ *  borrowed from https://github.com/hail2u/scss-functions/blob/master/string/_str-replace.scss
+ */
+@function str-replace($string, $substr, $newsubstr, $all: 0) {
+    $position-found: str-index($string, $substr);
+    $processed: ();
+
+    @while ($position-found and $position-found > 0) {
+        $length-substr: str-length($substr);
+        $processed: append($processed, str-slice($string, 0, $position-found - 1));
+        $processed: append($processed, $newsubstr);
+        $string: str-slice($string, $position-found + $length-substr);
+
+        $position-found: 0;
+
+        @if ($all > 0) {
+            $position-found: str-index($string, $substr);
+        }
+    }
+
+    $processed: append($processed, $string);
+    $string: "";
+
+    @each $s in $processed {
+        $string: #{$string}#{$s};
+    }
+
+    @return $string;
+}
+
+
+@function strip-units($number) {
+    @return $number / ($number * 0 + 1);
+}

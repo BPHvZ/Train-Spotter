@@ -1,6 +1,7 @@
 import { Component, Input, Output, OnChanges, SimpleChanges, EventEmitter } from "@angular/core";
 import { MapboxGeoJSONFeature } from "mapbox-gl";
 import { DetailedTrainInformation } from "../../models/VirtualTrainAPI";
+import { HelperFunctionsService } from "../../services/helper-functions.service";
 
 @Component({
 	selector: "app-train-popup",
@@ -13,6 +14,8 @@ export class TrainPopupComponent implements OnChanges {
 	trainInformation: DetailedTrainInformation;
 	directionArrowStyle: Map<string, any> = new Map<string, any>();
 
+	constructor(private helperFunctions: HelperFunctionsService) {}
+
 	ngOnChanges(changes: SimpleChanges): void {
 		console.log(changes);
 		if (changes.mapboxFeature.currentValue) {
@@ -22,13 +25,6 @@ export class TrainPopupComponent implements OnChanges {
 	}
 
 	getTypeOfTrain(): string {
-		const type = this.trainInformation.type;
-		if (type === "SPR") {
-			return "Sprinter";
-		} else if (type === "IC") {
-			return "Intercity";
-		} else {
-			return type;
-		}
+		return this.helperFunctions.getTypeOfTrain(this.trainInformation);
 	}
 }

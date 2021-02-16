@@ -146,9 +146,6 @@
                                 <a href="#disruptedTrainTracksLayerData">disruptedTrainTracksLayerData</a>
                             </li>
                             <li>
-                                <a href="#disruptionMarkersData">disruptionMarkersData</a>
-                            </li>
-                            <li>
                                 <a href="#isUpdatingMapData">isUpdatingMapData</a>
                             </li>
                             <li>
@@ -166,12 +163,6 @@
                             <li>
                                     <span class="modifier">Private</span>
                                 <a href="#progressNum">progressNum</a>
-                            </li>
-                            <li>
-                                <a href="#selectedStationOnMapFeature">selectedStationOnMapFeature</a>
-                            </li>
-                            <li>
-                                <a href="#selectedTrainOnMapFeature">selectedTrainOnMapFeature</a>
                             </li>
                             <li>
                                 <a href="#sidebar">sidebar</a>
@@ -202,9 +193,6 @@
                             </li>
                             <li>
                                 <a href="#trainIconsForMap">trainIconsForMap</a>
-                            </li>
-                            <li>
-                                <a href="#trainMap">trainMap</a>
                             </li>
                             <li>
                                 <a href="#trainsLayerData">trainsLayerData</a>
@@ -250,12 +238,6 @@
                             </li>
                             <li>
                                 <a href="#closePopup">closePopup</a>
-                            </li>
-                            <li>
-                                <a href="#flyToDisruption">flyToDisruption</a>
-                            </li>
-                            <li>
-                                <a href="#flyToStation">flyToStation</a>
                             </li>
                             <li>
                                 <a href="#getActiveTrainsAndDetails">getActiveTrainsAndDetails</a>
@@ -316,6 +298,15 @@
                         <td class="col-md-4">
                             <ul class="index-list">
                                 <li>
+                                    <a href="#selectedTrainOnMapFeature">selectedTrainOnMapFeature</a>
+                                </li>
+                                <li>
+                                    <a href="#selectedStationOnMapFeature">selectedStationOnMapFeature</a>
+                                </li>
+                                <li>
+                                    <a href="#disruptionMarkersData">disruptionMarkersData</a>
+                                </li>
+                                <li>
                                     <a href="#getProgress">getProgress</a>
                                 </li>
                             </ul>
@@ -331,12 +322,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(apiService: <a href="../injectables/ApiService.html">ApiService</a>, helperFunctions: <a href="../injectables/HelperFunctionsService.html">HelperFunctionsService</a>, headerEventsService: <a href="../injectables/HeaderEventsService.html">HeaderEventsService</a>, router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>)</code>
+<code>constructor(sharedDataService: <a href="../injectables/SharedDataService.html">SharedDataService</a>, helperFunctions: <a href="../injectables/HelperFunctionsService.html">HelperFunctionsService</a>, router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="100" class="link-to-prism">src/app/components/train-map/train-map.component.ts:100</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="103" class="link-to-prism">src/app/components/train-map/train-map.component.ts:103</a></div>
                             </td>
                         </tr>
 
@@ -354,10 +345,10 @@
                                         </thead>
                                         <tbody>
                                                 <tr>
-                                                        <td>apiService</td>
+                                                        <td>sharedDataService</td>
                                                   
                                                         <td>
-                                                                        <code><a href="../injectables/ApiService.html" target="_self" >ApiService</a></code>
+                                                                        <code><a href="../injectables/SharedDataService.html" target="_self" >SharedDataService</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -370,18 +361,6 @@
                                                   
                                                         <td>
                                                                         <code><a href="../injectables/HelperFunctionsService.html" target="_self" >HelperFunctionsService</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                                <tr>
-                                                        <td>headerEventsService</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="../injectables/HeaderEventsService.html" target="_self" >HeaderEventsService</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -797,153 +776,6 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="flyToDisruption"></a>
-                    <span class="name">
-                        <b>
-                            flyToDisruption
-                        </b>
-                        <a href="#flyToDisruption"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>flyToDisruption(disruption: DisruptionBase)</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="586"
-                            class="link-to-prism">src/app/components/train-map/train-map.component.ts:586</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>disruption</td>
-                                    <td>
-                                            <code>DisruptionBase</code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                    </div>
-                    <div class="io-description">
-                        
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="flyToStation"></a>
-                    <span class="name">
-                        <b>
-                            flyToStation
-                        </b>
-                        <a href="#flyToStation"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>flyToStation(station: Station)</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="569"
-                            class="link-to-prism">src/app/components/train-map/train-map.component.ts:569</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Fly to a station and open a station popup</p>
-</div>
-
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>station</td>
-                                    <td>
-                                            <code>Station</code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                    <td>
-                                        <p>The station</p>
-
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                    </div>
-                    <div class="io-description">
-                        
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
                     <a name="getActiveTrainsAndDetails"></a>
                     <span class="name">
                         <b>
@@ -1004,8 +836,8 @@ Set train icons when data is received</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="492"
-                            class="link-to-prism">src/app/components/train-map/train-map.component.ts:492</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="470"
+                            class="link-to-prism">src/app/components/train-map/train-map.component.ts:470</a></div>
                 </td>
             </tr>
 
@@ -1097,8 +929,8 @@ Set train icons when data is received</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="549"
-                            class="link-to-prism">src/app/components/train-map/train-map.component.ts:549</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="527"
+                            class="link-to-prism">src/app/components/train-map/train-map.component.ts:527</a></div>
                 </td>
             </tr>
 
@@ -1175,8 +1007,8 @@ then add the trains to the map with GeoJSON</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="114"
-                            class="link-to-prism">src/app/components/train-map/train-map.component.ts:114</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="115"
+                            class="link-to-prism">src/app/components/train-map/train-map.component.ts:115</a></div>
                 </td>
             </tr>
 
@@ -1184,7 +1016,6 @@ then add the trains to the map with GeoJSON</p>
             <tr>
                 <td class="col-md-4">
                     <div class="io-description"><p>Set <a href="updateTrainsTimer">updateTrainsTimer</a> and <a href="progressNum">progressNum</a>
-Fly to station when <a href="HeaderEventsService.currentSelectedStation">HeaderEventsService.currentSelectedStation</a> receives an event
 Fly to station when this component is reused and navigated to from another component with extra state parameters</p>
 </div>
 
@@ -1858,8 +1689,8 @@ Fly to station when this component is reused and navigated to from another compo
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="440"
-                            class="link-to-prism">src/app/components/train-map/train-map.component.ts:440</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="418"
+                            class="link-to-prism">src/app/components/train-map/train-map.component.ts:418</a></div>
                 </td>
             </tr>
 
@@ -1945,7 +1776,7 @@ Add train to map with GeoJSON if icons already have been added</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="70" class="link-to-prism">src/app/components/train-map/train-map.component.ts:70</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="75" class="link-to-prism">src/app/components/train-map/train-map.component.ts:75</a></div>
                             </td>
                         </tr>
 
@@ -1999,33 +1830,6 @@ Add train to map with GeoJSON if icons already have been added</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="88" class="link-to-prism">src/app/components/train-map/train-map.component.ts:88</a></div>
-                            </td>
-                        </tr>
-
-
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="disruptionMarkersData"></a>
-                        <span class="name">
-                            <b>
-                            disruptionMarkersData</b>
-                            <a href="#disruptionMarkersData"><span class="icon ion-ios-link"></span></a>
-                        </span>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Type : </i>    <code>GeoJSON.Feature&lt;GeoJSON.Point, DisruptionBase&gt;[]</code>
-
-                        </td>
-                    </tr>
-                        <tr>
-                            <td class="col-md-4">
                                     <div class="io-line">Defined in <a href="" data-line="89" class="link-to-prism">src/app/components/train-map/train-map.component.ts:89</a></div>
                             </td>
                         </tr>
@@ -2052,7 +1856,7 @@ Add train to map with GeoJSON if icons already have been added</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/app/components/train-map/train-map.component.ts:53</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">src/app/components/train-map/train-map.component.ts:58</a></div>
                             </td>
                         </tr>
 
@@ -2084,7 +1888,7 @@ Add train to map with GeoJSON if icons already have been added</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/app/components/train-map/train-map.component.ts:47</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/app/components/train-map/train-map.component.ts:44</a></div>
                             </td>
                         </tr>
 
@@ -2116,7 +1920,7 @@ Add train to map with GeoJSON if icons already have been added</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/app/components/train-map/train-map.component.ts:46</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/app/components/train-map/train-map.component.ts:43</a></div>
                             </td>
                         </tr>
 
@@ -2142,7 +1946,7 @@ Add train to map with GeoJSON if icons already have been added</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/app/components/train-map/train-map.component.ts:45</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/app/components/train-map/train-map.component.ts:42</a></div>
                             </td>
                         </tr>
 
@@ -2185,7 +1989,7 @@ Add train to map with GeoJSON if icons already have been added</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">src/app/components/train-map/train-map.component.ts:58</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="63" class="link-to-prism">src/app/components/train-map/train-map.component.ts:63</a></div>
                             </td>
                         </tr>
 
@@ -2218,61 +2022,7 @@ Add train to map with GeoJSON if icons already have been added</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/app/components/train-map/train-map.component.ts:51</a></div>
-                            </td>
-                        </tr>
-
-
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="selectedStationOnMapFeature"></a>
-                        <span class="name">
-                            <b>
-                            selectedStationOnMapFeature</b>
-                            <a href="#selectedStationOnMapFeature"><span class="icon ion-ios-link"></span></a>
-                        </span>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Type : </i>    <code>MapboxGeoJSONFeature</code>
-
-                        </td>
-                    </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="74" class="link-to-prism">src/app/components/train-map/train-map.component.ts:74</a></div>
-                            </td>
-                        </tr>
-
-
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="selectedTrainOnMapFeature"></a>
-                        <span class="name">
-                            <b>
-                            selectedTrainOnMapFeature</b>
-                            <a href="#selectedTrainOnMapFeature"><span class="icon ion-ios-link"></span></a>
-                        </span>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Type : </i>    <code>MapboxGeoJSONFeature</code>
-
-                        </td>
-                    </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="73" class="link-to-prism">src/app/components/train-map/train-map.component.ts:73</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/app/components/train-map/train-map.component.ts:56</a></div>
                             </td>
                         </tr>
 
@@ -2308,7 +2058,7 @@ Add train to map with GeoJSON if icons already have been added</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/app/components/train-map/train-map.component.ts:41</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/app/components/train-map/train-map.component.ts:39</a></div>
                             </td>
                         </tr>
 
@@ -2335,7 +2085,7 @@ Add train to map with GeoJSON if icons already have been added</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="82" class="link-to-prism">src/app/components/train-map/train-map.component.ts:82</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="83" class="link-to-prism">src/app/components/train-map/train-map.component.ts:83</a></div>
                             </td>
                         </tr>
 
@@ -2371,7 +2121,7 @@ Add train to map with GeoJSON if icons already have been added</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="77" class="link-to-prism">src/app/components/train-map/train-map.component.ts:77</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="78" class="link-to-prism">src/app/components/train-map/train-map.component.ts:78</a></div>
                             </td>
                         </tr>
 
@@ -2398,7 +2148,7 @@ Add train to map with GeoJSON if icons already have been added</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/app/components/train-map/train-map.component.ts:55</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/app/components/train-map/train-map.component.ts:60</a></div>
                             </td>
                         </tr>
 
@@ -2424,7 +2174,7 @@ Add train to map with GeoJSON if icons already have been added</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="97" class="link-to-prism">src/app/components/train-map/train-map.component.ts:97</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="100" class="link-to-prism">src/app/components/train-map/train-map.component.ts:100</a></div>
                             </td>
                         </tr>
 
@@ -2451,7 +2201,7 @@ Add train to map with GeoJSON if icons already have been added</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="96" class="link-to-prism">src/app/components/train-map/train-map.component.ts:96</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="99" class="link-to-prism">src/app/components/train-map/train-map.component.ts:99</a></div>
                             </td>
                         </tr>
 
@@ -2484,7 +2234,7 @@ Add train to map with GeoJSON if icons already have been added</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="98" class="link-to-prism">src/app/components/train-map/train-map.component.ts:98</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="101" class="link-to-prism">src/app/components/train-map/train-map.component.ts:101</a></div>
                             </td>
                         </tr>
 
@@ -2517,7 +2267,7 @@ Add train to map with GeoJSON if icons already have been added</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="99" class="link-to-prism">src/app/components/train-map/train-map.component.ts:99</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="102" class="link-to-prism">src/app/components/train-map/train-map.component.ts:102</a></div>
                             </td>
                         </tr>
 
@@ -2549,34 +2299,7 @@ Add train to map with GeoJSON if icons already have been added</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="100" class="link-to-prism">src/app/components/train-map/train-map.component.ts:100</a></div>
-                            </td>
-                        </tr>
-
-
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="trainMap"></a>
-                        <span class="name">
-                            <b>
-                            trainMap</b>
-                            <a href="#trainMap"><span class="icon ion-ios-link"></span></a>
-                        </span>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Type : </i>    <code>MapBoxMap</code>
-
-                        </td>
-                    </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/app/components/train-map/train-map.component.ts:44</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="103" class="link-to-prism">src/app/components/train-map/train-map.component.ts:103</a></div>
                             </td>
                         </tr>
 
@@ -2603,7 +2326,7 @@ Add train to map with GeoJSON if icons already have been added</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="93" class="link-to-prism">src/app/components/train-map/train-map.component.ts:93</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="96" class="link-to-prism">src/app/components/train-map/train-map.component.ts:96</a></div>
                             </td>
                         </tr>
 
@@ -2630,7 +2353,7 @@ Add train to map with GeoJSON if icons already have been added</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="85" class="link-to-prism">src/app/components/train-map/train-map.component.ts:85</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="86" class="link-to-prism">src/app/components/train-map/train-map.component.ts:86</a></div>
                             </td>
                         </tr>
 
@@ -2656,7 +2379,7 @@ Add train to map with GeoJSON if icons already have been added</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/app/components/train-map/train-map.component.ts:52</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/app/components/train-map/train-map.component.ts:57</a></div>
                             </td>
                         </tr>
 
@@ -2683,7 +2406,7 @@ Add train to map with GeoJSON if icons already have been added</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/app/components/train-map/train-map.component.ts:54</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">src/app/components/train-map/train-map.component.ts:59</a></div>
                             </td>
                         </tr>
 
@@ -2715,7 +2438,7 @@ Add train to map with GeoJSON if icons already have been added</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/app/components/train-map/train-map.component.ts:48</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/app/components/train-map/train-map.component.ts:45</a></div>
                             </td>
                         </tr>
 
@@ -2728,6 +2451,72 @@ Add train to map with GeoJSON if icons already have been added</p>
     <h3 id="accessors">
         Accessors
     </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="selectedTrainOnMapFeature"></a>
+                        <span class="name"><b>selectedTrainOnMapFeature</b><a href="#selectedTrainOnMapFeature"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>selectedTrainOnMapFeature()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/app/components/train-map/train-map.component.ts:48</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="selectedStationOnMapFeature"></a>
+                        <span class="name"><b>selectedStationOnMapFeature</b><a href="#selectedStationOnMapFeature"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>selectedStationOnMapFeature()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/app/components/train-map/train-map.component.ts:51</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="disruptionMarkersData"></a>
+                        <span class="name"><b>disruptionMarkersData</b><a href="#disruptionMarkersData"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>disruptionMarkersData()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="91" class="link-to-prism">src/app/components/train-map/train-map.component.ts:91</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
         <table class="table table-sm table-bordered">
             <tbody>
                 <tr>
@@ -2769,16 +2558,14 @@ Add train to map with GeoJSON if icons already have been added</p>
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit, ViewChild } from &quot;@angular/core&quot;;
 import { TrainMapType } from &quot;../../models/TrainMapType&quot;;
 import { forkJoin, from, interval, Observable, PartialObserver, Subject, zip } from &quot;rxjs&quot;;
-import { map, mergeMap } from &quot;rxjs/operators&quot;;
+import { mergeMap } from &quot;rxjs/operators&quot;;
 import { pausable, PausableObservable } from &quot;rxjs-pausable&quot;;
-import { ApiService } from &quot;../../services/api.service&quot;;
 import { HelperFunctionsService } from &quot;../../services/helper-functions.service&quot;;
 import { GeoJSON, MultiLineString } from &quot;geojson&quot;;
 import { environment } from &quot;../../../environments/environment&quot;;
-import * as Jimp from &quot;jimp&quot;;
+import Jimp from &quot;jimp&quot;;
 import {
 	EventData,
-	LngLatLike,
 	Map as MapBoxMap,
 	MapboxEvent,
 	MapboxGeoJSONFeature,
@@ -2787,12 +2574,12 @@ import {
 	MapSourceDataEvent,
 	SymbolLayout,
 } from &quot;mapbox-gl&quot;;
-import { HeaderEventsService } from &quot;../../services/header-events.service&quot;;
 import { NavigationEnd, NavigationStart, Router } from &quot;@angular/router&quot;;
 import { TrainMapSidebarComponent } from &quot;../train-map-sidebar/train-map-sidebar.component&quot;;
 import { DisruptionBase, DisruptionsList, Station, StationsResponse } from &quot;../../models/ReisinformatieAPI&quot;;
 import { SpoortkaartFeatureCollection, TrainTracksGeoJSON } from &quot;../../models/SpoortkaartAPI&quot;;
-import { DetailedTrainInformation, Train, TrainIconOnMap, TrainInformation } from &quot;../../models/VirtualTrainAPI&quot;;
+import { DetailedTrainInformation, TrainIconOnMap } from &quot;../../models/VirtualTrainAPI&quot;;
+import { SharedDataService } from &quot;../../services/shared-data.service&quot;;
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires,@typescript-eslint/no-unsafe-assignment
 const replaceColor &#x3D; require(&quot;replace-color&quot;);
@@ -2809,11 +2596,18 @@ export class TrainMapComponent implements OnInit {
 	@ViewChild(TrainMapSidebarComponent) sidebar: TrainMapSidebarComponent;
 
 	// MapBox setup
-	trainMap: MapBoxMap;
 	mapStyle &#x3D; environment.MAPBOX_STYLE;
 	lng &#x3D; 5.476;
 	lat &#x3D; 52.1284;
 	zoom &#x3D; 6.73;
+
+	// Map popups
+	get selectedTrainOnMapFeature(): MapboxGeoJSONFeature {
+		return this.sharedDataService.selectedTrainOnMapFeature;
+	}
+	get selectedStationOnMapFeature(): MapboxGeoJSONFeature {
+		return this.sharedDataService.selectedStationOnMapFeature;
+	}
 
 	// Update data countdown
 	private progressNum &#x3D; 100;
@@ -2837,10 +2631,6 @@ export class TrainMapComponent implements OnInit {
 	];
 	activeMapType: TrainMapType &#x3D; this.mapTypes[0];
 
-	// Map popups
-	selectedTrainOnMapFeature: MapboxGeoJSONFeature;
-	selectedStationOnMapFeature: MapboxGeoJSONFeature;
-
 	// Station layer
 	stationsLayerLayout: SymbolLayout &#x3D; {
 		&quot;icon-image&quot;: &quot;NS&quot;,
@@ -2854,8 +2644,10 @@ export class TrainMapComponent implements OnInit {
 
 	// Disruptions layer
 	disruptedTrainTracksLayerData: GeoJSON.FeatureCollection&lt;MultiLineString&gt;;
-	disruptionMarkersData: GeoJSON.Feature&lt;GeoJSON.Point, DisruptionBase&gt;[];
 	actualDisruptions: DisruptionsList;
+	get disruptionMarkersData(): GeoJSON.Feature&lt;GeoJSON.Point, DisruptionBase&gt;[] {
+		return this.sharedDataService.disruptionMarkersData;
+	}
 
 	// Trains layer
 	trainsLayerData: GeoJSON.FeatureCollection&lt;GeoJSON.Geometry&gt;;
@@ -2868,15 +2660,13 @@ export class TrainMapComponent implements OnInit {
 	trainIconsForMap: TrainIconOnMap[] &#x3D; [];
 
 	constructor(
-		private apiService: ApiService,
+		private sharedDataService: SharedDataService,
 		private helperFunctions: HelperFunctionsService,
-		private headerEventsService: HeaderEventsService,
 		private router: Router
 	) {}
 
 	/**
 	 * Set {@link updateTrainsTimer} and {@link progressNum}
-	 * Fly to station when {@link HeaderEventsService.currentSelectedStation} receives an event
 	 * Fly to station when this component is reused and navigated to from another component with extra state parameters
 	 */
 	ngOnInit(): void {
@@ -2899,7 +2689,6 @@ export class TrainMapComponent implements OnInit {
 			},
 		};
 		this.updateTrainsTimer.subscribe(this.timerObserver);
-		this.headerEventsService.currentSelectedStation.subscribe((station) &#x3D;&gt; this.flyToStation(station));
 
 		this.router.events.subscribe((event) &#x3D;&gt; {
 			if (event instanceof NavigationStart) {
@@ -2909,7 +2698,7 @@ export class TrainMapComponent implements OnInit {
 				const navigationState &#x3D; this.router.getCurrentNavigation().extras.state;
 				if (navigationState) {
 					if (navigationState.station) {
-						this.flyToStation(navigationState.station);
+						this.sharedDataService.flyToStation(navigationState.station);
 					}
 				}
 			}
@@ -2953,13 +2742,13 @@ export class TrainMapComponent implements OnInit {
 	 * @param trainMap information about the map on load
 	 */
 	onMapLoad(trainMap: MapBoxMap): void {
-		this.trainMap &#x3D; trainMap;
+		this.sharedDataService.trainMap &#x3D; trainMap;
 		this.isUpdatingMapData &#x3D; true;
 		zip(
-			this.apiService.getBasicInformationAboutAllStations(),
-			this.apiService.getTrainTracksGeoJSON(),
-			this.apiService.getDisruptedTrainTracksGeoJSON(),
-			this.apiService.getActualDisruptions()
+			this.sharedDataService.getBasicInformationAboutAllStations(),
+			this.sharedDataService.getTrainTracksGeoJSON(),
+			this.sharedDataService.getDisruptedTrainTracksGeoJSON(),
+			this.sharedDataService.getActiveDisruptions()
 		).subscribe({
 			next: (value: [StationsResponse, TrainTracksGeoJSON, TrainTracksGeoJSON, DisruptionsList]) &#x3D;&gt; {
 				console.log(value);
@@ -3042,7 +2831,7 @@ export class TrainMapComponent implements OnInit {
 			/* eslint-enable @typescript-eslint/no-unsafe-assignment */
 			stationInformation &#x3D; stationInformation as Station;
 			selectedFeature.properties &#x3D; stationInformation;
-			this.selectedStationOnMapFeature &#x3D; selectedFeature;
+			this.sharedDataService.selectedStationOnMapFeature &#x3D; selectedFeature;
 		}
 	}
 
@@ -3059,7 +2848,7 @@ export class TrainMapComponent implements OnInit {
 				basicTrainInformation.trainDetails &#x3D; JSON.parse(basicTrainInformation.trainDetails);
 			}
 			selectedFeature.properties &#x3D; basicTrainInformation;
-			this.selectedTrainOnMapFeature &#x3D; selectedFeature;
+			this.sharedDataService.selectedTrainOnMapFeature &#x3D; selectedFeature;
 		}
 	}
 
@@ -3067,8 +2856,8 @@ export class TrainMapComponent implements OnInit {
 	 * Close all popups
 	 */
 	closePopup(): void {
-		this.selectedTrainOnMapFeature &#x3D; null;
-		this.selectedStationOnMapFeature &#x3D; null;
+		this.sharedDataService.selectedTrainOnMapFeature &#x3D; null;
+		this.sharedDataService.selectedStationOnMapFeature &#x3D; null;
 	}
 
 	/**
@@ -3099,11 +2888,11 @@ export class TrainMapComponent implements OnInit {
 	}
 
 	_updateTrainPopupInformation(): void {
-		if (this.selectedTrainOnMapFeature) {
-			const selectedFeature &#x3D; this.selectedTrainOnMapFeature;
+		if (this.sharedDataService.selectedTrainOnMapFeature) {
+			const selectedFeature &#x3D; this.sharedDataService.selectedTrainOnMapFeature;
 			const oldTrainInformation &#x3D; selectedFeature.properties as DetailedTrainInformation;
 			const rideId &#x3D; oldTrainInformation.ritId;
-			const queriedFeatures &#x3D; this.trainMap.querySourceFeatures(&quot;trainData&quot;, {
+			const queriedFeatures &#x3D; this.sharedDataService.trainMap.querySourceFeatures(&quot;trainData&quot;, {
 				filter: [&quot;&#x3D;&#x3D;&quot;, [&quot;get&quot;, &quot;ritId&quot;], rideId],
 			});
 			if (queriedFeatures) {
@@ -3126,7 +2915,7 @@ export class TrainMapComponent implements OnInit {
 	}
 
 	setDisruptionMarkers(): void {
-		this.disruptionMarkersData &#x3D; [];
+		this.sharedDataService.disruptionMarkersData &#x3D; [];
 		console.log(this.disruptedTrainTracksLayerData.features.length);
 
 		const uniqueDisruptions: GeoJSON.Feature&lt;MultiLineString, { [p: string]: any }&gt;[] &#x3D; [];
@@ -3144,7 +2933,7 @@ export class TrainMapComponent implements OnInit {
 			);
 			if (disruptionInfo) {
 				const linePart &#x3D; feature.geometry.coordinates[0];
-				this.disruptionMarkersData.push({
+				this.sharedDataService.disruptionMarkersData.push({
 					type: &quot;Feature&quot;,
 					properties: disruptionInfo,
 					geometry: {
@@ -3167,37 +2956,15 @@ export class TrainMapComponent implements OnInit {
 	getActiveTrainsAndDetails(): void {
 		this.isUpdatingMapData &#x3D; true;
 		this.pauseOrResumeUpdatingTrainPositions(true);
-		let allTrainInformation: DetailedTrainInformation[];
-		this.apiService
-			.getBasicInformationAboutAllTrains()
-			.pipe(
-				mergeMap((trains) &#x3D;&gt; {
-					allTrainInformation &#x3D; trains.payload.treinen;
-					let trainIds &#x3D; &quot;&quot;;
-					trains.payload.treinen.forEach((train) &#x3D;&gt; {
-						trainIds +&#x3D; train.ritId + &quot;,&quot;;
-					});
-					trainIds &#x3D; trainIds.slice(0, -1);
-					return this.apiService.getTrainDetailsByRideId(trainIds);
-				}),
-				map((trainDetails) &#x3D;&gt; {
-					allTrainInformation.forEach((basicTrain) &#x3D;&gt; {
-						basicTrain.trainDetails &#x3D; trainDetails.find(
-							(details) &#x3D;&gt; details.ritnummer.toString() &#x3D;&#x3D;&#x3D; basicTrain.ritId
-						);
-					});
-					return allTrainInformation;
-				})
-			)
-			.subscribe({
-				next: (detailedTrainInformation) &#x3D;&gt; {
-					console.log(detailedTrainInformation);
-					this.setTrainIconName(detailedTrainInformation);
-				},
-				error: (err) &#x3D;&gt; {
-					console.log(err);
-				},
-			});
+		this.sharedDataService.getDetailedInformationAboutActiveTrains().subscribe({
+			next: (detailedTrainInformation) &#x3D;&gt; {
+				console.log(detailedTrainInformation);
+				this.setTrainIconName(detailedTrainInformation);
+			},
+			error: (err) &#x3D;&gt; {
+				console.log(err);
+			},
+		});
 	}
 
 	/**
@@ -3329,45 +3096,12 @@ export class TrainMapComponent implements OnInit {
 			},
 		});
 	}
-
-	/**
-	 * Fly to a station and open a station popup
-	 * @param station The station
-	 */
-	flyToStation(station: Station): void {
-		if (this.trainMap &amp;&amp; station) {
-			this.trainMap.flyTo({
-				center: [station.lng, station.lat],
-				zoom: 15,
-			});
-			this.trainMap.once(&quot;moveend&quot;, () &#x3D;&gt; {
-				const features &#x3D; this.trainMap.queryRenderedFeatures(null, { layers: [&quot;stations&quot;] });
-				if (features.length &gt; 0) {
-					const selectedFeature: MapboxGeoJSONFeature &#x3D; features[0];
-					selectedFeature.properties &#x3D; station;
-					this.selectedStationOnMapFeature &#x3D; selectedFeature;
-				}
-			});
-		}
-	}
-
-	flyToDisruption(disruption: DisruptionBase): void {
-		if (this.trainMap &amp;&amp; disruption) {
-			const marker &#x3D; this.disruptionMarkersData.find((m) &#x3D;&gt; m.properties &#x3D;&#x3D;&#x3D; disruption);
-			if (marker) {
-				this.trainMap.flyTo({
-					center: marker.geometry.coordinates as LngLatLike,
-					zoom: 11,
-				});
-			}
-		}
-	}
 }
 </code></pre>
     </div>
 
     <div class="tab-pane fade " id="c-templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;div&gt;
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;mat-typography&quot;&gt;
 	&lt;div style&#x3D;&quot;height: 100%; z-index: 100&quot;&gt;
 		&lt;mgl-map
 			[style]&#x3D;&quot;mapStyle&quot;
@@ -3383,6 +3117,12 @@ export class TrainMapComponent implements OnInit {
       (sourceData)&#x3D;&quot;onMapSourceData($event)&quot;
 		&gt;
       &lt;mgl-control mglNavigation position&#x3D;&quot;top-right&quot;&gt;&lt;/mgl-control&gt;
+      &lt;mgl-control
+        mglGeolocate
+        [trackUserLocation]&#x3D;&quot;true&quot;
+        [fitBoundsOptions]&#x3D;&quot;{maxZoom:10}&quot;
+        position&#x3D;&quot;top-right&quot;
+      &gt;&lt;/mgl-control&gt;
 			&lt;mgl-layer
 				*ngIf&#x3D;&quot;stationsLayerData&quot;
 				id&#x3D;&quot;stations&quot;
@@ -3589,8 +3329,6 @@ export class TrainMapComponent implements OnInit {
 	&lt;div&gt;
     &lt;div id&#x3D;&quot;sidebar&quot; *ngIf&#x3D;&quot;actualDisruptions&quot;&gt;
       &lt;app-train-map-sidebar
-        [disruptions]&#x3D;&quot;actualDisruptions&quot;
-        (flyToDisruption)&#x3D;&quot;flyToDisruption($event)&quot;
         (clickOnArrow)&#x3D;&quot;sidebar.changeState()&quot;
       &gt;&lt;/app-train-map-sidebar&gt;
     &lt;/div&gt;
@@ -3693,7 +3431,7 @@ mgl-map
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div>	<div style="height: 100%; z-index: 100">		<mgl-map			[style]="mapStyle"			[zoom]="[zoom]"			[center]="[lng, lat]"			[maxBounds]="[				[-5.1804575292, 45.9339846217],				[15.0276942887, 56.0902661419]			]"			(load)="onMapLoad($event)"			(mouseMove)="onMapMouseMove($event)"			(zoomEvt)="onMapZoom($event)"      (sourceData)="onMapSourceData($event)"		>      <mgl-control mglNavigation position="top-right"></mgl-control>			<mgl-layer				*ngIf="stationsLayerData"				id="stations"				type="symbol"				[source]="{ type: \'geojson\', data: stationsLayerData }"				[layout]="{					\'icon-image\': \'NS\',					\'icon-size\': 0.15,					\'icon-allow-overlap\': true				}"				[minzoom]="10"				(click)="openStationPopupOnLayerClick($event)"			>			</mgl-layer>			<mgl-layer				*ngIf="trainTracksLayerData"				id="NSTrainTracks"				type="line"				[source]="{ type: \'geojson\', data: trainTracksLayerData }"				[layout]="{ \'line-join\': \'round\', \'line-cap\': \'round\' }"				[paint]="{ \'line-color\': \'#9C9CA6\', \'line-width\': 2 }"				[before]="\'stations\'"			>			</mgl-layer>			<mgl-layer				*ngIf="disruptedTrainTracksLayerData"				id="disruptedTrainTracks"				type="line"				[source]="{ type: \'geojson\', data: disruptedTrainTracksLayerData }"				[layout]="{					visibility: activeMapType.layerId === \'storingen-railroad\' ? \'visible\' : \'none\',					\'line-join\': \'round\',					\'line-cap\': \'round\'				}"				[paint]="{ \'line-color\': \'#fe0000\', \'line-width\': 2 }"				[before]="\'stations\'"			>			</mgl-layer>        <mgl-geojson-source id="disruptionMarkersSource">          <mgl-marker            *ngFor="let disruptionMarker of disruptionMarkersData"            [lngLat]="disruptionMarker.geometry.coordinates"          >            <div              style="pointer-events: auto"              [ngStyle]="{ display: activeMapType.layerId === \'storingen-railroad\' ? \'unset\' : \'none\' }"            >              <div                id="mapPopup"                class="flex-parent-inline flex-parent--center-cross flex-parent--column absolute bottom"              >                <div                  class="mapPopupContent mapPopupContent--disruption color-white shadow-darken10 round txt-s clip txt-truncate"                >                  <div                    *ngIf="disruptionMarker.properties[\'type\'] === \'werkzaamheid\'; else elseDisruption"                  >                    <img                      src="../../../assets/maintenance--35x35.svg"                      alt="Werk aan het spoor"                      style="position: inherit; height: 30px"                    />                  </div>                  <ng-template #elseDisruption>                    <img                      src="../../../assets/alert--35x35.svg"                      alt="Storing"                      style="position: inherit; height: 30px"                  /></ng-template>                </div>                <span class="flex-child triangle triangle--d" style="color: #fe0000"></span>              </div>            </div>          </mgl-marker>        </mgl-geojson-source>			<mgl-layer				*ngIf="disruptionMarkersData"				id="symbols"				type="symbol"				source="disruptionMarkersSource"				(click)="clickMarker($event)"			>			</mgl-layer>			<mgl-geojson-source *ngIf="trainsLayerData" id="trainData" [data]="trainsLayerData"> </mgl-geojson-source>			<mgl-layer				*ngIf="trainsLayerData && trainIconsForMap"				id="trains"				type="symbol"				source="trainData"				[layout]="{					visibility: activeMapType.layerId === \'ns-railroad\' ? \'visible\' : \'none\',					\'icon-image\': [\'get\', \'trainIconName\'],					\'icon-size\': 0.4,					\'icon-allow-overlap\': true,					\'icon-ignore-placement\': true				}"				[minzoom]="6"				[maxzoom]="20"				(click)="openTrainPopupOnLayerClick($event)"			>			</mgl-layer>			<div *ngIf="trainIconsForMap">				<mgl-image					*ngFor="let trainIcon of trainIconsForMap"					[id]="trainIcon.imageName"					[url]="trainIcon.imageObjectURL"					(loaded)="onIconLoad(trainIcon.imageName)"					(error)="onIconLoad(trainIcon.imageName)"				></mgl-image>			</div>			<mgl-popup				*ngIf="selectedTrainOnMapFeature"				[offset]="[0, 5]"				[closeButton]="false"				[lngLat]="selectedTrainOnMapFeature?.geometry?.coordinates"			>				<app-train-popup [mapboxFeature]="selectedTrainOnMapFeature" (closePopup)="closePopup()" >				</app-train-popup>			</mgl-popup>			<mgl-popup				*ngIf="selectedStationOnMapFeature"				[offset]="[0, 5]"				[closeButton]="false"				[lngLat]="selectedStationOnMapFeature?.geometry?.coordinates"			>				<app-station-popup [mapboxFeature]="selectedStationOnMapFeature" (closePopup)="closePopup()">				</app-station-popup>			</mgl-popup>		</mgl-map>		<div id="mapControls" *ngIf="true; else loadingMap">			<div id="mapTypeControl" class="toggle-group border border--2 border--white bg-white shadow-darken10 z1">				<div class="toggle-container mb-0" *ngFor="let mapType of mapTypes">					<label [htmlFor]="mapType.layerId" hidden></label>					<input						[id]="mapType.layerId"						class="mapTypeInput"						name="toggle"						type="radio"						[checked]="mapType.layerId == activeMapType.layerId"						[disabled]="isUpdatingMapData"					/>					<div						class="mapTypeToggle toggle txt-s py3 toggle--active-white"						(click)="changeMapLayerType(mapType)"					>						{{ mapType.name }}					</div>				</div>			</div>			<div				id="playPauseButton"				class="border border--2 border--white bg-white shadow-darken10 z1"				(click)="pauseOrResumeUpdatingTrainPositions(!updateTrainsIsPaused)"			>				<div class="row">					<div id="updatePositionsLabel" class="toggle txt-s">Update posities</div>					<div						id="playPauseIconButton"						*ngIf="							isUpdatingMapData === false || updateTrainsIsPaused === false;							else updatingMapDataSpinner						"					>						<button mat-icon-button>							<mat-icon								*ngIf="									updateTrainsIsPaused === false && isUpdatingMapData === false;									else playCircleIcon								"							>								pause_circle_filled							</mat-icon>							<ng-template #playCircleIcon>								<mat-icon>play_circle_filled</mat-icon>							</ng-template>						</button>					</div>					<ng-template #updatingMapDataSpinner>						<div id="updatingMapDataSpinner" class="spinner-border spinner-border-sm" role="status">							<span class="sr-only">Loading...</span>						</div>					</ng-template>				</div>				<div id="updatePositionsProgressbar">					<div class="progress" style="height: 12px; border-radius: 6px">						<div							class="progress-bar"							role="progressbar"							[ngStyle]="{ width: getProgress }"							style="background-color: #003082"							aria-valuemin="0"							aria-valuemax="100"						></div>					</div>				</div>			</div>		</div>		<ng-template #loadingMap>			<div class="loader" style="z-index: 1">				<div class="bar"></div>			</div>		</ng-template>	</div>	<div>    <div id="sidebar" *ngIf="actualDisruptions">      <app-train-map-sidebar        [disruptions]="actualDisruptions"        (flyToDisruption)="flyToDisruption($event)"        (clickOnArrow)="sidebar.changeState()"      ></app-train-map-sidebar>    </div>  </div></div></div>'
+        var COMPONENT_TEMPLATE = '<div><div class="mat-typography">	<div style="height: 100%; z-index: 100">		<mgl-map			[style]="mapStyle"			[zoom]="[zoom]"			[center]="[lng, lat]"			[maxBounds]="[				[-5.1804575292, 45.9339846217],				[15.0276942887, 56.0902661419]			]"			(load)="onMapLoad($event)"			(mouseMove)="onMapMouseMove($event)"			(zoomEvt)="onMapZoom($event)"      (sourceData)="onMapSourceData($event)"		>      <mgl-control mglNavigation position="top-right"></mgl-control>      <mgl-control        mglGeolocate        [trackUserLocation]="true"        [fitBoundsOptions]="{maxZoom:10}"        position="top-right"      ></mgl-control>			<mgl-layer				*ngIf="stationsLayerData"				id="stations"				type="symbol"				[source]="{ type: \'geojson\', data: stationsLayerData }"				[layout]="{					\'icon-image\': \'NS\',					\'icon-size\': 0.15,					\'icon-allow-overlap\': true				}"				[minzoom]="10"				(click)="openStationPopupOnLayerClick($event)"			>			</mgl-layer>			<mgl-layer				*ngIf="trainTracksLayerData"				id="NSTrainTracks"				type="line"				[source]="{ type: \'geojson\', data: trainTracksLayerData }"				[layout]="{ \'line-join\': \'round\', \'line-cap\': \'round\' }"				[paint]="{ \'line-color\': \'#9C9CA6\', \'line-width\': 2 }"				[before]="\'stations\'"			>			</mgl-layer>			<mgl-layer				*ngIf="disruptedTrainTracksLayerData"				id="disruptedTrainTracks"				type="line"				[source]="{ type: \'geojson\', data: disruptedTrainTracksLayerData }"				[layout]="{					visibility: activeMapType.layerId === \'storingen-railroad\' ? \'visible\' : \'none\',					\'line-join\': \'round\',					\'line-cap\': \'round\'				}"				[paint]="{ \'line-color\': \'#fe0000\', \'line-width\': 2 }"				[before]="\'stations\'"			>			</mgl-layer>        <mgl-geojson-source id="disruptionMarkersSource">          <mgl-marker            *ngFor="let disruptionMarker of disruptionMarkersData"            [lngLat]="disruptionMarker.geometry.coordinates"          >            <div              style="pointer-events: auto"              [ngStyle]="{ display: activeMapType.layerId === \'storingen-railroad\' ? \'unset\' : \'none\' }"            >              <div                id="mapPopup"                class="flex-parent-inline flex-parent--center-cross flex-parent--column absolute bottom"              >                <div                  class="mapPopupContent mapPopupContent--disruption color-white shadow-darken10 round txt-s clip txt-truncate"                >                  <div                    *ngIf="disruptionMarker.properties[\'type\'] === \'werkzaamheid\'; else elseDisruption"                  >                    <img                      src="../../../assets/maintenance--35x35.svg"                      alt="Werk aan het spoor"                      style="position: inherit; height: 30px"                    />                  </div>                  <ng-template #elseDisruption>                    <img                      src="../../../assets/alert--35x35.svg"                      alt="Storing"                      style="position: inherit; height: 30px"                  /></ng-template>                </div>                <span class="flex-child triangle triangle--d" style="color: #fe0000"></span>              </div>            </div>          </mgl-marker>        </mgl-geojson-source>			<mgl-layer				*ngIf="disruptionMarkersData"				id="symbols"				type="symbol"				source="disruptionMarkersSource"				(click)="clickMarker($event)"			>			</mgl-layer>			<mgl-geojson-source *ngIf="trainsLayerData" id="trainData" [data]="trainsLayerData"> </mgl-geojson-source>			<mgl-layer				*ngIf="trainsLayerData && trainIconsForMap"				id="trains"				type="symbol"				source="trainData"				[layout]="{					visibility: activeMapType.layerId === \'ns-railroad\' ? \'visible\' : \'none\',					\'icon-image\': [\'get\', \'trainIconName\'],					\'icon-size\': 0.4,					\'icon-allow-overlap\': true,					\'icon-ignore-placement\': true				}"				[minzoom]="6"				[maxzoom]="20"				(click)="openTrainPopupOnLayerClick($event)"			>			</mgl-layer>			<div *ngIf="trainIconsForMap">				<mgl-image					*ngFor="let trainIcon of trainIconsForMap"					[id]="trainIcon.imageName"					[url]="trainIcon.imageObjectURL"					(loaded)="onIconLoad(trainIcon.imageName)"					(error)="onIconLoad(trainIcon.imageName)"				></mgl-image>			</div>			<mgl-popup				*ngIf="selectedTrainOnMapFeature"				[offset]="[0, 5]"				[closeButton]="false"				[lngLat]="selectedTrainOnMapFeature?.geometry?.coordinates"			>				<app-train-popup [mapboxFeature]="selectedTrainOnMapFeature" (closePopup)="closePopup()" >				</app-train-popup>			</mgl-popup>			<mgl-popup				*ngIf="selectedStationOnMapFeature"				[offset]="[0, 5]"				[closeButton]="false"				[lngLat]="selectedStationOnMapFeature?.geometry?.coordinates"			>				<app-station-popup [mapboxFeature]="selectedStationOnMapFeature" (closePopup)="closePopup()">				</app-station-popup>			</mgl-popup>		</mgl-map>		<div id="mapControls" *ngIf="true; else loadingMap">			<div id="mapTypeControl" class="toggle-group border border--2 border--white bg-white shadow-darken10 z1">				<div class="toggle-container mb-0" *ngFor="let mapType of mapTypes">					<label [htmlFor]="mapType.layerId" hidden></label>					<input						[id]="mapType.layerId"						class="mapTypeInput"						name="toggle"						type="radio"						[checked]="mapType.layerId == activeMapType.layerId"						[disabled]="isUpdatingMapData"					/>					<div						class="mapTypeToggle toggle txt-s py3 toggle--active-white"						(click)="changeMapLayerType(mapType)"					>						{{ mapType.name }}					</div>				</div>			</div>			<div				id="playPauseButton"				class="border border--2 border--white bg-white shadow-darken10 z1"				(click)="pauseOrResumeUpdatingTrainPositions(!updateTrainsIsPaused)"			>				<div class="row">					<div id="updatePositionsLabel" class="toggle txt-s">Update posities</div>					<div						id="playPauseIconButton"						*ngIf="							isUpdatingMapData === false || updateTrainsIsPaused === false;							else updatingMapDataSpinner						"					>						<button mat-icon-button>							<mat-icon								*ngIf="									updateTrainsIsPaused === false && isUpdatingMapData === false;									else playCircleIcon								"							>								pause_circle_filled							</mat-icon>							<ng-template #playCircleIcon>								<mat-icon>play_circle_filled</mat-icon>							</ng-template>						</button>					</div>					<ng-template #updatingMapDataSpinner>						<div id="updatingMapDataSpinner" class="spinner-border spinner-border-sm" role="status">							<span class="sr-only">Loading...</span>						</div>					</ng-template>				</div>				<div id="updatePositionsProgressbar">					<div class="progress" style="height: 12px; border-radius: 6px">						<div							class="progress-bar"							role="progressbar"							[ngStyle]="{ width: getProgress }"							style="background-color: #003082"							aria-valuemin="0"							aria-valuemax="100"						></div>					</div>				</div>			</div>		</div>		<ng-template #loadingMap>			<div class="loader" style="z-index: 1">				<div class="bar"></div>			</div>		</ng-template>	</div>	<div>    <div id="sidebar" *ngIf="actualDisruptions">      <app-train-map-sidebar        (clickOnArrow)="sidebar.changeState()"      ></app-train-map-sidebar>    </div>  </div></div></div>'
     var COMPONENTS = [{'name': 'AllStationsComponent', 'selector': 'app-all-stations'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'CalamityItemComponent', 'selector': 'app-calamity-item'},{'name': 'DisruptionItemComponent', 'selector': 'app-disruption-item'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'MainLayoutComponent', 'selector': 'app-main-layout'},{'name': 'StationPopupComponent', 'selector': 'app-station-popup'},{'name': 'TrainMapComponent', 'selector': 'app-train-map'},{'name': 'TrainMapSidebarComponent', 'selector': 'app-train-map-sidebar'},{'name': 'TrainPopupComponent', 'selector': 'app-train-popup'}];
     var DIRECTIVES = [{'name': 'NgbdSortableHeaderDirective', 'selector': '[appNgbdSortableHeader]'}];
     var ACTUAL_COMPONENT = {'name': 'TrainMapComponent'};

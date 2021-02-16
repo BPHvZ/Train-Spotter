@@ -193,6 +193,54 @@
     </table>
 </section>
 
+    <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(helperFunctions: <a href="../injectables/HelperFunctionsService.html">HelperFunctionsService</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/components/train-popup/train-popup.component.ts:15</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>helperFunctions</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/HelperFunctionsService.html" target="_self" >HelperFunctionsService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
 
     <section>
     <h3 id="inputs">Inputs</h3>
@@ -212,7 +260,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/app/components/train-popup/train-popup.component.ts:12</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/app/components/train-popup/train-popup.component.ts:13</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -236,7 +284,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/app/components/train-popup/train-popup.component.ts:11</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/app/components/train-popup/train-popup.component.ts:12</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -271,8 +319,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="24"
-                            class="link-to-prism">src/app/components/train-popup/train-popup.component.ts:24</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="27"
+                            class="link-to-prism">src/app/components/train-popup/train-popup.component.ts:27</a></div>
                 </td>
             </tr>
 
@@ -310,8 +358,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="16"
-                            class="link-to-prism">src/app/components/train-popup/train-popup.component.ts:16</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="19"
+                            class="link-to-prism">src/app/components/train-popup/train-popup.component.ts:19</a></div>
                 </td>
             </tr>
 
@@ -389,7 +437,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/components/train-popup/train-popup.component.ts:14</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/components/train-popup/train-popup.component.ts:15</a></div>
                             </td>
                         </tr>
 
@@ -416,7 +464,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/app/components/train-popup/train-popup.component.ts:13</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/components/train-popup/train-popup.component.ts:14</a></div>
                             </td>
                         </tr>
 
@@ -432,6 +480,7 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, Input, Output, OnChanges, SimpleChanges, EventEmitter } from &quot;@angular/core&quot;;
 import { MapboxGeoJSONFeature } from &quot;mapbox-gl&quot;;
 import { DetailedTrainInformation } from &quot;../../models/VirtualTrainAPI&quot;;
+import { HelperFunctionsService } from &quot;../../services/helper-functions.service&quot;;
 
 @Component({
 	selector: &quot;app-train-popup&quot;,
@@ -444,6 +493,8 @@ export class TrainPopupComponent implements OnChanges {
 	trainInformation: DetailedTrainInformation;
 	directionArrowStyle: Map&lt;string, any&gt; &#x3D; new Map&lt;string, any&gt;();
 
+	constructor(private helperFunctions: HelperFunctionsService) {}
+
 	ngOnChanges(changes: SimpleChanges): void {
 		console.log(changes);
 		if (changes.mapboxFeature.currentValue) {
@@ -453,21 +504,14 @@ export class TrainPopupComponent implements OnChanges {
 	}
 
 	getTypeOfTrain(): string {
-		const type &#x3D; this.trainInformation.type;
-		if (type &#x3D;&#x3D;&#x3D; &quot;SPR&quot;) {
-			return &quot;Sprinter&quot;;
-		} else if (type &#x3D;&#x3D;&#x3D; &quot;IC&quot;) {
-			return &quot;Intercity&quot;;
-		} else {
-			return type;
-		}
+		return this.helperFunctions.getTypeOfTrain(this.trainInformation);
 	}
 }
 </code></pre>
     </div>
 
     <div class="tab-pane fade " id="c-templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;div style&#x3D;&quot;pointer-events: auto&quot; *ngIf&#x3D;&quot;trainInformation&quot;&gt;
+        <pre class="line-numbers"><code class="language-html">&lt;div style&#x3D;&quot;pointer-events: auto&quot; *ngIf&#x3D;&quot;trainInformation&quot; class&#x3D;&quot;mat-typography&quot;&gt;
 	&lt;div id&#x3D;&quot;mapPopup&quot; class&#x3D;&quot;flex-parent-inline flex-parent--center-cross flex-parent--column absolute bottom&quot;&gt;
 		&lt;div
 			class&#x3D;&quot;mapPopupContent color-white shadow-darken10 round txt-s clip txt-truncate&quot;
@@ -481,7 +525,7 @@ export class TrainPopupComponent implements OnChanges {
 								&lt;strong&gt;
 									{{ trainInformation.trainDetails?.vervoerder }} {{ getTypeOfTrain() }} trein {{
                   trainInformation.ritId }}
-									&lt;strong
+									&lt;span
 										*ngFor&#x3D;&quot;
 											let trainPart of trainInformation.trainDetails?.materieeldelen;
 											let i &#x3D; index
@@ -491,15 +535,15 @@ export class TrainPopupComponent implements OnChanges {
 											&lt;span *ngIf&#x3D;&quot;i &#x3D;&#x3D; 0; else other&quot;&gt; met {{ trainPart.materieelnummer }}&lt;/span&gt;
 											&lt;ng-template #other&gt;{{i &#x3D;&#x3D; (trainInformation.trainDetails.materieeldelen.length - 1) ? &#x27; en&#x27; : &#x27;,&#x27;}} {{ trainPart.materieelnummer }}&lt;/ng-template&gt;
 										&lt;/span&gt;
-									&lt;/strong&gt;
+									&lt;/span&gt;
 								&lt;/strong&gt;
 							&lt;/h3&gt;
 							&lt;button
-								class&#x3D;&quot;button button--nsYellow&quot;
-								style&#x3D;&quot;margin-left: 10px; padding: 12px 10px 15px 10px&quot;
+								class&#x3D;&quot;button button--nsYellow button--close&quot;
+								style&#x3D;&quot;margin-left: 10px&quot;
 								(click)&#x3D;&quot;closePopup.emit()&quot;
 							&gt;
-								&lt;strong&gt;&amp;times;&lt;/strong&gt;
+                &lt;strong&gt;&amp;times;&lt;/strong&gt;
 							&lt;/button&gt;
 						&lt;/div&gt;
 						&lt;div class&#x3D;&quot;row&quot; style&#x3D;&quot;align-items: center&quot;&gt;
@@ -554,20 +598,6 @@ export class TrainPopupComponent implements OnChanges {
 #rotateArrow
   transform: rotate(calc(360deg * var(--rotation)))
 
-//#trainPopup
-//  margin-left: 0
-//  transform: translate(-50%, 0px)
-//
-//#popupContent
-//  background-color: $ns-blue
-//  padding: 20px
-//  width: max-content
-
-//.tooltip-close
-//  position: absolute
-//  top: 10px
-//  right: 10px
-
 </code></pre>
     </div>
 
@@ -596,7 +626,7 @@ export class TrainPopupComponent implements OnChanges {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div style="pointer-events: auto" *ngIf="trainInformation">	<div id="mapPopup" class="flex-parent-inline flex-parent--center-cross flex-parent--column absolute bottom">		<div			class="mapPopupContent color-white shadow-darken10 round txt-s clip txt-truncate"			style="width: fit-content"		>			<div class="container-fluid d-flex">				<div class="row" style="justify-content: space-between">					<div class="col">						<div class="row d-flex justify-content-between" style="width: max-content">							<h3 style="margin: unset">								<strong>									{{ trainInformation.trainDetails?.vervoerder }} {{ getTypeOfTrain() }} trein {{                  trainInformation.ritId }}									<strong										*ngFor="											let trainPart of trainInformation.trainDetails?.materieeldelen;											let i = index										"									>										<span *ngIf="trainPart.materieelnummer">											<span *ngIf="i == 0; else other"> met {{ trainPart.materieelnummer }}</span>											<ng-template #other>{{i == (trainInformation.trainDetails.materieeldelen.length - 1) ? \' en\' : \',\'}} {{ trainPart.materieelnummer }}</ng-template>										</span>									</strong>								</strong>							</h3>							<button								class="button button--nsYellow"								style="margin-left: 10px; padding: 12px 10px 15px 10px"								(click)="closePopup.emit()"							>								<strong>&times;</strong>							</button>						</div>						<div class="row" style="align-items: center">							<span style="padding-right: 10px">Snelheid: {{ trainInformation.snelheid | number:\'1.0-2\' }} km/u</span>							<span class="material-icons" [ngStyle]="directionArrowStyle">arrow_right_alt</span>							<span>{{ trainInformation.richting }}&deg;</span>						</div>						<div class="row" *ngIf="trainInformation.trainDetails?.materieeldelen && trainInformation.trainDetails?.materieeldelen[0]?.afbeelding">							<div id="carousel">								<div									class="slide"									*ngFor="let railcar of trainInformation.trainDetails.materieeldelen; let isLast = last"								>									<img										[src]="railcar.afbeelding"										alt="Trein"										height="45"										[ngClass]="{ \'pr-2\': isLast }"									/>								</div>							</div>						</div>					</div>				</div>			</div>		</div>		<span class="flex-child triangle triangle--d" style="color: #00337f"></span>	</div></div></div>'
+        var COMPONENT_TEMPLATE = '<div><div style="pointer-events: auto" *ngIf="trainInformation" class="mat-typography">	<div id="mapPopup" class="flex-parent-inline flex-parent--center-cross flex-parent--column absolute bottom">		<div			class="mapPopupContent color-white shadow-darken10 round txt-s clip txt-truncate"			style="width: fit-content"		>			<div class="container-fluid d-flex">				<div class="row" style="justify-content: space-between">					<div class="col">						<div class="row d-flex justify-content-between" style="width: max-content">							<h3 style="margin: unset">								<strong>									{{ trainInformation.trainDetails?.vervoerder }} {{ getTypeOfTrain() }} trein {{                  trainInformation.ritId }}									<span										*ngFor="											let trainPart of trainInformation.trainDetails?.materieeldelen;											let i = index										"									>										<span *ngIf="trainPart.materieelnummer">											<span *ngIf="i == 0; else other"> met {{ trainPart.materieelnummer }}</span>											<ng-template #other>{{i == (trainInformation.trainDetails.materieeldelen.length - 1) ? \' en\' : \',\'}} {{ trainPart.materieelnummer }}</ng-template>										</span>									</span>								</strong>							</h3>							<button								class="button button--nsYellow button--close"								style="margin-left: 10px"								(click)="closePopup.emit()"							>                <strong>&times;</strong>							</button>						</div>						<div class="row" style="align-items: center">							<span style="padding-right: 10px">Snelheid: {{ trainInformation.snelheid | number:\'1.0-2\' }} km/u</span>							<span class="material-icons" [ngStyle]="directionArrowStyle">arrow_right_alt</span>							<span>{{ trainInformation.richting }}&deg;</span>						</div>						<div class="row" *ngIf="trainInformation.trainDetails?.materieeldelen && trainInformation.trainDetails?.materieeldelen[0]?.afbeelding">							<div id="carousel">								<div									class="slide"									*ngFor="let railcar of trainInformation.trainDetails.materieeldelen; let isLast = last"								>									<img										[src]="railcar.afbeelding"										alt="Trein"										height="45"										[ngClass]="{ \'pr-2\': isLast }"									/>								</div>							</div>						</div>					</div>				</div>			</div>		</div>		<span class="flex-child triangle triangle--d" style="color: #00337f"></span>	</div></div></div>'
     var COMPONENTS = [{'name': 'AllStationsComponent', 'selector': 'app-all-stations'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'CalamityItemComponent', 'selector': 'app-calamity-item'},{'name': 'DisruptionItemComponent', 'selector': 'app-disruption-item'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'MainLayoutComponent', 'selector': 'app-main-layout'},{'name': 'StationPopupComponent', 'selector': 'app-station-popup'},{'name': 'TrainMapComponent', 'selector': 'app-train-map'},{'name': 'TrainMapSidebarComponent', 'selector': 'app-train-map-sidebar'},{'name': 'TrainPopupComponent', 'selector': 'app-train-popup'}];
     var DIRECTIVES = [{'name': 'NgbdSortableHeaderDirective', 'selector': '[appNgbdSortableHeader]'}];
     var ACTUAL_COMPONENT = {'name': 'TrainPopupComponent'};

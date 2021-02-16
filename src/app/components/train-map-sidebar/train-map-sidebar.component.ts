@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, Output } from "@angular/core";
 import { trigger, state, style, animate, transition, animateChild, query, group } from "@angular/animations";
 import { AnimationEvent } from "@angular/animations";
 import { Disruption, DisruptionsList } from "../../models/ReisinformatieAPI";
+import { SharedDataService } from "../../services/shared-data.service";
 
 @Component({
 	selector: "app-train-map-sidebar",
@@ -50,11 +51,16 @@ import { Disruption, DisruptionsList } from "../../models/ReisinformatieAPI";
 	],
 })
 export class TrainMapSidebarComponent {
-	@Input() disruptions: DisruptionsList;
 	@Output() closeSidebar = new EventEmitter();
-	@Output() flyToDisruption = new EventEmitter<Disruption>();
 	@Output() clickOnArrow = new EventEmitter<boolean>();
+
+	get disruptions(): DisruptionsList {
+		return this.sharedDataService.activeDisruptions;
+	}
+
 	sidebarState = "closed";
+
+	constructor(private sharedDataService: SharedDataService) {}
 
 	changeState(): void {
 		this.sidebarState = this.sidebarState === "closed" ? "open" : "closed";
@@ -71,6 +77,6 @@ export class TrainMapSidebarComponent {
 	 * @param disruption Fly to this disruption
 	 */
 	flyToDisruptionOnMap(disruption: Disruption): void {
-		this.flyToDisruption.emit(disruption);
+		this.sharedDataService.flyToDisruption(disruption);
 	}
 }

@@ -1,0 +1,132 @@
+@import "colors";
+
+//  Grid & container metrics
+// ---------------------------------------------------------------------------
+
+$global--grid-gutter: 28px;
+$global--grid-halfgutter: $global--grid-gutter / 2;
+$global--grid-quartergutter: $global--grid-gutter / 4;
+
+$global--container-content-width: 1200px - $global--grid-gutter;
+$container-extended-width: 1400px;
+$container-full-width: 100%;
+
+
+
+//  Global component metrics
+// ---------------------------------------------------------------------------
+
+$global--full-viewport-height-fallback: 100vh;
+$global--full-viewport-height: calc(var(--vh, 1vh) * 100);
+$global--header-height: 60px;
+$global--section-spacing: 60px;
+
+$global--logo-height: 20px;
+$global--logo-width: 52px;
+
+$hero-overlap--mobile--default: 90px;
+$hero-overlap--mobile--homepage: 60px;
+$hero-overlap--tablet--default: 125px;
+$hero-overlap--tablet--homepage: 80px;
+
+$tile-space: 32px;
+
+$min-viewport-width : 320px;
+
+$headerItem-width-small: 100%;
+$headerItem-width-medium: 265px;
+$headerItem-width-large: 280px;
+
+$border-radius: 4px;
+
+
+//  Global color assignments
+// ---------------------------------------------------------------------------
+
+$list-bullet-color: $ns-yellow;
+$body-color: $black;
+$link-color: $ns-light-blue;
+$link-focus-outline-color: $ns-grey-60;
+$link-hover-color: $ns-blue;
+$box-shadow-focus: 0 0 0 1px $ns-light-blue, 0 2px 28px rgba($ns-black, 0.1);
+
+
+
+// Base typography styling
+// ---------------------------------------------------------------------------
+
+$body-background-color: $ns-grey-90;
+$body-color: $ns-grey;
+$heading-color: $ns-blue;
+$font-size-base: 16px;
+$font-size-percentage-mobile: 0.875;
+
+$line-height-step: 5px;
+$line-height-base: 5 * $line-height-step; //25px
+$line-height-small: 4 * $line-height-step; //20px
+$default-margin-bottom: 4 * $line-height-step; //25px
+$heading-margin-bottom: $line-height-step;
+
+
+
+
+//  Default fonts.
+// ---------------------------------------------------------------------------
+
+$font-heading: "NS Sans", "Segoe UI", Myriad, Verdana, sans-serif;
+$font-normal: "NS Sans", "Segoe UI", Myriad, Verdana, sans-serif;
+$font-fallback: "Segoe UI", Myriad, Verdana, sans-serif;
+
+
+
+// Form elements
+// ---------------------------------------------------------------------------
+
+$form-element-height: 45px;
+$form-element-font-size: 16px;
+$form-element-line-height: 25px;
+$form-element-vertical-space : ($form-element-height - $form-element-line-height)/2;
+
+
+
+// Icon-sizes
+// ---------------------------------------------------------------------------
+
+$icon-size-small: 25px;
+$icon-size-base: 35px;
+$icon-size-large: 50px;
+$icon-size-xlarge: 70px;
+$icon-padding: 7px;
+$icon-padding-small: 5px;
+$icon-padding-large: 10px;
+$icon-padding-xlarge: 14px;
+
+
+
+// Graphic-sizes
+// ---------------------------------------------------------------------------
+
+$tilegraphic-size-base: 75px;
+$tilegraphic-size-large: 100px;
+
+
+// Reusable transparent pixel data-uri
+// ---------------------------------------------------------------------------
+
+$global--transparentpixel: url('data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7');
+
+
+//Image sizes on viewports
+$video-thumb-height-large: 172px;
+$video-thumb-height-medium: 248px;
+$video-thumb-height-small: 200px;
+
+
+
+// Animation
+// ---------------------------------------------------------------------------
+$ease: cubic-bezier(0.700, 0.270, 0.270, 1);
+$easeInOutExpo: cubic-bezier(1.000, 0.000, 0.000, 1);
+$ease-out: cubic-bezier(0.200, 0.900, 0.400, 1);
+$fade-all: all 300ms $ease;
+$fade-link: all 200ms $ease;

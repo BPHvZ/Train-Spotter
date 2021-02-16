@@ -1,4 +1,4 @@
-<div style="pointer-events: auto" *ngIf="trainInformation">
+<div style="pointer-events: auto" *ngIf="trainInformation" class="mat-typography">
 	<div id="mapPopup" class="flex-parent-inline flex-parent--center-cross flex-parent--column absolute bottom">
 		<div
 			class="mapPopupContent color-white shadow-darken10 round txt-s clip txt-truncate"
@@ -12,7 +12,7 @@
 								<strong>
 									{{ trainInformation.trainDetails?.vervoerder }} {{ getTypeOfTrain() }} trein {{
                   trainInformation.ritId }}
-									<strong
+									<span
 										*ngFor="
 											let trainPart of trainInformation.trainDetails?.materieeldelen;
 											let i = index
@@ -22,15 +22,15 @@
 											<span *ngIf="i == 0; else other"> met {{ trainPart.materieelnummer }}</span>
 											<ng-template #other>{{i == (trainInformation.trainDetails.materieeldelen.length - 1) ? ' en' : ','}} {{ trainPart.materieelnummer }}</ng-template>
 										</span>
-									</strong>
+									</span>
 								</strong>
 							</h3>
 							<button
-								class="button button--nsYellow"
-								style="margin-left: 10px; padding: 12px 10px 15px 10px"
+								class="button button--nsYellow button--close"
+								style="margin-left: 10px"
 								(click)="closePopup.emit()"
 							>
-								<strong>&times;</strong>
+                <strong>&times;</strong>
 							</button>
 						</div>
 						<div class="row" style="align-items: center">

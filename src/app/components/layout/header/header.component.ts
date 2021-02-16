@@ -1,11 +1,14 @@
-import { Component } from "@angular/core";
-import { ApiService } from "../../../services/api.service";
+import { Component, ElementRef, ViewChild } from "@angular/core";
 import { Observable, of } from "rxjs";
 import { catchError, debounceTime, distinctUntilChanged, switchMap, tap } from "rxjs/operators";
 import { NgbTypeaheadSelectItemEvent } from "@ng-bootstrap/ng-bootstrap";
-import { HeaderEventsService } from "../../../services/header-events.service";
 import { Router } from "@angular/router";
 import { Station } from "../../../models/ReisinformatieAPI";
+import { GlobalSearchResult, GlobalSearchResultType } from "../../../models/GlobalSearch";
+import { GlobalSearchService } from "../../../services/global-search.service";
+import { DetailedTrainInformation, Train } from "../../../models/VirtualTrainAPI";
+import { SharedDataService } from "../../../services/shared-data.service";
+import { faCrosshairs } from "@fortawesome/free-solid-svg-icons";
 
 /**
  * Header with links to pages and a dropdown to search for stations
@@ -16,36 +19,70 @@ import { Station } from "../../../models/ReisinformatieAPI";
 	styleUrls: ["./header.component.sass"],
 })
 export class HeaderComponent {
-	searching = false;
-	searchFailed = false;
+	@ViewChild("globalTypeahead") globalTypeahead: ElementRef;
+
+	faCrosshairs = faCrosshairs;
+
+	searchingStations = false;
+	searchStationsFailed = false;
+
+	searchingGlobally = false;
+	searchGloballyFailed = false;
 
 	constructor(
-		private apiService: ApiService,
-		private headerEventsService: HeaderEventsService,
+		private sharedDataService: SharedDataService,
+		private globalSearchService: GlobalSearchService,
 		private router: Router
 	) {}
+
+	get allDataLoaded(): boolean {
+		return this.sharedDataService.allDataLoaded;
+	}
 
 	/**
 	 * Search stations on name or abbreviation
 	 * @param text$ Input text
 	 * @return List of stations
 	 */
-	search = (text$: Observable<string>): Observable<Station[]> =>
+	searchStations = (text$: Observable<string>): Observable<Station[]> =>
 		text$.pipe(
 			debounceTime(300),
 			distinctUntilChanged(),
-			tap(() => (this.searching = true)),
+			tap(() => (this.searchingStations = true)),
 			switchMap(
 				(term: string): Observable<Station[]> =>
-					this.apiService.searchForStation(term).pipe(
-						tap(() => (this.searchFailed = false)),
+					this.globalSearchService.searchForStation(term).pipe(
+						tap(() => (this.searchStationsFailed = false)),
 						catchError(() => {
-							this.searchFailed = true;
+							this.searchStationsFailed = true;
 							return of([]);
 						})
 					)
 			),
-			tap(() => (this.searching = false))
+			tap(() => (this.searchingStations = false))
+		);
+
+	/**
+	 * Search stations on name or abbreviation
+	 * @param text$ Input text
+	 * @return List of stations
+	 */
+	searchGlobally = (text$: Observable<string>): Observable<GlobalSearchResult[]> =>
+		text$.pipe(
+			debounceTime(600),
+			distinctUntilChanged(),
+			tap(() => (this.searchingGlobally = true)),
+			switchMap(
+				(term: string): Observable<GlobalSearchResult[]> =>
+					this.globalSearchService.globalSearch(term).pipe(
+						tap(() => (this.searchGloballyFailed = false)),
+						catchError(() => {
+							this.searchGloballyFailed = true;
+							return of([]);
+						})
+					)
+			),
+			tap(() => (this.searchingGlobally = false))
 		);
 
 	/**
@@ -63,7 +100,24 @@ export class HeaderComponent {
 	 */
 	selectStationFromSearch(event: NgbTypeaheadSelectItemEvent): void {
 		event.preventDefault();
-		this.headerEventsService.selectStation(event.item);
+		this.sharedDataService.flyToStation(event.item);
+	}
+
+	selectItemFromGlobalSearch(event: NgbTypeaheadSelectItemEvent): void {
+		event.preventDefault();
+		const result = event.item as GlobalSearchResult;
+		// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+		this.globalTypeahead.nativeElement.value = result.searchField;
+		switch (result.resultType) {
+			case GlobalSearchResultType.Train: {
+				this.sharedDataService.flyToTrain(result.result as DetailedTrainInformation);
+				break;
+			}
+			case GlobalSearchResultType.Station: {
+				this.sharedDataService.flyToStation(result.result as Station);
+				break;
+			}
+		}
 	}
 
 	/**
@@ -71,5 +125,13 @@ export class HeaderComponent {
 	 */
 	navigateToAllStations(): void {
 		void this.router.navigateByUrl("stations");
+	}
+
+	flyToTrainOnMap(train: DetailedTrainInformation): void {
+		this.sharedDataService.flyToTrain(train);
+	}
+
+	flyToStationOnMap(station: Station): void {
+		this.sharedDataService.flyToStation(station);
 	}
 }

@@ -1,16 +1,14 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
 import { TrainMapType } from "../../models/TrainMapType";
 import { forkJoin, from, interval, Observable, PartialObserver, Subject, zip } from "rxjs";
-import { map, mergeMap } from "rxjs/operators";
+import { mergeMap } from "rxjs/operators";
 import { pausable, PausableObservable } from "rxjs-pausable";
-import { ApiService } from "../../services/api.service";
 import { HelperFunctionsService } from "../../services/helper-functions.service";
 import { GeoJSON, MultiLineString } from "geojson";
 import { environment } from "../../../environments/environment";
 import Jimp from "jimp";
 import {
 	EventData,
-	LngLatLike,
 	Map as MapBoxMap,
 	MapboxEvent,
 	MapboxGeoJSONFeature,
@@ -19,12 +17,12 @@ import {
 	MapSourceDataEvent,
 	SymbolLayout,
 } from "mapbox-gl";
-import { HeaderEventsService } from "../../services/header-events.service";
 import { NavigationEnd, NavigationStart, Router } from "@angular/router";
 import { TrainMapSidebarComponent } from "../train-map-sidebar/train-map-sidebar.component";
 import { DisruptionBase, DisruptionsList, Station, StationsResponse } from "../../models/ReisinformatieAPI";
 import { SpoortkaartFeatureCollection, TrainTracksGeoJSON } from "../../models/SpoortkaartAPI";
-import { DetailedTrainInformation, Train, TrainIconOnMap, TrainInformation } from "../../models/VirtualTrainAPI";
+import { DetailedTrainInformation, TrainIconOnMap } from "../../models/VirtualTrainAPI";
+import { SharedDataService } from "../../services/shared-data.service";
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires,@typescript-eslint/no-unsafe-assignment
 const replaceColor = require("replace-color");
@@ -41,11 +39,18 @@ export class TrainMapComponent implements OnInit {
 	@ViewChild(TrainMapSidebarComponent) sidebar: TrainMapSidebarComponent;
 
 	// MapBox setup
-	trainMap: MapBoxMap;
 	mapStyle = environment.MAPBOX_STYLE;
 	lng = 5.476;
 	lat = 52.1284;
 	zoom = 6.73;
+
+	// Map popups
+	get selectedTrainOnMapFeature(): MapboxGeoJSONFeature {
+		return this.sharedDataService.selectedTrainOnMapFeature;
+	}
+	get selectedStationOnMapFeature(): MapboxGeoJSONFeature {
+		return this.sharedDataService.selectedStationOnMapFeature;
+	}
 
 	// Update data countdown
 	private progressNum = 100;
@@ -69,10 +74,6 @@ export class TrainMapComponent implements OnInit {
 	];
 	activeMapType: TrainMapType = this.mapTypes[0];
 
-	// Map popups
-	selectedTrainOnMapFeature: MapboxGeoJSONFeature;
-	selectedStationOnMapFeature: MapboxGeoJSONFeature;
-
 	// Station layer
 	stationsLayerLayout: SymbolLayout = {
 		"icon-image": "NS",
@@ -86,8 +87,10 @@ export class TrainMapComponent implements OnInit {
 
 	// Disruptions layer
 	disruptedTrainTracksLayerData: GeoJSON.FeatureCollection<MultiLineString>;
-	disruptionMarkersData: GeoJSON.Feature<GeoJSON.Point, DisruptionBase>[];
 	actualDisruptions: DisruptionsList;
+	get disruptionMarkersData(): GeoJSON.Feature<GeoJSON.Point, DisruptionBase>[] {
+		return this.sharedDataService.disruptionMarkersData;
+	}
 
 	// Trains layer
 	trainsLayerData: GeoJSON.FeatureCollection<GeoJSON.Geometry>;
@@ -100,15 +103,13 @@ export class TrainMapComponent implements OnInit {
 	trainIconsForMap: TrainIconOnMap[] = [];
 
 	constructor(
-		private apiService: ApiService,
+		private sharedDataService: SharedDataService,
 		private helperFunctions: HelperFunctionsService,
-		private headerEventsService: HeaderEventsService,
 		private router: Router
 	) {}
 
 	/**
 	 * Set {@link updateTrainsTimer} and {@link progressNum}
-	 * Fly to station when {@link HeaderEventsService.currentSelectedStation} receives an event
 	 * Fly to station when this component is reused and navigated to from another component with extra state parameters
 	 */
 	ngOnInit(): void {
@@ -131,7 +132,6 @@ export class TrainMapComponent implements OnInit {
 			},
 		};
 		this.updateTrainsTimer.subscribe(this.timerObserver);
-		this.headerEventsService.currentSelectedStation.subscribe((station) => this.flyToStation(station));
 
 		this.router.events.subscribe((event) => {
 			if (event instanceof NavigationStart) {
@@ -141,7 +141,7 @@ export class TrainMapComponent implements OnInit {
 				const navigationState = this.router.getCurrentNavigation().extras.state;
 				if (navigationState) {
 					if (navigationState.station) {
-						this.flyToStation(navigationState.station);
+						this.sharedDataService.flyToStation(navigationState.station);
 					}
 				}
 			}
@@ -185,13 +185,13 @@ export class TrainMapComponent implements OnInit {
 	 * @param trainMap information about the map on load
 	 */
 	onMapLoad(trainMap: MapBoxMap): void {
-		this.trainMap = trainMap;
+		this.sharedDataService.trainMap = trainMap;
 		this.isUpdatingMapData = true;
 		zip(
-			this.apiService.getBasicInformationAboutAllStations(),
-			this.apiService.getTrainTracksGeoJSON(),
-			this.apiService.getDisruptedTrainTracksGeoJSON(),
-			this.apiService.getActualDisruptions()
+			this.sharedDataService.getBasicInformationAboutAllStations(),
+			this.sharedDataService.getTrainTracksGeoJSON(),
+			this.sharedDataService.getDisruptedTrainTracksGeoJSON(),
+			this.sharedDataService.getActiveDisruptions()
 		).subscribe({
 			next: (value: [StationsResponse, TrainTracksGeoJSON, TrainTracksGeoJSON, DisruptionsList]) => {
 				console.log(value);
@@ -274,7 +274,7 @@ export class TrainMapComponent implements OnInit {
 			/* eslint-enable @typescript-eslint/no-unsafe-assignment */
 			stationInformation = stationInformation as Station;
 			selectedFeature.properties = stationInformation;
-			this.selectedStationOnMapFeature = selectedFeature;
+			this.sharedDataService.selectedStationOnMapFeature = selectedFeature;
 		}
 	}
 
@@ -291,7 +291,7 @@ export class TrainMapComponent implements OnInit {
 				basicTrainInformation.trainDetails = JSON.parse(basicTrainInformation.trainDetails);
 			}
 			selectedFeature.properties = basicTrainInformation;
-			this.selectedTrainOnMapFeature = selectedFeature;
+			this.sharedDataService.selectedTrainOnMapFeature = selectedFeature;
 		}
 	}
 
@@ -299,8 +299,8 @@ export class TrainMapComponent implements OnInit {
 	 * Close all popups
 	 */
 	closePopup(): void {
-		this.selectedTrainOnMapFeature = null;
-		this.selectedStationOnMapFeature = null;
+		this.sharedDataService.selectedTrainOnMapFeature = null;
+		this.sharedDataService.selectedStationOnMapFeature = null;
 	}
 
 	/**
@@ -331,11 +331,11 @@ export class TrainMapComponent implements OnInit {
 	}
 
 	_updateTrainPopupInformation(): void {
-		if (this.selectedTrainOnMapFeature) {
-			const selectedFeature = this.selectedTrainOnMapFeature;
+		if (this.sharedDataService.selectedTrainOnMapFeature) {
+			const selectedFeature = this.sharedDataService.selectedTrainOnMapFeature;
 			const oldTrainInformation = selectedFeature.properties as DetailedTrainInformation;
 			const rideId = oldTrainInformation.ritId;
-			const queriedFeatures = this.trainMap.querySourceFeatures("trainData", {
+			const queriedFeatures = this.sharedDataService.trainMap.querySourceFeatures("trainData", {
 				filter: ["==", ["get", "ritId"], rideId],
 			});
 			if (queriedFeatures) {
@@ -358,7 +358,7 @@ export class TrainMapComponent implements OnInit {
 	}
 
 	setDisruptionMarkers(): void {
-		this.disruptionMarkersData = [];
+		this.sharedDataService.disruptionMarkersData = [];
 		console.log(this.disruptedTrainTracksLayerData.features.length);
 
 		const uniqueDisruptions: GeoJSON.Feature<MultiLineString, { [p: string]: any }>[] = [];
@@ -376,7 +376,7 @@ export class TrainMapComponent implements OnInit {
 			);
 			if (disruptionInfo) {
 				const linePart = feature.geometry.coordinates[0];
-				this.disruptionMarkersData.push({
+				this.sharedDataService.disruptionMarkersData.push({
 					type: "Feature",
 					properties: disruptionInfo,
 					geometry: {
@@ -399,37 +399,15 @@ export class TrainMapComponent implements OnInit {
 	getActiveTrainsAndDetails(): void {
 		this.isUpdatingMapData = true;
 		this.pauseOrResumeUpdatingTrainPositions(true);
-		let allTrainInformation: DetailedTrainInformation[];
-		this.apiService
-			.getBasicInformationAboutAllTrains()
-			.pipe(
-				mergeMap((trains) => {
-					allTrainInformation = trains.payload.treinen;
-					let trainIds = "";
-					trains.payload.treinen.forEach((train) => {
-						trainIds += train.ritId + ",";
-					});
-					trainIds = trainIds.slice(0, -1);
-					return this.apiService.getTrainDetailsByRideId(trainIds);
-				}),
-				map((trainDetails) => {
-					allTrainInformation.forEach((basicTrain) => {
-						basicTrain.trainDetails = trainDetails.find(
-							(details) => details.ritnummer.toString() === basicTrain.ritId
-						);
-					});
-					return allTrainInformation;
-				})
-			)
-			.subscribe({
-				next: (detailedTrainInformation) => {
-					console.log(detailedTrainInformation);
-					this.setTrainIconName(detailedTrainInformation);
-				},
-				error: (err) => {
-					console.log(err);
-				},
-			});
+		this.sharedDataService.getDetailedInformationAboutActiveTrains().subscribe({
+			next: (detailedTrainInformation) => {
+				console.log(detailedTrainInformation);
+				this.setTrainIconName(detailedTrainInformation);
+			},
+			error: (err) => {
+				console.log(err);
+			},
+		});
 	}
 
 	/**
@@ -560,38 +538,5 @@ export class TrainMapComponent implements OnInit {
 				this.isUpdatingMapData = false;
 			},
 		});
-	}
-
-	/**
-	 * Fly to a station and open a station popup
-	 * @param station The station
-	 */
-	flyToStation(station: Station): void {
-		if (this.trainMap && station) {
-			this.trainMap.flyTo({
-				center: [station.lng, station.lat],
-				zoom: 15,
-			});
-			this.trainMap.once("moveend", () => {
-				const features = this.trainMap.queryRenderedFeatures(null, { layers: ["stations"] });
-				if (features.length > 0) {
-					const selectedFeature: MapboxGeoJSONFeature = features[0];
-					selectedFeature.properties = station;
-					this.selectedStationOnMapFeature = selectedFeature;
-				}
-			});
-		}
-	}
-
-	flyToDisruption(disruption: DisruptionBase): void {
-		if (this.trainMap && disruption) {
-			const marker = this.disruptionMarkersData.find((m) => m.properties === disruption);
-			if (marker) {
-				this.trainMap.flyTo({
-					center: marker.geometry.coordinates as LngLatLike,
-					zoom: 11,
-				});
-			}
-		}
 	}
 }

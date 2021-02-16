@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Point, FeatureCollection, Feature } from "geojson";
+import { DetailedTrainInformation } from "../models/VirtualTrainAPI";
 
 @Injectable({
 	providedIn: "root",
@@ -40,5 +41,16 @@ export class HelperFunctionsService {
 		});
 
 		return featureCollection;
+	}
+
+	getTypeOfTrain(train: DetailedTrainInformation): string {
+		const type = train.type;
+		if (type === "SPR") {
+			return "Sprinter";
+		} else if (type === "IC") {
+			return "Intercity";
+		} else {
+			return type;
+		}
 	}
 }

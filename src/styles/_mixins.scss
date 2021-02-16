@@ -1,0 +1,431 @@
+// ***************************************************************************
+//
+// Mixins & placeholder classes
+//
+// ***************************************************************************
+
+
+// ---------------------------------------------------------------------------
+//  Generates a standard NS shadow
+//  This means: no blur, 0px x-distance, 2px y-distance. Color black. Opacity
+//  can vary, but has a default value of 0.15.
+//
+//  $opacity:       opacity of the shadow (default 0.15)
+//  $position:      position of the shadow ('top' or 'bottom')
+//
+// ---------------------------------------------------------------------------
+
+@mixin ns-box-shadow($opacity: 0.15, $position: bottom) {
+    @if ($position == bottom) {
+        box-shadow: 0 toRem(2px) 0 0 transparentize($ns-grey, (1-$opacity));
+    }
+    @else {
+        box-shadow: 0 toRem(-2px) 0 0 transparentize($ns-grey, (1-$opacity));
+    }
+}
+
+@mixin ns-text-shadow($opacity: 0.15, $position: bottom) {
+    @if ($position == bottom) {
+        text-shadow: 0 toRem(2px) toRem(2px) transparentize($black, (1-$opacity));
+    }
+    @else {
+        text-shadow: 0 toRem(-2px) toRem(2px) transparentize($black, (1-$opacity));
+    }
+}
+
+// ---------------------------------------------------------------------------
+//  Generates a standard NS separator border
+// ---------------------------------------------------------------------------
+
+@mixin separator-top() {
+    border-top: toRem(1px) solid $ns-grey-90;
+}
+
+@mixin separator-bottom() {
+    border-bottom: toRem(1px) solid $ns-grey-90;
+}
+
+
+// ---------------------------------------------------------------------------
+//  Visualyhidden
+// ---------------------------------------------------------------------------
+
+@mixin visuallyhidden {
+    position: absolute;
+    clip-path: polygon(0 0, 0 0, 0 0, 0 0);
+    width: 1px;
+    height: 1rem; // Needed to fix OSX VoiceOver issues (https://github.com/h5bp/main.css/issues/12)
+    margin: 0; // Needed to fix funky outline
+    overflow: hidden;
+    white-space: nowrap;
+
+    // IE11
+    @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+        clip: rect(1px 1px 1px 1px);
+    }
+
+    // Edge
+    @supports (-ms-ime-align: auto) {
+        & {
+            clip: rect(1px 1px 1px 1px);
+        }
+    }
+}
+
+// shows content hidden by accHide, for instance on state.
+@mixin show($position: static) {
+    position: $position;
+    clip-path: none;
+    height: auto;
+    width: auto;
+    overflow: initial;
+    white-space: initial;
+
+    // IE11
+    @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+        clip: auto;
+    }
+
+    // Edge
+    @supports (-ms-ime-align: auto) {
+        & {
+            clip: auto;
+        }
+    }
+
+}
+
+%visuallyhidden {
+    @include visuallyhidden;
+}
+
+%show {
+    @include show;
+}
+
+// ---------------------------------------------------------------------------
+//  List reset. Removes the standard styling from a ul or ol element,
+//  including the yellow dots or grey numbers and enables you to start
+//  styling the element from scratch.
+// ---------------------------------------------------------------------------
+
+%list-reset {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    & > li {
+        margin-left: 0;
+        padding-left: 0;
+    }
+}
+
+%list--secondary {
+    list-style-image: url('data:image/svg+xml;charset=US-ASCII,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22UTF-8%22%20standalone%3D%22no%22%3F%3E%3Csvg%20width%3D%228%22%20height%3D%228%22%20xmlns%3Ardf%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2F02%2F22-rdf-syntax-ns%23%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20enable-background%3D%22new%200%200%208%208%22%20xml%3Aspace%3D%22preserve%22%20viewBox%3D%220%200%208%208%22%20version%3D%221.1%22%20y%3D%220px%22%20x%3D%220px%22%20xmlns%3Acc%3D%22http%3A%2F%2Fcreativecommons.org%2Fns%23%22%20xmlns%3Adc%3D%22http%3A%2F%2Fpurl.org%2Fdc%2Felements%2F1.1%2F%22%3E%3Cmetadata%3E%3Crdf%3ARDF%3E%3Ccc%3AWork%20rdf%3Aabout%3D%22%22%3E%3Cdc%3Aformat%3Eimage%2Fsvg%20xml%3C%2Fdc%3Aformat%3E%3Cdc%3Atype%20rdf%3Aresource%3D%22http%3A%2F%2Fpurl.org%2Fdc%2Fdcmitype%2FStillImage%22%2F%3E%3Cdc%3Atitle%2F%3E%3C%2Fcc%3AWork%3E%3C%2Frdf%3ARDF%3E%3C%2Fmetadata%3E%3Crect%20fill-rule%3D%22nonzero%22%20height%3D%228%22%20width%3D%228%22%20y%3D%220%22%20x%3D%221.3739E-7%22%20fill%3D%22%23ffc917%22%2F%3E%3C%2Fsvg%3E');
+}
+
+%list--inactive {
+    list-style-image: url('data:image/svg+xml;charset=US-ASCII,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22UTF-8%22%20standalone%3D%22no%22%3F%3E%3Csvg%20width%3D%228%22%20height%3D%228%22%20xmlns%3Ardf%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2F02%2F22-rdf-syntax-ns%23%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20enable-background%3D%22new%200%200%208%208%22%20xml%3Aspace%3D%22preserve%22%20viewBox%3D%220%200%208%208%22%20version%3D%221.1%22%20y%3D%220px%22%20x%3D%220px%22%20xmlns%3Acc%3D%22http%3A%2F%2Fcreativecommons.org%2Fns%23%22%20xmlns%3Adc%3D%22http%3A%2F%2Fpurl.org%2Fdc%2Felements%2F1.1%2F%22%3E%3Cmetadata%3E%3Crdf%3ARDF%3E%3Ccc%3AWork%20rdf%3Aabout%3D%22%22%3E%3Cdc%3Aformat%3Eimage%2Fsvg%20xml%3C%2Fdc%3Aformat%3E%3Cdc%3Atype%20rdf%3Aresource%3D%22http%3A%2F%2Fpurl.org%2Fdc%2Fdcmitype%2FStillImage%22%2F%3E%3Cdc%3Atitle%2F%3E%3C%2Fcc%3AWork%3E%3C%2Frdf%3ARDF%3E%3C%2Fmetadata%3E%3Crect%20fill-rule%3D%22nonzero%22%20height%3D%228%22%20width%3D%228%22%20y%3D%220%22%20x%3D%221.3739E-7%22%20fill%3D%22%239b9ba6%22%2F%3E%3C%2Fsvg%3E');
+}
+
+// ---------------------------------------------------------------------------
+//  Horizontal align
+// ---------------------------------------------------------------------------
+@mixin horizontal-align {
+    position: relative;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%);
+}
+
+%horizontal-align {
+    @include horizontal-align;
+}
+
+// ---------------------------------------------------------------------------
+//  Horizontal align reset. Removes the styling of horizontal
+// ---------------------------------------------------------------------------
+
+@mixin horizontal-align-reset {
+    position: inherit;
+    left: auto;
+    -webkit-transform: none;
+    -ms-transform: none;
+    transform: none;
+}
+
+%horizontal-align-reset {
+    @include horizontal-align-reset;
+}
+
+
+// ---------------------------------------------------------------------------
+//  Vertical align
+// ---------------------------------------------------------------------------
+@mixin vertical-align {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+%vertical-align {
+    @include vertical-align;
+}
+
+
+// ---------------------------------------------------------------------------
+//  Clearfix
+// ---------------------------------------------------------------------------
+
+// Use clearfix if you need general clearfixing
+@mixin clearfix {
+    &:before, &:after {
+        content: "";
+        display: block;
+        height: 0;
+        overflow: hidden;
+    }
+    &:after {
+        clear: both;
+    }
+}
+
+%clearfix {
+    @include clearfix;
+}
+
+// ---------------------------------------------------------------------------
+//  Generic Anchorlink
+// ---------------------------------------------------------------------------
+
+@mixin anchorlink {
+    font-weight: bold;
+    text-decoration: none;
+    color: $ns-light-blue;
+    position: relative;
+    box-shadow: 0 toRem(-2px) 0 $ns-grey-90 inset;
+    transition: box-shadow 0.1s ease-in-out;
+
+    &:hover {
+        cursor: pointer;
+        box-shadow: 0 toRem(-2px) 0 $ns-light-blue inset;
+    }
+}
+@mixin un-anchorlink {
+
+    font-weight: inherit;
+    box-shadow: none !important;
+    &:hover {
+        box-shadow: none !important;
+    }
+}
+
+
+// ---------------------------------------------------------------------------
+//  Add a marker to an element to show it uses a deprecate class.
+//  The arguments allow annotation which class must be renamed or removed.
+// ---------------------------------------------------------------------------
+
+@mixin deprecated ($oldclass, $newclass: 'remove!') {
+
+    body.debugMode {
+        #{$oldclass} {
+            position: relative;
+            border: toRem(1px) solid red !important;
+
+            &:after {
+                position: absolute;
+                right: 0;
+                bottom: 0;
+                background: red;
+                color: $white;
+                content: $oldclass + ' \2192  ' + $newclass;
+                font-size: toRem(12px);
+                padding: toRem(2px) toRem(4px);
+                line-height: toRem(14px);
+            }
+        }
+    }
+}
+
+@mixin missingClass ($selector, $classOptions: null, $message: 'Missing classname!') {
+    body.debugMode {
+        $not: '';
+        @if ($classOptions) {
+            @each $classOption in $classOptions {
+                $not: $not + ':not(' + $classOption + ')'
+            }
+        }
+
+        #{$selector}#{$not} {
+            position: relative;
+            border: toRem(1px) solid red !important;
+
+            &:after {
+                position: absolute;
+                right: 0;
+                bottom: 0;
+                background: red;
+                color: $white;
+                content: $message;
+                font-size: toRem(12px);
+                padding: toRem(2px) toRem(4px);
+                line-height: toRem(14px);
+            }
+        }
+    }
+}
+
+
+// ---------------------------------------------------------------------------
+//  Link reset. Removes the fancy styling for a text-link in an article
+// ---------------------------------------------------------------------------
+
+%link-reset {
+    box-shadow: inherit;
+    font-weight: inherit;
+    color: inherit;
+
+    &:hover {
+        box-shadow: inherit;
+    }
+}
+
+
+
+// ---------------------------------------------------------------------------
+//  Silent classes usable to center elements
+// ---------------------------------------------------------------------------
+
+%bruteCenterBoth {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+%bruteCenterHorizontal {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 0);
+}
+
+%bruteCenterVertical {
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+}
+
+// ---------------------------------------------------------------------------
+//  Focus outline
+// ---------------------------------------------------------------------------
+%outline {
+    outline: toRem(1px) dotted $link-focus-outline-color;
+}
+
+@mixin focusOutline($target: '&', $topOffset:-10px, $rightOffset: -10px, $bottomOffset: -10px, $leftOffset: -10px, $zIndex: 1) {
+    &:focus {
+        outline: none;
+
+        #{$target} {
+            position: relative;
+            z-index: $zIndex;
+
+            &:after {
+                content: '';
+                display: block;
+                @extend %outline;
+                z-index: -1;
+                left: toRem($leftOffset);
+                right: toRem($rightOffset);
+                bottom: toRem($bottomOffset);
+                top: toRem($topOffset);
+                position: absolute;
+            }
+        }
+    }
+}
+
+/*
+ * Apply hover styling which is optimized for mobile by applying the same styling
+ * to the :active pseudo-selector instead when the user has been detected to use
+ * touch interaction.
+ *
+ * A javascript works together with this mixin to detect mouse and touch input from
+ * the user, thereby also supporting laptop and tablets which support both types
+ * of input.
+ */
+@mixin touchOptimizedHover() {
+
+    .is-touching &:active,
+    .is-mousing &:hover {
+        @content;
+    }
+}
+
+// ---------------------------------------------------------------------------
+//  Gradient mixin and presets
+// ---------------------------------------------------------------------------
+
+@mixin gradient($direction, $from, $to) {
+    &:after {
+        content: "";
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        position: absolute;
+        background-image: linear-gradient($direction, $from, $to);
+        pointer-events: none;
+    }
+}
+
+%darkGradient {
+    @include gradient(to bottom, rgba($ns-grey, 0) 36%, rgba($ns-grey, 0.55) 75%);
+}
+
+// ---------------------------------------------------------------------------
+//  yellowUnderline add transited yellow underline
+// ---------------------------------------------------------------------------
+
+@mixin yellowUnderline {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 3px;
+    border-radius: $border-radius;
+    background-color: #ffc917;
+    transform: scaleX(0);
+    opacity: 0;
+    transform-origin: 0 0;
+    transition: all 0.3s cubic-bezier(0.7, 0.27, 0.27, 1);
+}
+
+// ---------------------------------------------------------------------------
+//  blueBox add blue box around an element
+// ---------------------------------------------------------------------------
+
+@mixin blueBox($property: '::before', $offset: true) {
+    &#{$property} {
+        content: '';
+        display: block;
+        position: absolute;
+
+        @if $offset {
+            top: -4px;
+            left: -4px;
+            right: -4px;
+            bottom: -4px;
+        } @else {
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+        }
+
+        border-radius: $border-radius;
+        border: 1px solid $ns-light-blue;
+        box-shadow: $box-shadow-focus;
+    }
+}

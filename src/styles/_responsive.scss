@@ -1,0 +1,100 @@
+// ***************************************************************************
+//
+// RESPONSIVE MIXINS
+//
+// ***************************************************************************
+
+// ---------------------------------------------------------------------------
+//  Breakpoints
+// ---------------------------------------------------------------------------
+
+// the $s breakpoint value should be the default starting point
+// for all styles not encapsulated in media queries and therefore
+// should never be used!
+
+$s: 16px;
+$sm: 480px;
+$m: 640px;
+$ml: 768px;
+$l: 912px;
+$xl: 1024px;
+$xxl: 1200px;
+$xxxl: 1408px;
+
+$breakpoints: (
+    's': $s,
+    'sm': $sm,
+    'm': $m,
+    'ml': $ml,
+    'l': $l,
+    'xl': $xl,
+    'xxl': $xxl,
+    'xxxl': $xxxl
+);
+
+$min-site-width: 320px;
+
+// ---------------------------------------------------------------------------
+// Mixin for responsive behavior
+// Thanks: http://jakearchibald.github.io/sass-ie/
+// ---------------------------------------------------------------------------
+
+$fix-mqs: false !default;
+
+@mixin respond-min($width) {
+    @if $fix-mqs {
+        @if $fix-mqs >= $width {
+            @content;
+        }
+    }
+    @else {
+        @media screen and (min-width: $width) {
+            @content;
+        }
+    }
+}
+
+@mixin respond-min-width-or-height($width, $height) {
+    @media screen and (min-width: $width) {
+      @content;
+    }
+    @media screen and (min-height: $height) {
+        @content;
+    }
+}
+
+// you better have a good excuse to use this! James will come after you.
+@mixin respond-minMax($minWidth, $maxWidth) {
+    @if $fix-mqs {
+        @if $fix-mqs >= $minWidth and $fix-mqs < $maxWidth {
+            @content;
+        }
+    }
+    @else {
+        @media screen and (min-width: $minWidth) and (max-width: $maxWidth - 1px) {
+            @content;
+        }
+    }
+}
+
+// respond-max is used for desktop-first responsive styling. Which is NOT WHAT WE WANT!
+// @mixin respond-max($width) {
+//     @if $fix-mqs {
+//         @if $fix-mqs <= $width {
+//             @content;
+//         }
+//     }
+//     @else {
+//         @media screen and (max-width: $width) {
+//             @content;
+//         }
+//     }
+// }
+
+$old-ie: false !default;
+
+@mixin old-ie {
+    @if $old-ie {
+        @content;
+    }
+}

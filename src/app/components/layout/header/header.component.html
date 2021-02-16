@@ -1,4 +1,4 @@
-<header class="navbar navbar-expand-md fixed-top">
+<header class="navbar navbar-expand-md fixed-top mat-typography">
 	<div class="container-fluid">
 		<nav class="navbar">
 			<a class="navbar-brand" [routerLink]="'kaart'" style="cursor: pointer">
@@ -83,14 +83,11 @@
         <ng-template #rt let-r="result" let-t="term">
           <div [ngSwitch]="r.resultType" style="display: inline">
             <ng-container *ngSwitchCase="0"><ng-container *ngTemplateOutlet="train"></ng-container></ng-container>
-            <ng-container *ngSwitchCase="1"><ng-container *ngTemplateOutlet="train"></ng-container></ng-container>
-            <ng-container *ngSwitchCase="2"><ng-container *ngTemplateOutlet="station"></ng-container></ng-container>
+            <ng-container *ngSwitchCase="1"><ng-container *ngTemplateOutlet="station"></ng-container></ng-container>
             <ng-template #train>
               <button
-                class="button button--nsYellow"
+                class="button button--nsYellow button--crosshair"
                 style="
-              padding: 4px 6px 6px 6px;
-              float: right;
               margin-left: 8px"
                 (click)="flyToTrainOnMap(r.result)"
               >
@@ -99,10 +96,8 @@
             </ng-template>
             <ng-template #station>
               <button
-                class="button button--nsYellow"
+                class="button button--nsYellow button--crosshair"
                 style="
-              padding: 4px 6px 6px 6px;
-              float: right;
               margin-left: 8px"
                 (click)="flyToStationOnMap(r.result)"
               >
@@ -110,20 +105,22 @@
               </button>
             </ng-template>
           </div>
-          <ngb-highlight [result]="r.searchField" [term]="t"></ngb-highlight>
+          <ngb-highlight [result]="r.searchField" [term]="t" style="vertical-align: sub"></ngb-highlight>
         </ng-template>
-
-        <input
-          id="global-typeahead"
-          type="text"
-          class="form-control mr-sm-2"
-          placeholder="Rit, Treinstel, Materiaaltype, Station, Vervoerder"
-          aria-label="Search"
-          [class.is-invalid]="searchGloballyFailed"
-          [ngbTypeahead]="searchGlobally"
-          [resultFormatter]="globalSearchResultFormatter"
-          [resultTemplate]="rt"
-          [disabled]="!allDataLoaded"/>
+        <div id="scrollable-dropdown-menu">
+          <input
+            #globalTypeahead
+            id="global-typeahead"
+            type="text"
+            class="form-control mr-sm-2"
+            placeholder="Zoek trein, treinstel, station, vervoerder"
+            aria-label="Search"
+            [class.is-invalid]="searchGloballyFailed"
+            [ngbTypeahead]="searchGlobally"
+            [resultTemplate]="rt"
+            [disabled]="!allDataLoaded"
+            (selectItem)="selectItemFromGlobalSearch($event)"/>
+        </div>
         <button class="button button--nsYellow" [disabled]="!allDataLoaded">Zoek</button>
       </form>
 		</div>

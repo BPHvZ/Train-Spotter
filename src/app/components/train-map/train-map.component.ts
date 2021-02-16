@@ -1,16 +1,14 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
 import { TrainMapType } from "../../models/TrainMapType";
 import { forkJoin, from, interval, Observable, PartialObserver, Subject, zip } from "rxjs";
-import { map, mergeMap } from "rxjs/operators";
+import { mergeMap } from "rxjs/operators";
 import { pausable, PausableObservable } from "rxjs-pausable";
-import { ApiService } from "../../services/api.service";
 import { HelperFunctionsService } from "../../services/helper-functions.service";
 import { GeoJSON, MultiLineString } from "geojson";
 import { environment } from "../../../environments/environment";
 import Jimp from "jimp";
 import {
 	EventData,
-	LngLatLike,
 	Map as MapBoxMap,
 	MapboxEvent,
 	MapboxGeoJSONFeature,
@@ -19,12 +17,11 @@ import {
 	MapSourceDataEvent,
 	SymbolLayout,
 } from "mapbox-gl";
-import { HeaderEventsService } from "../../services/header-events.service";
 import { NavigationEnd, NavigationStart, Router } from "@angular/router";
 import { TrainMapSidebarComponent } from "../train-map-sidebar/train-map-sidebar.component";
 import { DisruptionBase, DisruptionsList, Station, StationsResponse } from "../../models/ReisinformatieAPI";
 import { SpoortkaartFeatureCollection, TrainTracksGeoJSON } from "../../models/SpoortkaartAPI";
-import { DetailedTrainInformation, Train, TrainIconOnMap, TrainInformation } from "../../models/VirtualTrainAPI";
+import { DetailedTrainInformation, TrainIconOnMap } from "../../models/VirtualTrainAPI";
 import { SharedDataService } from "../../services/shared-data.service";
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires,@typescript-eslint/no-unsafe-assignment
@@ -106,16 +103,13 @@ export class TrainMapComponent implements OnInit {
 	trainIconsForMap: TrainIconOnMap[] = [];
 
 	constructor(
-		// private apiService: ApiService,
 		private sharedDataService: SharedDataService,
 		private helperFunctions: HelperFunctionsService,
-		private headerEventsService: HeaderEventsService,
 		private router: Router
 	) {}
 
 	/**
 	 * Set {@link updateTrainsTimer} and {@link progressNum}
-	 * Fly to station when {@link HeaderEventsService.currentSelectedStation} receives an event
 	 * Fly to station when this component is reused and navigated to from another component with extra state parameters
 	 */
 	ngOnInit(): void {
@@ -138,9 +132,6 @@ export class TrainMapComponent implements OnInit {
 			},
 		};
 		this.updateTrainsTimer.subscribe(this.timerObserver);
-		this.headerEventsService.currentSelectedStation.subscribe((station) =>
-			this.sharedDataService.flyToStation(station)
-		);
 
 		this.router.events.subscribe((event) => {
 			if (event instanceof NavigationStart) {

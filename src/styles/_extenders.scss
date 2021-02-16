@@ -1,0 +1,201 @@
+/*
+
+Some styles will need to live in generic, but also be extendible in the seperate apps.
+TODO: find out if this 'logic' will make sense, or if we need another solution
+
+@author: Henk Jan Bouwmeester
+@added:  2014-09-10
+
+*/
+
+
+/* -----------  Generic header styles */
+
+@mixin calcHeadingTopMargin($fontsize,$lineheight) {
+   // margin-top: toRem(-( ($lineheight - $fontsize) /2 ) );
+}
+
+
+// map of font-sizes: name of fontsize, then the fontsize and number of line-height units (each 5px), for both small and medium+ browserwidths
+$fontsizes: (
+    'XXL': ( // default value for h1
+        'medium': (48px, 12),
+        'small': (36px, 9)
+    ),
+    'XL': ( // extra size
+        'medium': (38px, 9),
+        'small': (32px, 8)
+    ),
+    'L': ( // default value for h2
+        'medium': (30px, 8),
+        'small': (28px, 7)
+    ),
+    'M': ( // extra size
+        'medium': (24px, 6),
+        'small': (20px, 6)
+    ),
+    'S': ( // default value for h3
+        'medium': (20px, 5),
+        'small': (18px, 5)
+    ),
+    'XS': ( // h4, h5, h6
+        'medium': (18px, 5),
+        'small': (16px, 5)
+    ),
+    'XXS': ( // h4, h5, h6
+        'medium': (16px, 5),
+        'small': (16px, 5)
+    ),
+    'intro-text': (
+        'medium': (18px, 6),
+        'small': (18px, 6)
+    ),
+    'body-large': ( // .large NOTE: wordt deze nog wel gebruikt?
+        'medium': (18px, 5),
+        'small': (18px, 5)
+    ),
+    'body': ( // default
+        'medium': (16px, 5),
+        'small': (16px, 5)
+    ),
+    'body-small': ( // .small
+        'medium': (14px, 4),
+        'small': (14px, 4)
+    )
+);
+
+@mixin fontsize($size, $iWantToSpecifyMyOwnLineHeight: false, $iWantToSpecifyMyOwnFontSize: false) {
+    $specs: map-get($fontsizes, $size);
+
+    // small (default) font-sizing
+    $small: map-get($specs, 'small');
+    $smallFontSize: nth($small, 1);
+    $smallLineHeight: nth($small, 2) * 5px;
+
+    @if ($iWantToSpecifyMyOwnFontSize != true) {
+        font-size: toRem($smallFontSize);
+    }
+    @if ($iWantToSpecifyMyOwnLineHeight != true) {
+        line-height: toRem($smallLineHeight);
+    }
+
+    // medium+ font-sizing
+    $medium: map-get($specs, 'medium');
+    $mediumFontSize: nth($medium, 1);
+    $mediumLineHeight: nth($medium, 2) * 5px;
+
+    $mediumDiffersFromMobile: (($smallFontSize != $mediumFontSize) or ($smallLineHeight != $mediumLineHeight));
+
+    //@debug '#{$size} mediumDiffersFromMobile: #{$mediumDiffersFromMobile}';
+
+    @if ($mediumDiffersFromMobile == true) {
+
+        //@debug '#{$size} including medium breakpoint: #{$mediumFontSize} / #{$mediumLineHeight}';
+
+        @include respond-min($m) {
+            @if ($iWantToSpecifyMyOwnFontSize != true) {
+                font-size: toRem($mediumFontSize);
+            }
+            @if ($iWantToSpecifyMyOwnLineHeight != true) {
+                line-height: toRem($mediumLineHeight);
+            }
+        }
+    }
+}
+
+@mixin font-size($size, $overrideLineHeight: false, $overrideFontSize: false) {
+    @include fontsize($size, $overrideLineHeight, $overrideFontSize);
+}
+
+%heading {
+    //margin-top: toRem($font-size-base/2);
+    margin-top: 0; // we pull the headings up a little to
+    margin-bottom: toRem($line-height-step*2);
+    color: $heading-color;
+    font-weight: normal;
+    position: relative;
+
+    .heading-group &, // DEPRECATED!
+    .headingGroup & {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+}
+
+%heading--XXL {
+    @include fontsize('XXL');
+}
+
+%heading--XL {
+    @include fontsize('XL');
+}
+
+%heading--L {
+    @include fontsize('L');
+}
+
+%heading--M {
+    @include fontsize('M');
+}
+
+%heading--S {
+    @include fontsize('S');
+}
+
+%heading--XS {
+    @include fontsize('XS');
+}
+
+%heading--XXS {
+    @include fontsize('XXS');
+}
+
+
+// /these silent classes are meant to undo the default <ol> en <ul> styling (which we have for user-generated content);
+%list__item{
+    list-style: none;
+    margin-left: 0;
+    padding-left: 0;
+    &:before {
+        content: '';
+        display: none;
+        min-width: 0;
+        margin-left: initial;
+        color: inherit;
+        font-size: inherit;
+    }
+}
+%list {
+    margin-top: 0; // undoing * + ul logic
+    margin-bottom: 0;
+    padding-left: 0;
+}
+
+
+%list__item--right{
+    list-style: none;
+    margin-left: 0;
+    padding-left: 0;
+    &:after {
+        content: '';
+        display: none;
+        min-width: 0;
+        margin-left: initial;
+        color: inherit;
+        font-size: inherit;
+    }
+    &:before {
+        content: '';
+        display: none;
+        min-width: 0;
+        margin-left: initial;
+        color: inherit;
+        font-size: inherit;
+    }
+}
+
+%unbutton {
+    border: none;
+    background: none;
+    padding: 0;
+}

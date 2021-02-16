@@ -1,4 +1,4 @@
-<div [style]="{'paddingLeft': sidebarState == 'closed' ? '0px' : '30px'}" id="sidebar-container">
+<div [style]="{'paddingLeft': sidebarState == 'closed' ? '0px' : '30px'}" id="sidebar-container" class="mat-typography">
 	<div (click)="changeState()" [@openClose-arrow]="sidebarState" class="frosted left-shadow" id="sidebar-arrow">
 		<span [@rotatedState]="sidebarState" class="material-icons" style="margin-top: 85%; font-size: 26px"> expand_more </span>
 	</div>
@@ -6,7 +6,7 @@
 		<div class="container" id="sidebar-content">
 			<div class="col">
 				<div class="row">
-					<button (click)="changeState()" class="button" id="close-button">
+					<button (click)="changeState()" class="button button--close" id="close-button">
 						<strong>&times;</strong>
 					</button>
 				</div>

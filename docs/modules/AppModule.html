@@ -367,6 +367,9 @@ import { CacheRouteReuseStrategy } from &quot;./cache-route-reuse.strategy&quot;
 import { TrainMapSidebarComponent } from &quot;./components/train-map-sidebar/train-map-sidebar.component&quot;;
 import { DisruptionItemComponent } from &quot;./components/train-map-sidebar/disruption-item/disruption-item.component&quot;;
 import { CalamityItemComponent } from &quot;./components/train-map-sidebar/calamity-item/calamity-item.component&quot;;
+import { ServiceWorkerModule } from &quot;@angular/service-worker&quot;;
+import { environment } from &quot;../environments/environment&quot;;
+import { FontAwesomeModule } from &quot;@fortawesome/angular-fontawesome&quot;;
 
 @NgModule({
 	declarations: [
@@ -394,6 +397,8 @@ import { CalamityItemComponent } from &quot;./components/train-map-sidebar/calam
 		MatIconModule,
 		HttpClientModule,
 		FormsModule,
+		ServiceWorkerModule.register(&quot;ngsw-worker.js&quot;, { enabled: environment.production }),
+		FontAwesomeModule,
 	],
 	providers: [
 		{

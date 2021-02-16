@@ -2,6 +2,8 @@ import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
 
 import { TrainMapSidebarComponent } from "./train-map-sidebar.component";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { HttpClientTestingModule } from "@angular/common/http/testing";
+import { RouterTestingModule } from "@angular/router/testing";
 
 describe("TrainMapSidebarComponent", () => {
 	let component: TrainMapSidebarComponent;
@@ -11,7 +13,7 @@ describe("TrainMapSidebarComponent", () => {
 		waitForAsync(() => {
 			void TestBed.configureTestingModule({
 				declarations: [TrainMapSidebarComponent],
-				imports: [BrowserAnimationsModule],
+				imports: [BrowserAnimationsModule, HttpClientTestingModule, RouterTestingModule],
 			}).compileComponents();
 		})
 	);

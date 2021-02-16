@@ -1,0 +1,500 @@
+/*
+
+@name Button
+@description Button; used for form-actions and major CTA links.
+@section Objects
+@type UI
+@extended false
+
+@modifier .button--buy                            - Button that leads to an e-commerce funnel, with a cart icon
+@modifier .button--nsYellow                       - A generic yellow button intended for e-commerce and other purchase-related flows.
+@modifier .button--secondary                      - Grey button for any secondary actions
+@modifier .button--arrowLeft                      - Button with an arrow on the left
+@modifier .button--arrowLeft.button--secondary    - Secondary button with arrow on the left
+@modifier .button--arrowRight                     - Button with an arrow on the right
+@modifier .button--arrowRight.button--secondary   - Secondary button with arrow on the right
+@modifier .button--tertiary                       - Transparent button meant for the least important actions
+@modifier .is-disabled                            - A specific class for disabled buttons, usually this would be done with the 'disabled'-attribute.
+@modifier .button--native-link                    - A button styled as a link
+@modifier .button--loadingRight                   - A button with a loading indicator
+
+@markup
+<!-- Default button -->
+<button class="button {{modifier_class}}">Default Button</button>
+<!-- Disabled button -->
+<button disabled="disabled" class="button {{modifier_class}}">Disabled Button</button>
+
+*/
+
+//
+// .button--transparant                - A button that has all the properties of a button, but has no background color, or transition of a hovering background
+
+// ---------------------------------------------------------------------------
+//  Mixin for the button class. Makes the button or a-tag disabled.
+//  Used for actions that are disabled at the time before or after
+//  of validation.
+// ---------------------------------------------------------------------------
+
+// Sizes
+
+@import "variables";
+@import "colors";
+@import "functions";
+@import "responsive";
+@import "mixins";
+
+$button-font-size: $font-size-base;
+$button-height: $form-element-height;
+$button-line-height: $form-element-line-height;
+$button-vertical-space: $form-element-vertical-space;
+$button-horizontal-space: 18px; // aribitrary, just looks best
+
+//  Color mappings
+
+$button__primary__background: $ns-light-blue;
+$button__primary__rollover: darken($ns-light-blue, 10%);
+$button__primary__color: $white;
+
+$button__secondary__background: $ns-grey-94;
+$button__secondary__rollover: $ns-grey-90;
+$button__secondary__color: $ns-light-blue;
+
+$button__tertiary__background: transparent;
+$button__tertiary__rollover: $ns-grey-70;
+$button__tertiary__color: $ns-light-blue;
+
+$button__quaternary__background: $ns-white;
+$button__quaternary__rollover: $ns-grey-94;
+$button__quaternary__color: $ns-light-blue;
+
+$button__buy__background: $ns-yellow;
+$button__buy__rollover: $ns-yellow-2;
+$button__buy__color: $ns-blue;
+
+$button__disabled__background: $ns-grey-94;
+$button__disabled__rollover: $ns-grey-90;
+$button__disabled__color: $ns-grey-70;
+
+$close_icon_size_small: 25px;
+$close_icon_size_medium: $close_icon_size_small * 2;
+
+// Borders
+$button__border__radius: 4px;
+
+@mixin button--disabled {
+    background-color: $button__disabled__background;
+    color: $button__disabled__color;
+    cursor: default;
+    box-shadow: 0 toRem(-2px) 0 $button__disabled__rollover inset;
+    transition: none;
+
+    &:hover {
+        color: $button__disabled__color;
+        box-shadow: 0 toRem(-2px) 0 $button__disabled__rollover inset;
+    }
+
+    &.button--arrowLeft {
+        padding-left: toRem($button-horizontal-space);
+
+        &::after {
+            display: none;
+        }
+    }
+
+    &.button--arrowRight {
+        padding-right: toRem($button-horizontal-space);
+
+        &::after {
+            display: none;
+        }
+    }
+}
+
+%button {
+    display: inline-block;
+    position: relative;
+    padding: toRem($button-vertical-space) toRem($button-horizontal-space);
+    height: min-content; // @bart
+    vertical-align: top;
+    //min-width: toRem(120px);
+    font-weight: normal;
+    white-space: nowrap;
+    background-color: $button__primary__background;
+    color: $button__primary__color;
+    box-shadow: 0 toRem(-2px) 0 $button__primary__rollover inset;
+    text-align: center;
+    //line-height: toRem($button-line-height);
+    font-size: toRem($button-font-size);
+    border: none;
+    border-radius: $button__border__radius;
+    text-decoration: none;
+    transition: box-shadow 0.15s ease-in-out;
+
+    &:hover,
+    &:focus {
+        color: $button__primary__color;
+        text-decoration: none;
+        cursor: pointer;
+        box-shadow: 0 toRem(-50px) 0 $button__primary__rollover inset;
+    }
+
+    &:focus {
+        outline: thin dotted $button__primary__background;
+        outline-offset: 0;
+    }
+
+    &:disabled,
+    &.is-disabled {
+        @include button--disabled;
+    }
+
+    &--close {
+        padding: 4px 12px;
+    }
+
+    &--nsYellow {
+        background-color: $button__buy__background;
+        color: $button__buy__color;
+        box-shadow: 0 toRem(-2px) 0 $button__buy__rollover inset;
+
+        &:hover,
+        &:focus {
+            color: $button__buy__color;
+            box-shadow: 0 toRem(-50px) 0 $button__buy__rollover inset;
+        }
+
+        &:focus {
+            outline-color: $button__buy__color;
+        }
+    }
+
+    &--nsWhite {
+        background-color: $button__quaternary__background;
+        color: $button__quaternary__color;
+        box-shadow: 0 toRem(-2px) 0 $button__quaternary__rollover inset;
+
+        &:hover,
+        &:focus {
+            color: $button__quaternary__color;
+            box-shadow: 0 toRem(-50px) 0 $button__quaternary__rollover inset;
+        }
+
+        &:focus {
+            outline-color: $button__quaternary__color;
+        }
+    }
+}
+
+.button {
+    @extend %button;
+}
+
+// .button--iconOnly requires an icon--b class
+// we can't extend it (%icon) (for now), because, the icon--backgroundimage-classes require either .icon, .icon--b or icon--a
+// we use the .icon--b (and not .icon) because the inset-shadow on :hover will overlap the background-image on an .icon, but not on the pseudo:after.
+.button--iconOnly {
+    width: toRem($button-height); // square
+    height: toRem($button-height);
+    text-align: left; // for text-indent to work
+    min-width: toRem(1px); // overrule min-width on .button
+    padding: toRem(($button-height - $icon-size-base)/ 2);
+}
+
+// ---------------------------------------------------------------------------
+//  Modifier for the button class. Makes the button yellow. Used for buy
+//  actions that lead to the funnel
+// ---------------------------------------------------------------------------
+
+.button--close {
+  @extend %button--close;
+}
+
+.button--nsYellow {
+    @extend %button--nsYellow;
+}
+
+.button--nsWhite {
+    @extend %button--nsWhite;
+}
+
+/**
+ * Has styling as a link <a>
+ */
+.button--native-link {
+    background: none;
+    box-shadow: none;
+    color: $ns-light-blue;
+    padding: 0;
+    height: auto;
+    min-width: initial;
+
+    &:hover,
+    &:focus {
+        box-shadow: none;
+        color: $ns-blue;
+    }
+}
+
+// ---------------------------------------------------------------------------
+//  Modifier for the button class. Makes the button blue. Used for secondary
+//  actions.
+// ---------------------------------------------------------------------------
+
+%button--secondary {
+    background-color: $button__secondary__background;
+    color: $button__secondary__color;
+    box-shadow: 0 toRem(-2px) 0 $button__secondary__rollover inset;
+
+    &:hover,
+    &:focus {
+        color: $button__secondary__color;
+        box-shadow: 0 toRem(-50px) 0 $button__secondary__rollover inset;
+    }
+
+    &:focus {
+        outline-color: $button__secondary__color;
+    }
+}
+
+.button--secondary {
+    @extend %button--secondary;
+}
+
+// ---------------------------------------------------------------------------
+//  Modifier for the button class. Makes the button white. Used for
+//  less important actions.
+// ---------------------------------------------------------------------------
+
+.button--tertiary {
+    background-color: $button__tertiary__background;
+    color: $button__tertiary__color;
+    box-shadow: none;
+    padding-left: 0;
+    padding-right: 0;
+    min-width: 0;
+    border-radius: 0;
+
+    &:hover,
+    &:focus {
+        color: $button__tertiary__color;
+        box-shadow: 0 toRem(-2px) 0 $button__tertiary__color inset;
+    }
+
+    &:focus {
+        outline-color: $button__tertiary__color;
+    }
+
+    &:disabled,
+    &.is-disabled {
+        background-color: $button__tertiary__background;
+    }
+
+    .icon--inline {
+        // since there is no padding left and right, an inline icon inside the button
+        // will fall partially outside the bounding box of the button. this part should not
+        // contribute to the hitarea of the button.
+        pointer-events: none;
+    }
+}
+
+
+.button--fullWidth {
+    width: 100%;
+}
+
+/*
+Button with inline icon
+
+There are some buttons with icons hardcoded to their (modifier-)classname, but for optimal
+flexibility there is the option of constructing your own icon using a slightly more complex
+HTML structure.
+
+Below are some examples where the button flows in the button together with the text. Note that
+the icon must have the class `icon--inline`.
+
+Markup:
+<button class="button">
+    <span class="icon icon--inline icon--magnifier icon--nsWhite button__icon"></span> Search
+</button>
+<button class="button button--secondary" style="width: 200px;">
+    Search <span class="icon icon--inline icon--magnifier icon--nsLightBlue button__icon"></span>
+</button>
+<button class="button button--nsYellow" style="width: 300px;">
+    <span class="icon icon--inline icon--magnifier icon--nsBlue button__icon"></span> Search
+</button>
+
+Styleguide 1.1.1
+*/
+
+/*
+Button with fixed icon
+
+Apart from inline positioning of icons, it is also possible to position icons absolutely at the left
+or at the right. Note that the class `icon--inline` is missing here, and that the modifier
+`.button__icon--right` is added to the `.button__icon` element, not to the `.button`.
+
+Markup:
+<button class="button button--fixedIcon">
+    <span class="icon icon--magnifier icon--nsWhite button__icon {{modifier_class}}"></span> Search
+</button>
+<button class="button button--secondary button--fixedIcon" style="width: 200px;">
+    Search <span class="icon icon--magnifier icon--nsLightBlue button__icon {{modifier_class}}"></span>
+</button>
+<button class="button button--nsYellow button--fixedIcon" style="width: 300px;">
+    <span class="icon icon--magnifier icon--nsBlue button__icon {{modifier_class}}"></span> Search
+</button>
+
+.button__icon--right     - Fixed icon is positioned on the right
+
+Styleguide 1.1.2
+*/
+
+.button--fixedIcon {
+    padding-left: toRem($button-horizontal-space/2*2 + $icon-size-base);
+    padding-right: toRem($button-horizontal-space/2*2 + $icon-size-base);
+
+    .button__icon {
+        position: absolute;
+        top: toRem($button-height - $icon-size-base) / 2;
+        left: toRem(5px);
+    }
+
+    .button__icon--right {
+        left: auto;
+        right: toRem(5px);
+    }
+}
+
+/*
+Buttongroup
+
+Groups a set of buttons. Differs from the generic 'group' in that the children of `buttonGroup` __must__ be `.button`'s,
+and __no__ `.group__item`'s are needed.
+
+Markup:
+<div class="buttonGroup">
+    <button class="button">Button me up</button>
+    <button class="button button--buy">Button me up</button>
+</div>
+
+Styleguide 1.1.3
+*/
+
+.buttonGroup {
+    font-size: 0;
+    margin-top: toRem($font-size-base*2);
+
+    .arrowLink {
+        font-size: toRem($button-font-size);
+        padding: toRem(10px) toRem(18px) toRem(10px) toRem(25px);
+
+        &::before {
+            top: toRem(4px);
+        }
+    }
+
+    .button,
+    .arrowLink {
+        width: 100%;
+        margin-bottom: toRem(20px);
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    @include respond-min($m) {
+        .button,
+        .arrowLink {
+            margin-right: toRem($font-size-base);
+            margin-bottom: 0;
+            width: auto;
+
+            &:last-child {
+                margin-right: 0;
+            }
+        }
+    }
+
+    // a buttonGroup within a tile within a hero element must be more compact.
+    // e.g. the tiles within the heroCarousel on the homepage.
+    .hero .tile & {
+        // &.buttonGroup--compact // TODO.
+        margin-top: 0;
+        margin-bottom: toRem(-10px);
+
+        .arrowLink {
+            margin-bottom: 0;
+        }
+
+        @include respond-min($m) {
+            margin-top: toRem(8px);
+        }
+    }
+
+    //When buttonGroup is wiithin bodyItem, it must have a margin bottom. C
+    .bodyItem &:last-child {
+        margin-bottom: toRem(25px);
+    }
+}
+
+/*
+.closeButton .clearButton
+
+A specific type of button which is used to close overlays, popups, detail sections, etc. It includes an screenreader text as it displays
+only a graphical cross inside the button.
+
+Markup:
+<a href="javascript:void(0)" class="closeButton">
+    <span class="icon"></span>
+    <span class="alt">
+        Sluit deze popup
+    </span>
+</a>
+
+Styleguide 1.1.4
+*/
+
+
+.playButton {
+    $play-button-size: 60px;
+
+    border: none;
+    padding: toRem(($play-button-size - $icon-size-base)/2); //Centers the button
+    width: toRem($play-button-size);
+    height: toRem($play-button-size);
+    background-color: $ns-light-blue;
+    transition: box-shadow 0.2s ease-in-out;
+    box-shadow: 0 0 0 $ns-blue inset;
+
+    &:focus {
+        outline: 1px dotted $ns-grey-40;
+    }
+
+    &:hover,
+    &:focus,
+    .is-clickable:hover & {
+        box-shadow: 0 toRem(-$play-button-size) 0 $button__primary__rollover inset;
+    }
+}
+
+//A button that looks like a link
+.button--link {
+    background-color: transparent;
+    color: $ns-light-blue;
+    box-shadow: none;
+
+    &:hover,
+    &:focus {
+        color: $ns-blue;
+        box-shadow: none;
+    }
+}
+
+.button--icon {
+    background-color: transparent;
+    border: 0;
+    padding: 0;
+    width: toRem($icon-size-base);
+    height: toRem($icon-size-base);
+}

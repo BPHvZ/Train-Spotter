@@ -7,6 +7,7 @@ import { TrainTracksGeoJSON } from "../models/SpoortkaartAPI";
 import { DetailedTrainInformation, Train } from "../models/VirtualTrainAPI";
 import { LngLatLike, Map as MapBoxMap, MapboxGeoJSONFeature } from "mapbox-gl";
 import { GeoJSON } from "geojson";
+import { Router } from "@angular/router";
 
 @Injectable({
 	providedIn: "root",
@@ -30,7 +31,7 @@ export class SharedDataService {
 
 	trainMap?: MapBoxMap;
 
-	constructor(private apiService: ApiService) {}
+	constructor(private apiService: ApiService, private router: Router) {}
 
 	get allDataLoaded(): boolean {
 		return (
@@ -87,6 +88,9 @@ export class SharedDataService {
 	 * @param station The station
 	 */
 	flyToStation(station: Station): void {
+		if (this.router.url !== "/kaart") {
+			void this.router.navigateByUrl("/kaart");
+		}
 		if (this.trainMap && station) {
 			this.closePopups();
 			this.trainMap.flyTo({
@@ -105,6 +109,9 @@ export class SharedDataService {
 	}
 
 	flyToDisruption(disruption: DisruptionBase): void {
+		if (this.router.url !== "/kaart") {
+			void this.router.navigateByUrl("/kaart");
+		}
 		if (this.trainMap && disruption) {
 			this.closePopups();
 			const marker = this.disruptionMarkersData.find((m) => m.properties === disruption);
@@ -118,11 +125,15 @@ export class SharedDataService {
 	}
 
 	flyToTrain(train: DetailedTrainInformation): void {
+		if (this.router.url !== "/kaart") {
+			void this.router.navigateByUrl("/kaart");
+		}
 		if (this.trainMap && train) {
 			this.closePopups();
 			this.trainMap.flyTo({
 				center: [train.lng, train.lat],
 				zoom: 15,
+				speed: 1.0,
 			});
 			this.trainMap.once("moveend", () => {
 				const features = this.trainMap.queryRenderedFeatures(null, { layers: ["trains"] });

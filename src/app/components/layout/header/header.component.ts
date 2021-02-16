@@ -1,11 +1,9 @@
-import { Component } from "@angular/core";
-import { ApiService } from "../../../services/api.service";
+import { Component, ElementRef, ViewChild } from "@angular/core";
 import { Observable, of } from "rxjs";
 import { catchError, debounceTime, distinctUntilChanged, switchMap, tap } from "rxjs/operators";
 import { NgbTypeaheadSelectItemEvent } from "@ng-bootstrap/ng-bootstrap";
-import { HeaderEventsService } from "../../../services/header-events.service";
 import { Router } from "@angular/router";
-import { Disruption, Station } from "../../../models/ReisinformatieAPI";
+import { Station } from "../../../models/ReisinformatieAPI";
 import { GlobalSearchResult, GlobalSearchResultType } from "../../../models/GlobalSearch";
 import { GlobalSearchService } from "../../../services/global-search.service";
 import { DetailedTrainInformation, Train } from "../../../models/VirtualTrainAPI";
@@ -21,6 +19,8 @@ import { faCrosshairs } from "@fortawesome/free-solid-svg-icons";
 	styleUrls: ["./header.component.sass"],
 })
 export class HeaderComponent {
+	@ViewChild("globalTypeahead") globalTypeahead: ElementRef;
+
 	faCrosshairs = faCrosshairs;
 
 	searchingStations = false;
@@ -32,7 +32,6 @@ export class HeaderComponent {
 	constructor(
 		private sharedDataService: SharedDataService,
 		private globalSearchService: GlobalSearchService,
-		private headerEventsService: HeaderEventsService,
 		private router: Router
 	) {}
 
@@ -96,33 +95,29 @@ export class HeaderComponent {
 	}
 
 	/**
-	 * Get the station name from {@link Station.namen}
-	 * @param result ResultTemplateContext to get the name from
-	 * @return A string to represent the result
-	 */
-	globalSearchResultFormatter(result: GlobalSearchResult): string {
-		switch (result.resultType) {
-			case GlobalSearchResultType.Station: {
-				const station = result.result as Station;
-				return station.namen.lang;
-			}
-			case GlobalSearchResultType.TrainRideId: {
-				const train = result.result as Train;
-				return `Rit: ${train.ritId}`;
-			}
-			case GlobalSearchResultType.TrainSetNumber: {
-				return result.searchField as string;
-			}
-		}
-	}
-
-	/**
 	 * Select a station and sent event to train map to fly to it
 	 * @param event Selected station from dropdown
 	 */
 	selectStationFromSearch(event: NgbTypeaheadSelectItemEvent): void {
 		event.preventDefault();
-		this.headerEventsService.selectStation(event.item);
+		this.sharedDataService.flyToStation(event.item);
+	}
+
+	selectItemFromGlobalSearch(event: NgbTypeaheadSelectItemEvent): void {
+		event.preventDefault();
+		const result = event.item as GlobalSearchResult;
+		// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+		this.globalTypeahead.nativeElement.value = result.searchField;
+		switch (result.resultType) {
+			case GlobalSearchResultType.Train: {
+				this.sharedDataService.flyToTrain(result.result as DetailedTrainInformation);
+				break;
+			}
+			case GlobalSearchResultType.Station: {
+				this.sharedDataService.flyToStation(result.result as Station);
+				break;
+			}
+		}
 	}
 
 	/**

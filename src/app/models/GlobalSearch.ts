@@ -2,8 +2,7 @@ import { Train } from "./VirtualTrainAPI";
 import { Station } from "./ReisinformatieAPI";
 
 export enum GlobalSearchResultType {
-	TrainRideId,
-	TrainSetNumber,
+	Train,
 	Station,
 }
 

@@ -58,7 +58,7 @@ export class TrainMapSidebarComponent {
 		return this.sharedDataService.activeDisruptions;
 	}
 
-	sidebarState = "closed";
+	sidebarState = "open";
 
 	constructor(private sharedDataService: SharedDataService) {}
 

@@ -1,6 +1,6 @@
-import { Component, Input, Output } from "@angular/core";
-import { EventEmitter } from "@angular/core";
-import { Disruption } from "../../../models/ReisinformatieAPI";
+import { Component, Input } from "@angular/core";
+import { Disruption, DisruptionBase } from "../../../models/ReisinformatieAPI";
+import { SharedDataService } from "../../../services/shared-data.service";
 
 @Component({
 	selector: "app-disruption-item",
@@ -9,5 +9,10 @@ import { Disruption } from "../../../models/ReisinformatieAPI";
 })
 export class DisruptionItemComponent {
 	@Input() disruption: Disruption;
-	@Output() flyToDisruption = new EventEmitter<Disruption>();
+
+	constructor(private sharedDataService: SharedDataService) {}
+
+	flyToDisruption(disruption: DisruptionBase): void {
+		this.sharedDataService.flyToDisruption(disruption);
+	}
 }

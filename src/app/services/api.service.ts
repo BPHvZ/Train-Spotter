@@ -1,13 +1,12 @@
 import { Injectable } from "@angular/core";
 import { HttpParams } from "@angular/common/http";
-import { Observable, of } from "rxjs";
+import { Observable } from "rxjs";
 import { HttpClientService } from "./http-client.service";
 import { environment } from "../../environments/environment";
-import { map } from "rxjs/operators";
-import { DisruptionsList, Station, StationsResponse } from "../models/ReisinformatieAPI";
+import { DisruptionsList, StationsResponse } from "../models/ReisinformatieAPI";
 import { TrainTracksGeoJSON } from "../models/SpoortkaartAPI";
 import { TrainInformation, TrainInformationResponse } from "../models/VirtualTrainAPI";
-import { SharedDataService } from "./shared-data.service";
+import { CacheService } from "./cache.service";
 
 @Injectable({
 	providedIn: "root",

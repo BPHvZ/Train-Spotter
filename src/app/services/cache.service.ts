@@ -20,7 +20,7 @@ export class CacheService {
 		localStorage.setItem(options.key, JSON.stringify(record));
 	}
 
-	load(key: string, params: string): any {
+	load(key: string, params?: string): any {
 		// Get cached data from localstorage
 		const item = localStorage.getItem(key);
 		if (item !== null) {

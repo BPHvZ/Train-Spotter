@@ -224,8 +224,8 @@
 		</ng-template>
 	</div>
 	<div>
-		<div id="sidebar" *ngIf="actualDisruptions">
-			<app-train-map-sidebar (clickOnArrow)="sidebar.changeState()"></app-train-map-sidebar>
+		<div id="sidebar" *ngIf="activeDisruptions">
+			<app-train-map-sidebar (clickOnArrow)="sidebar.changeState()" (updateDisruptions)="updateDisruptions()"></app-train-map-sidebar>
 		</div>
 	</div>
 </div>

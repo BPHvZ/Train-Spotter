@@ -8,6 +8,7 @@ import { DetailedTrainInformation, Train } from "../models/VirtualTrainAPI";
 import { LngLatLike, Map as MapBoxMap, MapboxGeoJSONFeature } from "mapbox-gl";
 import { GeoJSON } from "geojson";
 import { Router } from "@angular/router";
+import { CacheService } from "./cache.service";
 
 @Injectable({
 	providedIn: "root",
@@ -23,20 +24,30 @@ export class SharedDataService {
 	selectedTrainOnMapFeature: MapboxGeoJSONFeature;
 	selectedStationOnMapFeature: MapboxGeoJSONFeature;
 
-	trainTracksLayerData?: TrainTracksGeoJSON;
 	disruptedTrainTracksLayerData?: TrainTracksGeoJSON;
+	disruptionMarkersData: GeoJSON.Feature<GeoJSON.Point, DisruptionBase>[];
 	activeDisruptions?: DisruptionsList;
+	private _getActiveDisruptionsLastUpdated$ = new BehaviorSubject<Date>(null);
+	get getActiveDisruptionsLastUpdated$(): Observable<Date> {
+		return this._getActiveDisruptionsLastUpdated$.asObservable();
+	}
+
+	trainTracksLayerData?: TrainTracksGeoJSON;
 	basicTrainInformation?: Train[];
 	detailedTrainInformation?: DetailedTrainInformation[];
 	private _detailedTrainInformation$ = new BehaviorSubject<DetailedTrainInformation[]>(null);
 	get detailedTrainInformation$(): Observable<DetailedTrainInformation[]> {
 		return this._detailedTrainInformation$.asObservable();
 	}
-	disruptionMarkersData: GeoJSON.Feature<GeoJSON.Point, DisruptionBase>[];
 
 	trainMap?: MapBoxMap;
 
-	constructor(private apiService: ApiService, private router: Router) {}
+	constructor(private apiService: ApiService, private router: Router, private cacheService: CacheService) {
+		const dateData = this.cacheService.load("getActiveDisruptionsLastUpdated") as Date;
+		if (dateData) {
+			this._getActiveDisruptionsLastUpdated$.next(dateData);
+		}
+	}
 
 	get allDataLoaded(): boolean {
 		return (
@@ -64,17 +75,24 @@ export class SharedDataService {
 		);
 	}
 
-	getDisruptedTrainTracksGeoJSON(): Observable<TrainTracksGeoJSON> {
-		return this.apiService.getDisruptedTrainTracksGeoJSON().pipe(
+	getDisruptedTrainTracksGeoJSON(force = false): Observable<TrainTracksGeoJSON> {
+		return this.apiService.getDisruptedTrainTracksGeoJSON(force).pipe(
 			tap((value) => {
 				this.disruptedTrainTracksLayerData = value;
 			})
 		);
 	}
 
-	getActiveDisruptions(): Observable<DisruptionsList> {
-		return this.apiService.getActiveDisruptions().pipe(
+	getActiveDisruptions(force = false): Observable<DisruptionsList> {
+		return this.apiService.getActiveDisruptions(force).pipe(
 			tap((value) => {
+				// TODO
+				const date = new Date();
+				this._getActiveDisruptionsLastUpdated$.next(date);
+				this.cacheService.save({
+					key: "getActiveDisruptionsLastUpdated",
+					data: JSON.stringify(date.toUTCString()),
+				});
 				this.activeDisruptions = value;
 			})
 		);

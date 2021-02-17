@@ -1,8 +1,9 @@
-import { Component, EventEmitter, Input, Output } from "@angular/core";
+import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 import { trigger, state, style, animate, transition, animateChild, query, group } from "@angular/animations";
 import { AnimationEvent } from "@angular/animations";
 import { Disruption, DisruptionsList } from "../../models/ReisinformatieAPI";
 import { SharedDataService } from "../../services/shared-data.service";
+import { faSyncAlt } from "@fortawesome/free-solid-svg-icons";
 
 @Component({
 	selector: "app-train-map-sidebar",
@@ -50,17 +51,23 @@ import { SharedDataService } from "../../services/shared-data.service";
 		]),
 	],
 })
-export class TrainMapSidebarComponent {
+export class TrainMapSidebarComponent implements OnInit {
 	@Output() closeSidebar = new EventEmitter();
+	@Output() updateDisruptions = new EventEmitter();
 	@Output() clickOnArrow = new EventEmitter<boolean>();
 
 	get disruptions(): DisruptionsList {
 		return this.sharedDataService.activeDisruptions;
 	}
-
+	lastUpdatedDate?: Date;
 	sidebarState = "open";
+	faSyncAlt = faSyncAlt;
 
 	constructor(private sharedDataService: SharedDataService) {}
+
+	ngOnInit(): void {
+		this.sharedDataService.getActiveDisruptionsLastUpdated$.subscribe((value) => (this.lastUpdatedDate = value));
+	}
 
 	changeState(): void {
 		this.sidebarState = this.sidebarState === "closed" ? "open" : "closed";

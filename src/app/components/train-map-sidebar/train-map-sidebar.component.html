@@ -12,10 +12,17 @@
 	>
 		<div class="container" id="sidebar-content">
 			<div class="col">
-				<div class="row">
-					<button (click)="changeState()" class="button button--close" id="close-button">
+				<div class="row justify-content-around" style="padding: 8px 0; align-items: center">
+					<button (click)="changeState()" class="button button--close">
 						<strong>&times;</strong>
 					</button>
+          <div *ngIf="lastUpdatedDate" class="text-center">
+            <span style="font-size: small">laatste geüpdatet:<br></span>
+            {{ lastUpdatedDate | date: "EEEE d LLL, HH:mm:ss" }}
+          </div>
+          <button (click)="updateDisruptions.emit(null)" class="button button--nsYellow button--close">
+            <strong><fa-icon [icon]="faSyncAlt" style="font-size: small"></fa-icon></strong>
+          </button>
 				</div>
 				<div class="row">
 					<div *ngIf="disruptions">
@@ -28,7 +35,6 @@
 							<app-calamity-item [calamity]="disruption" *ngSwitchCase="'CALAMITY'"></app-calamity-item>
 							<app-disruption-item
 								[disruption]="disruption"
-								(flyToDisruption)="flyToDisruptionOnMap($event)"
 								*ngSwitchDefault
 							></app-disruption-item>
 						</div>

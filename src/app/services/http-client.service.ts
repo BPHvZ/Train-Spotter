@@ -68,15 +68,13 @@ export class HttpClientService {
 			.pipe(
 				switchMap((response) => {
 					console.log("from url");
-					if (options.cacheMins > 0) {
-						// Data will be cached
-						this.cacheService.save({
-							key: options.url,
-							params,
-							data: response,
-							expirationMins: options.cacheMins,
-						});
-					}
+					// Data will be cached
+					this.cacheService.save({
+						key: options.url,
+						params,
+						data: response,
+						expirationMins: options.cacheMins,
+					});
 					return of<T>(response);
 				})
 			);

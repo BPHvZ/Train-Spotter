@@ -24,11 +24,13 @@ export class ApiService {
 		});
 	}
 
-	getDisruptedTrainTracksGeoJSON(): Observable<TrainTracksGeoJSON> {
+	getDisruptedTrainTracksGeoJSON(force = false): Observable<TrainTracksGeoJSON> {
 		const disruptionParams = new HttpParams().set("actual", "true");
+		let cacheMins = environment.production ? 1 : 60;
+		if (force) cacheMins = 0;
 		return this.http.get({
 			url: "https://gateway.apiportal.ns.nl/Spoorkaart-API/api/v1/storingen",
-			cacheMins: environment.production ? 1 : 60,
+			cacheMins: cacheMins,
 			headers: {
 				"Ocp-Apim-Subscription-Key": environment.NS_Ocp_Apim_Subscription_Key,
 			},
@@ -58,11 +60,13 @@ export class ApiService {
 		});
 	}
 
-	getActiveDisruptions(): Observable<DisruptionsList> {
+	getActiveDisruptions(force = false): Observable<DisruptionsList> {
 		const disruptionParams = new HttpParams().set("isActive", "true");
+		let cacheMins = environment.production ? 1 : 60;
+		if (force) cacheMins = 0;
 		return this.http.get({
 			url: "https://gateway.apiportal.ns.nl/reisinformatie-api/api/v3/disruptions",
-			cacheMins: environment.production ? 1 : 60,
+			cacheMins: cacheMins,
 			headers: {
 				"Ocp-Apim-Subscription-Key": environment.NS_Ocp_Apim_Subscription_Key,
 			},

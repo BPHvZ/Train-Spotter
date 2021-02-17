@@ -11,13 +11,17 @@
     "lint": "ng lint --fix",
     "build": "ng build",
     "test": "ng test",
-    "precommit": "run-s format:fix lint",
     "format:fix": "pretty-quick --staged",
     "e2e": "ng e2e",
     "compodoc": "npx compodoc -p tsconfig.json -w --output ./docs",
     "build:release": "npm run test:release && ng build --prod",
     "prebuild:release": "npm ci --production --no-optional",
     "test:release": "ng t --configuration=ci-release"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "run-s format:fix lint"
+    }
   },
   "private": true,
   "browser": {

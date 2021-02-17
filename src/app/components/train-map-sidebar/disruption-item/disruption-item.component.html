@@ -1,36 +1,31 @@
 <div *ngIf="disruption" class="mat-typography">
-  <div
-    (click)="flyToDisruption(disruption)"
-    class="card-header headingS"
-    style="cursor: pointer"
-  >
-    <div
-      *ngIf="disruption.type === 'MAINTENANCE'; else disruptionIcon"
-      style="display: inline"
-    >
-      <img
-        alt="Werk aan het spoor"
-        src="../../../../assets/maintenance--blue--35x35.svg"
-        style="position: inherit; height: 30px; display: inline"
-      />
-    </div>
-    <ng-template #disruptionIcon>
-      <img
-        alt="Storing"
-        src="../../../../assets/alert--red--35x35.svg"
-        style="position: inherit; height: 30px; display: inline"
-      /></ng-template>
-    {{ disruption.title }}
-  </div>
-  <div class="card-body">
-    <div *ngIf="disruption.type === 'MAINTENANCE'; else disruptionDescription">
-      <h5 class="card-title">{{ disruption.period }}</h5>
-      <p class="card-text">{{ disruption.timespans[0].situation.label }}</p>
-      <p class="card-text" *ngIf="disruption.timespans[0].additionalTravelTime">{{ disruption.timespans[0].additionalTravelTime?.label }}</p>
-    </div>
-    <ng-template #disruptionDescription>
-      <h5 class="card-title">{{ disruption.expectedDuration.description }}</h5>
-      <p class="card-text">{{ disruption.timespans[0].situation.label }}</p>
-    </ng-template>
-  </div>
+	<div (click)="flyToDisruption(disruption)" class="card-header headingS" style="cursor: pointer">
+		<div *ngIf="disruption.type === 'MAINTENANCE'; else disruptionIcon" style="display: inline">
+			<img
+				alt="Werk aan het spoor"
+				src="../../../../assets/maintenance--blue--35x35.svg"
+				style="position: inherit; height: 30px; display: inline"
+			/>
+		</div>
+		<ng-template #disruptionIcon>
+			<img
+				alt="Storing"
+				src="../../../../assets/alert--red--35x35.svg"
+				style="position: inherit; height: 30px; display: inline"
+		/></ng-template>
+		{{ disruption.title }}
+	</div>
+	<div class="card-body">
+		<div *ngIf="disruption.type === 'MAINTENANCE'; else disruptionDescription">
+			<h5 class="card-title">{{ disruption.period }}</h5>
+			<p class="card-text">{{ disruption.timespans[0].situation.label }}</p>
+			<p class="card-text" *ngIf="disruption.timespans[0].additionalTravelTime">
+				{{ disruption.timespans[0].additionalTravelTime?.label }}
+			</p>
+		</div>
+		<ng-template #disruptionDescription>
+			<h5 class="card-title">{{ disruption.expectedDuration.description }}</h5>
+			<p class="card-text">{{ disruption.timespans[0].situation.label }}</p>
+		</ng-template>
+	</div>
 </div>

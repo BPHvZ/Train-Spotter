@@ -9,6 +9,7 @@
     "start_production": "ng serve --hmr --prod",
     "start_no_hmr": "ng serve",
     "lint": "ng lint --fix",
+    "prettier_and_lint": "run-s format:fix lint",
     "build": "ng build",
     "test": "ng test",
     "format:fix": "pretty-quick --staged",

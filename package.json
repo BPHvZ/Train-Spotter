@@ -3,22 +3,21 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "prettier": "prettier --write .",
-    "start_and_lint": "run-s prettier lint start",
     "start": "ng serve --hmr",
     "start_production": "ng serve --hmr --prod",
     "start_no_hmr": "ng serve",
-    "lint": "ng lint --fix",
-    "prettier_and_lint": "run-s format:fix lint",
     "build": "ng build",
     "test": "ng test",
-    "format:fix": "pretty-quick --staged",
     "e2e": "ng e2e",
+    "prettier": "prettier --write .",
+    "lint": "ng lint --fix",
+    "format:fix": "pretty-quick --staged",
+    "prettier_and_lint": "run-s format:fix lint",
     "compodoc": "npx compodoc -p tsconfig.json -w --output ./docs",
     "build:release": "npm run test:release && ng build --prod",
     "prebuild:release": "npm ci --production --no-optional",
     "test:release": "ng t --configuration=ci-release",
-    "postinstall": "husky install"
+    "postinstall": "husky install && rm -rf .git/hooks && ln -s ../.husky .git/hooks"
   },
   "private": true,
   "browser": {

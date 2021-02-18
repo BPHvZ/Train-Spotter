@@ -17,7 +17,7 @@
 						<strong>&times;</strong>
 					</button>
 					<div *ngIf="lastUpdatedDate" class="text-center">
-						<span style="font-size: small">laatste geüpdatet:<br /></span>
+						<span style="font-size: small">Laatste update:<br /></span>
 						{{ lastUpdatedDate | date: "EEEE d LLL, HH:mm:ss" }}
 					</div>
 					<button (click)="updateDisruptions.emit(null)" class="button button--nsYellow button--close">

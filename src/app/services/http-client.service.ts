@@ -17,6 +17,17 @@ export class HttpOptions {
 	headers?: any;
 	cacheMins?: number;
 	params?: HttpParams;
+	force?: boolean;
+}
+
+export enum ResponseType {
+	URL = "URL",
+	CACHE = "CACHE",
+}
+
+export class Response<T> {
+	data: T;
+	responseType: ResponseType;
 }
 
 @Injectable({
@@ -25,37 +36,41 @@ export class HttpOptions {
 export class HttpClientService {
 	constructor(private http: HttpClient, private cacheService: CacheService) {}
 
-	get<T>(options: HttpOptions): Observable<T> {
+	get<T>(options: HttpOptions): Observable<Response<T>> {
 		return this.httpCall(Verbs.GET, options);
 	}
 
-	delete<T>(options: HttpOptions): Observable<T> {
+	delete<T>(options: HttpOptions): Observable<Response<T>> {
 		return this.httpCall(Verbs.DELETE, options);
 	}
 
-	post<T>(options: HttpOptions): Observable<T> {
+	post<T>(options: HttpOptions): Observable<Response<T>> {
 		return this.httpCall(Verbs.POST, options);
 	}
 
-	put<T>(options: HttpOptions): Observable<T> {
+	put<T>(options: HttpOptions): Observable<Response<T>> {
 		return this.httpCall(Verbs.PUT, options);
 	}
 
-	private httpCall<T>(verb: Verbs, options: HttpOptions): Observable<T> {
+	private httpCall<T>(verb: Verbs, options: HttpOptions): Observable<Response<T>> {
 		// Setup default values
 		options.body = options.body || null;
 		options.cacheMins = options.cacheMins || 0;
 		options.headers = options.headers || {};
 		const params = options.params?.toString() || null;
 		options.url = "https://cors-bartvanzeist.herokuapp.com/" + options.url;
+		options.force = options.force || false;
 
-		if (options.cacheMins > 0) {
+		if (options.cacheMins > 0 && options.force == false) {
 			// Get data from cache
 			const data = this.cacheService.load(options.url, params);
 			// Return data from cache
 			if (data !== null) {
 				console.log("from cache");
-				return of<T>(data);
+				return of<Response<T>>({
+					data: data,
+					responseType: ResponseType.CACHE,
+				});
 			}
 		}
 
@@ -69,13 +84,18 @@ export class HttpClientService {
 				switchMap((response) => {
 					console.log("from url");
 					// Data will be cached
-					this.cacheService.save({
-						key: options.url,
-						params,
+					if (options.cacheMins > 0) {
+						this.cacheService.save({
+							key: options.url,
+							params,
+							data: response,
+							expirationMins: options.cacheMins,
+						});
+					}
+					return of<Response<T>>({
 						data: response,
-						expirationMins: options.cacheMins,
+						responseType: ResponseType.URL,
 					});
-					return of<T>(response);
 				})
 			);
 	}

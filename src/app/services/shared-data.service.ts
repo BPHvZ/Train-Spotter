@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { ApiService } from "./api.service";
-import { BehaviorSubject, Observable, of } from "rxjs";
+import { BehaviorSubject, Observable } from "rxjs";
 import { DisruptionBase, DisruptionsList, Station, StationsResponse } from "../models/ReisinformatieAPI";
 import { map, mergeMap, tap } from "rxjs/operators";
 import { TrainTracksGeoJSON } from "../models/SpoortkaartAPI";
@@ -9,6 +9,7 @@ import { LngLatLike, Map as MapBoxMap, MapboxGeoJSONFeature } from "mapbox-gl";
 import { GeoJSON } from "geojson";
 import { Router } from "@angular/router";
 import { CacheService } from "./cache.service";
+import { ResponseType } from "./http-client.service";
 
 @Injectable({
 	providedIn: "root",
@@ -60,47 +61,54 @@ export class SharedDataService {
 
 	getBasicInformationAboutAllStations(): Observable<StationsResponse> {
 		return this.apiService.getBasicInformationAboutAllStations().pipe(
-			tap((value) => {
-				this.stations = value;
-				this._stations$.next(value);
-			})
+			tap((response) => {
+				this.stations = response.data;
+				this._stations$.next(response.data);
+				return response.data;
+			}),
+			map((response) => response.data)
 		);
 	}
 
 	getTrainTracksGeoJSON(): Observable<TrainTracksGeoJSON> {
 		return this.apiService.getTrainTracksGeoJSON().pipe(
-			tap((value) => {
-				this.trainTracksLayerData = value;
-			})
+			tap((response) => {
+				this.trainTracksLayerData = response.data;
+			}),
+			map((response) => response.data)
 		);
 	}
 
 	getDisruptedTrainTracksGeoJSON(force = false): Observable<TrainTracksGeoJSON> {
 		return this.apiService.getDisruptedTrainTracksGeoJSON(force).pipe(
-			tap((value) => {
-				this.disruptedTrainTracksLayerData = value;
-			})
+			tap((response) => {
+				this.disruptedTrainTracksLayerData = response.data;
+			}),
+			map((response) => response.data)
 		);
 	}
 
 	getActiveDisruptions(force = false): Observable<DisruptionsList> {
 		return this.apiService.getActiveDisruptions(force).pipe(
-			tap((value) => {
-				// TODO
-				const date = new Date();
-				this._getActiveDisruptionsLastUpdated$.next(date);
-				this.cacheService.save({
-					key: "getActiveDisruptionsLastUpdated",
-					data: JSON.stringify(date.toUTCString()),
-				});
-				this.activeDisruptions = value;
-			})
+			tap((response) => {
+				if (response.responseType == ResponseType.URL) {
+					const date = new Date();
+					this._getActiveDisruptionsLastUpdated$.next(date);
+					this.cacheService.save({
+						key: "getActiveDisruptionsLastUpdated",
+						data: JSON.stringify(date.toUTCString()),
+					});
+				}
+				this.activeDisruptions = response.data;
+			}),
+			map((response) => response.data)
 		);
 	}
 
 	getDetailedInformationAboutActiveTrains(): Observable<DetailedTrainInformation[]> {
 		return this.apiService.getBasicInformationAboutAllTrains().pipe(
-			mergeMap((trains) => {
+			mergeMap((response) => {
+				const trains = response.data;
 				this.basicTrainInformation = trains.payload.treinen;
 				this.detailedTrainInformation = trains.payload.treinen;
 				let trainIds = "";
@@ -110,7 +118,8 @@ export class SharedDataService {
 				trainIds = trainIds.slice(0, -1);
 				return this.apiService.getTrainDetailsByRideId(trainIds);
 			}),
-			map((trainDetails) => {
+			map((response) => {
+				const trainDetails = response.data;
 				this.detailedTrainInformation.forEach((basicTrain) => {
 					basicTrain.trainDetails = trainDetails.find(
 						(details) => details.ritnummer.toString() === basicTrain.ritId

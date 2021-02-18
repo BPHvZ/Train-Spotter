@@ -2,7 +2,7 @@
 	<div class="container-fluid">
 		<nav class="navbar">
 			<a class="navbar-brand" [routerLink]="'kaart'" style="cursor: pointer">
-        <strong style="color: white">TrainSpotter</strong>
+				<strong style="color: white">TrainSpotter</strong>
 			</a>
 		</nav>
 
@@ -10,14 +10,22 @@
 			<ul class="navbar-nav mr-auto pl-1">
 				<li class="nav-item align-self-center pr-3" style="cursor: pointer">
 					<a class="nav-link router-link-hover align-items-center d-flex" [routerLink]="'kaart'">
-            <img [routerLink]="'kaart'" src="../../../../assets/icons/icon-192x192.png" height="20" alt="TrainSpotter"/>
+						<img
+							[routerLink]="'kaart'"
+							src="../../../../assets/icons/icon-192x192.png"
+							height="20"
+							alt="TrainSpotter"
+						/>
 						<strong style="padding-left: 4px">Kaart</strong></a
 					>
 				</li>
-				<li class="nav-item align-self-center pr-1" ngbDropdown #navbarDropdown1="ngbDropdown"
-            (mouseenter)="$event.stopPropagation(); navbarDropdown1.open()"
-            (mouseleave)="$event.stopPropagation(); navbarDropdown1.close()"
-        >
+				<li
+					class="nav-item align-self-center pr-1"
+					ngbDropdown
+					#navbarDropdown1="ngbDropdown"
+					(mouseenter)="$event.stopPropagation(); navbarDropdown1.open()"
+					(mouseleave)="$event.stopPropagation(); navbarDropdown1.close()"
+				>
 					<div
 						class="d-inline"
 						style="cursor: pointer"
@@ -79,50 +87,53 @@
 					</div>
 				</li>
 			</ul>
-      <form class="form-inline my-2 my-lg-0">
-        <ng-template #rt let-r="result" let-t="term">
-          <div [ngSwitch]="r.resultType" style="display: inline">
-            <ng-container *ngSwitchCase="0"><ng-container *ngTemplateOutlet="train"></ng-container></ng-container>
-            <ng-container *ngSwitchCase="1"><ng-container *ngTemplateOutlet="station"></ng-container></ng-container>
-            <ng-template #train>
-              <button
-                class="button button--nsYellow button--crosshair"
-                style="
-              margin-left: 8px"
-                (click)="flyToTrainOnMap(r.result)"
-              >
-                <fa-icon [icon]="faCrosshairs" style="font-size: small"></fa-icon>
-              </button>
-            </ng-template>
-            <ng-template #station>
-              <button
-                class="button button--nsYellow button--crosshair"
-                style="
-              margin-left: 8px"
-                (click)="flyToStationOnMap(r.result)"
-              >
-                <fa-icon [icon]="faCrosshairs" style="font-size: small"></fa-icon>
-              </button>
-            </ng-template>
-          </div>
-          <ngb-highlight [result]="r.searchField" [term]="t" style="vertical-align: sub"></ngb-highlight>
-        </ng-template>
-        <div id="scrollable-dropdown-menu">
-          <input
-            #globalTypeahead
-            id="global-typeahead"
-            type="text"
-            class="form-control mr-sm-2"
-            placeholder="Zoek trein, treinstel, station, vervoerder"
-            aria-label="Search"
-            [class.is-invalid]="searchGloballyFailed"
-            [ngbTypeahead]="searchGlobally"
-            [resultTemplate]="rt"
-            [disabled]="!allDataLoaded"
-            (selectItem)="selectItemFromGlobalSearch($event)"/>
-        </div>
-        <button class="button button--nsYellow" [disabled]="!allDataLoaded">Zoek</button>
-      </form>
+			<form class="form-inline my-2 my-lg-0">
+				<ng-template #rt let-r="result" let-t="term">
+					<div [ngSwitch]="r.resultType" style="display: inline">
+						<ng-container *ngSwitchCase="0"
+							><ng-container *ngTemplateOutlet="train"></ng-container
+						></ng-container>
+						<ng-container *ngSwitchCase="1"
+							><ng-container *ngTemplateOutlet="station"></ng-container
+						></ng-container>
+						<ng-template #train>
+							<button
+								class="button button--nsYellow button--crosshair"
+								style="margin-left: 8px"
+								(click)="flyToTrainOnMap(r.result)"
+							>
+								<fa-icon [icon]="faCrosshairs" style="font-size: small"></fa-icon>
+							</button>
+						</ng-template>
+						<ng-template #station>
+							<button
+								class="button button--nsYellow button--crosshair"
+								style="margin-left: 8px"
+								(click)="flyToStationOnMap(r.result)"
+							>
+								<fa-icon [icon]="faCrosshairs" style="font-size: small"></fa-icon>
+							</button>
+						</ng-template>
+					</div>
+					<ngb-highlight [result]="r.searchField" [term]="t" style="vertical-align: sub"></ngb-highlight>
+				</ng-template>
+				<div id="scrollable-dropdown-menu">
+					<input
+						#globalTypeahead
+						id="global-typeahead"
+						type="text"
+						class="form-control mr-sm-2"
+						placeholder="Zoek trein, treinstel, station, vervoerder"
+						aria-label="Search"
+						[class.is-invalid]="searchGloballyFailed"
+						[ngbTypeahead]="searchGlobally"
+						[resultTemplate]="rt"
+						[disabled]="!allDataLoaded"
+						(selectItem)="selectItemFromGlobalSearch($event)"
+					/>
+				</div>
+				<button class="button button--nsYellow" [disabled]="!allDataLoaded">Zoek</button>
+			</form>
 		</div>
 	</div>
 </header>

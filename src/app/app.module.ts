@@ -1,5 +1,7 @@
 import { BrowserModule } from "@angular/platform-browser";
-import { NgModule } from "@angular/core";
+import { LOCALE_ID, NgModule } from "@angular/core";
+import { registerLocaleData } from "@angular/common";
+import localeNL from "@angular/common/locales/nl";
 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
@@ -26,6 +28,8 @@ import { CalamityItemComponent } from "./components/train-map-sidebar/calamity-i
 import { ServiceWorkerModule } from "@angular/service-worker";
 import { environment } from "../environments/environment";
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
+
+registerLocaleData(localeNL, "nl");
 
 @NgModule({
 	declarations: [
@@ -61,6 +65,7 @@ import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 			provide: RouteReuseStrategy,
 			useClass: CacheRouteReuseStrategy,
 		},
+		{ provide: LOCALE_ID, useValue: "nl" },
 	],
 	bootstrap: [AppComponent],
 })

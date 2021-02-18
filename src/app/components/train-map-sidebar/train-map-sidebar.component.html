@@ -1,20 +1,39 @@
 <div [style]="{'paddingLeft': sidebarState == 'closed' ? '0px' : '30px'}" id="sidebar-container" class="mat-typography">
 	<div (click)="changeState()" [@openClose-arrow]="sidebarState" class="frosted left-shadow" id="sidebar-arrow">
-		<span [@rotatedState]="sidebarState" class="material-icons" style="margin-top: 85%; font-size: 26px"> expand_more </span>
+		<span [@rotatedState]="sidebarState" class="material-icons" style="margin-top: 85%; font-size: 26px">
+			expand_more
+		</span>
 	</div>
-	<div (@openClose-sidebar.done)="done($event)" [@openClose-sidebar]="sidebarState" class="frosted left-shadow" id="sidebar">
+	<div
+		(@openClose-sidebar.done)="done($event)"
+		[@openClose-sidebar]="sidebarState"
+		class="frosted left-shadow"
+		id="sidebar"
+	>
 		<div class="container" id="sidebar-content">
 			<div class="col">
-				<div class="row">
-					<button (click)="changeState()" class="button button--close" id="close-button">
+				<div class="row justify-content-around" style="padding: 8px 0; align-items: center">
+					<button (click)="changeState()" class="button button--close">
 						<strong>&times;</strong>
+					</button>
+					<div *ngIf="lastUpdatedDate" class="text-center">
+						<span style="font-size: small">laatste geüpdatet:<br /></span>
+						{{ lastUpdatedDate | date: "EEEE d LLL, HH:mm:ss" }}
+					</div>
+					<button (click)="updateDisruptions.emit(null)" class="button button--nsYellow button--close">
+						<strong><fa-icon [icon]="faSyncAlt" style="font-size: small"></fa-icon></strong>
 					</button>
 				</div>
 				<div class="row">
 					<div *ngIf="disruptions">
-						<div *ngFor="let disruption of disruptions" [ngSwitch]="disruption.type" class="card bg-light mb-3" style="max-width: 18rem">
-              <app-calamity-item [calamity]="disruption" *ngSwitchCase="'CALAMITY'"></app-calamity-item>
-              <app-disruption-item [disruption]="disruption" (flyToDisruption)="flyToDisruptionOnMap($event)" *ngSwitchDefault></app-disruption-item>
+						<div
+							*ngFor="let disruption of disruptions"
+							[ngSwitch]="disruption.type"
+							class="card bg-light mb-3"
+							style="max-width: 18rem"
+						>
+							<app-calamity-item [calamity]="disruption" *ngSwitchCase="'CALAMITY'"></app-calamity-item>
+							<app-disruption-item [disruption]="disruption" *ngSwitchDefault></app-disruption-item>
 						</div>
 					</div>
 				</div>

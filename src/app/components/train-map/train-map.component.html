@@ -11,15 +11,15 @@
 			(load)="onMapLoad($event)"
 			(mouseMove)="onMapMouseMove($event)"
 			(zoomEvt)="onMapZoom($event)"
-      (sourceData)="onMapSourceData($event)"
+			(sourceData)="onMapSourceData($event)"
 		>
-      <mgl-control mglNavigation position="top-right"></mgl-control>
-      <mgl-control
-        mglGeolocate
-        [trackUserLocation]="true"
-        [fitBoundsOptions]="{maxZoom:10}"
-        position="top-right"
-      ></mgl-control>
+			<mgl-control mglNavigation position="top-right"></mgl-control>
+			<mgl-control
+				mglGeolocate
+				[trackUserLocation]="true"
+				[fitBoundsOptions]="{maxZoom:10}"
+				position="top-right"
+			></mgl-control>
 			<mgl-layer
 				*ngIf="stationsLayerData"
 				id="stations"
@@ -58,43 +58,43 @@
 				[before]="'stations'"
 			>
 			</mgl-layer>
-        <mgl-geojson-source id="disruptionMarkersSource">
-          <mgl-marker
-            *ngFor="let disruptionMarker of disruptionMarkersData"
-            [lngLat]="disruptionMarker.geometry.coordinates"
-          >
-            <div
-              style="pointer-events: auto"
-              [ngStyle]="{ display: activeMapType.layerId === 'storingen-railroad' ? 'unset' : 'none' }"
-            >
-              <div
-                id="mapPopup"
-                class="flex-parent-inline flex-parent--center-cross flex-parent--column absolute bottom"
-              >
-                <div
-                  class="mapPopupContent mapPopupContent--disruption color-white shadow-darken10 round txt-s clip txt-truncate"
-                >
-                  <div
-                    *ngIf="disruptionMarker.properties['type'] === 'werkzaamheid'; else elseDisruption"
-                  >
-                    <img
-                      src="../../../assets/maintenance--35x35.svg"
-                      alt="Werk aan het spoor"
-                      style="position: inherit; height: 30px"
-                    />
-                  </div>
-                  <ng-template #elseDisruption>
-                    <img
-                      src="../../../assets/alert--35x35.svg"
-                      alt="Storing"
-                      style="position: inherit; height: 30px"
-                  /></ng-template>
-                </div>
-                <span class="flex-child triangle triangle--d" style="color: #fe0000"></span>
-              </div>
-            </div>
-          </mgl-marker>
-        </mgl-geojson-source>
+			<mgl-geojson-source id="disruptionMarkersSource">
+				<mgl-marker
+					*ngFor="let disruptionMarker of disruptionMarkersData"
+					[lngLat]="disruptionMarker.geometry.coordinates"
+				>
+					<div
+						style="pointer-events: auto"
+						[ngStyle]="{ display: activeMapType.layerId === 'storingen-railroad' ? 'unset' : 'none' }"
+					>
+						<div
+							id="mapPopup"
+							class="flex-parent-inline flex-parent--center-cross flex-parent--column absolute bottom"
+						>
+							<div
+								class="mapPopupContent mapPopupContent--disruption color-white shadow-darken10 round txt-s clip txt-truncate"
+							>
+								<div
+									*ngIf="disruptionMarker.properties['type'] === 'werkzaamheid'; else elseDisruption"
+								>
+									<img
+										src="../../../assets/maintenance--35x35.svg"
+										alt="Werk aan het spoor"
+										style="position: inherit; height: 30px"
+									/>
+								</div>
+								<ng-template #elseDisruption>
+									<img
+										src="../../../assets/alert--35x35.svg"
+										alt="Storing"
+										style="position: inherit; height: 30px"
+								/></ng-template>
+							</div>
+							<span class="flex-child triangle triangle--d" style="color: #fe0000"></span>
+						</div>
+					</div>
+				</mgl-marker>
+			</mgl-geojson-source>
 			<mgl-layer
 				*ngIf="disruptionMarkersData"
 				id="symbols"
@@ -136,7 +136,7 @@
 				[closeButton]="false"
 				[lngLat]="selectedTrainOnMapFeature?.geometry?.coordinates"
 			>
-				<app-train-popup [mapboxFeature]="selectedTrainOnMapFeature" (closePopup)="closePopup()" >
+				<app-train-popup [mapboxFeature]="selectedTrainOnMapFeature" (closePopup)="closePopup()">
 				</app-train-popup>
 			</mgl-popup>
 			<mgl-popup
@@ -224,10 +224,11 @@
 		</ng-template>
 	</div>
 	<div>
-    <div id="sidebar" *ngIf="actualDisruptions">
-      <app-train-map-sidebar
-        (clickOnArrow)="sidebar.changeState()"
-      ></app-train-map-sidebar>
-    </div>
-  </div>
+		<div id="sidebar" *ngIf="activeDisruptions">
+			<app-train-map-sidebar
+				(clickOnArrow)="sidebar.changeState()"
+				(updateDisruptions)="updateDisruptions()"
+			></app-train-map-sidebar>
+		</div>
+	</div>
 </div>

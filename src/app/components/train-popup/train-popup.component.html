@@ -11,7 +11,7 @@
 							<h3 style="margin: unset">
 								<strong>
 									{{ trainInformation.trainDetails?.vervoerder }} {{ getTypeOfTrain() }} trein {{
-                  trainInformation.ritId }}
+									trainInformation.ritId }}
 									<span
 										*ngFor="
 											let trainPart of trainInformation.trainDetails?.materieeldelen;
@@ -20,7 +20,10 @@
 									>
 										<span *ngIf="trainPart.materieelnummer">
 											<span *ngIf="i == 0; else other"> met {{ trainPart.materieelnummer }}</span>
-											<ng-template #other>{{i == (trainInformation.trainDetails.materieeldelen.length - 1) ? ' en' : ','}} {{ trainPart.materieelnummer }}</ng-template>
+											<ng-template #other
+												>{{i == (trainInformation.trainDetails.materieeldelen.length - 1) ? 'en'
+												: ','}} {{ trainPart.materieelnummer }}
+											</ng-template>
 										</span>
 									</span>
 								</strong>
@@ -30,15 +33,20 @@
 								style="margin-left: 10px"
 								(click)="closePopup.emit()"
 							>
-                <strong>&times;</strong>
+								<strong>&times;</strong>
 							</button>
 						</div>
 						<div class="row" style="align-items: center">
-							<span style="padding-right: 10px">Snelheid: {{ trainInformation.snelheid | number:'1.0-2' }} km/u</span>
+							<span style="padding-right: 10px"
+								>Snelheid: {{ trainInformation.snelheid | number:'1.0-2' }} km/u</span
+							>
 							<span class="material-icons" [ngStyle]="directionArrowStyle">arrow_right_alt</span>
 							<span>{{ trainInformation.richting }}&deg;</span>
 						</div>
-						<div class="row" *ngIf="trainInformation.trainDetails?.materieeldelen && trainInformation.trainDetails?.materieeldelen[0]?.afbeelding">
+						<div
+							class="row"
+							*ngIf="trainInformation.trainDetails?.materieeldelen && trainInformation.trainDetails?.materieeldelen[0]?.afbeelding"
+						>
 							<div id="carousel">
 								<div
 									class="slide"

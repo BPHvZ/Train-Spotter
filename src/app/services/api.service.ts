@@ -1,13 +1,12 @@
 import { Injectable } from "@angular/core";
 import { HttpParams } from "@angular/common/http";
-import { Observable, of } from "rxjs";
-import { HttpClientService } from "./http-client.service";
+import { Observable } from "rxjs";
+import { HttpClientService, Response } from "./http-client.service";
 import { environment } from "../../environments/environment";
-import { map } from "rxjs/operators";
-import { DisruptionsList, Station, StationsResponse } from "../models/ReisinformatieAPI";
+import { DisruptionsList, StationsResponse } from "../models/ReisinformatieAPI";
 import { TrainTracksGeoJSON } from "../models/SpoortkaartAPI";
 import { TrainInformation, TrainInformationResponse } from "../models/VirtualTrainAPI";
-import { SharedDataService } from "./shared-data.service";
+import { CacheService } from "./cache.service";
 
 @Injectable({
 	providedIn: "root",
@@ -15,7 +14,7 @@ import { SharedDataService } from "./shared-data.service";
 export class ApiService {
 	constructor(private http: HttpClientService) {}
 
-	getTrainTracksGeoJSON(): Observable<TrainTracksGeoJSON> {
+	getTrainTracksGeoJSON(): Observable<Response<TrainTracksGeoJSON>> {
 		return this.http.get({
 			url: "https://gateway.apiportal.ns.nl/Spoorkaart-API/api/v1/spoorkaart",
 			cacheMins: environment.production ? 30 : 60,
@@ -25,7 +24,7 @@ export class ApiService {
 		});
 	}
 
-	getDisruptedTrainTracksGeoJSON(): Observable<TrainTracksGeoJSON> {
+	getDisruptedTrainTracksGeoJSON(force = false): Observable<Response<TrainTracksGeoJSON>> {
 		const disruptionParams = new HttpParams().set("actual", "true");
 		return this.http.get({
 			url: "https://gateway.apiportal.ns.nl/Spoorkaart-API/api/v1/storingen",
@@ -34,10 +33,11 @@ export class ApiService {
 				"Ocp-Apim-Subscription-Key": environment.NS_Ocp_Apim_Subscription_Key,
 			},
 			params: disruptionParams,
+			force: force,
 		});
 	}
 
-	getBasicInformationAboutAllTrains(): Observable<TrainInformationResponse> {
+	getBasicInformationAboutAllTrains(): Observable<Response<TrainInformationResponse>> {
 		return this.http.get({
 			url: "https://gateway.apiportal.ns.nl/virtual-train-api/api/vehicle",
 			cacheMins: environment.production ? 0 : 60,
@@ -47,7 +47,7 @@ export class ApiService {
 		});
 	}
 
-	getTrainDetailsByRideId(rideIds: string): Observable<TrainInformation[]> {
+	getTrainDetailsByRideId(rideIds: string): Observable<Response<TrainInformation[]>> {
 		const trainParams = new HttpParams().set("ids", rideIds).set("all", "false");
 		return this.http.get({
 			url: "https://gateway.apiportal.ns.nl/virtual-train-api/api/v1/trein",
@@ -59,7 +59,7 @@ export class ApiService {
 		});
 	}
 
-	getActiveDisruptions(): Observable<DisruptionsList> {
+	getActiveDisruptions(force = false): Observable<Response<DisruptionsList>> {
 		const disruptionParams = new HttpParams().set("isActive", "true");
 		return this.http.get({
 			url: "https://gateway.apiportal.ns.nl/reisinformatie-api/api/v3/disruptions",
@@ -68,10 +68,11 @@ export class ApiService {
 				"Ocp-Apim-Subscription-Key": environment.NS_Ocp_Apim_Subscription_Key,
 			},
 			params: disruptionParams,
+			force: force,
 		});
 	}
 
-	getBasicInformationAboutAllStations(): Observable<StationsResponse> {
+	getBasicInformationAboutAllStations(): Observable<Response<StationsResponse>> {
 		return this.http.get({
 			url: "https://gateway.apiportal.ns.nl/reisinformatie-api/api/v2/stations",
 			cacheMins: 60,

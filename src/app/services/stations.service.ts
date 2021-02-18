@@ -4,6 +4,7 @@ import { SortColumn, SortDirection } from "../directives/ngbd-sortable-header.di
 import { debounceTime, delay, map, switchMap, tap } from "rxjs/operators";
 import { ApiService } from "./api.service";
 import { Station } from "../models/ReisinformatieAPI";
+import { SharedDataService } from "./shared-data.service";
 
 interface SearchResult {
 	stations: Station[];
@@ -63,7 +64,7 @@ export class StationsService {
 		sortDirection: "",
 	};
 
-	constructor(private apiService: ApiService) {
+	constructor(private sharedDataService: SharedDataService) {
 		this._search$
 			.pipe(
 				tap(() => this._loading$.next(true)),
@@ -126,8 +127,7 @@ export class StationsService {
 	private _search(): Observable<SearchResult> {
 		const { sortColumn, sortDirection, pageSize, page, searchTerm } = this._state;
 
-		return this.apiService.getBasicInformationAboutAllStations().pipe(
-			// tap(stations => console.log(stations.payload)),
+		return this.sharedDataService.getBasicInformationAboutAllStations().pipe(
 			map((stations) => {
 				// 1. sort
 				let stationPayloads = sort(stations.payload, sortColumn, sortDirection);

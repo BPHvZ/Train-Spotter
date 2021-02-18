@@ -86,8 +86,13 @@ export class TrainMapComponent implements OnInit {
 	trainTracksLayerData: SpoortkaartFeatureCollection;
 
 	// Disruptions layer
-	disruptedTrainTracksLayerData: GeoJSON.FeatureCollection<MultiLineString>;
-	actualDisruptions: DisruptionsList;
+	get activeDisruptions(): DisruptionsList {
+		return this.sharedDataService.activeDisruptions;
+	}
+	get disruptedTrainTracksLayerData(): GeoJSON.FeatureCollection<MultiLineString> {
+		return this.sharedDataService.disruptedTrainTracksLayerData
+			?.payload as GeoJSON.FeatureCollection<MultiLineString>;
+	}
 	get disruptionMarkersData(): GeoJSON.Feature<GeoJSON.Point, DisruptionBase>[] {
 		return this.sharedDataService.disruptionMarkersData;
 	}
@@ -126,7 +131,7 @@ export class TrainMapComponent implements OnInit {
 				} else if (timeLeftInSec < 0.0) {
 					this.progressNum = 100;
 					if (this.isUpdatingMapData === false) {
-						this.getActiveTrainsAndDetails();
+						this.updateTrainsAndDisruptions();
 					}
 				}
 			},
@@ -197,16 +202,13 @@ export class TrainMapComponent implements OnInit {
 				console.log(value);
 				this.addStationsToMap(value[0].payload);
 				this.trainTracksLayerData = value[1].payload;
-				this.disruptedTrainTracksLayerData = value[2].payload as GeoJSON.FeatureCollection<MultiLineString>;
-				this.actualDisruptions = value[3];
 				console.log(value[3]);
 			},
 			error: (err) => {
 				console.log(err);
 			},
 			complete: () => {
-				this.getActiveTrainsAndDetails();
-				this.setDisruptionMarkers();
+				this.updateTrainsAndDisruptions();
 			},
 		});
 	}
@@ -323,11 +325,6 @@ export class TrainMapComponent implements OnInit {
 			[],
 			true
 		);
-		this.isUpdatingMapData = false;
-		this.pauseOrResumeUpdatingTrainPositions(false);
-		if (environment.production === false) {
-			this.pauseOrResumeUpdatingTrainPositions(true);
-		}
 	}
 
 	_updateTrainPopupInformation(): void {
@@ -361,7 +358,7 @@ export class TrainMapComponent implements OnInit {
 	}
 
 	setDisruptionMarkers(): void {
-		this.sharedDataService.disruptionMarkersData = [];
+		const markers: GeoJSON.Feature<GeoJSON.Point, DisruptionBase>[] = [];
 		console.log(this.disruptedTrainTracksLayerData.features.length);
 
 		const uniqueDisruptions: GeoJSON.Feature<MultiLineString, { [p: string]: any }>[] = [];
@@ -374,12 +371,12 @@ export class TrainMapComponent implements OnInit {
 		}
 
 		uniqueDisruptions.forEach((feature) => {
-			const disruptionInfo = this.actualDisruptions.find(
+			const disruptionInfo = this.sharedDataService.activeDisruptions.find(
 				(disruption: DisruptionBase) => disruption.id === feature.id
 			);
 			if (disruptionInfo) {
 				const linePart = feature.geometry.coordinates[0];
-				this.sharedDataService.disruptionMarkersData.push({
+				markers.push({
 					type: "Feature",
 					properties: disruptionInfo,
 					geometry: {
@@ -389,6 +386,7 @@ export class TrainMapComponent implements OnInit {
 				});
 			}
 		});
+		this.sharedDataService.disruptionMarkersData = markers;
 	}
 
 	clickMarker(evt: MapMouseEvent): void {
@@ -398,17 +396,55 @@ export class TrainMapComponent implements OnInit {
 	/**
 	 * Get detailed information about all train currently riding
 	 * Set train icons when data is received
+	 * Get information about active disruptions and add markers
 	 */
-	getActiveTrainsAndDetails(): void {
+	updateTrainsAndDisruptions(): void {
 		this.isUpdatingMapData = true;
 		this.pauseOrResumeUpdatingTrainPositions(true);
-		this.sharedDataService.getDetailedInformationAboutActiveTrains().subscribe({
-			next: (detailedTrainInformation) => {
-				console.log(detailedTrainInformation);
-				this.setTrainIconName(detailedTrainInformation);
+		zip(
+			this.sharedDataService.getDetailedInformationAboutActiveTrains(),
+			this.sharedDataService.getDisruptedTrainTracksGeoJSON(),
+			this.sharedDataService.getActiveDisruptions()
+		).subscribe({
+			next: (value: [DetailedTrainInformation[], TrainTracksGeoJSON, DisruptionsList]) => {
+				console.log(value[0]);
+				console.log(value[2]);
+				this.setTrainIconName(value[0]);
+				this.setDisruptionMarkers();
 			},
 			error: (err) => {
 				console.log(err);
+			},
+			complete: () => {
+				console.log("updateTrainsAndDisruptions");
+				this.isUpdatingMapData = false;
+				this.pauseOrResumeUpdatingTrainPositions(false);
+				if (environment.production === false) {
+					this.pauseOrResumeUpdatingTrainPositions(true);
+				}
+			},
+		});
+	}
+
+	/**
+	 * Get information about active disruptions and add markers
+	 * NOTE: Specifically used by the sidebar to force an update
+	 */
+	updateDisruptions(): void {
+		zip(
+			this.sharedDataService.getDisruptedTrainTracksGeoJSON(true),
+			this.sharedDataService.getActiveDisruptions(true)
+		).subscribe({
+			next: (value: [TrainTracksGeoJSON, DisruptionsList]) => {
+				console.log(value[0]);
+				console.log(value[1]);
+				this.setDisruptionMarkers();
+			},
+			error: (err) => {
+				console.log(err);
+			},
+			complete: () => {
+				console.log("updateDisruptions");
 			},
 		});
 	}

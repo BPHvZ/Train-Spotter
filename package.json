@@ -16,8 +16,7 @@
     "compodoc": "npx compodoc -p tsconfig.json -w --output ./docs",
     "build:release": "npm run test:release && ng build --prod",
     "prebuild:release": "npm ci --production --no-optional",
-    "test:release": "ng t --configuration=ci-release",
-    "postinstall": "husky install && rm -rf .git/hooks && ln -s ../.husky .git/hooks"
+    "test:release": "ng t --configuration=ci-release"
   },
   "private": true,
   "browser": {

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
+import { Component, EventEmitter, OnInit, Output } from "@angular/core";
 import { trigger, state, style, animate, transition, animateChild, query, group } from "@angular/animations";
 import { AnimationEvent } from "@angular/animations";
 import { Disruption, DisruptionsList } from "../../models/ReisinformatieAPI";
@@ -20,7 +20,6 @@ import { faSyncAlt } from "@fortawesome/free-solid-svg-icons";
 			state(
 				"closed",
 				style({
-					width: 0,
 					transform: "translate(100%)",
 					boxShadow: "unset",
 				})

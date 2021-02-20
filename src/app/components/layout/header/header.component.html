@@ -1,15 +1,17 @@
-<header class="navbar navbar-expand-md fixed-top mat-typography">
-	<div class="container-fluid">
-		<nav class="navbar">
-			<a class="navbar-brand" [routerLink]="'kaart'" style="cursor: pointer">
-				<strong style="color: white">TrainSpotter</strong>
-			</a>
-		</nav>
+<header class="fixed-top mat-typography">
+	<nav class="navbar navbar-expand-md navbar-dark bg-blue">
+		<a class="navbar-brand" [routerLink]="'kaart'" style="cursor: pointer">
+			<strong style="color: white">TrainSpotter</strong>
+		</a>
 
-		<div class="collapse navbar-collapse" id="navbarSupportedContent">
-			<ul class="navbar-nav mr-auto pl-1">
-				<li class="nav-item align-self-center pr-3" style="cursor: pointer">
-					<a class="nav-link router-link-hover align-items-center d-flex" [routerLink]="'kaart'">
+		<button class="button-border navbar-toggler" type="button" (click)="toggleNavbar()">
+			<fa-icon [icon]="faBars"></fa-icon>
+		</button>
+
+		<div class="collapse navbar-collapse" [ngClass]="{ 'show': navbarOpen }">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item align-self-md-center pr-md-3" style="cursor: pointer">
+					<a class="nav-link router-link-hover d-flex" [routerLink]="'kaart'">
 						<img
 							[routerLink]="'kaart'"
 							src="../../../../assets/icons/icon-192x192.png"
@@ -20,7 +22,7 @@
 					>
 				</li>
 				<li
-					class="nav-item align-self-center pr-1"
+					class="nav-item align-self-md-center pr-md-1"
 					ngbDropdown
 					#navbarDropdown1="ngbDropdown"
 					(mouseenter)="$event.stopPropagation(); navbarDropdown1.open()"
@@ -87,7 +89,7 @@
 					</div>
 				</li>
 			</ul>
-			<form class="form-inline my-2 my-lg-0">
+			<form class="nav-item form-inline my-md-2 my-lg-0">
 				<ng-template #rt let-r="result" let-t="term">
 					<div [ngSwitch]="r.resultType" style="display: inline">
 						<ng-container *ngSwitchCase="0"
@@ -122,7 +124,7 @@
 						#globalTypeahead
 						id="global-typeahead"
 						type="text"
-						class="form-control mr-sm-2"
+						class="form-control input-small"
 						placeholder="Zoek trein, treinstel, station, vervoerder"
 						aria-label="Search"
 						[class.is-invalid]="searchGloballyFailed"
@@ -132,8 +134,8 @@
 						(selectItem)="selectItemFromGlobalSearch($event)"
 					/>
 				</div>
-				<button class="button button--nsYellow" [disabled]="!allDataLoaded">Zoek</button>
+				<button class="button button--nsYellow button--small ml-2" [disabled]="!allDataLoaded">Zoek</button>
 			</form>
 		</div>
-	</div>
+	</nav>
 </header>

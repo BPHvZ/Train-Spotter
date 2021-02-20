@@ -8,7 +8,7 @@ import { GlobalSearchResult, GlobalSearchResultType } from "../../../models/Glob
 import { GlobalSearchService } from "../../../services/global-search.service";
 import { DetailedTrainInformation, Train } from "../../../models/VirtualTrainAPI";
 import { SharedDataService } from "../../../services/shared-data.service";
-import { faCrosshairs } from "@fortawesome/free-solid-svg-icons";
+import { faCrosshairs, faBars } from "@fortawesome/free-solid-svg-icons";
 
 /**
  * Header with links to pages and a dropdown to search for stations
@@ -21,7 +21,10 @@ import { faCrosshairs } from "@fortawesome/free-solid-svg-icons";
 export class HeaderComponent {
 	@ViewChild("globalTypeahead") globalTypeahead: ElementRef;
 
+	navbarOpen = false;
+
 	faCrosshairs = faCrosshairs;
+	faBars = faBars;
 
 	searchingStations = false;
 	searchStationsFailed = false;
@@ -37,6 +40,10 @@ export class HeaderComponent {
 
 	get allDataLoaded(): boolean {
 		return this.sharedDataService.allDataLoaded;
+	}
+
+	toggleNavbar(): void {
+		this.navbarOpen = !this.navbarOpen;
 	}
 
 	/**

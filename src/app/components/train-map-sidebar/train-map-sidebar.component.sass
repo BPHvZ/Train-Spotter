@@ -11,9 +11,7 @@
 #sidebar-container
   height: 100%
   overflow: hidden
-  //padding-left: 30px
   float: right
-  //width: fit-content
 
 #sidebar
   height: 100%
@@ -39,3 +37,19 @@
   position: absolute
   right: 0
 
+.card-max-width
+  max-width: 18rem
+
+.test
+  padding-right: 15px
+  padding-left: 15px
+  margin-right: auto
+  margin-left: auto
+
+@media (max-width: 768px)
+  .card-max-width
+    max-width: none
+
+@media (max-width: 575px)
+  .container
+    max-width: calc(100vw - 30px)

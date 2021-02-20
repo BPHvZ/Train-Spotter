@@ -60,7 +60,7 @@ export class TrainMapSidebarComponent implements OnInit {
 		return this.sharedDataService.activeDisruptions;
 	}
 	lastUpdatedDate?: Date;
-	sidebarState = "closed";
+	sidebarState = "open";
 	faSyncAlt = faSyncAlt;
 
 	constructor(private sharedDataService: SharedDataService) {}

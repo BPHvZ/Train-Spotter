@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve --hmr",
-    "start_production": "ng serve --hmr --prod",
+    "start_production": "ng serve --prod",
     "start_no_hmr": "ng serve",
     "build": "ng build",
     "test": "ng test",
@@ -18,6 +18,16 @@
     "prebuild:release": "npm ci --production --no-optional",
     "test:release": "ng t --configuration=ci-release"
   },
+  "browserslist": [
+    "last 1 Chrome version",
+    "last 1 Firefox version",
+    "last 2 Edge major versions",
+    "last 2 Safari major versions",
+    "last 2 iOS major versions",
+    "Firefox ESR",
+    "not IE 9-10",
+    "not IE 11"
+  ],
   "private": true,
   "browser": {
     "fs": false,

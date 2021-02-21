@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild } from "@angular/core";
+import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
 import { Observable, of } from "rxjs";
 import { catchError, debounceTime, distinctUntilChanged, switchMap, tap } from "rxjs/operators";
 import { NgbTypeaheadSelectItemEvent } from "@ng-bootstrap/ng-bootstrap";
@@ -18,10 +18,10 @@ import { faCrosshairs, faBars } from "@fortawesome/free-solid-svg-icons";
 	templateUrl: "./header.component.html",
 	styleUrls: ["./header.component.sass"],
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
 	@ViewChild("globalTypeahead") globalTypeahead: ElementRef;
 
-	navbarOpen = false;
+	navbarCollapsed = true;
 
 	faCrosshairs = faCrosshairs;
 	faBars = faBars;
@@ -32,18 +32,20 @@ export class HeaderComponent {
 	searchingGlobally = false;
 	searchGloballyFailed = false;
 
-	constructor(
-		private sharedDataService: SharedDataService,
-		private globalSearchService: GlobalSearchService,
-		private router: Router
-	) {}
+	constructor(private sharedDataService: SharedDataService, private globalSearchService: GlobalSearchService) {}
+
+	ngOnInit(): void {
+		this.sharedDataService.navbarCollapsed$.subscribe((value) => {
+			this.navbarCollapsed = value;
+		});
+	}
 
 	get allDataLoaded(): boolean {
 		return this.sharedDataService.allDataLoaded;
 	}
 
 	toggleNavbar(): void {
-		this.navbarOpen = !this.navbarOpen;
+		this.sharedDataService.toggleNavbar();
 	}
 
 	/**
@@ -125,13 +127,7 @@ export class HeaderComponent {
 				break;
 			}
 		}
-	}
-
-	/**
-	 * Navigate to the stations overview page
-	 */
-	navigateToAllStations(): void {
-		void this.router.navigateByUrl("stations");
+		this.toggleNavbar();
 	}
 
 	flyToTrainOnMap(train: DetailedTrainInformation): void {

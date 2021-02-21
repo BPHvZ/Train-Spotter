@@ -15,6 +15,9 @@ import { ResponseType } from "./http-client.service";
 	providedIn: "root",
 })
 export class SharedDataService {
+	/*
+	 * Data used by the train map
+	 * */
 	stations?: StationsResponse;
 	private _stations$ = new BehaviorSubject<StationsResponse>(null);
 	get stations$(): Observable<StationsResponse> {
@@ -42,6 +45,15 @@ export class SharedDataService {
 	}
 
 	trainMap?: MapBoxMap;
+
+	/*
+	 * Data used by the navbar
+	 * */
+	navbarCollapsed = true;
+	private _navbarCollapsed$ = new BehaviorSubject<boolean>(true);
+	get navbarCollapsed$(): Observable<boolean> {
+		return this._navbarCollapsed$.asObservable();
+	}
 
 	constructor(private apiService: ApiService, private router: Router, private cacheService: CacheService) {
 		const dateData = this.cacheService.load("getActiveDisruptionsLastUpdated") as Date;
@@ -201,5 +213,10 @@ export class SharedDataService {
 	private closePopups() {
 		this.selectedTrainOnMapFeature = null;
 		this.selectedStationOnMapFeature = null;
+	}
+
+	toggleNavbar(): void {
+		this.navbarCollapsed = !this.navbarCollapsed;
+		this._navbarCollapsed$.next(this.navbarCollapsed);
 	}
 }

@@ -1,8 +1,15 @@
-<div class="card mt-3 shadow p-3 mb-3 bg-white rounded mat-typography">
+<div class="card mt-3 shadow p-1 p-lg-3 mb-1 mb-lg-3 bg-white rounded mat-typography">
 	<div class="card-body">
 		<div class="form-group form-inline">
-			Zoeken: <input class="form-control ml-2" type="text" name="searchTerm" [(ngModel)]="service.searchTerm" />
-			<span class="ml-3" *ngIf="service.loading$ | async">Laden...</span>
+			<span class="mr-2">Zoeken:</span>
+			<input
+				class="form-control"
+				type="text"
+				placeholder="Naam, Land, EVA- & UICCode"
+				name="searchTerm"
+				[(ngModel)]="service.searchTerm"
+			/>
+			<span class="ml-md-3 mt-md-0 mt-2" *ngIf="service.loading$ | async">Laden...</span>
 		</div>
 
 		<div class="table-responsive">
@@ -24,14 +31,26 @@
 						<td><ngb-highlight [result]="station.land" [term]="service.searchTerm"></ngb-highlight></td>
 						<td><ngb-highlight [result]="station.EVACode" [term]="service.searchTerm"></ngb-highlight></td>
 						<td><ngb-highlight [result]="station.UICCode" [term]="service.searchTerm"></ngb-highlight></td>
-						<td><button class="button" (click)="openStationOnMap(station)">Kaart</button></td>
+						<td style="text-align: center">
+							<button
+								class="button button--nsYellow button--crosshair"
+								(click)="openStationOnMap(station)"
+							>
+								<fa-icon [icon]="faCrosshairs"></fa-icon>
+							</button>
+						</td>
 					</tr>
 				</tbody>
 			</table>
 		</div>
 
-		<div class="d-flex justify-content-between p-2">
-			<ngb-pagination [collectionSize]="(total$ | async)!" [(page)]="service.page" [pageSize]="service.pageSize">
+		<div class="d-flex justify-content-between p-2 flex-parent--wrap">
+			<ngb-pagination
+				[collectionSize]="(total$ | async)!"
+				[(page)]="service.page"
+				[pageSize]="service.pageSize"
+				style="overflow: scroll"
+			>
 			</ngb-pagination>
 
 			<select class="custom-select" style="width: auto" name="pageSize" [(ngModel)]="service.pageSize">

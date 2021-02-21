@@ -11,27 +11,20 @@
 		<div class="collapse navbar-collapse" [ngbCollapse]="navbarOpen">
 			<ul class="navbar-nav mr-auto">
 				<li class="nav-item align-self-md-center pr-md-3" style="cursor: pointer">
-					<a
-						class="nav-link router-link-hover d-flex link-hover"
-						routerLink="/kaart"
-						routerLinkActive="link-active"
-					>
+					<a class="nav-link router-link-hover d-flex" routerLink="/kaart">
 						<img
 							[routerLink]="'kaart'"
 							src="../../../../assets/icons/icon-192x192.png"
 							height="20"
 							alt="TrainSpotter"
+							style="margin-right: 4px"
 						/>
-						<strong style="padding-left: 4px">Kaart</strong></a
+						<strong class="link-hover" routerLinkActive="link-active">Kaart</strong></a
 					>
 				</li>
 				<li class="nav-item align-self-md-center pr-md-3" style="cursor: pointer">
-					<a
-						class="nav-link router-link-hover d-flex link-hover"
-						routerLink="/stations"
-						routerLinkActive="link-active"
-					>
-						<strong style="padding-left: 4px">Stations</strong></a
+					<a class="nav-link router-link-hover d-flex" routerLink="/stations">
+						<strong class="link-hover" routerLinkActive="link-active">Stations</strong></a
 					>
 				</li>
 			</ul>

@@ -19,4 +19,10 @@ export class MainLayoutComponent {
 			this.isTrainMap = router.url.endsWith("kaart");
 		});
 	}
+
+	removePaddingOnMap(): string {
+		if (this.isTrainMap) {
+			return "1.333rem";
+		}
+	}
 }

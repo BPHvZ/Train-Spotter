@@ -1,25 +1,28 @@
-@import "../../../../globals"
+@import "src/styles/colors"
 
-.navbar
-  .container-fluid
-    position: relative
-    padding: 0
-    max-width: 1280px
+.bg-blue
+  background-color: $ns-blue !important
 
-  color: white
-  min-height: calc(2.25rem + 2px + 1.333rem + .8889rem)
-  padding: 0.5rem
-  background-color: $ns-blue
+@media (min-width: 768px)
+  .navbar
+    height: 72px
 
 @media (max-width: 768px)
-  .navbar
-    padding: 0.5rem 0 0.5rem 0.5rem
+  .nav-item
+    padding: 10px 0
+
+  .nav-link
+    padding: 0 !important
+
+  .input-small
+    height: 32px
+    font-size: 16px
 
 .navbar-nav
   font-size: 17px
 
-.nav-link
-  color: white
+.nav-item, .nav-link
+  color: white !important
 
 .user-dropdown:hover
   cursor: pointer
@@ -27,3 +30,44 @@
 .button--crosshair
   padding: 2px 6px
   float: right
+
+.button-border
+  color: white
+  padding: 5px 7px
+  border: 1px solid rgba(255, 255, 255, 0.2)
+  border-radius: 4px
+  font-size: unset !important
+  line-height: unset !important
+
+$animate: all 0.2s ease-in-out
+
+.link-hover
+  position: relative
+
+  &:before
+    content: ""
+    position: absolute
+    width: 0
+    height: 2px
+    bottom: 0
+    left: 0
+    background-color: $ns-yellow-2
+    visibility: hidden
+    transition: all 0.3s ease-in-out
+
+  &:hover:before
+    visibility: visible
+    width: 100%
+
+.link-active
+  position: relative
+
+  &:before
+    content: ""
+    position: absolute
+    height: 2px
+    bottom: 0
+    left: 0
+    background-color: $ns-yellow-2
+    visibility: visible
+    width: 100%

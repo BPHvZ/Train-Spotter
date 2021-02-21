@@ -1,6 +1,11 @@
 .frosted
-  backdrop-filter: blur(10px)
-  background-color: rgba(255, 255, 255, 0.5)
+  background-color: rgba(255, 255, 255, .9)
+
+@supports (backdrop-filter: blur(10px)) or (-webkit-backdrop-filter: blur(10))
+  .frosted
+    -webkit-backdrop-filter: blur(10px)
+    backdrop-filter: blur(10px)
+    background-color: rgba(255, 255, 255, 0.5) !important
 
 .left-shadow
   box-shadow: -15px 0 1rem -2px rgba(0, 0, 0, 0.15)
@@ -11,9 +16,7 @@
 #sidebar-container
   height: 100%
   overflow: hidden
-  //padding-left: 30px
   float: right
-  //width: fit-content
 
 #sidebar
   height: 100%
@@ -39,3 +42,13 @@
   position: absolute
   right: 0
 
+.card-max-width
+  max-width: 18rem
+
+@media (max-width: 768px)
+  .card-max-width
+    max-width: none
+
+@media (max-width: 575px)
+  .container
+    max-width: calc(100vw - 30px)

@@ -5,6 +5,7 @@ import { StationsService } from "../../services/stations.service";
 import { take } from "rxjs/operators";
 import { Router } from "@angular/router";
 import { Station } from "../../models/ReisinformatieAPI";
+import { faCrosshairs } from "@fortawesome/free-solid-svg-icons";
 
 /**
  * Table with all NS-stations
@@ -18,6 +19,7 @@ import { Station } from "../../models/ReisinformatieAPI";
 export class AllStationsComponent implements OnInit {
 	stations$: Observable<Station[]>;
 	total$: Observable<number>;
+	faCrosshairs = faCrosshairs;
 
 	@ViewChildren(NgbdSortableHeaderDirective) headers: QueryList<NgbdSortableHeaderDirective>;
 

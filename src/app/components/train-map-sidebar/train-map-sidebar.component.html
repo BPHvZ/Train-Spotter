@@ -5,6 +5,7 @@
 		</span>
 	</div>
 	<div
+		(@openClose-sidebar.start)="setSidebarDisplay($event)"
 		(@openClose-sidebar.done)="done($event)"
 		[@openClose-sidebar]="sidebarState"
 		class="frosted left-shadow"
@@ -29,11 +30,14 @@
 						<div
 							*ngFor="let disruption of disruptions"
 							[ngSwitch]="disruption.type"
-							class="card bg-light mb-3"
-							style="max-width: 18rem"
+							class="card card-max-width bg-light mb-3"
 						>
 							<app-calamity-item [calamity]="disruption" *ngSwitchCase="'CALAMITY'"></app-calamity-item>
-							<app-disruption-item [disruption]="disruption" *ngSwitchDefault></app-disruption-item>
+							<app-disruption-item
+								[disruption]="disruption"
+								(closeSidebar)="sidebarState = 'closed'"
+								*ngSwitchDefault
+							></app-disruption-item>
 						</div>
 					</div>
 				</div>

@@ -6,10 +6,6 @@ import { environment } from "./environments/environment";
 
 if (environment.production) {
 	enableProdMode();
-	if (!environment.log) {
-		// eslint-disable-next-line @typescript-eslint/no-empty-function
-		window.console.log = function () {};
-	}
 }
 
 platformBrowserDynamic()

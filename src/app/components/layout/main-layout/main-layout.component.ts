@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { AfterViewInit, Component, ElementRef, ViewChild } from "@angular/core";
 import { Router } from "@angular/router";
 
 /**
@@ -18,5 +18,11 @@ export class MainLayoutComponent {
 			// if on train map remove padding
 			this.isTrainMap = router.url.endsWith("kaart");
 		});
+	}
+
+	removePaddingOnMap(): string {
+		if (this.isTrainMap) {
+			return "1.333rem";
+		}
 	}
 }

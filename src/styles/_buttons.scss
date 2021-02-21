@@ -82,122 +82,133 @@ $close_icon_size_medium: $close_icon_size_small * 2;
 $button__border__radius: 4px;
 
 @mixin button--disabled {
-    background-color: $button__disabled__background;
-    color: $button__disabled__color;
-    cursor: default;
-    box-shadow: 0 toRem(-2px) 0 $button__disabled__rollover inset;
-    transition: none;
+	background-color: $button__disabled__background;
+	color: $button__disabled__color;
+	cursor: default;
+	box-shadow: 0 toRem(-2px) 0 $button__disabled__rollover inset;
+	transition: none;
 
-    &:hover {
-        color: $button__disabled__color;
-        box-shadow: 0 toRem(-2px) 0 $button__disabled__rollover inset;
-    }
+	&:hover {
+		color: $button__disabled__color;
+		box-shadow: 0 toRem(-2px) 0 $button__disabled__rollover inset;
+	}
 
-    &.button--arrowLeft {
-        padding-left: toRem($button-horizontal-space);
+	&.button--arrowLeft {
+		padding-left: toRem($button-horizontal-space);
 
-        &::after {
-            display: none;
-        }
-    }
+		&::after {
+			display: none;
+		}
+	}
 
-    &.button--arrowRight {
-        padding-right: toRem($button-horizontal-space);
+	&.button--arrowRight {
+		padding-right: toRem($button-horizontal-space);
 
-        &::after {
-            display: none;
-        }
-    }
+		&::after {
+			display: none;
+		}
+	}
 }
 
 %button {
-    display: inline-block;
-    position: relative;
-    padding: toRem($button-vertical-space) toRem($button-horizontal-space);
-    height: min-content; // @bart
-    vertical-align: top;
-    //min-width: toRem(120px);
-    font-weight: normal;
-    white-space: nowrap;
-    background-color: $button__primary__background;
-    color: $button__primary__color;
-    box-shadow: 0 toRem(-2px) 0 $button__primary__rollover inset;
-    text-align: center;
-    //line-height: toRem($button-line-height);
-    font-size: toRem($button-font-size);
-    border: none;
-    border-radius: $button__border__radius;
-    text-decoration: none;
-    transition: box-shadow 0.15s ease-in-out;
+	display: inline-block;
+	position: relative;
+	padding: toRem($button-vertical-space) toRem($button-horizontal-space);
+	height: min-content; // @bart
+	vertical-align: top;
+	//min-width: toRem(120px);
+	font-weight: normal;
+	white-space: nowrap;
+	background-color: $button__primary__background;
+	color: $button__primary__color;
+	box-shadow: 0 toRem(-2px) 0 $button__primary__rollover inset;
+	text-align: center;
+	//line-height: toRem($button-line-height);
+	font-size: toRem($button-font-size);
+	border: none;
+	border-radius: $button__border__radius;
+	text-decoration: none;
+	transition: box-shadow 0.15s ease-in-out;
 
-    &:hover,
-    &:focus {
-        color: $button__primary__color;
-        text-decoration: none;
-        cursor: pointer;
-        box-shadow: 0 toRem(-50px) 0 $button__primary__rollover inset;
-    }
+	&:hover,
+	&:focus {
+		color: $button__primary__color;
+		text-decoration: none;
+		cursor: pointer;
+		box-shadow: 0 toRem(-50px) 0 $button__primary__rollover inset;
+	}
 
-    &:focus {
-        outline: thin dotted $button__primary__background;
-        outline-offset: 0;
-    }
+	&:focus {
+		outline: thin dotted $button__primary__background;
+		outline-offset: 0;
+	}
 
-    &:disabled,
-    &.is-disabled {
-        @include button--disabled;
-    }
+	&:disabled,
+	&.is-disabled {
+		@include button--disabled;
+	}
 
-    &--close {
-        padding: 4px 12px;
-    }
+	&--close {
+		padding: 4px 12px;
+	}
 
-    &--nsYellow {
-        background-color: $button__buy__background;
-        color: $button__buy__color;
-        box-shadow: 0 toRem(-2px) 0 $button__buy__rollover inset;
+	&--small {
+	}
 
-        &:hover,
-        &:focus {
-            color: $button__buy__color;
-            box-shadow: 0 toRem(-50px) 0 $button__buy__rollover inset;
-        }
+	&--nsYellow {
+		background-color: $button__buy__background;
+		color: $button__buy__color;
+		box-shadow: 0 toRem(-2px) 0 $button__buy__rollover inset;
 
-        &:focus {
-            outline-color: $button__buy__color;
-        }
-    }
+		&:hover,
+		&:focus {
+			color: $button__buy__color;
+			box-shadow: 0 toRem(-50px) 0 $button__buy__rollover inset;
+		}
 
-    &--nsWhite {
-        background-color: $button__quaternary__background;
-        color: $button__quaternary__color;
-        box-shadow: 0 toRem(-2px) 0 $button__quaternary__rollover inset;
+		&:focus {
+			outline-color: $button__buy__color;
+		}
+	}
 
-        &:hover,
-        &:focus {
-            color: $button__quaternary__color;
-            box-shadow: 0 toRem(-50px) 0 $button__quaternary__rollover inset;
-        }
+	&--nsWhite {
+		background-color: $button__quaternary__background;
+		color: $button__quaternary__color;
+		box-shadow: 0 toRem(-2px) 0 $button__quaternary__rollover inset;
 
-        &:focus {
-            outline-color: $button__quaternary__color;
-        }
-    }
+		&:hover,
+		&:focus {
+			color: $button__quaternary__color;
+			box-shadow: 0 toRem(-50px) 0 $button__quaternary__rollover inset;
+		}
+
+		&:focus {
+			outline-color: $button__quaternary__color;
+		}
+	}
 }
 
 .button {
-    @extend %button;
+	@extend %button;
+}
+
+@media (max-width: 768px) {
+	.button {
+		&--small {
+			padding: 7px 11px;
+		}
+	}
 }
 
 // .button--iconOnly requires an icon--b class
 // we can't extend it (%icon) (for now), because, the icon--backgroundimage-classes require either .icon, .icon--b or icon--a
 // we use the .icon--b (and not .icon) because the inset-shadow on :hover will overlap the background-image on an .icon, but not on the pseudo:after.
 .button--iconOnly {
-    width: toRem($button-height); // square
-    height: toRem($button-height);
-    text-align: left; // for text-indent to work
-    min-width: toRem(1px); // overrule min-width on .button
-    padding: toRem(($button-height - $icon-size-base)/ 2);
+	width: toRem($button-height); // square
+	height: toRem($button-height);
+	text-align: left; // for text-indent to work
+	min-width: toRem(1px); // overrule min-width on .button
+	padding: toRem(($button-height - $icon-size-base)/ 2);
 }
 
 // ---------------------------------------------------------------------------
@@ -206,33 +217,37 @@ $button__border__radius: 4px;
 // ---------------------------------------------------------------------------
 
 .button--close {
-  @extend %button--close;
+	@extend %button--close;
+}
+
+.button--small {
+	@extend %button--small;
 }
 
 .button--nsYellow {
-    @extend %button--nsYellow;
+	@extend %button--nsYellow;
 }
 
 .button--nsWhite {
-    @extend %button--nsWhite;
+	@extend %button--nsWhite;
 }
 
 /**
  * Has styling as a link <a>
  */
 .button--native-link {
-    background: none;
-    box-shadow: none;
-    color: $ns-light-blue;
-    padding: 0;
-    height: auto;
-    min-width: initial;
+	background: none;
+	box-shadow: none;
+	color: $ns-light-blue;
+	padding: 0;
+	height: auto;
+	min-width: initial;
 
-    &:hover,
-    &:focus {
-        box-shadow: none;
-        color: $ns-blue;
-    }
+	&:hover,
+	&:focus {
+		box-shadow: none;
+		color: $ns-blue;
+	}
 }
 
 // ---------------------------------------------------------------------------
@@ -241,23 +256,23 @@ $button__border__radius: 4px;
 // ---------------------------------------------------------------------------
 
 %button--secondary {
-    background-color: $button__secondary__background;
-    color: $button__secondary__color;
-    box-shadow: 0 toRem(-2px) 0 $button__secondary__rollover inset;
+	background-color: $button__secondary__background;
+	color: $button__secondary__color;
+	box-shadow: 0 toRem(-2px) 0 $button__secondary__rollover inset;
 
-    &:hover,
-    &:focus {
-        color: $button__secondary__color;
-        box-shadow: 0 toRem(-50px) 0 $button__secondary__rollover inset;
-    }
+	&:hover,
+	&:focus {
+		color: $button__secondary__color;
+		box-shadow: 0 toRem(-50px) 0 $button__secondary__rollover inset;
+	}
 
-    &:focus {
-        outline-color: $button__secondary__color;
-    }
+	&:focus {
+		outline-color: $button__secondary__color;
+	}
 }
 
 .button--secondary {
-    @extend %button--secondary;
+	@extend %button--secondary;
 }
 
 // ---------------------------------------------------------------------------
@@ -266,40 +281,39 @@ $button__border__radius: 4px;
 // ---------------------------------------------------------------------------
 
 .button--tertiary {
-    background-color: $button__tertiary__background;
-    color: $button__tertiary__color;
-    box-shadow: none;
-    padding-left: 0;
-    padding-right: 0;
-    min-width: 0;
-    border-radius: 0;
+	background-color: $button__tertiary__background;
+	color: $button__tertiary__color;
+	box-shadow: none;
+	padding-left: 0;
+	padding-right: 0;
+	min-width: 0;
+	border-radius: 0;
 
-    &:hover,
-    &:focus {
-        color: $button__tertiary__color;
-        box-shadow: 0 toRem(-2px) 0 $button__tertiary__color inset;
-    }
+	&:hover,
+	&:focus {
+		color: $button__tertiary__color;
+		box-shadow: 0 toRem(-2px) 0 $button__tertiary__color inset;
+	}
 
-    &:focus {
-        outline-color: $button__tertiary__color;
-    }
+	&:focus {
+		outline-color: $button__tertiary__color;
+	}
 
-    &:disabled,
-    &.is-disabled {
-        background-color: $button__tertiary__background;
-    }
+	&:disabled,
+	&.is-disabled {
+		background-color: $button__tertiary__background;
+	}
 
-    .icon--inline {
-        // since there is no padding left and right, an inline icon inside the button
-        // will fall partially outside the bounding box of the button. this part should not
-        // contribute to the hitarea of the button.
-        pointer-events: none;
-    }
+	.icon--inline {
+		// since there is no padding left and right, an inline icon inside the button
+		// will fall partially outside the bounding box of the button. this part should not
+		// contribute to the hitarea of the button.
+		pointer-events: none;
+	}
 }
 
-
 .button--fullWidth {
-    width: 100%;
+	width: 100%;
 }
 
 /*
@@ -350,19 +364,19 @@ Styleguide 1.1.2
 */
 
 .button--fixedIcon {
-    padding-left: toRem($button-horizontal-space/2*2 + $icon-size-base);
-    padding-right: toRem($button-horizontal-space/2*2 + $icon-size-base);
+	padding-left: toRem($button-horizontal-space/2 * 2 + $icon-size-base);
+	padding-right: toRem($button-horizontal-space/2 * 2 + $icon-size-base);
 
-    .button__icon {
-        position: absolute;
-        top: toRem($button-height - $icon-size-base) / 2;
-        left: toRem(5px);
-    }
+	.button__icon {
+		position: absolute;
+		top: toRem($button-height - $icon-size-base) / 2;
+		left: toRem(5px);
+	}
 
-    .button__icon--right {
-        left: auto;
-        right: toRem(5px);
-    }
+	.button__icon--right {
+		left: auto;
+		right: toRem(5px);
+	}
 }
 
 /*
@@ -381,61 +395,61 @@ Styleguide 1.1.3
 */
 
 .buttonGroup {
-    font-size: 0;
-    margin-top: toRem($font-size-base*2);
+	font-size: 0;
+	margin-top: toRem($font-size-base * 2);
 
-    .arrowLink {
-        font-size: toRem($button-font-size);
-        padding: toRem(10px) toRem(18px) toRem(10px) toRem(25px);
+	.arrowLink {
+		font-size: toRem($button-font-size);
+		padding: toRem(10px) toRem(18px) toRem(10px) toRem(25px);
 
-        &::before {
-            top: toRem(4px);
-        }
-    }
+		&::before {
+			top: toRem(4px);
+		}
+	}
 
-    .button,
-    .arrowLink {
-        width: 100%;
-        margin-bottom: toRem(20px);
+	.button,
+	.arrowLink {
+		width: 100%;
+		margin-bottom: toRem(20px);
 
-        &:last-child {
-            margin-bottom: 0;
-        }
-    }
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
 
-    @include respond-min($m) {
-        .button,
-        .arrowLink {
-            margin-right: toRem($font-size-base);
-            margin-bottom: 0;
-            width: auto;
+	@include respond-min($m) {
+		.button,
+		.arrowLink {
+			margin-right: toRem($font-size-base);
+			margin-bottom: 0;
+			width: auto;
 
-            &:last-child {
-                margin-right: 0;
-            }
-        }
-    }
+			&:last-child {
+				margin-right: 0;
+			}
+		}
+	}
 
-    // a buttonGroup within a tile within a hero element must be more compact.
-    // e.g. the tiles within the heroCarousel on the homepage.
-    .hero .tile & {
-        // &.buttonGroup--compact // TODO.
-        margin-top: 0;
-        margin-bottom: toRem(-10px);
+	// a buttonGroup within a tile within a hero element must be more compact.
+	// e.g. the tiles within the heroCarousel on the homepage.
+	.hero .tile & {
+		// &.buttonGroup--compact // TODO.
+		margin-top: 0;
+		margin-bottom: toRem(-10px);
 
-        .arrowLink {
-            margin-bottom: 0;
-        }
+		.arrowLink {
+			margin-bottom: 0;
+		}
 
-        @include respond-min($m) {
-            margin-top: toRem(8px);
-        }
-    }
+		@include respond-min($m) {
+			margin-top: toRem(8px);
+		}
+	}
 
-    //When buttonGroup is wiithin bodyItem, it must have a margin bottom. C
-    .bodyItem &:last-child {
-        margin-bottom: toRem(25px);
-    }
+	//When buttonGroup is wiithin bodyItem, it must have a margin bottom. C
+	.bodyItem &:last-child {
+		margin-bottom: toRem(25px);
+	}
 }
 
 /*
@@ -455,46 +469,45 @@ Markup:
 Styleguide 1.1.4
 */
 
-
 .playButton {
-    $play-button-size: 60px;
+	$play-button-size: 60px;
 
-    border: none;
-    padding: toRem(($play-button-size - $icon-size-base)/2); //Centers the button
-    width: toRem($play-button-size);
-    height: toRem($play-button-size);
-    background-color: $ns-light-blue;
-    transition: box-shadow 0.2s ease-in-out;
-    box-shadow: 0 0 0 $ns-blue inset;
+	border: none;
+	padding: toRem(($play-button-size - $icon-size-base)/2); //Centers the button
+	width: toRem($play-button-size);
+	height: toRem($play-button-size);
+	background-color: $ns-light-blue;
+	transition: box-shadow 0.2s ease-in-out;
+	box-shadow: 0 0 0 $ns-blue inset;
 
-    &:focus {
-        outline: 1px dotted $ns-grey-40;
-    }
+	&:focus {
+		outline: 1px dotted $ns-grey-40;
+	}
 
-    &:hover,
-    &:focus,
-    .is-clickable:hover & {
-        box-shadow: 0 toRem(-$play-button-size) 0 $button__primary__rollover inset;
-    }
+	&:hover,
+	&:focus,
+	.is-clickable:hover & {
+		box-shadow: 0 toRem(-$play-button-size) 0 $button__primary__rollover inset;
+	}
 }
 
 //A button that looks like a link
 .button--link {
-    background-color: transparent;
-    color: $ns-light-blue;
-    box-shadow: none;
+	background-color: transparent;
+	color: $ns-light-blue;
+	box-shadow: none;
 
-    &:hover,
-    &:focus {
-        color: $ns-blue;
-        box-shadow: none;
-    }
+	&:hover,
+	&:focus {
+		color: $ns-blue;
+		box-shadow: none;
+	}
 }
 
 .button--icon {
-    background-color: transparent;
-    border: 0;
-    padding: 0;
-    width: toRem($icon-size-base);
-    height: toRem($icon-size-base);
+	background-color: transparent;
+	border: 0;
+	padding: 0;
+	width: toRem($icon-size-base);
+	height: toRem($icon-size-base);
 }

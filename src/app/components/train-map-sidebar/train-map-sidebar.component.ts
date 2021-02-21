@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
+import { Component, EventEmitter, OnInit, Output } from "@angular/core";
 import { trigger, state, style, animate, transition, animateChild, query, group } from "@angular/animations";
 import { AnimationEvent } from "@angular/animations";
 import { Disruption, DisruptionsList } from "../../models/ReisinformatieAPI";
@@ -20,7 +20,6 @@ import { faSyncAlt } from "@fortawesome/free-solid-svg-icons";
 			state(
 				"closed",
 				style({
-					width: 0,
 					transform: "translate(100%)",
 					boxShadow: "unset",
 				})
@@ -75,15 +74,16 @@ export class TrainMapSidebarComponent implements OnInit {
 
 	done(event: AnimationEvent): void {
 		if (event.toState === "closed") {
+			const element = document.getElementById("sidebar");
+			element.style.setProperty("display", "none", "important");
 			this.closeSidebar.emit(null);
 		}
 	}
 
-	/**
-	 * Change view to the train map and fly to a disruption
-	 * @param disruption Fly to this disruption
-	 */
-	flyToDisruptionOnMap(disruption: Disruption): void {
-		this.sharedDataService.flyToDisruption(disruption);
+	setSidebarDisplay(event: AnimationEvent): void {
+		const element = document.getElementById("sidebar");
+		if (event.toState === "open") {
+			element.style.setProperty("display", "block", "important");
+		}
 	}
 }

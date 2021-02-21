@@ -1,93 +1,34 @@
-<header class="navbar navbar-expand-md fixed-top mat-typography">
-	<div class="container-fluid">
-		<nav class="navbar">
-			<a class="navbar-brand" [routerLink]="'kaart'" style="cursor: pointer">
-				<strong style="color: white">TrainSpotter</strong>
-			</a>
-		</nav>
+<header class="fixed-top mat-typography">
+	<nav class="navbar navbar-expand-md navbar-dark bg-blue">
+		<a class="navbar-brand" [routerLink]="'kaart'" style="cursor: pointer">
+			<strong style="color: white">TrainSpotter</strong>
+		</a>
 
-		<div class="collapse navbar-collapse" id="navbarSupportedContent">
-			<ul class="navbar-nav mr-auto pl-1">
-				<li class="nav-item align-self-center pr-3" style="cursor: pointer">
-					<a class="nav-link router-link-hover align-items-center d-flex" [routerLink]="'kaart'">
+		<button class="button-border navbar-toggler" type="button" (click)="toggleNavbar()">
+			<fa-icon [icon]="faBars"></fa-icon>
+		</button>
+
+		<div class="collapse navbar-collapse" [ngbCollapse]="navbarCollapsed">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item align-self-md-center pr-md-3" style="cursor: pointer">
+					<a class="nav-link router-link-hover d-flex" routerLink="/kaart" (click)="toggleNavbar()">
 						<img
 							[routerLink]="'kaart'"
 							src="../../../../assets/icons/icon-192x192.png"
 							height="20"
 							alt="TrainSpotter"
+							style="margin-right: 4px"
 						/>
-						<strong style="padding-left: 4px">Kaart</strong></a
+						<strong class="link-hover" routerLinkActive="link-active">Kaart</strong></a
 					>
 				</li>
-				<li
-					class="nav-item align-self-center pr-1"
-					ngbDropdown
-					#navbarDropdown1="ngbDropdown"
-					(mouseenter)="$event.stopPropagation(); navbarDropdown1.open()"
-					(mouseleave)="$event.stopPropagation(); navbarDropdown1.close()"
-				>
-					<div
-						class="d-inline"
-						style="cursor: pointer"
-						id="navbarDropdown1"
-						(click)="$event.stopPropagation(); navbarDropdown1.open()"
+				<li class="nav-item align-self-md-center pr-md-3" style="cursor: pointer">
+					<a class="nav-link router-link-hover d-flex" routerLink="/stations" (click)="toggleNavbar()">
+						<strong class="link-hover" routerLinkActive="link-active">Stations</strong></a
 					>
-						<strong> Stations </strong>
-						<div *ngIf="navbarDropdown1.isOpen(); else elseBlock" style="display: inline">
-							<svg
-								class="bi bi-caret-up-fill"
-								width="1em"
-								height="1em"
-								viewBox="0 0 16 16"
-								fill="currentColor"
-								xmlns="http://www.w3.org/2000/svg"
-							>
-								<path
-									d="M7.247 4.86l-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 00.753-1.659l-4.796-5.48a1 1 0 00-1.506 0z"
-								/>
-							</svg>
-						</div>
-						<ng-template #elseBlock>
-							<svg
-								class="bi bi-caret-down-fill"
-								width="1em"
-								height="1em"
-								viewBox="0 0 16 16"
-								fill="currentColor"
-								xmlns="http://www.w3.org/2000/svg"
-							>
-								<path
-									d="M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 01.753 1.659l-4.796 5.48a1 1 0 01-1.506 0z"
-								/>
-							</svg>
-						</ng-template>
-					</div>
-					<div ngbDropdownMenu aria-labelledby="navbarDropdown1" class="dropdown-menu mt-0">
-						<form class="px-4 pt-3">
-							<div class="form-group">
-								<label for="typeahead-http" style="width: max-content">Zoek naar een station:</label>
-								<input
-									id="typeahead-http"
-									type="text"
-									class="form-control"
-									[class.is-invalid]="searchGloballyFailed"
-									[ngbTypeahead]="searchStations"
-									[resultFormatter]="formatToStationName"
-									(selectItem)="selectStationFromSearch($event)"
-									placeholder="Stationsnaam of code"
-								/>
-								<small *ngIf="searchingStations" class="form-text text-muted">zoeken...</small>
-							</div>
-							<div class="invalid-feedback" *ngIf="!searchStationsFailed">
-								Sorry, er ging wat fout bij het zoeken naar stations.
-							</div>
-						</form>
-						<div class="dropdown-divider"></div>
-						<button ngbDropdownItem (click)="navigateToAllStations()">Alle stations</button>
-					</div>
 				</li>
 			</ul>
-			<form class="form-inline my-2 my-lg-0">
+			<form class="nav-item form-inline my-md-2 my-lg-0 flex-nowrap">
 				<ng-template #rt let-r="result" let-t="term">
 					<div [ngSwitch]="r.resultType" style="display: inline">
 						<ng-container *ngSwitchCase="0"
@@ -122,7 +63,7 @@
 						#globalTypeahead
 						id="global-typeahead"
 						type="text"
-						class="form-control mr-sm-2"
+						class="form-control input-small"
 						placeholder="Zoek trein, treinstel, station, vervoerder"
 						aria-label="Search"
 						[class.is-invalid]="searchGloballyFailed"
@@ -132,8 +73,8 @@
 						(selectItem)="selectItemFromGlobalSearch($event)"
 					/>
 				</div>
-				<button class="button button--nsYellow" [disabled]="!allDataLoaded">Zoek</button>
+				<button class="button button--nsYellow button--small ml-2" [disabled]="!allDataLoaded">Zoek</button>
 			</form>
 		</div>
-	</div>
+	</nav>
 </header>

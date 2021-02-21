@@ -15,5 +15,8 @@ export class AppComponent {
 			console.log("updated");
 			updates.activateUpdate().then(() => document.location.reload());
 		});
+		updates.unrecoverable.subscribe((event) => {
+			document.location.reload();
+		});
 	}
 }

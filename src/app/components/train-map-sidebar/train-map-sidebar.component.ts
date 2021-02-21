@@ -21,7 +21,6 @@ import { faSyncAlt } from "@fortawesome/free-solid-svg-icons";
 				"closed",
 				style({
 					transform: "translate(100%)",
-					boxShadow: "unset",
 				})
 			),
 			transition("open <=> closed", [animate("0.5s cubic-bezier(0.55, 0.31, 0.15, 0.93)")]),
@@ -74,7 +73,17 @@ export class TrainMapSidebarComponent implements OnInit {
 
 	done(event: AnimationEvent): void {
 		if (event.toState === "closed") {
+			const element = document.getElementById("sidebar");
+			element.style.setProperty("display", "none", "important");
+			element.style.setProperty("boxShadow", "unset", "important");
 			this.closeSidebar.emit(null);
+		}
+	}
+
+	setSidebarDisplay(event: AnimationEvent): void {
+		const element = document.getElementById("sidebar");
+		if (event.toState === "open") {
+			element.style.setProperty("display", "block", "important");
 		}
 	}
 

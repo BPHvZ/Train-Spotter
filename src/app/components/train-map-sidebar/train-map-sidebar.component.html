@@ -5,6 +5,7 @@
 		</span>
 	</div>
 	<div
+		(@openClose-sidebar.start)="setSidebarDisplay($event)"
 		(@openClose-sidebar.done)="done($event)"
 		[@openClose-sidebar]="sidebarState"
 		class="frosted left-shadow"

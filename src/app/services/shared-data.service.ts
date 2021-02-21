@@ -1,8 +1,8 @@
-import { Injectable } from "@angular/core";
+import { HostListener, Injectable, OnInit } from "@angular/core";
 import { ApiService } from "./api.service";
-import { BehaviorSubject, Observable } from "rxjs";
+import { BehaviorSubject, fromEvent, Observable } from "rxjs";
 import { DisruptionBase, DisruptionsList, Station, StationsResponse } from "../models/ReisinformatieAPI";
-import { map, mergeMap, tap } from "rxjs/operators";
+import { debounceTime, map, mergeMap, takeUntil, tap } from "rxjs/operators";
 import { TrainTracksGeoJSON } from "../models/SpoortkaartAPI";
 import { DetailedTrainInformation, Train } from "../models/VirtualTrainAPI";
 import { LngLatLike, Map as MapBoxMap, MapboxGeoJSONFeature } from "mapbox-gl";
@@ -54,12 +54,24 @@ export class SharedDataService {
 	get navbarCollapsed$(): Observable<boolean> {
 		return this._navbarCollapsed$.asObservable();
 	}
+	screenWidth = window.innerWidth;
 
 	constructor(private apiService: ApiService, private router: Router, private cacheService: CacheService) {
 		const dateData = this.cacheService.load("getActiveDisruptionsLastUpdated") as Date;
 		if (dateData) {
 			this._getActiveDisruptionsLastUpdated$.next(dateData);
 		}
+		this.init();
+	}
+
+	init(): void {
+		fromEvent(window, "resize")
+			.pipe(debounceTime(1000))
+			.subscribe((evt: any) => {
+				// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+				this.screenWidth = evt.target.innerWidth;
+				console.log(this.screenWidth);
+			});
 	}
 
 	get allDataLoaded(): boolean {
@@ -216,7 +228,11 @@ export class SharedDataService {
 	}
 
 	toggleNavbar(): void {
-		this.navbarCollapsed = !this.navbarCollapsed;
+		if (this.screenWidth <= 767) {
+			this.navbarCollapsed = !this.navbarCollapsed;
+		} else {
+			this.navbarCollapsed = true;
+		}
 		this._navbarCollapsed$.next(this.navbarCollapsed);
 	}
 }

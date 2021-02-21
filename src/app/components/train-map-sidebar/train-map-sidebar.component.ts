@@ -86,12 +86,4 @@ export class TrainMapSidebarComponent implements OnInit {
 			element.style.setProperty("display", "block", "important");
 		}
 	}
-
-	/**
-	 * Change view to the train map and fly to a disruption
-	 * @param disruption Fly to this disruption
-	 */
-	flyToDisruptionOnMap(disruption: Disruption): void {
-		this.sharedDataService.flyToDisruption(disruption);
-	}
 }

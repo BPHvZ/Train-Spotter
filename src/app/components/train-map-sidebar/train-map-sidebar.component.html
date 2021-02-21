@@ -33,7 +33,11 @@
 							class="card card-max-width bg-light mb-3"
 						>
 							<app-calamity-item [calamity]="disruption" *ngSwitchCase="'CALAMITY'"></app-calamity-item>
-							<app-disruption-item [disruption]="disruption" *ngSwitchDefault></app-disruption-item>
+							<app-disruption-item
+								[disruption]="disruption"
+								(closeSidebar)="sidebarState = 'closed'"
+								*ngSwitchDefault
+							></app-disruption-item>
 						</div>
 					</div>
 				</div>

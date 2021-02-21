@@ -38,3 +38,36 @@
   border-radius: 4px
   font-size: unset !important
   line-height: unset !important
+
+$animate: all 0.2s ease-in-out
+
+.link-hover
+  position: relative
+
+  &:before
+    content: ""
+    position: absolute
+    width: 0
+    height: 2px
+    bottom: 0
+    left: 0
+    background-color: $ns-yellow-2
+    visibility: hidden
+    transition: all 0.3s ease-in-out
+
+  &:hover:before
+    visibility: visible
+    width: 100%
+
+.link-active
+  position: relative
+
+  &:before
+    content: ""
+    position: absolute
+    height: 2px
+    bottom: 0
+    left: 0
+    background-color: $ns-yellow-2
+    visibility: visible
+    width: 100%

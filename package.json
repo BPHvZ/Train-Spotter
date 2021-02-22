@@ -9,7 +9,7 @@
     "build_source_maps": "ng build --prod --source-map",
     "build": "ng build",
     "build:release": "npm run test:release && ng build --prod --outputHashing=all",
-    "prebuild:release": "npm ci --production --no-optional",
+    "prebuild:release": "yarn install --production --frozen-lockfile --ignore-optional",
     "test:release": "ng t --configuration=ci-release",
     "test": "ng test",
     "e2e": "ng e2e",

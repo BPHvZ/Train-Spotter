@@ -338,7 +338,7 @@ export class TrainMapComponent implements OnInit {
 			if (queriedFeatures && !this.helperFunctions.trainsAreEqual(queriedFeatures[0], oldTrainInformation)) {
 				this.closePopup();
 				this.openTrainPopupOnLayerClick({
-					defaultPrevented: false,
+					defaultPrevented: true,
 					lngLat: undefined,
 					originalEvent: undefined,
 					point: undefined,

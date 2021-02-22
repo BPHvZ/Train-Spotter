@@ -94,26 +94,7 @@ export class HeaderComponent implements OnInit {
 			tap(() => (this.searchingGlobally = false))
 		);
 
-	/**
-	 * Get the station name from {@link Station.namen}
-	 * @param station Station to get the name from
-	 * @return The station name
-	 */
-	formatToStationName(station: Station): string {
-		return station.namen.lang;
-	}
-
-	/**
-	 * Select a station and sent event to train map to fly to it
-	 * @param event Selected station from dropdown
-	 */
-	selectStationFromSearch(event: NgbTypeaheadSelectItemEvent): void {
-		event.preventDefault();
-		this.sharedDataService.flyToStation(event.item);
-	}
-
 	selectItemFromGlobalSearch(event: NgbTypeaheadSelectItemEvent): void {
-		event.preventDefault();
 		const result = event.item as GlobalSearchResult;
 		// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
 		this.globalTypeahead.nativeElement.value = result.searchField;

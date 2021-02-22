@@ -1,6 +1,11 @@
-const glob = require("glob");
-const PurgeCSSPlugin = require("purgecss-webpack-plugin");
+const ImageminPlugin = require("imagemin-webpack-plugin").default;
 
 module.exports = {
-	plugins: [new PurgeCSSPlugin({ paths: glob.sync("./src/**/*.html", { nodir: true }) })],
+	plugins: [
+		new ImageminPlugin({
+			test: "./src/assets/**",
+			jpegtran: { progressive: true },
+			pngquant: { quality: [0.5, 0.85] },
+		}),
+	],
 };

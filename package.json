@@ -2,21 +2,28 @@
   "name": "train-spotter",
   "version": "0.0.0",
   "scripts": {
+    "---------------- Serve Application ----------------": "",
     "serve": "ng serve --hmr",
     "serve_no_hmr": "ng serve",
     "_serve_production": "http-server -p 8080 -c-1 dist/trainSpotter",
     "pre_serve_production": "ng build --prod --outputHashing=all",
-    "build_source_maps": "ng build --prod --source-map",
+    "---------------- Inspect Bundles ----------------": "",
+    "prebundle-report": "ng build --prod --stats-json",
+    "bundle-report": "webpack-bundle-analyzer dist/trainSpotter/stats.json",
+    "---------------- Build Application ----------------": "",
     "build": "ng build",
     "build:release": "npm run test:release && ng build --prod --outputHashing=all",
     "prebuild:release": "yarn install --production --frozen-lockfile --ignore-optional",
+    "---------------- Test Application ----------------": "",
     "test:release": "ng t --configuration=ci-release",
     "test": "ng test",
     "e2e": "ng e2e",
+    "---------------- Lint Application ----------------": "",
     "prettier": "prettier --write .",
     "lint": "ng lint --fix",
     "format:fix": "pretty-quick --staged",
     "prettier_and_lint": "run-s format:fix lint",
+    "---------------- Document Application ----------------": "",
     "compodoc": "npx compodoc -p tsconfig.json -w --output ./docs"
   },
   "browserslist": [
@@ -112,6 +119,11 @@
     "pretty-quick": "^3.1.0",
     "protractor": "^7.0.0",
     "source-map-explorer": "^2.5.2",
-    "ts-node": "^8.10.2"
+    "ts-node": "^8.10.2",
+    "webpack-bundle-analyzer": "^4.4.0"
+  },
+  "resolutions": {
+    "jimp": "^0.14.0",
+    "replace-color/jimp": "^0.14.0"
   }
 }

@@ -40,6 +40,11 @@ interface TrainIconOnMap {
 	imageObjectURL?: string;
 }
 
+export interface NSTrainIcon {
+	imageName: string;
+	image: Buffer;
+}
+
 type Train = definitions["Trein"];
 type TrainInformation = definitions["TreinInformatie"];
 type DetailedTrainInformation = Train & ExtraTrainInformation;

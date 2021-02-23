@@ -1,13 +1,13 @@
-import { HostListener, Injectable, OnInit } from "@angular/core";
-import { ApiService } from "./api.service";
+import { Injectable } from "@angular/core";
+import { Router } from "@angular/router";
+import { GeoJSON } from "geojson";
+import { LngLatLike, Map as MapBoxMap, MapboxGeoJSONFeature } from "mapbox-gl";
 import { BehaviorSubject, fromEvent, Observable } from "rxjs";
+import { debounceTime, map, mergeMap, tap } from "rxjs/operators";
 import { DisruptionBase, DisruptionsList, Station, StationsResponse } from "../models/ReisinformatieAPI";
-import { debounceTime, map, mergeMap, takeUntil, tap } from "rxjs/operators";
 import { TrainTracksGeoJSON } from "../models/SpoortkaartAPI";
 import { DetailedTrainInformation, Train } from "../models/VirtualTrainAPI";
-import { LngLatLike, Map as MapBoxMap, MapboxGeoJSONFeature } from "mapbox-gl";
-import { GeoJSON } from "geojson";
-import { Router } from "@angular/router";
+import { ApiService } from "./api.service";
 import { CacheService } from "./cache.service";
 import { ResponseType } from "./http-client.service";
 

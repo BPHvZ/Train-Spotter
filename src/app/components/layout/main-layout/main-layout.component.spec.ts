@@ -1,7 +1,6 @@
 import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
-
-import { MainLayoutComponent } from "./main-layout.component";
 import { RouterTestingModule } from "@angular/router/testing";
+import { MainLayoutComponent } from "./main-layout.component";
 
 describe("MainLayoutComponent", () => {
 	let component: MainLayoutComponent;

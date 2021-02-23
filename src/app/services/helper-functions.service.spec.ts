@@ -1,5 +1,4 @@
 import { TestBed } from "@angular/core/testing";
-
 import { HelperFunctionsService } from "./helper-functions.service";
 
 describe("HelperFunctionsService", () => {

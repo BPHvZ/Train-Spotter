@@ -1,11 +1,11 @@
 import { Component, OnInit, QueryList, ViewChildren } from "@angular/core";
-import { NgbdSortableHeaderDirective, SortEvent } from "../../directives/ngbd-sortable-header.directive";
-import { Observable } from "rxjs";
-import { StationsService } from "../../services/stations.service";
-import { take } from "rxjs/operators";
 import { Router } from "@angular/router";
-import { Station } from "../../models/ReisinformatieAPI";
 import { faCrosshairs } from "@fortawesome/free-solid-svg-icons";
+import { Observable } from "rxjs";
+import { take } from "rxjs/operators";
+import { NgbdSortableHeaderDirective, SortEvent } from "../../directives/ngbd-sortable-header.directive";
+import { Station } from "../../models/ReisinformatieAPI";
+import { StationsService } from "../../services/stations.service";
 
 /**
  * Table with all NS-stations

@@ -22,14 +22,14 @@ $xxl: 1200px;
 $xxxl: 1408px;
 
 $breakpoints: (
-    's': $s,
-    'sm': $sm,
-    'm': $m,
-    'ml': $ml,
-    'l': $l,
-    'xl': $xl,
-    'xxl': $xxl,
-    'xxxl': $xxxl
+	"s": $s,
+	"sm": $sm,
+	"m": $m,
+	"ml": $ml,
+	"l": $l,
+	"xl": $xl,
+	"xxl": $xxl,
+	"xxxl": $xxxl,
 );
 
 $min-site-width: 320px;
@@ -42,39 +42,37 @@ $min-site-width: 320px;
 $fix-mqs: false !default;
 
 @mixin respond-min($width) {
-    @if $fix-mqs {
-        @if $fix-mqs >= $width {
-            @content;
-        }
-    }
-    @else {
-        @media screen and (min-width: $width) {
-            @content;
-        }
-    }
+	@if $fix-mqs {
+		@if $fix-mqs >= $width {
+			@content;
+		}
+	} @else {
+		@media screen and (min-width: $width) {
+			@content;
+		}
+	}
 }
 
 @mixin respond-min-width-or-height($width, $height) {
-    @media screen and (min-width: $width) {
-      @content;
-    }
-    @media screen and (min-height: $height) {
-        @content;
-    }
+	@media screen and (min-width: $width) {
+		@content;
+	}
+	@media screen and (min-height: $height) {
+		@content;
+	}
 }
 
 // you better have a good excuse to use this! James will come after you.
 @mixin respond-minMax($minWidth, $maxWidth) {
-    @if $fix-mqs {
-        @if $fix-mqs >= $minWidth and $fix-mqs < $maxWidth {
-            @content;
-        }
-    }
-    @else {
-        @media screen and (min-width: $minWidth) and (max-width: $maxWidth - 1px) {
-            @content;
-        }
-    }
+	@if $fix-mqs {
+		@if $fix-mqs >= $minWidth and $fix-mqs < $maxWidth {
+			@content;
+		}
+	} @else {
+		@media screen and (min-width: $minWidth) and (max-width: $maxWidth - 1px) {
+			@content;
+		}
+	}
 }
 
 // respond-max is used for desktop-first responsive styling. Which is NOT WHAT WE WANT!
@@ -94,7 +92,7 @@ $fix-mqs: false !default;
 $old-ie: false !default;
 
 @mixin old-ie {
-    @if $old-ie {
-        @content;
-    }
+	@if $old-ie {
+		@content;
+	}
 }

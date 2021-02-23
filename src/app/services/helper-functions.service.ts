@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { Point, FeatureCollection, Feature } from "geojson";
+import { Feature, FeatureCollection, Point } from "geojson";
 import { DetailedTrainInformation } from "../models/VirtualTrainAPI";
 
 @Injectable({

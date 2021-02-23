@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
-
 import { TrainPopupComponent } from "./train-popup.component";
 
 describe("TrainPopupComponent", () => {

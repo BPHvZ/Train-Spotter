@@ -1,33 +1,31 @@
-import { BrowserModule } from "@angular/platform-browser";
-import { LOCALE_ID, NgModule } from "@angular/core";
 import { registerLocaleData } from "@angular/common";
+import { HttpClientModule } from "@angular/common/http";
 import localeNL from "@angular/common/locales/nl";
-
-import { AppRoutingModule } from "./app-routing.module";
-import { AppComponent } from "./app.component";
-import { TrainMapComponent } from "./components/train-map/train-map.component";
-
-import { NgxMapboxGLModule } from "ngx-mapbox-gl";
-import { MainLayoutComponent } from "./components/layout/main-layout/main-layout.component";
-import { HeaderComponent } from "./components/layout/header/header.component";
-import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { LOCALE_ID, NgModule } from "@angular/core";
+import { FormsModule } from "@angular/forms";
 import { MatButtonModule } from "@angular/material/button";
 import { MatIconModule } from "@angular/material/icon";
-import { HttpClientModule } from "@angular/common/http";
-import { TrainPopupComponent } from "./components/train-popup/train-popup.component";
-import { StationPopupComponent } from "./components/station-popup/station-popup.component";
-import { AllStationsComponent } from "./components/all-stations/all-stations.component";
-import { NgbdSortableHeaderDirective } from "./directives/ngbd-sortable-header.directive";
-import { FormsModule } from "@angular/forms";
+import { BrowserModule } from "@angular/platform-browser";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { RouteReuseStrategy } from "@angular/router";
-import { CacheRouteReuseStrategy } from "./cache-route-reuse.strategy";
-import { TrainMapSidebarComponent } from "./components/train-map-sidebar/train-map-sidebar.component";
-import { DisruptionItemComponent } from "./components/train-map-sidebar/disruption-item/disruption-item.component";
-import { CalamityItemComponent } from "./components/train-map-sidebar/calamity-item/calamity-item.component";
 import { ServiceWorkerModule } from "@angular/service-worker";
-import { environment } from "../environments/environment";
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
+import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
+import { NgxMapboxGLModule } from "ngx-mapbox-gl";
+import { environment } from "../environments/environment";
+import { AppRoutingModule } from "./app-routing.module";
+import { AppComponent } from "./app.component";
+import { CacheRouteReuseStrategy } from "./cache-route-reuse.strategy";
+import { AllStationsComponent } from "./components/all-stations/all-stations.component";
+import { HeaderComponent } from "./components/layout/header/header.component";
+import { MainLayoutComponent } from "./components/layout/main-layout/main-layout.component";
+import { StationPopupComponent } from "./components/station-popup/station-popup.component";
+import { CalamityItemComponent } from "./components/train-map-sidebar/calamity-item/calamity-item.component";
+import { DisruptionItemComponent } from "./components/train-map-sidebar/disruption-item/disruption-item.component";
+import { TrainMapSidebarComponent } from "./components/train-map-sidebar/train-map-sidebar.component";
+import { TrainMapComponent } from "./components/train-map/train-map.component";
+import { TrainPopupComponent } from "./components/train-popup/train-popup.component";
+import { NgbdSortableHeaderDirective } from "./directives/ngbd-sortable-header.directive";
 
 registerLocaleData(localeNL, "nl");
 

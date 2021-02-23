@@ -1,5 +1,5 @@
-import { Train } from "./VirtualTrainAPI";
 import { Station } from "./ReisinformatieAPI";
+import { Train } from "./VirtualTrainAPI";
 
 export enum GlobalSearchResultType {
 	Train,

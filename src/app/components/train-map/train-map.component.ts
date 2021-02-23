@@ -1,12 +1,6 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
-import { TrainMapType } from "../../models/TrainMapType";
-import { forkJoin, from, interval, Observable, PartialObserver, Subject, zip } from "rxjs";
-import { mergeMap } from "rxjs/operators";
-import { pausable, PausableObservable } from "rxjs-pausable";
-import { HelperFunctionsService } from "../../services/helper-functions.service";
+import { NavigationEnd, NavigationStart, Router } from "@angular/router";
 import { GeoJSON, MultiLineString } from "geojson";
-import { environment } from "../../../environments/environment";
-import Jimp from "jimp";
 import {
 	EventData,
 	Map as MapBoxMap,
@@ -17,15 +11,17 @@ import {
 	MapSourceDataEvent,
 	SymbolLayout,
 } from "mapbox-gl";
-import { NavigationEnd, NavigationStart, Router } from "@angular/router";
-import { TrainMapSidebarComponent } from "../train-map-sidebar/train-map-sidebar.component";
+import { interval, PartialObserver, Subject, zip } from "rxjs";
+import { pausable, PausableObservable } from "rxjs-pausable";
+import { environment } from "../../../environments/environment";
 import { DisruptionBase, DisruptionsList, Station, StationsResponse } from "../../models/ReisinformatieAPI";
 import { SpoortkaartFeatureCollection, TrainTracksGeoJSON } from "../../models/SpoortkaartAPI";
+import { TrainMapType } from "../../models/TrainMapType";
 import { DetailedTrainInformation, TrainIconOnMap } from "../../models/VirtualTrainAPI";
+import { HelperFunctionsService } from "../../services/helper-functions.service";
+import { ImageEditorService } from "../../services/image-editor.service";
 import { SharedDataService } from "../../services/shared-data.service";
-
-// eslint-disable-next-line @typescript-eslint/no-var-requires,@typescript-eslint/no-unsafe-assignment
-const replaceColor = require("replace-color");
+import { TrainMapSidebarComponent } from "../train-map-sidebar/train-map-sidebar.component";
 
 /**
  * Train map with stations and trains that get update every x seconds
@@ -110,7 +106,8 @@ export class TrainMapComponent implements OnInit {
 	constructor(
 		private sharedDataService: SharedDataService,
 		private helperFunctions: HelperFunctionsService,
-		private router: Router
+		private router: Router,
+		private imageEditorService: ImageEditorService
 	) {}
 
 	/**
@@ -338,7 +335,7 @@ export class TrainMapComponent implements OnInit {
 			if (queriedFeatures && !this.helperFunctions.trainsAreEqual(queriedFeatures[0], oldTrainInformation)) {
 				this.closePopup();
 				this.openTrainPopupOnLayerClick({
-					defaultPrevented: false,
+					defaultPrevented: true,
 					lngLat: undefined,
 					originalEvent: undefined,
 					point: undefined,
@@ -510,45 +507,13 @@ export class TrainMapComponent implements OnInit {
 		iconURLs: Map<string, string>,
 		detailedTrainInformation: DetailedTrainInformation[]
 	): void {
-		const jimpImageNames: string[] = [];
-		const jimpBufferObservables: Observable<Buffer>[] = [];
-
-		iconURLs.forEach((imageURL, imageName) => {
-			jimpImageNames.push(imageName);
-			jimpBufferObservables.push(
-				from(Jimp.read(imageURL)).pipe(
-					mergeMap<Jimp, Observable<Buffer>>((image) => {
-						image.resize(Jimp.AUTO, 50).crop(0, 0, 100, 50);
-						if (image.hasAlpha()) {
-							image.rgba(true).background(0x000000ff);
-						}
-						return from(image.getBufferAsync(Jimp.MIME_PNG));
-					}),
-					mergeMap((buffer) =>
-						from<Observable<Jimp>>(
-							// eslint-disable-next-line @typescript-eslint/no-unsafe-call
-							replaceColor({
-								image: buffer,
-								colors: {
-									type: "hex",
-									targetColor: "#FFFFFF",
-									replaceColor: "#00000000",
-								},
-							})
-						)
-					),
-					mergeMap((image) => image.getBufferAsync(Jimp.MIME_PNG))
-				)
-			);
-		});
-
-		forkJoin(jimpBufferObservables).subscribe({
-			next: (buffers) => {
-				buffers.forEach((buffer, index) => {
-					this.trainIconNames.add(jimpImageNames[index]);
+		this.imageEditorService.prepareTrainIcons(iconURLs).subscribe({
+			next: (result) => {
+				result.forEach((image) => {
+					this.trainIconNames.add(image.imageName);
 					this.trainIconsForMap.push({
-						imageName: jimpImageNames[index],
-						imageObjectURL: window.URL.createObjectURL(new Blob([buffer], { type: "image/png" })),
+						imageName: image.imageName,
+						imageObjectURL: window.URL.createObjectURL(new Blob([image.image], { type: "image/png" })),
 					});
 				});
 			},

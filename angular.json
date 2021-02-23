@@ -2,6 +2,9 @@
 	"$schema": "./node_modules/@angular/cli/lib/config/schema.json",
 	"version": 1,
 	"newProjectRoot": "projects",
+	"cli": {
+		"packageManager": "yarn"
+	},
 	"projects": {
 		"trainSpotter": {
 			"projectType": "application",
@@ -15,8 +18,11 @@
 			"prefix": "app",
 			"architect": {
 				"build": {
-					"builder": "@angular-devkit/build-angular:browser",
+					"builder": "@angular-builders/custom-webpack:browser",
 					"options": {
+						"customWebpackConfig": {
+							"path": "webpack.config.js"
+						},
 						"outputPath": "dist/trainSpotter",
 						"index": "src/index.html",
 						"main": "src/main.ts",
@@ -29,7 +35,8 @@
 							"node_modules/bootstrap/scss/bootstrap.scss",
 							"src/styles.sass"
 						],
-						"scripts": []
+						"scripts": [],
+						"webWorkerTsConfig": "tsconfig.worker.json"
 					},
 					"configurations": {
 						"production": {

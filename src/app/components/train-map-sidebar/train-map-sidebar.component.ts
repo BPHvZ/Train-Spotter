@@ -1,9 +1,18 @@
+import {
+	animate,
+	animateChild,
+	AnimationEvent,
+	group,
+	query,
+	state,
+	style,
+	transition,
+	trigger,
+} from "@angular/animations";
 import { Component, EventEmitter, OnInit, Output } from "@angular/core";
-import { trigger, state, style, animate, transition, animateChild, query, group } from "@angular/animations";
-import { AnimationEvent } from "@angular/animations";
-import { Disruption, DisruptionsList } from "../../models/ReisinformatieAPI";
-import { SharedDataService } from "../../services/shared-data.service";
 import { faSyncAlt } from "@fortawesome/free-solid-svg-icons";
+import { DisruptionsList } from "../../models/ReisinformatieAPI";
+import { SharedDataService } from "../../services/shared-data.service";
 
 @Component({
 	selector: "app-train-map-sidebar",

@@ -1,1194 +1,1090 @@
 {
-  "swagger": "2.0",
-  "info": {
-    "title": "Virtual Train API",
-    "version": "1.0",
-    "description": "Virtual Train API"
-  },
-  "host": "gateway.apiportal.ns.nl",
-  "basePath": "/virtual-train-api",
-  "schemes": [
-    "https"
-  ],
-  "securityDefinitions": {
-    "apiKeyHeader": {
-      "type": "apiKey",
-      "name": "Ocp-Apim-Subscription-Key",
-      "in": "header"
-    },
-    "apiKeyQuery": {
-      "type": "apiKey",
-      "name": "subscription-key",
-      "in": "query"
-    }
-  },
-  "security": [
-    {
-      "apiKeyHeader": []
-    },
-    {
-      "apiKeyQuery": []
-    }
-  ],
-  "paths": {
-    "/api/v1/ingekort": {
-      "get": {
-        "description": "List of trains which are shortened at some station",
-        "operationId": "getAll",
-        "summary": "getAll",
-        "tags": [
-          "Shorter trains"
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "responses": {
-          "200": {
-            "description": "Information about a shorter train in the following format: trainNumber_stationCode. The station code indicates where the train will be shortened.",
-            "schema": {
-              "$ref": "#/definitions/ApiV1IngekortGetdefaultApplicationJsonResponse"
-            }
-          },
-          "400": {
-            "description": "Information about a shorter train in the following format: trainNumber_stationCode. The station code indicates where the train will be shortened.",
-            "schema": {
-              "$ref": "#/definitions/ApiV1IngekortGetdefaultApplicationJsonResponse"
-            }
-          },
-          "500": {
-            "description": "Information about a shorter train in the following format: trainNumber_stationCode. The station code indicates where the train will be shortened.",
-            "schema": {
-              "$ref": "#/definitions/ApiV1IngekortGetdefaultApplicationJsonResponse"
-            }
-          }
-        }
-      }
-    },
-    "/api/v1/ingekort/{ritnummer}/{station}": {
-      "get": {
-        "description": "Detailed information about a train being shortened",
-        "operationId": "getTreinInfo",
-        "summary": "getTreinInfo",
-        "tags": [
-          "Shorter trains"
-        ],
-        "parameters": [
-          {
-            "name": "ritnummer",
-            "in": "path",
-            "description": "Format - int32. Ritnummer of the train.",
-            "required": true,
-            "type": "integer"
-          },
-          {
-            "name": "station",
-            "in": "path",
-            "description": "Station code",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "responses": {
-          "200": {
-            "description": "Information about a shorter train",
-            "schema": {
-              "$ref": "#/definitions/Ingekort"
-            }
-          },
-          "400": {
-            "description": "Information about a shorter train",
-            "schema": {
-              "$ref": "#/definitions/Ingekort"
-            }
-          },
-          "500": {
-            "description": "Information about a shorter train",
-            "schema": {
-              "$ref": "#/definitions/Ingekort"
-            }
-          }
-        }
-      }
-    },
-    "/api/v2/ingekort": {
-      "get": {
-        "description": "List of trains which are shortened at some station with corresponding crowdedness indicator string",
-        "operationId": "getAll_1",
-        "summary": "getAll_1",
-        "tags": [
-          "Shorter trains V2"
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "responses": {
-          "200": {
-            "description": "Information about a shorter train in the following format: trainNumber_stationCode. The station code indicates where the train will be shortened. The corresponding crowdedness indicator string can one one of the following: [BUSY, EXTRA BUSY]",
-            "schema": {
-              "$ref": "#/definitions/ApiV2IngekortGetdefaultApplicationJsonResponse"
-            }
-          },
-          "400": {
-            "description": "Information about a shorter train in the following format: trainNumber_stationCode. The station code indicates where the train will be shortened. The corresponding crowdedness indicator string can one one of the following: [BUSY, EXTRA BUSY]",
-            "schema": {
-              "$ref": "#/definitions/ApiV2IngekortGetdefaultApplicationJsonResponse"
-            }
-          },
-          "500": {
-            "description": "Information about a shorter train in the following format: trainNumber_stationCode. The station code indicates where the train will be shortened. The corresponding crowdedness indicator string can one one of the following: [BUSY, EXTRA BUSY]",
-            "schema": {
-              "$ref": "#/definitions/ApiV2IngekortGetdefaultApplicationJsonResponse"
-            }
-          }
-        }
-      }
-    },
-    "/api/v1/prognose/{ritnummer}": {
-      "get": {
-        "description": "Information about the crowd forecast of a train",
-        "operationId": "getTreinInfo_1",
-        "summary": "getTreinInfo_1",
-        "tags": [
-          "Crowd forecast"
-        ],
-        "parameters": [
-          {
-            "name": "ritnummer",
-            "in": "path",
-            "description": "Format - int32. Ritnummer of the train",
-            "required": true,
-            "type": "integer"
-          }
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "responses": {
-          "200": {
-            "description": "Shows the crowd forecast of a certain train",
-            "schema": {
-              "$ref": "#/definitions/PrognoseInfomatie"
-            }
-          },
-          "400": {
-            "description": "Shows the crowd forecast of a certain train",
-            "schema": {
-              "$ref": "#/definitions/PrognoseInfomatie"
-            }
-          },
-          "500": {
-            "description": "Shows the crowd forecast of a certain train",
-            "schema": {
-              "$ref": "#/definitions/PrognoseInfomatie"
-            }
-          }
-        }
-      }
-    },
-    "/api/v1/ritnummer/{materieelnummer}": {
-      "get": {
-        "description": "Converts a materieelnummer to a ritnummer",
-        "operationId": "getTreinInformatie",
-        "summary": "getTreinInformatie",
-        "tags": [
-          "Materieel"
-        ],
-        "parameters": [
-          {
-            "name": "materieelnummer",
-            "in": "path",
-            "description": "Format - int32. Materieelnummer of the train",
-            "required": true,
-            "type": "integer"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "A ritnummer."
-          },
-          "400": {
-            "description": "A ritnummer."
-          },
-          "500": {
-            "description": "A ritnummer."
-          }
-        }
-      }
-    },
-    "/api/v1/stop/{stopCode}": {
-      "get": {
-        "description": "Get a specific stop",
-        "operationId": "getStop",
-        "summary": "getStop",
-        "tags": [
-          "Stops"
-        ],
-        "parameters": [
-          {
-            "name": "stopCode",
-            "in": "path",
-            "description": "The stopCode of the stop.",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "responses": {
-          "200": {
-            "description": "Information about a stop",
-            "schema": {
-              "$ref": "#/definitions/Stop"
-            }
-          },
-          "400": {
-            "description": "Information about a stop",
-            "schema": {
-              "$ref": "#/definitions/Stop"
-            }
-          },
-          "500": {
-            "description": "Information about a stop",
-            "schema": {
-              "$ref": "#/definitions/Stop"
-            }
-          }
-        }
-      }
-    },
-    "/api/v1/stop": {
-      "get": {
-        "description": "Get all stops",
-        "operationId": "getStops",
-        "summary": "getStops",
-        "tags": [
-          "Stops"
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "responses": {
-          "200": {
-            "description": "List of all stops",
-            "schema": {
-              "$ref": "#/definitions/Stop"
-            }
-          },
-          "400": {
-            "description": "List of all stops",
-            "schema": {
-              "$ref": "#/definitions/Stop"
-            }
-          },
-          "500": {
-            "description": "List of all stops",
-            "schema": {
-              "$ref": "#/definitions/Stop"
-            }
-          }
-        }
-      }
-    },
-    "/api/v1/trein/{ritnummer}": {
-      "get": {
-        "description": "Information about a certain train",
-        "operationId": "getTreinInformatie_1",
-        "summary": "getTreinInformatie_1",
-        "tags": [
-          "Trains"
-        ],
-        "parameters": [
-          {
-            "name": "ritnummer",
-            "in": "path",
-            "description": "Format - int32. The 'ritnummer' (number) of the train.",
-            "required": true,
-            "type": "integer"
-          },
-          {
-            "name": "features",
-            "in": "query",
-            "description": "Comma seperated list of features.",
-            "type": "string",
-            "enum": [
-              "zitplaats",
-              "platformitems",
-              "cta",
-              "drukte"
-            ]
-          },
-          {
-            "name": "dateTime",
-            "in": "query",
-            "description": "Datetime to search in ISO8601.",
-            "type": "string"
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "type": "string"
-          }
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "responses": {
-          "200": {
-            "description": "Information about the requested train",
-            "schema": {
-              "$ref": "#/definitions/TreinInformatie"
-            }
-          },
-          "400": {
-            "description": "Information about the requested train",
-            "schema": {
-              "$ref": "#/definitions/TreinInformatie"
-            }
-          },
-          "500": {
-            "description": "Information about the requested train",
-            "schema": {
-              "$ref": "#/definitions/TreinInformatie"
-            }
-          }
-        }
-      }
-    },
-    "/api/v1/trein": {
-      "get": {
-        "description": "Information about all trains",
-        "operationId": "getTreinInformatie_2",
-        "summary": "getTreinInformatie_2",
-        "tags": [
-          "Trains"
-        ],
-        "parameters": [
-          {
-            "name": "ids",
-            "in": "query",
-            "description": "Comma seperated list of id's. Note that all of the following parameters only work in conjuction with the id parameter.",
-            "type": "string"
-          },
-          {
-            "name": "stations",
-            "in": "query",
-            "description": "Comma seperated list of Station codes",
-            "type": "string"
-          },
-          {
-            "name": "features",
-            "in": "query",
-            "description": "Comma seperated list of features.",
-            "type": "string",
-            "enum": [
-              "zitplaats",
-              "platformitems",
-              "cta",
-              "drukte",
-              "druktev2"
-            ]
-          },
-          {
-            "name": "dateTime",
-            "in": "query",
-            "description": "Datetime to search in ISO8601",
-            "type": "string"
-          },
-          {
-            "name": "all",
-            "in": "query",
-            "description": "Whether to get information about all the stations",
-            "type": "boolean",
-            "default": false
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "type": "string"
-          }
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "responses": {
-          "200": {
-            "description": "List of information about all trains",
-            "schema": {
-              "$ref": "#/definitions/TreinInformatie"
-            }
-          },
-          "400": {
-            "description": "List of information about all trains",
-            "schema": {
-              "$ref": "#/definitions/TreinInformatie"
-            }
-          },
-          "500": {
-            "description": "List of information about all trains",
-            "schema": {
-              "$ref": "#/definitions/TreinInformatie"
-            }
-          }
-        }
-      }
-    },
-    "/api/v1/trein/{ritnummer}/{stationscode}": {
-      "get": {
-        "description": "Information about a specified train at a specified station",
-        "operationId": "getTreinInformatie_3",
-        "summary": "getTreinInformatie_3",
-        "tags": [
-          "Trains"
-        ],
-        "parameters": [
-          {
-            "name": "ritnummer",
-            "in": "path",
-            "description": "Format - int32. The 'ritnummer' (number) of the train.",
-            "required": true,
-            "type": "integer"
-          },
-          {
-            "name": "stationscode",
-            "in": "path",
-            "description": "Code of the station",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "features",
-            "in": "query",
-            "description": "Comma seperated list of features",
-            "type": "string",
-            "enum": [
-              "zitplaats",
-              "platformitems",
-              "cta",
-              "drukte"
-            ]
-          },
-          {
-            "name": "dateTime",
-            "in": "query",
-            "description": "Datetime to search in ISO8601.",
-            "type": "string"
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "type": "string"
-          }
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "responses": {
-          "200": {
-            "description": "Information about the requested train",
-            "schema": {
-              "$ref": "#/definitions/TreinInformatie"
-            }
-          },
-          "400": {
-            "description": "Information about the requested train",
-            "schema": {
-              "$ref": "#/definitions/TreinInformatie"
-            }
-          },
-          "500": {
-            "description": "Information about the requested train",
-            "schema": {
-              "$ref": "#/definitions/TreinInformatie"
-            }
-          }
-        }
-      }
-    },
-    "/api/v1/images/{image}": {
-      "get": {
-        "description": "Train image",
-        "operationId": "getImage",
-        "summary": "getImage",
-        "tags": [
-          "Image"
-        ],
-        "parameters": [
-          {
-            "name": "image",
-            "in": "path",
-            "description": "Name of the image including extension, usually .png.",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "produces": [
-          "image/png"
-        ],
-        "responses": {
-          "200": {
-            "description": "default response"
-          },
-          "400": {
-            "description": "default response"
-          },
-          "500": {
-            "description": "default response"
-          }
-        }
-      }
-    },
-    "/api/v1/images/{materieel}/{image}": {
-      "get": {
-        "description": "RollingStock image",
-        "operationId": "getImageFromSubdirectory",
-        "summary": "getImageFromSubdirectory",
-        "tags": [
-          "Image"
-        ],
-        "parameters": [
-          {
-            "name": "materieel",
-            "in": "path",
-            "description": "Name of the subdirectory",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "image",
-            "in": "path",
-            "description": "Name of the image including extension, usually .png.",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "produces": [
-          "image/png"
-        ],
-        "responses": {
-          "200": {
-            "description": "default response"
-          },
-          "400": {
-            "description": "default response"
-          },
-          "500": {
-            "description": "default response"
-          }
-        }
-      }
-    },
-    "/api/vehicle": {
-      "get": {
-        "description": "Information about all vehicles",
-        "operationId": "getVehicles",
-        "summary": "getVehicles",
-        "tags": [
-          "Vehicle"
-        ],
-        "parameters": [
-          {
-            "name": "lat",
-            "in": "query",
-            "description": "Format - float. Latitude coordinate",
-            "type": "number"
-          },
-          {
-            "name": "lng",
-            "in": "query",
-            "description": "Format - float. Longitude coordinate",
-            "type": "number"
-          },
-          {
-            "name": "radius",
-            "in": "query",
-            "description": "Format - int32. Radius around the given coordinates in meters.",
-            "type": "integer"
-          },
-          {
-            "name": "limit",
-            "in": "query",
-            "description": "Format - int32. Maximum number of vehicles to return.",
-            "type": "integer"
-          },
-          {
-            "name": "features",
-            "in": "query",
-            "description": "Type of material to return. If the materieel value is used the material number of the train will be returned.",
-            "type": "string",
-            "enum": [
-              "bus",
-              "materieel",
-              "trein"
-            ]
-          }
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "responses": {
-          "200": {
-            "description": "List of vehicles",
-            "schema": {
-              "$ref": "#/definitions/Treinen"
-            }
-          },
-          "400": {
-            "description": "List of vehicles",
-            "schema": {
-              "$ref": "#/definitions/Treinen"
-            }
-          },
-          "500": {
-            "description": "List of vehicles",
-            "schema": {
-              "$ref": "#/definitions/Treinen"
-            }
-          }
-        }
-      }
-    }
-  },
-  "definitions": {
-    "Ingekort": {
-      "type": "object",
-      "properties": {
-        "geplandeSamenstelling": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        "actueleSamenstelling": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        "geplandeCapaciteit": {
-          "format": "int32",
-          "type": "integer"
-        },
-        "actueleCapaciteit": {
-          "format": "int32",
-          "type": "integer"
-        },
-        "prognose": {
-          "format": "int32",
-          "type": "integer"
-        },
-        "voldoendeAfwijking": {
-          "type": "boolean"
-        },
-        "ingekort": {
-          "type": "boolean"
-        },
-        "classification": {
-          "enum": [
-            "UNKNOWN",
-            "HIGH",
-            "MEDIUM",
-            "LOW"
-          ],
-          "type": "string"
-        },
-        "verwachting": {
-          "format": "int32",
-          "type": "integer"
-        },
-        "daActueleCapaciteit": {
-          "format": "int32",
-          "type": "integer"
-        }
-      }
-    },
-    "PrognoseInfomatie": {
-      "type": "object",
-      "properties": {
-        "verwachting": {
-          "format": "int32",
-          "type": "integer"
-        },
-        "station": {
-          "type": "string"
-        },
-        "capaciteit": {
-          "format": "int32",
-          "type": "integer"
-        },
-        "classifiction": {
-          "enum": [
-            "UNKNOWN",
-            "HIGH",
-            "MEDIUM",
-            "LOW"
-          ],
-          "type": "string"
-        },
-        "prognose": {
-          "format": "int32",
-          "type": "integer"
-        }
-      }
-    },
-    "Stop": {
-      "type": "object",
-      "properties": {
-        "stopId": {
-          "type": "string"
-        },
-        "stopCode": {
-          "type": "string"
-        },
-        "stopName": {
-          "type": "string"
-        },
-        "lat": {
-          "format": "float",
-          "type": "number"
-        },
-        "lng": {
-          "format": "float",
-          "type": "number"
-        },
-        "locationType": {
-          "type": "string"
-        },
-        "parentStation": {
-          "type": "string"
-        },
-        "stopTimezone": {
-          "type": "string"
-        },
-        "wheelchairBoarding": {
-          "type": "string"
-        },
-        "platformCode": {
-          "type": "string"
-        },
-        "zoneId": {
-          "type": "string"
-        },
-        "notAnNsStation": {
-          "type": "boolean"
-        },
-        "regularStation": {
-          "type": "boolean"
-        }
-      }
-    },
-    "Afbeelding": {
-      "type": "object"
-    },
-    "Bak": {
-      "type": "object",
-      "properties": {
-        "afbeelding": {
-          "$ref": "#/definitions/Afbeelding"
-        },
-        "drukte": {
-          "enum": [
-            "HIGH",
-            "MEDIUM",
-            "LOW",
-            "UNKNOWN"
-          ],
-          "type": "string"
-        }
-      }
-    },
-    "ImageData": {
-      "type": "object",
-      "properties": {
-        "imageUrl": {
-          "type": "string"
-        },
-        "width": {
-          "format": "int32",
-          "type": "integer"
-        },
-        "height": {
-          "format": "int32",
-          "type": "integer"
-        }
-      }
-    },
-    "PerronVoorziening": {
-      "type": "object",
-      "properties": {
-        "paddingLeft": {
-          "format": "int32",
-          "type": "integer"
-        },
-        "width": {
-          "format": "int32",
-          "type": "integer"
-        },
-        "type": {
-          "type": "string"
-        },
-        "description": {
-          "type": "string"
-        }
-      }
-    },
-    "TreinDeel": {
-      "type": "object",
-      "properties": {
-        "materieelType": {
-          "enum": [
-            "DDZ_4",
-            "DDZ_6",
-            "DDZ_4SA",
-            "SGMM_2",
-            "SGMM_3",
-            "SNG_3",
-            "SNG_4",
-            "SLT_4",
-            "SLT_4E",
-            "SLT_4ES",
-            "SLT_6",
-            "SLT_6E",
-            "SLT_6ES",
-            "FLIRT_2",
-            "FLIRT_2_ARR",
-            "FLIRT_3_ARR",
-            "FLIRT_2_RNET",
-            "FLIRT_3",
-            "FLIRT_3_NS",
-            "FLIRT_3_FFF",
-            "FLIRT_3_BLAUWNET",
-            "FLIRT_3_KEOLIS",
-            "FLIRT_4",
-            "FLIRT_4_NS",
-            "FLIRT_4_FFF",
-            "FLIRT_4_SY",
-            "FLIRT_4_KEOLIS",
-            "FLIRT_ABELLIO",
-            "FLIRT_CONNEXXION",
-            "VIRM_4",
-            "VIRMm1_4",
-            "VIRM_6",
-            "VIRMm1_6",
-            "DB_REGIO_643",
-            "DB_BPMZ",
-            "DB_BER9_9",
-            "DB_AVMZ",
-            "DB_B15",
-            "OEBB_BMZ",
-            "MS80M3",
-            "MS75_4",
-            "DDM1_4DDM",
-            "ICR_GV1_9_B10",
-            "ICR_GV2_9_B10",
-            "ICR_BNL_6_B10",
-            "ICR_BNN_6_B10",
-            "ICR_HSL_6_B10",
-            "ICR_7",
-            "SW6_25KV_2_6",
-            "SW7_25KV_2_7",
-            "SW9_25KV_2_9",
-            "ELOC_1700",
-            "ELOC_TR25",
-            "ELOC_TRBE",
-            "ELOC_TRAX",
-            "CPROTOS_2",
-            "DM90_2",
-            "DDAR_3",
-            "EUROSTAR",
-            "THALYS",
-            "TGV_PB",
-            "ICE",
-            "ICE_3",
-            "MAT64",
-            "GTW26",
-            "GTWE26",
-            "GTW28",
-            "GTWE28",
-            "GTWE26_VECHTDAL",
-            "GTWE28_VETCHDAL",
-            "GTW26_LIMBURG",
-            "GTW28_LIMBURG",
-            "GTWE26_LIMBURG",
-            "GTWE28_LIMBURG",
-            "GTW26_ARRIVA",
-            "GTW28_ARRIVA",
-            "GTWE26_ARRIVA",
-            "GTWE28_ARRIVA",
-            "GTW26_VEOLIA",
-            "GTW28_VEOLIA",
-            "GTWE26_VEOLIA",
-            "GTWE28_VEOLIA",
-            "GTW8_BRENG",
-            "GTW26_QBUZZ",
-            "GTW28_QBUZZ",
-            "LINT2",
-            "LINT2_ARRIVA",
-            "LINT2_VEOLIA",
-            "LINT2_SYNTUS",
-            "LINT2_KEOLIS",
-            "ICM3",
-            "ICM4",
-            "UNKNOWN"
-          ],
-          "type": "string"
-        },
-        "drukteSVGPath": {
-          "type": "string"
-        },
-        "materieelnummer": {
-          "format": "int32",
-          "type": "integer"
-        },
-        "type": {
-          "type": "string"
-        },
-        "faciliteiten": {
-          "type": "array",
-          "items": {
-            "enum": [
-              "TOILET",
-              "STILTE",
-              "STROOM",
-              "TOEGANKELIJK",
-              "FIETS",
-              "WIFI",
-              "BISTRO"
-            ],
-            "type": "string"
-          }
-        },
-        "afbeelding": {
-          "type": "string"
-        },
-        "eindbestemming": {
-          "type": "string"
-        },
-        "bakken": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/Bak"
-          }
-        },
-        "zitplaatsInfo": {
-          "$ref": "#/definitions/ZitplaatsInformatie"
-        },
-        "afbeeldingsSpecs": {
-          "$ref": "#/definitions/ImageData"
-        }
-      }
-    },
-    "TreinDrukte": {
-      "type": "object"
-    },
-    "TreinInformatie": {
-      "type": "object",
-      "properties": {
-        "crowdInfoResponse": {
-          "type": "string"
-        },
-        "crowdInfoRequest": {
-          "type": "string"
-        },
-        "bron": {
-          "enum": [
-            "DVS",
-            "KV6",
-            "OBIS",
-            "DAGPLAN",
-            "NMBS"
-          ],
-          "type": "string"
-        },
-        "ritnummer": {
-          "format": "int32",
-          "type": "integer"
-        },
-        "station": {
-          "type": "string"
-        },
-        "type": {
-          "type": "string"
-        },
-        "vervoerder": {
-          "type": "string"
-        },
-        "spoor": {
-          "type": "string"
-        },
-        "materieeldelen": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/TreinDeel"
-          }
-        },
-        "geplandeMaterieeldelen": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/TreinDeel"
-          }
-        },
-        "ingekort": {
-          "type": "boolean"
-        },
-        "lengte": {
-          "format": "int32",
-          "type": "integer"
-        },
-        "lengteInMeters": {
-          "format": "int32",
-          "type": "integer"
-        },
-        "lengteInPixels": {
-          "format": "int32",
-          "type": "integer"
-        },
-        "geplandeLengte": {
-          "format": "int32",
-          "type": "integer"
-        },
-        "perronVoorzieningen": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/PerronVoorziening"
-          }
-        },
-        "bakbord": {
-          "format": "int32",
-          "type": "integer"
-        },
-        "rijrichting": {
-          "enum": [
-            "LINKS",
-            "RECHTS"
-          ],
-          "type": "string"
-        },
-        "drukteVoorspelling": {
-          "$ref": "#/definitions/TreinDrukte"
-        },
-        "treinDelen": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/TreinDeel"
-          }
-        }
-      }
-    },
-    "ZitplaatsInformatie": {
-      "type": "object",
-      "properties": {
-        "staanplaatsEersteKlas": {
-          "format": "int32",
-          "type": "integer"
-        },
-        "staanplaatsTweedeKlas": {
-          "format": "int32",
-          "type": "integer"
-        },
-        "zitplaatsEersteKlas": {
-          "format": "int32",
-          "type": "integer"
-        },
-        "zitplaatsTweedeKlas": {
-          "format": "int32",
-          "type": "integer"
-        },
-        "klapstoelEersteKlas": {
-          "format": "int32",
-          "type": "integer"
-        },
-        "klapstoelTweedeKlas": {
-          "format": "int32",
-          "type": "integer"
-        }
-      }
-    },
-    "MaterieelDeel": {
-      "type": "object",
-      "properties": {
-        "materieelDeel": {
-          "format": "int32",
-          "type": "integer"
-        },
-        "lat": {
-          "format": "float",
-          "type": "number"
-        },
-        "lng": {
-          "format": "float",
-          "type": "number"
-        },
-        "snelheid": {
-          "format": "float",
-          "type": "number"
-        },
-        "richting": {
-          "format": "float",
-          "type": "number"
-        }
-      }
-    },
-    "Trein": {
-      "type": "object",
-      "properties": {
-        "ritId": {
-          "type": "string"
-        },
-        "lat": {
-          "format": "float",
-          "type": "number"
-        },
-        "lng": {
-          "format": "float",
-          "type": "number"
-        },
-        "snelheid": {
-          "format": "float",
-          "type": "number"
-        },
-        "richting": {
-          "format": "float",
-          "type": "number"
-        },
-        "horizontaleNauwkeurigheid": {
-          "format": "float",
-          "type": "number"
-        },
-        "type": {
-          "type": "string"
-        },
-        "materieelDeelList": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/MaterieelDeel"
-          }
-        },
-        "treinCloneWithMaterieel": {
-          "$ref": "#/definitions/Trein"
-        }
-      }
-    },
-    "Treinen": {
-      "type": "object",
-      "properties": {
-        "treinen": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/Trein"
-          }
-        }
-      }
-    },
-    "ApiV1IngekortGetdefaultApplicationJsonResponse": {
-      "type": "string"
-    },
-    "ApiV2IngekortGetdefaultApplicationJsonResponse": {
-      "type": "string"
-    }
-  },
-  "tags": []
+	"swagger": "2.0",
+	"info": {
+		"title": "Virtual Train API",
+		"version": "1.0",
+		"description": "Virtual Train API"
+	},
+	"host": "gateway.apiportal.ns.nl",
+	"basePath": "/virtual-train-api",
+	"schemes": ["https"],
+	"securityDefinitions": {
+		"apiKeyHeader": {
+			"type": "apiKey",
+			"name": "Ocp-Apim-Subscription-Key",
+			"in": "header"
+		},
+		"apiKeyQuery": {
+			"type": "apiKey",
+			"name": "subscription-key",
+			"in": "query"
+		}
+	},
+	"security": [
+		{
+			"apiKeyHeader": []
+		},
+		{
+			"apiKeyQuery": []
+		}
+	],
+	"paths": {
+		"/api/v1/ingekort": {
+			"get": {
+				"description": "List of trains which are shortened at some station",
+				"operationId": "getAll",
+				"summary": "getAll",
+				"tags": ["Shorter trains"],
+				"produces": ["application/json"],
+				"responses": {
+					"200": {
+						"description": "Information about a shorter train in the following format: trainNumber_stationCode. The station code indicates where the train will be shortened.",
+						"schema": {
+							"$ref": "#/definitions/ApiV1IngekortGetdefaultApplicationJsonResponse"
+						}
+					},
+					"400": {
+						"description": "Information about a shorter train in the following format: trainNumber_stationCode. The station code indicates where the train will be shortened.",
+						"schema": {
+							"$ref": "#/definitions/ApiV1IngekortGetdefaultApplicationJsonResponse"
+						}
+					},
+					"500": {
+						"description": "Information about a shorter train in the following format: trainNumber_stationCode. The station code indicates where the train will be shortened.",
+						"schema": {
+							"$ref": "#/definitions/ApiV1IngekortGetdefaultApplicationJsonResponse"
+						}
+					}
+				}
+			}
+		},
+		"/api/v1/ingekort/{ritnummer}/{station}": {
+			"get": {
+				"description": "Detailed information about a train being shortened",
+				"operationId": "getTreinInfo",
+				"summary": "getTreinInfo",
+				"tags": ["Shorter trains"],
+				"parameters": [
+					{
+						"name": "ritnummer",
+						"in": "path",
+						"description": "Format - int32. Ritnummer of the train.",
+						"required": true,
+						"type": "integer"
+					},
+					{
+						"name": "station",
+						"in": "path",
+						"description": "Station code",
+						"required": true,
+						"type": "string"
+					}
+				],
+				"produces": ["application/json"],
+				"responses": {
+					"200": {
+						"description": "Information about a shorter train",
+						"schema": {
+							"$ref": "#/definitions/Ingekort"
+						}
+					},
+					"400": {
+						"description": "Information about a shorter train",
+						"schema": {
+							"$ref": "#/definitions/Ingekort"
+						}
+					},
+					"500": {
+						"description": "Information about a shorter train",
+						"schema": {
+							"$ref": "#/definitions/Ingekort"
+						}
+					}
+				}
+			}
+		},
+		"/api/v2/ingekort": {
+			"get": {
+				"description": "List of trains which are shortened at some station with corresponding crowdedness indicator string",
+				"operationId": "getAll_1",
+				"summary": "getAll_1",
+				"tags": ["Shorter trains V2"],
+				"produces": ["application/json"],
+				"responses": {
+					"200": {
+						"description": "Information about a shorter train in the following format: trainNumber_stationCode. The station code indicates where the train will be shortened. The corresponding crowdedness indicator string can one one of the following: [BUSY, EXTRA BUSY]",
+						"schema": {
+							"$ref": "#/definitions/ApiV2IngekortGetdefaultApplicationJsonResponse"
+						}
+					},
+					"400": {
+						"description": "Information about a shorter train in the following format: trainNumber_stationCode. The station code indicates where the train will be shortened. The corresponding crowdedness indicator string can one one of the following: [BUSY, EXTRA BUSY]",
+						"schema": {
+							"$ref": "#/definitions/ApiV2IngekortGetdefaultApplicationJsonResponse"
+						}
+					},
+					"500": {
+						"description": "Information about a shorter train in the following format: trainNumber_stationCode. The station code indicates where the train will be shortened. The corresponding crowdedness indicator string can one one of the following: [BUSY, EXTRA BUSY]",
+						"schema": {
+							"$ref": "#/definitions/ApiV2IngekortGetdefaultApplicationJsonResponse"
+						}
+					}
+				}
+			}
+		},
+		"/api/v1/prognose/{ritnummer}": {
+			"get": {
+				"description": "Information about the crowd forecast of a train",
+				"operationId": "getTreinInfo_1",
+				"summary": "getTreinInfo_1",
+				"tags": ["Crowd forecast"],
+				"parameters": [
+					{
+						"name": "ritnummer",
+						"in": "path",
+						"description": "Format - int32. Ritnummer of the train",
+						"required": true,
+						"type": "integer"
+					}
+				],
+				"produces": ["application/json"],
+				"responses": {
+					"200": {
+						"description": "Shows the crowd forecast of a certain train",
+						"schema": {
+							"$ref": "#/definitions/PrognoseInfomatie"
+						}
+					},
+					"400": {
+						"description": "Shows the crowd forecast of a certain train",
+						"schema": {
+							"$ref": "#/definitions/PrognoseInfomatie"
+						}
+					},
+					"500": {
+						"description": "Shows the crowd forecast of a certain train",
+						"schema": {
+							"$ref": "#/definitions/PrognoseInfomatie"
+						}
+					}
+				}
+			}
+		},
+		"/api/v1/ritnummer/{materieelnummer}": {
+			"get": {
+				"description": "Converts a materieelnummer to a ritnummer",
+				"operationId": "getTreinInformatie",
+				"summary": "getTreinInformatie",
+				"tags": ["Materieel"],
+				"parameters": [
+					{
+						"name": "materieelnummer",
+						"in": "path",
+						"description": "Format - int32. Materieelnummer of the train",
+						"required": true,
+						"type": "integer"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "A ritnummer."
+					},
+					"400": {
+						"description": "A ritnummer."
+					},
+					"500": {
+						"description": "A ritnummer."
+					}
+				}
+			}
+		},
+		"/api/v1/stop/{stopCode}": {
+			"get": {
+				"description": "Get a specific stop",
+				"operationId": "getStop",
+				"summary": "getStop",
+				"tags": ["Stops"],
+				"parameters": [
+					{
+						"name": "stopCode",
+						"in": "path",
+						"description": "The stopCode of the stop.",
+						"required": true,
+						"type": "string"
+					}
+				],
+				"produces": ["application/json"],
+				"responses": {
+					"200": {
+						"description": "Information about a stop",
+						"schema": {
+							"$ref": "#/definitions/Stop"
+						}
+					},
+					"400": {
+						"description": "Information about a stop",
+						"schema": {
+							"$ref": "#/definitions/Stop"
+						}
+					},
+					"500": {
+						"description": "Information about a stop",
+						"schema": {
+							"$ref": "#/definitions/Stop"
+						}
+					}
+				}
+			}
+		},
+		"/api/v1/stop": {
+			"get": {
+				"description": "Get all stops",
+				"operationId": "getStops",
+				"summary": "getStops",
+				"tags": ["Stops"],
+				"produces": ["application/json"],
+				"responses": {
+					"200": {
+						"description": "List of all stops",
+						"schema": {
+							"$ref": "#/definitions/Stop"
+						}
+					},
+					"400": {
+						"description": "List of all stops",
+						"schema": {
+							"$ref": "#/definitions/Stop"
+						}
+					},
+					"500": {
+						"description": "List of all stops",
+						"schema": {
+							"$ref": "#/definitions/Stop"
+						}
+					}
+				}
+			}
+		},
+		"/api/v1/trein/{ritnummer}": {
+			"get": {
+				"description": "Information about a certain train",
+				"operationId": "getTreinInformatie_1",
+				"summary": "getTreinInformatie_1",
+				"tags": ["Trains"],
+				"parameters": [
+					{
+						"name": "ritnummer",
+						"in": "path",
+						"description": "Format - int32. The 'ritnummer' (number) of the train.",
+						"required": true,
+						"type": "integer"
+					},
+					{
+						"name": "features",
+						"in": "query",
+						"description": "Comma seperated list of features.",
+						"type": "string",
+						"enum": ["zitplaats", "platformitems", "cta", "drukte"]
+					},
+					{
+						"name": "dateTime",
+						"in": "query",
+						"description": "Datetime to search in ISO8601.",
+						"type": "string"
+					},
+					{
+						"name": "x-api-key",
+						"in": "header",
+						"type": "string"
+					}
+				],
+				"produces": ["application/json"],
+				"responses": {
+					"200": {
+						"description": "Information about the requested train",
+						"schema": {
+							"$ref": "#/definitions/TreinInformatie"
+						}
+					},
+					"400": {
+						"description": "Information about the requested train",
+						"schema": {
+							"$ref": "#/definitions/TreinInformatie"
+						}
+					},
+					"500": {
+						"description": "Information about the requested train",
+						"schema": {
+							"$ref": "#/definitions/TreinInformatie"
+						}
+					}
+				}
+			}
+		},
+		"/api/v1/trein": {
+			"get": {
+				"description": "Information about all trains",
+				"operationId": "getTreinInformatie_2",
+				"summary": "getTreinInformatie_2",
+				"tags": ["Trains"],
+				"parameters": [
+					{
+						"name": "ids",
+						"in": "query",
+						"description": "Comma seperated list of id's. Note that all of the following parameters only work in conjuction with the id parameter.",
+						"type": "string"
+					},
+					{
+						"name": "stations",
+						"in": "query",
+						"description": "Comma seperated list of Station codes",
+						"type": "string"
+					},
+					{
+						"name": "features",
+						"in": "query",
+						"description": "Comma seperated list of features.",
+						"type": "string",
+						"enum": ["zitplaats", "platformitems", "cta", "drukte", "druktev2"]
+					},
+					{
+						"name": "dateTime",
+						"in": "query",
+						"description": "Datetime to search in ISO8601",
+						"type": "string"
+					},
+					{
+						"name": "all",
+						"in": "query",
+						"description": "Whether to get information about all the stations",
+						"type": "boolean",
+						"default": false
+					},
+					{
+						"name": "x-api-key",
+						"in": "header",
+						"type": "string"
+					}
+				],
+				"produces": ["application/json"],
+				"responses": {
+					"200": {
+						"description": "List of information about all trains",
+						"schema": {
+							"$ref": "#/definitions/TreinInformatie"
+						}
+					},
+					"400": {
+						"description": "List of information about all trains",
+						"schema": {
+							"$ref": "#/definitions/TreinInformatie"
+						}
+					},
+					"500": {
+						"description": "List of information about all trains",
+						"schema": {
+							"$ref": "#/definitions/TreinInformatie"
+						}
+					}
+				}
+			}
+		},
+		"/api/v1/trein/{ritnummer}/{stationscode}": {
+			"get": {
+				"description": "Information about a specified train at a specified station",
+				"operationId": "getTreinInformatie_3",
+				"summary": "getTreinInformatie_3",
+				"tags": ["Trains"],
+				"parameters": [
+					{
+						"name": "ritnummer",
+						"in": "path",
+						"description": "Format - int32. The 'ritnummer' (number) of the train.",
+						"required": true,
+						"type": "integer"
+					},
+					{
+						"name": "stationscode",
+						"in": "path",
+						"description": "Code of the station",
+						"required": true,
+						"type": "string"
+					},
+					{
+						"name": "features",
+						"in": "query",
+						"description": "Comma seperated list of features",
+						"type": "string",
+						"enum": ["zitplaats", "platformitems", "cta", "drukte"]
+					},
+					{
+						"name": "dateTime",
+						"in": "query",
+						"description": "Datetime to search in ISO8601.",
+						"type": "string"
+					},
+					{
+						"name": "x-api-key",
+						"in": "header",
+						"type": "string"
+					}
+				],
+				"produces": ["application/json"],
+				"responses": {
+					"200": {
+						"description": "Information about the requested train",
+						"schema": {
+							"$ref": "#/definitions/TreinInformatie"
+						}
+					},
+					"400": {
+						"description": "Information about the requested train",
+						"schema": {
+							"$ref": "#/definitions/TreinInformatie"
+						}
+					},
+					"500": {
+						"description": "Information about the requested train",
+						"schema": {
+							"$ref": "#/definitions/TreinInformatie"
+						}
+					}
+				}
+			}
+		},
+		"/api/v1/images/{image}": {
+			"get": {
+				"description": "Train image",
+				"operationId": "getImage",
+				"summary": "getImage",
+				"tags": ["Image"],
+				"parameters": [
+					{
+						"name": "image",
+						"in": "path",
+						"description": "Name of the image including extension, usually .png.",
+						"required": true,
+						"type": "string"
+					}
+				],
+				"produces": ["image/png"],
+				"responses": {
+					"200": {
+						"description": "default response"
+					},
+					"400": {
+						"description": "default response"
+					},
+					"500": {
+						"description": "default response"
+					}
+				}
+			}
+		},
+		"/api/v1/images/{materieel}/{image}": {
+			"get": {
+				"description": "RollingStock image",
+				"operationId": "getImageFromSubdirectory",
+				"summary": "getImageFromSubdirectory",
+				"tags": ["Image"],
+				"parameters": [
+					{
+						"name": "materieel",
+						"in": "path",
+						"description": "Name of the subdirectory",
+						"required": true,
+						"type": "string"
+					},
+					{
+						"name": "image",
+						"in": "path",
+						"description": "Name of the image including extension, usually .png.",
+						"required": true,
+						"type": "string"
+					}
+				],
+				"produces": ["image/png"],
+				"responses": {
+					"200": {
+						"description": "default response"
+					},
+					"400": {
+						"description": "default response"
+					},
+					"500": {
+						"description": "default response"
+					}
+				}
+			}
+		},
+		"/api/vehicle": {
+			"get": {
+				"description": "Information about all vehicles",
+				"operationId": "getVehicles",
+				"summary": "getVehicles",
+				"tags": ["Vehicle"],
+				"parameters": [
+					{
+						"name": "lat",
+						"in": "query",
+						"description": "Format - float. Latitude coordinate",
+						"type": "number"
+					},
+					{
+						"name": "lng",
+						"in": "query",
+						"description": "Format - float. Longitude coordinate",
+						"type": "number"
+					},
+					{
+						"name": "radius",
+						"in": "query",
+						"description": "Format - int32. Radius around the given coordinates in meters.",
+						"type": "integer"
+					},
+					{
+						"name": "limit",
+						"in": "query",
+						"description": "Format - int32. Maximum number of vehicles to return.",
+						"type": "integer"
+					},
+					{
+						"name": "features",
+						"in": "query",
+						"description": "Type of material to return. If the materieel value is used the material number of the train will be returned.",
+						"type": "string",
+						"enum": ["bus", "materieel", "trein"]
+					}
+				],
+				"produces": ["application/json"],
+				"responses": {
+					"200": {
+						"description": "List of vehicles",
+						"schema": {
+							"$ref": "#/definitions/Treinen"
+						}
+					},
+					"400": {
+						"description": "List of vehicles",
+						"schema": {
+							"$ref": "#/definitions/Treinen"
+						}
+					},
+					"500": {
+						"description": "List of vehicles",
+						"schema": {
+							"$ref": "#/definitions/Treinen"
+						}
+					}
+				}
+			}
+		}
+	},
+	"definitions": {
+		"Ingekort": {
+			"type": "object",
+			"properties": {
+				"geplandeSamenstelling": {
+					"type": "array",
+					"items": {
+						"type": "string"
+					}
+				},
+				"actueleSamenstelling": {
+					"type": "array",
+					"items": {
+						"type": "string"
+					}
+				},
+				"geplandeCapaciteit": {
+					"format": "int32",
+					"type": "integer"
+				},
+				"actueleCapaciteit": {
+					"format": "int32",
+					"type": "integer"
+				},
+				"prognose": {
+					"format": "int32",
+					"type": "integer"
+				},
+				"voldoendeAfwijking": {
+					"type": "boolean"
+				},
+				"ingekort": {
+					"type": "boolean"
+				},
+				"classification": {
+					"enum": ["UNKNOWN", "HIGH", "MEDIUM", "LOW"],
+					"type": "string"
+				},
+				"verwachting": {
+					"format": "int32",
+					"type": "integer"
+				},
+				"daActueleCapaciteit": {
+					"format": "int32",
+					"type": "integer"
+				}
+			}
+		},
+		"PrognoseInfomatie": {
+			"type": "object",
+			"properties": {
+				"verwachting": {
+					"format": "int32",
+					"type": "integer"
+				},
+				"station": {
+					"type": "string"
+				},
+				"capaciteit": {
+					"format": "int32",
+					"type": "integer"
+				},
+				"classifiction": {
+					"enum": ["UNKNOWN", "HIGH", "MEDIUM", "LOW"],
+					"type": "string"
+				},
+				"prognose": {
+					"format": "int32",
+					"type": "integer"
+				}
+			}
+		},
+		"Stop": {
+			"type": "object",
+			"properties": {
+				"stopId": {
+					"type": "string"
+				},
+				"stopCode": {
+					"type": "string"
+				},
+				"stopName": {
+					"type": "string"
+				},
+				"lat": {
+					"format": "float",
+					"type": "number"
+				},
+				"lng": {
+					"format": "float",
+					"type": "number"
+				},
+				"locationType": {
+					"type": "string"
+				},
+				"parentStation": {
+					"type": "string"
+				},
+				"stopTimezone": {
+					"type": "string"
+				},
+				"wheelchairBoarding": {
+					"type": "string"
+				},
+				"platformCode": {
+					"type": "string"
+				},
+				"zoneId": {
+					"type": "string"
+				},
+				"notAnNsStation": {
+					"type": "boolean"
+				},
+				"regularStation": {
+					"type": "boolean"
+				}
+			}
+		},
+		"Afbeelding": {
+			"type": "object"
+		},
+		"Bak": {
+			"type": "object",
+			"properties": {
+				"afbeelding": {
+					"$ref": "#/definitions/Afbeelding"
+				},
+				"drukte": {
+					"enum": ["HIGH", "MEDIUM", "LOW", "UNKNOWN"],
+					"type": "string"
+				}
+			}
+		},
+		"ImageData": {
+			"type": "object",
+			"properties": {
+				"imageUrl": {
+					"type": "string"
+				},
+				"width": {
+					"format": "int32",
+					"type": "integer"
+				},
+				"height": {
+					"format": "int32",
+					"type": "integer"
+				}
+			}
+		},
+		"PerronVoorziening": {
+			"type": "object",
+			"properties": {
+				"paddingLeft": {
+					"format": "int32",
+					"type": "integer"
+				},
+				"width": {
+					"format": "int32",
+					"type": "integer"
+				},
+				"type": {
+					"type": "string"
+				},
+				"description": {
+					"type": "string"
+				}
+			}
+		},
+		"TreinDeel": {
+			"type": "object",
+			"properties": {
+				"materieelType": {
+					"enum": [
+						"DDZ_4",
+						"DDZ_6",
+						"DDZ_4SA",
+						"SGMM_2",
+						"SGMM_3",
+						"SNG_3",
+						"SNG_4",
+						"SLT_4",
+						"SLT_4E",
+						"SLT_4ES",
+						"SLT_6",
+						"SLT_6E",
+						"SLT_6ES",
+						"FLIRT_2",
+						"FLIRT_2_ARR",
+						"FLIRT_3_ARR",
+						"FLIRT_2_RNET",
+						"FLIRT_3",
+						"FLIRT_3_NS",
+						"FLIRT_3_FFF",
+						"FLIRT_3_BLAUWNET",
+						"FLIRT_3_KEOLIS",
+						"FLIRT_4",
+						"FLIRT_4_NS",
+						"FLIRT_4_FFF",
+						"FLIRT_4_SY",
+						"FLIRT_4_KEOLIS",
+						"FLIRT_ABELLIO",
+						"FLIRT_CONNEXXION",
+						"VIRM_4",
+						"VIRMm1_4",
+						"VIRM_6",
+						"VIRMm1_6",
+						"DB_REGIO_643",
+						"DB_BPMZ",
+						"DB_BER9_9",
+						"DB_AVMZ",
+						"DB_B15",
+						"OEBB_BMZ",
+						"MS80M3",
+						"MS75_4",
+						"DDM1_4DDM",
+						"ICR_GV1_9_B10",
+						"ICR_GV2_9_B10",
+						"ICR_BNL_6_B10",
+						"ICR_BNN_6_B10",
+						"ICR_HSL_6_B10",
+						"ICR_7",
+						"SW6_25KV_2_6",
+						"SW7_25KV_2_7",
+						"SW9_25KV_2_9",
+						"ELOC_1700",
+						"ELOC_TR25",
+						"ELOC_TRBE",
+						"ELOC_TRAX",
+						"CPROTOS_2",
+						"DM90_2",
+						"DDAR_3",
+						"EUROSTAR",
+						"THALYS",
+						"TGV_PB",
+						"ICE",
+						"ICE_3",
+						"MAT64",
+						"GTW26",
+						"GTWE26",
+						"GTW28",
+						"GTWE28",
+						"GTWE26_VECHTDAL",
+						"GTWE28_VETCHDAL",
+						"GTW26_LIMBURG",
+						"GTW28_LIMBURG",
+						"GTWE26_LIMBURG",
+						"GTWE28_LIMBURG",
+						"GTW26_ARRIVA",
+						"GTW28_ARRIVA",
+						"GTWE26_ARRIVA",
+						"GTWE28_ARRIVA",
+						"GTW26_VEOLIA",
+						"GTW28_VEOLIA",
+						"GTWE26_VEOLIA",
+						"GTWE28_VEOLIA",
+						"GTW8_BRENG",
+						"GTW26_QBUZZ",
+						"GTW28_QBUZZ",
+						"LINT2",
+						"LINT2_ARRIVA",
+						"LINT2_VEOLIA",
+						"LINT2_SYNTUS",
+						"LINT2_KEOLIS",
+						"ICM3",
+						"ICM4",
+						"UNKNOWN"
+					],
+					"type": "string"
+				},
+				"drukteSVGPath": {
+					"type": "string"
+				},
+				"materieelnummer": {
+					"format": "int32",
+					"type": "integer"
+				},
+				"type": {
+					"type": "string"
+				},
+				"faciliteiten": {
+					"type": "array",
+					"items": {
+						"enum": ["TOILET", "STILTE", "STROOM", "TOEGANKELIJK", "FIETS", "WIFI", "BISTRO"],
+						"type": "string"
+					}
+				},
+				"afbeelding": {
+					"type": "string"
+				},
+				"eindbestemming": {
+					"type": "string"
+				},
+				"bakken": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/Bak"
+					}
+				},
+				"zitplaatsInfo": {
+					"$ref": "#/definitions/ZitplaatsInformatie"
+				},
+				"afbeeldingsSpecs": {
+					"$ref": "#/definitions/ImageData"
+				}
+			}
+		},
+		"TreinDrukte": {
+			"type": "object"
+		},
+		"TreinInformatie": {
+			"type": "object",
+			"properties": {
+				"crowdInfoResponse": {
+					"type": "string"
+				},
+				"crowdInfoRequest": {
+					"type": "string"
+				},
+				"bron": {
+					"enum": ["DVS", "KV6", "OBIS", "DAGPLAN", "NMBS"],
+					"type": "string"
+				},
+				"ritnummer": {
+					"format": "int32",
+					"type": "integer"
+				},
+				"station": {
+					"type": "string"
+				},
+				"type": {
+					"type": "string"
+				},
+				"vervoerder": {
+					"type": "string"
+				},
+				"spoor": {
+					"type": "string"
+				},
+				"materieeldelen": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/TreinDeel"
+					}
+				},
+				"geplandeMaterieeldelen": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/TreinDeel"
+					}
+				},
+				"ingekort": {
+					"type": "boolean"
+				},
+				"lengte": {
+					"format": "int32",
+					"type": "integer"
+				},
+				"lengteInMeters": {
+					"format": "int32",
+					"type": "integer"
+				},
+				"lengteInPixels": {
+					"format": "int32",
+					"type": "integer"
+				},
+				"geplandeLengte": {
+					"format": "int32",
+					"type": "integer"
+				},
+				"perronVoorzieningen": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/PerronVoorziening"
+					}
+				},
+				"bakbord": {
+					"format": "int32",
+					"type": "integer"
+				},
+				"rijrichting": {
+					"enum": ["LINKS", "RECHTS"],
+					"type": "string"
+				},
+				"drukteVoorspelling": {
+					"$ref": "#/definitions/TreinDrukte"
+				},
+				"treinDelen": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/TreinDeel"
+					}
+				}
+			}
+		},
+		"ZitplaatsInformatie": {
+			"type": "object",
+			"properties": {
+				"staanplaatsEersteKlas": {
+					"format": "int32",
+					"type": "integer"
+				},
+				"staanplaatsTweedeKlas": {
+					"format": "int32",
+					"type": "integer"
+				},
+				"zitplaatsEersteKlas": {
+					"format": "int32",
+					"type": "integer"
+				},
+				"zitplaatsTweedeKlas": {
+					"format": "int32",
+					"type": "integer"
+				},
+				"klapstoelEersteKlas": {
+					"format": "int32",
+					"type": "integer"
+				},
+				"klapstoelTweedeKlas": {
+					"format": "int32",
+					"type": "integer"
+				}
+			}
+		},
+		"MaterieelDeel": {
+			"type": "object",
+			"properties": {
+				"materieelDeel": {
+					"format": "int32",
+					"type": "integer"
+				},
+				"lat": {
+					"format": "float",
+					"type": "number"
+				},
+				"lng": {
+					"format": "float",
+					"type": "number"
+				},
+				"snelheid": {
+					"format": "float",
+					"type": "number"
+				},
+				"richting": {
+					"format": "float",
+					"type": "number"
+				}
+			}
+		},
+		"Trein": {
+			"type": "object",
+			"properties": {
+				"ritId": {
+					"type": "string"
+				},
+				"lat": {
+					"format": "float",
+					"type": "number"
+				},
+				"lng": {
+					"format": "float",
+					"type": "number"
+				},
+				"snelheid": {
+					"format": "float",
+					"type": "number"
+				},
+				"richting": {
+					"format": "float",
+					"type": "number"
+				},
+				"horizontaleNauwkeurigheid": {
+					"format": "float",
+					"type": "number"
+				},
+				"type": {
+					"type": "string"
+				},
+				"materieelDeelList": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/MaterieelDeel"
+					}
+				},
+				"treinCloneWithMaterieel": {
+					"$ref": "#/definitions/Trein"
+				}
+			}
+		},
+		"Treinen": {
+			"type": "object",
+			"properties": {
+				"treinen": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/Trein"
+					}
+				}
+			}
+		},
+		"ApiV1IngekortGetdefaultApplicationJsonResponse": {
+			"type": "string"
+		},
+		"ApiV2IngekortGetdefaultApplicationJsonResponse": {
+			"type": "string"
+		}
+	},
+	"tags": []
 }

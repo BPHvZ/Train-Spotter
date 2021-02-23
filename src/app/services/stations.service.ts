@@ -1,8 +1,7 @@
 import { Injectable } from "@angular/core";
 import { BehaviorSubject, Observable, Subject } from "rxjs";
-import { SortColumn, SortDirection } from "../directives/ngbd-sortable-header.directive";
 import { debounceTime, delay, map, switchMap, tap } from "rxjs/operators";
-import { ApiService } from "./api.service";
+import { SortColumn, SortDirection } from "../directives/ngbd-sortable-header.directive";
 import { Station } from "../models/ReisinformatieAPI";
 import { SharedDataService } from "./shared-data.service";
 

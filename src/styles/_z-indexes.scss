@@ -1,16 +1,14 @@
 $z-indexes: (
-
-    // generic
-    "header":                  520,
-    "menu":                    530,
-    "overlay":                 540,
-    "autosuggest":             100
+	// generic
+	"header": 520,
+	"menu": 530,
+	"overlay": 540,
+	"autosuggest": 100
 );
 
-
 @function z($index) {
-    @if not map-has-key($z-indexes, $index) {
-        @warn "No z-index found for `#{$index}` in $z-indexes map. Property will return null.";
-    }
-    @return map-get($z-indexes, $index);
+	@if not map-has-key($z-indexes, $index) {
+		@warn "No z-index found for `#{$index}` in $z-indexes map. Property will return null.";
+	}
+	@return map-get($z-indexes, $index);
 }

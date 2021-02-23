@@ -23,6 +23,7 @@ import { DisruptionBase, DisruptionsList, Station, StationsResponse } from "../.
 import { SpoortkaartFeatureCollection, TrainTracksGeoJSON } from "../../models/SpoortkaartAPI";
 import { DetailedTrainInformation, TrainIconOnMap } from "../../models/VirtualTrainAPI";
 import { SharedDataService } from "../../services/shared-data.service";
+import { ImageEditorService } from "../../services/image-editor.service";
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires,@typescript-eslint/no-unsafe-assignment
 const replaceColor = require("replace-color");
@@ -110,7 +111,8 @@ export class TrainMapComponent implements OnInit {
 	constructor(
 		private sharedDataService: SharedDataService,
 		private helperFunctions: HelperFunctionsService,
-		private router: Router
+		private router: Router,
+		private imageEditorService: ImageEditorService
 	) {}
 
 	/**
@@ -510,45 +512,18 @@ export class TrainMapComponent implements OnInit {
 		iconURLs: Map<string, string>,
 		detailedTrainInformation: DetailedTrainInformation[]
 	): void {
-		const jimpImageNames: string[] = [];
-		const jimpBufferObservables: Observable<Buffer>[] = [];
-
-		iconURLs.forEach((imageURL, imageName) => {
-			jimpImageNames.push(imageName);
-			jimpBufferObservables.push(
-				from(Jimp.read(imageURL)).pipe(
-					mergeMap<Jimp, Observable<Buffer>>((image) => {
-						image.resize(Jimp.AUTO, 50).crop(0, 0, 100, 50);
-						if (image.hasAlpha()) {
-							image.rgba(true).background(0x000000ff);
-						}
-						return from(image.getBufferAsync(Jimp.MIME_PNG));
-					}),
-					mergeMap((buffer) =>
-						from<Observable<Jimp>>(
-							// eslint-disable-next-line @typescript-eslint/no-unsafe-call
-							replaceColor({
-								image: buffer,
-								colors: {
-									type: "hex",
-									targetColor: "#FFFFFF",
-									replaceColor: "#00000000",
-								},
-							})
-						)
-					),
-					mergeMap((image) => image.getBufferAsync(Jimp.MIME_PNG))
-				)
-			);
-		});
-
-		forkJoin(jimpBufferObservables).subscribe({
-			next: (buffers) => {
-				buffers.forEach((buffer, index) => {
-					this.trainIconNames.add(jimpImageNames[index]);
+		this.imageEditorService.prepareTrainIcons(iconURLs).subscribe({
+			next: (result) => {
+				console.log("getAndAddTrainIconsToMap!!!!!");
+				console.log(result);
+				result.forEach((image) => {
+					console.log(image);
+					const imageName: string = image[0] as string;
+					const imageBuffer: Buffer = image[1] as Buffer;
+					this.trainIconNames.add(imageName);
 					this.trainIconsForMap.push({
-						imageName: jimpImageNames[index],
-						imageObjectURL: window.URL.createObjectURL(new Blob([buffer], { type: "image/png" })),
+						imageName: imageName,
+						imageObjectURL: window.URL.createObjectURL(new Blob([imageBuffer], { type: "image/png" })),
 					});
 				});
 			},

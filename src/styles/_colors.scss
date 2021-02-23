@@ -2,8 +2,7 @@
 //  Color names
 // --------------------------------------------------
 
-
-$white: #FFFFFF;
+$white: #ffffff;
 $off-white: #f1f1f1;
 $black: #000;
 
@@ -32,28 +31,27 @@ $ns-green-on-grey-90: #017832;
 $nsRed: $ns-red-alert;
 
 // Accent colors
-$ns-acc-green: #00AA89;
+$ns-acc-green: #00aa89;
 $ns-acc-green-dark: #008670;
-$ns-acc-red: #EC0045;
-$ns-acc-orange: #FE6200;
-$ns-acc-purple: #C900E8;
-$ns-acc-anthracite: #6D6E70;
+$ns-acc-red: #ec0045;
+$ns-acc-orange: #fe6200;
+$ns-acc-purple: #c900e8;
+$ns-acc-anthracite: #6d6e70;
 
 $ns-grey: #070721;
-$ns-grey-10: mix(#fff,$ns-grey, 10%); //90%  #1f1f37
-$ns-grey-20: mix(#fff,$ns-grey, 20%); //80%  #38384d
-$ns-grey-30: mix(#fff,$ns-grey, 30%); //70%
-$ns-grey-40: mix(#fff,$ns-grey, 40%); //60%  #6a6a79
-$ns-grey-50: mix(#fff,$ns-grey, 50%); //50%
-$ns-grey-60: mix(#fff,$ns-grey, 60%); //40%  #9b9ba6
-$ns-grey-70: mix(#fff,$ns-grey, 70%); //30%  #b4b4bc
-$ns-grey-80: mix(#fff,$ns-grey, 80%); //20%  #cdcdd3
-$ns-grey-90: mix(#fff,$ns-grey, 90%); //10%  #e6e6e9
-$ns-grey-94: mix(#fff,$ns-grey, 94%); //6%
-
+$ns-grey-10: mix(#fff, $ns-grey, 10%); //90%  #1f1f37
+$ns-grey-20: mix(#fff, $ns-grey, 20%); //80%  #38384d
+$ns-grey-30: mix(#fff, $ns-grey, 30%); //70%
+$ns-grey-40: mix(#fff, $ns-grey, 40%); //60%  #6a6a79
+$ns-grey-50: mix(#fff, $ns-grey, 50%); //50%
+$ns-grey-60: mix(#fff, $ns-grey, 60%); //40%  #9b9ba6
+$ns-grey-70: mix(#fff, $ns-grey, 70%); //30%  #b4b4bc
+$ns-grey-80: mix(#fff, $ns-grey, 80%); //20%  #cdcdd3
+$ns-grey-90: mix(#fff, $ns-grey, 90%); //10%  #e6e6e9
+$ns-grey-94: mix(#fff, $ns-grey, 94%); //6%
 
 $ns-grey-alpha: $ns-grey; // 0%
-$ns-grey-alpha-0: rgba($ns-grey, 0.0); //100%
+$ns-grey-alpha-0: rgba($ns-grey, 0); //100%
 $ns-grey-alpha-5: rgba($ns-grey, 0.05); //95%
 $ns-grey-alpha-10: rgba($ns-grey, 0.1); //90%
 $ns-grey-alpha-15: rgba($ns-grey, 0.15); //85%
@@ -70,39 +68,35 @@ $ns-grey-alpha-95: rgba($ns-grey, 0.95); //5%
 // ---------------------------------------------------------------------------
 
 $ns-icon-colors: (
-    // THIS IS DEPRECATED
-    'ns-white': $white,
-    'ns-light-blue': $ns-light-blue,
-    'ns-blue': $ns-blue,
-    'ns-black': $ns-black,
-    'ns-grey-7': $ns-grey-90,
-    'ns-yellow': $ns-yellow,
-    'ns-red': $ns-red-alert,
-
-    // THIS IS NEW NAMING CONVENTION
-    'nsWhite': $white,
-    'nsLightBlue': $ns-light-blue,
-    'nsBlue': $ns-blue,
-    'nsBlack': $ns-black,
-    'nsGrey4': $ns-grey-40,
-    'nsGrey5': $ns-grey-60,
-    'nsGrey6': $ns-grey-70,
-    'nsGrey7': $ns-grey-90,
-    'nsYellow': $ns-yellow,
-    'nsRed': $ns-red-alert,
-    'nsGreen': $ns-green,
-    'nsGreenOnGrey7': $ns-green-on-grey-90,
-
-    'kss-black': #000
+	// THIS IS DEPRECATED
+	"ns-white": $white,
+	"ns-light-blue": $ns-light-blue,
+	"ns-blue": $ns-blue,
+	"ns-black": $ns-black,
+	"ns-grey-7": $ns-grey-90,
+	"ns-yellow": $ns-yellow,
+	"ns-red": $ns-red-alert,
+	// THIS IS NEW NAMING CONVENTION
+	"nsWhite": $white,
+	"nsLightBlue": $ns-light-blue,
+	"nsBlue": $ns-blue,
+	"nsBlack": $ns-black,
+	"nsGrey4": $ns-grey-40,
+	"nsGrey5": $ns-grey-60,
+	"nsGrey6": $ns-grey-70,
+	"nsGrey7": $ns-grey-90,
+	"nsYellow": $ns-yellow,
+	"nsRed": $ns-red-alert,
+	"nsGreen": $ns-green,
+	"nsGreenOnGrey7": $ns-green-on-grey-90,
+	"kss-black": #000
 );
 
-
 // we create a list of the actual colors, so we can check the existence of every color when we createIconBg();
-$ns-icon-colorcodes:('');
+$ns-icon-colorcodes: ("");
 @each $color, $colorcode in $ns-icon-colors {
-    $ns-icon-colorcodes: append($ns-icon-colorcodes, $colorcode) !global;
+	$ns-icon-colorcodes: append($ns-icon-colorcodes, $colorcode) !global;
 }
-
 
 /*
 // we create a list of the names colors, so we can check the existence of every color when we createIconBg();

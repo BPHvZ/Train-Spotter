@@ -3,25 +3,26 @@
 // ---------------------------------------------------------------------------
 
 @mixin print {
-    @media print {
-        @content;
-    }
+	@media print {
+		@content;
+	}
 }
 @mixin screen {
-    @media screen {
-        @content;
-    }
+	@media screen {
+		@content;
+	}
 }
 
-
-%printOnly { // <- preferred
-    @include screen {
-        display: none !important;
-    }
+%printOnly {
+	// <- preferred
+	@include screen {
+		display: none !important;
+	}
 }
 
-%screenOnly { // <- preferred
-    @include print {
-        display: none !important;
-    }
+%screenOnly {
+	// <- preferred
+	@include print {
+		display: none !important;
+	}
 }

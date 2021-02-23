@@ -1,630 +1,597 @@
 {
-  "swagger": "2.0",
-  "info": {
-    "title": "Spoorkaart API",
-    "version": "1.0",
-    "description": "Spoorkaart API"
-  },
-  "host": "gateway.apiportal.ns.nl",
-  "basePath": "/Spoorkaart-API",
-  "schemes": [
-    "https"
-  ],
-  "securityDefinitions": {
-    "apiKeyHeader": {
-      "type": "apiKey",
-      "name": "Ocp-Apim-Subscription-Key",
-      "in": "header"
-    },
-    "apiKeyQuery": {
-      "type": "apiKey",
-      "name": "subscription-key",
-      "in": "query"
-    }
-  },
-  "security": [
-    {
-      "apiKeyHeader": []
-    },
-    {
-      "apiKeyQuery": []
-    }
-  ],
-  "paths": {
-    "/api/v1/spoorkaart": {
-      "get": {
-        "description": "Returns geojson information for all rail tracks in The Netherlands",
-        "operationId": "getSpoorkaart",
-        "summary": "getSpoorkaart",
-        "tags": [
-          "Spoorkaart"
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "responses": {
-          "200": {
-            "description": "A list of geojson features",
-            "schema": {
-              "$ref": "#/definitions/FeatureCollectionRepresentation"
-            }
-          },
-          "400": {
-            "description": "A list of geojson features",
-            "schema": {
-              "$ref": "#/definitions/FeatureCollectionRepresentation"
-            }
-          },
-          "500": {
-            "description": "A list of geojson features",
-            "schema": {
-              "$ref": "#/definitions/FeatureCollectionRepresentation"
-            }
-          }
-        }
-      }
-    },
-    "/api/v1/storingen": {
-      "get": {
-        "description": "Disruptions and maintenance geojson features. Disruptions and maintenance IDs originate from other API: reisinfo/api/v3/disruptions",
-        "operationId": "getStoringen",
-        "summary": "getStoringen",
-        "tags": [
-          "Disruptions"
-        ],
-        "parameters": [
-          {
-            "name": "startDate",
-            "in": "query",
-            "description": "Only disruptions/maintenance after a date",
-            "type": "string"
-          },
-          {
-            "name": "endDate",
-            "in": "query",
-            "description": "Only disruptions/maintenance before a date",
-            "type": "string"
-          },
-          {
-            "name": "actual",
-            "in": "query",
-            "description": "Only actual disruptions and maintenance",
-            "type": "boolean",
-            "default": true
-          }
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "responses": {
-          "200": {
-            "description": "When requesting json, response is a list of geojson features with disruptions",
-            "schema": {
-              "$ref": "#/definitions/FeatureCollectionRepresentation"
-            }
-          },
-          "400": {
-            "description": "When requesting json, response is a list of geojson features with disruptions",
-            "schema": {
-              "$ref": "#/definitions/FeatureCollectionRepresentation"
-            }
-          },
-          "500": {
-            "description": "When requesting json, response is a list of geojson features with disruptions",
-            "schema": {
-              "$ref": "#/definitions/FeatureCollectionRepresentation"
-            }
-          }
-        }
-      }
-    },
-    "/api/v1/storingen{extension}": {
-      "get": {
-        "description": "Disruptions and maintenance geojson features. Disruptions and maintenance IDs originate from other API: reisinfo/api/v3/disruptions",
-        "operationId": "getStoringenWithExtension",
-        "summary": "getStoringenWithExtension",
-        "tags": [
-          "Disruptions"
-        ],
-        "parameters": [
-          {
-            "name": "extension",
-            "in": "path",
-            "description": "Extension",
-            "required": true,
-            "type": "string",
-            "default": ".json",
-            "enum": [
-              ".geojson",
-              ".json"
-            ]
-          },
-          {
-            "name": "startDate",
-            "in": "query",
-            "description": "Only disruptions/maintenance after a date",
-            "type": "string"
-          },
-          {
-            "name": "endDate",
-            "in": "query",
-            "description": "Only disruptions/maintenance before a date",
-            "type": "string"
-          },
-          {
-            "name": "actual",
-            "in": "query",
-            "description": "Only actual disruptions and maintenance",
-            "type": "boolean",
-            "default": true
-          }
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "responses": {
-          "200": {
-            "description": "When requesting json, response is a list of geojson features with disruptions",
-            "schema": {
-              "$ref": "#/definitions/FeatureCollectionRepresentation"
-            }
-          },
-          "400": {
-            "description": "When requesting json, response is a list of geojson features with disruptions",
-            "schema": {
-              "$ref": "#/definitions/FeatureCollectionRepresentation"
-            }
-          },
-          "500": {
-            "description": "When requesting json, response is a list of geojson features with disruptions",
-            "schema": {
-              "$ref": "#/definitions/FeatureCollectionRepresentation"
-            }
-          }
-        }
-      }
-    },
-    "/api/v1/storingen/{id}": {
-      "get": {
-        "description": "Disruptions or maintenance geojson feature based on an ID",
-        "operationId": "getStoring",
-        "summary": "getStoring",
-        "tags": [
-          "Disruptions"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "ID of the disruption",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "extension",
-            "in": "query",
-            "description": "When requesting geojson format use .geojson",
-            "type": "string",
-            "default": ".json"
-          }
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "responses": {
-          "200": {
-            "description": "List of geojson features about disruptions",
-            "schema": {
-              "$ref": "#/definitions/FeatureCollectionRepresentation"
-            }
-          },
-          "400": {
-            "description": "List of geojson features about disruptions",
-            "schema": {
-              "$ref": "#/definitions/FeatureCollectionRepresentation"
-            }
-          },
-          "500": {
-            "description": "List of geojson features about disruptions",
-            "schema": {
-              "$ref": "#/definitions/FeatureCollectionRepresentation"
-            }
-          }
-        }
-      }
-    },
-    "/api/v1/traject{extension}": {
-      "get": {
-        "description": "A (geo)json map line of the list of stations specified",
-        "operationId": "getTraject",
-        "summary": "getTraject",
-        "tags": [
-          "Route"
-        ],
-        "parameters": [
-          {
-            "name": "extension",
-            "in": "path",
-            "description": "Extension",
-            "required": true,
-            "type": "string",
-            "default": ".json",
-            "enum": [
-              ".geojson",
-              ".json"
-            ]
-          },
-          {
-            "name": "stations",
-            "in": "query",
-            "description": "list of stationcodes (more than 1). Note that the station have to be connected directly with each other. A line from Roermond to Maarheeze would be RM,WT,MH. Roermond, Weert, Maarheeze",
-            "type": "string"
-          }
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "responses": {
-          "200": {
-            "description": "A geojson map line between two stations",
-            "schema": {
-              "$ref": "#/definitions/FeatureCollectionRepresentation"
-            }
-          },
-          "400": {
-            "description": "A geojson map line between two stations",
-            "schema": {
-              "$ref": "#/definitions/FeatureCollectionRepresentation"
-            }
-          },
-          "500": {
-            "description": "A geojson map line between two stations",
-            "schema": {
-              "$ref": "#/definitions/FeatureCollectionRepresentation"
-            }
-          }
-        }
-      }
-    }
-  },
-  "definitions": {
-    "Crs": {
-      "type": "object",
-      "properties": {
-        "type": {
-          "enum": [
-            "name",
-            "link"
-          ],
-          "type": "string"
-        },
-        "properties": {
-          "type": "object",
-          "additionalProperties": {
-            "type": "object"
-          }
-        }
-      }
-    },
-    "Feature": {
-      "type": "object",
-      "properties": {
-        "crs": {
-          "$ref": "#/definitions/Crs"
-        },
-        "bbox": {
-          "type": "array",
-          "items": {
-            "format": "double",
-            "type": "number"
-          }
-        },
-        "properties": {
-          "type": "object",
-          "additionalProperties": {
-            "type": "object"
-          }
-        },
-        "geometry": {
-          "$ref": "#/definitions/GeoJsonObject"
-        },
-        "id": {
-          "type": "string"
-        }
-      }
-    },
-    "FeatureCollection": {
-      "type": "object",
-      "properties": {
-        "crs": {
-          "$ref": "#/definitions/Crs"
-        },
-        "bbox": {
-          "type": "array",
-          "items": {
-            "format": "double",
-            "type": "number"
-          }
-        },
-        "features": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/Feature"
-          }
-        }
-      }
-    },
-    "FeatureCollectionRepresentation": {
-      "type": "object",
-      "properties": {
-        "self": {
-          "type": "object",
-          "properties": {
-            "uri": {
-              "format": "uri",
-              "type": "string"
-            },
-            "params": {
-              "type": "object",
-              "additionalProperties": {
-                "type": "string"
-              }
-            },
-            "title": {
-              "type": "string"
-            },
-            "rel": {
-              "type": "string"
-            },
-            "uriBuilder": {
-              "type": "object"
-            },
-            "rels": {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
-            },
-            "type": {
-              "type": "string"
-            }
-          }
-        },
-        "links": {
-          "type": "object",
-          "additionalProperties": {
-            "type": "object",
-            "properties": {
-              "uri": {
-                "format": "uri",
-                "type": "string"
-              },
-              "params": {
-                "type": "object",
-                "additionalProperties": {
-                  "type": "string"
-                }
-              },
-              "title": {
-                "type": "string"
-              },
-              "rel": {
-                "type": "string"
-              },
-              "uriBuilder": {
-                "type": "object"
-              },
-              "rels": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              },
-              "type": {
-                "type": "string"
-              }
-            }
-          }
-        },
-        "payload": {
-          "$ref": "#/definitions/FeatureCollection"
-        },
-        "meta": {
-          "type": "object",
-          "additionalProperties": {
-            "type": "object"
-          }
-        }
-      }
-    },
-    "GeoJsonObject": {
-      "required": [
-        "type"
-      ],
-      "type": "object",
-      "properties": {
-        "crs": {
-          "$ref": "#/definitions/Crs"
-        },
-        "bbox": {
-          "type": "array",
-          "items": {
-            "format": "double",
-            "type": "number"
-          }
-        },
-        "type": {
-          "type": "string"
-        }
-      },
-      "discriminator": "type"
-    },
-    "GeometryCollection": {
-      "type": "object",
-      "allOf": [
-        {
-          "$ref": "#/definitions/GeoJsonObject"
-        },
-        {
-          "type": "object",
-          "properties": {
-            "geometries": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/GeoJsonObject"
-              }
-            }
-          }
-        }
-      ]
-    },
-    "LineString": {
-      "type": "object",
-      "allOf": [
-        {
-          "$ref": "#/definitions/GeoJsonObject"
-        },
-        {
-          "type": "object",
-          "properties": {
-            "coordinates": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/LngLatAlt"
-              }
-            }
-          }
-        }
-      ]
-    },
-    "LngLatAlt": {
-      "type": "object",
-      "properties": {
-        "longitude": {
-          "format": "double",
-          "type": "number"
-        },
-        "latitude": {
-          "format": "double",
-          "type": "number"
-        },
-        "altitude": {
-          "format": "double",
-          "type": "number"
-        },
-        "additionalElements": {
-          "type": "array",
-          "items": {
-            "format": "double",
-            "type": "number"
-          }
-        }
-      }
-    },
-    "MultiLineString": {
-      "type": "object",
-      "allOf": [
-        {
-          "$ref": "#/definitions/GeoJsonObject"
-        },
-        {
-          "type": "object",
-          "properties": {
-            "coordinates": {
-              "type": "array",
-              "items": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/definitions/LngLatAlt"
-                }
-              }
-            }
-          }
-        }
-      ]
-    },
-    "MultiPoint": {
-      "type": "object",
-      "allOf": [
-        {
-          "$ref": "#/definitions/GeoJsonObject"
-        },
-        {
-          "type": "object",
-          "properties": {
-            "coordinates": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/LngLatAlt"
-              }
-            }
-          }
-        }
-      ]
-    },
-    "MultiPolygon": {
-      "type": "object",
-      "allOf": [
-        {
-          "$ref": "#/definitions/GeoJsonObject"
-        },
-        {
-          "type": "object",
-          "properties": {
-            "coordinates": {
-              "type": "array",
-              "items": {
-                "type": "array",
-                "items": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/definitions/LngLatAlt"
-                  }
-                }
-              }
-            }
-          }
-        }
-      ]
-    },
-    "Point": {
-      "type": "object",
-      "allOf": [
-        {
-          "$ref": "#/definitions/GeoJsonObject"
-        },
-        {
-          "type": "object",
-          "properties": {
-            "coordinates": {
-              "$ref": "#/definitions/LngLatAlt"
-            }
-          }
-        }
-      ]
-    },
-    "Polygon": {
-      "type": "object",
-      "allOf": [
-        {
-          "$ref": "#/definitions/GeoJsonObject"
-        },
-        {
-          "type": "object",
-          "properties": {
-            "coordinates": {
-              "type": "array",
-              "items": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/definitions/LngLatAlt"
-                }
-              }
-            }
-          }
-        }
-      ]
-    }
-  },
-  "tags": []
+	"swagger": "2.0",
+	"info": {
+		"title": "Spoorkaart API",
+		"version": "1.0",
+		"description": "Spoorkaart API"
+	},
+	"host": "gateway.apiportal.ns.nl",
+	"basePath": "/Spoorkaart-API",
+	"schemes": ["https"],
+	"securityDefinitions": {
+		"apiKeyHeader": {
+			"type": "apiKey",
+			"name": "Ocp-Apim-Subscription-Key",
+			"in": "header"
+		},
+		"apiKeyQuery": {
+			"type": "apiKey",
+			"name": "subscription-key",
+			"in": "query"
+		}
+	},
+	"security": [
+		{
+			"apiKeyHeader": []
+		},
+		{
+			"apiKeyQuery": []
+		}
+	],
+	"paths": {
+		"/api/v1/spoorkaart": {
+			"get": {
+				"description": "Returns geojson information for all rail tracks in The Netherlands",
+				"operationId": "getSpoorkaart",
+				"summary": "getSpoorkaart",
+				"tags": ["Spoorkaart"],
+				"produces": ["application/json"],
+				"responses": {
+					"200": {
+						"description": "A list of geojson features",
+						"schema": {
+							"$ref": "#/definitions/FeatureCollectionRepresentation"
+						}
+					},
+					"400": {
+						"description": "A list of geojson features",
+						"schema": {
+							"$ref": "#/definitions/FeatureCollectionRepresentation"
+						}
+					},
+					"500": {
+						"description": "A list of geojson features",
+						"schema": {
+							"$ref": "#/definitions/FeatureCollectionRepresentation"
+						}
+					}
+				}
+			}
+		},
+		"/api/v1/storingen": {
+			"get": {
+				"description": "Disruptions and maintenance geojson features. Disruptions and maintenance IDs originate from other API: reisinfo/api/v3/disruptions",
+				"operationId": "getStoringen",
+				"summary": "getStoringen",
+				"tags": ["Disruptions"],
+				"parameters": [
+					{
+						"name": "startDate",
+						"in": "query",
+						"description": "Only disruptions/maintenance after a date",
+						"type": "string"
+					},
+					{
+						"name": "endDate",
+						"in": "query",
+						"description": "Only disruptions/maintenance before a date",
+						"type": "string"
+					},
+					{
+						"name": "actual",
+						"in": "query",
+						"description": "Only actual disruptions and maintenance",
+						"type": "boolean",
+						"default": true
+					}
+				],
+				"produces": ["application/json"],
+				"responses": {
+					"200": {
+						"description": "When requesting json, response is a list of geojson features with disruptions",
+						"schema": {
+							"$ref": "#/definitions/FeatureCollectionRepresentation"
+						}
+					},
+					"400": {
+						"description": "When requesting json, response is a list of geojson features with disruptions",
+						"schema": {
+							"$ref": "#/definitions/FeatureCollectionRepresentation"
+						}
+					},
+					"500": {
+						"description": "When requesting json, response is a list of geojson features with disruptions",
+						"schema": {
+							"$ref": "#/definitions/FeatureCollectionRepresentation"
+						}
+					}
+				}
+			}
+		},
+		"/api/v1/storingen{extension}": {
+			"get": {
+				"description": "Disruptions and maintenance geojson features. Disruptions and maintenance IDs originate from other API: reisinfo/api/v3/disruptions",
+				"operationId": "getStoringenWithExtension",
+				"summary": "getStoringenWithExtension",
+				"tags": ["Disruptions"],
+				"parameters": [
+					{
+						"name": "extension",
+						"in": "path",
+						"description": "Extension",
+						"required": true,
+						"type": "string",
+						"default": ".json",
+						"enum": [".geojson", ".json"]
+					},
+					{
+						"name": "startDate",
+						"in": "query",
+						"description": "Only disruptions/maintenance after a date",
+						"type": "string"
+					},
+					{
+						"name": "endDate",
+						"in": "query",
+						"description": "Only disruptions/maintenance before a date",
+						"type": "string"
+					},
+					{
+						"name": "actual",
+						"in": "query",
+						"description": "Only actual disruptions and maintenance",
+						"type": "boolean",
+						"default": true
+					}
+				],
+				"produces": ["application/json"],
+				"responses": {
+					"200": {
+						"description": "When requesting json, response is a list of geojson features with disruptions",
+						"schema": {
+							"$ref": "#/definitions/FeatureCollectionRepresentation"
+						}
+					},
+					"400": {
+						"description": "When requesting json, response is a list of geojson features with disruptions",
+						"schema": {
+							"$ref": "#/definitions/FeatureCollectionRepresentation"
+						}
+					},
+					"500": {
+						"description": "When requesting json, response is a list of geojson features with disruptions",
+						"schema": {
+							"$ref": "#/definitions/FeatureCollectionRepresentation"
+						}
+					}
+				}
+			}
+		},
+		"/api/v1/storingen/{id}": {
+			"get": {
+				"description": "Disruptions or maintenance geojson feature based on an ID",
+				"operationId": "getStoring",
+				"summary": "getStoring",
+				"tags": ["Disruptions"],
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"description": "ID of the disruption",
+						"required": true,
+						"type": "string"
+					},
+					{
+						"name": "extension",
+						"in": "query",
+						"description": "When requesting geojson format use .geojson",
+						"type": "string",
+						"default": ".json"
+					}
+				],
+				"produces": ["application/json"],
+				"responses": {
+					"200": {
+						"description": "List of geojson features about disruptions",
+						"schema": {
+							"$ref": "#/definitions/FeatureCollectionRepresentation"
+						}
+					},
+					"400": {
+						"description": "List of geojson features about disruptions",
+						"schema": {
+							"$ref": "#/definitions/FeatureCollectionRepresentation"
+						}
+					},
+					"500": {
+						"description": "List of geojson features about disruptions",
+						"schema": {
+							"$ref": "#/definitions/FeatureCollectionRepresentation"
+						}
+					}
+				}
+			}
+		},
+		"/api/v1/traject{extension}": {
+			"get": {
+				"description": "A (geo)json map line of the list of stations specified",
+				"operationId": "getTraject",
+				"summary": "getTraject",
+				"tags": ["Route"],
+				"parameters": [
+					{
+						"name": "extension",
+						"in": "path",
+						"description": "Extension",
+						"required": true,
+						"type": "string",
+						"default": ".json",
+						"enum": [".geojson", ".json"]
+					},
+					{
+						"name": "stations",
+						"in": "query",
+						"description": "list of stationcodes (more than 1). Note that the station have to be connected directly with each other. A line from Roermond to Maarheeze would be RM,WT,MH. Roermond, Weert, Maarheeze",
+						"type": "string"
+					}
+				],
+				"produces": ["application/json"],
+				"responses": {
+					"200": {
+						"description": "A geojson map line between two stations",
+						"schema": {
+							"$ref": "#/definitions/FeatureCollectionRepresentation"
+						}
+					},
+					"400": {
+						"description": "A geojson map line between two stations",
+						"schema": {
+							"$ref": "#/definitions/FeatureCollectionRepresentation"
+						}
+					},
+					"500": {
+						"description": "A geojson map line between two stations",
+						"schema": {
+							"$ref": "#/definitions/FeatureCollectionRepresentation"
+						}
+					}
+				}
+			}
+		}
+	},
+	"definitions": {
+		"Crs": {
+			"type": "object",
+			"properties": {
+				"type": {
+					"enum": ["name", "link"],
+					"type": "string"
+				},
+				"properties": {
+					"type": "object",
+					"additionalProperties": {
+						"type": "object"
+					}
+				}
+			}
+		},
+		"Feature": {
+			"type": "object",
+			"properties": {
+				"crs": {
+					"$ref": "#/definitions/Crs"
+				},
+				"bbox": {
+					"type": "array",
+					"items": {
+						"format": "double",
+						"type": "number"
+					}
+				},
+				"properties": {
+					"type": "object",
+					"additionalProperties": {
+						"type": "object"
+					}
+				},
+				"geometry": {
+					"$ref": "#/definitions/GeoJsonObject"
+				},
+				"id": {
+					"type": "string"
+				}
+			}
+		},
+		"FeatureCollection": {
+			"type": "object",
+			"properties": {
+				"crs": {
+					"$ref": "#/definitions/Crs"
+				},
+				"bbox": {
+					"type": "array",
+					"items": {
+						"format": "double",
+						"type": "number"
+					}
+				},
+				"features": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/Feature"
+					}
+				}
+			}
+		},
+		"FeatureCollectionRepresentation": {
+			"type": "object",
+			"properties": {
+				"self": {
+					"type": "object",
+					"properties": {
+						"uri": {
+							"format": "uri",
+							"type": "string"
+						},
+						"params": {
+							"type": "object",
+							"additionalProperties": {
+								"type": "string"
+							}
+						},
+						"title": {
+							"type": "string"
+						},
+						"rel": {
+							"type": "string"
+						},
+						"uriBuilder": {
+							"type": "object"
+						},
+						"rels": {
+							"type": "array",
+							"items": {
+								"type": "string"
+							}
+						},
+						"type": {
+							"type": "string"
+						}
+					}
+				},
+				"links": {
+					"type": "object",
+					"additionalProperties": {
+						"type": "object",
+						"properties": {
+							"uri": {
+								"format": "uri",
+								"type": "string"
+							},
+							"params": {
+								"type": "object",
+								"additionalProperties": {
+									"type": "string"
+								}
+							},
+							"title": {
+								"type": "string"
+							},
+							"rel": {
+								"type": "string"
+							},
+							"uriBuilder": {
+								"type": "object"
+							},
+							"rels": {
+								"type": "array",
+								"items": {
+									"type": "string"
+								}
+							},
+							"type": {
+								"type": "string"
+							}
+						}
+					}
+				},
+				"payload": {
+					"$ref": "#/definitions/FeatureCollection"
+				},
+				"meta": {
+					"type": "object",
+					"additionalProperties": {
+						"type": "object"
+					}
+				}
+			}
+		},
+		"GeoJsonObject": {
+			"required": ["type"],
+			"type": "object",
+			"properties": {
+				"crs": {
+					"$ref": "#/definitions/Crs"
+				},
+				"bbox": {
+					"type": "array",
+					"items": {
+						"format": "double",
+						"type": "number"
+					}
+				},
+				"type": {
+					"type": "string"
+				}
+			},
+			"discriminator": "type"
+		},
+		"GeometryCollection": {
+			"type": "object",
+			"allOf": [
+				{
+					"$ref": "#/definitions/GeoJsonObject"
+				},
+				{
+					"type": "object",
+					"properties": {
+						"geometries": {
+							"type": "array",
+							"items": {
+								"$ref": "#/definitions/GeoJsonObject"
+							}
+						}
+					}
+				}
+			]
+		},
+		"LineString": {
+			"type": "object",
+			"allOf": [
+				{
+					"$ref": "#/definitions/GeoJsonObject"
+				},
+				{
+					"type": "object",
+					"properties": {
+						"coordinates": {
+							"type": "array",
+							"items": {
+								"$ref": "#/definitions/LngLatAlt"
+							}
+						}
+					}
+				}
+			]
+		},
+		"LngLatAlt": {
+			"type": "object",
+			"properties": {
+				"longitude": {
+					"format": "double",
+					"type": "number"
+				},
+				"latitude": {
+					"format": "double",
+					"type": "number"
+				},
+				"altitude": {
+					"format": "double",
+					"type": "number"
+				},
+				"additionalElements": {
+					"type": "array",
+					"items": {
+						"format": "double",
+						"type": "number"
+					}
+				}
+			}
+		},
+		"MultiLineString": {
+			"type": "object",
+			"allOf": [
+				{
+					"$ref": "#/definitions/GeoJsonObject"
+				},
+				{
+					"type": "object",
+					"properties": {
+						"coordinates": {
+							"type": "array",
+							"items": {
+								"type": "array",
+								"items": {
+									"$ref": "#/definitions/LngLatAlt"
+								}
+							}
+						}
+					}
+				}
+			]
+		},
+		"MultiPoint": {
+			"type": "object",
+			"allOf": [
+				{
+					"$ref": "#/definitions/GeoJsonObject"
+				},
+				{
+					"type": "object",
+					"properties": {
+						"coordinates": {
+							"type": "array",
+							"items": {
+								"$ref": "#/definitions/LngLatAlt"
+							}
+						}
+					}
+				}
+			]
+		},
+		"MultiPolygon": {
+			"type": "object",
+			"allOf": [
+				{
+					"$ref": "#/definitions/GeoJsonObject"
+				},
+				{
+					"type": "object",
+					"properties": {
+						"coordinates": {
+							"type": "array",
+							"items": {
+								"type": "array",
+								"items": {
+									"type": "array",
+									"items": {
+										"$ref": "#/definitions/LngLatAlt"
+									}
+								}
+							}
+						}
+					}
+				}
+			]
+		},
+		"Point": {
+			"type": "object",
+			"allOf": [
+				{
+					"$ref": "#/definitions/GeoJsonObject"
+				},
+				{
+					"type": "object",
+					"properties": {
+						"coordinates": {
+							"$ref": "#/definitions/LngLatAlt"
+						}
+					}
+				}
+			]
+		},
+		"Polygon": {
+			"type": "object",
+			"allOf": [
+				{
+					"$ref": "#/definitions/GeoJsonObject"
+				},
+				{
+					"type": "object",
+					"properties": {
+						"coordinates": {
+							"type": "array",
+							"items": {
+								"type": "array",
+								"items": {
+									"$ref": "#/definitions/LngLatAlt"
+								}
+							}
+						}
+					}
+				}
+			]
+		}
+	},
+	"tags": []
 }

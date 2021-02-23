@@ -11,8 +11,6 @@ $global--container-content-width: 1200px - $global--grid-gutter;
 $container-extended-width: 1400px;
 $container-full-width: 100%;
 
-
-
 //  Global component metrics
 // ---------------------------------------------------------------------------
 
@@ -31,14 +29,13 @@ $hero-overlap--tablet--homepage: 80px;
 
 $tile-space: 32px;
 
-$min-viewport-width : 320px;
+$min-viewport-width: 320px;
 
 $headerItem-width-small: 100%;
 $headerItem-width-medium: 265px;
 $headerItem-width-large: 280px;
 
 $border-radius: 4px;
-
 
 //  Global color assignments
 // ---------------------------------------------------------------------------
@@ -49,8 +46,6 @@ $link-color: $ns-light-blue;
 $link-focus-outline-color: $ns-grey-60;
 $link-hover-color: $ns-blue;
 $box-shadow-focus: 0 0 0 1px $ns-light-blue, 0 2px 28px rgba($ns-black, 0.1);
-
-
 
 // Base typography styling
 // ---------------------------------------------------------------------------
@@ -67,9 +62,6 @@ $line-height-small: 4 * $line-height-step; //20px
 $default-margin-bottom: 4 * $line-height-step; //25px
 $heading-margin-bottom: $line-height-step;
 
-
-
-
 //  Default fonts.
 // ---------------------------------------------------------------------------
 
@@ -77,17 +69,13 @@ $font-heading: "NS Sans", "Segoe UI", Myriad, Verdana, sans-serif;
 $font-normal: "NS Sans", "Segoe UI", Myriad, Verdana, sans-serif;
 $font-fallback: "Segoe UI", Myriad, Verdana, sans-serif;
 
-
-
 // Form elements
 // ---------------------------------------------------------------------------
 
 $form-element-height: 45px;
 $form-element-font-size: 16px;
 $form-element-line-height: 25px;
-$form-element-vertical-space : ($form-element-height - $form-element-line-height)/2;
-
-
+$form-element-vertical-space: ($form-element-height - $form-element-line-height)/2;
 
 // Icon-sizes
 // ---------------------------------------------------------------------------
@@ -101,32 +89,26 @@ $icon-padding-small: 5px;
 $icon-padding-large: 10px;
 $icon-padding-xlarge: 14px;
 
-
-
 // Graphic-sizes
 // ---------------------------------------------------------------------------
 
 $tilegraphic-size-base: 75px;
 $tilegraphic-size-large: 100px;
 
-
 // Reusable transparent pixel data-uri
 // ---------------------------------------------------------------------------
 
-$global--transparentpixel: url('data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7');
-
+$global--transparentpixel: url("data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7");
 
 //Image sizes on viewports
 $video-thumb-height-large: 172px;
 $video-thumb-height-medium: 248px;
 $video-thumb-height-small: 200px;
 
-
-
 // Animation
 // ---------------------------------------------------------------------------
-$ease: cubic-bezier(0.700, 0.270, 0.270, 1);
-$easeInOutExpo: cubic-bezier(1.000, 0.000, 0.000, 1);
-$ease-out: cubic-bezier(0.200, 0.900, 0.400, 1);
+$ease: cubic-bezier(0.7, 0.27, 0.27, 1);
+$easeInOutExpo: cubic-bezier(1, 0, 0, 1);
+$ease-out: cubic-bezier(0.2, 0.9, 0.4, 1);
 $fade-all: all 300ms $ease;
 $fade-link: all 200ms $ease;

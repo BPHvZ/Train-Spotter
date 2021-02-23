@@ -1,12 +1,6 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
-import { TrainMapType } from "../../models/TrainMapType";
-import { forkJoin, from, interval, Observable, PartialObserver, Subject, zip } from "rxjs";
-import { mergeMap } from "rxjs/operators";
-import { pausable, PausableObservable } from "rxjs-pausable";
-import { HelperFunctionsService } from "../../services/helper-functions.service";
+import { NavigationEnd, NavigationStart, Router } from "@angular/router";
 import { GeoJSON, MultiLineString } from "geojson";
-import { environment } from "../../../environments/environment";
-import Jimp from "jimp";
 import {
 	EventData,
 	Map as MapBoxMap,
@@ -17,16 +11,17 @@ import {
 	MapSourceDataEvent,
 	SymbolLayout,
 } from "mapbox-gl";
-import { NavigationEnd, NavigationStart, Router } from "@angular/router";
-import { TrainMapSidebarComponent } from "../train-map-sidebar/train-map-sidebar.component";
+import { interval, PartialObserver, Subject, zip } from "rxjs";
+import { pausable, PausableObservable } from "rxjs-pausable";
+import { environment } from "../../../environments/environment";
 import { DisruptionBase, DisruptionsList, Station, StationsResponse } from "../../models/ReisinformatieAPI";
 import { SpoortkaartFeatureCollection, TrainTracksGeoJSON } from "../../models/SpoortkaartAPI";
+import { TrainMapType } from "../../models/TrainMapType";
 import { DetailedTrainInformation, TrainIconOnMap } from "../../models/VirtualTrainAPI";
-import { SharedDataService } from "../../services/shared-data.service";
+import { HelperFunctionsService } from "../../services/helper-functions.service";
 import { ImageEditorService } from "../../services/image-editor.service";
-
-// eslint-disable-next-line @typescript-eslint/no-var-requires,@typescript-eslint/no-unsafe-assignment
-const replaceColor = require("replace-color");
+import { SharedDataService } from "../../services/shared-data.service";
+import { TrainMapSidebarComponent } from "../train-map-sidebar/train-map-sidebar.component";
 
 /**
  * Train map with stations and trains that get update every x seconds
@@ -518,12 +513,10 @@ export class TrainMapComponent implements OnInit {
 				console.log(result);
 				result.forEach((image) => {
 					console.log(image);
-					const imageName: string = image[0] as string;
-					const imageBuffer: Buffer = image[1] as Buffer;
-					this.trainIconNames.add(imageName);
+					this.trainIconNames.add(image.imageName);
 					this.trainIconsForMap.push({
-						imageName: imageName,
-						imageObjectURL: window.URL.createObjectURL(new Blob([imageBuffer], { type: "image/png" })),
+						imageName: image.imageName,
+						imageObjectURL: window.URL.createObjectURL(new Blob([image.image], { type: "image/png" })),
 					});
 				});
 			},

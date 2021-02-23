@@ -1,14 +1,13 @@
 import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
+import { faBars, faCrosshairs } from "@fortawesome/free-solid-svg-icons";
+import { NgbTypeaheadSelectItemEvent } from "@ng-bootstrap/ng-bootstrap";
 import { Observable, of } from "rxjs";
 import { catchError, debounceTime, distinctUntilChanged, switchMap, tap } from "rxjs/operators";
-import { NgbTypeaheadSelectItemEvent } from "@ng-bootstrap/ng-bootstrap";
-import { Router } from "@angular/router";
-import { Station } from "../../../models/ReisinformatieAPI";
 import { GlobalSearchResult, GlobalSearchResultType } from "../../../models/GlobalSearch";
+import { Station } from "../../../models/ReisinformatieAPI";
+import { DetailedTrainInformation } from "../../../models/VirtualTrainAPI";
 import { GlobalSearchService } from "../../../services/global-search.service";
-import { DetailedTrainInformation, Train } from "../../../models/VirtualTrainAPI";
 import { SharedDataService } from "../../../services/shared-data.service";
-import { faCrosshairs, faBars } from "@fortawesome/free-solid-svg-icons";
 
 /**
  * Header with links to pages and a dropdown to search for stations

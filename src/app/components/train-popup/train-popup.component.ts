@@ -1,4 +1,4 @@
-import { Component, Input, Output, OnChanges, SimpleChanges, EventEmitter } from "@angular/core";
+import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from "@angular/core";
 import { MapboxGeoJSONFeature } from "mapbox-gl";
 import { DetailedTrainInformation } from "../../models/VirtualTrainAPI";
 import { HelperFunctionsService } from "../../services/helper-functions.service";

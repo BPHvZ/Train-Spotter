@@ -1,5 +1,4 @@
 import { TestBed } from "@angular/core/testing";
-
 import { ImageEditorService } from "./image-editor.service";
 
 describe("ImageEditorService", () => {

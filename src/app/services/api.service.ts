@@ -1,12 +1,11 @@
-import { Injectable } from "@angular/core";
 import { HttpParams } from "@angular/common/http";
+import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
-import { HttpClientService, Response } from "./http-client.service";
 import { environment } from "../../environments/environment";
 import { DisruptionsList, StationsResponse } from "../models/ReisinformatieAPI";
 import { TrainTracksGeoJSON } from "../models/SpoortkaartAPI";
 import { TrainInformation, TrainInformationResponse } from "../models/VirtualTrainAPI";
-import { CacheService } from "./cache.service";
+import { HttpClientService, Response } from "./http-client.service";
 
 @Injectable({
 	providedIn: "root",

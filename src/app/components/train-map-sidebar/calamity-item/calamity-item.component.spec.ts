@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
-
 import { CalamityItemComponent } from "./calamity-item.component";
 
 describe("CalamityItemComponent", () => {

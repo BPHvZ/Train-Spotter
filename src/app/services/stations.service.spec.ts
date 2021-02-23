@@ -1,8 +1,7 @@
-import { TestBed } from "@angular/core/testing";
-
-import { StationsService } from "./stations.service";
 import { HttpClientTestingModule } from "@angular/common/http/testing";
+import { TestBed } from "@angular/core/testing";
 import { RouterTestingModule } from "@angular/router/testing";
+import { StationsService } from "./stations.service";
 
 describe("StationsService", () => {
 	let service: StationsService;

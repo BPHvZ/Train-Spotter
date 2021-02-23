@@ -1,8 +1,7 @@
-import { TestBed } from "@angular/core/testing";
-
-import { SharedDataService } from "./shared-data.service";
 import { HttpClientTestingModule } from "@angular/common/http/testing";
+import { TestBed } from "@angular/core/testing";
 import { RouterTestingModule } from "@angular/router/testing";
+import { SharedDataService } from "./shared-data.service";
 
 describe("SharedDataService", () => {
 	let service: SharedDataService;

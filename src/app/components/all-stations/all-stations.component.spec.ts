@@ -1,8 +1,7 @@
-import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
-
-import { AllStationsComponent } from "./all-stations.component";
 import { HttpClientTestingModule } from "@angular/common/http/testing";
+import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
 import { RouterTestingModule } from "@angular/router/testing";
+import { AllStationsComponent } from "./all-stations.component";
 
 describe("AllStationsComponent", () => {
 	let component: AllStationsComponent;

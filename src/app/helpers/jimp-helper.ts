@@ -1,4 +1,3 @@
-/// <reference lib="webworker" />
 import Jimp from "jimp";
 import { forkJoin, from, Observable } from "rxjs";
 import { map, mergeMap } from "rxjs/operators";

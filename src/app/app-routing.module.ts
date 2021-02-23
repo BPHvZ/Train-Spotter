@@ -1,7 +1,7 @@
 import { NgModule } from "@angular/core";
-import { Routes, RouterModule } from "@angular/router";
-import { TrainMapComponent } from "./components/train-map/train-map.component";
+import { RouterModule, Routes } from "@angular/router";
 import { AllStationsComponent } from "./components/all-stations/all-stations.component";
+import { TrainMapComponent } from "./components/train-map/train-map.component";
 
 const routes: Routes = [
 	{ path: "kaart", component: TrainMapComponent },

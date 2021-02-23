@@ -1,11 +1,11 @@
 import { Injectable } from "@angular/core";
 import { Observable, of, zip } from "rxjs";
+import { map } from "rxjs/operators";
+import { GlobalSearchResult, GlobalSearchResultType } from "../models/GlobalSearch";
 import { Station, StationsResponse } from "../models/ReisinformatieAPI";
 import { DetailedTrainInformation } from "../models/VirtualTrainAPI";
-import { GlobalSearchResult, GlobalSearchResultType } from "../models/GlobalSearch";
-import { map } from "rxjs/operators";
-import { SharedDataService } from "./shared-data.service";
 import { HelperFunctionsService } from "./helper-functions.service";
+import { SharedDataService } from "./shared-data.service";
 
 @Injectable({
 	providedIn: "root",

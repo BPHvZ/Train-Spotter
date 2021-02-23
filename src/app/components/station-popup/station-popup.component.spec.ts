@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
-
 import { StationPopupComponent } from "./station-popup.component";
 
 describe("StationPopupComponent", () => {

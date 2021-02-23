@@ -1,8 +1,7 @@
-import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
-
-import { TrainMapComponent } from "./train-map.component";
 import { HttpClientTestingModule } from "@angular/common/http/testing";
+import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
 import { RouterTestingModule } from "@angular/router/testing";
+import { TrainMapComponent } from "./train-map.component";
 
 describe("TrainMapComponent", () => {
 	let component: TrainMapComponent;

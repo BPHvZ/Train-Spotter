@@ -509,10 +509,7 @@ export class TrainMapComponent implements OnInit {
 	): void {
 		this.imageEditorService.prepareTrainIcons(iconURLs).subscribe({
 			next: (result) => {
-				console.log("getAndAddTrainIconsToMap!!!!!");
-				console.log(result);
 				result.forEach((image) => {
-					console.log(image);
 					this.trainIconNames.add(image.imageName);
 					this.trainIconsForMap.push({
 						imageName: image.imageName,

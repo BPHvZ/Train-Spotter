@@ -20,8 +20,6 @@ export class ImageEditorService {
 		const resultSubject = new Subject<NSTrainIcon[]>();
 		if (this.canUseWorker) {
 			this.worker.onmessage = ({ data }: { data: NSTrainIcon[] }) => {
-				console.log("Return van worker");
-				console.log(data);
 				resultSubject.next(data);
 				resultSubject.complete();
 			};

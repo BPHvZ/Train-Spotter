@@ -123,7 +123,7 @@ See the [Project on GitHub](https://github.com/BPHvZ/Train-Spotter/projects/1) f
 
 ## License
 
-Distributed under the GNU v3 License. See `LICENSE` for more information.
+Distributed under the GNU GPL v3 License. See `LICENSE` for more information.
 
 <!-- CONTACT -->
 
@@ -136,14 +136,14 @@ Project Link: [https://github.com/BPHvZ/Train-Spotter](https://github.com/BPHvZ/
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 
-[forks-shield]: https://img.shields.io/github/forks/BPHvZ/repo.svg?style=for-the-badge
-[forks-url]: https://github.com/BPHvZ/repo/network/members
-[stars-shield]: https://img.shields.io/github/stars/BPHvZ/repo.svg?style=for-the-badge
-[stars-url]: https://github.com/BPHvZ/repo/stargazers
-[issues-shield]: https://img.shields.io/github/issues/BPHvZ/repo.svg?style=for-the-badge
-[issues-url]: https://github.com/BPHvZ/repo/issues
-[license-shield]: https://img.shields.io/github/license/BPHvZ/repo.svg?style=for-the-badge
-[license-url]: https://github.com/BPHvZ/repo/blob/master/LICENSE.txt
+[forks-shield]: https://img.shields.io/github/forks/BPHvZ/Train-Spotter.svg?style=for-the-badge
+[forks-url]: https://github.com/BPHvZ/Train-Spotter/network/members
+[stars-shield]: https://img.shields.io/github/stars/BPHvZ/Train-Spotter.svg?style=for-the-badge
+[stars-url]: https://github.com/BPHvZ/Train-Spotter/stargazers
+[issues-shield]: https://img.shields.io/github/issues/BPHvZ/Train-Spotter.svg?style=for-the-badge
+[issues-url]: https://github.com/BPHvZ/Train-Spotter/issues
+[license-shield]: https://img.shields.io/badge/License-GPL%20v3-blue.svg?style=for-the-badge
+[license-url]: https://github.com/BPHvZ/Train-Spotter/blob/master/LICENSE
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/bart-van-zeist-543442193
 [product-screenshot]: readme-images/trainspotter.png

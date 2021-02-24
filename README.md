@@ -60,7 +60,7 @@
 [![TrainSpotter Screen Shot][product-screenshot]](https://example.com)
 
 TrainSpotter is a website that tracks trains on the Dutch railroad in real-time.
-TrainSpotter offers many features:
+TrainSpotter offers features such as:
 
 -   Real-time train tracking
 -   Global search for stations, trains, train types, train parts and ride id's

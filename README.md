@@ -50,6 +50,14 @@
         <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
+    <li>
+      <a href="#project-management">Project Management</a>
+      <ul>
+        <li><a href="#feature-management">Feature management</a></li>
+        <li><a href="#development">Development</a></li>
+        <li><a href="#continuous-integration-and-delivery">Continuous Integration and Delivery</a></li>
+      </ul>
+    </li>
     <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
@@ -110,15 +118,40 @@ This is an example of how to list things you need to use the software and how to
     yarn install
     ```
 3. Run TrainSpotter
-    ```sh
-    yarn run serve
-    ```
+`sh yarn run serve `
+ <!-- Project Management -->
+
+## Project Management
+
+#### Feature Management
+
+1. New features are tracked on the [Project board][project-board].
+2. When a feature is going into development, it is converted into an Issue.
+3. A person is assigned to the Issue. A bot will create a feature branch for the Issue.
+    - By default, the feature branch will be based of the `develop` branch.
+    - Issues that are labelled as ![bug](https://img.shields.io/github/BPHvZ/Train-Spotter/labels/bug) will be based of the `main` branch.  
+      Bugs are intended to be resolved quickly and thus should be implemented on `main` as soon as possible.
+
+#### Development
+
+1. A feature will be developed on its designated feature branch.
+2. A pre-commit hook is included which can be enabled by running `yarn husky install`.
+    - The pre-commit hook will run [Prettier](https://prettier.io/) and `ng lint` using the linting rules included with this project.
+3. [Compodoc](https://compodoc.app/) is used to generate documentation. Compodoc strings should be added before making a pull request.
+4. Feature branches can be pushed into the `develop` branch.
+5. The `main` branch is protected and only accepts pull requests that have completed the CI/CD tasks successfully.
+
+#### Continuous Integration and Delivery
+
+1. [Teamcity](https://www.jetbrains.com/teamcity/) is run locally.
+2. All changes on the `develop` branch will cause the CI to build and deploy the experimental version of TrainSpotter at [betatreinenkaart.bartvanzeist.nl](https://betatreinenkaart.bartvanzeist.nl).
+3. Pull requests from the `develop` branch to the `main` branch will build and deploy the new stable version to [treinenkaart.bartvanzeist.nl](https://treinenkaart.bartvanzeist.nl)
 
 <!-- ROADMAP -->
 
 ## Roadmap
 
-See the [Project on GitHub](https://github.com/BPHvZ/Train-Spotter/projects/1) for a list of proposed features (and known issues).
+See the [Project on GitHub][project-board] for a list of proposed features (and known issues).
 
 <!-- LICENSE -->
 
@@ -149,3 +182,4 @@ Project Link: [https://github.com/BPHvZ/Train-Spotter](https://github.com/BPHvZ/
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/bart-van-zeist-543442193
 [product-screenshot]: readme-images/trainspotter.png
+[project-board]: https://github.com/BPHvZ/Train-Spotter/projects/1

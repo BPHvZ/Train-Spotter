@@ -24,7 +24,7 @@
     "format:fix": "pretty-quick --staged",
     "prettier_and_lint": "run-s format:fix lint",
     "---------------- Document Application ----------------": "ng",
-    "compodoc": "npx compodoc -p tsconfig.json -w --output ./docs"
+    "compodoc": "npx compodoc -p tsconfig.json --output ./docs"
   },
   "browserslist": [
     "last 1 Chrome version",

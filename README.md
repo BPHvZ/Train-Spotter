@@ -21,7 +21,7 @@
     <a href="https://bphvz.github.io/Train-Spotter/"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://treinenkaart.bartvanzeist.nl">TrainSpotter</a>
+    <a href="https://treinenkaart.bartvanzeist.nl">treinenkaart.bartvanzeist.nl</a>
     ·
     <a href="https://github.com/BPHvZ/Train-Spotter/issues">Report Bug</a>
     ·

@@ -3,6 +3,7 @@
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
+[![Checks][checks-shield]][issues-url]
 [![GNU License][license-shield]][license-url]
 [![LinkedIn][linkedin-shield]][linkedin-url]
 
@@ -142,8 +143,9 @@ Project Link: [https://github.com/BPHvZ/Train-Spotter](https://github.com/BPHvZ/
 [stars-url]: https://github.com/BPHvZ/Train-Spotter/stargazers
 [issues-shield]: https://img.shields.io/github/issues/BPHvZ/Train-Spotter.svg?style=for-the-badge
 [issues-url]: https://github.com/BPHvZ/Train-Spotter/issues
+[checks-shield]: https://img.shields.io/github/checks-status/BPHvZ/Train-Spotter/main.svg?style=for-the-badge
 [license-shield]: https://img.shields.io/badge/License-GPL%20v3-blue.svg?style=for-the-badge
-[license-url]: https://github.com/BPHvZ/Train-Spotter/blob/master/LICENSE
+[license-url]: https://github.com/BPHvZ/Train-Spotter/blob/main/LICENSE
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/bart-van-zeist-543442193
 [product-screenshot]: readme-images/trainspotter.png

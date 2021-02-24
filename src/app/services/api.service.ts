@@ -35,9 +35,6 @@ export class ApiService {
 		return this.http.get({
 			url: "https://gateway.apiportal.ns.nl/Spoorkaart-API/api/v1/spoorkaart",
 			cacheMins: environment.production ? 30 : 60,
-			headers: {
-				"Ocp-Apim-Subscription-Key": environment.NS_Ocp_Apim_Subscription_Key,
-			},
 		});
 	}
 
@@ -46,9 +43,6 @@ export class ApiService {
 		return this.http.get({
 			url: "https://gateway.apiportal.ns.nl/Spoorkaart-API/api/v1/storingen",
 			cacheMins: environment.production ? 1 : 60,
-			headers: {
-				"Ocp-Apim-Subscription-Key": environment.NS_Ocp_Apim_Subscription_Key,
-			},
 			params: disruptionParams,
 			force: force,
 		});
@@ -58,9 +52,6 @@ export class ApiService {
 		return this.http.get({
 			url: "https://gateway.apiportal.ns.nl/virtual-train-api/api/vehicle",
 			cacheMins: environment.production ? 0 : 60,
-			headers: {
-				"Ocp-Apim-Subscription-Key": environment.NS_Ocp_Apim_Subscription_Key,
-			},
 		});
 	}
 
@@ -69,9 +60,6 @@ export class ApiService {
 		return this.http.get({
 			url: "https://gateway.apiportal.ns.nl/virtual-train-api/api/v1/trein",
 			cacheMins: environment.production ? 0 : 60,
-			headers: {
-				"Ocp-Apim-Subscription-Key": environment.NS_Ocp_Apim_Subscription_Key,
-			},
 			params: trainParams,
 		});
 	}
@@ -81,9 +69,6 @@ export class ApiService {
 		return this.http.get({
 			url: "https://gateway.apiportal.ns.nl/reisinformatie-api/api/v3/disruptions",
 			cacheMins: environment.production ? 1 : 60,
-			headers: {
-				"Ocp-Apim-Subscription-Key": environment.NS_Ocp_Apim_Subscription_Key,
-			},
 			params: disruptionParams,
 			force: force,
 		});
@@ -93,9 +78,6 @@ export class ApiService {
 		return this.http.get({
 			url: "https://gateway.apiportal.ns.nl/reisinformatie-api/api/v2/stations",
 			cacheMins: 60,
-			headers: {
-				"Ocp-Apim-Subscription-Key": environment.NS_Ocp_Apim_Subscription_Key,
-			},
 		});
 	}
 }

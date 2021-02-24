@@ -23,9 +23,8 @@
 export const environment = {
 	production: false,
 	log: true,
-	MAPBOX_ACCESSTOKEN: "pk.eyJ1IjoiYnBodnoiLCJhIjoiY2prbDQydXgyMXJtNzN2cGo3NnNsc3NuZSJ9.o33sEM09iHWvUNXKjKnBpA",
+	MAPBOX_ACCESSTOKEN: "pk.eyJ1IjoiYnBodnoiLCJhIjoiY2tsanZ2ZGx6MHR3dzJwcWlraDFuN2o3ZyJ9.4tGBqtZSp0L1N3sEXTTdjw",
 	MAPBOX_STYLE: "mapbox://styles/bphvz/ck1xf2nj76u2t1cqcej8e5lj5?optimize=true",
-	NS_Ocp_Apim_Subscription_Key: "d3f17da1d8964d34adb5adaee95fe1b5",
 };
 
 /*

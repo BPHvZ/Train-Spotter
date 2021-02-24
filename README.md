@@ -18,6 +18,8 @@
   <p align="center">
     Live train and disruption information of the Dutch railroad
     <br />
+    <a href="https://treinenkaart.bartvanzeist.nl"><strong>TrainSpotter website »</strong></a>
+    <br />
     <a href="https://bphvz.github.io/Train-Spotter/"><strong>Explore the docs »</strong></a>
     <br />
     <br />

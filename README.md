@@ -34,7 +34,7 @@
   <summary>Table of Contents</summary>
   <ol>
     <li>
-      <a href="#trainspotter">TrainSpotter</a>
+      <a href="#trainspotter-1">TrainSpotter</a>
       <ul>
         <li><a href="#built-with">Built With</a></li>
         <li><a href="#specific-technologies">Specific technologies</a></li>

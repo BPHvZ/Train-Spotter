@@ -1,27 +1,147 @@
-# TrainSpotter
+<!-- PROJECT SHIELDS -->
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.7.
+[![Forks][forks-shield]][forks-url]
+[![Stargazers][stars-shield]][stars-url]
+[![Issues][issues-shield]][issues-url]
+[![GNU License][license-shield]][license-url]
+[![LinkedIn][linkedin-shield]][linkedin-url]
 
-## Development server
+<!-- PROJECT LOGO -->
+<br />
+<p align="center">
+  <a href="https://github.com/BPHvZ/Train-Spotter">
+    <img src="readme-images/logo.png" alt="Logo" width="80" height="80">
+  </a>
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+  <h3 align="center">TrainSpotter</h3>
 
-## Code scaffolding
+  <p align="center">
+    Live train and disruption information of the Dutch railroad
+    <br />
+    <a href="https://bphvz.github.io/Train-Spotter/"><strong>Explore the docs »</strong></a>
+    <br />
+    <br />
+    <a href="https://treinenkaart.bartvanzeist.nl">TrainSpotter</a>
+    ·
+    <a href="https://github.com/BPHvZ/Train-Spotter/issues">Report Bug</a>
+    ·
+    <a href="https://github.com/BPHvZ/Train-Spotter/issues">Request Feature</a>
+  </p>
+</p>
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+<!-- TABLE OF CONTENTS -->
+<details open="open">
+  <summary><h2 style="display: inline-block">Table of Contents</h2></summary>
+  <ol>
+    <li>
+      <a href="#trainspotter">TrainSpotter</a>
+      <ul>
+        <li><a href="#built-with">Built With</a></li>
+        <li><a href="#specific-technologies">Specific technologies</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#getting-started">Getting Started</a>
+      <ul>
+        <li><a href="#prerequisites">Prerequisites</a></li>
+        <li><a href="#installation">Installation</a></li>
+      </ul>
+    </li>
+    <li><a href="#roadmap">Roadmap</a></li>
+    <li><a href="#license">License</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ol>
+</details>
 
-## Build
+<!-- TrainSpotter -->
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+## TrainSpotter
 
-## Running unit tests
+[![TrainSpotter Screen Shot][product-screenshot]](https://example.com)
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+TrainSpotter is a website that tracks trains on the Dutch railroad in real-time.
+TrainSpotter offers many features:
 
-## Running end-to-end tests
+-   Real-time train tracking
+-   Global search for stations, trains, train types, train parts and ride id's
+-   Detailed, real-time information for each specific train
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+### Built With
 
-## Further help
+-   [Angular](https://angular.io/)
+-   [MapBox](https://www.mapbox.com/)
+-   [Ng-Bootstrap](https://ng-bootstrap.github.io/#/home)
+-   [NS API](https://apiportal.ns.nl/)
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+#### Specific technologies
+
+-   Web Workers (for MapBox and Jimp image manipulation)
+-   Service Workers
+-   LocalStorage (for content caching)
+
+<!-- GETTING STARTED -->
+
+## Getting Started
+
+To get a local copy up and running follow these simple steps.
+
+### Prerequisites
+
+This is an example of how to list things you need to use the software and how to install them.
+
+-   Angular
+    -   [See Angular docs](https://angular.io/guide/setup-local)
+-   Yarn
+    ```sh
+    npm install --global yarn
+    ```
+
+### Installation
+
+1. Clone the repo
+    ```sh
+    git clone https://github.com/BPHvZ/Train-Spotter.git
+    ```
+2. Install Yarn packages
+    ```sh
+    yarn install
+    ```
+3. Run TrainSpotter
+    ```sh
+    yarn run serve
+    ```
+
+<!-- ROADMAP -->
+
+## Roadmap
+
+See the [Project on GitHub](https://github.com/BPHvZ/Train-Spotter/projects/1) for a list of proposed features (and known issues).
+
+<!-- LICENSE -->
+
+## License
+
+Distributed under the GNU v3 License. See `LICENSE` for more information.
+
+<!-- CONTACT -->
+
+## Contact
+
+Bart van Zeist - [LinkedIn][linkedin-url] - bartvanzeist2000@gmail.com
+
+Project Link: [https://github.com/BPHvZ/Train-Spotter](https://github.com/BPHvZ/Train-Spotter)
+
+<!-- MARKDOWN LINKS & IMAGES -->
+<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+
+[forks-shield]: https://img.shields.io/github/forks/BPHvZ/repo.svg?style=for-the-badge
+[forks-url]: https://github.com/BPHvZ/repo/network/members
+[stars-shield]: https://img.shields.io/github/stars/BPHvZ/repo.svg?style=for-the-badge
+[stars-url]: https://github.com/BPHvZ/repo/stargazers
+[issues-shield]: https://img.shields.io/github/issues/BPHvZ/repo.svg?style=for-the-badge
+[issues-url]: https://github.com/BPHvZ/repo/issues
+[license-shield]: https://img.shields.io/github/license/BPHvZ/repo.svg?style=for-the-badge
+[license-url]: https://github.com/BPHvZ/repo/blob/master/LICENSE.txt
+[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
+[linkedin-url]: https://linkedin.com/in/bart-van-zeist-543442193
+[product-screenshot]: readme-images/trainspotter.png

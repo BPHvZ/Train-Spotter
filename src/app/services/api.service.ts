@@ -25,12 +25,24 @@ import { TrainTracksGeoJSON } from "../models/SpoortkaartAPI";
 import { TrainInformation, TrainInformationResponse } from "../models/VirtualTrainAPI";
 import { HttpClientService, Response } from "./http-client.service";
 
+/**
+ * Network request for the NS API
+ */
 @Injectable({
 	providedIn: "root",
 })
 export class ApiService {
+	/**
+	 * Define services
+	 * @param http Http service with caching
+	 */
 	constructor(private http: HttpClientService) {}
 
+	/**
+	 * Get all train tracks
+	 * [Spoorkaart-API/api/v1/spoorkaart]{@link https://apiportal.ns.nl/docs/services/Spoorkaart-api/operations/getSpoorkaart}
+	 * @returns Observable<Response<TrainTracksGeoJSON>> All train tracks as GeoJSON
+	 */
 	getTrainTracksGeoJSON(): Observable<Response<TrainTracksGeoJSON>> {
 		return this.http.get({
 			url: "https://gateway.apiportal.ns.nl/Spoorkaart-API/api/v1/spoorkaart",
@@ -38,6 +50,11 @@ export class ApiService {
 		});
 	}
 
+	/**
+	 * Get all disrupted train tracks
+	 * [Spoorkaart-API/api/v1/storingen]{@link https://apiportal.ns.nl/docs/services/Spoorkaart-api/operations/getStoringen}
+	 * @returns Observable<Response<TrainTracksGeoJSON>> All disrupted train tracks as GeoJSON
+	 */
 	getDisruptedTrainTracksGeoJSON(force = false): Observable<Response<TrainTracksGeoJSON>> {
 		const disruptionParams = new HttpParams().set("actual", "true");
 		return this.http.get({
@@ -48,6 +65,11 @@ export class ApiService {
 		});
 	}
 
+	/**
+	 * Get minimal information about all trains
+	 * [virtual-train-api/api/vehicle]{@link https://apiportal.ns.nl/docs/services/virtual-train-api/operations/getVehicles?}
+	 * @returns Observable<Response<TrainInformationResponse>> Minimal information about all trains
+	 */
 	getBasicInformationAboutAllTrains(): Observable<Response<TrainInformationResponse>> {
 		return this.http.get({
 			url: "https://gateway.apiportal.ns.nl/virtual-train-api/api/vehicle",
@@ -55,6 +77,12 @@ export class ApiService {
 		});
 	}
 
+	/**
+	 * Get detailed information about all trains by their ride id's
+	 * [virtual-train-api/api/v1/trein]{@link https://apiportal.ns.nl/docs/services/virtual-train-api/operations/getTreinInformatie_2?}
+	 * @param rideIds Comma separated string of all ride id's
+	 * @returns Observable<Response<TrainInformation[]>> Detailed information about all trains
+	 */
 	getTrainDetailsByRideId(rideIds: string): Observable<Response<TrainInformation[]>> {
 		const trainParams = new HttpParams().set("ids", rideIds).set("all", "false");
 		return this.http.get({
@@ -64,6 +92,12 @@ export class ApiService {
 		});
 	}
 
+	/**
+	 * Get information about current disruptions
+	 * [reisinformatie-api/api/v3/disruptions]{@link https://apiportal.ns.nl/docs/services/reisinformatie-api/operations/getDisruptions_v3?}
+	 * @param force Force an update, do not check cache
+	 * @returns Observable<Response<DisruptionsList>> Information about current disruptions
+	 */
 	getActiveDisruptions(force = false): Observable<Response<DisruptionsList>> {
 		const disruptionParams = new HttpParams().set("isActive", "true");
 		return this.http.get({
@@ -74,6 +108,11 @@ export class ApiService {
 		});
 	}
 
+	/**
+	 * Get information about all stations
+	 * [reisinformatie-api/api/v2/stations]{@link https://apiportal.ns.nl/docs/services/reisinformatie-api/operations/getStations?}
+	 * @returns Observable<Response<StationsResponse>> Information about all stations
+	 */
 	getBasicInformationAboutAllStations(): Observable<Response<StationsResponse>> {
 		return this.http.get({
 			url: "https://gateway.apiportal.ns.nl/reisinformatie-api/api/v2/stations",

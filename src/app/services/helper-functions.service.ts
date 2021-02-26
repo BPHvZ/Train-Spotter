@@ -20,10 +20,21 @@ import { Injectable } from "@angular/core";
 import { Feature, FeatureCollection, Point } from "geojson";
 import { DetailedTrainInformation } from "../models/VirtualTrainAPI";
 
+/**
+ * Helper functions that are used by multiple components
+ */
 @Injectable({
 	providedIn: "root",
 })
 export class HelperFunctionsService {
+	/**
+	 * Parse an array of objects to GeoJSON
+	 * @param data Array of objects of type {@link T}
+	 * @param point Property names of Lat and Lng data
+	 * @param properties Proporties of {@link T} to include
+	 * @param allProperties Include all properties
+	 * @returns FeatureCollection<Point, any> GeoJSON of the data
+	 */
 	parseToGeoJSON<T>(
 		data: Array<T>,
 		point: Array<string>,
@@ -61,6 +72,11 @@ export class HelperFunctionsService {
 		return featureCollection;
 	}
 
+	/**
+	 * Convert train type abbreviation to full words
+	 * @param train Train to convert train type for
+	 * @returns string Train type
+	 */
 	getTypeOfTrain(train: DetailedTrainInformation): string {
 		const type = train.type;
 		if (type === "SPR") {
@@ -72,8 +88,15 @@ export class HelperFunctionsService {
 		}
 	}
 
+	/**
+	 * Compare two object to see if they are the same
+	 * Compare keys and data of keys
+	 * @param object1 Object one
+	 * @param object2 Object two
+	 * @returns boolean True if objects are the same
+	 */
 	// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-	trainsAreEqual(object1: any, object2: any): boolean {
+	objectsAreEqual(object1: any, object2: any): boolean {
 		const keys1 = Object.keys(object1);
 		const keys2 = Object.keys(object2);
 

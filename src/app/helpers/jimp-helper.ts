@@ -20,9 +20,20 @@ import Jimp from "jimp";
 import { forkJoin, from, Observable } from "rxjs";
 import { map, mergeMap } from "rxjs/operators";
 import { NSTrainIcon } from "../models/VirtualTrainAPI";
+
+/**ReplaceColor library*/
 // eslint-disable-next-line @typescript-eslint/no-var-requires,@typescript-eslint/no-unsafe-assignment
 const replaceColor = require("replace-color");
 
+/**
+ * For each icon:
+ * - Download
+ * - Resize
+ * - Remove the background
+ * - Get buffer
+ * @param iconURLs All icons with their url and name
+ * @returns Observable<NSTrainIcon[]> All downloaded and edited icons
+ */
 export const jimpPrepareIcons = (iconURLs: Map<string, string>): Observable<NSTrainIcon[]> => {
 	return forkJoin(
 		Array.from(iconURLs, ([imageName, imageURL]) =>

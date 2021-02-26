@@ -22,6 +22,9 @@ import { Observable, of } from "rxjs";
 import { switchMap } from "rxjs/operators";
 import { CacheService } from "./cache.service";
 
+/**
+ * Network request methods
+ */
 export enum Verbs {
 	GET = "GET",
 	PUT = "PUT",
@@ -29,47 +32,99 @@ export enum Verbs {
 	DELETE = "DELETE",
 }
 
-export class HttpOptions {
+/**
+ * Network request
+ */
+export interface HttpOptions {
+	/**URL to visit*/
 	url: string;
+	/**Request body*/
 	body?: any;
+	/**Request headers*/
 	headers?: any;
+	/**How long to cache the response*/
 	cacheMins?: number;
+	/**URL parameters*/
 	params?: HttpParams;
+	/**Do not check cache and force the network request*/
 	force?: boolean;
 }
 
+/**
+ * Url or cache response
+ * */
 export enum ResponseType {
 	URL = "URL",
 	CACHE = "CACHE",
 }
 
-export class Response<T> {
+/**
+ * Response object with {@link ResponseType}
+ */
+export interface Response<T> {
+	/**Data object*/
 	data: T;
+	/**Response type*/
 	responseType: ResponseType;
 }
 
+/**
+ * Make Http requests
+ */
 @Injectable({
 	providedIn: "root",
 })
 export class HttpClientService {
+	/**
+	 * Defines services
+	 * @param http Makes http requests
+	 * @param cacheService Get and save data to cache
+	 */
 	constructor(private http: HttpClient, private cacheService: CacheService) {}
 
+	/**
+	 * Make a GET request
+	 * @param options Http request object
+	 * @returns Response of type {@link T}
+	 */
 	get<T>(options: HttpOptions): Observable<Response<T>> {
 		return this.httpCall(Verbs.GET, options);
 	}
 
+	/**
+	 * Make a DELETE request
+	 * @param options Http request object
+	 * @returns Response of type {@link T}
+	 */
 	delete<T>(options: HttpOptions): Observable<Response<T>> {
 		return this.httpCall(Verbs.DELETE, options);
 	}
 
+	/**
+	 * Make a POST request
+	 * @param options Http request object
+	 * @returns Response of type {@link T}
+	 */
 	post<T>(options: HttpOptions): Observable<Response<T>> {
 		return this.httpCall(Verbs.POST, options);
 	}
 
+	/**
+	 * Make a PUT request
+	 * @param options Http request object
+	 * @returns Response of type {@link T}
+	 */
 	put<T>(options: HttpOptions): Observable<Response<T>> {
 		return this.httpCall(Verbs.PUT, options);
 	}
 
+	/**
+	 * Make a network request
+	 * Check cache if specified and return cached object
+	 * @param verb Request method
+	 * @param options Http request object
+	 * @returns Response of type {@link T}
+	 */
 	private httpCall<T>(verb: Verbs, options: HttpOptions): Observable<Response<T>> {
 		// Setup default values
 		options.body = options.body || null;

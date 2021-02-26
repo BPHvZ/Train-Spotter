@@ -16,8 +16,12 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+/**Map types of the train map*/
 export interface TrainMapType {
+	/**Short name of the map type*/
 	name: string;
+	/**Map type description*/
 	description: string;
+	/**Unique map type identifier*/
 	layerId: string;
 }

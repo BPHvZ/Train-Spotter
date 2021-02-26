@@ -21,9 +21,20 @@ import Jimp from "jimp";
 import { forkJoin, from, Observable } from "rxjs";
 import { map, mergeMap } from "rxjs/operators";
 import { NSTrainIcon } from "../models/VirtualTrainAPI";
+/**ReplaceColor library*/
 // eslint-disable-next-line @typescript-eslint/no-var-requires,@typescript-eslint/no-unsafe-assignment
 const replaceColor = require("replace-color");
 
+/**
+ * Receive Web Worker message
+ * For each icon:
+ * - Download
+ * - Resize
+ * - Remove the background
+ * - Get buffer
+ * Data: Map<string, string> = All icons with their url and name
+ * @returns NSTrainIcon[] All downloaded and edited icons
+ */
 // eslint-disable-next-line @typescript-eslint/no-misused-promises
 addEventListener("message", ({ data }: { data: Map<string, string> }) => {
 	console.log("WORKER");

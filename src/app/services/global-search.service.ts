@@ -20,18 +20,29 @@ import { Injectable } from "@angular/core";
 import { Observable, of, zip } from "rxjs";
 import { map } from "rxjs/operators";
 import { GlobalSearchResult, GlobalSearchResultType } from "../models/GlobalSearch";
-import { Station, StationsResponse } from "../models/ReisinformatieAPI";
+import { StationsResponse } from "../models/ReisinformatieAPI";
 import { DetailedTrainInformation } from "../models/VirtualTrainAPI";
 import { HelperFunctionsService } from "./helper-functions.service";
 import { SharedDataService } from "./shared-data.service";
 
+/**
+ * Full text search for station and trains
+ * */
 @Injectable({
 	providedIn: "root",
 })
 export class GlobalSearchService {
+	/**All Stations*/
 	private _stations: StationsResponse = null;
+	/**All current trains*/
 	private _trains: DetailedTrainInformation[] = null;
 
+	/**
+	 * Define services.
+	 * Subscribe to receive the latest stations and trains
+	 * @param sharedDataService Shares data through the application
+	 * @param helperFunctionsService Helper functions
+	 */
 	constructor(private sharedDataService: SharedDataService, private helperFunctionsService: HelperFunctionsService) {
 		this.sharedDataService.detailedTrainInformation$.subscribe((value) => {
 			this._trains = value;
@@ -41,6 +52,11 @@ export class GlobalSearchService {
 		});
 	}
 
+	/**
+	 * Do a global search on station and trains
+	 * @param term Text to search for
+	 * @returns Observable<GlobalSearchResult[]> List of search results
+	 */
 	globalSearch(term: string): Observable<GlobalSearchResult[]> {
 		console.log(term);
 		if (term === "") {
@@ -60,6 +76,18 @@ export class GlobalSearchService {
 		);
 	}
 
+	/**
+	 * Search stations and trains
+	 * Search stations by:
+	 * - Name
+	 * - Code
+	 * Search trains by:
+	 * - Ride id
+	 * - Trainpart
+	 * - Train type
+	 * @param term Text to search for
+	 * @returns All search results
+	 */
 	private _searchAllCategories(term: string): GlobalSearchResult[] {
 		const results: GlobalSearchResult[] = [];
 
@@ -126,22 +154,5 @@ export class GlobalSearchService {
 		}
 
 		return results;
-	}
-
-	searchForStation(term: string): Observable<Station[]> {
-		if (term === "") {
-			const list: Station[] = [];
-			return of(list);
-		}
-
-		return this.sharedDataService.stations$.pipe(
-			map((response) =>
-				response.payload.filter(
-					(station) =>
-						station.namen.lang.toUpperCase().includes(term.toUpperCase()) ||
-						station.code.toUpperCase().includes(term.toUpperCase())
-				)
-			)
-		);
 	}
 }

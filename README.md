@@ -29,6 +29,8 @@
     <a href="https://github.com/BPHvZ/Train-Spotter/issues">Report Bug</a>
     ·
     <a href="https://github.com/BPHvZ/Train-Spotter/issues">Request Feature</a>
+·
+    <a href="https://bartvanzeist.nl">bartvanzeist.nl</a>
   </p>
 </p>
 
@@ -119,7 +121,7 @@ This is an example of how to list things you need to use the software and how to
     ```
 3. Run TrainSpotter
 `sh yarn run serve `
- <!-- Project Management -->
+  <!-- Project Management -->
 
 ## Project Management
 
@@ -129,7 +131,7 @@ This is an example of how to list things you need to use the software and how to
 2. When a feature is going into development, it is converted into an Issue.
 3. A person is assigned to the Issue. A bot will create a feature branch for the Issue.
     - By default, the feature branch will be based of the `develop` branch.
-    - Issues that are labelled as ![bug](https://img.shields.io/github/BPHvZ/Train-Spotter/labels/bug) will be based of the `main` branch.  
+    - Issues that are labelled as ![bug](https://img.shields.io/github/labels/BPHvZ/Train-Spotter/bug) will be based of the `main` branch.  
       Bugs are intended to be resolved quickly and thus should be implemented on `main` as soon as possible.
 
 #### Development
@@ -163,7 +165,7 @@ Distributed under the GNU GPL v3 License. See `LICENSE` for more information.
 
 ## Contact
 
-Bart van Zeist - [LinkedIn][linkedin-url] - bartvanzeist2000@gmail.com
+Bart van Zeist - [bartvanzeist.nl](https://bartvanzeist.nl) - [LinkedIn][linkedin-url] - bartvanzeist2000@gmail.com
 
 Project Link: [https://github.com/BPHvZ/Train-Spotter](https://github.com/BPHvZ/Train-Spotter)
 

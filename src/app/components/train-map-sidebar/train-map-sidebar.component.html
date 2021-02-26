@@ -24,7 +24,7 @@
 	</div>
 	<div
 		(@openClose-sidebar.start)="setSidebarDisplay($event)"
-		(@openClose-sidebar.done)="done($event)"
+		(@openClose-sidebar.done)="sidebarAnimationFinished($event)"
 		[@openClose-sidebar]="sidebarState"
 		class="frosted left-shadow"
 		id="sidebar"

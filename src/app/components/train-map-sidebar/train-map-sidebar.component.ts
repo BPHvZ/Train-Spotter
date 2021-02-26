@@ -32,6 +32,9 @@ import { faSyncAlt } from "@fortawesome/free-solid-svg-icons";
 import { DisruptionsList } from "../../models/ReisinformatieAPI";
 import { SharedDataService } from "../../services/shared-data.service";
 
+/**
+ * Sidebar with disruption information
+ * */
 @Component({
 	selector: "app-train-map-sidebar",
 	templateUrl: "./train-map-sidebar.component.html",
@@ -78,35 +81,61 @@ import { SharedDataService } from "../../services/shared-data.service";
 	],
 })
 export class TrainMapSidebarComponent implements OnInit {
-	@Output() closeSidebar = new EventEmitter();
+	/**Notify train map component to force update disruptions*/
 	@Output() updateDisruptions = new EventEmitter();
+	/**Notify when sidebar opens and closes*/
 	@Output() clickOnArrow = new EventEmitter<boolean>();
 
-	get disruptions(): DisruptionsList {
-		return this.sharedDataService.activeDisruptions;
-	}
+	/**Date when disruptions have been last updated*/
 	lastUpdatedDate?: Date;
+	/**Sidebar open/closed state*/
 	sidebarState = "closed";
+	/**FontAwesome sync icon*/
 	faSyncAlt = faSyncAlt;
 
+	/**
+	 * Define services
+	 * @param sharedDataService Shares data through the application
+	 */
 	constructor(private sharedDataService: SharedDataService) {}
 
+	/**Subscribe to last updated date*/
 	ngOnInit(): void {
 		this.sharedDataService.getActiveDisruptionsLastUpdated$.subscribe((value) => (this.lastUpdatedDate = value));
 	}
 
+	/**
+	 * Get the latest disruptions from {@link sharedDataService}
+	 * @returns DisruptionsList Latest disruptions
+	 */
+	get disruptions(): DisruptionsList {
+		return this.sharedDataService.activeDisruptions;
+	}
+
+	/**
+	 * Open or close the sidebar
+	 */
 	changeState(): void {
 		this.sidebarState = this.sidebarState === "closed" ? "open" : "closed";
 	}
 
-	done(event: AnimationEvent): void {
+	/**
+	 * Is run when the sidebar animation has finished
+	 * Sets the css display mode to none to not occupy space on the train map
+	 * NOTE: without this, the area of the open sidebar can not be interacted with
+	 * @param event Animation event
+	 */
+	sidebarAnimationFinished(event: AnimationEvent): void {
 		if (event.toState === "closed") {
 			const element = document.getElementById("sidebar");
 			element.style.setProperty("display", "none", "important");
-			this.closeSidebar.emit(null);
 		}
 	}
 
+	/**
+	 * Set the css display mode to block, e.g. visible before the open animation
+	 * @param event Animation event
+	 */
 	setSidebarDisplay(event: AnimationEvent): void {
 		const element = document.getElementById("sidebar");
 		if (event.toState === "open") {

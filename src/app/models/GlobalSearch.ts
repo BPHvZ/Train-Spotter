@@ -19,13 +19,22 @@
 import { Station } from "./ReisinformatieAPI";
 import { Train } from "./VirtualTrainAPI";
 
+/**
+ * Type of a global search result item
+ */
 export enum GlobalSearchResultType {
 	Train,
 	Station,
 }
 
+/**
+ * Global search result item
+ */
 export interface GlobalSearchResult {
+	/**Type of result item*/
 	resultType: GlobalSearchResultType;
+	/**Date of result item*/
 	result: Train | Station;
+	/**Readable string of result item*/
 	searchField: number | string;
 }

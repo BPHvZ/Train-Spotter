@@ -21,19 +21,33 @@ import { Observable, Subject } from "rxjs";
 import { jimpPrepareIcons } from "../helpers/jimp-helper";
 import { NSTrainIcon } from "../models/VirtualTrainAPI";
 
+/**
+ * Use a Web Worker to download and edit images
+ */
 @Injectable({
 	providedIn: "root",
 })
 export class ImageEditorService {
+	/**Jimp Web Worker*/
 	private worker = new Worker("../workers/jimp.worker", { type: "module" });
+	/**Browser supports Web Workers*/
 	private canUseWorker = false;
 
+	/**
+	 * Check if browser supports Web Workers
+	 */
 	constructor() {
 		if (typeof Worker !== "undefined") {
 			this.canUseWorker = true;
 		}
 	}
 
+	/**
+	 * Send message to Web Worker to prepare train icons
+	 * If not supported, use main thread
+	 * @param iconURLs All icons with their url and name
+	 * @returns Observable<NSTrainIcon[]> All downloaded and edited icons
+	 */
 	prepareTrainIcons(iconURLs: Map<string, string>): Observable<NSTrainIcon[]> {
 		const resultSubject = new Subject<NSTrainIcon[]>();
 		if (this.canUseWorker) {

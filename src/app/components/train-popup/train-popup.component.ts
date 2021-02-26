@@ -21,19 +21,35 @@ import { MapboxGeoJSONFeature } from "mapbox-gl";
 import { DetailedTrainInformation } from "../../models/VirtualTrainAPI";
 import { HelperFunctionsService } from "../../services/helper-functions.service";
 
+/**
+ * Show a popup with information about a train on the map
+ */
 @Component({
 	selector: "app-train-popup",
 	templateUrl: "./train-popup.component.html",
 	styleUrls: ["./train-popup.component.sass"],
 })
 export class TrainPopupComponent implements OnChanges {
+	/**Notify the map to close the popup*/
 	@Output() public closePopup: EventEmitter<void> = new EventEmitter<void>();
+	/**Mapbox Feature of this train*/
 	@Input() mapboxFeature: MapboxGeoJSONFeature;
+	/**Detailed train information*/
 	trainInformation: DetailedTrainInformation;
+	/**CSS style of the arrow shown in the popup*/
 	directionArrowStyle: Map<string, any> = new Map<string, any>();
 
+	/**
+	 * Define services
+	 * @param helperFunctions Helper functions
+	 */
 	constructor(private helperFunctions: HelperFunctionsService) {}
 
+	/**
+	 * Update the train information
+	 * Update the arrow rotation
+	 * @param changes Updated train information
+	 */
 	ngOnChanges(changes: SimpleChanges): void {
 		console.log(changes);
 		if (changes.mapboxFeature.currentValue) {
@@ -42,6 +58,10 @@ export class TrainPopupComponent implements OnChanges {
 		}
 	}
 
+	/**
+	 * Get the type of train as full words
+	 * @returns string Train type
+	 */
 	getTypeOfTrain(): string {
 		return this.helperFunctions.getTypeOfTrain(this.trainInformation);
 	}

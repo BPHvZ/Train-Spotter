@@ -25,9 +25,9 @@
 				type="text"
 				placeholder="Naam, Land, EVA- & UICCode"
 				name="searchTerm"
-				[(ngModel)]="service.searchTerm"
+				[(ngModel)]="getStationsService().searchTerm"
 			/>
-			<span class="ml-md-3 mt-md-0 mt-2" *ngIf="service.loading$ | async">Laden...</span>
+			<span class="ml-md-3 mt-md-0 mt-2" *ngIf="getStationsService().loading$ | async">Laden...</span>
 		</div>
 
 		<div class="table-responsive">
@@ -44,11 +44,29 @@
 				<tbody>
 					<tr *ngFor="let station of stations$ | async">
 						<td>
-							<ngb-highlight [result]="station.namen.lang" [term]="service.searchTerm"></ngb-highlight>
+							<ngb-highlight
+								[result]="station.namen.lang"
+								[term]="getStationsService().searchTerm"
+							></ngb-highlight>
 						</td>
-						<td><ngb-highlight [result]="station.land" [term]="service.searchTerm"></ngb-highlight></td>
-						<td><ngb-highlight [result]="station.EVACode" [term]="service.searchTerm"></ngb-highlight></td>
-						<td><ngb-highlight [result]="station.UICCode" [term]="service.searchTerm"></ngb-highlight></td>
+						<td>
+							<ngb-highlight
+								[result]="station.land"
+								[term]="getStationsService().searchTerm"
+							></ngb-highlight>
+						</td>
+						<td>
+							<ngb-highlight
+								[result]="station.EVACode"
+								[term]="getStationsService().searchTerm"
+							></ngb-highlight>
+						</td>
+						<td>
+							<ngb-highlight
+								[result]="station.UICCode"
+								[term]="getStationsService().searchTerm"
+							></ngb-highlight>
+						</td>
 						<td style="text-align: center">
 							<button
 								class="button button--nsYellow button--crosshair"
@@ -65,13 +83,18 @@
 		<div class="d-flex justify-content-between p-2 flex-parent--wrap">
 			<ngb-pagination
 				[collectionSize]="(total$ | async)!"
-				[(page)]="service.page"
-				[pageSize]="service.pageSize"
+				[(page)]="getStationsService().page"
+				[pageSize]="getStationsService().pageSize"
 				style="overflow: scroll"
 			>
 			</ngb-pagination>
 
-			<select class="custom-select" style="width: auto" name="pageSize" [(ngModel)]="service.pageSize">
+			<select
+				class="custom-select"
+				style="width: auto"
+				name="pageSize"
+				[(ngModel)]="getStationsService().pageSize"
+			>
 				<option [ngValue]="50">50 items per pagina</option>
 				<option [ngValue]="100">100 items per pagina</option>
 				<option [ngValue]="200">200 items per pagina</option>

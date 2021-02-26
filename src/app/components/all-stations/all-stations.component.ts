@@ -35,23 +35,38 @@ import { StationsService } from "../../services/stations.service";
 	providers: [StationsService],
 })
 export class AllStationsComponent implements OnInit {
+	/**Stations received as search result from {@link StationsService}*/
 	stations$: Observable<Station[]>;
+	/**Number of stations found*/
 	total$: Observable<number>;
+	/**FontAwesome Crosshair icon*/
 	faCrosshairs = faCrosshairs;
 
+	/**Header of the table*/
 	@ViewChildren(NgbdSortableHeaderDirective) headers: QueryList<NgbdSortableHeaderDirective>;
 
-	constructor(public service: StationsService, private router: Router) {
-		this.stations$ = service.stations$;
-		this.total$ = service.total$;
+	/**
+	 * Set listeners
+	 * @param stationsService Used to search for stations
+	 * @param router Used to navigate to the map
+	 */
+	constructor(private stationsService: StationsService, private router: Router) {
+		this.stations$ = stationsService.stations$;
+		this.total$ = stationsService.total$;
 	}
 
 	/**
-	 * Sort name ascending as default
+	 * Getter for the StationsService
+	 * @returns StationsService
 	 */
+	getStationsService(): StationsService {
+		return this.stationsService;
+	}
+
+	/**Sort ascending on name*/
 	ngOnInit(): void {
 		// only take the first two events, then unsubscribe
-		this.service.stations$.pipe(take(2)).subscribe((r) => {
+		this.stationsService.stations$.pipe(take(2)).subscribe((r) => {
 			if (r.length > 0) {
 				this.headers.first.rotate();
 			}
@@ -70,8 +85,8 @@ export class AllStationsComponent implements OnInit {
 				header.direction = "";
 			}
 		});
-		this.service.sortColumn = column;
-		this.service.sortDirection = direction;
+		this.stationsService.sortColumn = column;
+		this.stationsService.sortDirection = direction;
 	}
 
 	/**

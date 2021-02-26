@@ -50,30 +50,49 @@ import { TrainMapSidebarComponent } from "../train-map-sidebar/train-map-sidebar
 	styleUrls: ["./train-map.component.sass"],
 })
 export class TrainMapComponent implements OnInit {
+	/**Sidebar element with disruptions*/
 	@ViewChild(TrainMapSidebarComponent) sidebar: TrainMapSidebarComponent;
 
 	// MapBox setup
+	/**Mapbox map style*/
 	mapStyle = environment.MAPBOX_STYLE;
+	/**Map longitude position*/
 	lng = 5.476;
+	/**Map latitude position*/
 	lat = 52.1284;
+	/**Map zoom level*/
 	zoom = 6.73;
 
 	// Map popups
+	/**
+	 * Returns the selected train
+	 * @returns MapboxGeoJSONFeature Feature of the selected train
+	 */
 	get selectedTrainOnMapFeature(): MapboxGeoJSONFeature {
 		return this.sharedDataService.selectedTrainOnMapFeature;
 	}
+	/**
+	 * Returns the selected station
+	 * @returns MapboxGeoJSONFeature Feature of the selected station
+	 */
 	get selectedStationOnMapFeature(): MapboxGeoJSONFeature {
 		return this.sharedDataService.selectedStationOnMapFeature;
 	}
 
 	// Update data countdown
+	/**Countdown progress*/
 	private progressNum = 100;
+	/**Is countdown paused*/
 	updateTrainsIsPaused = false;
+	/**Is currently updating train positions*/
 	isUpdatingMapData = false;
+	/**Countdown timer*/
 	updateTrainsTimer: PausableObservable<number>;
+	/**Timer observable*/
 	timerObserver: PartialObserver<number>;
 
 	// Map styles
+	/**Map types*/
 	mapTypes: TrainMapType[] = [
 		{
 			name: "Normaal",
@@ -86,41 +105,72 @@ export class TrainMapComponent implements OnInit {
 			layerId: "storingen-railroad",
 		},
 	];
+	/**Active map type*/
 	activeMapType: TrainMapType = this.mapTypes[0];
 
 	// Station layer
+	/**Station layer layout*/
 	stationsLayerLayout: SymbolLayout = {
 		"icon-image": "NS",
 		"icon-size": 0.15,
 		"icon-allow-overlap": true,
 	};
+	/**Station layer GeoJSON*/
 	stationsLayerData: GeoJSON.FeatureCollection<GeoJSON.Geometry>;
 
 	// Train tracks layer
+	/**Train tracks layer GeoJSON*/
 	trainTracksLayerData: SpoortkaartFeatureCollection;
 
 	// Disruptions layer
+	/**
+	 * Get active disruptions
+	 * @returns DisruptionsList List of current disruptions
+	 */
 	get activeDisruptions(): DisruptionsList {
 		return this.sharedDataService.activeDisruptions;
 	}
+
+	/**
+	 * Get train tracks that have disruptions
+	 * @returns GeoJSON.FeatureCollection<MultiLineString> GeoJSON data of disrupted train tracks
+	 */
 	get disruptedTrainTracksLayerData(): GeoJSON.FeatureCollection<MultiLineString> {
 		return this.sharedDataService.disruptedTrainTracksLayerData
 			?.payload as GeoJSON.FeatureCollection<MultiLineString>;
 	}
+
+	/**
+	 * Get markers to place at current disruptions
+	 * @returns GeoJSON.Feature<GeoJSON.Point, DisruptionBase>[] GeoJSON data of disruption markers
+	 */
 	get disruptionMarkersData(): GeoJSON.Feature<GeoJSON.Point, DisruptionBase>[] {
 		return this.sharedDataService.disruptionMarkersData;
 	}
 
 	// Trains layer
+	/**Trains layer with current trains*/
 	trainsLayerData: GeoJSON.FeatureCollection<GeoJSON.Geometry>;
 
 	// Train icons
+	/**Observe train icons added to the map*/
 	private trainIconAddedSource = new Subject<string>();
+	/**Observable to keep tracks of train icons that have been added*/
 	trainIconAdded = this.trainIconAddedSource.asObservable();
+	/**All train icon names*/
 	private trainIconNames: Set<string> = new Set<string>();
+	/**Set to store icons names of icons that have been added to the map*/
 	private trainIconsAdded: Set<string> = new Set<string>();
+	/**Train icons to be added to the map*/
 	trainIconsForMap: TrainIconOnMap[] = [];
 
+	/**
+	 * Define services
+	 * @param sharedDataService Shares data through the application
+	 * @param helperFunctions Helper functions
+	 * @param router Router object
+	 * @param imageEditorService Web Worker to edit icons
+	 */
 	constructor(
 		private sharedDataService: SharedDataService,
 		private helperFunctions: HelperFunctionsService,
@@ -169,26 +219,26 @@ export class TrainMapComponent implements OnInit {
 	}
 
 	/**
-	 * get the progress used by the progress indicator
+	 * Get the {@link updateTrainsTimer} progress
+	 * @returns string Progress in percentage
 	 */
 	get getProgress(): string {
 		return `${this.progressNum}%`;
 	}
 
 	/**
-	 * Receive an event when a train icon has been loaded
-	 * @param trainIconName The train icon name
+	 * Emit an event when a train icon has been loaded
+	 * @param trainIconName Name of the icon that has been loaded
 	 */
 	onIconLoad(trainIconName: string): void {
 		this.trainIconAddedSource.next(trainIconName);
 	}
 
 	/**
-	 * pause or resume the {@link updateTrainsTimer}
-	 * @param pause Whether to pause the train updater or not
+	 * Pause or resume the {@link updateTrainsTimer}
+	 * @param pause Whether to pause {@link updateTrainsTimer} or not
 	 */
 	pauseOrResumeUpdatingTrainPositions(pause: boolean): void {
-		// console.log(`isUpdatingMapData: ${this.isUpdatingMapData} updateTrainsIsPaused: ${this.updateTrainsIsPaused} pause: ${pause}`);
 		if (this.isUpdatingMapData === false) {
 			if (pause === false) {
 				this.updateTrainsTimer.resume();
@@ -201,8 +251,8 @@ export class TrainMapComponent implements OnInit {
 	}
 
 	/**
-	 * Get stations and train information when map is loaded
-	 * @param trainMap information about the map on load
+	 * Get station, train and disruption information when map is loaded
+	 * @param trainMap Mapbox map
 	 */
 	onMapLoad(trainMap: MapBoxMap): void {
 		this.sharedDataService.trainMap = trainMap;
@@ -229,7 +279,7 @@ export class TrainMapComponent implements OnInit {
 	}
 
 	/**
-	 * Alter train icon size when zooming on train map
+	 * Alter train icon size when the map is zoomed
 	 * @param event Zoom event
 	 */
 	onMapZoom(event: MapboxEvent<MouseEvent | TouchEvent | WheelEvent | undefined> & EventData): void {
@@ -246,7 +296,7 @@ export class TrainMapComponent implements OnInit {
 
 	/**
 	 * Change cursor style when hovering over a station or train
-	 * @param event Mouse move event
+	 * @param event Mouse event
 	 */
 	onMapMouseMove(event: MapLayerMouseEvent): void {
 		const trainLayer = event.target.getLayer("trains");
@@ -258,17 +308,23 @@ export class TrainMapComponent implements OnInit {
 		}
 	}
 
+	/**
+	 * Track when layer source data is updated
+	 * Update an active train popup with new data
+	 * @param event Map source data event
+	 */
 	onMapSourceData(event: MapSourceDataEvent & EventData): void {
-		// console.log(event);
 		if (event.isSourceLoaded) {
 			if (event.sourceId === "trainData" && event.sourceCacheId === "symbol:trainData") {
-				// Do something when the source has finished loading
-				// console.log(event);
 				this._updateTrainPopupInformation();
 			}
 		}
 	}
 
+	/**
+	 * Change the map {@link mapTypes}
+	 * @param layer Map type to change to
+	 */
 	changeMapLayerType(layer: TrainMapType): void {
 		this.activeMapType = layer;
 		if (this.activeMapType.layerId === "storingen-railroad") {
@@ -278,7 +334,7 @@ export class TrainMapComponent implements OnInit {
 
 	/**
 	 * Open a station popup when clicking on a station
-	 * @param event The station
+	 * @param event Map layer event to extract the station from
 	 */
 	openStationPopupOnLayerClick(event: MapLayerMouseEvent): void {
 		if (event.features) {
@@ -297,7 +353,7 @@ export class TrainMapComponent implements OnInit {
 
 	/**
 	 * Open a train popup when clicking on a train
-	 * @param event The train
+	 * @param event Map layer event to extract the train from
 	 */
 	openTrainPopupOnLayerClick(event: MapLayerMouseEvent): void {
 		if (event.features) {
@@ -321,19 +377,19 @@ export class TrainMapComponent implements OnInit {
 	}
 
 	/**
-	 * Add stations to the map with GeoJSON
+	 * Add stations to the map using GeoJSON
 	 * @param stations All stations
 	 */
-	addStationsToMap(stations: Station[]): void {
+	private addStationsToMap(stations: Station[]): void {
 		console.log(stations);
 		this.stationsLayerData = this.helperFunctions.parseToGeoJSON<Station>(stations, ["lng", "lat"], [], true);
 	}
 
 	/**
-	 * Add all trains to the map with GeoJSON and resume train updater
-	 * @param detailedTrainInformation All trains currently riding
+	 * Add all trains to the map with GeoJSON
+	 * @param detailedTrainInformation All current trains, with detailed information
 	 */
-	addTrainsToMap(detailedTrainInformation: DetailedTrainInformation[]): void {
+	private addTrainsToMap(detailedTrainInformation: DetailedTrainInformation[]): void {
 		this.trainsLayerData = this.helperFunctions.parseToGeoJSON<DetailedTrainInformation>(
 			detailedTrainInformation,
 			["lng", "lat"],
@@ -342,7 +398,10 @@ export class TrainMapComponent implements OnInit {
 		);
 	}
 
-	_updateTrainPopupInformation(): void {
+	/**
+	 * Update a train popup with new information
+	 */
+	private _updateTrainPopupInformation(): void {
 		if (this.sharedDataService.selectedTrainOnMapFeature) {
 			const selectedFeature = this.sharedDataService.selectedTrainOnMapFeature;
 			const oldTrainInformation = selectedFeature.properties as DetailedTrainInformation;
@@ -350,7 +409,7 @@ export class TrainMapComponent implements OnInit {
 			const queriedFeatures = this.sharedDataService.trainMap.querySourceFeatures("trainData", {
 				filter: ["==", ["get", "ritId"], rideId],
 			});
-			if (queriedFeatures && !this.helperFunctions.trainsAreEqual(queriedFeatures[0], oldTrainInformation)) {
+			if (queriedFeatures && !this.helperFunctions.objectsAreEqual(queriedFeatures[0], oldTrainInformation)) {
 				this.closePopup();
 				this.openTrainPopupOnLayerClick({
 					defaultPrevented: true,
@@ -372,7 +431,10 @@ export class TrainMapComponent implements OnInit {
 		}
 	}
 
-	setDisruptionMarkers(): void {
+	/**
+	 * Set the disruption markers for each disruption
+	 */
+	private setDisruptionMarkers(): void {
 		const markers: GeoJSON.Feature<GeoJSON.Point, DisruptionBase>[] = [];
 		console.log(this.disruptedTrainTracksLayerData.features.length);
 
@@ -404,8 +466,12 @@ export class TrainMapComponent implements OnInit {
 		this.sharedDataService.disruptionMarkersData = markers;
 	}
 
-	clickMarker(evt: MapMouseEvent): void {
-		console.log(evt);
+	/**
+	 * Event when a disruption marker is clicked
+	 * @param event Map mouse event
+	 */
+	clickMarker(event: MapMouseEvent): void {
+		console.log(event);
 	}
 
 	/**
@@ -413,7 +479,7 @@ export class TrainMapComponent implements OnInit {
 	 * Set train icons when data is received
 	 * Get information about active disruptions and add markers
 	 */
-	updateTrainsAndDisruptions(): void {
+	private updateTrainsAndDisruptions(): void {
 		this.isUpdatingMapData = true;
 		this.pauseOrResumeUpdatingTrainPositions(true);
 		zip(
@@ -442,7 +508,7 @@ export class TrainMapComponent implements OnInit {
 	}
 
 	/**
-	 * Get information about active disruptions and add markers
+	 * Get and update information about active disruptions and add markers
 	 * NOTE: Specifically used by the sidebar to force an update
 	 */
 	updateDisruptions(): void {
@@ -466,7 +532,7 @@ export class TrainMapComponent implements OnInit {
 
 	/**
 	 * Add the train icon to the map for each type of train
-	 * Add train to map with GeoJSON if icons already have been added
+	 * Set the icon name for each train by train type
 	 * @param detailedTrainInformation Detailed information about all trains
 	 */
 	setTrainIconName(detailedTrainInformation: DetailedTrainInformation[]): void {
@@ -517,7 +583,7 @@ export class TrainMapComponent implements OnInit {
 	}
 
 	/**
-	 * Add train icons to the map
+	 * Download and edit train icons. Add them to the map
 	 * @param iconURLs Icon name and url
 	 * @param detailedTrainInformation Detailed information about all trains
 	 */
@@ -543,7 +609,7 @@ export class TrainMapComponent implements OnInit {
 
 	/**
 	 * Listen if all train icons have been added to the map,
-	 * then add the trains to the map with GeoJSON
+	 * then add the trains to the map with GeoJSON and stop the updating process.
 	 * @param detailedTrainInformation Detailed information about all trains
 	 */
 	listenForTrainIcons(detailedTrainInformation: DetailedTrainInformation[]): void {

@@ -29,6 +29,9 @@ import { ApiService } from "./api.service";
 import { CacheService } from "./cache.service";
 import { ResponseType } from "./http-client.service";
 
+/**
+ * Hub for all shared data in the application
+ */
 @Injectable({
 	providedIn: "root",
 })
@@ -36,44 +39,71 @@ export class SharedDataService {
 	/*
 	 * Data used by the train map
 	 * */
+	/**All stations*/
 	stations?: StationsResponse;
+	/**Subscribable stations object*/
 	private _stations$ = new BehaviorSubject<StationsResponse>(null);
+	/**Observable of stations*/
 	get stations$(): Observable<StationsResponse> {
 		return this._stations$.asObservable();
 	}
 
 	// Map popups
+	/**Train of selected popup*/
 	selectedTrainOnMapFeature: MapboxGeoJSONFeature;
+	/**Station of selected popup*/
 	selectedStationOnMapFeature: MapboxGeoJSONFeature;
 
+	/**Train tracks of disrupted tracks*/
 	disruptedTrainTracksLayerData?: TrainTracksGeoJSON;
+	/**Markers for disruptions*/
 	disruptionMarkersData: GeoJSON.Feature<GeoJSON.Point, DisruptionBase>[];
+	/**Current disruptions*/
 	activeDisruptions?: DisruptionsList;
+	/**Subscribable disruptions object*/
 	private _getActiveDisruptionsLastUpdated$ = new BehaviorSubject<Date>(null);
+	/**Observable of disruptions*/
 	get getActiveDisruptionsLastUpdated$(): Observable<Date> {
 		return this._getActiveDisruptionsLastUpdated$.asObservable();
 	}
 
+	/**Trains on map*/
 	trainTracksLayerData?: TrainTracksGeoJSON;
+	/**Minimal train information*/
 	basicTrainInformation?: Train[];
+	/**Detailed train information*/
 	detailedTrainInformation?: DetailedTrainInformation[];
+	/**Subscribable detailed train information object*/
 	private _detailedTrainInformation$ = new BehaviorSubject<DetailedTrainInformation[]>(null);
+	/**Observable of detailed train information*/
 	get detailedTrainInformation$(): Observable<DetailedTrainInformation[]> {
 		return this._detailedTrainInformation$.asObservable();
 	}
 
+	/**Mapbox map*/
 	trainMap?: MapBoxMap;
 
 	/*
 	 * Data used by the navbar
 	 * */
+	/**Navbar collapse status*/
 	navbarCollapsed = true;
+	/**Subscribable navbar collapse status object*/
 	private _navbarCollapsed$ = new BehaviorSubject<boolean>(true);
+	/**Observable of navbar collapse status*/
 	get navbarCollapsed$(): Observable<boolean> {
 		return this._navbarCollapsed$.asObservable();
 	}
+	/**Current browser screen width*/
 	screenWidth = window.innerWidth;
 
+	/**
+	 * Defines services
+	 * Get last updated date for disruptions in sidebar
+	 * @param apiService Requests for NS API
+	 * @param router Router object
+	 * @param cacheService Load and save data in cache
+	 */
 	constructor(private apiService: ApiService, private router: Router, private cacheService: CacheService) {
 		const dateData = this.cacheService.load("getActiveDisruptionsLastUpdated") as Date;
 		if (dateData) {
@@ -82,7 +112,10 @@ export class SharedDataService {
 		this.init();
 	}
 
-	init(): void {
+	/**
+	 * Subscribe to browser window resize
+	 */
+	private init(): void {
 		fromEvent(window, "resize")
 			.pipe(debounceTime(1000))
 			.subscribe((evt: any) => {
@@ -92,6 +125,9 @@ export class SharedDataService {
 			});
 	}
 
+	/**
+	 * Return True when all initial data is loaded
+	 */
 	get allDataLoaded(): boolean {
 		return (
 			this.stations != null &&
@@ -101,6 +137,10 @@ export class SharedDataService {
 		);
 	}
 
+	/**
+	 * Get minimal information about all trains
+	 * @returns Observable<Response<TrainInformationResponse>> Minimal information about all trains
+	 */
 	getBasicInformationAboutAllStations(): Observable<StationsResponse> {
 		return this.apiService.getBasicInformationAboutAllStations().pipe(
 			tap((response) => {
@@ -112,6 +152,10 @@ export class SharedDataService {
 		);
 	}
 
+	/**
+	 * Get all train tracks
+	 * @returns Observable<Response<TrainTracksGeoJSON>> All train tracks as GeoJSON
+	 */
 	getTrainTracksGeoJSON(): Observable<TrainTracksGeoJSON> {
 		return this.apiService.getTrainTracksGeoJSON().pipe(
 			tap((response) => {
@@ -121,6 +165,10 @@ export class SharedDataService {
 		);
 	}
 
+	/**
+	 * Get all disrupted train tracks
+	 * @returns Observable<Response<TrainTracksGeoJSON>> All disrupted train tracks as GeoJSON
+	 */
 	getDisruptedTrainTracksGeoJSON(force = false): Observable<TrainTracksGeoJSON> {
 		return this.apiService.getDisruptedTrainTracksGeoJSON(force).pipe(
 			tap((response) => {
@@ -130,6 +178,11 @@ export class SharedDataService {
 		);
 	}
 
+	/**
+	 * Get information about current disruptions
+	 * @param force Force an update, do not check cache
+	 * @returns Observable<Response<DisruptionsList>> Information about current disruptions
+	 */
 	getActiveDisruptions(force = false): Observable<DisruptionsList> {
 		return this.apiService.getActiveDisruptions(force).pipe(
 			tap((response) => {
@@ -147,6 +200,10 @@ export class SharedDataService {
 		);
 	}
 
+	/**
+	 * Get detailed information about all trains by their ride id's
+	 * @returns Observable<Response<TrainInformation[]>> Detailed information about all trains
+	 */
 	getDetailedInformationAboutActiveTrains(): Observable<DetailedTrainInformation[]> {
 		return this.apiService.getBasicInformationAboutAllTrains().pipe(
 			mergeMap((response) => {
@@ -175,7 +232,7 @@ export class SharedDataService {
 
 	/**
 	 * Fly to a station and open a station popup
-	 * @param station The station
+	 * @param station The station to fly to
 	 */
 	flyToStation(station: Station): void {
 		if (this.router.url !== "/kaart") {
@@ -198,6 +255,10 @@ export class SharedDataService {
 		}
 	}
 
+	/**
+	 * Fly to a disruption area
+	 * @param disruption The disruption to fly to
+	 */
 	flyToDisruption(disruption: DisruptionBase): void {
 		if (this.router.url !== "/kaart") {
 			void this.router.navigateByUrl("/kaart");
@@ -214,6 +275,10 @@ export class SharedDataService {
 		}
 	}
 
+	/**
+	 * Fly to a train and open a train popup
+	 * @param train The train to fly to
+	 */
 	flyToTrain(train: DetailedTrainInformation): void {
 		if (this.router.url !== "/kaart") {
 			void this.router.navigateByUrl("/kaart");
@@ -240,11 +305,17 @@ export class SharedDataService {
 		}
 	}
 
+	/**
+	 * Close all popups on the map
+	 */
 	private closePopups() {
 		this.selectedTrainOnMapFeature = null;
 		this.selectedStationOnMapFeature = null;
 	}
 
+	/**
+	 * Open/close navbar on smaller screens
+	 */
 	toggleNavbar(): void {
 		if (this.screenWidth <= 767) {
 			this.navbarCollapsed = !this.navbarCollapsed;

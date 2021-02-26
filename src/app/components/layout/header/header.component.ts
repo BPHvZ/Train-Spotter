@@ -28,7 +28,7 @@ import { GlobalSearchService } from "../../../services/global-search.service";
 import { SharedDataService } from "../../../services/shared-data.service";
 
 /**
- * Header with links to pages and a dropdown to search for stations
+ * Header that is visible on all pages
  */
 @Component({
 	selector: "app-header",
@@ -36,62 +36,56 @@ import { SharedDataService } from "../../../services/shared-data.service";
 	styleUrls: ["./header.component.sass"],
 })
 export class HeaderComponent implements OnInit {
+	/**The global search input field*/
 	@ViewChild("globalTypeahead") globalTypeahead: ElementRef;
 
+	/**
+	 * Status of the collapsable navbar
+	 * Note: only used on smaller screens
+	 */
 	navbarCollapsed = true;
 
+	/**FontAwesome crosshair icon*/
 	faCrosshairs = faCrosshairs;
+	/**FontAwesome bars icon*/
 	faBars = faBars;
 
-	searchingStations = false;
-	searchStationsFailed = false;
-
+	/**Status of global search*/
 	searchingGlobally = false;
+	/**Status of failure during global search*/
 	searchGloballyFailed = false;
 
+	/**
+	 * Define services
+	 * @param sharedDataService Shares data through the application
+	 * @param globalSearchService Searches on stations and trains
+	 */
 	constructor(private sharedDataService: SharedDataService, private globalSearchService: GlobalSearchService) {}
 
+	/**Subscribe to navbar collapse changes*/
 	ngOnInit(): void {
 		this.sharedDataService.navbarCollapsed$.subscribe((value) => {
 			this.navbarCollapsed = value;
 		});
 	}
 
+	/**
+	 * Get the status of shared data
+	 * @returns boolean True when all data has been loaded
+	 */
 	get allDataLoaded(): boolean {
 		return this.sharedDataService.allDataLoaded;
 	}
 
+	/**Collapse or expand the navbar*/
 	toggleNavbar(): void {
 		this.sharedDataService.toggleNavbar();
 	}
 
 	/**
-	 * Search stations on name or abbreviation
+	 * Full text search on stations and trains
 	 * @param text$ Input text
-	 * @return List of stations
-	 */
-	searchStations = (text$: Observable<string>): Observable<Station[]> =>
-		text$.pipe(
-			debounceTime(300),
-			distinctUntilChanged(),
-			tap(() => (this.searchingStations = true)),
-			switchMap(
-				(term: string): Observable<Station[]> =>
-					this.globalSearchService.searchForStation(term).pipe(
-						tap(() => (this.searchStationsFailed = false)),
-						catchError(() => {
-							this.searchStationsFailed = true;
-							return of([]);
-						})
-					)
-			),
-			tap(() => (this.searchingStations = false))
-		);
-
-	/**
-	 * Search stations on name or abbreviation
-	 * @param text$ Input text
-	 * @return List of stations
+	 * @returns Observable<GlobalSearchResult[]> An Observable of search results
 	 */
 	searchGlobally = (text$: Observable<string>): Observable<GlobalSearchResult[]> =>
 		text$.pipe(
@@ -111,6 +105,10 @@ export class HeaderComponent implements OnInit {
 			tap(() => (this.searchingGlobally = false))
 		);
 
+	/**
+	 * Actions when an search result item is selected
+	 * @param event The selected item
+	 */
 	selectItemFromGlobalSearch(event: NgbTypeaheadSelectItemEvent): void {
 		const result = event.item as GlobalSearchResult;
 		// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
@@ -128,10 +126,18 @@ export class HeaderComponent implements OnInit {
 		this.toggleNavbar();
 	}
 
+	/**
+	 * Fly to a train on the map
+	 * @param train The train to fly to
+	 */
 	flyToTrainOnMap(train: DetailedTrainInformation): void {
 		this.sharedDataService.flyToTrain(train);
 	}
 
+	/**
+	 * Fly to a station on the map
+	 * @param station The station to fly to
+	 */
 	flyToStationOnMap(station: Station): void {
 		this.sharedDataService.flyToStation(station);
 	}

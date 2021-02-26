@@ -23,21 +23,47 @@ import { SortColumn, SortDirection } from "../directives/ngbd-sortable-header.di
 import { Station } from "../models/ReisinformatieAPI";
 import { SharedDataService } from "./shared-data.service";
 
+/**
+ * Station search result for All-Stations Component
+ */
 interface SearchResult {
+	/**Stations search result*/
 	stations: Station[];
+	/**Number of stations found*/
 	total: number;
 }
 
+/**
+ * All-Stations table state
+ * */
 interface State {
+	/**Number of pages*/
 	page: number;
+	/**Page size*/
 	pageSize: number;
+	/**Text to search on*/
 	searchTerm: string;
+	/**Sort column*/
 	sortColumn: SortColumn;
+	/**Sort direction*/
 	sortDirection: SortDirection;
 }
 
+/**
+ * Compare data of different columns
+ * @param v1 Data column one
+ * @param v2 Data column two
+ * @returns int Lower, higher or same as
+ */
 const compare = (v1: string, v2: string) => (v1 < v2 ? -1 : v1 > v2 ? 1 : 0);
 
+/**
+ * Sort stations by column and direction
+ * @param stations Stations to sort on
+ * @param column Column to sort on
+ * @param direction Column sort direction
+ * @returns Station[] Sorted stations
+ */
 function sort(stations: Station[], column: SortColumn, direction: string): Station[] {
 	if (direction === "" || column === "") {
 		return stations;
@@ -55,6 +81,12 @@ function sort(stations: Station[], column: SortColumn, direction: string): Stati
 	}
 }
 
+/**
+ * Text search on station
+ * @param station Station
+ * @param term Search term
+ * @returns boolean True if one of the properties includes the search term
+ */
 function matches(station: Station, term: string) {
 	return (
 		station.namen.lang.toLowerCase().includes(term.toLowerCase()) ||
@@ -64,15 +96,23 @@ function matches(station: Station, term: string) {
 	);
 }
 
+/**
+ * Search and sort stations for the All-Stations Component
+ */
 @Injectable({
 	providedIn: "root",
 })
 export class StationsService {
+	/**Subscribable loading object*/
 	private _loading$ = new BehaviorSubject<boolean>(true);
+	/**Subscribable search operation*/
 	private _search$ = new Subject<void>();
+	/**Subscribable stations object*/
 	private _stations$ = new BehaviorSubject<Station[]>([]);
+	/**Subscribable search result number*/
 	private _total$ = new BehaviorSubject<number>(0);
 
+	/**State of the table*/
 	private _state: State = {
 		page: 1,
 		pageSize: 50,
@@ -81,6 +121,11 @@ export class StationsService {
 		sortDirection: "",
 	};
 
+	/**
+	 * Defines services
+	 * Do a search operation when {@link _search$} receives data
+	 * @param sharedDataService Shares data through the application
+	 */
 	constructor(private sharedDataService: SharedDataService) {
 		this._search$
 			.pipe(
@@ -98,49 +143,65 @@ export class StationsService {
 		this._search$.next();
 	}
 
+	/**Observable stations*/
 	get stations$(): Observable<Station[]> {
 		return this._stations$.asObservable();
 	}
+	/**Observable search result number*/
 	get total$(): Observable<number> {
 		return this._total$.asObservable();
 	}
+	/**Observable loading status*/
 	get loading$(): Observable<boolean> {
 		return this._loading$.asObservable();
 	}
 
+	/**Number of pages*/
 	get page(): number {
 		return this._state.page;
 	}
+	/**Set number of pages*/
 	set page(page: number) {
 		this._set({ page });
 	}
 
+	/**Page size*/
 	get pageSize(): number {
 		return this._state.pageSize;
 	}
+	/**Set page size*/
 	set pageSize(pageSize: number) {
 		this._set({ pageSize });
 	}
 
+	/**Current search term*/
 	get searchTerm(): string {
 		return this._state.searchTerm;
 	}
+	/**Set search term*/
 	set searchTerm(searchTerm: string) {
 		this._set({ searchTerm });
 	}
 
+	/**Set column to sort*/
 	set sortColumn(sortColumn: SortColumn) {
 		this._set({ sortColumn });
 	}
+	/**Set sort direction*/
 	set sortDirection(sortDirection: SortDirection) {
 		this._set({ sortDirection });
 	}
-
+	/**Set a property of {@link _state} and do search*/
 	private _set(patch: Partial<State>) {
 		Object.assign(this._state, patch);
 		this._search$.next();
 	}
 
+	/**
+	 * Full text search on stations
+	 * Get stations, sort stations, filter on search term, update table state
+	 * @returns Observable<SearchResult> Stations search result
+	 */
 	private _search(): Observable<SearchResult> {
 		const { sortColumn, sortDirection, pageSize, page, searchTerm } = this._state;
 

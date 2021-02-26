@@ -16,6 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+/**Production environment variables*/
 export const environment = {
 	production: true,
 	log: false,

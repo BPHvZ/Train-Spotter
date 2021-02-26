@@ -18,10 +18,18 @@
 
 import { Injectable } from "@angular/core";
 
+/**
+ * Cache netwerk responses in LocalStorage
+ */
 @Injectable({
 	providedIn: "root",
 })
 export class CacheService {
+	/**
+	 * Save data in localstorage
+	 * expirationMins specifies the caching time
+	 * @param options Data and parameters to store
+	 */
 	save(options: LocalStorageSaveOptions): void {
 		// Set default values for optionals
 		options.expirationMins = options.expirationMins || 0;
@@ -38,6 +46,12 @@ export class CacheService {
 		localStorage.setItem(options.key, JSON.stringify(record));
 	}
 
+	/**
+	 * Load data from localstorage
+	 * @param key Unique key used to store the data
+	 * @param params Parameters used in the network request that could differ from the stored request
+	 * @returns The value of the stored data or null if the key is not found
+	 */
 	load(key: string, params?: string): any {
 		// Get cached data from localstorage
 		const item = localStorage.getItem(key);
@@ -58,25 +72,46 @@ export class CacheService {
 		return null;
 	}
 
+	/**
+	 * Remove data from localstorage by key
+	 * @param key Remove data stored in localstorage by this key
+	 */
 	remove(key: string): void {
 		localStorage.removeItem(key);
 	}
 
+	/**
+	 * Empty all stored data in localstorage
+	 */
 	cleanLocalStorage(): void {
 		localStorage.clear();
 	}
 }
 
+/**
+ * Data and parameters used to specify the caching time and network request that is being stored
+ */
 export class LocalStorageSaveOptions {
+	/**Unique key for localstorage to store the data by*/
 	key: string;
+	/**Parameters used in the network request. Used to compare request to the same endpoint but with different parameters*/
 	params?: string;
+	/**Object to store*/
 	data: any;
+	/**Caching time in minutes*/
 	expirationMins?: number;
 }
 
+/**
+ * Object that is stored in localstorage. Can be specified with caching options
+ */
 export interface CacheRecord {
+	/**JSON being stored*/
 	value: string;
+	/**Parameters used in the network request*/
 	params: string;
+	/**How long to keep the data in cache the data*/
 	expiration?: number;
+	/**Uses caching or not*/
 	hasExpiration: boolean;
 }

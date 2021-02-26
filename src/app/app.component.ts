@@ -20,14 +20,20 @@
 import { Component } from "@angular/core";
 import { SwUpdate } from "@angular/service-worker";
 
+/**
+ * TrainSpotter starting point
+ */
 @Component({
 	selector: "app-root",
 	templateUrl: "./app.component.html",
 	styleUrls: ["./app.component.sass"],
 })
 export class AppComponent {
-	title = "trainSpotter";
-
+	/**
+	 * Define services
+	 * Refresh the page when a new version of TrainSpotter is available
+	 * @param updates Service Worker service
+	 */
 	constructor(private updates: SwUpdate) {
 		updates.available.subscribe(() => {
 			console.log("updated");

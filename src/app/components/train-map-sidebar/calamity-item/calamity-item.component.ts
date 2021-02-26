@@ -19,11 +19,15 @@
 import { Component, Input } from "@angular/core";
 import { Calamity } from "../../../models/ReisinformatieAPI";
 
+/**
+ * Sidebar card item that shows a calamity
+ * */
 @Component({
 	selector: "app-calamity-item",
 	templateUrl: "./calamity-item.component.html",
 	styleUrls: ["./calamity-item.component.sass"],
 })
 export class CalamityItemComponent {
+	/**Calamity information*/
 	@Input() calamity: Calamity;
 }

@@ -28,19 +28,18 @@ import { Router } from "@angular/router";
 	styleUrls: ["./main-layout.component.sass"],
 })
 export class MainLayoutComponent {
+	/**True if the current page is the train map*/
 	isTrainMap = false;
 
+	/**
+	 * Subscribe to the current route
+	 * @param router Router object
+	 */
 	constructor(private router: Router) {
 		// eslint-disable-next-line @typescript-eslint/no-unused-vars
 		router.events.subscribe((_) => {
 			// if on train map remove padding
 			this.isTrainMap = router.url.endsWith("kaart");
 		});
-	}
-
-	removePaddingOnMap(): string {
-		if (this.isTrainMap) {
-			return "1.333rem";
-		}
 	}
 }

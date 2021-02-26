@@ -38,10 +38,10 @@ describe("AppComponent", () => {
 		expect(app).toBeTruthy();
 	});
 
-	it(`should have as title 'trainSpotter'`, () => {
-		const fixture = TestBed.createComponent(AppComponent);
-		const app = fixture.componentInstance;
-
-		expect(app.title).toEqual("trainSpotter");
-	});
+	// it(`should have as title 'trainSpotter'`, () => {
+	// 	const fixture = TestBed.createComponent(AppComponent);
+	// 	const app = fixture.componentInstance;
+	//
+	// 	expect(app.title).toEqual("trainSpotter");
+	// });
 });

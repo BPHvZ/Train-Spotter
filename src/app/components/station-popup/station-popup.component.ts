@@ -21,7 +21,7 @@ import { MapboxGeoJSONFeature } from "mapbox-gl";
 import { Station } from "../../models/ReisinformatieAPI";
 
 /**
- * Show a popup with information about a station on the train map
+ * Show a popup with information about a station on the map
  */
 @Component({
 	selector: "app-station-popup",
@@ -29,16 +29,18 @@ import { Station } from "../../models/ReisinformatieAPI";
 	styleUrls: ["./station-popup.component.sass"],
 })
 export class StationPopupComponent implements OnChanges {
+	/**Notify the map when to close the popup*/
 	@Output() public closePopup: EventEmitter<void> = new EventEmitter<void>();
+	/**The Mapbox Feature of the station*/
 	@Input() mapboxFeature: MapboxGeoJSONFeature;
+	/**The selected station*/
 	stationInformation: Station;
 
 	/**
 	 * Set the station information on changes
-	 * @param changes Change with station information
+	 * @param changes New station to show the popup of
 	 */
 	ngOnChanges(changes: SimpleChanges): void {
-		console.log(changes);
 		if (changes.mapboxFeature.currentValue) {
 			this.stationInformation = this.mapboxFeature.properties as Station;
 		}

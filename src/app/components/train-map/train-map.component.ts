@@ -322,6 +322,14 @@ export class TrainMapComponent implements OnInit {
 	}
 
 	/**
+	 * Receive an event when a Mapbox popup is closed
+	 * Clear the popup data
+	 */
+	onPopupClose(): void {
+		this.sharedDataService.closePopups();
+	}
+
+	/**
 	 * Change the map {@link mapTypes}
 	 * @param layer Map type to change to
 	 */

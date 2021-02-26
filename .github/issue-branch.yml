@@ -1,5 +1,6 @@
 branches:
     - label: bug
       name: main
+      prefix: bugfix-
     - label: "*"
       name: develop

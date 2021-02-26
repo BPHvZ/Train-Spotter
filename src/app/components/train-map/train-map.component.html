@@ -26,8 +26,8 @@
 				[-5.1804575292, 45.9339846217],
 				[15.0276942887, 56.0902661419]
 			]"
-			(load)="onMapLoad($event)"
-			(mouseMove)="onMapMouseMove($event)"
+			(mapLoad)="onMapLoad($event)"
+			(mapMouseMove)="onMapMouseMove($event)"
 			(zoomEvt)="onMapZoom($event)"
 			(sourceData)="onMapSourceData($event)"
 		>
@@ -49,7 +49,7 @@
 					'icon-allow-overlap': true
 				}"
 				[minzoom]="10"
-				(click)="openStationPopupOnLayerClick($event)"
+				(layerClick)="openStationPopupOnLayerClick($event)"
 			>
 			</mgl-layer>
 			<mgl-layer
@@ -118,7 +118,7 @@
 				id="symbols"
 				type="symbol"
 				source="disruptionMarkersSource"
-				(click)="clickMarker($event)"
+				(layerClick)="clickMarker($event)"
 			>
 			</mgl-layer>
 			<mgl-geojson-source *ngIf="trainsLayerData" id="trainData" [data]="trainsLayerData"> </mgl-geojson-source>
@@ -136,7 +136,7 @@
 				}"
 				[minzoom]="6"
 				[maxzoom]="20"
-				(click)="openTrainPopupOnLayerClick($event)"
+				(layerClick)="openTrainPopupOnLayerClick($event)"
 			>
 			</mgl-layer>
 			<div *ngIf="trainIconsForMap">
@@ -144,8 +144,8 @@
 					*ngFor="let trainIcon of trainIconsForMap"
 					[id]="trainIcon.imageName"
 					[url]="trainIcon.imageObjectURL"
-					(loaded)="onIconLoad(trainIcon.imageName)"
-					(error)="onIconLoad(trainIcon.imageName)"
+					(imageLoaded)="onIconLoad(trainIcon.imageName)"
+					(imageError)="onIconLoad(trainIcon.imageName)"
 				></mgl-image>
 			</div>
 			<mgl-popup
@@ -153,6 +153,7 @@
 				[offset]="[0, 5]"
 				[closeButton]="false"
 				[lngLat]="selectedTrainOnMapFeature?.geometry?.coordinates"
+				(popupClose)="onPopupClose()"
 			>
 				<app-train-popup [mapboxFeature]="selectedTrainOnMapFeature" (closePopup)="closePopup()">
 				</app-train-popup>
@@ -162,6 +163,7 @@
 				[offset]="[0, 5]"
 				[closeButton]="false"
 				[lngLat]="selectedStationOnMapFeature?.geometry?.coordinates"
+				(popupClose)="onPopupClose()"
 			>
 				<app-station-popup [mapboxFeature]="selectedStationOnMapFeature" (closePopup)="closePopup()">
 				</app-station-popup>

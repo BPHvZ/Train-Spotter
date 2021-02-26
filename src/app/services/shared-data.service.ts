@@ -308,7 +308,7 @@ export class SharedDataService {
 	/**
 	 * Close all popups on the map
 	 */
-	private closePopups() {
+	closePopups() {
 		this.selectedTrainOnMapFeature = null;
 		this.selectedStationOnMapFeature = null;
 	}

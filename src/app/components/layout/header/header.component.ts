@@ -111,6 +111,7 @@ export class HeaderComponent implements OnInit {
 	 */
 	selectItemFromGlobalSearch(event: NgbTypeaheadSelectItemEvent): void {
 		const result = event.item as GlobalSearchResult;
+		event.preventDefault();
 		// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
 		this.globalTypeahead.nativeElement.value = result.searchField;
 		switch (result.resultType) {

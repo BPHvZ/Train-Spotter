@@ -2,8 +2,9 @@
 	"tsconfig": "tsconfig.compodoc.json",
 	"output": "./docs",
 	"name": "TrainSpotter Documentation",
-	"theme": "readthedocs",
+	"theme": "material",
 	"assetsFolder": "readme-images",
 	"hideGenerator": true,
-	"customFavicon": "src/favicon.ico"
+	"customFavicon": "src/favicon.ico",
+	"customLogo": "readme-images/logo-blue.png"
 }

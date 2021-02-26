@@ -11,7 +11,7 @@
 <br />
 <p align="center">
   <a href="https://github.com/BPHvZ/Train-Spotter">
-    <img src="readme-images/logo.png" alt="Logo" width="80" height="80">
+    <img src="readme-images/logo-blue.png" alt="Logo" width="80" height="80">
   </a>
 
   <h3 align="center">TrainSpotter</h3>
@@ -121,7 +121,7 @@ This is an example of how to list things you need to use the software and how to
     ```
 3. Run TrainSpotter
 `sh yarn run serve `
-  <!-- Project Management -->
+   <!-- Project Management -->
 
 ## Project Management
 

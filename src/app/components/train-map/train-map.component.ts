@@ -404,6 +404,7 @@ export class TrainMapComponent implements OnInit {
 			[],
 			true
 		);
+		this.isUpdatingMapData = false;
 	}
 
 	/**
@@ -506,7 +507,6 @@ export class TrainMapComponent implements OnInit {
 			},
 			complete: () => {
 				console.log("updateTrainsAndDisruptions");
-				this.isUpdatingMapData = false;
 				this.pauseOrResumeUpdatingTrainPositions(false);
 				if (environment.production === false) {
 					this.pauseOrResumeUpdatingTrainPositions(true);

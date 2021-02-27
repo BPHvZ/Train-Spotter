@@ -27,8 +27,9 @@ import {
 	transition,
 	trigger,
 } from "@angular/animations";
-import { Component, EventEmitter, OnInit, Output } from "@angular/core";
+import { Component, EventEmitter, Input, Output } from "@angular/core";
 import { faSyncAlt } from "@fortawesome/free-solid-svg-icons";
+import { Observable } from "rxjs";
 import { DisruptionsList } from "../../models/ReisinformatieAPI";
 import { SharedDataService } from "../../services/shared-data.service";
 
@@ -80,37 +81,27 @@ import { SharedDataService } from "../../services/shared-data.service";
 		]),
 	],
 })
-export class TrainMapSidebarComponent implements OnInit {
+export class TrainMapSidebarComponent {
+	/**Active disruptions*/
+	@Input() activeDisruptions: DisruptionsList;
 	/**Notify train map component to force update disruptions*/
 	@Output() updateDisruptions = new EventEmitter();
 	/**Notify when sidebar opens and closes*/
 	@Output() clickOnArrow = new EventEmitter<boolean>();
 
-	/**Date when disruptions have been last updated*/
-	lastUpdatedDate?: Date;
 	/**Sidebar open/closed state*/
 	sidebarState = "closed";
 	/**FontAwesome sync icon*/
 	faSyncAlt = faSyncAlt;
+
+	/**Date when disruptions have been last updated*/
+	disruptionsLastUpdated$: Observable<Date> = this.sharedDataService.disruptionsLastUpdated$;
 
 	/**
 	 * Define services
 	 * @param sharedDataService Shares data through the application
 	 */
 	constructor(private sharedDataService: SharedDataService) {}
-
-	/**Subscribe to last updated date*/
-	ngOnInit(): void {
-		this.sharedDataService.getActiveDisruptionsLastUpdated$.subscribe((value) => (this.lastUpdatedDate = value));
-	}
-
-	/**
-	 * Get the latest disruptions from {@link sharedDataService}
-	 * @returns DisruptionsList Latest disruptions
-	 */
-	get disruptions(): DisruptionsList {
-		return this.sharedDataService.activeDisruptions;
-	}
 
 	/**
 	 * Open or close the sidebar

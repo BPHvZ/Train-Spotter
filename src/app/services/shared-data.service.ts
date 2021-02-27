@@ -18,13 +18,13 @@
 
 import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
-import { GeoJSON } from "geojson";
+import { GeoJSON, MultiLineString } from "geojson";
 import { LngLatLike, Map as MapBoxMap, MapboxGeoJSONFeature } from "mapbox-gl";
-import { BehaviorSubject, fromEvent, Observable } from "rxjs";
-import { debounceTime, map, mergeMap, tap } from "rxjs/operators";
+import { BehaviorSubject, combineLatest, fromEvent, Observable } from "rxjs";
+import { debounceTime, map, switchMap, take, tap } from "rxjs/operators";
 import { DisruptionBase, DisruptionsList, Station, StationsResponse } from "../models/ReisinformatieAPI";
 import { TrainTracksGeoJSON } from "../models/SpoortkaartAPI";
-import { DetailedTrainInformation, Train } from "../models/VirtualTrainAPI";
+import { DetailedTrainInformation } from "../models/VirtualTrainAPI";
 import { ApiService } from "./api.service";
 import { CacheService } from "./cache.service";
 import { ResponseType } from "./http-client.service";
@@ -39,46 +39,43 @@ export class SharedDataService {
 	/*
 	 * Data used by the train map
 	 * */
-	/**All stations*/
-	stations?: StationsResponse;
-	/**Subscribable stations object*/
-	private _stations$ = new BehaviorSubject<StationsResponse>(null);
-	/**Observable of stations*/
-	get stations$(): Observable<StationsResponse> {
-		return this._stations$.asObservable();
-	}
-
 	// Map popups
 	/**Train of selected popup*/
 	selectedTrainOnMapFeature: MapboxGeoJSONFeature;
 	/**Station of selected popup*/
 	selectedStationOnMapFeature: MapboxGeoJSONFeature;
 
-	/**Train tracks of disrupted tracks*/
-	disruptedTrainTracksLayerData?: TrainTracksGeoJSON;
-	/**Markers for disruptions*/
-	disruptionMarkersData: GeoJSON.Feature<GeoJSON.Point, DisruptionBase>[];
-	/**Current disruptions*/
-	activeDisruptions?: DisruptionsList;
-	/**Subscribable disruptions object*/
-	private _getActiveDisruptionsLastUpdated$ = new BehaviorSubject<Date>(null);
-	/**Observable of disruptions*/
-	get getActiveDisruptionsLastUpdated$(): Observable<Date> {
-		return this._getActiveDisruptionsLastUpdated$.asObservable();
-	}
+	/**Subscribable stations object*/
+	private _stations = new BehaviorSubject<StationsResponse>(null);
+	/**Observable of stations*/
+	public readonly stations$ = this._stations.asObservable();
 
-	/**Trains on map*/
-	trainTracksLayerData?: TrainTracksGeoJSON;
-	/**Minimal train information*/
-	basicTrainInformation?: Train[];
-	/**Detailed train information*/
-	detailedTrainInformation?: DetailedTrainInformation[];
+	/**Train tracks of disrupted tracks*/
+	private readonly _disruptedTrainTracksLayerData: BehaviorSubject<TrainTracksGeoJSON> = new BehaviorSubject(null);
+	/**Train tracks of disrupted tracks as observable*/
+	public readonly disruptedTrainTracksLayerData$ = this._disruptedTrainTracksLayerData.asObservable();
+
+	/**Markers for disruptions*/
+	private readonly _disruptionMarkersData: BehaviorSubject<
+		GeoJSON.Feature<GeoJSON.Point, DisruptionBase>[]
+	> = new BehaviorSubject(null);
+	/**Markers for disruptions as observables*/
+	public readonly disruptionMarkersData$ = this._disruptionMarkersData.asObservable();
+
+	/**Current disruptions*/
+	private readonly _activeDisruptions: BehaviorSubject<DisruptionsList> = new BehaviorSubject(null);
+	/**Current disruptions as observable*/
+	public readonly activeDisruptions$ = this._activeDisruptions.asObservable();
+
+	/**Subscribable disruptions object*/
+	private _disruptionsLastUpdated = new BehaviorSubject<Date>(null);
+	/**Observable of disruptions*/
+	public readonly disruptionsLastUpdated$ = this._disruptionsLastUpdated.asObservable();
+
 	/**Subscribable detailed train information object*/
-	private _detailedTrainInformation$ = new BehaviorSubject<DetailedTrainInformation[]>(null);
+	private _detailedTrainInformation = new BehaviorSubject<DetailedTrainInformation[]>(null);
 	/**Observable of detailed train information*/
-	get detailedTrainInformation$(): Observable<DetailedTrainInformation[]> {
-		return this._detailedTrainInformation$.asObservable();
-	}
+	public readonly detailedTrainInformation$ = this._detailedTrainInformation.asObservable();
 
 	/**Mapbox map*/
 	trainMap?: MapBoxMap;
@@ -97,6 +94,11 @@ export class SharedDataService {
 	/**Current browser screen width*/
 	screenWidth = window.innerWidth;
 
+	/*
+	 * Data used by the header
+	 * */
+	globalSearchReady$ = combineLatest([this._stations, this._detailedTrainInformation]);
+
 	/**
 	 * Defines services
 	 * Get last updated date for disruptions in sidebar
@@ -107,7 +109,7 @@ export class SharedDataService {
 	constructor(private apiService: ApiService, private router: Router, private cacheService: CacheService) {
 		const dateData = this.cacheService.load("getActiveDisruptionsLastUpdated") as Date;
 		if (dateData) {
-			this._getActiveDisruptionsLastUpdated$.next(dateData);
+			this._disruptionsLastUpdated.next(dateData);
 		}
 		this.init();
 	}
@@ -121,20 +123,7 @@ export class SharedDataService {
 			.subscribe((evt: any) => {
 				// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
 				this.screenWidth = evt.target.innerWidth;
-				console.log(this.screenWidth);
 			});
-	}
-
-	/**
-	 * Return True when all initial data is loaded
-	 */
-	get allDataLoaded(): boolean {
-		return (
-			this.stations != null &&
-			this.trainTracksLayerData != null &&
-			this.disruptedTrainTracksLayerData != null &&
-			this.activeDisruptions != null
-		);
 	}
 
 	/**
@@ -143,13 +132,16 @@ export class SharedDataService {
 	 */
 	getBasicInformationAboutAllStations(): Observable<StationsResponse> {
 		return this.apiService.getBasicInformationAboutAllStations().pipe(
-			tap((response) => {
-				this.stations = response.data;
-				this._stations$.next(response.data);
+			take(1),
+			map((response) => {
+				this._stations.next(response.data);
 				return response.data;
-			}),
-			map((response) => response.data)
+			})
 		);
+	}
+
+	stationsLastValue(): StationsResponse {
+		return this._stations.getValue();
 	}
 
 	/**
@@ -158,9 +150,7 @@ export class SharedDataService {
 	 */
 	getTrainTracksGeoJSON(): Observable<TrainTracksGeoJSON> {
 		return this.apiService.getTrainTracksGeoJSON().pipe(
-			tap((response) => {
-				this.trainTracksLayerData = response.data;
-			}),
+			take(1),
 			map((response) => response.data)
 		);
 	}
@@ -169,13 +159,21 @@ export class SharedDataService {
 	 * Get all disrupted train tracks
 	 * @returns Observable<Response<TrainTracksGeoJSON>> All disrupted train tracks as GeoJSON
 	 */
-	getDisruptedTrainTracksGeoJSON(force = false): Observable<TrainTracksGeoJSON> {
+	updateDisruptedTrainTracksGeoJSON(force = false): Observable<void> {
 		return this.apiService.getDisruptedTrainTracksGeoJSON(force).pipe(
-			tap((response) => {
-				this.disruptedTrainTracksLayerData = response.data;
-			}),
-			map((response) => response.data)
+			take(1),
+			map((response) => {
+				this._disruptedTrainTracksLayerData.next(response.data);
+			})
 		);
+	}
+
+	disruptedTrainTracksLayerDataLastValue(): GeoJSON.FeatureCollection<MultiLineString> {
+		return this._disruptedTrainTracksLayerData.getValue()?.payload as GeoJSON.FeatureCollection<MultiLineString>;
+	}
+
+	updateDisruptionMarkersData(markers: GeoJSON.Feature<GeoJSON.Point, DisruptionBase>[]): void {
+		this._disruptionMarkersData.next(markers);
 	}
 
 	/**
@@ -183,51 +181,64 @@ export class SharedDataService {
 	 * @param force Force an update, do not check cache
 	 * @returns Observable<Response<DisruptionsList>> Information about current disruptions
 	 */
-	getActiveDisruptions(force = false): Observable<DisruptionsList> {
+	updateActiveDisruptions(force = false): Observable<void> {
 		return this.apiService.getActiveDisruptions(force).pipe(
+			take(1),
 			tap((response) => {
 				if (response.responseType == ResponseType.URL) {
 					const date = new Date();
-					this._getActiveDisruptionsLastUpdated$.next(date);
+					this._disruptionsLastUpdated.next(date);
 					this.cacheService.save({
 						key: "getActiveDisruptionsLastUpdated",
 						data: JSON.stringify(date.toUTCString()),
 					});
 				}
-				this.activeDisruptions = response.data;
 			}),
-			map((response) => response.data)
+			map((response) => {
+				this._activeDisruptions.next(response.data);
+			})
 		);
+	}
+
+	activeDisruptionsLastValue(): DisruptionsList {
+		return this._activeDisruptions.getValue();
 	}
 
 	/**
 	 * Get detailed information about all trains by their ride id's
-	 * @returns Observable<Response<TrainInformation[]>> Detailed information about all trains
+	 * @returns Observable<void> Detailed information about all trains
 	 */
-	getDetailedInformationAboutActiveTrains(): Observable<DetailedTrainInformation[]> {
+	updateDetailedInformationAboutActiveTrains(): Observable<void> {
+		let trainInformation: DetailedTrainInformation[] = [];
 		return this.apiService.getBasicInformationAboutAllTrains().pipe(
-			mergeMap((response) => {
+			take(1),
+			map((response) => {
 				const trains = response.data;
-				this.basicTrainInformation = trains.payload.treinen;
-				this.detailedTrainInformation = trains.payload.treinen;
+				trainInformation = trains.payload.treinen;
 				let trainIds = "";
 				trains.payload.treinen.forEach((train) => {
 					trainIds += train.ritId + ",";
 				});
 				trainIds = trainIds.slice(0, -1);
+				return trainIds;
+			}),
+			switchMap((trainIds) => {
 				return this.apiService.getTrainDetailsByRideId(trainIds);
 			}),
 			map((response) => {
-				const trainDetails = response.data;
-				this.detailedTrainInformation.forEach((basicTrain) => {
-					basicTrain.trainDetails = trainDetails.find(
+				const detailedTrainInformation = response.data;
+				trainInformation.forEach((basicTrain) => {
+					basicTrain.trainDetails = detailedTrainInformation.find(
 						(details) => details.ritnummer.toString() === basicTrain.ritId
 					);
 				});
-				this._detailedTrainInformation$.next(this.detailedTrainInformation);
-				return this.detailedTrainInformation;
+				this._detailedTrainInformation.next(trainInformation);
 			})
 		);
+	}
+
+	trainInformationLastValue(): DetailedTrainInformation[] {
+		return this._detailedTrainInformation.getValue();
 	}
 
 	/**
@@ -263,9 +274,10 @@ export class SharedDataService {
 		if (this.router.url !== "/kaart") {
 			void this.router.navigateByUrl("/kaart");
 		}
-		if (this.trainMap && disruption) {
+		if (this.trainMap && disruption && this._disruptionMarkersData.getValue() != null) {
+			const markers = this._disruptionMarkersData.getValue();
 			this.closePopups();
-			const marker = this.disruptionMarkersData.find((m) => m.properties === disruption);
+			const marker = markers.find((m) => m.properties === disruption);
 			if (marker) {
 				this.trainMap.flyTo({
 					center: marker.geometry.coordinates as LngLatLike,
@@ -308,7 +320,7 @@ export class SharedDataService {
 	/**
 	 * Close all popups on the map
 	 */
-	closePopups() {
+	closePopups(): void {
 		this.selectedTrainOnMapFeature = null;
 		this.selectedStationOnMapFeature = null;
 	}

@@ -87,11 +87,11 @@
 						[class.is-invalid]="searchGloballyFailed"
 						[ngbTypeahead]="searchGlobally"
 						[resultTemplate]="rt"
-						[disabled]="!allDataLoaded"
+						[disabled]="!globalSearchReady"
 						(selectItem)="selectItemFromGlobalSearch($event)"
 					/>
 				</div>
-				<button class="button button--nsYellow button--small ml-2" [disabled]="!allDataLoaded">Zoek</button>
+				<button class="button button--nsYellow button--small ml-2" [disabled]="!globalSearchReady">Zoek</button>
 			</form>
 		</div>
 	</nav>

@@ -74,6 +74,8 @@ import "@angular/localize/init";
  *  (window as any).__Zone_enable_cross_context_check = true;
  *
  */
+
+// https://github.com/Wykks/ngx-mapbox-gl/issues/136#issuecomment-496224634
 // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
 (window as any).global = window;
 

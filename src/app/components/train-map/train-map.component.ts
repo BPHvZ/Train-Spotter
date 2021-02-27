@@ -27,7 +27,6 @@ import {
 	MapLayerMouseEvent,
 	MapMouseEvent,
 	MapSourceDataEvent,
-	SymbolLayout,
 } from "mapbox-gl";
 import { interval, PartialObserver, Subject, zip } from "rxjs";
 import { pausable, PausableObservable } from "rxjs-pausable";
@@ -109,12 +108,6 @@ export class TrainMapComponent implements OnInit {
 	activeMapType: TrainMapType = this.mapTypes[0];
 
 	// Station layer
-	/**Station layer layout*/
-	stationsLayerLayout: SymbolLayout = {
-		"icon-image": "NS",
-		"icon-size": 0.15,
-		"icon-allow-overlap": true,
-	};
 	/**Station layer GeoJSON*/
 	stationsLayerData: GeoJSON.FeatureCollection<GeoJSON.Geometry>;
 
@@ -405,6 +398,10 @@ export class TrainMapComponent implements OnInit {
 			true
 		);
 		this.isUpdatingMapData = false;
+		this.pauseOrResumeUpdatingTrainPositions(false);
+		if (environment.production === false) {
+			this.pauseOrResumeUpdatingTrainPositions(true);
+		}
 	}
 
 	/**
@@ -507,10 +504,6 @@ export class TrainMapComponent implements OnInit {
 			},
 			complete: () => {
 				console.log("updateTrainsAndDisruptions");
-				this.pauseOrResumeUpdatingTrainPositions(false);
-				if (environment.production === false) {
-					this.pauseOrResumeUpdatingTrainPositions(true);
-				}
 			},
 		});
 	}
@@ -625,13 +618,12 @@ export class TrainMapComponent implements OnInit {
 			next: (trainIconName) => {
 				this.trainIconsAdded.add(trainIconName);
 				if (this.trainIconNames.size === this.trainIconsAdded.size) {
-					this.addTrainsToMap(detailedTrainInformation);
 					this.trainIconAddedSource.complete();
 				}
 			},
 			error: (err) => console.log(err),
 			complete: () => {
-				this.isUpdatingMapData = false;
+				this.addTrainsToMap(detailedTrainInformation);
 			},
 		});
 	}

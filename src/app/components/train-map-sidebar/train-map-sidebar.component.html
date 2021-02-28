@@ -35,18 +35,18 @@
 					<button (click)="changeState()" class="button button--close">
 						<strong>&times;</strong>
 					</button>
-					<div *ngIf="lastUpdatedDate" class="text-center">
+					<div *ngIf="disruptionsLastUpdated$ | async as date" class="text-center">
 						<span style="font-size: small">Bijgewerkt om:<br /></span>
-						{{ lastUpdatedDate | date: "EEEE d LLL, HH:mm:ss" }}
+						{{ date | date: "EEEE d LLL, HH:mm:ss" }}
 					</div>
 					<button (click)="updateDisruptions.emit(null)" class="button button--nsYellow button--close">
 						<strong><fa-icon [icon]="faSyncAlt" style="font-size: small"></fa-icon></strong>
 					</button>
 				</div>
 				<div class="row">
-					<div *ngIf="disruptions">
+					<div *ngIf="activeDisruptions">
 						<div
-							*ngFor="let disruption of disruptions"
+							*ngFor="let disruption of activeDisruptions"
 							[ngSwitch]="disruption.type"
 							class="card card-max-width bg-light mb-3"
 						>

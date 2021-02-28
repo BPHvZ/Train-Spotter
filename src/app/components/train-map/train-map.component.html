@@ -38,11 +38,16 @@
 				[fitBoundsOptions]="{maxZoom:10}"
 				position="top-right"
 			></mgl-control>
+			<mgl-geojson-source
+				*ngIf="stationsLayerData"
+				id="stationsData"
+				[data]="stationsLayerData"
+			></mgl-geojson-source>
 			<mgl-layer
 				*ngIf="stationsLayerData"
 				id="stations"
 				type="symbol"
-				[source]="{ type: 'geojson', data: stationsLayerData }"
+				source="stationsData"
 				[layout]="{
 					'icon-image': 'NS',
 					'icon-size': 0.15,
@@ -52,21 +57,26 @@
 				(layerClick)="openStationPopupOnLayerClick($event)"
 			>
 			</mgl-layer>
+			<mgl-geojson-source
+				*ngIf="trainTracksLayerData"
+				id="trainTracksLayerData"
+				[data]="trainTracksLayerData"
+			></mgl-geojson-source>
 			<mgl-layer
 				*ngIf="trainTracksLayerData"
 				id="NSTrainTracks"
 				type="line"
-				[source]="{ type: 'geojson', data: trainTracksLayerData }"
+				source="trainTracksLayerData"
 				[layout]="{ 'line-join': 'round', 'line-cap': 'round' }"
 				[paint]="{ 'line-color': '#9C9CA6', 'line-width': 2 }"
 				[before]="'stations'"
 			>
 			</mgl-layer>
 			<mgl-layer
-				*ngIf="disruptedTrainTracksLayerData"
+				*ngIf="disruptedTrainTracksLayerData$ | async as data"
 				id="disruptedTrainTracks"
 				type="line"
-				[source]="{ type: 'geojson', data: disruptedTrainTracksLayerData }"
+				[source]="{ type: 'geojson', data: data.payload }"
 				[layout]="{
 					visibility: activeMapType.layerId === 'storingen-railroad' ? 'visible' : 'none',
 					'line-join': 'round',
@@ -76,52 +86,54 @@
 				[before]="'stations'"
 			>
 			</mgl-layer>
-			<mgl-geojson-source id="disruptionMarkersSource">
-				<mgl-marker
-					*ngFor="let disruptionMarker of disruptionMarkersData"
-					[lngLat]="disruptionMarker.geometry.coordinates"
-				>
-					<div
-						style="pointer-events: auto"
-						[ngStyle]="{ display: activeMapType.layerId === 'storingen-railroad' ? 'unset' : 'none' }"
+			<ng-container *ngIf="disruptionMarkersData$ | async as disruptionMarkers">
+				<mgl-geojson-source id="disruptionMarkersSource">
+					<mgl-marker
+						*ngFor="let disruptionMarker of disruptionMarkers"
+						[lngLat]="disruptionMarker.geometry.coordinates"
 					>
 						<div
-							id="mapPopup"
-							class="flex-parent-inline flex-parent--center-cross flex-parent--column absolute bottom"
+							style="pointer-events: auto"
+							[ngStyle]="{ display: activeMapType.layerId === 'storingen-railroad' ? 'unset' : 'none' }"
 						>
 							<div
-								class="mapPopupContent mapPopupContent--disruption color-white shadow-darken10 round txt-s clip txt-truncate"
+								id="mapPopup"
+								class="flex-parent-inline flex-parent--center-cross flex-parent--column absolute bottom"
 							>
 								<div
-									*ngIf="disruptionMarker.properties['type'] === 'werkzaamheid'; else elseDisruption"
+									class="mapPopupContent mapPopupContent--disruption color-white shadow-darken10 round txt-s clip txt-truncate"
 								>
-									<img
-										src="../../../assets/maintenance--35x35.svg"
-										alt="Werk aan het spoor"
-										style="position: inherit; height: 30px"
-									/>
+									<div
+										*ngIf="disruptionMarker.properties['type'] === 'werkzaamheid'; else elseDisruption"
+									>
+										<img
+											src="../../../assets/maintenance--35x35.svg"
+											alt="Werk aan het spoor"
+											style="position: inherit; height: 30px"
+										/>
+									</div>
+									<ng-template #elseDisruption>
+										<img
+											src="../../../assets/alert--35x35.svg"
+											alt="Storing"
+											style="position: inherit; height: 30px"
+									/></ng-template>
 								</div>
-								<ng-template #elseDisruption>
-									<img
-										src="../../../assets/alert--35x35.svg"
-										alt="Storing"
-										style="position: inherit; height: 30px"
-								/></ng-template>
+								<span class="flex-child triangle triangle--d" style="color: #fe0000"></span>
 							</div>
-							<span class="flex-child triangle triangle--d" style="color: #fe0000"></span>
 						</div>
-					</div>
-				</mgl-marker>
-			</mgl-geojson-source>
-			<mgl-layer
-				*ngIf="disruptionMarkersData"
-				id="symbols"
-				type="symbol"
-				source="disruptionMarkersSource"
-				(layerClick)="clickMarker($event)"
-			>
-			</mgl-layer>
-			<mgl-geojson-source *ngIf="trainsLayerData" id="trainData" [data]="trainsLayerData"> </mgl-geojson-source>
+					</mgl-marker>
+				</mgl-geojson-source>
+				<mgl-layer
+					*ngIf="disruptionMarkers"
+					id="symbols"
+					type="symbol"
+					source="disruptionMarkersSource"
+					(layerClick)="clickMarker($event)"
+				>
+				</mgl-layer>
+			</ng-container>
+			<mgl-geojson-source *ngIf="trainsLayerData" id="trainData" [data]="trainsLayerData"></mgl-geojson-source>
 			<mgl-layer
 				*ngIf="trainsLayerData && trainIconsForMap"
 				id="trains"
@@ -244,8 +256,9 @@
 		</ng-template>
 	</div>
 	<div>
-		<div id="sidebar-component" *ngIf="activeDisruptions">
+		<div id="sidebar-component" *ngIf="activeDisruptions$ | async as disruptions">
 			<app-train-map-sidebar
+				[activeDisruptions]="disruptions"
 				(clickOnArrow)="sidebar.changeState()"
 				(updateDisruptions)="updateDisruptions()"
 			></app-train-map-sidebar>

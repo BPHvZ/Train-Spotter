@@ -19,7 +19,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
 import { faBars, faCrosshairs } from "@fortawesome/free-solid-svg-icons";
 import { NgbTypeaheadSelectItemEvent } from "@ng-bootstrap/ng-bootstrap";
-import { Observable, of } from "rxjs";
+import { Observable, of, Subscription } from "rxjs";
 import { catchError, debounceTime, distinctUntilChanged, switchMap, tap } from "rxjs/operators";
 import { GlobalSearchResult, GlobalSearchResultType } from "../../../models/GlobalSearch";
 import { Station } from "../../../models/ReisinformatieAPI";
@@ -55,26 +55,30 @@ export class HeaderComponent implements OnInit {
 	/**Status of failure during global search*/
 	searchGloballyFailed = false;
 
+	globalSearchReady = false;
+	globalSearchReadySubscription: Subscription;
+
 	/**
 	 * Define services
 	 * @param sharedDataService Shares data through the application
 	 * @param globalSearchService Searches on stations and trains
 	 */
-	constructor(private sharedDataService: SharedDataService, private globalSearchService: GlobalSearchService) {}
+	constructor(private sharedDataService: SharedDataService, private globalSearchService: GlobalSearchService) {
+		this.globalSearchReadySubscription = this.sharedDataService.globalSearchReady$.subscribe(
+			([stations, trains]) => {
+				if (stations != null && trains != null) {
+					this.globalSearchReady = true;
+					this.globalSearchReadySubscription.unsubscribe();
+				}
+			}
+		);
+	}
 
 	/**Subscribe to navbar collapse changes*/
 	ngOnInit(): void {
 		this.sharedDataService.navbarCollapsed$.subscribe((value) => {
 			this.navbarCollapsed = value;
 		});
-	}
-
-	/**
-	 * Get the status of shared data
-	 * @returns boolean True when all data has been loaded
-	 */
-	get allDataLoaded(): boolean {
-		return this.sharedDataService.allDataLoaded;
 	}
 
 	/**Collapse or expand the navbar*/

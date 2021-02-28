@@ -28,7 +28,7 @@ import {
 	MapMouseEvent,
 	MapSourceDataEvent,
 } from "mapbox-gl";
-import { interval, PartialObserver, Subject, zip } from "rxjs";
+import { interval, Observable, PartialObserver, Subject, zip } from "rxjs";
 import { pausable, PausableObservable } from "rxjs-pausable";
 import { environment } from "../../../environments/environment";
 import { DisruptionBase, DisruptionsList, Station, StationsResponse } from "../../models/ReisinformatieAPI";
@@ -120,26 +120,21 @@ export class TrainMapComponent implements OnInit {
 	 * Get active disruptions
 	 * @returns DisruptionsList List of current disruptions
 	 */
-	get activeDisruptions(): DisruptionsList {
-		return this.sharedDataService.activeDisruptions;
-	}
+	activeDisruptions$: Observable<DisruptionsList> = this.sharedDataService.activeDisruptions$;
 
 	/**
 	 * Get train tracks that have disruptions
 	 * @returns GeoJSON.FeatureCollection<MultiLineString> GeoJSON data of disrupted train tracks
 	 */
-	get disruptedTrainTracksLayerData(): GeoJSON.FeatureCollection<MultiLineString> {
-		return this.sharedDataService.disruptedTrainTracksLayerData
-			?.payload as GeoJSON.FeatureCollection<MultiLineString>;
-	}
+	disruptedTrainTracksLayerData$: Observable<TrainTracksGeoJSON> = this.sharedDataService
+		.disruptedTrainTracksLayerData$;
 
 	/**
 	 * Get markers to place at current disruptions
 	 * @returns GeoJSON.Feature<GeoJSON.Point, DisruptionBase>[] GeoJSON data of disruption markers
 	 */
-	get disruptionMarkersData(): GeoJSON.Feature<GeoJSON.Point, DisruptionBase>[] {
-		return this.sharedDataService.disruptionMarkersData;
-	}
+	disruptionMarkersData$: Observable<GeoJSON.Feature<GeoJSON.Point, DisruptionBase>[]> = this.sharedDataService
+		.disruptionMarkersData$;
 
 	// Trains layer
 	/**Trains layer with current trains*/
@@ -253,14 +248,13 @@ export class TrainMapComponent implements OnInit {
 		zip(
 			this.sharedDataService.getBasicInformationAboutAllStations(),
 			this.sharedDataService.getTrainTracksGeoJSON(),
-			this.sharedDataService.getDisruptedTrainTracksGeoJSON(),
-			this.sharedDataService.getActiveDisruptions()
+			this.sharedDataService.updateDisruptedTrainTracksGeoJSON(),
+			this.sharedDataService.updateActiveDisruptions()
 		).subscribe({
-			next: (value: [StationsResponse, TrainTracksGeoJSON, TrainTracksGeoJSON, DisruptionsList]) => {
+			next: (value: [StationsResponse, TrainTracksGeoJSON, void, void]) => {
 				console.log(value);
 				this.addStationsToMap(value[0].payload);
 				this.trainTracksLayerData = value[1].payload;
-				console.log(value[3]);
 			},
 			error: (err) => {
 				console.log(err);
@@ -442,11 +436,11 @@ export class TrainMapComponent implements OnInit {
 	 */
 	private setDisruptionMarkers(): void {
 		const markers: GeoJSON.Feature<GeoJSON.Point, DisruptionBase>[] = [];
-		console.log(this.disruptedTrainTracksLayerData.features.length);
 
 		const uniqueDisruptions: GeoJSON.Feature<MultiLineString, { [p: string]: any }>[] = [];
 		const idMap = new Map();
-		for (const feature of this.disruptedTrainTracksLayerData.features) {
+		const features = this.sharedDataService.disruptedTrainTracksLayerDataLastValue().features;
+		for (const feature of features) {
 			if (!idMap.has(feature.id)) {
 				idMap.set(feature.id, true);
 				uniqueDisruptions.push(feature);
@@ -454,9 +448,9 @@ export class TrainMapComponent implements OnInit {
 		}
 
 		uniqueDisruptions.forEach((feature) => {
-			const disruptionInfo = this.sharedDataService.activeDisruptions.find(
-				(disruption: DisruptionBase) => disruption.id === feature.id
-			);
+			const disruptionInfo = this.sharedDataService
+				.activeDisruptionsLastValue()
+				.find((disruption: DisruptionBase) => disruption.id === feature.id);
 			if (disruptionInfo) {
 				const linePart = feature.geometry.coordinates[0];
 				markers.push({
@@ -469,7 +463,7 @@ export class TrainMapComponent implements OnInit {
 				});
 			}
 		});
-		this.sharedDataService.disruptionMarkersData = markers;
+		this.sharedDataService.updateDisruptionMarkersData(markers);
 	}
 
 	/**
@@ -489,14 +483,13 @@ export class TrainMapComponent implements OnInit {
 		this.isUpdatingMapData = true;
 		this.pauseOrResumeUpdatingTrainPositions(true);
 		zip(
-			this.sharedDataService.getDetailedInformationAboutActiveTrains(),
-			this.sharedDataService.getDisruptedTrainTracksGeoJSON(),
-			this.sharedDataService.getActiveDisruptions()
+			this.sharedDataService.updateDetailedInformationAboutActiveTrains(),
+			this.sharedDataService.updateDisruptedTrainTracksGeoJSON(),
+			this.sharedDataService.updateActiveDisruptions()
 		).subscribe({
-			next: (value: [DetailedTrainInformation[], TrainTracksGeoJSON, DisruptionsList]) => {
-				console.log(value[0]);
-				console.log(value[2]);
-				this.setTrainIconName(value[0]);
+			// eslint-disable-next-line @typescript-eslint/no-unused-vars
+			next: (_) => {
+				this.setTrainIconName(this.sharedDataService.trainInformationLastValue());
 				this.setDisruptionMarkers();
 			},
 			error: (err) => {
@@ -514,19 +507,15 @@ export class TrainMapComponent implements OnInit {
 	 */
 	updateDisruptions(): void {
 		zip(
-			this.sharedDataService.getDisruptedTrainTracksGeoJSON(true),
-			this.sharedDataService.getActiveDisruptions(true)
+			this.sharedDataService.updateDisruptedTrainTracksGeoJSON(true),
+			this.sharedDataService.updateActiveDisruptions(true)
 		).subscribe({
-			next: (value: [TrainTracksGeoJSON, DisruptionsList]) => {
-				console.log(value[0]);
-				console.log(value[1]);
-				this.setDisruptionMarkers();
-			},
 			error: (err) => {
 				console.log(err);
 			},
 			complete: () => {
 				console.log("updateDisruptions");
+				this.setDisruptionMarkers();
 			},
 		});
 	}

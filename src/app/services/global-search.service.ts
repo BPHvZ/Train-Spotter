@@ -17,11 +17,8 @@
  */
 
 import { Injectable } from "@angular/core";
-import { Observable, of, zip } from "rxjs";
-import { map } from "rxjs/operators";
+import { Observable, of } from "rxjs";
 import { GlobalSearchResult, GlobalSearchResultType } from "../models/GlobalSearch";
-import { StationsResponse } from "../models/ReisinformatieAPI";
-import { DetailedTrainInformation } from "../models/VirtualTrainAPI";
 import { HelperFunctionsService } from "./helper-functions.service";
 import { SharedDataService } from "./shared-data.service";
 
@@ -32,25 +29,13 @@ import { SharedDataService } from "./shared-data.service";
 	providedIn: "root",
 })
 export class GlobalSearchService {
-	/**All Stations*/
-	private _stations: StationsResponse = null;
-	/**All current trains*/
-	private _trains: DetailedTrainInformation[] = null;
-
 	/**
 	 * Define services.
 	 * Subscribe to receive the latest stations and trains
 	 * @param sharedDataService Shares data through the application
 	 * @param helperFunctionsService Helper functions
 	 */
-	constructor(private sharedDataService: SharedDataService, private helperFunctionsService: HelperFunctionsService) {
-		this.sharedDataService.detailedTrainInformation$.subscribe((value) => {
-			this._trains = value;
-		});
-		this.sharedDataService.stations$.subscribe((value) => {
-			this._stations = value;
-		});
-	}
+	constructor(private sharedDataService: SharedDataService, private helperFunctionsService: HelperFunctionsService) {}
 
 	/**
 	 * Do a global search on station and trains
@@ -59,21 +44,13 @@ export class GlobalSearchService {
 	 */
 	globalSearch(term: string): Observable<GlobalSearchResult[]> {
 		console.log(term);
-		if (term === "") {
+		const trains = this.sharedDataService.trainInformationLastValue();
+		const stations = this.sharedDataService.stationsLastValue();
+		if (term === "" || trains == null || stations == null) {
 			const list: GlobalSearchResult[] = [];
 			return of(list);
 		}
-
-		return zip(
-			this._stations ? of(this._stations) : this.sharedDataService.getBasicInformationAboutAllStations(),
-			this._trains ? of(this._trains) : this.sharedDataService.getDetailedInformationAboutActiveTrains()
-		).pipe(
-			map((value) => {
-				this._stations = value[0];
-				this._trains = value[1];
-				return this._searchAllCategories(term);
-			})
-		);
+		return of(this._searchAllCategories(term));
 	}
 
 	/**
@@ -90,10 +67,12 @@ export class GlobalSearchService {
 	 */
 	private _searchAllCategories(term: string): GlobalSearchResult[] {
 		const results: GlobalSearchResult[] = [];
+		const _trains = this.sharedDataService.trainInformationLastValue();
+		const _stations = this.sharedDataService.stationsLastValue();
 
 		if (!isNaN(Number(term))) {
 			// Trains on ride id
-			const trainsRideIds = this._trains.filter((train) => train.ritId?.includes(term));
+			const trainsRideIds = _trains.filter((train) => train.ritId?.includes(term));
 			trainsRideIds.forEach((train) => {
 				results.push({
 					result: train,
@@ -103,7 +82,7 @@ export class GlobalSearchService {
 			});
 
 			// Trains on trainpart number
-			const trainsMaterialNumbers = this._trains.filter((train) =>
+			const trainsMaterialNumbers = _trains.filter((train) =>
 				train.trainDetails?.materieeldelen?.some((m) => m.materieelnummer?.toString().includes(term))
 			);
 			trainsMaterialNumbers.forEach((train) => {
@@ -120,7 +99,7 @@ export class GlobalSearchService {
 			const termUpper = term.toUpperCase();
 
 			// Stations on station name and abbriviation
-			const stations = this._stations.payload.filter(
+			const stations = _stations.payload.filter(
 				(station) =>
 					station.namen.lang.toUpperCase().includes(termUpper) ||
 					station.code.toUpperCase().includes(termUpper)
@@ -133,7 +112,7 @@ export class GlobalSearchService {
 				});
 			});
 
-			this._trains.forEach((train) => {
+			_trains.forEach((train) => {
 				let searchField: string = null;
 				if (this.helperFunctionsService.getTypeOfTrain(train).toUpperCase().includes(termUpper)) {
 					const trainType = this.helperFunctionsService.getTypeOfTrain(train);

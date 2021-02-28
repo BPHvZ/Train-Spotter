@@ -17,10 +17,10 @@
  */
 
 import { Injectable } from "@angular/core";
-import { BehaviorSubject, Observable, Subject } from "rxjs";
+import { BehaviorSubject, Observable, of, Subject } from "rxjs";
 import { debounceTime, delay, map, switchMap, tap } from "rxjs/operators";
 import { SortColumn, SortDirection } from "../directives/ngbd-sortable-header.directive";
-import { Station } from "../models/ReisinformatieAPI";
+import { Station, StationsResponse } from "../models/ReisinformatieAPI";
 import { SharedDataService } from "./shared-data.service";
 
 /**
@@ -205,7 +205,11 @@ export class StationsService {
 	private _search(): Observable<SearchResult> {
 		const { sortColumn, sortDirection, pageSize, page, searchTerm } = this._state;
 
-		return this.sharedDataService.getBasicInformationAboutAllStations().pipe(
+		const stations = this.sharedDataService.stationsLastValue();
+		const stationsObservable: Observable<StationsResponse> =
+			stations == null ? this.sharedDataService.getBasicInformationAboutAllStations() : of(stations);
+
+		return stationsObservable.pipe(
 			map((stations) => {
 				// 1. sort
 				let stationPayloads = sort(stations.payload, sortColumn, sortDirection);

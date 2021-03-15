@@ -31,7 +31,6 @@
 							"src/custom-theme.scss",
 							"node_modules/bootstrap/dist/css/bootstrap.min.css",
 							"./node_modules/mapbox-gl/dist/mapbox-gl.css",
-							"./node_modules/@mapbox/mapbox-gl-geocoder/lib/mapbox-gl-geocoder.css",
 							"src/styles.sass"
 						],
 						"scripts": [],
@@ -97,7 +96,6 @@
 						"styles": [
 							"node_modules/bootstrap/dist/css/bootstrap.min.css",
 							"./node_modules/mapbox-gl/dist/mapbox-gl.css",
-							"./node_modules/@mapbox/mapbox-gl-geocoder/lib/mapbox-gl-geocoder.css",
 							"src/styles.sass"
 						],
 						"scripts": []

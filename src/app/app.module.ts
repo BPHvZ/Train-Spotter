@@ -44,6 +44,7 @@ import { TrainMapSidebarComponent } from "./components/train-map-sidebar/train-m
 import { TrainMapComponent } from "./components/train-map/train-map.component";
 import { TrainPopupComponent } from "./components/train-popup/train-popup.component";
 import { NgbdSortableHeaderDirective } from "./directives/ngbd-sortable-header.directive";
+import { TrainMapModuleModule } from "./train-map-module/train-map-module.module";
 
 registerLocaleData(localeNL, "nl");
 
@@ -64,8 +65,9 @@ registerLocaleData(localeNL, "nl");
 	imports: [
 		BrowserModule,
 		AppRoutingModule,
-		NgxMapboxGLModule.withConfig({
-			accessToken: "pk.eyJ1IjoiYnBodnoiLCJhIjoiY2prbDQydXgyMXJtNzN2cGo3NnNsc3NuZSJ9.o33sEM09iHWvUNXKjKnBpA",
+		NgxMapboxGLModule,
+		TrainMapModuleModule.forRoot({
+			mapboxToken: environment.MAPBOX_ACCESSTOKEN,
 		}),
 		NgbModule,
 		BrowserAnimationsModule,

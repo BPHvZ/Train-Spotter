@@ -14,7 +14,6 @@
 				"eslint:recommended",
 				"plugin:@typescript-eslint/recommended",
 				"plugin:@typescript-eslint/recommended-requiring-type-checking",
-				// Settings for Prettier
 				"prettier/@typescript-eslint",
 				"plugin:prettier/recommended"
 			],
@@ -53,12 +52,11 @@
 			"parserOptions": {
 				"project": "./tsconfig.spec.json"
 			},
-			// Jasmine rules
 			"extends": ["plugin:jasmine/recommended"],
-			// Plugin to run Jasmine rules
 			"plugins": ["jasmine"],
-			"env": { "jasmine": true },
-			// Turn off 'no-unused-vars' rule
+			"env": {
+				"jasmine": true
+			},
 			"rules": {
 				"@typescript-eslint/no-unused-vars": "off"
 			}

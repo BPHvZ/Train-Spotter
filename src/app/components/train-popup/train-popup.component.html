@@ -39,8 +39,8 @@
 										<span *ngIf="trainPart.materieelnummer">
 											<span *ngIf="i == 0; else other"> met {{ trainPart.materieelnummer }}</span>
 											<ng-template #other
-												>{{i == (trainInformation.trainDetails.materieeldelen.length - 1) ? '
-												en' : ','}} {{ trainPart.materieelnummer }}
+												>{{i == (trainInformation.trainDetails.materieeldelen.length - 1) ? 'en'
+												: ','}} {{ trainPart.materieelnummer }}
 											</ng-template>
 										</span>
 									</span>

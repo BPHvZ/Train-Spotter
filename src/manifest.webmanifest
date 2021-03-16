@@ -3,9 +3,16 @@
 	"background_color": "#fafafa",
 	"display": "standalone",
 	"scope": "./",
-	"start_url": "./",
+	"start_url": "/index.html",
 	"name": "TrainSpotter",
 	"short_name": "TrainSpotter",
+	"prefer_related_applications": false,
+	"related_applications": [
+		{
+			"platform": "webapp",
+			"url": "https://treinenkaart.bartvanzeist.com/manifest.json"
+		}
+	],
 	"icons": [
 		{
 			"src": "assets/icons/icon-192x192.png",

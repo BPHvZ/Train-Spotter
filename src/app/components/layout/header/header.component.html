@@ -16,6 +16,49 @@
   ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   -->
 
+<ng-template #content let-modal>
+	<div class="mat-typography">
+		<div class="modal-header">
+			<h2 class="modal-title mat-typography">Installeer TrainSpotter App</h2>
+			<button
+				class="button button--nsYellow button--close"
+				data-dismiss="modal"
+				aria-label="Close"
+				(click)="closePWAInstallModal(modal)"
+			>
+				<strong>&times;</strong>
+			</button>
+		</div>
+		<div class="modal-body">
+			Installeer de TrainSpotter app op uw telefoon om TrainSpotter nog makkelijker te kunnen gebruiken. U hoeft
+			TrainSpotter dan niet meer in de browser te gebruiken, maar direct vanaf uw homescherm. Heel handig!
+		</div>
+		<div class="modal-footer">
+			<div style="display: block">
+				<div style="text-align-last: right">
+					<label>
+						<input type="checkbox" [(ngModel)]="doNotShowInstallAgainCheckbox" />
+						Niet meer tonen
+					</label>
+				</div>
+				<div class="">
+					<button
+						class="button button--nsYellow"
+						style="margin-right: 0.25rem"
+						data-dismiss="modal"
+						(click)="closePWAInstallModal(modal)"
+					>
+						Sluiten
+					</button>
+					<button class="button" data-dismiss="modal" ngbAutofocus (click)="installPWA(modal)">
+						<fa-icon [icon]="faArrowAltCircleDown" style="margin-right: 4px"></fa-icon> Installeer
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</ng-template>
+
 <header class="fixed-top mat-typography">
 	<nav class="navbar navbar-expand-md navbar-dark bg-blue">
 		<a class="navbar-brand" [routerLink]="'kaart'" style="cursor: pointer">
@@ -44,6 +87,12 @@
 					<a class="nav-link router-link-hover d-flex" routerLink="/stations" (click)="toggleNavbar()">
 						<strong class="link-hover" routerLinkActive="link-active">Stations</strong></a
 					>
+				</li>
+				<li *ngIf="showPWAInstallButton" class="nav-item align-self-md-center pr-md-3" style="cursor: pointer">
+					<a class="nav-link router-link-hover d-flex" (click)="openPWAInstallModal(content)">
+						<fa-icon [icon]="faArrowAltCircleDown" style="margin-right: 4px"></fa-icon>
+						<strong>Install App</strong>
+					</a>
 				</li>
 			</ul>
 			<form class="nav-item form-inline my-md-2 my-lg-0 flex-nowrap">

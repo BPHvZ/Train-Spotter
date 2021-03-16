@@ -20,13 +20,11 @@
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
-// MAPBOX_ACCESSTOKEN: "pk.eyJ1IjoiYnBodnoiLCJhIjoiY2prbDQydXgyMXJtNzN2cGo3NnNsc3NuZSJ9.o33sEM09iHWvUNXKjKnBpA",
-
 /**Development environment variables*/
 export const environment = {
 	production: false,
 	log: true,
-	MAPBOX_ACCESSTOKEN: "pk.eyJ1IjoiYnBodnoiLCJhIjoiY2tsanZ2ZGx6MHR3dzJwcWlraDFuN2o3ZyJ9.4tGBqtZSp0L1N3sEXTTdjw",
+	MAPBOX_ACCESSTOKEN: "pk.eyJ1IjoiYnBodnoiLCJhIjoiY2prbDQydXgyMXJtNzN2cGo3NnNsc3NuZSJ9.o33sEM09iHWvUNXKjKnBpA",
 	MAPBOX_STYLE: "mapbox://styles/bphvz/ck1xf2nj76u2t1cqcej8e5lj5?optimize=true",
 };
 

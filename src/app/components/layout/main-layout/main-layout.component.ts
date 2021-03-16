@@ -31,10 +31,6 @@ export class MainLayoutComponent {
 	/**True if the current page is the train map*/
 	isTrainMap = false;
 
-	deferredPrompt: any;
-	showButton = false;
-	doNotShowInstallAgain = false;
-
 	/**
 	 * Subscribe to the current route
 	 * @param router Router object
@@ -45,43 +41,5 @@ export class MainLayoutComponent {
 			// if on train map remove padding
 			this.isTrainMap = router.url.endsWith("kaart");
 		});
-		window.addEventListener("beforeinstallprompt", (event: any) => {
-			// eslint-disable-next-line
-			event.preventDefault();
-			this.deferredPrompt = event;
-			this.showButton = true;
-		});
-
-		window.addEventListener("appinstalled", () => {
-			// Hide the app-provided install promotion
-			this.showButton = false;
-			// Clear the deferredPrompt so it can be garbage collected
-			this.deferredPrompt = null;
-			// Optionally, send analytics event to indicate successful install
-			console.log("PWA was installed");
-		});
-	}
-
-	installPWA(): void {
-		// hide our user interface that shows our A2HS button
-		this.showButton = false;
-		// Show the prompt
-		// eslint-disable-next-line
-		this.deferredPrompt.prompt();
-		// Wait for the user to respond to the prompt
-		// eslint-disable-next-line
-		this.deferredPrompt.userChoice.then((choiceResult) => {
-			// eslint-disable-next-line
-			if (choiceResult.outcome === "accepted") {
-				console.log("User accepted the A2HS prompt");
-			} else {
-				console.log("User dismissed the A2HS prompt");
-			}
-			this.deferredPrompt = null;
-		});
-	}
-
-	closeInstallPWAAlert(): void {
-		this.showButton = false;
 	}
 }

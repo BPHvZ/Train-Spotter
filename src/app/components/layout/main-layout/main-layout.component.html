@@ -29,32 +29,5 @@
 				<router-outlet></router-outlet>
 			</div>
 		</div>
-		<div *ngIf="showButton" id="install-pwa">
-			<div id="install-pwa-alert">
-				<div class="d-flex flex-parent--space-between-main">
-					<p style="margin: auto">Install the TrainSpotter app.</p>
-					<div>
-						<button
-							class="button button--nsYellow"
-							style="height: 28px; padding: 0 1.125rem"
-							(click)="installPWA()"
-						>
-							Installeer
-						</button>
-						<button
-							class="button button--nsYellow button--close"
-							style="margin-left: 10px"
-							(click)="closeInstallPWAAlert()"
-						>
-							<strong>&times;</strong>
-						</button>
-						<br />
-						<div style="text-align-last: right; margin-top: 8px">
-							<input [(ngModel)]="doNotShowInstallAgain" required type="checkbox" /> Niet opnieuw tonen
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
 	</main>
 </div>

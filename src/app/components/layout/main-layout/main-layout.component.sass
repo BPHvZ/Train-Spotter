@@ -15,6 +15,8 @@
  / You should have received a copy of the GNU General Public License
  / along with this program.  If not, see <http://www.gnu.org/licenses/>.
  /
+@import "src/styles/colors"
+
 \:host ::ng-deep router-outlet + *:not(nav)
   height: 100%
   float: right
@@ -40,12 +42,30 @@ main
     padding: 0
     max-width: 1280px
 
+#install-pwa-alert
+  color: white
+  background-color: $ns-blue
+  border-color: $ns-blue
+  padding: 8px
+  border-radius: 8px
+
+#install-pwa
+  position: fixed
+  bottom: 20px
+  left: 10%
+  right: 10%
+  text-align: center
+
 @media (max-width: 768px)
   main
     .main-content
       padding-left: 0.5rem
       padding-bottom: 0.5rem
       padding-right: 0.5rem
+
+  #install-pwa-alert
+    left: 0
+    right: 0
 
 @media (max-width: 767px)
   .page-padding

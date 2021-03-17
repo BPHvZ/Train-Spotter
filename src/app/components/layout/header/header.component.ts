@@ -16,7 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { Component, ElementRef, OnInit, TemplateRef, ViewChild } from "@angular/core";
+import { AfterViewInit, Component, ElementRef, OnInit, Renderer2, TemplateRef, ViewChild } from "@angular/core";
 import { faArrowAltCircleDown, faBars, faCrosshairs } from "@fortawesome/free-solid-svg-icons";
 import { NgbModal, NgbTypeaheadSelectItemEvent } from "@ng-bootstrap/ng-bootstrap";
 import { Observable, of, Subscription } from "rxjs";
@@ -36,7 +36,7 @@ import { SharedDataService } from "../../../services/shared-data.service";
 	templateUrl: "./header.component.html",
 	styleUrls: ["./header.component.sass"],
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, AfterViewInit {
 	/**The global search input field*/
 	@ViewChild("globalTypeahead") globalTypeahead: ElementRef;
 
@@ -76,7 +76,8 @@ export class HeaderComponent implements OnInit {
 		private sharedDataService: SharedDataService,
 		private globalSearchService: GlobalSearchService,
 		private cacheService: CacheService,
-		private modalService: NgbModal
+		private modalService: NgbModal,
+		private renderer: Renderer2
 	) {
 		const cachedShowPWAInstall: boolean = cacheService.load("showPWAInstall") ?? true;
 		if (cachedShowPWAInstall == false) {
@@ -128,6 +129,12 @@ export class HeaderComponent implements OnInit {
 		this.sharedDataService.navbarCollapsed$.subscribe((value) => {
 			this.navbarCollapsed = value;
 		});
+	}
+
+	ngAfterViewInit(): void {
+		if (this.globalTypeahead !== undefined) {
+			this.renderer.removeAttribute(this.globalTypeahead.nativeElement, "aria-multiline");
+		}
 	}
 
 	openPWAInstallModal(content: TemplateRef<any>): void {

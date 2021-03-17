@@ -268,6 +268,7 @@ export class TrainMapComponent implements OnInit {
 		const children = document.querySelector(".mapboxgl-ctrl-attrib-inner").children;
 		for (let i = 0; i < children.length; i++) {
 			children[i].setAttribute("rel", "noopener");
+			children[i].setAttribute("role", "listitem");
 		}
 	}
 

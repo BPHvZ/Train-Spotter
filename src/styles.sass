@@ -20,6 +20,8 @@
 /* Importing Bootstrap SCSS file. */
 @import '~bootstrap/scss/bootstrap'
 
+@import '~mapbox-gl/dist/mapbox-gl.css'
+
 @import "src/_globals"
 
 @import "styles/buttons"
@@ -103,3 +105,9 @@ body
 .headingS
   font-weight: 400
   color: $ns-blue
+
+.toggle
+  color: $ns-blue
+
+input:disabled+.toggle
+  color: #595959

@@ -109,14 +109,18 @@
 										<img
 											src="../../../assets/maintenance--35x35.svg"
 											alt="Werk aan het spoor"
-											style="position: inherit; height: 30px"
+											height="30"
+											width="30"
+											style="position: inherit"
 										/>
 									</div>
 									<ng-template #elseDisruption>
 										<img
 											src="../../../assets/alert--35x35.svg"
 											alt="Storing"
-											style="position: inherit; height: 30px"
+											height="30"
+											width="30"
+											style="position: inherit"
 									/></ng-template>
 								</div>
 								<span class="flex-child triangle triangle--d" style="color: #fe0000"></span>
@@ -184,12 +188,12 @@
 		<div id="mapControls" *ngIf="true; else loadingMap">
 			<div id="mapTypeControl" class="toggle-group border border--2 border--white bg-white shadow-darken10 z1">
 				<div class="toggle-container mb-0" *ngFor="let mapType of mapTypes">
-					<label [htmlFor]="mapType.layerId" hidden></label>
 					<input
 						[id]="mapType.layerId"
 						class="mapTypeInput"
 						name="toggle"
 						type="radio"
+						[attr.aria-label]="mapType.description"
 						[checked]="mapType.layerId == activeMapType.layerId"
 						[disabled]="isUpdatingMapData"
 					/>
@@ -215,7 +219,7 @@
 							else updatingMapDataSpinner
 						"
 					>
-						<button mat-icon-button>
+						<button mat-icon-button role="button" aria-label="Pauzeer/hervat treinposities countdown">
 							<mat-icon
 								*ngIf="
 									updateTrainsIsPaused === false && isUpdatingMapData === false;
@@ -244,6 +248,7 @@
 							style="background-color: #003082"
 							aria-valuemin="0"
 							aria-valuemax="100"
+							aria-label="Treinposities update countdown"
 						></div>
 					</div>
 				</div>

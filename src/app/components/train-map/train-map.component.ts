@@ -263,6 +263,12 @@ export class TrainMapComponent implements OnInit {
 				this.updateTrainsAndDisruptions();
 			},
 		});
+
+		// Add rel=noopener to mapbox links
+		const children = document.querySelector(".mapboxgl-ctrl-attrib-inner").children;
+		for (let i = 0; i < children.length; i++) {
+			children[i].setAttribute("rel", "noopener");
+		}
 	}
 
 	/**

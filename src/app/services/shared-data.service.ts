@@ -195,7 +195,11 @@ export class SharedDataService {
 				}
 			}),
 			map((response) => {
-				this._activeDisruptions.next(response.data);
+				const disruptions = response.data;
+				const disruptionsSorted = disruptions.sort(
+					(a, b) => new Date(a["start"]).valueOf() - new Date(b["start"]).valueOf()
+				);
+				this._activeDisruptions.next(disruptionsSorted);
 			})
 		);
 	}

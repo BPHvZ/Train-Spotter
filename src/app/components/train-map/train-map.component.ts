@@ -16,7 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { Component, OnInit, ViewChild } from "@angular/core";
+import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
 import { NavigationEnd, NavigationStart, Router } from "@angular/router";
 import { GeoJSON, MultiLineString } from "geojson";
 import {
@@ -28,8 +28,7 @@ import {
 	MapMouseEvent,
 	MapSourceDataEvent,
 } from "mapbox-gl";
-import { interval, Observable, PartialObserver, Subject, zip } from "rxjs";
-import { pausable, PausableObservable } from "rxjs-pausable";
+import { Observable, Subject, zip } from "rxjs";
 import { environment } from "../../../environments/environment";
 import { DisruptionBase, DisruptionsList, Station, StationsResponse } from "../../models/ReisinformatieAPI";
 import { SpoortkaartFeatureCollection, TrainTracksGeoJSON } from "../../models/SpoortkaartAPI";
@@ -39,6 +38,7 @@ import { HelperFunctionsService } from "../../services/helper-functions.service"
 import { ImageEditorService } from "../../services/image-editor.service";
 import { SharedDataService } from "../../services/shared-data.service";
 import { TrainMapSidebarComponent } from "../train-map-sidebar/train-map-sidebar.component";
+import Timeout = NodeJS.Timeout;
 
 /**
  * Train map with stations and trains that get update every x seconds
@@ -51,6 +51,8 @@ import { TrainMapSidebarComponent } from "../train-map-sidebar/train-map-sidebar
 export class TrainMapComponent implements OnInit {
 	/**Sidebar element with disruptions*/
 	@ViewChild(TrainMapSidebarComponent) sidebar: TrainMapSidebarComponent;
+
+	@ViewChild("updateCountdown") countdown: ElementRef;
 
 	// MapBox setup
 	/**Mapbox map style*/
@@ -79,16 +81,16 @@ export class TrainMapComponent implements OnInit {
 	}
 
 	// Update data countdown
-	/**Countdown progress*/
-	private progressNum = 100;
 	/**Is countdown paused*/
 	updateTrainsIsPaused = false;
 	/**Is currently updating train positions*/
 	isUpdatingMapData = false;
-	/**Countdown timer*/
-	updateTrainsTimer: PausableObservable<number>;
-	/**Timer observable*/
-	timerObserver: PartialObserver<number>;
+	timeInSeconds = 10;
+	current_time = Date.now();
+	deadline = new Date(this.current_time + this.timeInSeconds * 1000);
+	timeinterval: Timeout;
+	paused = false; // is the clock paused?
+	time_left: number; // time left on the clock when paused
 
 	// Map styles
 	/**Map types*/
@@ -167,29 +169,10 @@ export class TrainMapComponent implements OnInit {
 	) {}
 
 	/**
-	 * Set {@link updateTrainsTimer} and {@link progressNum}
 	 * Fly to station when this component is reused and navigated to from another component with extra state parameters
 	 */
 	ngOnInit(): void {
-		this.updateTrainsTimer = interval(10).pipe(pausable()) as PausableObservable<number>;
 		this.pauseOrResumeUpdatingTrainPositions(true);
-
-		this.timerObserver = {
-			next: (count: number) => {
-				const timePassedInMs = 10 * count;
-				const timePassedInSec = timePassedInMs / 100;
-				const timeLeftInSec = 100 - timePassedInSec;
-				if (timeLeftInSec > 0.0) {
-					this.progressNum = timeLeftInSec;
-				} else if (timeLeftInSec < 0.0) {
-					this.progressNum = 100;
-					if (this.isUpdatingMapData === false) {
-						this.updateTrainsAndDisruptions();
-					}
-				}
-			},
-		};
-		this.updateTrainsTimer.subscribe(this.timerObserver);
 
 		this.router.events.subscribe((event) => {
 			if (event instanceof NavigationStart) {
@@ -206,12 +189,44 @@ export class TrainMapComponent implements OnInit {
 		});
 	}
 
-	/**
-	 * Get the {@link updateTrainsTimer} progress
-	 * @returns string Progress in percentage
-	 */
-	get getProgress(): string {
-		return `${this.progressNum}%`;
+	run_clock(endtime: Date): void {
+		console.log(this.current_time);
+		console.log(this.deadline);
+		const update_clock = () => {
+			const t = endtime.getMilliseconds() - Date.now();
+			console.log(`timer: ${t}`);
+			if (t <= 0) {
+				// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+				clearInterval(this.timeinterval);
+				if (this.isUpdatingMapData === false) {
+					this.updateTrainsAndDisruptions();
+				}
+			}
+		};
+		update_clock(); // run function once at first to avoid delay
+		this.timeinterval = setInterval(update_clock, 1000);
+	}
+
+	pause_clock(): void {
+		console.log("pause1");
+		if (!this.paused) {
+			console.log("pause");
+			this.paused = true;
+			clearInterval(this.timeinterval); // stop the clock
+			this.time_left = this.deadline.getMilliseconds() - Date.now(); // preserve remaining time
+		}
+	}
+
+	resume_clock(): void {
+		if (this.paused) {
+			this.paused = false;
+
+			// update the deadline to preserve the amount of time remaining
+			this.deadline = new Date(Date.now() + this.time_left);
+
+			// start the clock
+			this.run_clock(this.deadline);
+		}
 	}
 
 	/**
@@ -229,14 +244,22 @@ export class TrainMapComponent implements OnInit {
 	pauseOrResumeUpdatingTrainPositions(pause: boolean): void {
 		if (this.isUpdatingMapData === false) {
 			if (pause === false) {
-				this.updateTrainsTimer.resume();
+				this.run_clock(this.deadline);
 				this.updateTrainsIsPaused = false;
 			} else {
-				this.updateTrainsTimer.pause();
+				this.pause_clock();
 				this.updateTrainsIsPaused = true;
 			}
 		}
 	}
+
+	/* eslint-disable */
+	resetCountdownProgressbarAnimation(): void {
+		this.countdown.nativeElement.classList.remove("progress-value");
+		void this.countdown.nativeElement.offsetWidth;
+		this.countdown.nativeElement.classList.add("progress-value");
+	}
+	/* eslint-enable */
 
 	/**
 	 * Get station, train and disruption information when map is loaded
@@ -399,9 +422,10 @@ export class TrainMapComponent implements OnInit {
 			true
 		);
 		this.isUpdatingMapData = false;
+		this.resetCountdownProgressbarAnimation();
 		this.pauseOrResumeUpdatingTrainPositions(false);
 		if (environment.production === false) {
-			this.pauseOrResumeUpdatingTrainPositions(true);
+			this.pauseOrResumeUpdatingTrainPositions(false);
 		}
 	}
 

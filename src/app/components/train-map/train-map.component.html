@@ -240,12 +240,11 @@
 					</ng-template>
 				</div>
 				<div id="updatePositionsProgressbar">
-					<div class="progress" style="height: 12px; border-radius: 6px">
+					<div class="countdown-progressbar" role="progressbar">
 						<div
-							class="progress-bar"
-							role="progressbar"
-							[ngStyle]="{ width: getProgress }"
-							style="background-color: #003082"
+							#updateCountdown
+							class="progress-value"
+							[ngStyle]="{'animation-play-state': updateTrainsIsPaused ? 'paused' : 'running'}"
 							aria-valuemin="0"
 							aria-valuemax="100"
 							aria-label="Treinposities update countdown"

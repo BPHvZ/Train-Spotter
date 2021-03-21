@@ -136,7 +136,7 @@ export class TrainMapSidebarComponent {
 			// FIX - redraws sidebar in safari. Otherwise still occupies the sidebar area and no interaction is available
 			sidebarWrapper.style.display = "none";
 			sidebarWrapper.offsetHeight; // no need to store this anywhere, the reference is enough
-			sidebarWrapper.style.display = "";
+			sidebarWrapper.style.display = "block";
 		}
 	}
 

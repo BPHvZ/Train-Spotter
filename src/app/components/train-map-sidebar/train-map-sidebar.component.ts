@@ -132,6 +132,11 @@ export class TrainMapSidebarComponent {
 			sidebarWrapper.style.top = "calc(50% - (135px / 2))";
 			sidebarWrapper.style.padding = "30px 0 30px 30px";
 			sidebar.style.setProperty("display", "none", "important");
+
+			// FIX - redraws sidebar in safari. Otherwise still occupies the sidebar area and no interaction is available
+			sidebarWrapper.style.display = "none";
+			sidebarWrapper.offsetHeight; // no need to store this anywhere, the reference is enough
+			sidebarWrapper.style.display = "";
 		}
 	}
 

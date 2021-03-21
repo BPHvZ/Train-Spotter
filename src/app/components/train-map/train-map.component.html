@@ -240,11 +240,12 @@
 					</ng-template>
 				</div>
 				<div id="updatePositionsProgressbar">
-					<div class="countdown-progressbar" role="progressbar">
+					<div class="countdown-progressbar">
 						<div
 							#updateCountdown
 							class="progress-value"
 							[ngStyle]="{'animation-play-state': updateTrainsIsPaused ? 'paused' : 'running'}"
+							role="progressbar"
 							aria-valuemin="0"
 							aria-valuemax="100"
 							aria-label="Treinposities update countdown"

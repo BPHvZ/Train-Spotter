@@ -16,7 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 
 /**
@@ -27,9 +27,10 @@ import { Router } from "@angular/router";
 	templateUrl: "./main-layout.component.html",
 	styleUrls: ["./main-layout.component.sass"],
 })
-export class MainLayoutComponent {
+export class MainLayoutComponent implements OnInit {
 	/**True if the current page is the train map*/
 	isTrainMap = false;
+	innerHeight = window.innerHeight;
 
 	/**
 	 * Subscribe to the current route
@@ -40,6 +41,12 @@ export class MainLayoutComponent {
 		router.events.subscribe((_) => {
 			// if on train map remove padding
 			this.isTrainMap = router.url.endsWith("kaart");
+		});
+	}
+
+	ngOnInit(): void {
+		window.addEventListener("resize", () => {
+			this.innerHeight = window.innerHeight;
 		});
 	}
 }

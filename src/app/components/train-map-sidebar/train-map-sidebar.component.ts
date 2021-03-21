@@ -121,6 +121,7 @@ export class TrainMapSidebarComponent {
 	 * @param event Animation event
 	 */
 	sidebarAnimationFinished(event: AnimationEvent): void {
+		const sidebarComponent = document.getElementById("sidebar-component");
 		const sidebarWrapper = document.getElementById("sidebar-wrapper");
 		const sidebarContainer = document.getElementById("sidebar-container");
 		const sidebar = document.getElementById("sidebar");
@@ -134,9 +135,10 @@ export class TrainMapSidebarComponent {
 			sidebar.style.setProperty("display", "none", "important");
 
 			// FIX - redraws sidebar in safari. Otherwise still occupies the sidebar area and no interaction is available
-			sidebarWrapper.style.cssText += ";-webkit-transform:rotateZ(0deg)";
-			console.log(sidebarWrapper.offsetHeight);
-			sidebarWrapper.style.cssText += ";-webkit-transform:none";
+			const display = sidebarComponent.style.display;
+			sidebarComponent.style.display = "none";
+			console.log(sidebarComponent.offsetHeight);
+			sidebarComponent.style.display = display;
 		}
 	}
 

@@ -18,6 +18,7 @@
 
 import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
 import { NavigationEnd, NavigationStart, Router } from "@angular/router";
+import { Timer } from "easytimer.js";
 import { GeoJSON, MultiLineString } from "geojson";
 import {
 	EventData,
@@ -38,7 +39,6 @@ import { HelperFunctionsService } from "../../services/helper-functions.service"
 import { ImageEditorService } from "../../services/image-editor.service";
 import { SharedDataService } from "../../services/shared-data.service";
 import { TrainMapSidebarComponent } from "../train-map-sidebar/train-map-sidebar.component";
-import Timeout = NodeJS.Timeout;
 
 /**
  * Train map with stations and trains that get update every x seconds
@@ -85,12 +85,7 @@ export class TrainMapComponent implements OnInit {
 	updateTrainsIsPaused = false;
 	/**Is currently updating train positions*/
 	isUpdatingMapData = false;
-	timeInSeconds = 10;
-	current_time = Date.now();
-	deadline = new Date(this.current_time + this.timeInSeconds * 1000);
-	timeinterval: Timeout;
-	paused = false; // is the clock paused?
-	time_left: number; // time left on the clock when paused
+	countdownTimer = new Timer({ countdown: true, startValues: { seconds: 10 } });
 
 	// Map styles
 	/**Map types*/
@@ -187,46 +182,18 @@ export class TrainMapComponent implements OnInit {
 				}
 			}
 		});
-	}
 
-	run_clock(endtime: Date): void {
-		console.log(this.current_time);
-		console.log(this.deadline);
-		const update_clock = () => {
-			const t = endtime.getMilliseconds() - Date.now();
-			console.log(`timer: ${t}`);
-			if (t <= 0) {
-				// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-				clearInterval(this.timeinterval);
-				if (this.isUpdatingMapData === false) {
-					this.updateTrainsAndDisruptions();
-				}
+		this.countdownTimer.addEventListener("secondsUpdated", (e) => {
+			console.log(this.countdownTimer.getTimeValues());
+			console.log(this.countdownTimer.getConfig());
+		});
+
+		this.countdownTimer.addEventListener("targetAchieved", (e) => {
+			console.log("timer");
+			if (this.isUpdatingMapData === false) {
+				this.updateTrainsAndDisruptions();
 			}
-		};
-		update_clock(); // run function once at first to avoid delay
-		this.timeinterval = setInterval(update_clock, 1000);
-	}
-
-	pause_clock(): void {
-		console.log("pause1");
-		if (!this.paused) {
-			console.log("pause");
-			this.paused = true;
-			clearInterval(this.timeinterval); // stop the clock
-			this.time_left = this.deadline.getMilliseconds() - Date.now(); // preserve remaining time
-		}
-	}
-
-	resume_clock(): void {
-		if (this.paused) {
-			this.paused = false;
-
-			// update the deadline to preserve the amount of time remaining
-			this.deadline = new Date(Date.now() + this.time_left);
-
-			// start the clock
-			this.run_clock(this.deadline);
-		}
+		});
 	}
 
 	/**
@@ -244,10 +211,13 @@ export class TrainMapComponent implements OnInit {
 	pauseOrResumeUpdatingTrainPositions(pause: boolean): void {
 		if (this.isUpdatingMapData === false) {
 			if (pause === false) {
-				this.run_clock(this.deadline);
+				if (this.countdownTimer.getTimeValues().seconds <= 0) {
+					this.resetCountdownProgressbarAnimation();
+				}
+				this.countdownTimer.start();
 				this.updateTrainsIsPaused = false;
 			} else {
-				this.pause_clock();
+				this.countdownTimer.pause();
 				this.updateTrainsIsPaused = true;
 			}
 		}
@@ -256,7 +226,7 @@ export class TrainMapComponent implements OnInit {
 	/* eslint-disable */
 	resetCountdownProgressbarAnimation(): void {
 		this.countdown.nativeElement.classList.remove("progress-value");
-		void this.countdown.nativeElement.offsetWidth;
+		console.log(this.countdown.nativeElement.offsetHeight);
 		this.countdown.nativeElement.classList.add("progress-value");
 	}
 	/* eslint-enable */
@@ -422,10 +392,9 @@ export class TrainMapComponent implements OnInit {
 			true
 		);
 		this.isUpdatingMapData = false;
-		this.resetCountdownProgressbarAnimation();
 		this.pauseOrResumeUpdatingTrainPositions(false);
 		if (environment.production === false) {
-			this.pauseOrResumeUpdatingTrainPositions(false);
+			this.pauseOrResumeUpdatingTrainPositions(true);
 		}
 	}
 

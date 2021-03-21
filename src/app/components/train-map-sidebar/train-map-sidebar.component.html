@@ -16,46 +16,51 @@
   ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   -->
 
-<div [style]="{'paddingLeft': sidebarState == 'closed' ? '0px' : '30px'}" id="sidebar-container" class="mat-typography">
-	<div (click)="changeState()" [@openClose-arrow]="sidebarState" class="frosted left-shadow" id="sidebar-arrow">
-		<span [@rotatedState]="sidebarState" class="material-icons" style="margin-top: 85%; font-size: 26px">
-			expand_more
-		</span>
-	</div>
+<div id="sidebar-wrapper">
 	<div
-		(@openClose-sidebar.start)="setSidebarDisplay($event)"
+		(@openClose-sidebar.start)="sidebarAnimationStarted($event)"
 		(@openClose-sidebar.done)="sidebarAnimationFinished($event)"
 		[@openClose-sidebar]="sidebarState"
-		class="frosted left-shadow"
-		id="sidebar"
+		id="sidebar-container"
+		class="mat-typography"
 	>
-		<div class="container" id="sidebar-content">
-			<div class="col">
-				<div class="row justify-content-around" style="padding: 8px 0; align-items: center">
-					<button (click)="changeState()" class="button button--close">
-						<strong>&times;</strong>
-					</button>
-					<div *ngIf="disruptionsLastUpdated$ | async as date" class="text-center">
-						<span style="font-size: small">Bijgewerkt om:<br /></span>
-						{{ date | date: "EEEE d LLL, HH:mm:ss" }}
+		<div (click)="changeState()" class="frosted left-shadow" id="sidebar-arrow">
+			<span [@rotatedState]="sidebarState" class="material-icons" style="margin-top: 85%; font-size: 26px">
+				expand_more
+			</span>
+		</div>
+		<div [@sidebar-shadow]="sidebarState" class="frosted" id="sidebar">
+			<div class="container" id="sidebar-content">
+				<div class="col">
+					<div class="row justify-content-around" style="padding: 8px 0; align-items: center">
+						<button (click)="changeState()" class="button button--close">
+							<strong>&times;</strong>
+						</button>
+						<div *ngIf="disruptionsLastUpdated$ | async as date" class="text-center">
+							<span style="font-size: small">Bijgewerkt om:<br /></span>
+							{{ date | date: "EEEE d LLL, HH:mm:ss" }}
+						</div>
+						<button (click)="updateDisruptions.emit(null)" class="button button--nsYellow button--close">
+							<strong><fa-icon [icon]="faSyncAlt" style="font-size: small"></fa-icon></strong>
+						</button>
 					</div>
-					<button (click)="updateDisruptions.emit(null)" class="button button--nsYellow button--close">
-						<strong><fa-icon [icon]="faSyncAlt" style="font-size: small"></fa-icon></strong>
-					</button>
-				</div>
-				<div class="row">
-					<div *ngIf="activeDisruptions">
-						<div
-							*ngFor="let disruption of activeDisruptions"
-							[ngSwitch]="disruption.type"
-							class="card card-max-width bg-light mb-3"
-						>
-							<app-calamity-item [calamity]="disruption" *ngSwitchCase="'CALAMITY'"></app-calamity-item>
-							<app-disruption-item
-								[disruption]="disruption"
-								(closeSidebar)="sidebarState = 'closed'"
-								*ngSwitchDefault
-							></app-disruption-item>
+					<div class="row">
+						<div *ngIf="activeDisruptions">
+							<div
+								*ngFor="let disruption of activeDisruptions"
+								[ngSwitch]="disruption.type"
+								class="card card-max-width bg-light mb-3"
+							>
+								<app-calamity-item
+									[calamity]="disruption"
+									*ngSwitchCase="'CALAMITY'"
+								></app-calamity-item>
+								<app-disruption-item
+									[disruption]="disruption"
+									(closeSidebar)="sidebarState = 'closed'"
+									*ngSwitchDefault
+								></app-disruption-item>
+							</div>
 						</div>
 					</div>
 				</div>

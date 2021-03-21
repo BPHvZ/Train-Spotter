@@ -195,10 +195,20 @@ export class SharedDataService {
 				}
 			}),
 			map((response) => {
-				const disruptions = response.data;
-				const disruptionsSorted = disruptions.sort(
-					(a, b) => new Date(a["start"]).valueOf() - new Date(b["start"]).valueOf()
-				);
+				const all = response.data;
+
+				const calamities = all.filter((a) => a.type == "CALAMITY");
+				const disruptions = all.filter((a) => a.type == "DISRUPTION");
+				const maintenance = all.filter((a) => a.type == "MAINTENANCE");
+
+				calamities.sort((a, b) => ("" + a.type).localeCompare(b.type));
+
+				calamities.sort((a, b) => ("" + a.type).localeCompare(b.type));
+				disruptions.sort((a, b) => new Date(a["start"]).valueOf() - new Date(b["start"]).valueOf());
+				maintenance.sort((a, b) => new Date(a["start"]).valueOf() - new Date(b["start"]).valueOf());
+
+				const disruptionsSorted = calamities.concat(disruptions, maintenance);
+
 				this._activeDisruptions.next(disruptionsSorted);
 			})
 		);

@@ -17,6 +17,7 @@
  */
 
 /// <reference lib="webworker" />
+import { take } from "rxjs/operators";
 import { jimpPrepareIcons } from "../helpers/jimp-helper";
 
 /**
@@ -34,5 +35,7 @@ addEventListener("message", ({ data }: { data: Map<string, string> }) => {
 	console.log("WORKER");
 	console.log(data);
 	const iconURLs: Map<string, string> = data;
-	jimpPrepareIcons(iconURLs).subscribe((value) => postMessage(value));
+	jimpPrepareIcons(iconURLs)
+		.pipe(take(1))
+		.subscribe((value) => postMessage(value));
 });

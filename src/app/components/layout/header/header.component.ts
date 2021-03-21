@@ -16,7 +16,16 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { AfterViewInit, Component, ElementRef, OnInit, Renderer2, TemplateRef, ViewChild } from "@angular/core";
+import {
+	AfterViewInit,
+	Component,
+	ElementRef,
+	OnDestroy,
+	OnInit,
+	Renderer2,
+	TemplateRef,
+	ViewChild,
+} from "@angular/core";
 import { faArrowAltCircleDown, faBars, faCrosshairs } from "@fortawesome/free-solid-svg-icons";
 import { NgbModal, NgbTypeaheadSelectItemEvent } from "@ng-bootstrap/ng-bootstrap";
 import { Observable, of, Subscription } from "rxjs";
@@ -36,7 +45,7 @@ import { SharedDataService } from "../../../services/shared-data.service";
 	templateUrl: "./header.component.html",
 	styleUrls: ["./header.component.sass"],
 })
-export class HeaderComponent implements OnInit, AfterViewInit {
+export class HeaderComponent implements OnInit, OnDestroy, AfterViewInit {
 	/**The global search input field*/
 	@ViewChild("globalTypeahead") globalTypeahead: ElementRef;
 
@@ -64,6 +73,8 @@ export class HeaderComponent implements OnInit, AfterViewInit {
 	deferredPrompt: any;
 	showPWAInstallButton = false;
 	doNotShowInstallAgainCheckbox = false;
+
+	subscriptions: Subscription[] = [];
 
 	/**
 	 * Define services
@@ -126,9 +137,14 @@ export class HeaderComponent implements OnInit, AfterViewInit {
 
 	/**Subscribe to navbar collapse changes*/
 	ngOnInit(): void {
-		this.sharedDataService.navbarCollapsed$.subscribe((value) => {
+		const sub1 = this.sharedDataService.navbarCollapsed$.subscribe((value) => {
 			this.navbarCollapsed = value;
 		});
+		this.subscriptions.push(sub1);
+	}
+
+	ngOnDestroy(): void {
+		this.subscriptions.forEach((subscription) => subscription.unsubscribe());
 	}
 
 	ngAfterViewInit(): void {

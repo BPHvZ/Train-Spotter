@@ -16,8 +16,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { Component, OnInit } from "@angular/core";
+import { Component, OnDestroy, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
+import { Subscription } from "rxjs";
 
 /**
  * Main layout of the application
@@ -27,10 +28,11 @@ import { Router } from "@angular/router";
 	templateUrl: "./main-layout.component.html",
 	styleUrls: ["./main-layout.component.sass"],
 })
-export class MainLayoutComponent implements OnInit {
+export class MainLayoutComponent implements OnInit, OnDestroy {
 	/**True if the current page is the train map*/
 	isTrainMap = false;
 	innerHeight = window.innerHeight;
+	subscriptions: Subscription[] = [];
 
 	/**
 	 * Subscribe to the current route
@@ -38,15 +40,20 @@ export class MainLayoutComponent implements OnInit {
 	 */
 	constructor(private router: Router) {
 		// eslint-disable-next-line @typescript-eslint/no-unused-vars
-		router.events.subscribe((_) => {
+		const sub1 = router.events.subscribe((_) => {
 			// if on train map remove padding
 			this.isTrainMap = router.url.endsWith("kaart");
 		});
+		this.subscriptions.push(sub1);
 	}
 
 	ngOnInit(): void {
 		window.addEventListener("resize", () => {
 			this.innerHeight = window.innerHeight;
 		});
+	}
+
+	ngOnDestroy(): void {
+		this.subscriptions.forEach((subscription) => subscription.unsubscribe());
 	}
 }

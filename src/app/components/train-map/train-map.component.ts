@@ -177,6 +177,8 @@ export class TrainMapComponent implements OnInit, OnDestroy {
 				// console.log(event.url);
 			}
 			if (event instanceof NavigationEnd && event.url === "/kaart") {
+				// force to reload to fix safari mapbox canvas bug
+				this.sharedDataService.trainMap.resize();
 				const navigationState = this.router.getCurrentNavigation().extras.state;
 				if (navigationState) {
 					if (navigationState.station) {

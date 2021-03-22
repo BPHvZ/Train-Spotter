@@ -22,13 +22,25 @@ import { AllStationsComponent } from "./components/all-stations/all-stations.com
 import { TrainMapComponent } from "./components/train-map/train-map.component";
 
 const routes: Routes = [
-	{ path: "kaart", component: TrainMapComponent },
-	{ path: "stations", component: AllStationsComponent },
+	{
+		path: "kaart",
+		component: TrainMapComponent,
+		data: {
+			reuse: true,
+		},
+	},
+	{
+		path: "stations",
+		component: AllStationsComponent,
+		data: {
+			reuse: false,
+		},
+	},
 	{ path: "", redirectTo: "/kaart", pathMatch: "full" },
 ];
 
 @NgModule({
-	imports: [RouterModule.forRoot(routes, { relativeLinkResolution: "legacy" })],
+	imports: [RouterModule.forRoot(routes)],
 	exports: [RouterModule],
 })
 export class AppRoutingModule {}

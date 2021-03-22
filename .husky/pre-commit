@@ -1,4 +1,4 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
-yarn run prettier_and_lint && yarn run update_sitemap
+yarn run update_sitemap && git add src/sitemap.xml && yarn run prettier_and_lint

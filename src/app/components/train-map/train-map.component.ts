@@ -174,7 +174,7 @@ export class TrainMapComponent implements OnInit, OnDestroy {
 
 		const sub1 = this.router.events.subscribe((event) => {
 			if (event instanceof NavigationStart) {
-				console.log(event.url);
+				// console.log(event.url);
 			}
 			if (event instanceof NavigationEnd && event.url === "/kaart") {
 				const navigationState = this.router.getCurrentNavigation().extras.state;
@@ -186,11 +186,6 @@ export class TrainMapComponent implements OnInit, OnDestroy {
 			}
 		});
 		this.subscriptions.push(sub1);
-
-		this.countdownTimer.addEventListener("secondsUpdated", (e) => {
-			console.log(this.countdownTimer.getTimeValues());
-			console.log(this.countdownTimer.getConfig());
-		});
 
 		this.countdownTimer.addEventListener("targetAchieved", (e) => {
 			console.log("timer");
@@ -245,6 +240,7 @@ export class TrainMapComponent implements OnInit, OnDestroy {
 	 */
 	onMapLoad(trainMap: MapBoxMap): void {
 		this.sharedDataService.trainMap = trainMap;
+		trainMap.resize();
 		this.isUpdatingMapData = true;
 		zip(
 			this.sharedDataService.getBasicInformationAboutAllStations(),

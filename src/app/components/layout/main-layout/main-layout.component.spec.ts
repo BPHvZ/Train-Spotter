@@ -16,6 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import { HttpClientTestingModule } from "@angular/common/http/testing";
 import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
 import { RouterTestingModule } from "@angular/router/testing";
 import { MainLayoutComponent } from "./main-layout.component";
@@ -28,7 +29,7 @@ describe("MainLayoutComponent", () => {
 		waitForAsync(() => {
 			void TestBed.configureTestingModule({
 				declarations: [MainLayoutComponent],
-				imports: [RouterTestingModule],
+				imports: [HttpClientTestingModule, RouterTestingModule],
 			}).compileComponents();
 		})
 	);

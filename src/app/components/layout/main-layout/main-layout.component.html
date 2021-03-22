@@ -24,6 +24,8 @@
 			[style.paddingLeft]="isTrainMap ? '0' : null"
 			[style.paddingRight]="isTrainMap ? '0' : null"
 			[style.paddingBottom]="isTrainMap ? '0' : null"
+			[style.minHeight]="isTrainMap ? 'unset' : '100vh'"
+			[style.height]="isTrainMap ? innerHeight + 'px' : 'unset'"
 		>
 			<div class="container-fluid d-flex flex-column">
 				<router-outlet></router-outlet>

@@ -51,33 +51,37 @@ import { SharedDataService } from "../../services/shared-data.service";
 			state(
 				"closed",
 				style({
-					transform: "translate(100%)",
-					boxShadow: "unset",
+					transform: "translate(calc(100% - 30px))",
 				})
 			),
-			transition("open <=> closed", [animate("0.5s cubic-bezier(0.55, 0.31, 0.15, 0.93)")]),
+			transition(
+				"open <=> closed",
+				group([
+					query("@sidebar-shadow", animateChild()),
+					query("@rotatedState", animateChild()),
+					animate("0.5s cubic-bezier(0.55, 0.31, 0.15, 0.93)"),
+				])
+			),
 		]),
-		trigger("openClose-arrow", [
+		trigger("sidebar-shadow", [
 			state(
 				"open",
 				style({
-					"margin-right": "calc(100% - 30px)",
+					boxShadow: "-15px 0 1rem -2px rgba(0, 0, 0, 0.15)",
 				})
 			),
 			state(
 				"closed",
 				style({
-					"margin-right": "0%",
+					boxShadow: "0 0 0 0 rgba(0, 0, 0, 0.15)",
 				})
 			),
-			transition("open <=> closed", [
-				group([query("@rotatedState", animateChild()), animate("0.5s cubic-bezier(0.55, 0.31, 0.15, 0.93)")]),
-			]),
+			transition("open <=> closed", animate("0.5s cubic-bezier(0.55, 0.31, 0.15, 0.93)")),
 		]),
 		trigger("rotatedState", [
 			state("closed", style({ transform: "rotate(90deg)" })),
 			state("open", style({ transform: "rotate(-90deg)" })),
-			transition("open <=> closed", [animate("0.5s cubic-bezier(0.55, 0.31, 0.15, 0.93)")]),
+			transition("open <=> closed", animate("0.5s cubic-bezier(0.55, 0.31, 0.15, 0.93)")),
 		]),
 	],
 })
@@ -117,9 +121,24 @@ export class TrainMapSidebarComponent {
 	 * @param event Animation event
 	 */
 	sidebarAnimationFinished(event: AnimationEvent): void {
+		const sidebarComponent = document.getElementById("sidebar-component");
+		const sidebarWrapper = document.getElementById("sidebar-wrapper");
+		const sidebarContainer = document.getElementById("sidebar-container");
+		const sidebar = document.getElementById("sidebar");
+		sidebarContainer.style.willChange = "auto";
 		if (event.toState === "closed") {
-			const element = document.getElementById("sidebar");
-			element.style.setProperty("display", "none", "important");
+			sidebarWrapper.style.position = "absolute";
+			sidebarWrapper.style.right = "0";
+			sidebarWrapper.style.height = "unset";
+			sidebarWrapper.style.top = "calc(50% - (135px / 2))";
+			sidebarWrapper.style.padding = "30px 0 30px 30px";
+			sidebar.style.setProperty("display", "none", "important");
+
+			// FIX - redraws sidebar in safari. Otherwise still occupies the sidebar area and no interaction is available
+			const display = sidebarComponent.style.display;
+			sidebarComponent.style.display = "none";
+			console.log(sidebarComponent.offsetHeight);
+			sidebarComponent.style.display = display;
 		}
 	}
 
@@ -127,10 +146,19 @@ export class TrainMapSidebarComponent {
 	 * Set the css display mode to block, e.g. visible before the open animation
 	 * @param event Animation event
 	 */
-	setSidebarDisplay(event: AnimationEvent): void {
-		const element = document.getElementById("sidebar");
+	sidebarAnimationStarted(event: AnimationEvent): void {
+		const sidebarWrapper = document.getElementById("sidebar-wrapper");
+		const sidebarContainer = document.getElementById("sidebar-container");
+		const sidebar = document.getElementById("sidebar");
+		sidebarWrapper.style.position = "relative";
+		sidebarWrapper.style.right = "unset";
+		sidebarWrapper.style.height = "100%";
+		sidebarWrapper.style.top = "unset";
+		sidebarWrapper.style.padding = "0 0 0 30px";
+
+		sidebarContainer.style.willChange = "contents";
 		if (event.toState === "open") {
-			element.style.setProperty("display", "block", "important");
+			sidebar.style.setProperty("display", "block", "important");
 		}
 	}
 }

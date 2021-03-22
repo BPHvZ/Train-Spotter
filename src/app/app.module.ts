@@ -31,9 +31,9 @@ import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { NgxMapboxGLModule } from "ngx-mapbox-gl";
 import { environment } from "../environments/environment";
+import { TrainSpotterRouteReuseStrategy } from "./app-route-reuse.strategy";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
-import { CacheRouteReuseStrategy } from "./cache-route-reuse.strategy";
 import { AllStationsComponent } from "./components/all-stations/all-stations.component";
 import { HeaderComponent } from "./components/layout/header/header.component";
 import { MainLayoutComponent } from "./components/layout/main-layout/main-layout.component";
@@ -79,10 +79,7 @@ registerLocaleData(localeNL, "nl");
 		FontAwesomeModule,
 	],
 	providers: [
-		{
-			provide: RouteReuseStrategy,
-			useClass: CacheRouteReuseStrategy,
-		},
+		{ provide: RouteReuseStrategy, useClass: TrainSpotterRouteReuseStrategy },
 		{ provide: LOCALE_ID, useValue: "nl" },
 	],
 	bootstrap: [AppComponent],

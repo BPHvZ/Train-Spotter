@@ -18,6 +18,7 @@
 
 import { Injectable } from "@angular/core";
 import { Observable, Subject } from "rxjs";
+import { take } from "rxjs/operators";
 import { jimpPrepareIcons } from "../helpers/jimp-helper";
 import { NSTrainIcon } from "../models/VirtualTrainAPI";
 
@@ -57,10 +58,12 @@ export class ImageEditorService {
 			};
 			this.worker.postMessage(iconURLs);
 		} else {
-			jimpPrepareIcons(iconURLs).subscribe((value) => {
-				resultSubject.next(value);
-				resultSubject.complete();
-			});
+			jimpPrepareIcons(iconURLs)
+				.pipe(take(1))
+				.subscribe((value) => {
+					resultSubject.next(value);
+					resultSubject.complete();
+				});
 		}
 		return resultSubject;
 	}

@@ -74,8 +74,6 @@ export class SharedDataService {
 
 	/**Subscribable detailed train information object*/
 	private _detailedTrainInformation = new BehaviorSubject<DetailedTrainInformation[]>(null);
-	/**Observable of detailed train information*/
-	public readonly detailedTrainInformation$ = this._detailedTrainInformation.asObservable();
 
 	/**Mapbox map*/
 	trainMap?: MapBoxMap;
@@ -93,6 +91,11 @@ export class SharedDataService {
 	}
 	/**Current browser screen width*/
 	screenWidth = window.innerWidth;
+
+	/**Subscribable window innerHeight object*/
+	private _innerHeight = new BehaviorSubject<number>(window.innerHeight);
+	/**Observable of window innerHeight*/
+	public readonly innerHeight$ = this._innerHeight.asObservable();
 
 	/*
 	 * Data used by the header
@@ -120,9 +123,11 @@ export class SharedDataService {
 	private init(): void {
 		fromEvent(window, "resize")
 			.pipe(debounceTime(1000))
-			.subscribe((evt: any) => {
-				// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-				this.screenWidth = evt.target.innerWidth;
+			.subscribe(() => {
+				// eslint-disable-next-line
+				this.screenWidth = window.innerWidth;
+				// eslint-disable-next-line
+				this._innerHeight.next(window.innerHeight);
 			});
 	}
 
@@ -195,7 +200,21 @@ export class SharedDataService {
 				}
 			}),
 			map((response) => {
-				this._activeDisruptions.next(response.data);
+				const all = response.data;
+
+				const calamities = all.filter((a) => a.type == "CALAMITY");
+				const disruptions = all.filter((a) => a.type == "DISRUPTION");
+				const maintenance = all.filter((a) => a.type == "MAINTENANCE");
+
+				calamities.sort((a, b) => ("" + a.type).localeCompare(b.type));
+
+				calamities.sort((a, b) => ("" + a.type).localeCompare(b.type));
+				disruptions.sort((a, b) => new Date(a["start"]).valueOf() - new Date(b["start"]).valueOf());
+				maintenance.sort((a, b) => new Date(a["start"]).valueOf() - new Date(b["start"]).valueOf());
+
+				const disruptionsSorted = calamities.concat(disruptions, maintenance);
+
+				this._activeDisruptions.next(disruptionsSorted);
 			})
 		);
 	}

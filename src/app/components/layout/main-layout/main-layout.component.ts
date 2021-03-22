@@ -16,8 +16,10 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { Component } from "@angular/core";
+import { Component, OnDestroy } from "@angular/core";
 import { Router } from "@angular/router";
+import { Subscription } from "rxjs";
+import { SharedDataService } from "../../../services/shared-data.service";
 
 /**
  * Main layout of the application
@@ -27,19 +29,31 @@ import { Router } from "@angular/router";
 	templateUrl: "./main-layout.component.html",
 	styleUrls: ["./main-layout.component.sass"],
 })
-export class MainLayoutComponent {
+export class MainLayoutComponent implements OnDestroy {
 	/**True if the current page is the train map*/
 	isTrainMap = false;
+	innerHeight = window.innerHeight;
+	subscriptions: Subscription[] = [];
 
 	/**
 	 * Subscribe to the current route
 	 * @param router Router object
+	 * @param sharedDataService
 	 */
-	constructor(private router: Router) {
+	constructor(private router: Router, private sharedDataService: SharedDataService) {
 		// eslint-disable-next-line @typescript-eslint/no-unused-vars
-		router.events.subscribe((_) => {
+		const sub1 = router.events.subscribe((_) => {
 			// if on train map remove padding
 			this.isTrainMap = router.url.endsWith("kaart");
 		});
+
+		const sub2 = sharedDataService.innerHeight$.subscribe((height) => {
+			this.innerHeight = height;
+		});
+		this.subscriptions.push(sub1, sub2);
+	}
+
+	ngOnDestroy(): void {
+		this.subscriptions.forEach((subscription) => subscription.unsubscribe());
 	}
 }

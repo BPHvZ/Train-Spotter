@@ -17,8 +17,9 @@
  */
 
 /* eslint-disable */
-import { Component } from "@angular/core";
+import { Component, OnDestroy } from "@angular/core";
 import { SwUpdate } from "@angular/service-worker";
+import { Subscription } from "rxjs";
 
 /**
  * TrainSpotter starting point
@@ -28,19 +29,26 @@ import { SwUpdate } from "@angular/service-worker";
 	templateUrl: "./app.component.html",
 	styleUrls: ["./app.component.sass"],
 })
-export class AppComponent {
+export class AppComponent implements OnDestroy {
+	subscriptions: Subscription[] = [];
+
 	/**
 	 * Define services
 	 * Refresh the page when a new version of TrainSpotter is available
 	 * @param updates Service Worker service
 	 */
 	constructor(private updates: SwUpdate) {
-		updates.available.subscribe(() => {
+		const sub1 = updates.available.subscribe(() => {
 			console.log("updated");
 			updates.activateUpdate().then(() => document.location.reload());
 		});
-		updates.unrecoverable.subscribe((event) => {
+		const sub2 = updates.unrecoverable.subscribe((event) => {
 			document.location.reload();
 		});
+		this.subscriptions.push(sub1, sub2);
+	}
+
+	ngOnDestroy() {
+		this.subscriptions.forEach((subscription) => subscription.unsubscribe());
 	}
 }

@@ -16,8 +16,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { Component, OnInit, ViewChild } from "@angular/core";
+import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from "@angular/core";
 import { NavigationEnd, NavigationStart, Router } from "@angular/router";
+import { Timer } from "easytimer.js";
 import { GeoJSON, MultiLineString } from "geojson";
 import {
 	EventData,
@@ -28,8 +29,8 @@ import {
 	MapMouseEvent,
 	MapSourceDataEvent,
 } from "mapbox-gl";
-import { interval, Observable, PartialObserver, Subject, zip } from "rxjs";
-import { pausable, PausableObservable } from "rxjs-pausable";
+import { Observable, Subject, Subscription, zip } from "rxjs";
+import { take } from "rxjs/operators";
 import { environment } from "../../../environments/environment";
 import { DisruptionBase, DisruptionsList, Station, StationsResponse } from "../../models/ReisinformatieAPI";
 import { SpoortkaartFeatureCollection, TrainTracksGeoJSON } from "../../models/SpoortkaartAPI";
@@ -48,9 +49,11 @@ import { TrainMapSidebarComponent } from "../train-map-sidebar/train-map-sidebar
 	templateUrl: "./train-map.component.html",
 	styleUrls: ["./train-map.component.sass"],
 })
-export class TrainMapComponent implements OnInit {
+export class TrainMapComponent implements OnInit, OnDestroy {
 	/**Sidebar element with disruptions*/
 	@ViewChild(TrainMapSidebarComponent) sidebar: TrainMapSidebarComponent;
+
+	@ViewChild("updateCountdown") countdown: ElementRef;
 
 	// MapBox setup
 	/**Mapbox map style*/
@@ -79,16 +82,11 @@ export class TrainMapComponent implements OnInit {
 	}
 
 	// Update data countdown
-	/**Countdown progress*/
-	private progressNum = 100;
 	/**Is countdown paused*/
 	updateTrainsIsPaused = false;
 	/**Is currently updating train positions*/
 	isUpdatingMapData = false;
-	/**Countdown timer*/
-	updateTrainsTimer: PausableObservable<number>;
-	/**Timer observable*/
-	timerObserver: PartialObserver<number>;
+	countdownTimer = new Timer({ countdown: true, startValues: { seconds: 10 } });
 
 	// Map styles
 	/**Map types*/
@@ -152,6 +150,8 @@ export class TrainMapComponent implements OnInit {
 	/**Train icons to be added to the map*/
 	trainIconsForMap: TrainIconOnMap[] = [];
 
+	subscriptions: Subscription[] = [];
+
 	/**
 	 * Define services
 	 * @param sharedDataService Shares data through the application
@@ -167,33 +167,14 @@ export class TrainMapComponent implements OnInit {
 	) {}
 
 	/**
-	 * Set {@link updateTrainsTimer} and {@link progressNum}
 	 * Fly to station when this component is reused and navigated to from another component with extra state parameters
 	 */
 	ngOnInit(): void {
-		this.updateTrainsTimer = interval(10).pipe(pausable()) as PausableObservable<number>;
 		this.pauseOrResumeUpdatingTrainPositions(true);
 
-		this.timerObserver = {
-			next: (count: number) => {
-				const timePassedInMs = 10 * count;
-				const timePassedInSec = timePassedInMs / 100;
-				const timeLeftInSec = 100 - timePassedInSec;
-				if (timeLeftInSec > 0.0) {
-					this.progressNum = timeLeftInSec;
-				} else if (timeLeftInSec < 0.0) {
-					this.progressNum = 100;
-					if (this.isUpdatingMapData === false) {
-						this.updateTrainsAndDisruptions();
-					}
-				}
-			},
-		};
-		this.updateTrainsTimer.subscribe(this.timerObserver);
-
-		this.router.events.subscribe((event) => {
+		const sub1 = this.router.events.subscribe((event) => {
 			if (event instanceof NavigationStart) {
-				console.log(event.url);
+				// console.log(event.url);
 			}
 			if (event instanceof NavigationEnd && event.url === "/kaart") {
 				const navigationState = this.router.getCurrentNavigation().extras.state;
@@ -204,14 +185,18 @@ export class TrainMapComponent implements OnInit {
 				}
 			}
 		});
+		this.subscriptions.push(sub1);
+
+		this.countdownTimer.addEventListener("targetAchieved", (e) => {
+			console.log("timer");
+			if (this.isUpdatingMapData === false) {
+				this.updateTrainsAndDisruptions();
+			}
+		});
 	}
 
-	/**
-	 * Get the {@link updateTrainsTimer} progress
-	 * @returns string Progress in percentage
-	 */
-	get getProgress(): string {
-		return `${this.progressNum}%`;
+	ngOnDestroy(): void {
+		this.subscriptions.forEach((subscription) => subscription.unsubscribe());
 	}
 
 	/**
@@ -229,14 +214,25 @@ export class TrainMapComponent implements OnInit {
 	pauseOrResumeUpdatingTrainPositions(pause: boolean): void {
 		if (this.isUpdatingMapData === false) {
 			if (pause === false) {
-				this.updateTrainsTimer.resume();
+				if (this.countdownTimer.getTimeValues().seconds <= 0) {
+					this.resetCountdownProgressbarAnimation();
+				}
+				this.countdownTimer.start();
 				this.updateTrainsIsPaused = false;
 			} else {
-				this.updateTrainsTimer.pause();
+				this.countdownTimer.pause();
 				this.updateTrainsIsPaused = true;
 			}
 		}
 	}
+
+	/* eslint-disable */
+	resetCountdownProgressbarAnimation(): void {
+		this.countdown.nativeElement.classList.remove("progress-value");
+		console.log(this.countdown.nativeElement.offsetHeight);
+		this.countdown.nativeElement.classList.add("progress-value");
+	}
+	/* eslint-enable */
 
 	/**
 	 * Get station, train and disruption information when map is loaded
@@ -244,25 +240,28 @@ export class TrainMapComponent implements OnInit {
 	 */
 	onMapLoad(trainMap: MapBoxMap): void {
 		this.sharedDataService.trainMap = trainMap;
+		trainMap.resize();
 		this.isUpdatingMapData = true;
 		zip(
 			this.sharedDataService.getBasicInformationAboutAllStations(),
 			this.sharedDataService.getTrainTracksGeoJSON(),
 			this.sharedDataService.updateDisruptedTrainTracksGeoJSON(),
 			this.sharedDataService.updateActiveDisruptions()
-		).subscribe({
-			next: (value: [StationsResponse, TrainTracksGeoJSON, void, void]) => {
-				console.log(value);
-				this.addStationsToMap(value[0].payload);
-				this.trainTracksLayerData = value[1].payload;
-			},
-			error: (err) => {
-				console.log(err);
-			},
-			complete: () => {
-				this.updateTrainsAndDisruptions();
-			},
-		});
+		)
+			.pipe(take(1))
+			.subscribe({
+				next: (value: [StationsResponse, TrainTracksGeoJSON, void, void]) => {
+					console.log(value);
+					this.addStationsToMap(value[0].payload);
+					this.trainTracksLayerData = value[1].payload;
+				},
+				error: (err) => {
+					console.log(err);
+				},
+				complete: () => {
+					this.updateTrainsAndDisruptions();
+				},
+			});
 
 		// Add rel=noopener to mapbox links
 		const children = document.querySelector(".mapboxgl-ctrl-attrib-inner").children;
@@ -493,19 +492,21 @@ export class TrainMapComponent implements OnInit {
 			this.sharedDataService.updateDetailedInformationAboutActiveTrains(),
 			this.sharedDataService.updateDisruptedTrainTracksGeoJSON(),
 			this.sharedDataService.updateActiveDisruptions()
-		).subscribe({
-			// eslint-disable-next-line @typescript-eslint/no-unused-vars
-			next: (_) => {
-				this.setTrainIconName(this.sharedDataService.trainInformationLastValue());
-				this.setDisruptionMarkers();
-			},
-			error: (err) => {
-				console.log(err);
-			},
-			complete: () => {
-				console.log("updateTrainsAndDisruptions");
-			},
-		});
+		)
+			.pipe(take(1))
+			.subscribe({
+				// eslint-disable-next-line @typescript-eslint/no-unused-vars
+				next: (_) => {
+					this.setTrainIconName(this.sharedDataService.trainInformationLastValue());
+					this.setDisruptionMarkers();
+				},
+				error: (err) => {
+					console.log(err);
+				},
+				complete: () => {
+					console.log("updateTrainsAndDisruptions");
+				},
+			});
 	}
 
 	/**
@@ -516,15 +517,17 @@ export class TrainMapComponent implements OnInit {
 		zip(
 			this.sharedDataService.updateDisruptedTrainTracksGeoJSON(true),
 			this.sharedDataService.updateActiveDisruptions(true)
-		).subscribe({
-			error: (err) => {
-				console.log(err);
-			},
-			complete: () => {
-				console.log("updateDisruptions");
-				this.setDisruptionMarkers();
-			},
-		});
+		)
+			.pipe(take(1))
+			.subscribe({
+				error: (err) => {
+					console.log(err);
+				},
+				complete: () => {
+					console.log("updateDisruptions");
+					this.setDisruptionMarkers();
+				},
+			});
 	}
 
 	/**
@@ -588,20 +591,23 @@ export class TrainMapComponent implements OnInit {
 		iconURLs: Map<string, string>,
 		detailedTrainInformation: DetailedTrainInformation[]
 	): void {
-		this.imageEditorService.prepareTrainIcons(iconURLs).subscribe({
-			next: (result) => {
-				result.forEach((image) => {
-					this.trainIconNames.add(image.imageName);
-					this.trainIconsForMap.push({
-						imageName: image.imageName,
-						imageObjectURL: window.URL.createObjectURL(new Blob([image.image], { type: "image/png" })),
+		this.imageEditorService
+			.prepareTrainIcons(iconURLs)
+			.pipe(take(1))
+			.subscribe({
+				next: (result) => {
+					result.forEach((image) => {
+						this.trainIconNames.add(image.imageName);
+						this.trainIconsForMap.push({
+							imageName: image.imageName,
+							imageObjectURL: window.URL.createObjectURL(new Blob([image.image], { type: "image/png" })),
+						});
 					});
-				});
-			},
-			complete: () => {
-				this.listenForTrainIcons(detailedTrainInformation);
-			},
-		});
+				},
+				complete: () => {
+					this.listenForTrainIcons(detailedTrainInformation);
+				},
+			});
 	}
 
 	/**
@@ -610,7 +616,7 @@ export class TrainMapComponent implements OnInit {
 	 * @param detailedTrainInformation Detailed information about all trains
 	 */
 	listenForTrainIcons(detailedTrainInformation: DetailedTrainInformation[]): void {
-		this.trainIconAdded.subscribe({
+		this.trainIconAdded.pipe(take(1)).subscribe({
 			next: (trainIconName) => {
 				this.trainIconsAdded.add(trainIconName);
 				if (this.trainIconNames.size === this.trainIconsAdded.size) {

@@ -40,6 +40,7 @@ export class DisruptionItemComponent implements AfterViewInit {
 	/**
 	 * Define services
 	 * @param sharedDataService Shares data through the application
+	 * @param cardElement DOM element
 	 */
 	constructor(private sharedDataService: SharedDataService, private cardElement: ElementRef) {}
 

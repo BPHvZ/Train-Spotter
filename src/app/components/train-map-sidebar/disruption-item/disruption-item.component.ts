@@ -16,9 +16,14 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { Component, EventEmitter, Input, Output } from "@angular/core";
-import { Disruption, DisruptionBase } from "../../../models/ReisinformatieAPI";
+import { AfterViewInit, Component, ElementRef, Input } from "@angular/core";
+import { Disruption } from "../../../models/ReisinformatieAPI";
 import { SharedDataService } from "../../../services/shared-data.service";
+
+export interface DisruptionCard {
+	id: string;
+	element: ElementRef;
+}
 
 /**
  * Sidebar card item to show a disruption
@@ -28,9 +33,7 @@ import { SharedDataService } from "../../../services/shared-data.service";
 	templateUrl: "./disruption-item.component.html",
 	styleUrls: ["./disruption-item.component.sass"],
 })
-export class DisruptionItemComponent {
-	/**Emit event to close the sidebar*/
-	@Output() closeSidebar = new EventEmitter();
+export class DisruptionItemComponent implements AfterViewInit {
 	/**Disruption information*/
 	@Input() disruption: Disruption;
 
@@ -38,17 +41,12 @@ export class DisruptionItemComponent {
 	 * Define services
 	 * @param sharedDataService Shares data through the application
 	 */
-	constructor(private sharedDataService: SharedDataService) {}
+	constructor(private sharedDataService: SharedDataService, private cardElement: ElementRef) {}
 
-	/**
-	 * Fly to a disruption on the map
-	 * Close the sidebar on small screens
-	 * @param disruption Disruption to fly to
-	 */
-	flyToDisruption(disruption: DisruptionBase): void {
-		if (this.sharedDataService.screenWidth <= 768) {
-			this.closeSidebar.emit();
-		}
-		this.sharedDataService.flyToDisruption(disruption);
+	ngAfterViewInit(): void {
+		this.sharedDataService.disruptionCardElements.add({
+			id: this.disruption.id,
+			element: this.cardElement,
+		});
 	}
 }

@@ -16,25 +16,22 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { Station } from "./ReisinformatieAPI";
-import { Train } from "./VirtualTrainAPI";
+import { Directive, Input, OnInit } from "@angular/core";
 
-/**
- * Type of a global search result item
- */
-export enum GlobalSearchResultType {
-	Train,
-	Station,
-}
-
-/**
- * Global search result item
- */
-export interface GlobalSearchResult {
-	/**Type of result item*/
-	resultType: GlobalSearchResultType;
-	/**Date of result item*/
-	result: Train | Station;
-	/**Readable string of result item*/
-	searchField: string;
+@Directive({
+	// eslint-disable-next-line @angular-eslint/directive-selector
+	selector: "[ngInit]",
+	exportAs: "ngInit",
+})
+export class NgInitDirective implements OnInit {
+	@Input() ngInit: () => any;
+	ngOnInit(): void {
+		console.log(typeof this.ngInit);
+		if (typeof this.ngInit === "function") {
+			this.ngInit();
+		} else {
+			// preventing re-evaluation (described below)
+			throw "something";
+		}
+	}
 }

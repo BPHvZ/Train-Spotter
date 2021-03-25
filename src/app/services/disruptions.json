@@ -1,0 +1,1108 @@
+[
+	{
+		"id": "6009850",
+		"type": "DISRUPTION",
+		"registrationTime": "2021-03-22T21:27:49+0100",
+		"releaseTime": "2021-03-22T21:27:49+0100",
+		"local": false,
+		"title": "Zwolle-Groningen; Zwolle-Leeuwarden",
+		"topic": "disruption_6009850_nl",
+		"isActive": true,
+		"start": "2021-03-22T21:11:00+0100",
+		"end": "2021-03-23T00:57:49+0100",
+		"phase": {
+			"id": "1b",
+			"label": "Gevolgen bekend"
+		},
+		"impact": {
+			"value": 4
+		},
+		"expectedDuration": {
+			"description": "Dit duurt tot ongeveer 23:30 uur.",
+			"endTime": "2021-03-22T23:30:00+0100"
+		},
+		"summaryAdditionalTravelTime": {
+			"label": "De extra reistijd is meer dan 60 minuten.",
+			"shortLabel": "Extra reistijd meer dan 60 min.",
+			"minimumDurationInMinutes": 60
+		},
+		"publicationSections": [
+			{
+				"section": {
+					"stations": [
+						{
+							"uicCode": "8400747",
+							"stationCode": "ZL",
+							"name": "Zwolle",
+							"coordinate": {
+								"lat": 52.5047225952148,
+								"lng": 6.09194421768188
+							},
+							"countryCode": "NL"
+						},
+						{
+							"uicCode": "8400435",
+							"stationCode": "MP",
+							"name": "Meppel",
+							"coordinate": {
+								"lat": 52.6908340454102,
+								"lng": 6.19750022888184
+							},
+							"countryCode": "NL"
+						},
+						{
+							"uicCode": "8400330",
+							"stationCode": "HGV",
+							"name": "Hoogeveen",
+							"coordinate": {
+								"lat": 52.7338905334473,
+								"lng": 6.47361087799072
+							},
+							"countryCode": "NL"
+						},
+						{
+							"uicCode": "8400100",
+							"stationCode": "BL",
+							"name": "Beilen",
+							"coordinate": {
+								"lat": 52.8547210693359,
+								"lng": 6.52111101150513
+							},
+							"countryCode": "NL"
+						},
+						{
+							"uicCode": "8400073",
+							"stationCode": "ASN",
+							"name": "Assen",
+							"coordinate": {
+								"lat": 52.9916648864746,
+								"lng": 6.57083320617676
+							},
+							"countryCode": "NL"
+						},
+						{
+							"uicCode": "8400297",
+							"stationCode": "HRN",
+							"name": "Haren",
+							"coordinate": {
+								"lat": 53.1761093139648,
+								"lng": 6.61722230911255
+							},
+							"countryCode": "NL"
+						},
+						{
+							"uicCode": "8400238",
+							"stationCode": "GERP",
+							"name": "Groningen Europapark",
+							"coordinate": {
+								"lat": 53.20480027,
+								"lng": 6.5854178
+							},
+							"countryCode": "NL"
+						},
+						{
+							"uicCode": "8400263",
+							"stationCode": "GN",
+							"name": "Groningen",
+							"coordinate": {
+								"lat": 53.2105560302734,
+								"lng": 6.56472206115723
+							},
+							"countryCode": "NL"
+						}
+					],
+					"direction": "BOTH"
+				},
+				"consequence": {
+					"section": {
+						"stations": [
+							{
+								"uicCode": "8400747",
+								"stationCode": "ZL",
+								"name": "Zwolle",
+								"coordinate": {
+									"lat": 52.5047225952148,
+									"lng": 6.09194421768188
+								},
+								"countryCode": "NL"
+							},
+							{
+								"uicCode": "8400435",
+								"stationCode": "MP",
+								"name": "Meppel",
+								"coordinate": {
+									"lat": 52.6908340454102,
+									"lng": 6.19750022888184
+								},
+								"countryCode": "NL"
+							}
+						],
+						"direction": "ONE_WAY"
+					},
+					"description": "geen treinen",
+					"level": "NO_OR_MUCH_LESS_TRAINS"
+				}
+			},
+			{
+				"section": {
+					"stations": [
+						{
+							"uicCode": "8400747",
+							"stationCode": "ZL",
+							"name": "Zwolle",
+							"coordinate": {
+								"lat": 52.5047225952148,
+								"lng": 6.09194421768188
+							},
+							"countryCode": "NL"
+						},
+						{
+							"uicCode": "8400435",
+							"stationCode": "MP",
+							"name": "Meppel",
+							"coordinate": {
+								"lat": 52.6908340454102,
+								"lng": 6.19750022888184
+							},
+							"countryCode": "NL"
+						},
+						{
+							"uicCode": "8400578",
+							"stationCode": "SWK",
+							"name": "Steenwijk",
+							"coordinate": {
+								"lat": 52.7915109924316,
+								"lng": 6.11455576324463
+							},
+							"countryCode": "NL"
+						},
+						{
+							"uicCode": "8400705",
+							"stationCode": "WV",
+							"name": "Wolvega",
+							"coordinate": {
+								"lat": 52.8808326721191,
+								"lng": 6.00361108779907
+							},
+							"countryCode": "NL"
+						},
+						{
+							"uicCode": "8400305",
+							"stationCode": "HR",
+							"name": "Heerenveen",
+							"coordinate": {
+								"lat": 52.9613876342773,
+								"lng": 5.91416645050049
+							},
+							"countryCode": "NL"
+						},
+						{
+							"uicCode": "8400049",
+							"stationCode": "AKM",
+							"name": "Akkrum",
+							"coordinate": {
+								"lat": 53.0463905334473,
+								"lng": 5.84361124038696
+							},
+							"countryCode": "NL"
+						},
+						{
+							"uicCode": "8400266",
+							"stationCode": "GW",
+							"name": "Grou-Jirnsum",
+							"coordinate": {
+								"lat": 53.0888900756836,
+								"lng": 5.82250022888184
+							},
+							"countryCode": "NL"
+						},
+						{
+							"uicCode": "8400387",
+							"stationCode": "LW",
+							"name": "Leeuwarden",
+							"coordinate": {
+								"lat": 53.1958351135254,
+								"lng": 5.79222202301025
+							},
+							"countryCode": "NL"
+						}
+					],
+					"direction": "BOTH"
+				},
+				"consequence": {
+					"section": {
+						"stations": [
+							{
+								"uicCode": "8400747",
+								"stationCode": "ZL",
+								"name": "Zwolle",
+								"coordinate": {
+									"lat": 52.5047225952148,
+									"lng": 6.09194421768188
+								},
+								"countryCode": "NL"
+							},
+							{
+								"uicCode": "8400435",
+								"stationCode": "MP",
+								"name": "Meppel",
+								"coordinate": {
+									"lat": 52.6908340454102,
+									"lng": 6.19750022888184
+								},
+								"countryCode": "NL"
+							}
+						],
+						"direction": "ONE_WAY"
+					},
+					"description": "geen treinen",
+					"level": "NO_OR_MUCH_LESS_TRAINS"
+				}
+			}
+		],
+		"timespans": [
+			{
+				"start": "2021-03-22T21:11:00+0100",
+				"end": "2021-03-23T00:57:49+0100",
+				"situation": {
+					"label": "Tussen Zwolle en Meppel rijden er geen treinen door een stroomstoring."
+				},
+				"cause": {
+					"label": "Stroomstoring"
+				},
+				"additionalTravelTime": {
+					"label": "De extra reistijd is meer dan 60 minuten.",
+					"shortLabel": "Extra reistijd meer dan 60 min.",
+					"minimumDurationInMinutes": 60
+				},
+				"advices": []
+			}
+		]
+	},
+	{
+		"id": "6009851",
+		"type": "DISRUPTION",
+		"registrationTime": "2021-03-22T21:27:53+0100",
+		"releaseTime": "2021-03-22T21:27:53+0100",
+		"local": false,
+		"title": "Zwolle-Emmen",
+		"topic": "disruption_6009851_nl",
+		"isActive": true,
+		"start": "2021-03-22T21:11:00+0100",
+		"end": "2021-03-23T00:57:53+0100",
+		"phase": {
+			"id": "1b",
+			"label": "Gevolgen bekend"
+		},
+		"impact": {
+			"value": 4
+		},
+		"expectedDuration": {
+			"description": "Dit duurt tot ongeveer 23:30 uur.",
+			"endTime": "2021-03-22T23:30:00+0100"
+		},
+		"publicationSections": [
+			{
+				"section": {
+					"stations": [
+						{
+							"uicCode": "8400747",
+							"stationCode": "ZL",
+							"name": "Zwolle",
+							"coordinate": {
+								"lat": 52.5047225952148,
+								"lng": 6.09194421768188
+							},
+							"countryCode": "NL"
+						},
+						{
+							"uicCode": "8400167",
+							"stationCode": "DL",
+							"name": "Dalfsen",
+							"coordinate": {
+								"lat": 52.4983329772949,
+								"lng": 6.25861120223999
+							},
+							"countryCode": "NL"
+						},
+						{
+							"uicCode": "8400487",
+							"stationCode": "OMN",
+							"name": "Ommen",
+							"coordinate": {
+								"lat": 52.5094451904297,
+								"lng": 6.41583347320557
+							},
+							"countryCode": "NL"
+						},
+						{
+							"uicCode": "8400428",
+							"stationCode": "MRB",
+							"name": "Mariënberg",
+							"coordinate": {
+								"lat": 52.5094451904297,
+								"lng": 6.57527780532837
+							},
+							"countryCode": "NL"
+						},
+						{
+							"uicCode": "8400293",
+							"stationCode": "HDB",
+							"name": "Hardenberg",
+							"coordinate": {
+								"lat": 52.5727767944336,
+								"lng": 6.62861108779907
+							},
+							"countryCode": "NL"
+						},
+						{
+							"uicCode": "8400259",
+							"stationCode": "GBG",
+							"name": "Gramsbergen",
+							"coordinate": {
+								"lat": 52.6091651916504,
+								"lng": 6.67583322525024
+							},
+							"countryCode": "NL"
+						},
+						{
+							"uicCode": "8400153",
+							"stationCode": "CO",
+							"name": "Coevorden",
+							"coordinate": {
+								"lat": 52.6636123657227,
+								"lng": 6.73555564880371
+							},
+							"countryCode": "NL"
+						},
+						{
+							"uicCode": "8400161",
+							"stationCode": "DLN",
+							"name": "Dalen",
+							"coordinate": {
+								"lat": 52.6941680908203,
+								"lng": 6.75805568695068
+							},
+							"countryCode": "NL"
+						},
+						{
+							"uicCode": "8400454",
+							"stationCode": "NA",
+							"name": "Nieuw Amsterdam",
+							"coordinate": {
+								"lat": 52.7186126708984,
+								"lng": 6.84861087799072
+							},
+							"countryCode": "NL"
+						},
+						{
+							"uicCode": "8400407",
+							"stationCode": "EMNZ",
+							"name": "Emmen Zuid",
+							"coordinate": {
+								"lat": 52.7488663746914,
+								"lng": 6.87478065490722
+							},
+							"countryCode": "NL"
+						},
+						{
+							"uicCode": "8400208",
+							"stationCode": "EMN",
+							"name": "Emmen",
+							"coordinate": {
+								"lat": 52.7900009155273,
+								"lng": 6.89944458007812
+							},
+							"countryCode": "NL"
+						}
+					],
+					"direction": "BOTH"
+				},
+				"consequence": {
+					"section": {
+						"stations": [
+							{
+								"uicCode": "8400747",
+								"stationCode": "ZL",
+								"name": "Zwolle",
+								"coordinate": {
+									"lat": 52.5047225952148,
+									"lng": 6.09194421768188
+								},
+								"countryCode": "NL"
+							},
+							{
+								"uicCode": "8400167",
+								"stationCode": "DL",
+								"name": "Dalfsen",
+								"coordinate": {
+									"lat": 52.4983329772949,
+									"lng": 6.25861120223999
+								},
+								"countryCode": "NL"
+							}
+						],
+						"direction": "ONE_WAY"
+					},
+					"description": "geen treinen",
+					"level": "NO_OR_MUCH_LESS_TRAINS"
+				}
+			}
+		],
+		"timespans": [
+			{
+				"start": "2021-03-22T21:11:00+0100",
+				"end": "2021-03-23T00:57:53+0100",
+				"situation": {
+					"label": "Tussen Zwolle en Dalfsen rijden er geen treinen door een stroomstoring."
+				},
+				"cause": {
+					"label": "Stroomstoring"
+				},
+				"advices": []
+			}
+		]
+	},
+	{
+		"id": "7000694",
+		"type": "MAINTENANCE",
+		"registrationTime": "2021-03-20T21:45:39+0100",
+		"releaseTime": "2021-03-20T21:45:39+0100",
+		"local": false,
+		"title": "Arnhem - Tiel",
+		"isActive": true,
+		"start": "2021-03-13T04:00:00+0100",
+		"end": "2021-04-05T02:00:00+0200",
+		"period": "Zaterdag 13-03-2021 04:00 uur t/m maandag 05-04-2021 02:00 uur.",
+		"impact": {
+			"value": 2
+		},
+		"summaryAdditionalTravelTime": {
+			"label": "De extra reistijd kan oplopen tot 30 minuten.",
+			"shortLabel": "Extra reistijd tot 30 min.",
+			"maximumDurationInMinutes": 30
+		},
+		"publicationSections": [
+			{
+				"section": {
+					"stations": [
+						{
+							"uicCode": "8400071",
+							"stationCode": "AH",
+							"name": "Arnhem Centraal",
+							"coordinate": {
+								"lat": 51.9850006103516,
+								"lng": 5.89916658401489
+							},
+							"countryCode": "NL"
+						},
+						{
+							"uicCode": "8400227",
+							"stationCode": "AHZ",
+							"name": "Arnhem Zuid",
+							"coordinate": {
+								"lat": 51.9550018310547,
+								"lng": 5.85194444656372
+							},
+							"countryCode": "NL"
+						},
+						{
+							"uicCode": "8400207",
+							"stationCode": "EST",
+							"name": "Elst",
+							"coordinate": {
+								"lat": 51.9169425964355,
+								"lng": 5.85500001907349
+							},
+							"countryCode": "NL"
+						},
+						{
+							"uicCode": "8400734",
+							"stationCode": "ZA",
+							"name": "Zetten-Andelst",
+							"coordinate": {
+								"lat": 51.920056,
+								"lng": 5.7228408
+							},
+							"countryCode": "NL"
+						},
+						{
+							"uicCode": "8400315",
+							"stationCode": "HMN",
+							"name": "Hemmen-Dodewaard",
+							"coordinate": {
+								"lat": 51.9222129,
+								"lng": 5.6737254
+							},
+							"countryCode": "NL"
+						},
+						{
+							"uicCode": "8400494",
+							"stationCode": "OP",
+							"name": "Opheusden",
+							"coordinate": {
+								"lat": 51.9261615,
+								"lng": 5.6371145
+							},
+							"countryCode": "NL"
+						},
+						{
+							"uicCode": "8400359",
+							"stationCode": "KTR",
+							"name": "Kesteren",
+							"coordinate": {
+								"lat": 51.9313869,
+								"lng": 5.5833465
+							},
+							"countryCode": "NL"
+						},
+						{
+							"uicCode": "8400596",
+							"stationCode": "TL",
+							"name": "Tiel",
+							"coordinate": {
+								"lat": 51.8894462585449,
+								"lng": 5.42222213745117
+							},
+							"countryCode": "NL"
+						}
+					],
+					"direction": "BOTH"
+				},
+				"consequence": {
+					"section": {
+						"stations": [
+							{
+								"uicCode": "8400071",
+								"stationCode": "AH",
+								"name": "Arnhem Centraal",
+								"coordinate": {
+									"lat": 51.9850006103516,
+									"lng": 5.89916658401489
+								},
+								"countryCode": "NL"
+							},
+							{
+								"uicCode": "8400227",
+								"stationCode": "AHZ",
+								"name": "Arnhem Zuid",
+								"coordinate": {
+									"lat": 51.9550018310547,
+									"lng": 5.85194444656372
+								},
+								"countryCode": "NL"
+							},
+							{
+								"uicCode": "8400207",
+								"stationCode": "EST",
+								"name": "Elst",
+								"coordinate": {
+									"lat": 51.9169425964355,
+									"lng": 5.85500001907349
+								},
+								"countryCode": "NL"
+							}
+						],
+						"direction": "ONE_WAY"
+					},
+					"description": "dienstregeling aangepast",
+					"level": "LESS_TRAINS"
+				}
+			}
+		],
+		"timespans": [
+			{
+				"start": "2021-03-13T04:00:00+0100",
+				"end": "2021-04-05T02:00:00+0200",
+				"period": "Zaterdag 13-03-2021 04:00 uur t/m maandag 05-04-2021 02:00 uur.",
+				"situation": {
+					"label": "Door werkzaamheden: tussen Arnhem Centraal en Elst is de dienstregeling aangepast."
+				},
+				"cause": {
+					"label": "Werkzaamheden"
+				},
+				"additionalTravelTime": {
+					"label": "De extra reistijd kan oplopen tot 30 minuten.",
+					"shortLabel": "Extra reistijd tot 30 min.",
+					"maximumDurationInMinutes": 30
+				},
+				"advices": []
+			}
+		]
+	},
+	{
+		"id": "7000695",
+		"type": "MAINTENANCE",
+		"registrationTime": "2021-03-13T18:09:43+0100",
+		"releaseTime": "2021-03-13T18:09:43+0100",
+		"local": false,
+		"title": "Arnhem - Duisburg - Düsseldorf",
+		"isActive": true,
+		"start": "2021-03-13T04:00:00+0100",
+		"end": "2021-04-09T19:00:00+0200",
+		"period": "Zaterdag 13-03-2021 04:00 uur t/m vrijdag 09-04-2021 19:00 uur.",
+		"impact": {
+			"value": 4
+		},
+		"summaryAdditionalTravelTime": {
+			"label": "De extra reistijd kan oplopen tot 60 minuten.",
+			"shortLabel": "Extra reistijd tot 60 min.",
+			"maximumDurationInMinutes": 60
+		},
+		"publicationSections": [
+			{
+				"section": {
+					"stations": [
+						{
+							"uicCode": "8400071",
+							"stationCode": "AH",
+							"name": "Arnhem Centraal",
+							"coordinate": {
+								"lat": 51.9850006103516,
+								"lng": 5.89916658401489
+							},
+							"countryCode": "NL"
+						},
+						{
+							"uicCode": "8400072",
+							"stationCode": "AHP",
+							"name": "Arnhem Velperpoort",
+							"coordinate": {
+								"lat": 51.985279083252,
+								"lng": 5.91944456100464
+							},
+							"countryCode": "NL"
+						},
+						{
+							"uicCode": "8400688",
+							"stationCode": "WTV",
+							"name": "Westervoort",
+							"coordinate": {
+								"lat": 51.96286,
+								"lng": 5.9695
+							},
+							"countryCode": "NL"
+						},
+						{
+							"uicCode": "8400193",
+							"stationCode": "DVN",
+							"name": "Duiven",
+							"coordinate": {
+								"lat": 51.9433326721191,
+								"lng": 6.01472234725952
+							},
+							"countryCode": "NL"
+						},
+						{
+							"uicCode": "8400735",
+							"stationCode": "ZV",
+							"name": "Zevenaar",
+							"coordinate": {
+								"lat": 51.9230537414551,
+								"lng": 6.07194423675537
+							},
+							"countryCode": "NL"
+						},
+						{
+							"uicCode": "8033415",
+							"stationCode": "EL",
+							"name": "Elten",
+							"coordinate": {
+								"lat": 51.8743,
+								"lng": 6.15417
+							},
+							"countryCode": "D"
+						},
+						{
+							"uicCode": "8010288",
+							"stationCode": "EM",
+							"name": "Emmerich",
+							"coordinate": {
+								"lat": 51.834283,
+								"lng": 6.255718
+							},
+							"countryCode": "D"
+						},
+						{
+							"uicCode": "8010275",
+							"stationCode": "WESEL",
+							"name": "Wesel",
+							"coordinate": {
+								"lat": 51.655833,
+								"lng": 6.627222
+							},
+							"countryCode": "D"
+						},
+						{
+							"uicCode": "8010263",
+							"stationCode": "OBERH",
+							"name": "Oberhausen Hbf",
+							"coordinate": {
+								"lat": 51.47512,
+								"lng": 6.852038
+							},
+							"countryCode": "D"
+						},
+						{
+							"uicCode": "8010316",
+							"stationCode": "DUISB",
+							"name": "Duisburg Hbf",
+							"coordinate": {
+								"lat": 51.4297785713316,
+								"lng": 6.77590370178222
+							},
+							"countryCode": "D"
+						},
+						{
+							"uicCode": "8039904",
+							"stationCode": "KDFFH",
+							"name": "Düsseldorf Flughafen",
+							"coordinate": {
+								"lat": 51.292009,
+								"lng": 6.786836
+							},
+							"countryCode": "D"
+						},
+						{
+							"uicCode": "8008094",
+							"stationCode": "DUSSEL",
+							"name": "Düsseldorf Hbf",
+							"coordinate": {
+								"lat": 51.220146,
+								"lng": 6.793137
+							},
+							"countryCode": "D"
+						}
+					],
+					"direction": "BOTH"
+				},
+				"consequence": {
+					"section": {
+						"stations": [
+							{
+								"uicCode": "8400071",
+								"stationCode": "AH",
+								"name": "Arnhem Centraal",
+								"coordinate": {
+									"lat": 51.9850006103516,
+									"lng": 5.89916658401489
+								},
+								"countryCode": "NL"
+							},
+							{
+								"uicCode": "8400072",
+								"stationCode": "AHP",
+								"name": "Arnhem Velperpoort",
+								"coordinate": {
+									"lat": 51.985279083252,
+									"lng": 5.91944456100464
+								},
+								"countryCode": "NL"
+							},
+							{
+								"uicCode": "8400688",
+								"stationCode": "WTV",
+								"name": "Westervoort",
+								"coordinate": {
+									"lat": 51.96286,
+									"lng": 5.9695
+								},
+								"countryCode": "NL"
+							},
+							{
+								"uicCode": "8400193",
+								"stationCode": "DVN",
+								"name": "Duiven",
+								"coordinate": {
+									"lat": 51.9433326721191,
+									"lng": 6.01472234725952
+								},
+								"countryCode": "NL"
+							},
+							{
+								"uicCode": "8400735",
+								"stationCode": "ZV",
+								"name": "Zevenaar",
+								"coordinate": {
+									"lat": 51.9230537414551,
+									"lng": 6.07194423675537
+								},
+								"countryCode": "NL"
+							}
+						],
+						"direction": "ONE_WAY"
+					},
+					"description": "dienstregeling aangepast",
+					"level": "LESS_TRAINS"
+				}
+			},
+			{
+				"section": {
+					"stations": [
+						{
+							"uicCode": "8400071",
+							"stationCode": "AH",
+							"name": "Arnhem Centraal",
+							"coordinate": {
+								"lat": 51.9850006103516,
+								"lng": 5.89916658401489
+							},
+							"countryCode": "NL"
+						},
+						{
+							"uicCode": "8400072",
+							"stationCode": "AHP",
+							"name": "Arnhem Velperpoort",
+							"coordinate": {
+								"lat": 51.985279083252,
+								"lng": 5.91944456100464
+							},
+							"countryCode": "NL"
+						},
+						{
+							"uicCode": "8400688",
+							"stationCode": "WTV",
+							"name": "Westervoort",
+							"coordinate": {
+								"lat": 51.96286,
+								"lng": 5.9695
+							},
+							"countryCode": "NL"
+						},
+						{
+							"uicCode": "8400193",
+							"stationCode": "DVN",
+							"name": "Duiven",
+							"coordinate": {
+								"lat": 51.9433326721191,
+								"lng": 6.01472234725952
+							},
+							"countryCode": "NL"
+						},
+						{
+							"uicCode": "8400735",
+							"stationCode": "ZV",
+							"name": "Zevenaar",
+							"coordinate": {
+								"lat": 51.9230537414551,
+								"lng": 6.07194423675537
+							},
+							"countryCode": "NL"
+						},
+						{
+							"uicCode": "8033415",
+							"stationCode": "EL",
+							"name": "Elten",
+							"coordinate": {
+								"lat": 51.8743,
+								"lng": 6.15417
+							},
+							"countryCode": "D"
+						},
+						{
+							"uicCode": "8010288",
+							"stationCode": "EM",
+							"name": "Emmerich",
+							"coordinate": {
+								"lat": 51.834283,
+								"lng": 6.255718
+							},
+							"countryCode": "D"
+						},
+						{
+							"uicCode": "8010275",
+							"stationCode": "WESEL",
+							"name": "Wesel",
+							"coordinate": {
+								"lat": 51.655833,
+								"lng": 6.627222
+							},
+							"countryCode": "D"
+						},
+						{
+							"uicCode": "8010263",
+							"stationCode": "OBERH",
+							"name": "Oberhausen Hbf",
+							"coordinate": {
+								"lat": 51.47512,
+								"lng": 6.852038
+							},
+							"countryCode": "D"
+						},
+						{
+							"uicCode": "8010316",
+							"stationCode": "DUISB",
+							"name": "Duisburg Hbf",
+							"coordinate": {
+								"lat": 51.4297785713316,
+								"lng": 6.77590370178222
+							},
+							"countryCode": "D"
+						},
+						{
+							"uicCode": "8039904",
+							"stationCode": "KDFFH",
+							"name": "Düsseldorf Flughafen",
+							"coordinate": {
+								"lat": 51.292009,
+								"lng": 6.786836
+							},
+							"countryCode": "D"
+						},
+						{
+							"uicCode": "8008094",
+							"stationCode": "DUSSEL",
+							"name": "Düsseldorf Hbf",
+							"coordinate": {
+								"lat": 51.220146,
+								"lng": 6.793137
+							},
+							"countryCode": "D"
+						}
+					],
+					"direction": "BOTH"
+				},
+				"consequence": {
+					"section": {
+						"stations": [
+							{
+								"uicCode": "8400071",
+								"stationCode": "AH",
+								"name": "Arnhem Centraal",
+								"coordinate": {
+									"lat": 51.9850006103516,
+									"lng": 5.89916658401489
+								},
+								"countryCode": "NL"
+							},
+							{
+								"uicCode": "8400072",
+								"stationCode": "AHP",
+								"name": "Arnhem Velperpoort",
+								"coordinate": {
+									"lat": 51.985279083252,
+									"lng": 5.91944456100464
+								},
+								"countryCode": "NL"
+							},
+							{
+								"uicCode": "8400688",
+								"stationCode": "WTV",
+								"name": "Westervoort",
+								"coordinate": {
+									"lat": 51.96286,
+									"lng": 5.9695
+								},
+								"countryCode": "NL"
+							},
+							{
+								"uicCode": "8400193",
+								"stationCode": "DVN",
+								"name": "Duiven",
+								"coordinate": {
+									"lat": 51.9433326721191,
+									"lng": 6.01472234725952
+								},
+								"countryCode": "NL"
+							},
+							{
+								"uicCode": "8400735",
+								"stationCode": "ZV",
+								"name": "Zevenaar",
+								"coordinate": {
+									"lat": 51.9230537414551,
+									"lng": 6.07194423675537
+								},
+								"countryCode": "NL"
+							},
+							{
+								"uicCode": "8033415",
+								"stationCode": "EL",
+								"name": "Elten",
+								"coordinate": {
+									"lat": 51.8743,
+									"lng": 6.15417
+								},
+								"countryCode": "D"
+							},
+							{
+								"uicCode": "8010288",
+								"stationCode": "EM",
+								"name": "Emmerich",
+								"coordinate": {
+									"lat": 51.834283,
+									"lng": 6.255718
+								},
+								"countryCode": "D"
+							},
+							{
+								"uicCode": "8010275",
+								"stationCode": "WESEL",
+								"name": "Wesel",
+								"coordinate": {
+									"lat": 51.655833,
+									"lng": 6.627222
+								},
+								"countryCode": "D"
+							},
+							{
+								"uicCode": "8010263",
+								"stationCode": "OBERH",
+								"name": "Oberhausen Hbf",
+								"coordinate": {
+									"lat": 51.47512,
+									"lng": 6.852038
+								},
+								"countryCode": "D"
+							}
+						],
+						"direction": "ONE_WAY"
+					},
+					"description": "dienstregeling aangepast",
+					"level": "LESS_TRAINS"
+				}
+			}
+		],
+		"timespans": [
+			{
+				"start": "2021-03-13T04:00:00+0100",
+				"end": "2021-03-26T19:00:00+0100",
+				"period": "Zaterdag 13-03-2021 04:00 uur t/m vrijdag 26-03-2021 19:00 uur.",
+				"situation": {
+					"label": "Door werkzaamheden: tussen Arnhem Centraal en Zevenaar is de dienstregeling aangepast."
+				},
+				"cause": {
+					"label": "Werkzaamheden"
+				},
+				"alternativeTransport": {
+					"label": "Er rijden ook snelbussen.",
+					"shortLabel": "er rijden ook snelbussen"
+				},
+				"advices": [
+					"Er rijden bussen in plaats van Abellio treinen. De treinen van Arriva rijden zoals normaal."
+				]
+			},
+			{
+				"start": "2021-03-26T19:00:00+0100",
+				"end": "2021-04-09T19:00:00+0200",
+				"period": "Vrijdag 26-03-2021 19:00 uur t/m vrijdag 09-04-2021 19:00 uur.",
+				"situation": {
+					"label": "Door werkzaamheden: tussen Arnhem Centraal en Oberhausen Hbf is de dienstregeling aangepast."
+				},
+				"cause": {
+					"label": "Werkzaamheden"
+				},
+				"additionalTravelTime": {
+					"label": "De extra reistijd kan oplopen tot 60 minuten.",
+					"shortLabel": "Extra reistijd tot 60 min.",
+					"maximumDurationInMinutes": 60
+				},
+				"alternativeTransport": {
+					"label": "Er rijden ook bussen.",
+					"shortLabel": "er rijden ook bussen"
+				},
+				"advices": []
+			}
+		]
+	}
+]

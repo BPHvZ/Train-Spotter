@@ -29,8 +29,9 @@ import {
 } from "@angular/animations";
 import { Component, EventEmitter, Input, Output } from "@angular/core";
 import { faSyncAlt } from "@fortawesome/free-solid-svg-icons";
+import { MarkerComponent } from "ngx-mapbox-gl/lib/marker/marker.component";
 import { Observable } from "rxjs";
-import { DisruptionsList } from "../../models/ReisinformatieAPI";
+import { DisruptionBase, DisruptionsList } from "../../models/ReisinformatieAPI";
 import { SharedDataService } from "../../services/shared-data.service";
 
 /**
@@ -90,29 +91,22 @@ export class TrainMapSidebarComponent {
 	@Input() activeDisruptions: DisruptionsList;
 	/**Notify train map component to force update disruptions*/
 	@Output() updateDisruptions = new EventEmitter();
-	/**Notify when sidebar opens and closes*/
-	@Output() clickOnArrow = new EventEmitter<boolean>();
 
 	/**Sidebar open/closed state*/
-	sidebarState = "closed";
+	sidebarState$: Observable<"open" | "closed"> = this.sharedDataService.sidebarState$;
 	/**FontAwesome sync icon*/
 	faSyncAlt = faSyncAlt;
 
 	/**Date when disruptions have been last updated*/
 	disruptionsLastUpdated$: Observable<Date> = this.sharedDataService.disruptionsLastUpdated$;
 
+	private _focusedDisruptionMarker: MarkerComponent = null;
+
 	/**
 	 * Define services
 	 * @param sharedDataService Shares data through the application
 	 */
 	constructor(private sharedDataService: SharedDataService) {}
-
-	/**
-	 * Open or close the sidebar
-	 */
-	changeState(): void {
-		this.sidebarState = this.sidebarState === "closed" ? "open" : "closed";
-	}
 
 	/**
 	 * Is run when the sidebar animation has finished
@@ -160,5 +154,61 @@ export class TrainMapSidebarComponent {
 		if (event.toState === "open") {
 			sidebar.style.setProperty("display", "block", "important");
 		}
+	}
+
+	/**
+	 * Open or close the sidebar
+	 */
+	toggleSidebar(): void {
+		this.sharedDataService.toggleSidebar();
+	}
+
+	/**
+	 * Fly to a disruption on the map
+	 * Close the sidebar on small screens
+	 * @param disruption Disruption to fly to
+	 */
+	flyToDisruption(disruption: DisruptionBase): void {
+		if (this.sharedDataService.screenWidth <= 767) {
+			this.toggleSidebar();
+		}
+		this.sharedDataService.flyToDisruption(disruption);
+	}
+
+	onMouseEnterDisruptionCard(event: MouseEvent, disruption: DisruptionBase): void {
+		// find disruption on map and hover
+		event.preventDefault();
+		const markers = Array.from(this.sharedDataService.disruptionMarkerElements);
+		const marker = markers.find((m) => m.feature.properties.id == disruption.id);
+		if (marker) {
+			this._focusedDisruptionMarker = marker;
+			const markerElement = marker.content.nativeElement as HTMLElement;
+			const markerChild = markerElement.firstChild.firstChild as HTMLElement;
+			setTimeout(function () {
+				markerElement.style.zIndex = "1";
+				markerChild.focus();
+			});
+		}
+		event.preventDefault();
+	}
+
+	onMouseLeaveDisruptionCard(event: MouseEvent, disruption: DisruptionBase): void {
+		// find disruption on map and hover
+		event.preventDefault();
+		let marker = this._focusedDisruptionMarker;
+		if (marker === null) {
+			const markers = Array.from(this.sharedDataService.disruptionMarkerElements);
+			marker = markers.find((m) => m.feature.properties.id == disruption.id);
+		}
+		if (marker) {
+			const markerElement = marker.content.nativeElement as HTMLElement;
+			const markerChild = markerElement.firstChild.firstChild as HTMLElement;
+			setTimeout(function () {
+				// eslint-disable-next-line
+				markerElement.style.zIndex = "unset";
+				markerChild.blur();
+			});
+		}
+		event.preventDefault();
 	}
 }

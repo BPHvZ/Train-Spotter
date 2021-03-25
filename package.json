@@ -67,6 +67,7 @@
     "easytimer.js": "^4.3.4",
     "jimp": "^0.14.0",
     "mapbox-gl": "^2.1.1",
+    "ng-inline-svg": "^12.1.0",
     "ngx-mapbox-gl": "^6.0.4",
     "replace-color": "^2.3.0",
     "rxjs": "^6.6.3",
@@ -115,7 +116,6 @@
     "source-map-explorer": "^2.5.2",
     "ts-node": "^9.1.1",
     "typescript": "~4.1.4",
-    "w3c-hr-time": "^1.0.2",
     "webpack-bundle-analyzer": "^4.4.0",
     "xml-formatter": "^2.4.0",
     "xml2json": "^0.12.0"

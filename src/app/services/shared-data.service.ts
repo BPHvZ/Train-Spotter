@@ -20,10 +20,13 @@ import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import { GeoJSON, MultiLineString } from "geojson";
 import { LngLatLike, Map as MapBoxMap, MapboxGeoJSONFeature } from "mapbox-gl";
+import { MarkerComponent } from "ngx-mapbox-gl/lib/marker/marker.component";
 import { BehaviorSubject, combineLatest, fromEvent, Observable } from "rxjs";
 import { debounceTime, map, switchMap, take, tap } from "rxjs/operators";
+import { DisruptionCard } from "../components/train-map-sidebar/disruption-item/disruption-item.component";
 import { DisruptionBase, DisruptionsList, Station, StationsResponse } from "../models/ReisinformatieAPI";
 import { TrainTracksGeoJSON } from "../models/SpoortkaartAPI";
+import { TrainMapType } from "../models/TrainMapType";
 import { DetailedTrainInformation } from "../models/VirtualTrainAPI";
 import { ApiService } from "./api.service";
 import { CacheService } from "./cache.service";
@@ -39,6 +42,24 @@ export class SharedDataService {
 	/*
 	 * Data used by the train map
 	 * */
+	readonly mapTypes: TrainMapType[] = [
+		{
+			name: "Normaal",
+			description: "Kaart met alleen treinen en stations",
+			layerId: "ns-railroad",
+		},
+		{
+			name: "Storingen",
+			description: "Kaart met treinen, stations en actuele storingen",
+			layerId: "storingen-railroad",
+		},
+	];
+	/**Active map type*/
+	/**Subscribable stations object*/
+	private _activeMapType = new BehaviorSubject<TrainMapType>(this.mapTypes[0]);
+	/**Observable of stations*/
+	public readonly activeMapType$ = this._activeMapType.asObservable();
+
 	// Map popups
 	/**Train of selected popup*/
 	selectedTrainOnMapFeature: MapboxGeoJSONFeature;
@@ -101,6 +122,16 @@ export class SharedDataService {
 	 * Data used by the header
 	 * */
 	globalSearchReady$ = combineLatest([this._stations, this._detailedTrainInformation]);
+
+	/*
+	 * Data used to hover and focus on disruption markers on the map and cards in the sidebar
+	 * */
+	disruptionMarkerElements = new Set<MarkerComponent>();
+	disruptionCardElements = new Set<DisruptionCard>();
+	/**Sidebar open/closed state*/
+	private _sidebarState = new BehaviorSubject<"open" | "closed">("open");
+	/**Observable of sidebar open/closed state*/
+	public readonly sidebarState$ = this._sidebarState.asObservable();
 
 	/**
 	 * Defines services
@@ -261,6 +292,17 @@ export class SharedDataService {
 	}
 
 	/**
+	 * Change the map {@link mapTypes}
+	 * @param layer Map type to change to
+	 */
+	changeMapLayerType(layer: TrainMapType): void {
+		this._activeMapType.next(layer);
+		if (layer.layerId === "storingen-railroad") {
+			this._sidebarState.next("open");
+		}
+	}
+
+	/**
 	 * Fly to a station and open a station popup
 	 * @param station The station to fly to
 	 */
@@ -316,6 +358,7 @@ export class SharedDataService {
 		}
 		if (this.trainMap && train) {
 			this.closePopups();
+			this._activeMapType.next(this.mapTypes[0]);
 			this.trainMap.flyTo({
 				center: [train.lng, train.lat],
 				zoom: 15,
@@ -354,5 +397,12 @@ export class SharedDataService {
 			this.navbarCollapsed = true;
 		}
 		this._navbarCollapsed$.next(this.navbarCollapsed);
+	}
+
+	/**
+	 * Open or close the sidebar
+	 */
+	toggleSidebar(): void {
+		this._sidebarState.next(this._sidebarState.getValue() === "closed" ? "open" : "closed");
 	}
 }

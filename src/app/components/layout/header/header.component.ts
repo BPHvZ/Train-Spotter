@@ -82,6 +82,7 @@ export class HeaderComponent implements OnInit, OnDestroy, AfterViewInit {
 	 * @param globalSearchService Searches on stations and trains
 	 * @param cacheService Cache object
 	 * @param modalService Open/close NgbModal
+	 * @param renderer Used to modify DOM elements
 	 */
 	constructor(
 		private sharedDataService: SharedDataService,
@@ -229,7 +230,7 @@ export class HeaderComponent implements OnInit, OnDestroy, AfterViewInit {
 		const result = event.item as GlobalSearchResult;
 		event.preventDefault();
 		// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-		this.globalTypeahead.nativeElement.value = result.searchField;
+		this.renderer.setValue(this.globalTypeahead.nativeElement, result.searchField);
 		switch (result.resultType) {
 			case GlobalSearchResultType.Train: {
 				this.sharedDataService.flyToTrain(result.result as DetailedTrainInformation);

@@ -44,6 +44,39 @@
 							<strong><fa-icon [icon]="faSyncAlt" style="font-size: small"></fa-icon></strong>
 						</button>
 					</div>
+					<ng-container *ngIf="getDisruptionCount('MAINTENANCE') + getDisruptionCount('DISRUPTION') > 0">
+						<div class="d-flex flex-column mb-3 mt-2 disruption-totals-border p-1" style="margin: 0 -15px">
+							<ng-container *ngIf="getDisruptionCount('DISRUPTION') as count">
+								<div *ngIf="count > 0" class="color-disruption">
+									<div style="display: inline">
+										<div
+											id="disruption-svg"
+											[inlineSVG]="'../../assets/alert--35x35.svg'"
+											[setSVGAttributes]="{'width': '30px', 'height': '30px'}"
+										></div>
+									</div>
+									{{count}} {{count > 1 ? 'verstoringen' : 'verstoring'}}
+								</div>
+							</ng-container>
+							<ng-container
+								*ngIf="getDisruptionCount('MAINTENANCE') > 0 && getDisruptionCount('DISRUPTION') > 0"
+							>
+								<div class="dropdown-divider"></div>
+							</ng-container>
+							<ng-container *ngIf="getDisruptionCount('MAINTENANCE') as count">
+								<div *ngIf="count > 0" class="color-maintenance">
+									<div style="display: inline">
+										<div
+											id="maintenance-svg"
+											[inlineSVG]="'../../assets/maintenance--35x35.svg'"
+											[setSVGAttributes]="{'width': '30px', 'height': '30px'}"
+										></div>
+									</div>
+									{{count}} {{count > 1 ? 'werkzaamheden' : 'werkzaamheid'}}
+								</div>
+							</ng-container>
+						</div>
+					</ng-container>
 					<div class="row">
 						<div *ngIf="activeDisruptions">
 							<div

@@ -22,11 +22,11 @@ import { Timer } from "easytimer.js";
 import { GeoJSON, MultiLineString } from "geojson";
 import {
 	EventData,
+	GeoJSONSourceOptions,
 	Map as MapBoxMap,
 	MapboxEvent,
 	MapboxGeoJSONFeature,
 	MapLayerMouseEvent,
-	MapMouseEvent,
 	MapSourceDataEvent,
 } from "mapbox-gl";
 import { MarkerComponent } from "ngx-mapbox-gl/lib/marker/marker.component";
@@ -40,6 +40,7 @@ import { DetailedTrainInformation, TrainIconOnMap } from "../../models/VirtualTr
 import { HelperFunctionsService } from "../../services/helper-functions.service";
 import { ImageEditorService } from "../../services/image-editor.service";
 import { SharedDataService } from "../../services/shared-data.service";
+import { DisruptionCard } from "../train-map-sidebar/disruption-item/disruption-item.component";
 
 /**
  * Train map with stations and trains that get update every x seconds
@@ -95,7 +96,7 @@ export class TrainMapComponent implements OnInit, OnDestroy {
 
 	// Station layer
 	/**Station layer GeoJSON*/
-	stationsLayerData: GeoJSON.FeatureCollection<GeoJSON.Geometry>;
+	stationsLayerData: GeoJSONSourceOptions["data"];
 
 	// Train tracks layer
 	/**Train tracks layer GeoJSON*/
@@ -130,13 +131,15 @@ export class TrainMapComponent implements OnInit, OnDestroy {
 	/**Observe train icons added to the map*/
 	private trainIconAddedSource = new Subject<string>();
 	/**Observable to keep tracks of train icons that have been added*/
-	trainIconAdded = this.trainIconAddedSource.asObservable();
+	trainIconAdded$ = this.trainIconAddedSource.asObservable();
 	/**All train icon names*/
 	private trainIconNames: Set<string> = new Set<string>();
 	/**Set to store icons names of icons that have been added to the map*/
 	private trainIconsAdded: Set<string> = new Set<string>();
 	/**Train icons to be added to the map*/
 	trainIconsForMap: TrainIconOnMap[] = [];
+
+	private _focusedDisruptionCard: DisruptionCard = null;
 
 	subscriptions: Subscription[] = [];
 
@@ -146,6 +149,7 @@ export class TrainMapComponent implements OnInit, OnDestroy {
 	 * @param helperFunctions Helper functions
 	 * @param router Router object
 	 * @param imageEditorService Web Worker to edit icons
+	 * @param renderer Used to modify DOM elements
 	 */
 	constructor(
 		private sharedDataService: SharedDataService,
@@ -176,7 +180,7 @@ export class TrainMapComponent implements OnInit, OnDestroy {
 		});
 		this.subscriptions.push(sub1);
 
-		this.countdownTimer.addEventListener("targetAchieved", (e) => {
+		this.countdownTimer.addEventListener("targetAchieved", () => {
 			console.log("timer");
 			if (this.isUpdatingMapData === false) {
 				this.updateTrainsAndDisruptions();
@@ -196,9 +200,13 @@ export class TrainMapComponent implements OnInit, OnDestroy {
 		this.trainIconAddedSource.next(trainIconName);
 	}
 
+	onIconError(error: { status: number }): void {
+		console.error(error);
+	}
+
 	/**
-	 * Pause or resume the {@link updateTrainsTimer}
-	 * @param pause Whether to pause {@link updateTrainsTimer} or not
+	 * Pause or resume the {@link countdownTimer}
+	 * @param pause Whether to pause {@link countdownTimer} or not
 	 */
 	pauseOrResumeUpdatingTrainPositions(pause: boolean): void {
 		if (this.isUpdatingMapData === false) {
@@ -233,13 +241,11 @@ export class TrainMapComponent implements OnInit, OnDestroy {
 		this.isUpdatingMapData = true;
 		zip(
 			this.sharedDataService.getBasicInformationAboutAllStations(),
-			this.sharedDataService.getTrainTracksGeoJSON(),
-			this.sharedDataService.updateDisruptedTrainTracksGeoJSON(),
-			this.sharedDataService.updateActiveDisruptions()
+			this.sharedDataService.getTrainTracksGeoJSON()
 		)
 			.pipe(take(1))
 			.subscribe({
-				next: (value: [StationsResponse, TrainTracksGeoJSON, void, void]) => {
+				next: (value: [StationsResponse, TrainTracksGeoJSON]) => {
 					console.log(value);
 					this.addStationsToMap(value[0].payload);
 					this.trainTracksLayerData = value[1].payload;
@@ -255,8 +261,8 @@ export class TrainMapComponent implements OnInit, OnDestroy {
 		// Add rel=noopener to mapbox links. Lighthouse improvement
 		const children = document.querySelector(".mapboxgl-ctrl-attrib-inner").children;
 		for (let i = 0; i < children.length; i++) {
-			children[i].setAttribute("rel", "noopener");
-			children[i].setAttribute("role", "listitem");
+			this.renderer.setAttribute(children[i], "rel", "noopener");
+			this.renderer.setAttribute(children[i], "role", "listitem");
 		}
 	}
 
@@ -286,7 +292,7 @@ export class TrainMapComponent implements OnInit, OnDestroy {
 			const features = event.target.queryRenderedFeatures(event.point, {
 				layers: ["trains", "stations"],
 			});
-			event.target.getCanvas().style.cursor = features.length ? "pointer" : "";
+			this.renderer.setStyle(event.target.getCanvas(), "cursor", features.length ? "pointer" : "");
 		}
 	}
 
@@ -460,14 +466,6 @@ export class TrainMapComponent implements OnInit, OnDestroy {
 	}
 
 	/**
-	 * Event when a disruption marker is clicked
-	 * @param event Map mouse event
-	 */
-	clickMarker(event: MapMouseEvent): void {
-		console.log(event);
-	}
-
-	/**
 	 * Get detailed information about all train currently riding
 	 * Set train icons when data is received
 	 * Get information about active disruptions and add markers
@@ -603,7 +601,7 @@ export class TrainMapComponent implements OnInit, OnDestroy {
 	 * @param detailedTrainInformation Detailed information about all trains
 	 */
 	listenForTrainIcons(detailedTrainInformation: DetailedTrainInformation[]): void {
-		this.trainIconAdded.pipe(take(1)).subscribe({
+		this.trainIconAdded$.pipe(take(this.trainIconNames.size)).subscribe({
 			next: (trainIconName) => {
 				this.trainIconsAdded.add(trainIconName);
 				if (this.trainIconNames.size === this.trainIconsAdded.size) {
@@ -623,21 +621,6 @@ export class TrainMapComponent implements OnInit, OnDestroy {
 		};
 	}
 
-	onMouseEnterDisruptionMarker(event: MouseEvent, disruption: DisruptionBase, markerElement: MarkerComponent): void {
-		// find disruption in sidebar and focus
-		event.preventDefault();
-		const cards = Array.from(this.sharedDataService.disruptionCardElements);
-		const card = cards.find((c) => c.id == disruption.id);
-		if (card) {
-			const cardElement = this.renderer.selectRootElement(card.element.nativeElement, true) as HTMLElement;
-			setTimeout(() => {
-				cardElement.parentElement.focus();
-				this.renderer.setStyle(markerElement.content.nativeElement, "zIndex", 1);
-			}, 0);
-		}
-		event.preventDefault();
-	}
-
 	/**
 	 * Fly to a disruption on the map
 	 * @param disruption Disruption to fly to
@@ -646,17 +629,32 @@ export class TrainMapComponent implements OnInit, OnDestroy {
 		this.sharedDataService.flyToDisruption(disruption);
 	}
 
-	onMouseLeaveDisruptionMarker(event: MouseEvent, disruption: DisruptionBase, markerElement: MarkerComponent): void {
-		// find disruption in sidebar and unfocus
+	onMouseEnterDisruptionMarker(event: MouseEvent, disruption: DisruptionBase, markerElement: MarkerComponent): void {
+		// find disruption in sidebar and focus
 		event.preventDefault();
 		const cards = Array.from(this.sharedDataService.disruptionCardElements);
 		const card = cards.find((c) => c.id == disruption.id);
 		if (card) {
 			const cardElement = this.renderer.selectRootElement(card.element.nativeElement, true) as HTMLElement;
-			setTimeout(() => {
-				cardElement.parentElement.blur();
-				this.renderer.setStyle(markerElement.content.nativeElement, "zIndex", "unset");
-			}, 0);
+			this._focusedDisruptionCard = card;
+			this.renderer.setStyle(markerElement.content.nativeElement, "zIndex", 1);
+			cardElement.parentElement.focus();
+		}
+		event.preventDefault();
+	}
+
+	onMouseLeaveDisruptionMarker(event: MouseEvent, disruption: DisruptionBase, markerElement: MarkerComponent): void {
+		// find disruption in sidebar and remove focus
+		event.preventDefault();
+		let card = this._focusedDisruptionCard;
+		if (card === null) {
+			const cards = Array.from(this.sharedDataService.disruptionCardElements);
+			card = cards.find((c) => c.id == disruption.id);
+		}
+		if (card) {
+			const cardElement = this.renderer.selectRootElement(card.element.nativeElement, true) as HTMLElement;
+			cardElement.parentElement.blur();
+			this.renderer.setStyle(markerElement.content.nativeElement, "zIndex", "unset");
 		}
 		event.preventDefault();
 	}

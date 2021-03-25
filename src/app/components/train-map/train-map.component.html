@@ -38,56 +38,52 @@
 				[fitBoundsOptions]="{maxZoom:10}"
 				position="top-right"
 			></mgl-control>
-			<mgl-geojson-source
-				*ngIf="stationsLayerData"
-				id="stationsData"
-				[data]="stationsLayerData"
-			></mgl-geojson-source>
-			<mgl-layer
-				*ngIf="stationsLayerData"
-				id="stations"
-				type="symbol"
-				source="stationsData"
-				[layout]="{
+			<ng-container *ngIf="stationsLayerData">
+				<mgl-geojson-source id="stationsData" [data]="stationsLayerData"></mgl-geojson-source>
+				<mgl-layer
+					id="stations"
+					type="symbol"
+					source="stationsData"
+					[layout]="{
 					'icon-image': 'NS',
 					'icon-size': 0.15,
 					'icon-allow-overlap': true
 				}"
-				[minzoom]="10"
-				(layerClick)="openStationPopupOnLayerClick($event)"
-			>
-			</mgl-layer>
-			<mgl-geojson-source
-				*ngIf="trainTracksLayerData"
-				id="trainTracksLayerData"
-				[data]="trainTracksLayerData"
-			></mgl-geojson-source>
-			<mgl-layer
-				*ngIf="trainTracksLayerData"
-				id="NSTrainTracks"
-				type="line"
-				source="trainTracksLayerData"
-				[layout]="{ 'line-join': 'round', 'line-cap': 'round' }"
-				[paint]="{ 'line-color': '#9C9CA6', 'line-width': 2 }"
-				[before]="'stations'"
-			>
-			</mgl-layer>
-			<mgl-layer
-				*ngIf="disruptedTrainTracksLayerData$ | async as data"
-				id="disruptedTrainTracks"
-				type="line"
-				[source]="{ type: 'geojson', data: data.payload }"
-				[layout]="{
+					[minzoom]="10"
+					(layerClick)="openStationPopupOnLayerClick($event)"
+				>
+				</mgl-layer>
+			</ng-container>
+			<ng-container *ngIf="trainTracksLayerData">
+				<mgl-geojson-source id="trainTracksLayerData" [data]="trainTracksLayerData"></mgl-geojson-source>
+				<mgl-layer
+					id="NSTrainTracks"
+					type="line"
+					source="trainTracksLayerData"
+					[layout]="{ 'line-join': 'round', 'line-cap': 'round' }"
+					[paint]="{ 'line-color': '#9C9CA6', 'line-width': 2 }"
+					[before]="'stations'"
+				>
+				</mgl-layer>
+			</ng-container>
+			<ng-container *ngIf="disruptedTrainTracksLayerData$ | async as data">
+				<mgl-geojson-source id="disruptedTrainTracksSource" [data]="data.payload"></mgl-geojson-source>
+				<mgl-layer
+					id="disruptedTrainTracks"
+					type="line"
+					source="disruptedTrainTracksSource"
+					[layout]="{
 					visibility: activeMapType.layerId === 'storingen-railroad' ? 'visible' : 'none',
 					'line-join': 'round',
 					'line-cap': 'round'
 				}"
-				[paint]="{
+					[paint]="{
 				'line-color': ['match', ['get', 'disruptionType'], 'STORING', '#ec0045', '#fe6200'],
 				'line-width': 4 }"
-				[before]="'stations'"
-			>
-			</mgl-layer>
+					[before]="'stations'"
+				>
+				</mgl-layer>
+			</ng-container>
 			<ng-container *ngIf="disruptionMarkersData$ | async as disruptionMarkers">
 				<mgl-geojson-source id="disruptionMarkersSource">
 					<mgl-marker
@@ -151,13 +147,7 @@
 						</div>
 					</mgl-marker>
 				</mgl-geojson-source>
-				<mgl-layer
-					id="disruptionMarkers"
-					type="symbol"
-					source="disruptionMarkersSource"
-					(layerClick)="clickMarker($event)"
-				>
-				</mgl-layer>
+				<mgl-layer id="disruptionMarkers" type="symbol" source="disruptionMarkersSource"> </mgl-layer>
 			</ng-container>
 			<mgl-geojson-source *ngIf="trainsLayerData" id="trainData" [data]="trainsLayerData"></mgl-geojson-source>
 			<mgl-layer
@@ -177,15 +167,15 @@
 				(layerClick)="openTrainPopupOnLayerClick($event)"
 			>
 			</mgl-layer>
-			<div *ngIf="trainIconsForMap">
+			<ng-container *ngIf="trainIconsForMap">
 				<mgl-image
 					*ngFor="let trainIcon of trainIconsForMap"
 					[id]="trainIcon.imageName"
 					[url]="trainIcon.imageObjectURL"
 					(imageLoaded)="onIconLoad(trainIcon.imageName)"
-					(imageError)="onIconLoad(trainIcon.imageName)"
+					(imageError)="onIconError($event)"
 				></mgl-image>
-			</div>
+			</ng-container>
 			<mgl-popup
 				*ngIf="selectedTrainOnMapFeature"
 				[offset]="[0, 5]"

@@ -129,7 +129,7 @@ export class SharedDataService {
 	disruptionMarkerElements = new Set<MarkerComponent>();
 	disruptionCardElements = new Set<DisruptionCard>();
 	/**Sidebar open/closed state*/
-	private _sidebarState = new BehaviorSubject<"open" | "closed">("open");
+	private _sidebarState = new BehaviorSubject<"open" | "closed">("closed");
 	/**Observable of sidebar open/closed state*/
 	public readonly sidebarState$ = this._sidebarState.asObservable();
 
@@ -209,6 +209,7 @@ export class SharedDataService {
 	}
 
 	updateDisruptionMarkersData(markers: GeoJSON.Feature<GeoJSON.Point, DisruptionBase>[]): void {
+		this.disruptionMarkerElements.clear();
 		this._disruptionMarkersData.next(markers);
 	}
 
@@ -338,6 +339,7 @@ export class SharedDataService {
 		if (this.trainMap && disruption && this._disruptionMarkersData.getValue() != null) {
 			const markers = this._disruptionMarkersData.getValue();
 			this.closePopups();
+			this._activeMapType.next(this.mapTypes[1]);
 			const marker = markers.find((m) => m.properties === disruption);
 			if (marker) {
 				this.trainMap.flyTo({

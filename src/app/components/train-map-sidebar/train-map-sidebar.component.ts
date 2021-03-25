@@ -27,7 +27,7 @@ import {
 	transition,
 	trigger,
 } from "@angular/animations";
-import { Component, EventEmitter, Input, Output } from "@angular/core";
+import { Component, EventEmitter, Input, Output, Renderer2, RendererStyleFlags2 } from "@angular/core";
 import { faSyncAlt } from "@fortawesome/free-solid-svg-icons";
 import { MarkerComponent } from "ngx-mapbox-gl/lib/marker/marker.component";
 import { Observable } from "rxjs";
@@ -105,8 +105,14 @@ export class TrainMapSidebarComponent {
 	/**
 	 * Define services
 	 * @param sharedDataService Shares data through the application
+	 * @param renderer Used to modify DOM elements
 	 */
-	constructor(private sharedDataService: SharedDataService) {}
+	constructor(private sharedDataService: SharedDataService, private renderer: Renderer2) {}
+
+	getDisruptionCount(type: "CALAMITY" | "DISRUPTION" | "MAINTENANCE"): number {
+		const disruptions = this.activeDisruptions.filter((c) => c.type === type);
+		return disruptions.length;
+	}
 
 	/**
 	 * Is run when the sidebar animation has finished
@@ -119,20 +125,21 @@ export class TrainMapSidebarComponent {
 		const sidebarWrapper = document.getElementById("sidebar-wrapper");
 		const sidebarContainer = document.getElementById("sidebar-container");
 		const sidebar = document.getElementById("sidebar");
-		sidebarContainer.style.willChange = "auto";
+
+		this.renderer.setStyle(sidebarContainer, "willChange", "auto");
 		if (event.toState === "closed") {
-			sidebarWrapper.style.position = "absolute";
-			sidebarWrapper.style.right = "0";
-			sidebarWrapper.style.height = "unset";
-			sidebarWrapper.style.top = "calc(50% - (135px / 2))";
-			sidebarWrapper.style.padding = "30px 0 30px 30px";
-			sidebar.style.setProperty("display", "none", "important");
+			this.renderer.setStyle(sidebarWrapper, "position", "absolute");
+			this.renderer.setStyle(sidebarWrapper, "right", "0");
+			this.renderer.setStyle(sidebarWrapper, "height", "unset");
+			this.renderer.setStyle(sidebarWrapper, "top", "calc(50% - (135px / 2))");
+			this.renderer.setStyle(sidebarWrapper, "padding", "30px 0 30px 30px");
+			this.renderer.setStyle(sidebar, "display", "none", RendererStyleFlags2.Important);
 
 			// FIX - redraws sidebar in safari. Otherwise still occupies the sidebar area and no interaction is available
 			const display = sidebarComponent.style.display;
-			sidebarComponent.style.display = "none";
+			this.renderer.setStyle(sidebarComponent, "display", "none");
 			console.log(sidebarComponent.offsetHeight);
-			sidebarComponent.style.display = display;
+			this.renderer.setStyle(sidebarComponent, "display", display);
 		}
 	}
 
@@ -144,15 +151,16 @@ export class TrainMapSidebarComponent {
 		const sidebarWrapper = document.getElementById("sidebar-wrapper");
 		const sidebarContainer = document.getElementById("sidebar-container");
 		const sidebar = document.getElementById("sidebar");
-		sidebarWrapper.style.position = "relative";
-		sidebarWrapper.style.right = "unset";
-		sidebarWrapper.style.height = "100%";
-		sidebarWrapper.style.top = "unset";
-		sidebarWrapper.style.padding = "0 0 0 30px";
 
-		sidebarContainer.style.willChange = "contents";
+		this.renderer.setStyle(sidebarWrapper, "position", "relative");
+		this.renderer.setStyle(sidebarWrapper, "right", "unset");
+		this.renderer.setStyle(sidebarWrapper, "height", "100%");
+		this.renderer.setStyle(sidebarWrapper, "top", "unset");
+		this.renderer.setStyle(sidebarWrapper, "padding", "0 0 0 30px");
+		this.renderer.setStyle(sidebarContainer, "willChange", "contents");
+
 		if (event.toState === "open") {
-			sidebar.style.setProperty("display", "block", "important");
+			this.renderer.setStyle(sidebar, "display", "block", RendererStyleFlags2.Important);
 		}
 	}
 
@@ -184,10 +192,8 @@ export class TrainMapSidebarComponent {
 			this._focusedDisruptionMarker = marker;
 			const markerElement = marker.content.nativeElement as HTMLElement;
 			const markerChild = markerElement.firstChild.firstChild as HTMLElement;
-			setTimeout(function () {
-				markerElement.style.zIndex = "1";
-				markerChild.focus();
-			});
+			this.renderer.setStyle(markerElement, "zIndex", "1");
+			markerChild.focus();
 		}
 		event.preventDefault();
 	}
@@ -203,11 +209,8 @@ export class TrainMapSidebarComponent {
 		if (marker) {
 			const markerElement = marker.content.nativeElement as HTMLElement;
 			const markerChild = markerElement.firstChild.firstChild as HTMLElement;
-			setTimeout(function () {
-				// eslint-disable-next-line
-				markerElement.style.zIndex = "unset";
-				markerChild.blur();
-			});
+			markerChild.blur();
+			this.renderer.setStyle(markerElement, "zIndex", "unset");
 		}
 		event.preventDefault();
 	}

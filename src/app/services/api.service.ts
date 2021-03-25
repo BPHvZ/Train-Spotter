@@ -23,9 +23,7 @@ import { environment } from "../../environments/environment";
 import { DisruptionsList, StationsResponse } from "../models/ReisinformatieAPI";
 import { TrainTracksGeoJSON } from "../models/SpoortkaartAPI";
 import { TrainInformation, TrainInformationResponse } from "../models/VirtualTrainAPI";
-import disruptionsJSON from "./disruptions.json";
 import { HttpClientService, Response } from "./http-client.service";
-import tracksJSON from "./tracks.json";
 
 /**
  * Network request for the NS API
@@ -59,11 +57,6 @@ export class ApiService {
 	 */
 	getDisruptedTrainTracksGeoJSON(force = false): Observable<Response<TrainTracksGeoJSON>> {
 		const disruptionParams = new HttpParams().set("actual", "true");
-		const tracks = (tracksJSON as unknown) as TrainTracksGeoJSON;
-		// return of({
-		// 	data: tracks,
-		// 	responseType: ResponseType.URL,
-		// });
 		return this.http.get({
 			url: "https://gateway.apiportal.ns.nl/Spoorkaart-API/api/v1/storingen",
 			cacheMins: environment.production ? 1 : 60,
@@ -107,11 +100,6 @@ export class ApiService {
 	 */
 	getActiveDisruptions(force = false): Observable<Response<DisruptionsList>> {
 		const disruptionParams = new HttpParams().set("isActive", "true");
-		const disruptions = disruptionsJSON as DisruptionsList;
-		// return of({
-		// 	data: disruptions,
-		// 	responseType: ResponseType.URL,
-		// });
 		return this.http.get({
 			url: "https://gateway.apiportal.ns.nl/reisinformatie-api/api/v3/disruptions",
 			cacheMins: environment.production ? 1 : 60,

@@ -22,6 +22,8 @@ import { AppModule } from "./app/app.module";
 import { environment } from "./environments/environment";
 
 if (environment.production) {
+	// eslint-disable-next-line @typescript-eslint/no-empty-function
+	console.log = function () {};
 	enableProdMode();
 }
 

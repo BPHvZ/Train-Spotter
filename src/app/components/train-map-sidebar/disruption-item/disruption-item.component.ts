@@ -16,14 +16,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { AfterViewInit, Component, ElementRef, Input } from "@angular/core";
+import { AfterViewInit, Component, ElementRef, Input, OnDestroy } from "@angular/core";
 import { Disruption } from "../../../models/ReisinformatieAPI";
 import { SharedDataService } from "../../../services/shared-data.service";
-
-export interface DisruptionCard {
-	id: string;
-	element: ElementRef;
-}
 
 /**
  * Sidebar card item to show a disruption
@@ -33,7 +28,7 @@ export interface DisruptionCard {
 	templateUrl: "./disruption-item.component.html",
 	styleUrls: ["./disruption-item.component.sass"],
 })
-export class DisruptionItemComponent implements AfterViewInit {
+export class DisruptionItemComponent implements AfterViewInit, OnDestroy {
 	/**Disruption information*/
 	@Input() disruption: Disruption;
 
@@ -45,9 +40,10 @@ export class DisruptionItemComponent implements AfterViewInit {
 	constructor(private sharedDataService: SharedDataService, private cardElement: ElementRef) {}
 
 	ngAfterViewInit(): void {
-		this.sharedDataService.disruptionCardElements.add({
-			id: this.disruption.id,
-			element: this.cardElement,
-		});
+		this.sharedDataService.disruptionCardElements[this.disruption.id] = this.cardElement;
+	}
+
+	ngOnDestroy(): void {
+		this.sharedDataService.disruptionCardElements.delete(this.disruption.id);
 	}
 }

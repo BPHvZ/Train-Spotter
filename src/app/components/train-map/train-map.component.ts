@@ -40,7 +40,6 @@ import { DetailedTrainInformation, TrainIconOnMap } from "../../models/VirtualTr
 import { HelperFunctionsService } from "../../services/helper-functions.service";
 import { ImageEditorService } from "../../services/image-editor.service";
 import { SharedDataService } from "../../services/shared-data.service";
-import { DisruptionCard } from "../train-map-sidebar/disruption-item/disruption-item.component";
 
 /**
  * Train map with stations and trains that get update every x seconds
@@ -139,7 +138,7 @@ export class TrainMapComponent implements OnInit, OnDestroy {
 	/**Train icons to be added to the map*/
 	trainIconsForMap: TrainIconOnMap[] = [];
 
-	private _focusedDisruptionCard: DisruptionCard = null;
+	private _focusedDisruptionCard: ElementRef = null;
 
 	subscriptions: Subscription[] = [];
 
@@ -618,6 +617,8 @@ export class TrainMapComponent implements OnInit, OnDestroy {
 	addMarkerComponentToSet(marker: MarkerComponent): () => void {
 		return () => {
 			this.sharedDataService.disruptionMarkerElements.add(marker);
+			console.log(this.sharedDataService.disruptionMarkerElements);
+			console.log(this.sharedDataService.disruptionCardElements);
 		};
 	}
 
@@ -632,11 +633,10 @@ export class TrainMapComponent implements OnInit, OnDestroy {
 	onMouseEnterDisruptionMarker(event: MouseEvent, disruption: DisruptionBase, markerElement: MarkerComponent): void {
 		// find disruption in sidebar and focus
 		event.preventDefault();
-		const cards = Array.from(this.sharedDataService.disruptionCardElements);
-		const card = cards.find((c) => c.id == disruption.id);
+		const card = this.sharedDataService.disruptionCardElements[disruption.id] as ElementRef;
 		if (card) {
-			const cardElement = this.renderer.selectRootElement(card.element.nativeElement, true) as HTMLElement;
 			this._focusedDisruptionCard = card;
+			const cardElement = this.renderer.selectRootElement(card.nativeElement, true) as HTMLElement;
 			this.renderer.setStyle(markerElement.content.nativeElement, "zIndex", 1);
 			cardElement.parentElement.focus();
 		}
@@ -647,15 +647,15 @@ export class TrainMapComponent implements OnInit, OnDestroy {
 		// find disruption in sidebar and remove focus
 		event.preventDefault();
 		let card = this._focusedDisruptionCard;
-		if (card === null) {
-			const cards = Array.from(this.sharedDataService.disruptionCardElements);
-			card = cards.find((c) => c.id == disruption.id);
+		if (card == null) {
+			card = this.sharedDataService.disruptionCardElements[disruption.id] as ElementRef;
 		}
 		if (card) {
-			const cardElement = this.renderer.selectRootElement(card.element.nativeElement, true) as HTMLElement;
+			const cardElement = this.renderer.selectRootElement(card.nativeElement, true) as HTMLElement;
 			cardElement.parentElement.blur();
 			this.renderer.setStyle(markerElement.content.nativeElement, "zIndex", "unset");
 		}
+		this._focusedDisruptionCard = null;
 		event.preventDefault();
 	}
 }

@@ -44,6 +44,14 @@
 							<strong><fa-icon [icon]="faSyncAlt" style="font-size: small"></fa-icon></strong>
 						</button>
 					</div>
+					<ng-container *ngIf="activeDisruptions === null || activeDisruptions.length === 0">
+						<div
+							class="d-flex flex-column flex-wrap mb-3 mt-2 disruption-totals-border p-3"
+							style="margin: 0 -15px"
+						>
+							<div>Geen storingen en werkzaamheden op dit moment</div>
+						</div>
+					</ng-container>
 					<ng-container *ngIf="getDisruptionCount('MAINTENANCE') + getDisruptionCount('DISRUPTION') > 0">
 						<div class="d-flex flex-column mb-3 mt-2 disruption-totals-border p-1" style="margin: 0 -15px">
 							<ng-container *ngIf="getDisruptionCount('DISRUPTION') as count">

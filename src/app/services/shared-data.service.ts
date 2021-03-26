@@ -16,14 +16,13 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { Injectable } from "@angular/core";
+import { ElementRef, Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import { GeoJSON, MultiLineString } from "geojson";
 import { LngLatLike, Map as MapBoxMap, MapboxGeoJSONFeature } from "mapbox-gl";
 import { MarkerComponent } from "ngx-mapbox-gl/lib/marker/marker.component";
 import { BehaviorSubject, combineLatest, fromEvent, Observable } from "rxjs";
 import { debounceTime, map, switchMap, take, tap } from "rxjs/operators";
-import { DisruptionCard } from "../components/train-map-sidebar/disruption-item/disruption-item.component";
 import { DisruptionBase, DisruptionsList, Station, StationsResponse } from "../models/ReisinformatieAPI";
 import { TrainTracksGeoJSON } from "../models/SpoortkaartAPI";
 import { TrainMapType } from "../models/TrainMapType";
@@ -127,7 +126,7 @@ export class SharedDataService {
 	 * Data used to hover and focus on disruption markers on the map and cards in the sidebar
 	 * */
 	disruptionMarkerElements = new Set<MarkerComponent>();
-	disruptionCardElements = new Set<DisruptionCard>();
+	disruptionCardElements = new Map<string, ElementRef>();
 	/**Sidebar open/closed state*/
 	private _sidebarState = new BehaviorSubject<"open" | "closed">("closed");
 	/**Observable of sidebar open/closed state*/

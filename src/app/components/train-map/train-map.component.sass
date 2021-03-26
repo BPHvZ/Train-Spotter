@@ -107,3 +107,42 @@ mgl-map
     width: 100%
   100%
     width: 0
+
+.marker-hover
+  display: none
+  width: 35px
+  height: 35px
+
+#maintenance-svg
+  width: 30px
+  height: 30px
+
+#disruption-svg
+  width: 30px
+  height: 30px
+
+.map-marker--disruption:hover, .map-marker--disruption:focus
+
+  .map-marker-content
+    border-radius: 25px !important
+
+  .marker-icon-parent
+    padding: 0.25rem
+
+  .marker-hover
+    display: block
+    color: white
+    background: white
+    border-radius: 20px
+
+  #maintenance-svg
+    position: absolute
+    top: 16%
+    left: 16%
+    filter: invert(50%) sepia(45%) saturate(7499%) hue-rotate(5deg) brightness(107%) contrast(101%)
+
+  #disruption-svg
+    position: absolute
+    top: 12%
+    left: 16%
+    filter: invert(30%) sepia(93%) saturate(7490%) hue-rotate(335deg) brightness(88%) contrast(112%)

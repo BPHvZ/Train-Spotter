@@ -26,7 +26,7 @@
 						"polyfills": "src/polyfills.ts",
 						"tsConfig": "tsconfig.app.json",
 						"aot": true,
-						"assets": ["src/favicon.ico", "src/assets", "src/manifest.webmanifest"],
+						"assets": ["src/favicon.ico", "src/assets", "src/manifest.webmanifest", "src/sitemap.xml"],
 						"styles": [
 							"src/custom-theme.scss",
 							"node_modules/bootstrap/dist/css/bootstrap.min.css",

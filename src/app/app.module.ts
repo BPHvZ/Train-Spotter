@@ -29,6 +29,7 @@ import { RouteReuseStrategy } from "@angular/router";
 import { ServiceWorkerModule } from "@angular/service-worker";
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
+import { InlineSVGModule } from "ng-inline-svg";
 import { NgxMapboxGLModule } from "ngx-mapbox-gl";
 import { environment } from "../environments/environment";
 import { TrainSpotterRouteReuseStrategy } from "./app-route-reuse.strategy";
@@ -43,6 +44,7 @@ import { DisruptionItemComponent } from "./components/train-map-sidebar/disrupti
 import { TrainMapSidebarComponent } from "./components/train-map-sidebar/train-map-sidebar.component";
 import { TrainMapComponent } from "./components/train-map/train-map.component";
 import { TrainPopupComponent } from "./components/train-popup/train-popup.component";
+import { NgInitDirective } from "./directives/ng-init.directive";
 import { NgbdSortableHeaderDirective } from "./directives/ngbd-sortable-header.directive";
 import { TrainMapModuleModule } from "./train-map-module/train-map-module.module";
 
@@ -61,6 +63,7 @@ registerLocaleData(localeNL, "nl");
 		TrainMapSidebarComponent,
 		DisruptionItemComponent,
 		CalamityItemComponent,
+		NgInitDirective,
 	],
 	imports: [
 		BrowserModule,
@@ -77,6 +80,7 @@ registerLocaleData(localeNL, "nl");
 		FormsModule,
 		ServiceWorkerModule.register("ngsw-worker.js", { enabled: environment.production }),
 		FontAwesomeModule,
+		InlineSVGModule.forRoot(),
 	],
 	providers: [
 		{ provide: RouteReuseStrategy, useClass: TrainSpotterRouteReuseStrategy },

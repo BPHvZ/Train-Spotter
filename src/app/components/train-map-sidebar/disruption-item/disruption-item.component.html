@@ -16,38 +16,50 @@
   ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   -->
 
-<div *ngIf="disruption" class="mat-typography">
-	<div (click)="flyToDisruption(disruption)" class="card-header headingS" style="cursor: pointer">
-		<div *ngIf="disruption.type === 'MAINTENANCE'; else disruptionIcon" style="display: inline">
-			<img
-				alt="Werk aan het spoor"
-				src="../../../../assets/maintenance--blue--35x35.svg"
-				height="30"
-				width="30"
-				style="position: inherit; display: inline"
-			/>
-		</div>
-		<ng-template #disruptionIcon>
-			<img
-				alt="Storing"
-				src="../../../../assets/alert--red--35x35.svg"
-				height="30"
-				width="30"
-				style="position: inherit; display: inline"
-		/></ng-template>
+<div *ngIf="disruption" class="mat-typography" tabindex="0">
+	<div class="card-header headingS" style="font-weight: 600">
+		<ng-container *ngIf="disruption.type === 'MAINTENANCE' else disruptionHeader">
+			<div style="display: inline">
+				<div
+					id="maintenance-svg"
+					[inlineSVG]="'../../../assets/maintenance--35x35.svg'"
+					[setSVGAttributes]="{'width': '30px', 'height': '30px'}"
+				></div>
+			</div>
+		</ng-container>
+		<ng-template #disruptionHeader>
+			<div style="display: inline">
+				<div
+					id="disruption-svg"
+					[inlineSVG]="'../../../assets/alert--35x35.svg'"
+					[setSVGAttributes]="{'width': '30px', 'height': '30px'}"
+				></div>
+			</div>
+		</ng-template>
 		{{ disruption.title }}
 	</div>
 	<div class="card-body">
-		<div *ngIf="disruption.type === 'MAINTENANCE'; else disruptionDescription">
-			<h5 class="card-title">{{ disruption.period }}</h5>
-			<p class="card-text">{{ disruption.timespans[0].situation.label }}</p>
-			<p class="card-text" *ngIf="disruption.timespans[0].additionalTravelTime">
-				{{ disruption.timespans[0].additionalTravelTime?.label }}
-			</p>
-		</div>
-		<ng-template #disruptionDescription>
-			<h5 class="card-title">{{ disruption.expectedDuration.description }}</h5>
-			<p class="card-text">{{ disruption.timespans[0].situation.label }}</p>
+		<ng-container *ngIf="disruption.type === 'MAINTENANCE'; else disruptionBody">
+			<div>
+				<p class="card-text color-maintenance m-0" style="font-weight: 700">Werkzaamheden</p>
+				<h5 class="card-title">{{ disruption.period }}</h5>
+				<p class="card-text">{{ disruption.timespans[0].situation.label }}</p>
+				<p class="card-text" *ngIf="disruption.timespans[0].additionalTravelTime">
+					{{ disruption.timespans[0].additionalTravelTime?.label }}
+				</p>
+			</div>
+		</ng-container>
+		<ng-template #disruptionBody>
+			<div>
+				<div class="d-flex flex-row justify-content-between flex-wrap mb-2">
+					<p class="card-text color-disruption m-0" style="font-weight: 700">Verstoring</p>
+					<p class="card-text m-0" style="color: #6a6a79">
+						Update: {{disruption.releaseTime | date: 'HH:mm'}}
+					</p>
+				</div>
+				<p class="card-text">{{ disruption.timespans[0].situation.label }}</p>
+				<p class="card-text">{{ disruption.expectedDuration.description }}</p>
+			</div>
 		</ng-template>
 	</div>
 </div>

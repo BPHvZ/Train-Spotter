@@ -27,10 +27,11 @@ import {
 	transition,
 	trigger,
 } from "@angular/animations";
-import { Component, EventEmitter, Input, Output } from "@angular/core";
+import { Component, EventEmitter, Input, Output, Renderer2, RendererStyleFlags2 } from "@angular/core";
 import { faSyncAlt } from "@fortawesome/free-solid-svg-icons";
+import { MarkerComponent } from "ngx-mapbox-gl/lib/marker/marker.component";
 import { Observable } from "rxjs";
-import { DisruptionsList } from "../../models/ReisinformatieAPI";
+import { DisruptionBase, DisruptionsList } from "../../models/ReisinformatieAPI";
 import { SharedDataService } from "../../services/shared-data.service";
 
 /**
@@ -90,28 +91,27 @@ export class TrainMapSidebarComponent {
 	@Input() activeDisruptions: DisruptionsList;
 	/**Notify train map component to force update disruptions*/
 	@Output() updateDisruptions = new EventEmitter();
-	/**Notify when sidebar opens and closes*/
-	@Output() clickOnArrow = new EventEmitter<boolean>();
 
 	/**Sidebar open/closed state*/
-	sidebarState = "closed";
+	sidebarState$: Observable<"open" | "closed"> = this.sharedDataService.sidebarState$;
 	/**FontAwesome sync icon*/
 	faSyncAlt = faSyncAlt;
 
 	/**Date when disruptions have been last updated*/
 	disruptionsLastUpdated$: Observable<Date> = this.sharedDataService.disruptionsLastUpdated$;
 
+	private _focusedDisruptionMarker: MarkerComponent = null;
+
 	/**
 	 * Define services
 	 * @param sharedDataService Shares data through the application
+	 * @param renderer Used to modify DOM elements
 	 */
-	constructor(private sharedDataService: SharedDataService) {}
+	constructor(private sharedDataService: SharedDataService, private renderer: Renderer2) {}
 
-	/**
-	 * Open or close the sidebar
-	 */
-	changeState(): void {
-		this.sidebarState = this.sidebarState === "closed" ? "open" : "closed";
+	getDisruptionCount(type: "CALAMITY" | "DISRUPTION" | "MAINTENANCE"): number {
+		const disruptions = this.activeDisruptions.filter((c) => c.type === type);
+		return disruptions.length;
 	}
 
 	/**
@@ -125,20 +125,21 @@ export class TrainMapSidebarComponent {
 		const sidebarWrapper = document.getElementById("sidebar-wrapper");
 		const sidebarContainer = document.getElementById("sidebar-container");
 		const sidebar = document.getElementById("sidebar");
-		sidebarContainer.style.willChange = "auto";
+
+		this.renderer.setStyle(sidebarContainer, "willChange", "auto");
 		if (event.toState === "closed") {
-			sidebarWrapper.style.position = "absolute";
-			sidebarWrapper.style.right = "0";
-			sidebarWrapper.style.height = "unset";
-			sidebarWrapper.style.top = "calc(50% - (135px / 2))";
-			sidebarWrapper.style.padding = "30px 0 30px 30px";
-			sidebar.style.setProperty("display", "none", "important");
+			this.renderer.setStyle(sidebarWrapper, "position", "absolute");
+			this.renderer.setStyle(sidebarWrapper, "right", "0");
+			this.renderer.setStyle(sidebarWrapper, "height", "unset");
+			this.renderer.setStyle(sidebarWrapper, "top", "calc(50% - (135px / 2))");
+			this.renderer.setStyle(sidebarWrapper, "padding", "30px 0 30px 30px");
+			this.renderer.setStyle(sidebar, "display", "none", RendererStyleFlags2.Important);
 
 			// FIX - redraws sidebar in safari. Otherwise still occupies the sidebar area and no interaction is available
 			const display = sidebarComponent.style.display;
-			sidebarComponent.style.display = "none";
+			this.renderer.setStyle(sidebarComponent, "display", "none");
 			console.log(sidebarComponent.offsetHeight);
-			sidebarComponent.style.display = display;
+			this.renderer.setStyle(sidebarComponent, "display", display);
 		}
 	}
 
@@ -150,15 +151,67 @@ export class TrainMapSidebarComponent {
 		const sidebarWrapper = document.getElementById("sidebar-wrapper");
 		const sidebarContainer = document.getElementById("sidebar-container");
 		const sidebar = document.getElementById("sidebar");
-		sidebarWrapper.style.position = "relative";
-		sidebarWrapper.style.right = "unset";
-		sidebarWrapper.style.height = "100%";
-		sidebarWrapper.style.top = "unset";
-		sidebarWrapper.style.padding = "0 0 0 30px";
 
-		sidebarContainer.style.willChange = "contents";
+		this.renderer.setStyle(sidebarWrapper, "position", "relative");
+		this.renderer.setStyle(sidebarWrapper, "right", "unset");
+		this.renderer.setStyle(sidebarWrapper, "height", "100%");
+		this.renderer.setStyle(sidebarWrapper, "top", "unset");
+		this.renderer.setStyle(sidebarWrapper, "padding", "0 0 0 30px");
+		this.renderer.setStyle(sidebarContainer, "willChange", "contents");
+
 		if (event.toState === "open") {
-			sidebar.style.setProperty("display", "block", "important");
+			this.renderer.setStyle(sidebar, "display", "block", RendererStyleFlags2.Important);
 		}
+	}
+
+	/**
+	 * Open or close the sidebar
+	 */
+	toggleSidebar(): void {
+		this.sharedDataService.toggleSidebar();
+	}
+
+	/**
+	 * Fly to a disruption on the map
+	 * Close the sidebar on small screens
+	 * @param disruption Disruption to fly to
+	 */
+	flyToDisruption(disruption: DisruptionBase): void {
+		if (this.sharedDataService.screenWidth <= 767) {
+			this.toggleSidebar();
+		}
+		this.sharedDataService.flyToDisruption(disruption);
+	}
+
+	onMouseEnterDisruptionCard(event: MouseEvent, disruption: DisruptionBase): void {
+		// find disruption on map and hover
+		event.preventDefault();
+		const markers = Array.from(this.sharedDataService.disruptionMarkerElements);
+		const marker = markers.find((m) => m.feature.properties.id == disruption.id);
+		if (marker) {
+			this._focusedDisruptionMarker = marker;
+			const markerElement = marker.content.nativeElement as HTMLElement;
+			const markerChild = markerElement.firstChild.firstChild as HTMLElement;
+			this.renderer.setStyle(markerElement, "zIndex", "1");
+			markerChild.focus();
+		}
+		event.preventDefault();
+	}
+
+	onMouseLeaveDisruptionCard(event: MouseEvent, disruption: DisruptionBase): void {
+		// find disruption on map and hover
+		event.preventDefault();
+		let marker = this._focusedDisruptionMarker;
+		if (marker === null) {
+			const markers = Array.from(this.sharedDataService.disruptionMarkerElements);
+			marker = markers.find((m) => m.feature.properties.id == disruption.id);
+		}
+		if (marker) {
+			const markerElement = marker.content.nativeElement as HTMLElement;
+			const markerChild = markerElement.firstChild.firstChild as HTMLElement;
+			markerChild.blur();
+			this.renderer.setStyle(markerElement, "zIndex", "unset");
+		}
+		event.preventDefault();
 	}
 }

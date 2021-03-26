@@ -16,19 +16,20 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from "@angular/core";
+import { Component, ElementRef, OnDestroy, OnInit, Renderer2, ViewChild } from "@angular/core";
 import { NavigationEnd, NavigationStart, Router } from "@angular/router";
 import { Timer } from "easytimer.js";
 import { GeoJSON, MultiLineString } from "geojson";
 import {
 	EventData,
+	GeoJSONSourceOptions,
 	Map as MapBoxMap,
 	MapboxEvent,
 	MapboxGeoJSONFeature,
 	MapLayerMouseEvent,
-	MapMouseEvent,
 	MapSourceDataEvent,
 } from "mapbox-gl";
+import { MarkerComponent } from "ngx-mapbox-gl/lib/marker/marker.component";
 import { Observable, Subject, Subscription, zip } from "rxjs";
 import { take } from "rxjs/operators";
 import { environment } from "../../../environments/environment";
@@ -39,7 +40,6 @@ import { DetailedTrainInformation, TrainIconOnMap } from "../../models/VirtualTr
 import { HelperFunctionsService } from "../../services/helper-functions.service";
 import { ImageEditorService } from "../../services/image-editor.service";
 import { SharedDataService } from "../../services/shared-data.service";
-import { TrainMapSidebarComponent } from "../train-map-sidebar/train-map-sidebar.component";
 
 /**
  * Train map with stations and trains that get update every x seconds
@@ -50,9 +50,6 @@ import { TrainMapSidebarComponent } from "../train-map-sidebar/train-map-sidebar
 	styleUrls: ["./train-map.component.sass"],
 })
 export class TrainMapComponent implements OnInit, OnDestroy {
-	/**Sidebar element with disruptions*/
-	@ViewChild(TrainMapSidebarComponent) sidebar: TrainMapSidebarComponent;
-
 	@ViewChild("updateCountdown") countdown: ElementRef;
 
 	// MapBox setup
@@ -64,6 +61,14 @@ export class TrainMapComponent implements OnInit, OnDestroy {
 	lat = 52.1284;
 	/**Map zoom level*/
 	zoom = 6.73;
+
+	// Map types
+	/**
+	 * Get current map type
+	 * @returns TrainMapType current map type
+	 */
+	activeMapType$: Observable<TrainMapType> = this.sharedDataService.activeMapType$;
+	mapTypesArray = this.sharedDataService.mapTypes;
 
 	// Map popups
 	/**
@@ -88,26 +93,9 @@ export class TrainMapComponent implements OnInit, OnDestroy {
 	isUpdatingMapData = false;
 	countdownTimer = new Timer({ countdown: true, startValues: { seconds: 10 } });
 
-	// Map styles
-	/**Map types*/
-	mapTypes: TrainMapType[] = [
-		{
-			name: "Normaal",
-			description: "Kaart met alleen treinen en stations",
-			layerId: "ns-railroad",
-		},
-		{
-			name: "Storingen",
-			description: "Kaart met treinen, stations en actuele storingen",
-			layerId: "storingen-railroad",
-		},
-	];
-	/**Active map type*/
-	activeMapType: TrainMapType = this.mapTypes[0];
-
 	// Station layer
 	/**Station layer GeoJSON*/
-	stationsLayerData: GeoJSON.FeatureCollection<GeoJSON.Geometry>;
+	stationsLayerData: GeoJSONSourceOptions["data"];
 
 	// Train tracks layer
 	/**Train tracks layer GeoJSON*/
@@ -142,13 +130,15 @@ export class TrainMapComponent implements OnInit, OnDestroy {
 	/**Observe train icons added to the map*/
 	private trainIconAddedSource = new Subject<string>();
 	/**Observable to keep tracks of train icons that have been added*/
-	trainIconAdded = this.trainIconAddedSource.asObservable();
+	trainIconAdded$ = this.trainIconAddedSource.asObservable();
 	/**All train icon names*/
 	private trainIconNames: Set<string> = new Set<string>();
 	/**Set to store icons names of icons that have been added to the map*/
 	private trainIconsAdded: Set<string> = new Set<string>();
 	/**Train icons to be added to the map*/
 	trainIconsForMap: TrainIconOnMap[] = [];
+
+	private _focusedDisruptionCard: ElementRef = null;
 
 	subscriptions: Subscription[] = [];
 
@@ -158,12 +148,14 @@ export class TrainMapComponent implements OnInit, OnDestroy {
 	 * @param helperFunctions Helper functions
 	 * @param router Router object
 	 * @param imageEditorService Web Worker to edit icons
+	 * @param renderer Used to modify DOM elements
 	 */
 	constructor(
 		private sharedDataService: SharedDataService,
 		private helperFunctions: HelperFunctionsService,
 		private router: Router,
-		private imageEditorService: ImageEditorService
+		private imageEditorService: ImageEditorService,
+		private renderer: Renderer2
 	) {}
 
 	/**
@@ -187,7 +179,7 @@ export class TrainMapComponent implements OnInit, OnDestroy {
 		});
 		this.subscriptions.push(sub1);
 
-		this.countdownTimer.addEventListener("targetAchieved", (e) => {
+		this.countdownTimer.addEventListener("targetAchieved", () => {
 			console.log("timer");
 			if (this.isUpdatingMapData === false) {
 				this.updateTrainsAndDisruptions();
@@ -207,9 +199,13 @@ export class TrainMapComponent implements OnInit, OnDestroy {
 		this.trainIconAddedSource.next(trainIconName);
 	}
 
+	onIconError(error: { status: number }): void {
+		console.error(error);
+	}
+
 	/**
-	 * Pause or resume the {@link updateTrainsTimer}
-	 * @param pause Whether to pause {@link updateTrainsTimer} or not
+	 * Pause or resume the {@link countdownTimer}
+	 * @param pause Whether to pause {@link countdownTimer} or not
 	 */
 	pauseOrResumeUpdatingTrainPositions(pause: boolean): void {
 		if (this.isUpdatingMapData === false) {
@@ -228,9 +224,9 @@ export class TrainMapComponent implements OnInit, OnDestroy {
 
 	/* eslint-disable */
 	resetCountdownProgressbarAnimation(): void {
-		this.countdown.nativeElement.classList.remove("progress-value");
+		this.renderer.removeClass(this.countdown.nativeElement, "progress-value");
 		console.log(this.countdown.nativeElement.offsetHeight);
-		this.countdown.nativeElement.classList.add("progress-value");
+		this.renderer.addClass(this.countdown.nativeElement, "progress-value");
 	}
 	/* eslint-enable */
 
@@ -244,13 +240,11 @@ export class TrainMapComponent implements OnInit, OnDestroy {
 		this.isUpdatingMapData = true;
 		zip(
 			this.sharedDataService.getBasicInformationAboutAllStations(),
-			this.sharedDataService.getTrainTracksGeoJSON(),
-			this.sharedDataService.updateDisruptedTrainTracksGeoJSON(),
-			this.sharedDataService.updateActiveDisruptions()
+			this.sharedDataService.getTrainTracksGeoJSON()
 		)
 			.pipe(take(1))
 			.subscribe({
-				next: (value: [StationsResponse, TrainTracksGeoJSON, void, void]) => {
+				next: (value: [StationsResponse, TrainTracksGeoJSON]) => {
 					console.log(value);
 					this.addStationsToMap(value[0].payload);
 					this.trainTracksLayerData = value[1].payload;
@@ -263,11 +257,11 @@ export class TrainMapComponent implements OnInit, OnDestroy {
 				},
 			});
 
-		// Add rel=noopener to mapbox links
+		// Add rel=noopener to mapbox links. Lighthouse improvement
 		const children = document.querySelector(".mapboxgl-ctrl-attrib-inner").children;
 		for (let i = 0; i < children.length; i++) {
-			children[i].setAttribute("rel", "noopener");
-			children[i].setAttribute("role", "listitem");
+			this.renderer.setAttribute(children[i], "rel", "noopener");
+			this.renderer.setAttribute(children[i], "role", "listitem");
 		}
 	}
 
@@ -297,7 +291,7 @@ export class TrainMapComponent implements OnInit, OnDestroy {
 			const features = event.target.queryRenderedFeatures(event.point, {
 				layers: ["trains", "stations"],
 			});
-			event.target.getCanvas().style.cursor = features.length ? "pointer" : "";
+			this.renderer.setStyle(event.target.getCanvas(), "cursor", features.length ? "pointer" : "");
 		}
 	}
 
@@ -315,22 +309,20 @@ export class TrainMapComponent implements OnInit, OnDestroy {
 	}
 
 	/**
+	 * Change the map {@link mapTypes}
+	 * @param layer Map type to change to
+	 */
+	changeMapLayerType(layer: TrainMapType): void {
+		console.log(layer);
+		this.sharedDataService.changeMapLayerType(layer);
+	}
+
+	/**
 	 * Receive an event when a Mapbox popup is closed
 	 * Clear the popup data
 	 */
 	onPopupClose(): void {
 		this.sharedDataService.closePopups();
-	}
-
-	/**
-	 * Change the map {@link mapTypes}
-	 * @param layer Map type to change to
-	 */
-	changeMapLayerType(layer: TrainMapType): void {
-		this.activeMapType = layer;
-		if (this.activeMapType.layerId === "storingen-railroad") {
-			this.sidebar.sidebarState = "open";
-		}
 	}
 
 	/**
@@ -473,14 +465,6 @@ export class TrainMapComponent implements OnInit, OnDestroy {
 	}
 
 	/**
-	 * Event when a disruption marker is clicked
-	 * @param event Map mouse event
-	 */
-	clickMarker(event: MapMouseEvent): void {
-		console.log(event);
-	}
-
-	/**
 	 * Get detailed information about all train currently riding
 	 * Set train icons when data is received
 	 * Get information about active disruptions and add markers
@@ -616,7 +600,7 @@ export class TrainMapComponent implements OnInit, OnDestroy {
 	 * @param detailedTrainInformation Detailed information about all trains
 	 */
 	listenForTrainIcons(detailedTrainInformation: DetailedTrainInformation[]): void {
-		this.trainIconAdded.pipe(take(1)).subscribe({
+		this.trainIconAdded$.pipe(take(this.trainIconNames.size)).subscribe({
 			next: (trainIconName) => {
 				this.trainIconsAdded.add(trainIconName);
 				if (this.trainIconNames.size === this.trainIconsAdded.size) {
@@ -628,5 +612,50 @@ export class TrainMapComponent implements OnInit, OnDestroy {
 				this.addTrainsToMap(detailedTrainInformation);
 			},
 		});
+	}
+
+	addMarkerComponentToSet(marker: MarkerComponent): () => void {
+		return () => {
+			this.sharedDataService.disruptionMarkerElements.add(marker);
+			console.log(this.sharedDataService.disruptionMarkerElements);
+			console.log(this.sharedDataService.disruptionCardElements);
+		};
+	}
+
+	/**
+	 * Fly to a disruption on the map
+	 * @param disruption Disruption to fly to
+	 */
+	flyToDisruption(disruption: DisruptionBase): void {
+		this.sharedDataService.flyToDisruption(disruption);
+	}
+
+	onMouseEnterDisruptionMarker(event: MouseEvent, disruption: DisruptionBase, markerElement: MarkerComponent): void {
+		// find disruption in sidebar and focus
+		event.preventDefault();
+		const card = this.sharedDataService.disruptionCardElements[disruption.id] as ElementRef;
+		if (card) {
+			this._focusedDisruptionCard = card;
+			const cardElement = this.renderer.selectRootElement(card.nativeElement, true) as HTMLElement;
+			this.renderer.setStyle(markerElement.content.nativeElement, "zIndex", 1);
+			cardElement.parentElement.focus();
+		}
+		event.preventDefault();
+	}
+
+	onMouseLeaveDisruptionMarker(event: MouseEvent, disruption: DisruptionBase, markerElement: MarkerComponent): void {
+		// find disruption in sidebar and remove focus
+		event.preventDefault();
+		let card = this._focusedDisruptionCard;
+		if (card == null) {
+			card = this.sharedDataService.disruptionCardElements[disruption.id] as ElementRef;
+		}
+		if (card) {
+			const cardElement = this.renderer.selectRootElement(card.nativeElement, true) as HTMLElement;
+			cardElement.parentElement.blur();
+			this.renderer.setStyle(markerElement.content.nativeElement, "zIndex", "unset");
+		}
+		this._focusedDisruptionCard = null;
+		event.preventDefault();
 	}
 }

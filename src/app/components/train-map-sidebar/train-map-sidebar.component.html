@@ -16,7 +16,7 @@
   ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   -->
 
-<div id="sidebar-wrapper">
+<div id="sidebar-wrapper" *ngIf="sidebarState$ | async as sidebarState">
 	<div
 		(@openClose-sidebar.start)="sidebarAnimationStarted($event)"
 		(@openClose-sidebar.done)="sidebarAnimationFinished($event)"
@@ -24,7 +24,7 @@
 		id="sidebar-container"
 		class="mat-typography"
 	>
-		<div (click)="changeState()" class="frosted left-shadow" id="sidebar-arrow">
+		<div (click)="toggleSidebar()" class="frosted left-shadow" id="sidebar-arrow">
 			<span [@rotatedState]="sidebarState" class="material-icons" style="margin-top: 85%; font-size: 26px">
 				expand_more
 			</span>
@@ -33,31 +33,78 @@
 			<div class="container" id="sidebar-content">
 				<div class="col">
 					<div class="row justify-content-around" style="padding: 8px 0; align-items: center">
-						<button (click)="changeState()" class="button button--close">
+						<button (click)="toggleSidebar()" class="button button--close">
 							<strong>&times;</strong>
 						</button>
 						<div *ngIf="disruptionsLastUpdated$ | async as date" class="text-center">
-							<span style="font-size: small">Bijgewerkt om:<br /></span>
-							{{ date | date: "EEEE d LLL, HH:mm:ss" }}
+							<span style="font-size: small">Bijgewerkt op:<br /></span>
+							{{ date | date: "EEEE d LLL HH:mm" }}
 						</div>
 						<button (click)="updateDisruptions.emit(null)" class="button button--nsYellow button--close">
 							<strong><fa-icon [icon]="faSyncAlt" style="font-size: small"></fa-icon></strong>
 						</button>
 					</div>
+					<ng-container *ngIf="activeDisruptions === null || activeDisruptions.length === 0">
+						<div
+							class="d-flex flex-column flex-wrap mb-3 mt-2 disruption-totals-border p-3"
+							style="margin: 0 -15px"
+						>
+							<div>Geen storingen en werkzaamheden op dit moment</div>
+						</div>
+					</ng-container>
+					<ng-container *ngIf="getDisruptionCount('MAINTENANCE') + getDisruptionCount('DISRUPTION') > 0">
+						<div class="d-flex flex-column mb-3 mt-2 disruption-totals-border p-1" style="margin: 0 -15px">
+							<ng-container *ngIf="getDisruptionCount('DISRUPTION') as count">
+								<div *ngIf="count > 0" class="color-disruption">
+									<div style="display: inline">
+										<div
+											id="disruption-svg"
+											[inlineSVG]="'../../assets/alert--35x35.svg'"
+											[setSVGAttributes]="{'width': '30px', 'height': '30px'}"
+										></div>
+									</div>
+									{{count}} {{count > 1 ? 'verstoringen' : 'verstoring'}}
+								</div>
+							</ng-container>
+							<ng-container
+								*ngIf="getDisruptionCount('MAINTENANCE') > 0 && getDisruptionCount('DISRUPTION') > 0"
+							>
+								<div class="dropdown-divider"></div>
+							</ng-container>
+							<ng-container *ngIf="getDisruptionCount('MAINTENANCE') as count">
+								<div *ngIf="count > 0" class="color-maintenance">
+									<div style="display: inline">
+										<div
+											id="maintenance-svg"
+											[inlineSVG]="'../../assets/maintenance--35x35.svg'"
+											[setSVGAttributes]="{'width': '30px', 'height': '30px'}"
+										></div>
+									</div>
+									{{count}} {{count > 1 ? 'werkzaamheden' : 'werkzaamheid'}}
+								</div>
+							</ng-container>
+						</div>
+					</ng-container>
 					<div class="row">
 						<div *ngIf="activeDisruptions">
 							<div
 								*ngFor="let disruption of activeDisruptions"
 								[ngSwitch]="disruption.type"
-								class="card card-max-width bg-light mb-3"
+								[ngClass]="{'disruption-cards--maintenance-border': disruption.type === 'MAINTENANCE'}"
+								class="disruption-cards card card-max-width bg-light mb-3"
+								tabindex="0"
 							>
 								<app-calamity-item
 									[calamity]="disruption"
 									*ngSwitchCase="'CALAMITY'"
 								></app-calamity-item>
 								<app-disruption-item
+									tabindex="0"
 									[disruption]="disruption"
-									(closeSidebar)="sidebarState = 'closed'"
+									(mouseenter)="onMouseEnterDisruptionCard($event, disruption)"
+									(mouseleave)="onMouseLeaveDisruptionCard($event, disruption)"
+									(click)="flyToDisruption(disruption)"
+									style="cursor: pointer"
 									*ngSwitchDefault
 								></app-disruption-item>
 							</div>

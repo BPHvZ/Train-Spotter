@@ -210,7 +210,7 @@ $button__border__radius: 4px;
 	@extend %button;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
 	.button {
 		&--small {
 			padding: 7px 11px;

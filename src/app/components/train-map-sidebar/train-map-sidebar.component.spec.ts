@@ -38,6 +38,7 @@ describe("TrainMapSidebarComponent", () => {
 	beforeEach(() => {
 		fixture = TestBed.createComponent(TrainMapSidebarComponent);
 		component = fixture.componentInstance;
+		component.activeDisruptions = [];
 		fixture.detectChanges();
 	});
 

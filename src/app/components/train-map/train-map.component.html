@@ -17,7 +17,7 @@
   -->
 
 <div class="mat-typography">
-	<div style="height: 100%; z-index: 100">
+	<div *ngIf="activeMapType$ | async as activeMapType" style="height: 100%; z-index: 100">
 		<mgl-map
 			[style]="mapStyle"
 			[zoom]="[zoom]"
@@ -38,104 +38,116 @@
 				[fitBoundsOptions]="{maxZoom:10}"
 				position="top-right"
 			></mgl-control>
-			<mgl-geojson-source
-				*ngIf="stationsLayerData"
-				id="stationsData"
-				[data]="stationsLayerData"
-			></mgl-geojson-source>
-			<mgl-layer
-				*ngIf="stationsLayerData"
-				id="stations"
-				type="symbol"
-				source="stationsData"
-				[layout]="{
+			<ng-container *ngIf="stationsLayerData">
+				<mgl-geojson-source id="stationsData" [data]="stationsLayerData"></mgl-geojson-source>
+				<mgl-layer
+					id="stations"
+					type="symbol"
+					source="stationsData"
+					[layout]="{
 					'icon-image': 'NS',
 					'icon-size': 0.15,
 					'icon-allow-overlap': true
 				}"
-				[minzoom]="10"
-				(layerClick)="openStationPopupOnLayerClick($event)"
-			>
-			</mgl-layer>
-			<mgl-geojson-source
-				*ngIf="trainTracksLayerData"
-				id="trainTracksLayerData"
-				[data]="trainTracksLayerData"
-			></mgl-geojson-source>
-			<mgl-layer
-				*ngIf="trainTracksLayerData"
-				id="NSTrainTracks"
-				type="line"
-				source="trainTracksLayerData"
-				[layout]="{ 'line-join': 'round', 'line-cap': 'round' }"
-				[paint]="{ 'line-color': '#9C9CA6', 'line-width': 2 }"
-				[before]="'stations'"
-			>
-			</mgl-layer>
-			<mgl-layer
-				*ngIf="disruptedTrainTracksLayerData$ | async as data"
-				id="disruptedTrainTracks"
-				type="line"
-				[source]="{ type: 'geojson', data: data.payload }"
-				[layout]="{
+					[minzoom]="10"
+					(layerClick)="openStationPopupOnLayerClick($event)"
+				>
+				</mgl-layer>
+			</ng-container>
+			<ng-container *ngIf="trainTracksLayerData">
+				<mgl-geojson-source id="trainTracksLayerData" [data]="trainTracksLayerData"></mgl-geojson-source>
+				<mgl-layer
+					id="NSTrainTracks"
+					type="line"
+					source="trainTracksLayerData"
+					[layout]="{ 'line-join': 'round', 'line-cap': 'round' }"
+					[paint]="{ 'line-color': '#9C9CA6', 'line-width': 2 }"
+					[before]="'stations'"
+				>
+				</mgl-layer>
+			</ng-container>
+			<ng-container *ngIf="disruptedTrainTracksLayerData$ | async as data">
+				<mgl-geojson-source id="disruptedTrainTracksSource" [data]="data.payload"></mgl-geojson-source>
+				<mgl-layer
+					id="disruptedTrainTracks"
+					type="line"
+					source="disruptedTrainTracksSource"
+					[layout]="{
 					visibility: activeMapType.layerId === 'storingen-railroad' ? 'visible' : 'none',
 					'line-join': 'round',
 					'line-cap': 'round'
 				}"
-				[paint]="{ 'line-color': '#fe0000', 'line-width': 2 }"
-				[before]="'stations'"
-			>
-			</mgl-layer>
+					[paint]="{
+				'line-color': ['match', ['get', 'disruptionType'], 'STORING', '#ec0045', '#fe6200'],
+				'line-width': 4 }"
+					[before]="'stations'"
+				>
+				</mgl-layer>
+			</ng-container>
 			<ng-container *ngIf="disruptionMarkersData$ | async as disruptionMarkers">
 				<mgl-geojson-source id="disruptionMarkersSource">
 					<mgl-marker
 						*ngFor="let disruptionMarker of disruptionMarkers"
-						[lngLat]="disruptionMarker.geometry.coordinates"
+						[feature]="disruptionMarker"
+						[ngInit]="addMarkerComponentToSet(marker)"
+						#marker
 					>
 						<div
+							(mouseenter)="onMouseEnterDisruptionMarker($event, disruptionMarker.properties, marker)"
+							(mouseleave)="onMouseLeaveDisruptionMarker($event, disruptionMarker.properties, marker)"
+							(click)="flyToDisruption(disruptionMarker.properties)"
 							style="pointer-events: auto"
 							[ngStyle]="{ display: activeMapType.layerId === 'storingen-railroad' ? 'unset' : 'none' }"
+							tabindex="0"
 						>
 							<div
-								id="mapPopup"
-								class="flex-parent-inline flex-parent--center-cross flex-parent--column absolute bottom"
+								tabindex="0"
+								class="map-marker map-marker--disruption flex-parent-inline flex-parent--center-cross flex-parent--column absolute bottom"
 							>
-								<div
-									class="mapPopupContent mapPopupContent--disruption color-white shadow-darken10 round txt-s clip txt-truncate"
+								<ng-template
+									[ngIf]="disruptionMarker.properties.type === 'MAINTENANCE'"
+									[ngIfElse]="elseDisruption"
 								>
 									<div
-										*ngIf="disruptionMarker.properties['type'] === 'werkzaamheid'; else elseDisruption"
+										class="map-marker-content map-marker-content--maintenance color-white shadow-darken10 round txt-s clip txt-truncate"
 									>
-										<img
-											src="../../../assets/maintenance--35x35.svg"
-											alt="Werk aan het spoor"
-											height="30"
-											width="30"
-											style="position: inherit"
-										/>
+										<div class="marker-icon-parent color-maintenance" style="position: relative">
+											<div class="marker-hover"></div>
+											<div
+												id="maintenance-svg"
+												[inlineSVG]="'../../../assets/maintenance--35x35.svg'"
+												[setSVGAttributes]="{'width': '30px', 'height': '30px'}"
+											></div>
+										</div>
 									</div>
-									<ng-template #elseDisruption>
-										<img
-											src="../../../assets/alert--35x35.svg"
-											alt="Storing"
-											height="30"
-											width="30"
-											style="position: inherit"
-									/></ng-template>
-								</div>
-								<span class="flex-child triangle triangle--d" style="color: #fe0000"></span>
+									<span
+										class="flex-child triangle triangle--d color-maintenance"
+										style="margin-top: -1px"
+									></span>
+								</ng-template>
+								<ng-template #elseDisruption>
+									<div
+										class="map-marker-content map-marker-content--disruption color-white shadow-darken10 round txt-s clip txt-truncate"
+									>
+										<div class="marker-icon-parent color-disruption" style="position: relative">
+											<div class="marker-hover"></div>
+											<div
+												id="disruption-svg"
+												[inlineSVG]="'../../../assets/alert--35x35.svg'"
+												[setSVGAttributes]="{'width': '30px', 'height': '30px'}"
+											></div>
+										</div>
+									</div>
+									<span
+										class="flex-child triangle triangle--d color-disruption"
+										style="margin-top: -1px"
+									></span>
+								</ng-template>
 							</div>
 						</div>
 					</mgl-marker>
 				</mgl-geojson-source>
-				<mgl-layer
-					*ngIf="disruptionMarkers"
-					id="symbols"
-					type="symbol"
-					source="disruptionMarkersSource"
-					(layerClick)="clickMarker($event)"
-				>
-				</mgl-layer>
+				<mgl-layer id="disruptionMarkers" type="symbol" source="disruptionMarkersSource"> </mgl-layer>
 			</ng-container>
 			<mgl-geojson-source *ngIf="trainsLayerData" id="trainData" [data]="trainsLayerData"></mgl-geojson-source>
 			<mgl-layer
@@ -155,15 +167,15 @@
 				(layerClick)="openTrainPopupOnLayerClick($event)"
 			>
 			</mgl-layer>
-			<div *ngIf="trainIconsForMap">
+			<ng-container *ngIf="trainIconsForMap">
 				<mgl-image
 					*ngFor="let trainIcon of trainIconsForMap"
 					[id]="trainIcon.imageName"
 					[url]="trainIcon.imageObjectURL"
 					(imageLoaded)="onIconLoad(trainIcon.imageName)"
-					(imageError)="onIconLoad(trainIcon.imageName)"
+					(imageError)="onIconError($event)"
 				></mgl-image>
-			</div>
+			</ng-container>
 			<mgl-popup
 				*ngIf="selectedTrainOnMapFeature"
 				[offset]="[0, 5]"
@@ -187,14 +199,14 @@
 		</mgl-map>
 		<div id="mapControls" *ngIf="true; else loadingMap">
 			<div id="mapTypeControl" class="toggle-group border border--2 border--white bg-white shadow-darken10 z1">
-				<div class="toggle-container mb-0" *ngFor="let mapType of mapTypes">
+				<div class="toggle-container mb-0" *ngFor="let mapType of mapTypesArray">
 					<input
 						[id]="mapType.layerId"
 						class="mapTypeInput"
 						name="toggle"
 						type="radio"
 						[attr.aria-label]="mapType.description"
-						[checked]="mapType.layerId == activeMapType.layerId"
+						[checked]="activeMapType.layerId == mapType.layerId"
 						[disabled]="isUpdatingMapData"
 					/>
 					<div
@@ -264,7 +276,6 @@
 		<div id="sidebar-component" *ngIf="activeDisruptions$ | async as disruptions">
 			<app-train-map-sidebar
 				[activeDisruptions]="disruptions"
-				(clickOnArrow)="sidebar.changeState()"
 				(updateDisruptions)="updateDisruptions()"
 			></app-train-map-sidebar>
 		</div>

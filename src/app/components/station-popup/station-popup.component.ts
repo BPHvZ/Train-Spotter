@@ -62,7 +62,7 @@ export class StationPopupComponent implements OnChanges {
 	ngOnChanges(changes: SimpleChanges): void {
 		if (changes.mapboxFeature.currentValue) {
 			this.stationInformation = this.mapboxFeature.properties as Station;
-
+			this.activeTable = "arrivals";
 			this.stationArrivalsAndDepartures$ = zip(
 				this.apiService.getStationArrivals(this.stationInformation.UICCode, 3),
 				this.apiService.getStationDepartures(this.stationInformation.UICCode, 3)

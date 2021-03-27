@@ -56,19 +56,19 @@ export class TrainMapComponent implements OnInit, OnDestroy {
 	/**Mapbox map style*/
 	mapStyle = environment.MAPBOX_STYLE;
 
-	/**Map longitude position*/
-	lng = 5.969649757101934;
-	/**Map latitude position*/
-	lat = 52.20936378530308;
-	/**Map zoom level*/
-	zoom = 16.119951544463053;
-
 	// /**Map longitude position*/
-	// lng = 5.476;
+	// lng = 5.969649757101934;
 	// /**Map latitude position*/
-	// lat = 52.1284;
+	// lat = 52.20936378530308;
 	// /**Map zoom level*/
-	// zoom = 6.73;
+	// zoom = 16.119951544463053;
+
+	/**Map longitude position*/
+	lng = 5.476;
+	/**Map latitude position*/
+	lat = 52.1284;
+	/**Map zoom level*/
+	zoom = 6.73;
 
 	// Map types
 	/**

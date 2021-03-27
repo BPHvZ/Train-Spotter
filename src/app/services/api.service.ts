@@ -20,7 +20,12 @@ import { HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { environment } from "../../environments/environment";
-import { DisruptionsList, StationsResponse } from "../models/ReisinformatieAPI";
+import {
+	DisruptionsList,
+	StationArrivalsResponse,
+	StationDeparturesResponse,
+	StationsResponse,
+} from "../models/ReisinformatieAPI";
 import { TrainTracksGeoJSON } from "../models/SpoortkaartAPI";
 import { TrainInformation, TrainInformationResponse } from "../models/VirtualTrainAPI";
 import { HttpClientService, Response } from "./http-client.service";
@@ -117,6 +122,24 @@ export class ApiService {
 		return this.http.get({
 			url: "https://gateway.apiportal.ns.nl/reisinformatie-api/api/v2/stations",
 			cacheMins: 60,
+		});
+	}
+
+	getStationArrivals(uicCode: string, maxJourneys: number = 40): Observable<Response<StationArrivalsResponse>> {
+		const stationParams = new HttpParams().set("uicCode", uicCode).set("maxJourneys", maxJourneys.toString());
+		return this.http.get({
+			url: "https://gateway.apiportal.ns.nl/reisinformatie-api/api/v2/arrivals",
+			cacheMins: environment.production ? 1 : 60,
+			params: stationParams,
+		});
+	}
+
+	getStationDepartures(uicCode: string, maxJourneys: number = 40): Observable<Response<StationDeparturesResponse>> {
+		const stationParams = new HttpParams().set("uicCode", uicCode).set("maxJourneys", maxJourneys.toString());
+		return this.http.get({
+			url: "https://gateway.apiportal.ns.nl/reisinformatie-api/api/v2/departures",
+			cacheMins: environment.production ? 1 : 60,
+			params: stationParams,
 		});
 	}
 }

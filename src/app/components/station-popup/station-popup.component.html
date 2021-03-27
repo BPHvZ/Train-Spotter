@@ -22,45 +22,186 @@
 			class="map-marker-content color-white shadow-darken10 round txt-s clip txt-truncate"
 			style="width: fit-content"
 		>
-			<div class="container-fluid d-flex">
-				<div class="row" style="justify-content: space-between">
-					<div class="col">
-						<div
-							class="row d-flex justify-content-between"
-							[ngStyle]="{ width: stationInformation.sporen.length > 3 ? 'unset' : 'max-content' }"
-						>
-							<div class="col" style="padding: 0">
-								<h3 style="margin: unset; width: max-content">
-									<strong> {{ stationInformation.namen.lang }} </strong>
-								</h3>
-								<h5 class="card-subtitle" style="color: #bac1c7; margin: unset">
-									<strong> {{ stationInformation.code }} </strong>
-								</h5>
-							</div>
-							<button
-								class="button button--nsYellow button--close"
-								style="margin-left: 10px"
-								(click)="closePopup.emit()"
-							>
-								<strong>&times;</strong>
-							</button>
-						</div>
-						<div class="row d-flex" style="max-width: 500px; width: max-content">
-							<div *ngFor="let track of stationInformation.sporen" style="padding-right: 18px">
-								<img
-									src="../../../assets/platform--75x75.svg"
-									alt="Spoor"
-									style="position: absolute; height: 45px; margin-left: -10px"
-								/>
-								<div
-									style="z-index: 1; padding-top: 14px"
-									[style.paddingLeft.px]="14 - track.spoorNummer.length * 4"
-								>
-									{{ track.spoorNummer }}
-								</div>
-							</div>
+			<div class="container">
+				<div class="row flex-nowrap justify-content-between">
+					<div style="margin: unset; width: max-content; font-size: medium">
+						<strong> {{ stationInformation.namen.lang }} </strong><br />
+						<div class="card-subtitle" style="color: #bac1c7; margin: unset; font-size: 11px">
+							<strong> {{ stationInformation.code }} </strong>
 						</div>
 					</div>
+					<button
+						class="button button--nsYellow button--close"
+						style="margin-left: 10px"
+						(click)="closePopup.emit()"
+					>
+						<strong>&times;</strong>
+					</button>
+				</div>
+				<div class="row">
+					<div class="d-flex mt-2">
+						<div
+							class="mr-3"
+							style="font-weight: 700; font-size: larger; cursor: pointer"
+							(click)="activeTable = 'arrivals'"
+						>
+							<p
+								class="arrival-departure-link mb-2"
+								[ngClass]="{'arrival-departure-active': activeTable == 'arrivals'}"
+							>
+								Aankomst
+							</p>
+						</div>
+						<div
+							style="font-weight: 700; font-size: larger; cursor: pointer"
+							(click)="activeTable = 'departures'"
+						>
+							<p
+								class="arrival-departure-link mb-2"
+								[ngClass]="{'arrival-departure-active': activeTable == 'departures'}"
+							>
+								Vertrek
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<ng-container
+						*ngIf="stationArrivalsAndDepartures$ | async as arrivalsAndDepartures; else loadingArrivalsAndDepartures"
+					>
+						<div class="arrivals-board" *ngIf="activeTable == 'arrivals'">
+							<ng-container *ngIf="arrivalsAndDepartures[0]?.length > 0; else noArrivals">
+								<table id="arrival-table">
+									<thead>
+										<tr>
+											<th>Aankomst</th>
+											<th>Vanuit</th>
+											<th>Spoor</th>
+											<th>Trein</th>
+											<th></th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr *ngFor="let arrival of arrivalsAndDepartures[0]">
+											<td class="pb-1 pt-1">
+												<div>{{arrival.plannedDateTime | date: 'HH:mm'}}</div>
+												<ng-container *ngIf="arrival.actualDateTime">
+													<div class="color-disruption">
+														<ng-container *ngIf="arrivalDelays[arrival.name]; let delay">
+															{{delay > 0 ? '+' : ''}}{{delay}}
+														</ng-container>
+													</div>
+												</ng-container>
+											</td>
+											<td>{{arrival.origin}}</td>
+											<td>
+												<div
+													[ngStyle]="{'text-decoration-line': arrival.actualTrack ? 'line-through' : 'unset'}"
+												>
+													{{arrival.plannedTrack}}
+												</div>
+												<ng-container *ngIf="arrival.actualTrack">
+													<div class="color-disruption">{{arrival.actualTrack}}</div>
+												</ng-container>
+											</td>
+											<td>{{arrival.product.shortCategoryName}} {{arrival.product.number}}</td>
+											<td style="padding-right: 8px">
+												<div class="fly-to-train-button">
+													<button
+														class="button button--nsYellow button--crosshair"
+														(click)="flyToTrainByNumber(arrival.product.number)"
+													>
+														<fa-icon
+															[icon]="faCrosshairs"
+															style="font-size: small"
+														></fa-icon>
+													</button>
+												</div>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</ng-container>
+							<ng-template #noArrivals>
+								<div class="w-100" style="padding: 7px 7px 15px 7px; text-align-last: center">
+									Er zijn geen aankomsttijden
+								</div>
+							</ng-template>
+						</div>
+						<div class="departures-board" *ngIf="activeTable == 'departures'">
+							<ng-container *ngIf="arrivalsAndDepartures[1]?.length > 0; else noDepartures">
+								<table id="departures-table">
+									<thead>
+										<tr>
+											<th>Vertrek</th>
+											<th>Naar</th>
+											<th>Spoor</th>
+											<th>Trein</th>
+											<th></th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr *ngFor="let departure of arrivalsAndDepartures[1]; let l = count">
+											<td class="pb-1 pt-1">
+												<div>{{departure.plannedDateTime | date: 'HH:mm'}}</div>
+												<ng-container *ngIf="departure.actualDateTime">
+													<div class="color-disruption">
+														<ng-container
+															*ngIf="departureDelays[departure.name]; let delay"
+														>
+															{{delay > 0 ? '+' : ''}}{{delay}}
+														</ng-container>
+													</div>
+												</ng-container>
+											</td>
+											<td>{{departure.direction}}</td>
+											<td>
+												<div
+													[ngStyle]="{'text-decoration-line': departure.actualTrack ? 'line-through' : 'unset'}"
+												>
+													{{departure.plannedTrack}}
+												</div>
+												<ng-container
+													*ngIf="departure.actualTrack"
+													[ngStyle]="{'text-decoration-line': departure.actualTrack ? 'line-through' : 'unset'}"
+												>
+													<div class="color-disruption">{{departure.actualTrack}}</div>
+												</ng-container>
+											</td>
+											<td>
+												{{departure.product.shortCategoryName}} {{departure.product.number}}
+											</td>
+											<td style="padding-right: 8px">
+												<div class="fly-to-train-button">
+													<button
+														class="button button--nsYellow button--crosshair"
+														(click)="flyToTrainByNumber(departure.product.number)"
+													>
+														<fa-icon
+															[icon]="faCrosshairs"
+															style="font-size: small"
+														></fa-icon>
+													</button>
+												</div>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</ng-container>
+							<ng-template #noDepartures>
+								<div class="w-100" style="padding: 7px 7px 15px 7px; text-align-last: center">
+									Er zijn geen vertrektijden
+								</div>
+							</ng-template>
+						</div>
+					</ng-container>
+					<ng-template #loadingArrivalsAndDepartures>
+						<div class="arrivals-board w-100 align-center" style="height: 50px; padding-bottom: 8px">
+							<div id="updatingMapDataSpinner" class="spinner-border spinner-border-sm" role="status">
+								<span class="sr-only">Loading...</span>
+							</div>
+						</div>
+					</ng-template>
 				</div>
 			</div>
 		</div>

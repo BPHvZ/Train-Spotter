@@ -26,7 +26,7 @@ import { Directive, Input, OnInit } from "@angular/core";
 export class NgInitDirective implements OnInit {
 	@Input() ngInit: () => any;
 	ngOnInit(): void {
-		console.log(typeof this.ngInit);
+		// console.log(typeof this.ngInit);
 		if (typeof this.ngInit === "function") {
 			this.ngInit();
 		} else {

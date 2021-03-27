@@ -16,7 +16,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import { HttpClientTestingModule } from "@angular/common/http/testing";
 import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
+import { RouterTestingModule } from "@angular/router/testing";
 import { StationPopupComponent } from "./station-popup.component";
 
 describe("StationPopupComponent", () => {
@@ -27,6 +29,7 @@ describe("StationPopupComponent", () => {
 		waitForAsync(() => {
 			void TestBed.configureTestingModule({
 				declarations: [StationPopupComponent],
+				imports: [HttpClientTestingModule, RouterTestingModule],
 			}).compileComponents();
 		})
 	);

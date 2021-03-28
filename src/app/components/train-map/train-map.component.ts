@@ -55,6 +55,14 @@ export class TrainMapComponent implements OnInit, OnDestroy {
 	// MapBox setup
 	/**Mapbox map style*/
 	mapStyle = environment.MAPBOX_STYLE;
+
+	// /**Map longitude position*/
+	// lng = 5.969649757101934;
+	// /**Map latitude position*/
+	// lat = 52.20936378530308;
+	// /**Map zoom level*/
+	// zoom = 16.119951544463053;
+
 	/**Map longitude position*/
 	lng = 5.476;
 	/**Map latitude position*/
@@ -180,7 +188,7 @@ export class TrainMapComponent implements OnInit, OnDestroy {
 		this.subscriptions.push(sub1);
 
 		this.countdownTimer.addEventListener("targetAchieved", () => {
-			console.log("timer");
+			// console.log("timer");
 			if (this.isUpdatingMapData === false) {
 				this.updateTrainsAndDisruptions();
 			}
@@ -245,7 +253,7 @@ export class TrainMapComponent implements OnInit, OnDestroy {
 			.pipe(take(1))
 			.subscribe({
 				next: (value: [StationsResponse, TrainTracksGeoJSON]) => {
-					console.log(value);
+					// console.log(value);
 					this.addStationsToMap(value[0].payload);
 					this.trainTracksLayerData = value[1].payload;
 				},
@@ -274,6 +282,7 @@ export class TrainMapComponent implements OnInit, OnDestroy {
 		if (trainLayer) {
 			const zoom = event.target.getZoom();
 			// console.log(zoom);
+			// console.log(event.target.getCenter());
 			if (zoom >= 7) {
 				const iconSize = zoom * (0.4 / 7);
 				event.target.setLayoutProperty("trains", "icon-size", iconSize);
@@ -313,7 +322,7 @@ export class TrainMapComponent implements OnInit, OnDestroy {
 	 * @param layer Map type to change to
 	 */
 	changeMapLayerType(layer: TrainMapType): void {
-		console.log(layer);
+		// console.log(layer);
 		this.sharedDataService.changeMapLayerType(layer);
 	}
 
@@ -333,14 +342,21 @@ export class TrainMapComponent implements OnInit, OnDestroy {
 		if (event.features) {
 			const selectedFeature: MapboxGeoJSONFeature = event.features[0];
 			let stationInformation = selectedFeature.properties;
-			/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-			stationInformation.namen = JSON.parse(stationInformation.namen);
-			stationInformation.synoniemen = JSON.parse(stationInformation.synoniemen);
-			stationInformation.sporen = JSON.parse(stationInformation.sporen);
-			/* eslint-enable @typescript-eslint/no-unsafe-assignment */
-			stationInformation = stationInformation as Station;
-			selectedFeature.properties = stationInformation;
-			this.sharedDataService.selectedStationOnMapFeature = selectedFeature;
+
+			if (stationInformation) {
+				this.sharedDataService.trainMap.flyTo({
+					center: [stationInformation.lng, stationInformation.lat],
+				});
+
+				/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+				stationInformation.namen = JSON.parse(stationInformation.namen);
+				stationInformation.synoniemen = JSON.parse(stationInformation.synoniemen);
+				stationInformation.sporen = JSON.parse(stationInformation.sporen);
+				/* eslint-enable @typescript-eslint/no-unsafe-assignment */
+				stationInformation = stationInformation as Station;
+				selectedFeature.properties = stationInformation;
+				this.sharedDataService.selectedStationOnMapFeature = selectedFeature;
+			}
 		}
 	}
 
@@ -374,7 +390,7 @@ export class TrainMapComponent implements OnInit, OnDestroy {
 	 * @param stations All stations
 	 */
 	private addStationsToMap(stations: Station[]): void {
-		console.log(stations);
+		// console.log(stations);
 		this.stationsLayerData = this.helperFunctions.parseToGeoJSON<Station>(stations, ["lng", "lat"], [], true);
 	}
 
@@ -617,8 +633,8 @@ export class TrainMapComponent implements OnInit, OnDestroy {
 	addMarkerComponentToSet(marker: MarkerComponent): () => void {
 		return () => {
 			this.sharedDataService.disruptionMarkerElements.add(marker);
-			console.log(this.sharedDataService.disruptionMarkerElements);
-			console.log(this.sharedDataService.disruptionCardElements);
+			// console.log(this.sharedDataService.disruptionMarkerElements);
+			// console.log(this.sharedDataService.disruptionCardElements);
 		};
 	}
 

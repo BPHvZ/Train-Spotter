@@ -342,14 +342,21 @@ export class TrainMapComponent implements OnInit, OnDestroy {
 		if (event.features) {
 			const selectedFeature: MapboxGeoJSONFeature = event.features[0];
 			let stationInformation = selectedFeature.properties;
-			/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-			stationInformation.namen = JSON.parse(stationInformation.namen);
-			stationInformation.synoniemen = JSON.parse(stationInformation.synoniemen);
-			stationInformation.sporen = JSON.parse(stationInformation.sporen);
-			/* eslint-enable @typescript-eslint/no-unsafe-assignment */
-			stationInformation = stationInformation as Station;
-			selectedFeature.properties = stationInformation;
-			this.sharedDataService.selectedStationOnMapFeature = selectedFeature;
+
+			if (stationInformation) {
+				this.sharedDataService.trainMap.flyTo({
+					center: [stationInformation.lng, stationInformation.lat],
+				});
+
+				/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+				stationInformation.namen = JSON.parse(stationInformation.namen);
+				stationInformation.synoniemen = JSON.parse(stationInformation.synoniemen);
+				stationInformation.sporen = JSON.parse(stationInformation.sporen);
+				/* eslint-enable @typescript-eslint/no-unsafe-assignment */
+				stationInformation = stationInformation as Station;
+				selectedFeature.properties = stationInformation;
+				this.sharedDataService.selectedStationOnMapFeature = selectedFeature;
+			}
 		}
 	}
 

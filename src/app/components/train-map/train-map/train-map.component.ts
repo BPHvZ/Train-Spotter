@@ -32,14 +32,14 @@ import {
 import { MarkerComponent } from "ngx-mapbox-gl/lib/marker/marker.component";
 import { Observable, Subject, Subscription, zip } from "rxjs";
 import { take } from "rxjs/operators";
-import { environment } from "../../../environments/environment";
-import { DisruptionBase, DisruptionsList, Station, StationsResponse } from "../../models/ReisinformatieAPI";
-import { SpoortkaartFeatureCollection, TrainTracksGeoJSON } from "../../models/SpoortkaartAPI";
-import { TrainMapType } from "../../models/TrainMapType";
-import { DetailedTrainInformation, TrainIconOnMap } from "../../models/VirtualTrainAPI";
-import { HelperFunctionsService } from "../../services/helper-functions.service";
-import { ImageEditorService } from "../../services/image-editor.service";
-import { SharedDataService } from "../../services/shared-data.service";
+import { environment } from "../../../../environments/environment";
+import { DisruptionBase, DisruptionsList, Station, StationsResponse } from "../../../models/ReisinformatieAPI";
+import { SpoortkaartFeatureCollection, TrainTracksGeoJSON } from "../../../models/SpoortkaartAPI";
+import { TrainMapType } from "../../../models/TrainMapType";
+import { DetailedTrainInformation, TrainIconOnMap } from "../../../models/VirtualTrainAPI";
+import { HelperFunctionsService } from "../../../services/helper-functions.service";
+import { ImageEditorService } from "../../../services/image-editor.service";
+import { SharedDataService } from "../../../services/shared-data.service";
 
 /**
  * Train map with stations and trains that get update every x seconds

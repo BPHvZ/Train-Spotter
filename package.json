@@ -39,7 +39,6 @@
     "not IE 9-10",
     "not IE 11"
   ],
-  "private": true,
   "browser": {
     "fs": false,
     "path": false,
@@ -47,13 +46,13 @@
   },
   "dependencies": {
     "@angular/animations": "^11.2.7",
-    "@angular/cdk": "11.2.6",
+    "@angular/cdk": "11.2.7",
     "@angular/common": "^11.2.7",
     "@angular/compiler": "^11.2.7",
     "@angular/core": "^11.2.7",
     "@angular/forms": "^11.2.7",
     "@angular/localize": "^11.2.7",
-    "@angular/material": "11.2.6",
+    "@angular/material": "11.2.7",
     "@angular/platform-browser": "^11.2.7",
     "@angular/platform-browser-dynamic": "^11.2.7",
     "@angular/router": "^11.2.7",
@@ -70,7 +69,7 @@
     "ng-inline-svg": "^12.1.0",
     "ngx-mapbox-gl": "^6.0.4",
     "replace-color": "^2.3.0",
-    "rxjs": "^6.6.6",
+    "rxjs": "^6.6.7",
     "rxjs-pausable": "^1.0.0",
     "tslib": "^2.1.0",
     "zone.js": "^0.11.4"
@@ -109,6 +108,7 @@
     "lint-staged": "^10.5.4",
     "moment": "^2.29.1",
     "npm-run-all": "^4.1.5",
+    "pinst": "^2.1.6",
     "prettier": "^2.2.1",
     "prettier-plugin-organize-imports": "^1.1.1",
     "pretty-quick": "^3.1.0",

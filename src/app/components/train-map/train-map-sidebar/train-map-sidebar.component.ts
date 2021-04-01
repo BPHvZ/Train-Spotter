@@ -31,8 +31,8 @@ import { Component, EventEmitter, Input, Output, Renderer2, RendererStyleFlags2 
 import { faSyncAlt } from "@fortawesome/free-solid-svg-icons";
 import { MarkerComponent } from "ngx-mapbox-gl/lib/marker/marker.component";
 import { Observable } from "rxjs";
-import { DisruptionBase, DisruptionsList } from "../../models/ReisinformatieAPI";
-import { SharedDataService } from "../../services/shared-data.service";
+import { DisruptionBase, DisruptionsList } from "../../../models/ReisinformatieAPI";
+import { SharedDataService } from "../../../services/shared-data.service";
 
 /**
  * Sidebar with disruption information

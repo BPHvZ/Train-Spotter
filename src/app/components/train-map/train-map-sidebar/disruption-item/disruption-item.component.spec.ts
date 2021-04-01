@@ -19,7 +19,7 @@
 import { HttpClientTestingModule } from "@angular/common/http/testing";
 import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
 import { RouterTestingModule } from "@angular/router/testing";
-import { Disruption } from "../../../models/ReisinformatieAPI";
+import { Disruption } from "../../../../models/ReisinformatieAPI";
 import { DisruptionItemComponent } from "./disruption-item.component";
 
 describe("DisruptionItemComponent", () => {

@@ -18,8 +18,10 @@
 
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
+import { AboutComponent } from "./components/about/about.component";
 import { AllStationsComponent } from "./components/all-stations/all-stations.component";
-import { TrainMapComponent } from "./components/train-map/train-map.component";
+import { RideInformationComponent } from "./components/ride-information/ride-information.component";
+import { TrainMapComponent } from "./components/train-map/train-map/train-map.component";
 
 const routes: Routes = [
 	{
@@ -32,6 +34,20 @@ const routes: Routes = [
 	{
 		path: "stations",
 		component: AllStationsComponent,
+		data: {
+			reuse: true,
+		},
+	},
+	{
+		path: "rit",
+		component: RideInformationComponent,
+		data: {
+			reuse: false,
+		},
+	},
+	{
+		path: "over",
+		component: AboutComponent,
 		data: {
 			reuse: false,
 		},

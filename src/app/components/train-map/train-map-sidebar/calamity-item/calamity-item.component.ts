@@ -17,7 +17,7 @@
  */
 
 import { Component, Input } from "@angular/core";
-import { Calamity } from "../../../models/ReisinformatieAPI";
+import { Calamity } from "../../../../models/ReisinformatieAPI";
 
 /**
  * Sidebar card item that shows a calamity

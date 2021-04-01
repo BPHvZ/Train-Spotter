@@ -21,9 +21,9 @@ import { faCrosshairs } from "@fortawesome/free-solid-svg-icons";
 import { MapboxGeoJSONFeature } from "mapbox-gl";
 import { Observable, zip } from "rxjs";
 import { map, take, tap } from "rxjs/operators";
-import { Station, StationArrivalsList, StationDeparturesList } from "../../models/ReisinformatieAPI";
-import { ApiService } from "../../services/api.service";
-import { SharedDataService } from "../../services/shared-data.service";
+import { Station, StationArrivalsList, StationDeparturesList } from "../../../models/ReisinformatieAPI";
+import { ApiService } from "../../../services/api.service";
+import { SharedDataService } from "../../../services/shared-data.service";
 
 /**
  * Show a popup with information about a station on the map

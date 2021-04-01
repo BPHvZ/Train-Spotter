@@ -18,8 +18,8 @@
 
 import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from "@angular/core";
 import { MapboxGeoJSONFeature } from "mapbox-gl";
-import { DetailedTrainInformation } from "../../models/VirtualTrainAPI";
-import { HelperFunctionsService } from "../../services/helper-functions.service";
+import { DetailedTrainInformation } from "../../../models/VirtualTrainAPI";
+import { HelperFunctionsService } from "../../../services/helper-functions.service";
 
 /**
  * Show a popup with information about a train on the map

@@ -17,8 +17,8 @@
  */
 
 import { AfterViewInit, Component, ElementRef, Input, OnDestroy } from "@angular/core";
-import { Disruption } from "../../../models/ReisinformatieAPI";
-import { SharedDataService } from "../../../services/shared-data.service";
+import { Disruption } from "../../../../models/ReisinformatieAPI";
+import { SharedDataService } from "../../../../services/shared-data.service";
 
 /**
  * Sidebar card item to show a disruption

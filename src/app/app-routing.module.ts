@@ -39,7 +39,7 @@ const routes: Routes = [
 		},
 	},
 	{
-		path: "rit",
+		path: "rit/:ritId",
 		component: RideInformationComponent,
 		data: {
 			reuse: false,

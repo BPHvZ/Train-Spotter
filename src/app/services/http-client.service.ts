@@ -16,7 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { HttpClient, HttpParams } from "@angular/common/http";
+import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable, of } from "rxjs";
 import { switchMap } from "rxjs/operators";
@@ -41,7 +41,7 @@ export interface HttpOptions {
 	/**Request body*/
 	body?: any;
 	/**Request headers*/
-	headers?: any;
+	headers?: HttpHeaders;
 	/**How long to cache the response*/
 	cacheMins?: number;
 	/**URL parameters*/
@@ -129,10 +129,12 @@ export class HttpClientService {
 		// Setup default values
 		options.body = options.body || null;
 		options.cacheMins = options.cacheMins || 0;
-		options.headers = options.headers || {};
+		options.headers = options.headers || new HttpHeaders();
 		const params = options.params?.toString() || null;
 		options.url = "https://cors-bartvanzeist.herokuapp.com/" + options.url;
 		options.force = options.force || false;
+
+		options.headers.set("Accept-Encoding", ["gzip", "deflate", "br"]);
 
 		if (options.cacheMins > 0 && options.force == false) {
 			// Get data from cache

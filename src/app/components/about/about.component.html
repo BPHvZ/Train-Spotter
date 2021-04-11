@@ -1,10 +1,197 @@
-<div class="card mt-3 shadow p-1 p-lg-3 mb-1 mb-lg-3 bg-white rounded mat-typography h-100">
-	<div class="card-body">
+<div class="card mt-3 shadow p-1 p-lg-3 mb-3 bg-white rounded mat-typography h-100">
+	<div class="card-body" style="font-size: 16px">
 		<h1 class="card-title font-weight-bold">Over TrainSpotter</h1>
 		<p>
 			TrainSpotter geeft een weergave van de actuele situatie op het Nederlandse spoor. Met TrainSpotter zie je
 			live treinposities van NS, Arriva, Blauwnet en R-net en worden er actuele storing en werkzaamheden op het
-			Nederlandse spoor getoond.
+			Nederlandse spoor getoond.<br /><br />
+			TrainSpotter is gemaakt als technische uitdaging voor mijzelf (Bart van Zeist) en met het idee om een hobby
+			project op te zetten waar treinliefhebbers en hobyisten iets aan hebben.
+			<br /><br />
+			TrainSpotter maakt gebruikt van openbare data die wordt vrijgegeven door de Nederlandse Spoorwegen.
 		</p>
+		<br />
+		<div style="margin-bottom: 12px">
+			<h2>Technische informatie</h2>
+			<p>
+				De actuele treinposities en verstoringen komen van de
+				<a href="https://apiportal.ns.nl/" target="_blank" rel="noopener">NS API</a>.<br />
+				<a href="https://www.ns.nl/platform/" target="_blank" rel="noopener">NS Platform</a> is gebruikt om
+				delen van de NS UI over te nemen. Daarnaast worden ook Bootstrap, Assembly en eigen styling gebruikt.<br />
+				TrainSpotter is een PWA (Progress Web App) gemaakt met behulp van
+				<a href="https://angular.io/" target="_blank" rel="noopener">Angular</a> (v11).<br />
+				De treinenkaart maakt gebruikt van
+				<a href="https://www.mapbox.com/" target="_blank" rel="noopener">Mapbox</a>.
+			</p>
+			<ul style="list-style-type: disc; list-style-position: inside">
+				<li>
+					<a href="https://apiportal.ns.nl/" target="_blank" rel="noopener"
+						>NS API <fa-icon [icon]="faExternalLinkAlt"></fa-icon
+					></a>
+				</li>
+				<li>
+					<a href="https://www.ns.nl/platform/" target="_blank" rel="noopener"
+						>NS Platform <fa-icon [icon]="faExternalLinkAlt"></fa-icon
+					></a>
+				</li>
+				<li>
+					<a href="https://angular.io/" target="_blank" rel="noopener"
+						>Angular <fa-icon [icon]="faExternalLinkAlt"></fa-icon
+					></a>
+				</li>
+				<li>
+					<a href="https://www.mapbox.com/" target="_blank" rel="noopener"
+						>Mapbox <fa-icon [icon]="faExternalLinkAlt"></fa-icon
+					></a>
+				</li>
+			</ul>
+		</div>
+		<br />
+		<div style="margin-bottom: 12px">
+			<h2>Gemaakt door</h2>
+			<p>
+				TrainSpotter is een open source project en wordt voornamelijk gemaakt door Bart van Zeist.<br />
+				TrainSpotter is openbaar onder de GNU v3 licentie.
+			</p>
+			<div class="d-flex flex-wrap mb-2">
+				<div class="mr-1">
+					<a href="https://github.com/BPHvZ/Train-Spotter" target="_blank" rel="noopener">
+						<img
+							alt="TrainSpotter GitHub"
+							src="https://img.shields.io/badge/TrainSpotter-181717?style=for-the-badge&logo=github&labelColor=181717"
+						/>
+					</a>
+				</div>
+				<div class="mr-1">
+					<img
+						alt="GitHub last commit (branch)"
+						src="https://img.shields.io/github/last-commit/BPHvZ/Train-Spotter/main?color=181717&logo=github&style=for-the-badge"
+					/>
+				</div>
+			</div>
+			<div class="d-flex flex-wrap">
+				<div class="mr-1">
+					<a
+						class="github-button"
+						href="https://github.com/BPHvZ"
+						data-size="large"
+						data-color-scheme="no-preference: dark; light: dark; dark: dark;"
+						data-show-count="true"
+						aria-label="Follow @BPHvZ on GitHub"
+						>Follow @BPHvZ</a
+					>
+				</div>
+				<div class="mr-1">
+					<a
+						class="github-button"
+						href="https://github.com/BPHvZ/Train-Spotter"
+						data-size="large"
+						data-color-scheme="no-preference: dark; light: dark; dark: dark;"
+						data-icon="octicon-star"
+						data-show-count="true"
+						aria-label="Star BPHvZ/Train-Spotter on GitHub"
+						>Star</a
+					>
+				</div>
+				<div class="mr-1">
+					<a
+						class="github-button"
+						href="https://github.com/BPHvZ/Train-Spotter/fork"
+						data-size="large"
+						data-color-scheme="no-preference: dark; light: dark; dark: dark;"
+						data-icon="octicon-repo-forked"
+						data-show-count="true"
+						aria-label="Fork BPHvZ/Train-Spotter on GitHub"
+						>Fork</a
+					>
+				</div>
+				<div>
+					<a
+						class="github-button"
+						href="https://github.com/BPHvZ/Train-Spotter/subscription"
+						data-size="large"
+						data-color-scheme="no-preference: dark; light: dark; dark: dark;"
+						data-icon="octicon-eye"
+						data-show-count="true"
+						aria-label="Watch BPHvZ/Train-Spotter on GitHub"
+						>Watch</a
+					>
+				</div>
+			</div>
+		</div>
+		<br />
+		<div style="margin-bottom: 12px">
+			<h2>Contact</h2>
+			<div class="mb-1">Heb je suggesties? Leuk! Stuur een bericht naar onderstaand adres.</div>
+			<div>
+				<a href="mailto:info@treinenkaart.bartvanzeist.nl?SUBJECT=Suggestie:%20" target="_blank" rel="noopener"
+					>info@treinenkaart.bartvanzeist.nl</a
+				>
+			</div>
+			<br />
+			<p>
+				Ben je een bug tegengekomen? Laat het weten! Dan help je om TrainSpotter nog beter te maken. Dit kan via
+				een Issue op GitHub of door een email te sturen.<br />
+			</p>
+			<div class="mb-1">
+				<a
+					class="github-button"
+					href="https://github.com/BPHvZ/Train-Spotter/issues"
+					data-size="large"
+					data-color-scheme="no-preference: dark; light: dark; dark: dark;"
+					data-icon="octicon-issue-opened"
+					data-show-count="true"
+					aria-label="Issue BPHvZ/Train-Spotter on GitHub"
+					>Issue</a
+				>
+			</div>
+			<a href="mailto:info@treinenkaart.bartvanzeist.nl?SUBJECT=Bug:%20" target="_blank" rel="noopener"
+				>info@treinenkaart.bartvanzeist.nl</a
+			><br /><br />
+			<div class="font-weight-bold">Bart van Zeist</div>
+			<div class="mb-1">Ik ben bereikbaar via:</div>
+			<div class="mb-3">
+				<a href="mailto:bartvanzeist2000@gmail.com" target="_blank" rel="noopener"
+					>bartvanzeist2000@gmail.com</a
+				>
+			</div>
+			<div class="mb-3">
+				<a href="https://www.linkedin.com/in/bart-van-zeist-543442193" target="_blank" rel="noopener">
+					<img
+						alt="LinkedIn"
+						src="https://img.shields.io/badge/LinkedIn-blue?style=for-the-badge&logo=linkedin&labelColor=blue"
+					/>
+				</a>
+			</div>
+			<div>
+				<a href="https://www.bartvanzeist.nl" target="_blank" rel="noopener"
+					>bartvanzeist.nl <fa-icon [icon]="faExternalLinkAlt"></fa-icon
+				></a>
+			</div>
+		</div>
+		<br />
+		<div>
+			<h2>Donaties</h2>
+			<div class="mb-3">
+				TrainSpotter is geheel gratis te gebruiken en genereert geen inkomsten, we verzamelen geen persoonlijke
+				data en tonen geen advertenties. Als je een bijdrage wilt leveren aan hosting- en onderhoudskosten dan
+				wordt een donatie zeer gewaardeerd.
+			</div>
+			<div class="mb-2">
+				<a href="https://www.buymeacoffee.com/simpleappsfarm"
+					><img
+						src="https://img.buymeacoffee.com/button-api/?text=Buy me a pizza&emoji=🍕&slug=simpleappsfarm&button_colour=003082&font_colour=ffffff&font_family=Bree&outline_colour=ffffff&coffee_colour=FFDD00"
+						alt="Buy me a pizza"
+				/></a>
+			</div>
+			<div>
+				<a href="https://www.paypal.me/BPHvZ" target="_blank" rel="noopener">
+					<img
+						alt="PayPal Me"
+						src="https://img.shields.io/badge/PayPal-00457C?style=for-the-badge&logo=paypal&labelColor=00457C"
+					/>
+				</a>
+			</div>
+		</div>
 	</div>
 </div>

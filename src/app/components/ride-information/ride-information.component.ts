@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
 import { DetailedTrainInformation } from "../../models/VirtualTrainAPI";
 
 @Component({
@@ -10,7 +11,9 @@ export class RideInformationComponent implements OnInit {
 	/**Detailed train information*/
 	trainInformation: DetailedTrainInformation;
 
-	constructor() {
+	private rideId: number = null;
+
+	constructor(private route: ActivatedRoute) {
 		this.trainInformation = {
 			ritId: "3558",
 			lat: 52.267487,
@@ -123,6 +126,9 @@ export class RideInformationComponent implements OnInit {
 	}
 
 	ngOnInit(): void {
-		console.log();
+		this.route.params.subscribe((params) => {
+			this.rideId = Number(params["rideId"]);
+			console.log("rideId: ", this.rideId);
+		});
 	}
 }

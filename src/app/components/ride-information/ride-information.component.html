@@ -1,32 +1,34 @@
-<div class="card mt-3 shadow p-1 p-lg-3 mb-1 mb-lg-3 bg-white rounded mat-typography">
-	<div class="card-body">
-		<h1 class="card-title font-weight-bold mb-0">Ritnummer {{trainInformation.ritId}}</h1>
-		<h2 class="card-subtitle mb-2 text-muted font-weight-bold">
-			{{ trainInformation.trainDetails?.vervoerder }} trein {{ trainInformation.ritId }}
-			<span
-				*ngFor="
+<div class="card mt-3 shadow p-1 p-lg-3 mb-3 bg-white rounded mat-typography h-100">
+	<div class="card-body" *ngIf="trainInformation">
+		<div>
+			<h1 class="card-title font-weight-bold mb-0">Ritnummer {{trainInformation.ritId}}</h1>
+			<h2 class="card-subtitle mb-2 text-muted font-weight-bold">
+				{{ trainInformation.trainDetails?.vervoerder }} trein {{ trainInformation.ritId }}
+				<span
+					*ngFor="
 											let trainPart of trainInformation.trainDetails?.materieeldelen;
 											let i = index
 										"
-			>
-				<span *ngIf="trainPart.materieelnummer">
-					<span *ngIf="i == 0; else other"> met {{ trainPart.materieelnummer }}</span>
-					<ng-template #other
-						>{{i == (trainInformation.trainDetails.materieeldelen.length - 1) ? ' ' + 'en' : ','}} {{
-						trainPart.materieelnummer }}
-					</ng-template>
-				</span>
-			</span>
-		</h2>
-		<div
-			*ngIf="trainInformation.trainDetails?.materieeldelen && trainInformation.trainDetails?.materieeldelen[0]?.afbeelding"
-		>
-			<div id="carousel">
-				<div
-					class="slide"
-					*ngFor="let railcar of trainInformation.trainDetails.materieeldelen; let isLast = last"
 				>
-					<img [src]="railcar.afbeelding" alt="Trein" height="45" [ngClass]="{ 'pr-2': isLast }" />
+					<span *ngIf="trainPart.materieelnummer">
+						<span *ngIf="i == 0; else other"> met {{ trainPart.materieelnummer }}</span>
+						<ng-template #other
+							>{{i == (trainInformation.trainDetails.materieeldelen.length - 1) ? ' ' + 'en' : ','}} {{
+							trainPart.materieelnummer }}
+						</ng-template>
+					</span>
+				</span>
+			</h2>
+			<div
+				*ngIf="trainInformation.trainDetails?.materieeldelen && trainInformation.trainDetails?.materieeldelen[0]?.afbeelding"
+			>
+				<div id="carousel">
+					<div
+						class="slide"
+						*ngFor="let railcar of trainInformation.trainDetails.materieeldelen; let isLast = last"
+					>
+						<img [src]="railcar.afbeelding" alt="Trein" height="45" [ngClass]="{ 'pr-2': isLast }" />
+					</div>
 				</div>
 			</div>
 		</div>

@@ -41,8 +41,8 @@
   ],
   "browser": {
     "fs": false,
-    "path": false,
-    "os": false
+    "os": false,
+    "path": false
   },
   "dependencies": {
     "@angular/animations": "^11.2.9",

@@ -39,6 +39,7 @@ import { AboutComponent } from "./components/about/about.component";
 import { AllStationsComponent } from "./components/all-stations/all-stations.component";
 import { HeaderComponent } from "./components/layout/header/header.component";
 import { MainLayoutComponent } from "./components/layout/main-layout/main-layout.component";
+import { PageNotFoundComponent } from "./components/page-not-found/page-not-found.component";
 import { RideInformationComponent } from "./components/ride-information/ride-information.component";
 import { StationPopupComponent } from "./components/train-map/station-popup/station-popup.component";
 import { CalamityItemComponent } from "./components/train-map/train-map-sidebar/calamity-item/calamity-item.component";
@@ -68,6 +69,7 @@ registerLocaleData(localeNL, "nl");
 		NgInitDirective,
 		RideInformationComponent,
 		AboutComponent,
+		PageNotFoundComponent,
 	],
 	imports: [
 		BrowserModule,

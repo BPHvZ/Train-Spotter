@@ -39,7 +39,7 @@ export class HelperFunctionsService {
 		data: Array<T>,
 		point: Array<string>,
 		properties?: Array<string>,
-		allProperties: boolean = false
+		allProperties = false
 	): FeatureCollection<Point, any> {
 		const featureCollection: FeatureCollection<Point, any> = {
 			type: "FeatureCollection",

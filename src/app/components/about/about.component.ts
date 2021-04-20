@@ -1,5 +1,3 @@
-declare const require: any;
-
 import { AfterViewInit, Component, OnInit } from "@angular/core";
 import { faExternalLinkAlt } from "@fortawesome/free-solid-svg-icons";
 

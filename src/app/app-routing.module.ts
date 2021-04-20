@@ -20,8 +20,10 @@ import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { AboutComponent } from "./components/about/about.component";
 import { AllStationsComponent } from "./components/all-stations/all-stations.component";
+import { PageNotFoundComponent } from "./components/page-not-found/page-not-found.component";
 import { RideInformationComponent } from "./components/ride-information/ride-information.component";
 import { TrainMapComponent } from "./components/train-map/train-map/train-map.component";
+import { RideInformationResolver } from "./resolvers/ride-information.resolver";
 
 const routes: Routes = [
 	{
@@ -41,6 +43,9 @@ const routes: Routes = [
 	{
 		path: "rit/:rideId",
 		component: RideInformationComponent,
+		resolve: {
+			rideInformation: RideInformationResolver,
+		},
 		data: {
 			reuse: false,
 		},
@@ -53,6 +58,7 @@ const routes: Routes = [
 		},
 	},
 	{ path: "", redirectTo: "/kaart", pathMatch: "full" },
+	{ path: "**", component: PageNotFoundComponent },
 ];
 
 @NgModule({

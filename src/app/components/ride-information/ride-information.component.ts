@@ -130,5 +130,6 @@ export class RideInformationComponent implements OnInit {
 			this.rideId = Number(params["rideId"]);
 			console.log("rideId: ", this.rideId);
 		});
+		this.trainInformation = this.route.snapshot.data["rideInformation"];
 	}
 }

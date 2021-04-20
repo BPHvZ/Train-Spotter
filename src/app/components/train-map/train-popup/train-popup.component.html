@@ -28,8 +28,10 @@
 						<div class="row d-flex justify-content-between" style="width: max-content">
 							<h3 style="margin: unset">
 								<strong>
-									{{ trainInformation.trainDetails?.vervoerder }} {{ getTypeOfTrain() }} trein {{
-									trainInformation.ritId }}
+									{{ trainInformation.trainDetails?.vervoerder }} {{ getTypeOfTrain() }} trein
+									<span style="cursor: pointer" (click)="navigateToRideInformation()"
+										>{{ trainInformation.ritId }}</span
+									>
 									<span
 										*ngFor="
 											let trainPart of trainInformation.trainDetails?.materieeldelen;
@@ -77,6 +79,18 @@
 										[ngClass]="{ 'pr-2': isLast }"
 									/>
 								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="mt-2">
+								<button
+									id="moreInfoButton"
+									class="button button--nsYellow"
+									(click)="navigateToRideInformation()"
+								>
+									Meer info
+									<fa-icon [icon]="faInfoCircle" style="font-size: small"></fa-icon>
+								</button>
 							</div>
 						</div>
 					</div>

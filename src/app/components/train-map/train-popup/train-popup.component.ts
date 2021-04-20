@@ -17,6 +17,8 @@
  */
 
 import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from "@angular/core";
+import { Router } from "@angular/router";
+import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import { MapboxGeoJSONFeature } from "mapbox-gl";
 import { DetailedTrainInformation } from "../../../models/VirtualTrainAPI";
 import { HelperFunctionsService } from "../../../services/helper-functions.service";
@@ -38,12 +40,14 @@ export class TrainPopupComponent implements OnChanges {
 	trainInformation: DetailedTrainInformation;
 	/**CSS style of the arrow shown in the popup*/
 	directionArrowStyle: Map<string, any> = new Map<string, any>();
+	faInfoCircle = faInfoCircle;
 
 	/**
 	 * Define services
 	 * @param helperFunctions Helper functions
+	 * @param router Router object
 	 */
-	constructor(private helperFunctions: HelperFunctionsService) {}
+	constructor(private helperFunctions: HelperFunctionsService, private router: Router) {}
 
 	/**
 	 * Update the train information
@@ -64,5 +68,9 @@ export class TrainPopupComponent implements OnChanges {
 	 */
 	getTypeOfTrain(): string {
 		return this.helperFunctions.getTypeOfTrain(this.trainInformation);
+	}
+
+	navigateToRideInformation(): void {
+		void this.router.navigate(["/rit", this.trainInformation.ritId]);
 	}
 }

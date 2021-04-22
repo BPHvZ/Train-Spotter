@@ -40,6 +40,7 @@ export class TrainPopupComponent implements OnChanges {
 	trainInformation: DetailedTrainInformation;
 	/**CSS style of the arrow shown in the popup*/
 	directionArrowStyle: Map<string, any> = new Map<string, any>();
+	updatedAt: Date;
 	faInfoCircle = faInfoCircle;
 
 	/**
@@ -59,6 +60,7 @@ export class TrainPopupComponent implements OnChanges {
 		if (changes.mapboxFeature.currentValue) {
 			this.trainInformation = this.mapboxFeature.properties as DetailedTrainInformation;
 			this.directionArrowStyle.set("transform", `rotate(${this.trainInformation.richting - 90}deg)`);
+			this.updatedAt = new Date(this.trainInformation?.updatedAt);
 		}
 	}
 

@@ -278,6 +278,7 @@ export class SharedDataService {
 			map((response) => {
 				const detailedTrainInformation = response.data;
 				trainInformation.forEach((basicTrain) => {
+					basicTrain.updatedAt = Date.now();
 					basicTrain.trainDetails = detailedTrainInformation.find(
 						(details) => details.ritnummer.toString() === basicTrain.ritId
 					);

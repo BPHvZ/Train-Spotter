@@ -37,6 +37,7 @@ import { HttpClientService, Response } from "./http-client.service";
 	providedIn: "root",
 })
 export class ApiService {
+	// Section: Spoorkaart-API
 	/**
 	 * Define services
 	 * @param http Http service with caching
@@ -70,6 +71,7 @@ export class ApiService {
 		});
 	}
 
+	// Section: virtual-train-api
 	/**
 	 * Get minimal information about all trains
 	 * [virtual-train-api/api/vehicle]{@link https://apiportal.ns.nl/docs/services/virtual-train-api/operations/getVehicles?}
@@ -97,6 +99,20 @@ export class ApiService {
 		});
 	}
 
+	/**
+	 * Convert a trainset number to the rideId it's part of
+	 * [virtual-train-api/api/v1/trein]{@link https://apiportal.ns.nl/docs/services/virtual-train-api/operations/getTreinInformatie?}
+	 * @param trainsetNr Number of the trainset
+	 * @returns Observable<Response<number>> RideId of which the
+	 */
+	convertTrainsetNrToRideId(trainsetNr: string): Observable<Response<number>> {
+		return this.http.get({
+			url: `https://gateway.apiportal.ns.nl/virtual-train-api/api/v1/ritnummer/${trainsetNr}`,
+			cacheMins: environment.production ? 1 : 1,
+		});
+	}
+
+	// Section: reisinformatie-api
 	/**
 	 * Get information about current disruptions
 	 * [reisinformatie-api/api/v3/disruptions]{@link https://apiportal.ns.nl/docs/services/reisinformatie-api/operations/getDisruptions_v3?}

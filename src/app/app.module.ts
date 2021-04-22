@@ -47,6 +47,7 @@ import { DisruptionItemComponent } from "./components/train-map/train-map-sideba
 import { TrainMapSidebarComponent } from "./components/train-map/train-map-sidebar/train-map-sidebar.component";
 import { TrainMapComponent } from "./components/train-map/train-map/train-map.component";
 import { TrainPopupComponent } from "./components/train-map/train-popup/train-popup.component";
+import { TrainsetInformationComponent } from "./components/trainset-information/trainset-information.component";
 import { NgInitDirective } from "./directives/ng-init.directive";
 import { NgbdSortableHeaderDirective } from "./directives/ngbd-sortable-header.directive";
 import { TrainMapModuleModule } from "./train-map-module/train-map-module.module";
@@ -70,6 +71,7 @@ registerLocaleData(localeNL, "nl");
 		RideInformationComponent,
 		AboutComponent,
 		PageNotFoundComponent,
+		TrainsetInformationComponent,
 	],
 	imports: [
 		BrowserModule,

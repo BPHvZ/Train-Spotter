@@ -25,7 +25,7 @@ import { RideInformationService } from "../services/ride-information.service";
 @Injectable({
 	providedIn: "root",
 })
-export class RideInformationResolver implements Resolve<DetailedTrainInformation> {
+export class TrainsetInformationResolver implements Resolve<DetailedTrainInformation> {
 	/**
 	 * Define services
 	 * @param rideInformationService Get ride information about a train
@@ -33,7 +33,10 @@ export class RideInformationResolver implements Resolve<DetailedTrainInformation
 	constructor(private rideInformationService: RideInformationService) {}
 
 	resolve(route: ActivatedRouteSnapshot): Observable<DetailedTrainInformation> {
-		console.log("resolve ", route.paramMap.get("rideId"));
-		return this.rideInformationService.getRideInformationByRideId(route.params["rideId"]);
+		console.log("resolve ", route.paramMap.get("trainset"));
+		return this.rideInformationService.getRideInformationByTrainsetNr(
+			route.params["trainset"],
+			route.queryParams["rideId"]
+		);
 	}
 }

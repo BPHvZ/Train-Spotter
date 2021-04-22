@@ -39,7 +39,14 @@
 										"
 									>
 										<span *ngIf="trainPart.materieelnummer">
-											<span *ngIf="i == 0; else other"> met {{ trainPart.materieelnummer }}</span>
+											<span *ngIf="i == 0; else other">
+												met
+												<span
+													style="cursor: pointer"
+													(click)="navigateToTrainsetInformation(trainPart.materieelnummer)"
+													>{{ trainPart.materieelnummer }}</span
+												></span
+											>
 											<ng-template #other
 												>{{i == (trainInformation.trainDetails.materieeldelen.length - 1) ? ' '
 												+ 'en' : ','}} {{ trainPart.materieelnummer }}

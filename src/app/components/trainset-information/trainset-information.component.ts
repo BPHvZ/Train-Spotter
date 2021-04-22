@@ -3,22 +3,21 @@ import { ActivatedRoute } from "@angular/router";
 import { DetailedTrainInformation } from "../../models/VirtualTrainAPI";
 
 @Component({
-	selector: "app-ride-information",
-	templateUrl: "./ride-information.component.html",
-	styleUrls: ["./ride-information.component.sass"],
+	selector: "app-trainset-information",
+	templateUrl: "./trainset-information.component.html",
+	styleUrls: ["./trainset-information.component.sass"],
 })
-export class RideInformationComponent implements OnInit {
+export class TrainsetInformationComponent implements OnInit {
 	/**Detailed train information*/
 	trainInformation: DetailedTrainInformation;
-
-	private rideId: number = null;
+	trainsetNr: number = null;
 
 	constructor(private route: ActivatedRoute) {}
 
 	ngOnInit(): void {
 		this.route.params.subscribe((params) => {
-			this.rideId = Number(params["rideId"]);
-			console.log("rideId: ", this.rideId);
+			this.trainsetNr = Number(params["trainset"]);
+			console.log("trainsetNr: ", this.trainsetNr);
 		});
 		this.trainInformation = this.route.snapshot.data["rideInformation"];
 	}

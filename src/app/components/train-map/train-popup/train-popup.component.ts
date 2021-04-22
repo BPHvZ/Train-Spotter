@@ -73,4 +73,10 @@ export class TrainPopupComponent implements OnChanges {
 	navigateToRideInformation(): void {
 		void this.router.navigate(["/rit", this.trainInformation.ritId]);
 	}
+
+	navigateToTrainsetInformation(trainsetNr: number): void {
+		void this.router.navigate(["/materiaal", trainsetNr], {
+			queryParams: { rideId: this.trainInformation.ritId },
+		});
+	}
 }

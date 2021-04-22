@@ -23,7 +23,9 @@ import { AllStationsComponent } from "./components/all-stations/all-stations.com
 import { PageNotFoundComponent } from "./components/page-not-found/page-not-found.component";
 import { RideInformationComponent } from "./components/ride-information/ride-information.component";
 import { TrainMapComponent } from "./components/train-map/train-map/train-map.component";
+import { TrainsetInformationComponent } from "./components/trainset-information/trainset-information.component";
 import { RideInformationResolver } from "./resolvers/ride-information.resolver";
+import { TrainsetInformationResolver } from "./resolvers/trainset-information.resolver";
 
 const routes: Routes = [
 	{
@@ -51,6 +53,16 @@ const routes: Routes = [
 		},
 	},
 	{
+		path: "materiaal/:trainset",
+		component: TrainsetInformationComponent,
+		resolve: {
+			rideInformation: TrainsetInformationResolver,
+		},
+		data: {
+			reuse: false,
+		},
+	},
+	{
 		path: "over",
 		component: AboutComponent,
 		data: {
@@ -58,7 +70,13 @@ const routes: Routes = [
 		},
 	},
 	{ path: "", redirectTo: "/kaart", pathMatch: "full" },
-	{ path: "**", component: PageNotFoundComponent },
+	{
+		path: "**",
+		component: PageNotFoundComponent,
+		data: {
+			reuse: false,
+		},
+	},
 ];
 
 @NgModule({

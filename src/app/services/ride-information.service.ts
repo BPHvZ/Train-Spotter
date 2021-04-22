@@ -19,7 +19,7 @@
 import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import { Observable, of } from "rxjs";
-import { catchError, map, switchMap, take } from "rxjs/operators";
+import { catchError, concatMap, map, switchMap, take } from "rxjs/operators";
 import { DetailedTrainInformation } from "../models/VirtualTrainAPI";
 import { ApiService } from "./api.service";
 import { SharedDataService } from "./shared-data.service";
@@ -66,7 +66,7 @@ export class RideInformationService {
 		);
 	}
 
-	getRideInformation(rideId: number): Observable<DetailedTrainInformation> {
+	getRideInformationByRideId(rideId: number): Observable<DetailedTrainInformation> {
 		const allTrainInformation = this.sharedDataService.trainInformationLastValue();
 		if (allTrainInformation != null && allTrainInformation.length > 0) {
 			console.log("finding in shared data");
@@ -76,5 +76,23 @@ export class RideInformationService {
 			}
 		}
 		return this.getDetailedInformationAboutOneTrain(rideId);
+	}
+
+	getRideInformationByTrainsetNr(trainsetNr: number, rideId?: string): Observable<DetailedTrainInformation> {
+		const allTrainInformation = this.sharedDataService.trainInformationLastValue();
+		if (allTrainInformation != null && allTrainInformation.length > 0 && rideId) {
+			console.log("finding in shared data");
+			const train = allTrainInformation.find((train) => train.ritId == rideId);
+			if (train != null) {
+				return of(train);
+			}
+		}
+		return this.apiService.convertTrainsetNrToRideId(trainsetNr.toString()).pipe(
+			concatMap((response) => {
+				console.log(response.data);
+				return this.getDetailedInformationAboutOneTrain(response.data);
+			}),
+			catchError(() => void this.router.navigateByUrl("/404"))
+		);
 	}
 }

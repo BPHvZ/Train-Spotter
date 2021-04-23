@@ -1,0 +1,50 @@
+<div id="toasts-left">
+	<ngb-toast
+		class="toasts"
+		*ngFor="let toast of toastService.toastsLeft"
+		[class]="toast.classname"
+		[autohide]="toast.autoHide"
+		[delay]="toast.delay"
+		(hidden)="toastService.remove(toast)"
+	>
+		<ng-template [ngIf]="isTemplate(toast)" [ngIfElse]="text">
+			<ng-template [ngTemplateOutlet]="toast.textOrTpl"></ng-template>
+		</ng-template>
+
+		<ng-template #text>{{ toast.textOrTpl }}</ng-template>
+	</ngb-toast>
+</div>
+
+<div id="toasts-centered">
+	<ngb-toast
+		class="toasts"
+		*ngFor="let toast of toastService.toastsCenter"
+		[class]="toast.classname"
+		[autohide]="toast.autoHide"
+		[delay]="toast.delay"
+		(hidden)="toastService.remove(toast)"
+	>
+		<ng-template [ngIf]="isTemplate(toast)" [ngIfElse]="text">
+			<ng-template [ngTemplateOutlet]="toast.textOrTpl"></ng-template>
+		</ng-template>
+
+		<ng-template #text>{{ toast.textOrTpl }}</ng-template>
+	</ngb-toast>
+</div>
+
+<div id="toasts-right">
+	<ngb-toast
+		class="toasts"
+		*ngFor="let toast of toastService.toastsRight"
+		[class]="toast.classname"
+		[autohide]="toast.autoHide"
+		[delay]="toast.delay"
+		(hidden)="toastService.remove(toast)"
+	>
+		<ng-template [ngIf]="isTemplate(toast)" [ngIfElse]="text">
+			<ng-template [ngTemplateOutlet]="toast.textOrTpl"></ng-template>
+		</ng-template>
+
+		<ng-template #text>{{ toast.textOrTpl }}</ng-template>
+	</ngb-toast>
+</div>

@@ -16,12 +16,16 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from "@angular/core";
+import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges, TemplateRef } from "@angular/core";
 import { Router } from "@angular/router";
-import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
+import { faCopy } from "@fortawesome/free-regular-svg-icons";
+import { faInfoCircle, faShareSquare } from "@fortawesome/free-solid-svg-icons";
 import { MapboxGeoJSONFeature } from "mapbox-gl";
+import { ClipboardService } from "ngx-clipboard";
 import { DetailedTrainInformation } from "../../../models/VirtualTrainAPI";
 import { HelperFunctionsService } from "../../../services/helper-functions.service";
+import { ShareService } from "../../../services/share.service";
+import { ToastPosition, ToastService } from "../../../services/toast.service";
 
 /**
  * Show a popup with information about a train on the map
@@ -42,13 +46,24 @@ export class TrainPopupComponent implements OnChanges {
 	directionArrowStyle: Map<string, any> = new Map<string, any>();
 	updatedAt: Date;
 	faInfoCircle = faInfoCircle;
+	faShareSquare = faShareSquare;
+	faCopy = faCopy;
 
 	/**
 	 * Define services
 	 * @param helperFunctions Helper functions
 	 * @param router Router object
+	 * @param shareService Share using browser Navigator.share
+	 * @param toastService Show or delete toast notifications
+	 * @param clipboardService Copy to device clipboard
 	 */
-	constructor(private helperFunctions: HelperFunctionsService, private router: Router) {}
+	constructor(
+		private helperFunctions: HelperFunctionsService,
+		private router: Router,
+		private shareService: ShareService,
+		private toastService: ToastService,
+		private clipboardService: ClipboardService
+	) {}
 
 	/**
 	 * Update the train information
@@ -80,5 +95,18 @@ export class TrainPopupComponent implements OnChanges {
 		void this.router.navigate(["/materiaal", trainsetNr], {
 			queryParams: { rideId: this.trainInformation.ritId },
 		});
+	}
+
+	shareTrain(template: TemplateRef<any>): void {
+		const url = `treinenkaart.bartvanzeist.nl/kaart?trein=${this.trainInformation.ritId}`;
+		void this.shareService.share(
+			{
+				url: url,
+			},
+			() => {
+				this.clipboardService.copy(url);
+				this.toastService.show(template, ToastPosition.Center);
+			}
+		);
 	}
 }

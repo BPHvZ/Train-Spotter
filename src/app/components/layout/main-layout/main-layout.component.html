@@ -19,6 +19,12 @@
 <div id="page" style="position: relative" class="mat-typography">
 	<app-header id="header"></app-header>
 	<main class="d-flex" role="main">
+		<app-toasts-container
+			class="position-absolute page-padding"
+			style="z-index: 1000; min-width: 10vw; max-width: 50vw; margin-top: 0.75rem"
+			aria-live="polite"
+			aria-atomic="true"
+		></app-toasts-container>
 		<div
 			class="main-content d-flex page-padding"
 			[style.paddingLeft]="isTrainMap ? '0' : null"

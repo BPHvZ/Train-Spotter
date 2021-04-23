@@ -117,7 +117,19 @@
 									<fa-icon [icon]="faInfoCircle" style="font-size: small"></fa-icon>
 								</button>
 							</div>
-							<div style="align-self: flex-end" *ngIf="trainInformation.updatedAt">
+							<div>
+								<button
+									id="shareTrainButton"
+									class="button button--nsYellow"
+									(click)="shareTrain(copiedShareUrlTpl)"
+								>
+									Deel trein
+									<fa-icon [icon]="faShareSquare" style="font-size: small"></fa-icon>
+								</button>
+							</div>
+						</div>
+						<div class="row mt-2">
+							<div class="ml-auto" style="align-self: flex-end" *ngIf="trainInformation.updatedAt">
 								<div id="lastUpdated">Laatste update {{ updatedAt | date: "HH:mm:ss" }}</div>
 							</div>
 						</div>
@@ -128,3 +140,8 @@
 		<span class="flex-child triangle triangle--d" style="color: #00337f"></span>
 	</div>
 </div>
+
+<ng-template #copiedShareUrlTpl>
+	<fa-icon [icon]="faCopy" style="font-size: small"></fa-icon>
+	Link gekopieerd naar klembord
+</ng-template>

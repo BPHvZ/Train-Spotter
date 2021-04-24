@@ -25,7 +25,7 @@
     "prettier_and_lint": "yarn format:fix && yarn lint",
     "---------------- Document Application ----------------": "ng",
     "compodoc": "compodoc --config .compodocrc.json",
-    "documentation_coverage": "compodoc --config .compodocrc.json --coverageTest 80 --coverageTestThresholdFail=true",
+    "documentation_coverage": "compodoc --config .compodocrc.json --coverageTest 95 --coverageTestThresholdFail=true",
     "---------------- Other ----------------": "ng",
     "update_sitemap": "yarn node src/environments/update-sitemap.js"
   },

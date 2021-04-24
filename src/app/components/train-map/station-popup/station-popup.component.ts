@@ -43,9 +43,13 @@ export class StationPopupComponent implements OnChanges {
 	/**FontAwesome crosshair icon*/
 	faCrosshairs = faCrosshairs;
 
+	/**Arrival and departure information of the station*/
 	stationArrivalsAndDepartures$: Observable<[StationArrivalsList, StationDeparturesList]>;
+	/**Calculated delays of the arrivals*/
 	arrivalDelays: Map<string, number> = new Map();
+	/**Calculated delays of the departures*/
 	departureDelays: Map<string, number> = new Map();
+	/**State which table is currently shown*/
 	activeTable: "arrivals" | "departures" = "arrivals";
 
 	/**
@@ -101,6 +105,12 @@ export class StationPopupComponent implements OnChanges {
 		}
 	}
 
+	/**
+	 * Calculate minutes difference between dates
+	 * @param planned Planned time
+	 * @param actual Actual time
+	 * @return number Number of minutes difference
+	 */
 	minuteDifference(planned: string, actual: string): number {
 		const eventStartTime = new Date(planned);
 		const eventEndTime = new Date(actual);
@@ -108,11 +118,13 @@ export class StationPopupComponent implements OnChanges {
 		return Math.round(minutes);
 	}
 
+	/**
+	 * Find the train by ride id and fly to it
+	 * @param number Ride id of the train
+	 */
 	flyToTrainByNumber(number: string): void {
 		if (number) {
-			const trainDetails = this.sharedDataService
-				.trainInformationLastValue()
-				?.find((train) => train.ritId == number);
+			const trainDetails = this.sharedDataService.findTrainByRideId(number);
 			if (trainDetails) {
 				this.sharedDataService.flyToTrain(trainDetails);
 			}

@@ -18,13 +18,16 @@
 
 import { Directive, Input, OnInit } from "@angular/core";
 
+/** Directive that allows a function to be executed when a component is loaded in the DOM */
 @Directive({
 	// eslint-disable-next-line @angular-eslint/directive-selector
 	selector: "[ngInit]",
 	exportAs: "ngInit",
 })
 export class NgInitDirective implements OnInit {
+	/** Function to be executed */
 	@Input() ngInit: () => any;
+	/** Execute the function */
 	ngOnInit(): void {
 		// console.log(typeof this.ngInit);
 		if (typeof this.ngInit === "function") {

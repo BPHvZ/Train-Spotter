@@ -41,6 +41,7 @@ export class SharedDataService {
 	/*
 	 * Data used by the train map
 	 * */
+	/**All train map types*/
 	readonly mapTypes: TrainMapType[] = [
 		{
 			name: "Normaal",
@@ -53,7 +54,7 @@ export class SharedDataService {
 			layerId: "storingen-railroad",
 		},
 	];
-	/**Active map type*/
+	//Active map
 	/**Subscribable stations object*/
 	private _activeMapType = new BehaviorSubject<TrainMapType>(this.mapTypes[0]);
 	/**Observable of stations*/
@@ -120,12 +121,15 @@ export class SharedDataService {
 	/*
 	 * Data used by the header
 	 * */
+	/**Global search is ready when data has been loaded*/
 	globalSearchReady$ = combineLatest([this._stations, this._detailedTrainInformation]);
 
 	/*
 	 * Data used to hover and focus on disruption markers on the map and cards in the sidebar
 	 * */
+	/**Disruption map markers*/
 	disruptionMarkerElements = new Set<MarkerComponent>();
+	/**Disruption sidebar cards*/
 	disruptionCardElements = new Map<string, ElementRef>();
 	/**Sidebar open/closed state*/
 	private _sidebarState = new BehaviorSubject<"open" | "closed">("closed");
@@ -175,6 +179,10 @@ export class SharedDataService {
 		);
 	}
 
+	/**
+	 * Get last stations response
+	 * @return StationsResponse All stations
+	 */
 	stationsLastValue(): StationsResponse {
 		return this._stations.getValue();
 	}
@@ -203,10 +211,18 @@ export class SharedDataService {
 		);
 	}
 
+	/**
+	 * Get disrupted train track last response
+	 * @return GeoJSON.FeatureCollection<MultiLineString> All disrupted train tracks
+	 * */
 	disruptedTrainTracksLayerDataLastValue(): GeoJSON.FeatureCollection<MultiLineString> {
 		return this._disruptedTrainTracksLayerData.getValue()?.payload as GeoJSON.FeatureCollection<MultiLineString>;
 	}
 
+	/**
+	 * Update the data of disruption markers on the map
+	 * @param markers Markers to be added to the map
+	 */
 	updateDisruptionMarkersData(markers: GeoJSON.Feature<GeoJSON.Point, DisruptionBase>[]): void {
 		this.disruptionMarkerElements.clear();
 		this._disruptionMarkersData.next(markers);
@@ -250,6 +266,10 @@ export class SharedDataService {
 		);
 	}
 
+	/**
+	 * Get active disruptions last response
+	 * @return DisruptionsList All active disruptions
+	 */
 	activeDisruptionsLastValue(): DisruptionsList {
 		return this._activeDisruptions.getValue();
 	}
@@ -288,6 +308,10 @@ export class SharedDataService {
 		);
 	}
 
+	/**
+	 * Get train information last response
+	 * @return DetailedTrainInformation[] Detailed information about all trains
+	 */
 	trainInformationLastValue(): DetailedTrainInformation[] {
 		return this._detailedTrainInformation.getValue();
 	}
@@ -381,6 +405,11 @@ export class SharedDataService {
 		}
 	}
 
+	/**
+	 * Find train information by ride id
+	 * @param rideId Ride id of the train
+	 * @return DetailedTrainInformation Train information or undefined
+	 */
 	findTrainByRideId(rideId: string): DetailedTrainInformation | undefined {
 		return this.trainInformationLastValue().find((t) => t.ritId == rideId);
 	}

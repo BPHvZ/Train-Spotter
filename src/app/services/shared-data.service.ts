@@ -381,6 +381,10 @@ export class SharedDataService {
 		}
 	}
 
+	findTrainByRideId(rideId: string): DetailedTrainInformation | undefined {
+		return this.trainInformationLastValue().find((t) => t.ritId == rideId);
+	}
+
 	/**
 	 * Close all popups on the map
 	 */

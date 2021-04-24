@@ -17,7 +17,7 @@
  */
 
 import { Component, ElementRef, OnDestroy, OnInit, Renderer2, ViewChild } from "@angular/core";
-import { NavigationEnd, NavigationStart, Router } from "@angular/router";
+import { ActivatedRoute, NavigationEnd, NavigationStart, Router } from "@angular/router";
 import { Timer } from "easytimer.js";
 import { GeoJSON, MultiLineString } from "geojson";
 import {
@@ -134,6 +134,8 @@ export class TrainMapComponent implements OnInit, OnDestroy {
 	/**Trains layer with current trains*/
 	trainsLayerData: GeoJSON.FeatureCollection<GeoJSON.Geometry>;
 
+	firstTrainsHaveBeenAdded = false;
+
 	// Train icons
 	/**Observe train icons added to the map*/
 	private trainIconAddedSource = new Subject<string>();
@@ -157,13 +159,15 @@ export class TrainMapComponent implements OnInit, OnDestroy {
 	 * @param router Router object
 	 * @param imageEditorService Web Worker to edit icons
 	 * @param renderer Used to modify DOM elements
+	 * @param activatedRoute Current route, used to get route params
 	 */
 	constructor(
 		private sharedDataService: SharedDataService,
 		private helperFunctions: HelperFunctionsService,
 		private router: Router,
 		private imageEditorService: ImageEditorService,
-		private renderer: Renderer2
+		private renderer: Renderer2,
+		private activatedRoute: ActivatedRoute
 	) {}
 
 	/**
@@ -344,18 +348,20 @@ export class TrainMapComponent implements OnInit, OnDestroy {
 			let stationInformation = selectedFeature.properties;
 
 			if (stationInformation) {
-				this.sharedDataService.trainMap.flyTo({
+				this.sharedDataService.trainMap.easeTo({
 					center: [stationInformation.lng, stationInformation.lat],
 				});
 
-				/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-				stationInformation.namen = JSON.parse(stationInformation.namen);
-				stationInformation.synoniemen = JSON.parse(stationInformation.synoniemen);
-				stationInformation.sporen = JSON.parse(stationInformation.sporen);
-				/* eslint-enable @typescript-eslint/no-unsafe-assignment */
-				stationInformation = stationInformation as Station;
-				selectedFeature.properties = stationInformation;
-				this.sharedDataService.selectedStationOnMapFeature = selectedFeature;
+				this.sharedDataService.trainMap.once("moveend", () => {
+					/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+					stationInformation.namen = JSON.parse(stationInformation.namen);
+					stationInformation.synoniemen = JSON.parse(stationInformation.synoniemen);
+					stationInformation.sporen = JSON.parse(stationInformation.sporen);
+					/* eslint-enable @typescript-eslint/no-unsafe-assignment */
+					stationInformation = stationInformation as Station;
+					selectedFeature.properties = stationInformation;
+					this.sharedDataService.selectedStationOnMapFeature = selectedFeature;
+				});
 			}
 		}
 	}
@@ -368,12 +374,21 @@ export class TrainMapComponent implements OnInit, OnDestroy {
 		if (event.features) {
 			const selectedFeature: MapboxGeoJSONFeature = event.features[0];
 			const basicTrainInformation = selectedFeature.properties;
-			// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-			if (basicTrainInformation.trainDetails) {
-				basicTrainInformation.trainDetails = JSON.parse(basicTrainInformation.trainDetails);
+
+			if (basicTrainInformation) {
+				this.sharedDataService.trainMap.easeTo({
+					center: [basicTrainInformation.lng, basicTrainInformation.lat],
+				});
+
+				this.sharedDataService.trainMap.once("moveend", () => {
+					// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+					if (basicTrainInformation.trainDetails) {
+						basicTrainInformation.trainDetails = JSON.parse(basicTrainInformation.trainDetails);
+					}
+					selectedFeature.properties = basicTrainInformation;
+					this.sharedDataService.selectedTrainOnMapFeature = selectedFeature;
+				});
 			}
-			selectedFeature.properties = basicTrainInformation;
-			this.sharedDataService.selectedTrainOnMapFeature = selectedFeature;
 		}
 	}
 
@@ -409,6 +424,20 @@ export class TrainMapComponent implements OnInit, OnDestroy {
 		this.pauseOrResumeUpdatingTrainPositions(false);
 		if (environment.production === false) {
 			this.pauseOrResumeUpdatingTrainPositions(true);
+		}
+		if (this.firstTrainsHaveBeenAdded == false) {
+			this.firstTrainsHaveBeenAdded = true;
+			this.flyToTrainFromQueryParam();
+		}
+	}
+
+	flyToTrainFromQueryParam(): void {
+		const rideId = this.activatedRoute.snapshot.queryParamMap.get("rit");
+		if (rideId) {
+			const train = this.sharedDataService.findTrainByRideId(rideId);
+			if (train) {
+				this.sharedDataService.flyToTrain(train);
+			}
 		}
 	}
 

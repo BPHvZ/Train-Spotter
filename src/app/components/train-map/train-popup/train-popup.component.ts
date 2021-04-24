@@ -16,7 +16,16 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges, TemplateRef } from "@angular/core";
+import {
+	Component,
+	EventEmitter,
+	Input,
+	OnChanges,
+	Output,
+	SimpleChanges,
+	TemplateRef,
+	ViewChild,
+} from "@angular/core";
 import { Router } from "@angular/router";
 import { faCopy } from "@fortawesome/free-regular-svg-icons";
 import { faInfoCircle, faShareSquare } from "@fortawesome/free-solid-svg-icons";
@@ -36,6 +45,7 @@ import { ToastPosition, ToastService } from "../../../services/toast.service";
 	styleUrls: ["./train-popup.component.sass"],
 })
 export class TrainPopupComponent implements OnChanges {
+	@ViewChild("closeButton") closeButtonElm: Element;
 	/**Notify the map to close the popup*/
 	@Output() public closePopup: EventEmitter<void> = new EventEmitter<void>();
 	/**Mapbox Feature of this train*/
@@ -98,7 +108,7 @@ export class TrainPopupComponent implements OnChanges {
 	}
 
 	shareTrain(template: TemplateRef<any>): void {
-		const url = `treinenkaart.bartvanzeist.nl/kaart?trein=${this.trainInformation.ritId}`;
+		const url = `treinenkaart.bartvanzeist.nl/kaart?rit=${this.trainInformation.ritId}`;
 		void this.shareService.share(
 			{
 				url: url,

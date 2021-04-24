@@ -17,6 +17,7 @@
  */
 
 import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
+import { RouterTestingModule } from "@angular/router/testing";
 import { TrainPopupComponent } from "./train-popup.component";
 
 describe("TrainPopupComponent", () => {
@@ -26,6 +27,7 @@ describe("TrainPopupComponent", () => {
 	beforeEach(
 		waitForAsync(() => {
 			void TestBed.configureTestingModule({
+				imports: [RouterTestingModule],
 				declarations: [TrainPopupComponent],
 			}).compileComponents();
 		})

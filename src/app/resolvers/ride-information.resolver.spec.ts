@@ -16,15 +16,19 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import { HttpClientTestingModule } from "@angular/common/http/testing";
 import { TestBed } from "@angular/core/testing";
-import { RideinformationResolver } from "./ride-information.resolver";
+import { RouterTestingModule } from "@angular/router/testing";
+import { RideInformationResolver } from "./ride-information.resolver";
 
-describe("RideinformationResolver", () => {
-	let resolver: RideinformationResolver;
+describe("RideInformationResolver", () => {
+	let resolver: RideInformationResolver;
 
 	beforeEach(() => {
-		TestBed.configureTestingModule({});
-		resolver = TestBed.inject(RideinformationResolver);
+		TestBed.configureTestingModule({
+			imports: [HttpClientTestingModule, RouterTestingModule],
+		});
+		resolver = TestBed.inject(RideInformationResolver);
 	});
 
 	it("should be created", () => {

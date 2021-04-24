@@ -50,6 +50,7 @@ import { SharedDataService } from "../../../services/shared-data.service";
 	styleUrls: ["./train-map.component.sass"],
 })
 export class TrainMapComponent implements OnInit, OnDestroy {
+	/**countdown DOM element*/
 	@ViewChild("updateCountdown") countdown: ElementRef;
 
 	// MapBox setup
@@ -76,6 +77,7 @@ export class TrainMapComponent implements OnInit, OnDestroy {
 	 * @returns TrainMapType current map type
 	 */
 	activeMapType$: Observable<TrainMapType> = this.sharedDataService.activeMapType$;
+	/**All map types*/
 	mapTypesArray = this.sharedDataService.mapTypes;
 
 	// Map popups
@@ -99,6 +101,7 @@ export class TrainMapComponent implements OnInit, OnDestroy {
 	updateTrainsIsPaused = false;
 	/**Is currently updating train positions*/
 	isUpdatingMapData = false;
+	/**Timer that counts down until train data refresh*/
 	countdownTimer = new Timer({ countdown: true, startValues: { seconds: 10 } });
 
 	// Station layer
@@ -134,6 +137,7 @@ export class TrainMapComponent implements OnInit, OnDestroy {
 	/**Trains layer with current trains*/
 	trainsLayerData: GeoJSON.FeatureCollection<GeoJSON.Geometry>;
 
+	/**Whether trains have been loaded onto the map*/
 	firstTrainsHaveBeenAdded = false;
 
 	// Train icons
@@ -148,8 +152,9 @@ export class TrainMapComponent implements OnInit, OnDestroy {
 	/**Train icons to be added to the map*/
 	trainIconsForMap: TrainIconOnMap[] = [];
 
+	/**Sidebar disruption card that is currently focused*/
 	private _focusedDisruptionCard: ElementRef = null;
-
+	/**All observable subscriptions*/
 	subscriptions: Subscription[] = [];
 
 	/**
@@ -199,6 +204,7 @@ export class TrainMapComponent implements OnInit, OnDestroy {
 		});
 	}
 
+	/** Unsubscribe from observables on destroy */
 	ngOnDestroy(): void {
 		this.subscriptions.forEach((subscription) => subscription.unsubscribe());
 	}
@@ -211,6 +217,10 @@ export class TrainMapComponent implements OnInit, OnDestroy {
 		this.trainIconAddedSource.next(trainIconName);
 	}
 
+	/**
+	 * Error when train icon cannot be loaded
+	 * @param error Error with train number
+	 */
 	onIconError(error: { status: number }): void {
 		console.error(error);
 	}
@@ -235,6 +245,7 @@ export class TrainMapComponent implements OnInit, OnDestroy {
 	}
 
 	/* eslint-disable */
+	/** Reset the countdown visuals */
 	resetCountdownProgressbarAnimation(): void {
 		this.renderer.removeClass(this.countdown.nativeElement, "progress-value");
 		console.log(this.countdown.nativeElement.offsetHeight);
@@ -431,6 +442,7 @@ export class TrainMapComponent implements OnInit, OnDestroy {
 		}
 	}
 
+	/** Fly to a train using the ride id from query params */
 	flyToTrainFromQueryParam(): void {
 		const rideId = this.activatedRoute.snapshot.queryParamMap.get("rit");
 		if (rideId) {
@@ -659,6 +671,11 @@ export class TrainMapComponent implements OnInit, OnDestroy {
 		});
 	}
 
+	/**
+	 * Add marker component to shared data
+	 * @param marker Marker component to add to set
+	 * @return () Function that adds the marker
+	 */
 	addMarkerComponentToSet(marker: MarkerComponent): () => void {
 		return () => {
 			this.sharedDataService.disruptionMarkerElements.add(marker);
@@ -675,6 +692,12 @@ export class TrainMapComponent implements OnInit, OnDestroy {
 		this.sharedDataService.flyToDisruption(disruption);
 	}
 
+	/**
+	 * Focus on a sidebar disruption card when hovering on it
+	 * @param event Mouse event
+	 * @param disruption Disruption of the card
+	 * @param markerElement Marker that is being hovered
+	 */
 	onMouseEnterDisruptionMarker(event: MouseEvent, disruption: DisruptionBase, markerElement: MarkerComponent): void {
 		// find disruption in sidebar and focus
 		event.preventDefault();
@@ -688,6 +711,12 @@ export class TrainMapComponent implements OnInit, OnDestroy {
 		event.preventDefault();
 	}
 
+	/**
+	 * Loose focus on a sidebar disruption card when not hovering over the marker anymore
+	 * @param event Mouse event
+	 * @param disruption Disruption of the card
+	 * @param markerElement Marker that is being hovered
+	 */
 	onMouseLeaveDisruptionMarker(event: MouseEvent, disruption: DisruptionBase, markerElement: MarkerComponent): void {
 		// find disruption in sidebar and remove focus
 		event.preventDefault();

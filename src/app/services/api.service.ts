@@ -141,6 +141,13 @@ export class ApiService {
 		});
 	}
 
+	/**
+	 * Get information about a stations current arrivals
+	 * [reisinformatie-api/api/v2/getArrivals]{@link https://apiportal.ns.nl/docs/services/reisinformatie-api/operations/getArrivals?}
+	 * @param uicCode UIC code of the Stations
+	 * @param maxJourneys Number of arrivals to retrieve
+	 * @returns Observable<Response<StationArrivalsResponse>> Stations current arrivals
+	 */
 	getStationArrivals(uicCode: string, maxJourneys = 40): Observable<Response<StationArrivalsResponse>> {
 		const stationParams = new HttpParams().set("uicCode", uicCode).set("maxJourneys", maxJourneys.toString());
 		return this.http.get({
@@ -150,6 +157,13 @@ export class ApiService {
 		});
 	}
 
+	/**
+	 * Get information about a stations current departures
+	 * [reisinformatie-api/api/v2/departures]{@link https://apiportal.ns.nl/docs/services/reisinformatie-api/operations/getDepartures?}
+	 * @param uicCode UIC code of the Stations
+	 * @param maxJourneys Number of departures to retrieve
+	 * @returns Observable<Response<StationArrivalsResponse>> Stations current departures
+	 */
 	getStationDepartures(uicCode: string, maxJourneys = 40): Observable<Response<StationDeparturesResponse>> {
 		const stationParams = new HttpParams().set("uicCode", uicCode).set("maxJourneys", maxJourneys.toString());
 		return this.http.get({

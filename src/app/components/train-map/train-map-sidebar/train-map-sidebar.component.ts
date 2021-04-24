@@ -100,6 +100,7 @@ export class TrainMapSidebarComponent {
 	/**Date when disruptions have been last updated*/
 	disruptionsLastUpdated$: Observable<Date> = this.sharedDataService.disruptionsLastUpdated$;
 
+	/**Current disruption marker that is focused*/
 	private _focusedDisruptionMarker: MarkerComponent = null;
 
 	/**
@@ -109,6 +110,11 @@ export class TrainMapSidebarComponent {
 	 */
 	constructor(private sharedDataService: SharedDataService, private renderer: Renderer2) {}
 
+	/**
+	 * Count disruption by type
+	 * @param type Disruption type to count
+	 * @return number Number of disruptions
+	 */
 	getDisruptionCount(type: "CALAMITY" | "DISRUPTION" | "MAINTENANCE"): number {
 		const disruptions = this.activeDisruptions.filter((c) => c.type === type);
 		return disruptions.length;
@@ -183,6 +189,11 @@ export class TrainMapSidebarComponent {
 		this.sharedDataService.flyToDisruption(disruption);
 	}
 
+	/**
+	 * Focus on a disruption card when hovering on it
+	 * @param event Mouse event
+	 * @param disruption Disruption of the card
+	 */
 	onMouseEnterDisruptionCard(event: MouseEvent, disruption: DisruptionBase): void {
 		// find disruption on map and hover
 		event.preventDefault();
@@ -198,6 +209,11 @@ export class TrainMapSidebarComponent {
 		event.preventDefault();
 	}
 
+	/**
+	 * Loose focus on a disruption card when not hovering over it anymore
+	 * @param event Mouse event
+	 * @param disruption Disruption of the card
+	 */
 	onMouseLeaveDisruptionCard(event: MouseEvent, disruption: DisruptionBase): void {
 		// find disruption on map and hover
 		event.preventDefault();

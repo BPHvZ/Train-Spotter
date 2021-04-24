@@ -45,6 +45,7 @@ import { ToastPosition, ToastService } from "../../../services/toast.service";
 	styleUrls: ["./train-popup.component.sass"],
 })
 export class TrainPopupComponent implements OnChanges {
+	/**Close button DOM element*/
 	@ViewChild("closeButton") closeButtonElm: Element;
 	/**Notify the map to close the popup*/
 	@Output() public closePopup: EventEmitter<void> = new EventEmitter<void>();
@@ -54,9 +55,13 @@ export class TrainPopupComponent implements OnChanges {
 	trainInformation: DetailedTrainInformation;
 	/**CSS style of the arrow shown in the popup*/
 	directionArrowStyle: Map<string, any> = new Map<string, any>();
+	/**Last date when data was refreshed*/
 	updatedAt: Date;
+	/**Info icon*/
 	faInfoCircle = faInfoCircle;
+	/**Share icons*/
 	faShareSquare = faShareSquare;
+	/**Cop icon*/
 	faCopy = faCopy;
 
 	/**
@@ -97,16 +102,25 @@ export class TrainPopupComponent implements OnChanges {
 		return this.helperFunctions.getTypeOfTrain(this.trainInformation);
 	}
 
+	/** Navigate to the train information page*/
 	navigateToRideInformation(): void {
 		void this.router.navigate(["/rit", this.trainInformation.ritId]);
 	}
 
+	/**
+	 * Navigate to the trainset information page
+	 * @param trainsetNr Trainset number to navigate to
+	 */
 	navigateToTrainsetInformation(trainsetNr: number): void {
 		void this.router.navigate(["/materiaal", trainsetNr], {
 			queryParams: { rideId: this.trainInformation.ritId },
 		});
 	}
 
+	/**
+	 * Share a URL of the train on the map
+	 * @param template Template of the toast notification
+	 */
 	shareTrain(template: TemplateRef<any>): void {
 		const url = `treinenkaart.bartvanzeist.nl/kaart?rit=${this.trainInformation.ritId}`;
 		void this.shareService.share(

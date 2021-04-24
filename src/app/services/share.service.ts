@@ -18,10 +18,16 @@
 
 import { Injectable } from "@angular/core";
 
+/** Share using browser Navigator.share */
 @Injectable({
 	providedIn: "root",
 })
 export class ShareService {
+	/**
+	 * Share text, url or files using the browser Navigator.share
+	 * @param shareData text, url or files to share
+	 * @param alternative Function to execute when Navigator.share is not available in the browser
+	 */
 	async share(shareData: ShareData, alternative: () => void): Promise<void> {
 		if (typeof window.navigator.share === "function") {
 			try {

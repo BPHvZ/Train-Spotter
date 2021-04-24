@@ -1,18 +1,17 @@
-import { AfterViewInit, Component, OnInit } from "@angular/core";
+import { AfterViewInit, Component } from "@angular/core";
 import { faExternalLinkAlt } from "@fortawesome/free-solid-svg-icons";
 
+/** Page for information about TrainSpotter */
 @Component({
 	selector: "app-about",
 	templateUrl: "./about.component.html",
 	styleUrls: ["./about.component.sass"],
 })
-export class AboutComponent implements OnInit, AfterViewInit {
+export class AboutComponent implements AfterViewInit {
+	/** External link icon */
 	faExternalLinkAlt = faExternalLinkAlt;
 
-	ngOnInit(): void {
-		console.log();
-	}
-
+	/** Init after DOM finished loading */
 	ngAfterViewInit(): void {
 		this.loadScript("https://buttons.github.io/buttons.js")
 			.then(() => {
@@ -23,6 +22,10 @@ export class AboutComponent implements OnInit, AfterViewInit {
 			});
 	}
 
+	/**
+	 * Add and load JS script
+	 * @param scriptUrl URL to the script
+	 */
 	loadScript(scriptUrl: string): Promise<void> {
 		const script = document.createElement("script");
 		script.src = scriptUrl;

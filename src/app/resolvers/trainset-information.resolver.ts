@@ -22,6 +22,7 @@ import { Observable } from "rxjs";
 import { DetailedTrainInformation } from "../models/VirtualTrainAPI";
 import { RideInformationService } from "../services/ride-information.service";
 
+/** Resolve loading train information before showing trainset information page */
 @Injectable({
 	providedIn: "root",
 })
@@ -32,6 +33,11 @@ export class TrainsetInformationResolver implements Resolve<DetailedTrainInforma
 	 */
 	constructor(private rideInformationService: RideInformationService) {}
 
+	/**
+	 * Get ride information of which the trainset is a part of
+	 * @param route Current route snapshot
+	 * @return Observable<DetailedTrainInformation> Train information
+	 */
 	resolve(route: ActivatedRouteSnapshot): Observable<DetailedTrainInformation> {
 		console.log("resolve ", route.paramMap.get("trainset"));
 		return this.rideInformationService.getRideInformationByTrainsetNr(

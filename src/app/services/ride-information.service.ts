@@ -24,6 +24,7 @@ import { DetailedTrainInformation } from "../models/VirtualTrainAPI";
 import { ApiService } from "./api.service";
 import { SharedDataService } from "./shared-data.service";
 
+/** Used by resolver, get train information from shared data or fetch from API */
 @Injectable({
 	providedIn: "root",
 })
@@ -66,6 +67,12 @@ export class RideInformationService {
 		);
 	}
 
+	/**
+	 * Get train information by ride id, used by the resolver.
+	 * Will check shared data and otherwise get data from the API
+	 * @param rideId Ride id of the train
+	 * @return Observable<DetailedTrainInformation> Train information
+	 */
 	getRideInformationByRideId(rideId: number): Observable<DetailedTrainInformation> {
 		const allTrainInformation = this.sharedDataService.trainInformationLastValue();
 		if (allTrainInformation != null && allTrainInformation.length > 0) {
@@ -78,6 +85,14 @@ export class RideInformationService {
 		return this.getDetailedInformationAboutOneTrain(rideId);
 	}
 
+	/**
+	 * Get train information by trainset number, used by the resolver.
+	 * Trainset number will be converted to the ride id of the train that its part of.
+	 * Will check shared data and otherwise get data from the API
+	 * @param trainsetNr Number of the trainset
+	 * @param rideId Ride id of the train of which the trainset is a part of.
+	 * @return Observable<DetailedTrainInformation> Train information
+	 */
 	getRideInformationByTrainsetNr(trainsetNr: number, rideId?: string): Observable<DetailedTrainInformation> {
 		const allTrainInformation = this.sharedDataService.trainInformationLastValue();
 		if (allTrainInformation != null && allTrainInformation.length > 0 && rideId) {

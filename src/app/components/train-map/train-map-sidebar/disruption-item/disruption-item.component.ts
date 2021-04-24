@@ -39,10 +39,12 @@ export class DisruptionItemComponent implements AfterViewInit, OnDestroy {
 	 */
 	constructor(private sharedDataService: SharedDataService, private cardElement: ElementRef) {}
 
+	/**Add the disruption card to shared data*/
 	ngAfterViewInit(): void {
 		this.sharedDataService.disruptionCardElements[this.disruption.id] = this.cardElement;
 	}
 
+	/**Remove the disruption card from shared data*/
 	ngOnDestroy(): void {
 		this.sharedDataService.disruptionCardElements.delete(this.disruption.id);
 	}

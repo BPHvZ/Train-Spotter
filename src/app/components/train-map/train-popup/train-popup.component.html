@@ -19,52 +19,50 @@
 <div style="pointer-events: auto" *ngIf="trainInformation" class="mat-typography">
 	<div class="map-marker flex-parent-inline flex-parent--center-cross flex-parent--column absolute bottom">
 		<div
+			id="train-marker-content"
 			class="map-marker-content color-white shadow-darken10 round txt-s clip txt-truncate"
-			style="width: fit-content"
+			style="padding: 15px 0"
 		>
-			<div class="container-fluid d-flex">
-				<div class="row" style="justify-content: space-between">
+			<div class="container">
+				<div class="row">
 					<div class="col">
-						<div class="row d-flex justify-content-between" style="width: max-content">
-							<h3 style="margin: unset">
-								<strong>
-									{{ trainInformation.trainDetails?.vervoerder }} {{ getTypeOfTrain() }} trein
-									<span style="cursor: pointer" (click)="navigateToRideInformation()"
-										>{{ trainInformation.ritId }}</span
-									>
-									<span
-										*ngFor="
-											let trainPart of trainInformation.trainDetails?.materieeldelen;
-											let i = index
-										"
-									>
-										<span *ngIf="trainPart.materieelnummer">
-											<span *ngIf="i == 0; else other">
-												met
-												<span
-													style="cursor: pointer"
-													(click)="navigateToTrainsetInformation(trainPart.materieelnummer)"
-													>{{ trainPart.materieelnummer }}</span
-												></span
-											>
-											<ng-template #other
-												>{{i == (trainInformation.trainDetails.materieeldelen.length - 1) ? ' '
-												+ 'en' : ','}} {{ trainPart.materieelnummer }}
-											</ng-template>
-										</span>
-									</span>
-								</strong>
-							</h3>
-							<button
-								class="button button--nsYellow button--close"
-								style="margin-left: 10px"
-								(click)="closePopup.emit()"
-							>
+						<div class="ml-auto mb-1" style="width: fit-content">
+							<button class="button button--nsYellow button--close" (click)="closePopup.emit()">
 								<strong>&times;</strong>
 							</button>
 						</div>
+						<div style="font-size: initial; font-weight: bold; white-space: pre-wrap">
+							<span>{{ trainInformation.trainDetails?.vervoerder }} {{ getTypeOfTrain() }} trein</span>
+							<span style="cursor: pointer" (click)="navigateToRideInformation()">
+								{{ trainInformation.ritId }}
+							</span>
+							<ng-container
+								*ngFor="
+											let trainPart of trainInformation.trainDetails?.materieeldelen;
+											let i = index
+										"
+							>
+								<ng-container *ngIf="trainPart.materieelnummer">
+									<ng-container *ngIf="i == 0; else other">
+										<span
+											>met
+											<span
+												style="cursor: pointer"
+												(click)="navigateToTrainsetInformation(trainPart.materieelnummer)"
+												>{{ trainPart.materieelnummer }}</span
+											>
+										</span>
+									</ng-container>
+									<ng-template #other>
+										<span>
+											{{ i == (trainInformation.trainDetails.materieeldelen.length - 1) ? " " +
+											'en' : ','}} {{ trainPart.materieelnummer }}
+										</span>
+									</ng-template>
+								</ng-container>
+							</ng-container>
+						</div>
 						<div
-							class="row"
 							*ngIf="trainInformation.trainDetails?.materieeldelen && trainInformation.trainDetails?.materieeldelen[0]?.afbeelding"
 						>
 							<div id="carousel">
@@ -81,8 +79,8 @@
 								</div>
 							</div>
 						</div>
-						<div class="row mt-2" style="margin-left: -15px">
-							<div class="float-left">
+						<div class="mt-2">
+							<div class="float-left mr-3" style="width: fit-content">
 								<div *ngIf="trainInformation.trainDetails.type">
 									<div class="mb-1 font-weight-bold">Type:</div>
 								</div>
@@ -90,7 +88,7 @@
 								<div class="font-weight-bold">Richting:</div>
 							</div>
 
-							<div class="float-left ml-3">
+							<div style="width: fit-content">
 								<div *ngIf="trainInformation.trainDetails.type">
 									<div class="mb-1">{{trainInformation.trainDetails.type}}</div>
 								</div>
@@ -106,7 +104,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="row mt-2 justify-content-between">
+						<div class="mt-2 d-flex justify-content-between">
 							<div>
 								<button
 									id="moreInfoButton"
@@ -130,8 +128,8 @@
 								</button>
 							</div>
 						</div>
-						<div class="row mt-2">
-							<div class="ml-auto" style="align-self: flex-end" *ngIf="trainInformation.updatedAt">
+						<div class="mt-2 ml-auto" style="width: fit-content">
+							<div style="align-self: flex-end" *ngIf="updatedAt">
 								<div id="lastUpdated">Laatste update {{ updatedAt | date: "HH:mm:ss" }}</div>
 							</div>
 						</div>

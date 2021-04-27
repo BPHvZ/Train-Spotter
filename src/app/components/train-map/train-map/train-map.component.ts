@@ -359,19 +359,17 @@ export class TrainMapComponent implements OnInit, OnDestroy {
 			let stationInformation = selectedFeature.properties;
 
 			if (stationInformation) {
+				/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+				stationInformation.namen = JSON.parse(stationInformation.namen);
+				stationInformation.synoniemen = JSON.parse(stationInformation.synoniemen);
+				stationInformation.sporen = JSON.parse(stationInformation.sporen);
+				/* eslint-enable @typescript-eslint/no-unsafe-assignment */
+				stationInformation = stationInformation as Station;
+				selectedFeature.properties = stationInformation;
+				this.sharedDataService.selectedStationOnMapFeature = selectedFeature;
+
 				this.sharedDataService.trainMap.easeTo({
 					center: [stationInformation.lng, stationInformation.lat],
-				});
-
-				this.sharedDataService.trainMap.once("moveend", () => {
-					/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-					stationInformation.namen = JSON.parse(stationInformation.namen);
-					stationInformation.synoniemen = JSON.parse(stationInformation.synoniemen);
-					stationInformation.sporen = JSON.parse(stationInformation.sporen);
-					/* eslint-enable @typescript-eslint/no-unsafe-assignment */
-					stationInformation = stationInformation as Station;
-					selectedFeature.properties = stationInformation;
-					this.sharedDataService.selectedStationOnMapFeature = selectedFeature;
 				});
 			}
 		}
@@ -387,17 +385,15 @@ export class TrainMapComponent implements OnInit, OnDestroy {
 			const basicTrainInformation = selectedFeature.properties;
 
 			if (basicTrainInformation) {
+				// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+				if (basicTrainInformation.trainDetails) {
+					basicTrainInformation.trainDetails = JSON.parse(basicTrainInformation.trainDetails);
+				}
+				selectedFeature.properties = basicTrainInformation;
+				this.sharedDataService.selectedTrainOnMapFeature = selectedFeature;
+
 				this.sharedDataService.trainMap.easeTo({
 					center: [basicTrainInformation.lng, basicTrainInformation.lat],
-				});
-
-				this.sharedDataService.trainMap.once("moveend", () => {
-					// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-					if (basicTrainInformation.trainDetails) {
-						basicTrainInformation.trainDetails = JSON.parse(basicTrainInformation.trainDetails);
-					}
-					selectedFeature.properties = basicTrainInformation;
-					this.sharedDataService.selectedTrainOnMapFeature = selectedFeature;
 				});
 			}
 		}

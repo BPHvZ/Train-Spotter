@@ -49,6 +49,7 @@ interface ExtraTrainInformation {
 	trainDetails?: TrainInformation;
 	trainIconOnMap?: TrainIconOnMap;
 	trainIconName?: string;
+	updatedAt?: number;
 }
 
 interface TrainIconOnMap {

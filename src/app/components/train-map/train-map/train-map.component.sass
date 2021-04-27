@@ -1,0 +1,148 @@
+/*!
+ / trainSpotter
+ / Copyright (C) 2021 bart
+ /
+ / This program is free software: you can redistribute it and/or modify
+ / it under the terms of the GNU General Public License as published by
+ / the Free Software Foundation, either version 3 of the License, or
+ / (at your option) any later version.
+ /
+ / This program is distributed in the hope that it will be useful,
+ / but WITHOUT ANY WARRANTY; without even the implied warranty of
+ / MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ / GNU General Public License for more details.
+ /
+ / You should have received a copy of the GNU General Public License
+ / along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ /
+@import "../../../../styles/colors"
+
+mgl-map
+  position: absolute
+  width: 100%
+  height: 100%
+  z-index: 0
+
+.mapboxgl-canvas
+  position: absolute
+  top: 0
+  bottom: 0
+  left: 0
+  width: 100%
+  height: 100%
+
+#mapControls
+  position: absolute
+  z-index: 1
+
+#mapTypeControl
+  margin-top: 12px
+  margin-left: 12px
+  padding: 3px
+
+.mapTypeInput:checked + .toggle
+    color: white
+    background: $ns-blue
+
+.mapTypeToggle:hover
+  color: $ns-blue
+  background: $ns-yellow
+
+#playPauseButton
+  margin-top: 8px
+  margin-left: 12px
+  color: $ns-blue
+  border-radius: 18px
+  text-align: center
+  width: fit-content
+
+#updatePositionsProgressbar
+  z-index: 1
+  margin: 0 10px 5px 10px
+
+#updatePositionsLabel
+  padding-right: 0
+  margin-left: 10px
+  color: $ns-blue
+  cursor: default
+
+#playPauseIconButton
+  margin-top: -5px
+  margin-right: 15px
+  float: right
+
+#updatingMapDataSpinner
+  margin: 7px 25px 9px 11px
+  height: 19px
+  width: 19px
+
+#sidebar-component
+  height: 100%
+  z-index: 200
+  right: 0
+  position: absolute
+
+.countdown-progressbar
+  display: flex
+  height: 12px
+  border-radius: 6px
+  overflow: hidden
+  line-height: 0
+  font-size: 0.75rem
+  background-color: #e9ecef
+
+.progress-value
+  animation-name: load
+  animation-duration: 10s
+  animation-timing-function: linear
+  animation-play-state: paused
+  animation-fill-mode: backwards
+  border-radius: 6px 0 0 6px
+  background: $ns-blue
+  width: 100%
+  height: 100%
+
+@keyframes load
+  0%
+    width: 100%
+  100%
+    width: 0
+
+.marker-hover
+  display: none
+  width: 35px
+  height: 35px
+
+#maintenance-svg
+  width: 30px
+  height: 30px
+
+#disruption-svg
+  width: 30px
+  height: 30px
+
+.map-marker--disruption:hover, .map-marker--disruption:focus
+
+  .map-marker-content
+    border-radius: 25px !important
+
+  .marker-icon-parent
+    padding: 0.25rem
+
+  .marker-hover
+    display: block
+    color: white
+    background: white
+    border-radius: 20px
+
+  #maintenance-svg
+    position: absolute
+    top: 16%
+    left: 16%
+    filter: invert(50%) sepia(45%) saturate(7499%) hue-rotate(5deg) brightness(107%) contrast(101%)
+
+  #disruption-svg
+    position: absolute
+    top: 12%
+    left: 16%
+    filter: invert(30%) sepia(93%) saturate(7490%) hue-rotate(335deg) brightness(88%) contrast(112%)

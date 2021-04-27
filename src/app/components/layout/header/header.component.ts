@@ -67,13 +67,19 @@ export class HeaderComponent implements OnInit, OnDestroy, AfterViewInit {
 	/**Status of failure during global search*/
 	searchGloballyFailed = false;
 
+	/**Global search is ready when data is loaded*/
 	globalSearchReady = false;
+	/**Check if data has been loaded*/
 	globalSearchReadySubscription: Subscription;
 
+	/**Browser PWA install prompt*/
 	deferredPrompt: any;
+	/**Show the PWA install button when browser is ready*/
 	showPWAInstallButton = false;
+	/**Whether to show the install button or remove it from header*/
 	doNotShowInstallAgainCheckbox = false;
 
+	/**All observable subscriptions*/
 	subscriptions: Subscription[] = [];
 
 	/**
@@ -144,21 +150,31 @@ export class HeaderComponent implements OnInit, OnDestroy, AfterViewInit {
 		this.subscriptions.push(sub1);
 	}
 
+	/** Unsubscribe from observables on destroy */
 	ngOnDestroy(): void {
 		this.subscriptions.forEach((subscription) => subscription.unsubscribe());
 	}
 
+	/** Lighthouse Aria improvement */
 	ngAfterViewInit(): void {
 		if (this.globalTypeahead !== undefined) {
 			this.renderer.removeAttribute(this.globalTypeahead.nativeElement, "aria-multiline");
 		}
 	}
 
+	/**
+	 * Open the PWA install modal
+	 * @param content Contant to show in the modal
+	 */
 	openPWAInstallModal(content: TemplateRef<any>): void {
 		this.modalService.open(content, { ariaLabelledBy: "modal-basic-title", centered: true });
 	}
 
 	/* eslint-disable */
+	/**
+	 * Install the PWA
+	 * @param modal Modal to close
+	 */
 	installPWA(modal: any): void {
 		modal.close();
 		this.toggleNavbar();
@@ -178,6 +194,10 @@ export class HeaderComponent implements OnInit, OnDestroy, AfterViewInit {
 	/* eslint-enable */
 
 	/* eslint-disable */
+	/**
+	 * Close the PWA install modal
+	 * @param modal Modal to close
+	 */
 	closePWAInstallModal(modal: any): void {
 		if (this.doNotShowInstallAgainCheckbox) {
 			this.hidePWAInstall();
@@ -186,6 +206,7 @@ export class HeaderComponent implements OnInit, OnDestroy, AfterViewInit {
 	}
 	/* eslint-enable */
 
+	/**Hide the PWA install button from the header*/
 	hidePWAInstall(): void {
 		this.cacheService.save({
 			data: false,

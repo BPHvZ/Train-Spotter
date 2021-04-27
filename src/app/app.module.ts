@@ -35,15 +35,20 @@ import { environment } from "../environments/environment";
 import { TrainSpotterRouteReuseStrategy } from "./app-route-reuse.strategy";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
+import { AboutComponent } from "./components/about/about.component";
 import { AllStationsComponent } from "./components/all-stations/all-stations.component";
 import { HeaderComponent } from "./components/layout/header/header.component";
 import { MainLayoutComponent } from "./components/layout/main-layout/main-layout.component";
-import { StationPopupComponent } from "./components/station-popup/station-popup.component";
-import { CalamityItemComponent } from "./components/train-map-sidebar/calamity-item/calamity-item.component";
-import { DisruptionItemComponent } from "./components/train-map-sidebar/disruption-item/disruption-item.component";
-import { TrainMapSidebarComponent } from "./components/train-map-sidebar/train-map-sidebar.component";
-import { TrainMapComponent } from "./components/train-map/train-map.component";
-import { TrainPopupComponent } from "./components/train-popup/train-popup.component";
+import { PageNotFoundComponent } from "./components/page-not-found/page-not-found.component";
+import { RideInformationComponent } from "./components/ride-information/ride-information.component";
+import { ToastsContainerComponent } from "./components/toasts-container/toasts-container.component";
+import { StationPopupComponent } from "./components/train-map/station-popup/station-popup.component";
+import { CalamityItemComponent } from "./components/train-map/train-map-sidebar/calamity-item/calamity-item.component";
+import { DisruptionItemComponent } from "./components/train-map/train-map-sidebar/disruption-item/disruption-item.component";
+import { TrainMapSidebarComponent } from "./components/train-map/train-map-sidebar/train-map-sidebar.component";
+import { TrainMapComponent } from "./components/train-map/train-map/train-map.component";
+import { TrainPopupComponent } from "./components/train-map/train-popup/train-popup.component";
+import { TrainsetInformationComponent } from "./components/trainset-information/trainset-information.component";
 import { NgInitDirective } from "./directives/ng-init.directive";
 import { NgbdSortableHeaderDirective } from "./directives/ngbd-sortable-header.directive";
 import { TrainMapModuleModule } from "./train-map-module/train-map-module.module";
@@ -64,6 +69,11 @@ registerLocaleData(localeNL, "nl");
 		DisruptionItemComponent,
 		CalamityItemComponent,
 		NgInitDirective,
+		RideInformationComponent,
+		AboutComponent,
+		PageNotFoundComponent,
+		TrainsetInformationComponent,
+		ToastsContainerComponent,
 	],
 	imports: [
 		BrowserModule,

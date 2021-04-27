@@ -60,7 +60,7 @@ export class GlobalSearchService {
 	 * - Code
 	 * Search trains by:
 	 * - Ride id
-	 * - Trainpart
+	 * - Trainset
 	 * - Train type
 	 * @param term Text to search for
 	 * @returns All search results

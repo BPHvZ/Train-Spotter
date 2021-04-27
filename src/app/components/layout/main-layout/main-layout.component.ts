@@ -32,7 +32,9 @@ import { SharedDataService } from "../../../services/shared-data.service";
 export class MainLayoutComponent implements OnDestroy {
 	/**True if the current page is the train map*/
 	isTrainMap = false;
+	/**Window inner height*/
 	innerHeight = window.innerHeight;
+	/**All observable subscriptions*/
 	subscriptions: Subscription[] = [];
 
 	/**
@@ -53,6 +55,7 @@ export class MainLayoutComponent implements OnDestroy {
 		this.subscriptions.push(sub1, sub2);
 	}
 
+	/** Unsubscribe from observables on destroy */
 	ngOnDestroy(): void {
 		this.subscriptions.forEach((subscription) => subscription.unsubscribe());
 	}

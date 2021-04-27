@@ -21,12 +21,12 @@
 	<head>
 		<meta charset="utf-8" />
 		<title>TrainSpotter</title>
-		<base href="./" />
+		<base href="/" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 
 		<meta
 			name="description"
-			content="TrainSpotter | Treinenkaart met live treinposities en storing van NS, Arriva, Blauwnet en R-net"
+			content="TrainSpotter | Treinenkaart met live treinposities van NS, Arriva, Blauwnet en R-net"
 		/>
 
 		<meta name="apple-mobile-web-app-title" content="TrainSpotter" />
@@ -49,8 +49,21 @@
 
 		<link href="https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.css" rel="stylesheet" />
 		<link href="https://api.mapbox.com/mapbox-assembly/v0.26.0/assembly.min.css" rel="stylesheet" />
+	</head>
+	<body class="mat-typography">
+		<app-root></app-root>
+		<noscript>Please enable JavaScript to continue using this application.</noscript>
+		<noscript>
+			<!-- Matomo Image Tracker-->
+			<img
+				referrerpolicy="no-referrer-when-downgrade"
+				src="https://matomo.bartvanzeist.nl/matomo.php?idsite=2&amp;rec=1&amp;action_name=trainSpotter"
+				style="border: 0"
+				alt=""
+			/>
+			<!-- End Matomo -->
+		</noscript>
 		<script async defer src="https://api.mapbox.com/mapbox-assembly/v0.26.0/assembly.js"></script>
-
 		<!-- Matomo -->
 		<script async defer type="text/javascript">
 			var _paq = (window._paq = window._paq || []);
@@ -71,19 +84,5 @@
 			})();
 		</script>
 		<!-- End Matomo Code -->
-	</head>
-	<body class="mat-typography">
-		<app-root></app-root>
-		<noscript>Please enable JavaScript to continue using this application.</noscript>
-		<noscript>
-			<!-- Matomo Image Tracker-->
-			<img
-				referrerpolicy="no-referrer-when-downgrade"
-				src="https://matomo.bartvanzeist.nl/matomo.php?idsite=2&amp;rec=1&amp;action_name=trainSpotter"
-				style="border: 0"
-				alt=""
-			/>
-			<!-- End Matomo -->
-		</noscript>
 	</body>
 </html>

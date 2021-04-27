@@ -1,0 +1,108 @@
+/*!
+ / trainSpotter
+ / Copyright (C) 2021 bart
+ /
+ / This program is free software: you can redistribute it and/or modify
+ / it under the terms of the GNU General Public License as published by
+ / the Free Software Foundation, either version 3 of the License, or
+ / (at your option) any later version.
+ /
+ / This program is distributed in the hope that it will be useful,
+ / but WITHOUT ANY WARRANTY; without even the implied warranty of
+ / MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ / GNU General Public License for more details.
+ /
+ / You should have received a copy of the GNU General Public License
+ / along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ /
+@import "../../../../styles/colors"
+
+.frosted
+  background-color: rgba(255, 255, 255, .9)
+
+@supports (backdrop-filter: blur(10px)) or (-webkit-backdrop-filter: blur(10))
+  .frosted
+    -webkit-backdrop-filter: blur(20px) !important
+    backdrop-filter: blur(20px) !important
+    background-color: rgba(255, 255, 255, 0.5) !important
+
+.left-shadow
+  box-shadow: -15px 0 1rem -2px rgba(0, 0, 0, 0.15)
+
+#close-button
+  margin: 8px 0 8px 0
+
+#sidebar-wrapper
+  height: 100%
+  overflow: hidden
+
+#sidebar-container
+  height: 100%
+  float: right
+
+#sidebar
+  height: 100%
+  max-height: 100%
+  transform-origin: right
+  float: right
+
+#sidebar-content
+  overflow: scroll
+  height: 100%
+  min-width: 260px
+  width: max-content
+  transform-origin: right
+
+#sidebar-arrow
+  height: 75px
+  width: 30px
+  border-top-left-radius: 8px
+  border-bottom-left-radius: 8px
+  top: calc(50% - (75px / 2))
+  text-align: center
+  cursor: pointer
+  float: left
+  position: relative
+  transform-origin: right
+  z-index: 1
+
+.card-max-width
+  max-width: 18rem
+
+@media (max-width: 767px)
+  .card-max-width
+    max-width: none
+
+@media (max-width: 600px)
+  .container
+    max-width: calc(100vw - 60px)
+
+.disruption-cards
+  box-shadow: 0 0.1875rem 0.375rem rgb(0 48 130 / 8%)
+  transition: transform .4s ease-out
+  background: #fff
+  width: 100%
+
+  &:hover, &:focus
+    box-shadow: 0 0.25rem 0.75rem rgb(0 48 130 / 25%)
+    border: none
+    border-bottom: .125rem solid $ns-acc-red
+    transform: scale(1.03)
+
+  &--maintenance-border
+    &:hover, &:focus
+      border-bottom: .125rem solid $ns-acc-orange
+
+#maintenance-svg
+  position: inherit
+  display: inline
+  filter: invert(50%) sepia(45%) saturate(7499%) hue-rotate(5deg) brightness(107%) contrast(101%)
+
+#disruption-svg
+  position: inherit
+  display: inline
+  filter: invert(30%) sepia(93%) saturate(7490%) hue-rotate(335deg) brightness(88%) contrast(112%)
+
+.disruption-totals-border
+  border-radius: .5rem
+  border: .0625rem solid #e6e6e9

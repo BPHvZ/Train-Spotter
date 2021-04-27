@@ -30,6 +30,7 @@ import { Subscription } from "rxjs";
 	styleUrls: ["./app.component.sass"],
 })
 export class AppComponent implements OnDestroy {
+	/**All observable subscriptions*/
 	subscriptions: Subscription[] = [];
 
 	/**
@@ -48,6 +49,7 @@ export class AppComponent implements OnDestroy {
 		this.subscriptions.push(sub1, sub2);
 	}
 
+	/** Unsubscribe from observables on destroy */
 	ngOnDestroy() {
 		this.subscriptions.forEach((subscription) => subscription.unsubscribe());
 	}

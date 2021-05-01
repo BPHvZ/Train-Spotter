@@ -48,6 +48,7 @@ export class RideInformationResolver implements Resolve<RideInformation> {
 			this.sharedDataService.getBasicInformationAboutAllStations(),
 			this.rideInformationService.getJourneyDetails(route.params["rideId"])
 		).pipe(
+			// eslint-disable-next-line @typescript-eslint/no-unused-vars
 			map(([train, _, journey]) => {
 				return {
 					trainInformation: train,

@@ -414,6 +414,14 @@ export class SharedDataService {
 		return this.trainInformationLastValue().find((t) => t.ritId == rideId);
 	}
 
+	findStationByUICCode(UICCode: string): Station | undefined {
+		return this.stationsLastValue().payload.find((s) => s.UICCode == UICCode);
+	}
+
+	findStationByCode(code: string): Station | undefined {
+		return this.stationsLastValue().payload.find((s) => s.code == code);
+	}
+
 	/**
 	 * Close all popups on the map
 	 */

@@ -34,7 +34,7 @@
 			[style.height]="isTrainMap ? innerHeight + 'px' : 'unset'"
 		>
 			<div class="container-fluid d-flex flex-column">
-				<router-outlet></router-outlet>
+				<router-outlet (activate)="onRouterOutletActivate($event)"></router-outlet>
 			</div>
 		</div>
 	</main>

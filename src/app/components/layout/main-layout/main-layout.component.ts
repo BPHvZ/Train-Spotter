@@ -19,6 +19,7 @@
 import { Component, OnDestroy } from "@angular/core";
 import { Router } from "@angular/router";
 import { Subscription } from "rxjs";
+import { MetaTagService } from "../../../services/meta-tag.service";
 import { SharedDataService } from "../../../services/shared-data.service";
 
 /**
@@ -42,7 +43,11 @@ export class MainLayoutComponent implements OnDestroy {
 	 * @param router Router object
 	 * @param sharedDataService
 	 */
-	constructor(private router: Router, private sharedDataService: SharedDataService) {
+	constructor(
+		private router: Router,
+		private sharedDataService: SharedDataService,
+		private metaTagsService: MetaTagService
+	) {
 		// eslint-disable-next-line @typescript-eslint/no-unused-vars
 		const sub1 = router.events.subscribe((_) => {
 			// if on train map remove padding
@@ -58,5 +63,9 @@ export class MainLayoutComponent implements OnDestroy {
 	/** Unsubscribe from observables on destroy */
 	ngOnDestroy(): void {
 		this.subscriptions.forEach((subscription) => subscription.unsubscribe());
+	}
+
+	onRouterOutletActivate(component: Component): void {
+		this.metaTagsService.updateTags(component["componentName"]);
 	}
 }

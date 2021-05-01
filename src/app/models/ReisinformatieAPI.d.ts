@@ -30,3 +30,5 @@ type StationArrivalsList = StationArrival[];
 type StationDeparturesResponse = definitions["RepresentationResponseDeparturesPayload"];
 type StationDeparture = definitions["Departure"];
 type StationDeparturesList = StationDeparture[];
+type JourneyResponse = definitions["RepresentationResponseJourney"];
+type Journey = definitions["Journey"];

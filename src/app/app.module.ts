@@ -16,6 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import { CdkTableModule } from "@angular/cdk/table";
 import { registerLocaleData } from "@angular/common";
 import { HttpClientModule } from "@angular/common/http";
 import localeNL from "@angular/common/locales/nl";
@@ -91,6 +92,7 @@ registerLocaleData(localeNL, "nl");
 		ServiceWorkerModule.register("ngsw-worker.js", { enabled: environment.production }),
 		FontAwesomeModule,
 		InlineSVGModule.forRoot(),
+		CdkTableModule,
 	],
 	providers: [
 		{ provide: RouteReuseStrategy, useClass: TrainSpotterRouteReuseStrategy },

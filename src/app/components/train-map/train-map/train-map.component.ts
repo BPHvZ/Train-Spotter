@@ -50,6 +50,8 @@ import { SharedDataService } from "../../../services/shared-data.service";
 	styleUrls: ["./train-map.component.sass"],
 })
 export class TrainMapComponent implements OnInit, OnDestroy {
+	componentName = "train-map";
+
 	/**countdown DOM element*/
 	@ViewChild("updateCountdown") countdown: ElementRef;
 
@@ -354,6 +356,7 @@ export class TrainMapComponent implements OnInit, OnDestroy {
 	 * @param event Map layer event to extract the station from
 	 */
 	openStationPopupOnLayerClick(event: MapLayerMouseEvent): void {
+		event.preventDefault();
 		if (event.features) {
 			const selectedFeature: MapboxGeoJSONFeature = event.features[0];
 			let stationInformation = selectedFeature.properties;
@@ -380,6 +383,7 @@ export class TrainMapComponent implements OnInit, OnDestroy {
 	 * @param event Map layer event to extract the train from
 	 */
 	openTrainPopupOnLayerClick(event: MapLayerMouseEvent): void {
+		event.preventDefault();
 		if (event.features) {
 			const selectedFeature: MapboxGeoJSONFeature = event.features[0];
 			const basicTrainInformation = selectedFeature.properties;

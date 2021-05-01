@@ -1,35 +1,215 @@
-<div class="card mt-3 shadow p-1 p-lg-3 mb-3 bg-white rounded mat-typography h-100">
-	<div class="card-body" *ngIf="trainInformation">
-		<div>
-			<h1 class="card-title font-weight-bold mb-0">Ritnummer {{trainInformation.ritId}}</h1>
-			<h2 class="card-subtitle mb-2 text-muted font-weight-bold">
-				{{ trainInformation.trainDetails?.vervoerder }} trein {{ trainInformation.ritId }}
-				<span
-					*ngFor="
+<div>
+	<div class="card mt-3 shadow p-1 p-lg-3 mb-3 bg-white rounded mat-typography" *ngIf="trainInformation">
+		<div class="card-body">
+			<div>
+				<h1 class="card-title font-weight-bold mb-0">Ritnummer {{trainInformation.ritId}}</h1>
+				<h2 class="card-subtitle mb-2 text-muted font-weight-bold">
+					{{ trainInformation.trainDetails?.vervoerder }} trein {{ trainInformation.ritId }}
+					<span
+						*ngFor="
 											let trainPart of trainInformation.trainDetails?.materieeldelen;
 											let i = index
 										"
-				>
-					<span *ngIf="trainPart.materieelnummer">
-						<span *ngIf="i == 0; else other"> met {{ trainPart.materieelnummer }}</span>
-						<ng-template #other
-							>{{i == (trainInformation.trainDetails.materieeldelen.length - 1) ? ' ' + 'en' : ','}} {{
-							trainPart.materieelnummer }}
-						</ng-template>
-					</span>
-				</span>
-			</h2>
-			<div
-				*ngIf="trainInformation.trainDetails?.materieeldelen && trainInformation.trainDetails?.materieeldelen[0]?.afbeelding"
-			>
-				<div id="carousel">
-					<div
-						class="slide"
-						*ngFor="let railcar of trainInformation.trainDetails.materieeldelen; let isLast = last"
 					>
-						<img [src]="railcar.afbeelding" alt="Trein" height="45" [ngClass]="{ 'pr-2': isLast }" />
+						<span *ngIf="trainPart.materieelnummer">
+							<span *ngIf="i == 0; else other"> met {{ trainPart.materieelnummer }}</span>
+							<ng-template #other
+								>{{i == (trainInformation.trainDetails.materieeldelen.length - 1) ? ' ' + 'en' : ','}}
+								{{ trainPart.materieelnummer }}
+							</ng-template>
+						</span>
+					</span>
+				</h2>
+				<div
+					*ngIf="trainInformation.trainDetails?.materieeldelen && trainInformation.trainDetails?.materieeldelen[0]?.afbeelding"
+				>
+					<div class="carousel scroll-gradient">
+						<div
+							class="slide"
+							*ngFor="let railcar of trainInformation.trainDetails.materieeldelen; let isLast = last"
+						>
+							<img [src]="railcar.afbeelding" alt="Trein" height="45" [ngClass]="{ 'pr-2': isLast }" />
+						</div>
 					</div>
 				</div>
+			</div>
+		</div>
+	</div>
+	<div class="card mt-3 shadow p-1 p-lg-3 mb-3 bg-white rounded mat-typography" *ngIf="journey">
+		<div class="card-body">
+			<h1 class="card-title font-weight-bold mb-0">Reis</h1>
+			<h2 class="card-subtitle mb-2 text-muted font-weight-bold">
+				{{journey.stops[0].stop['name']}} naar {{journey.stops[journey.stops.length - 1].destination}}
+			</h2>
+			<div style="width: 100%; overflow-x: auto" class="scroll-gradient">
+				<table cdk-table [dataSource]="dataSource">
+					<!-- Progress Column-->
+					<ng-container cdkColumnDef="progress">
+						<th cdk-header-cell *cdkHeaderCellDef></th>
+						<td cdk-cell *cdkCellDef="let stop" style="vertical-align: middle; width: 30px">
+							<div class="train-progress">
+								<div
+									class="progress-stop"
+									[class.progress-stop--blue]="
+									(passedStations.length == 1 && passedStations[0] == stop.stop['uicCode']) ||
+									(passedStations.length > 2 && passedStations.includes(stop.stop['uicCode'])
+									&& passedStations[passedStations.length - 1] != stop.stop['uicCode'])"
+								>
+									<div class="progress-stop-content"></div>
+								</div>
+								<div style="height: 100%">
+									<div
+										*ngIf="stop != journey.stops[0]; else progressLineHidden"
+										class="progress-line"
+										[class.progress-line--blue]="
+										(passedStations.length == 1 && passedStations[0] == stop.stop['uicCode']) ||
+									(passedStations.length > 2 && passedStations.includes(stop.stop['uicCode'])
+									&& passedStations[passedStations.length - 1] != stop.stop['uicCode'])"
+									></div>
+									<div
+										*ngIf="stop != journey.stops[journey.stops.length - 1]; else progressLineHidden"
+										class="progress-line"
+										[class.progress-line--blue]="
+										(passedStations.length == 1 && passedStations[0] == stop.stop['uicCode']) ||
+									(passedStations.length > 2 && passedStations.includes(stop.stop['uicCode'])
+									&& passedStations[passedStations.length - 1] != stop.stop['uicCode'])"
+									></div>
+									<ng-template #progressLineHidden>
+										<div class="progress-line progress-line--hidden"></div>
+									</ng-template>
+								</div>
+							</div>
+						</td>
+					</ng-container>
+
+					<!-- Aankomst Column -->
+					<ng-container cdkColumnDef="aankomst">
+						<th cdk-header-cell *cdkHeaderCellDef>Aankomst</th>
+						<td cdk-cell *cdkCellDef="let stop">
+							<ng-container *ngIf="stop.status == 'ORIGIN'">--</ng-container>
+							<ng-container *ngIf="stop.status == 'STOP' || stop.status == 'DESTINATION'">
+								<ng-container *ngIf="stop['arrivals'][0]['actualTime']; else plannedTime">
+									{{stop['arrivals'][0]['actualTime'] | date:'HH:mm'}}
+								</ng-container>
+								<ng-template #plannedTime
+									>{{stop['arrivals'][0]['plannedTime'] | date:'HH:mm'}}</ng-template
+								>
+							</ng-container>
+						</td>
+					</ng-container>
+
+					<!-- Vertrek Column -->
+					<ng-container cdkColumnDef="vertrek">
+						<th cdk-header-cell *cdkHeaderCellDef>Vertrek</th>
+						<td cdk-cell *cdkCellDef="let stop">
+							<ng-container *ngIf="stop.status == 'DESTINATION'">--</ng-container>
+							<ng-container *ngIf="stop.status == 'ORIGIN' || stop.status == 'STOP'">
+								<ng-container *ngIf="stop['departures'][0]['actualTime']; else plannedTime">
+									{{stop['departures'][0]['actualTime'] | date:'HH:mm'}}
+								</ng-container>
+								<ng-template #plannedTime
+									>{{stop['departures'][0]['plannedTime'] | date:'HH:mm'}}</ng-template
+								>
+							</ng-container>
+						</td>
+					</ng-container>
+
+					<!-- Station Column -->
+					<ng-container cdkColumnDef="station">
+						<th cdk-header-cell *cdkHeaderCellDef>Station</th>
+						<td cdk-cell *cdkCellDef="let element">
+							<div [ngClass]="{'font-weight-bold': nextStation.namen.lang == element.stop.name}">
+								{{element.stop.name}}
+							</div>
+						</td>
+					</ng-container>
+
+					<!-- Perron Column -->
+					<ng-container cdkColumnDef="perron">
+						<th cdk-header-cell *cdkHeaderCellDef>Perron</th>
+						<td cdk-cell *cdkCellDef="let stop">
+							<ng-container *ngIf="stop.status == 'ORIGIN' || stop.status == 'STOP'">
+								<ng-container *ngIf="stop['departures'][0]['actualTrack']; else plannedTrack">
+									{{stop['departures'][0]['actualTrack']}}
+								</ng-container>
+								<ng-template #plannedTrack>{{stop['departures'][0]['plannedTrack']}}</ng-template>
+							</ng-container>
+							<ng-container *ngIf="stop.status == 'DESTINATION'">
+								<ng-container *ngIf="stop['arrivals'][0]['actualTrack']; else plannedTrack">
+									{{stop['arrivals'][0]['actualTrack']}}
+								</ng-container>
+								<ng-template #plannedTrack>{{stop['arrivals'][0]['plannedTrack']}}</ng-template>
+							</ng-container>
+						</td>
+					</ng-container>
+
+					<!-- Drukte Column -->
+					<ng-container cdkColumnDef="drukte">
+						<th cdk-header-cell *cdkHeaderCellDef>Drukte</th>
+						<td cdk-cell *cdkCellDef="let stop">
+							<ng-container
+								*ngIf="stop.status == 'ORIGIN' || stop.status == 'STOP' && stop['departures'][0]['crowdForecast'] != 'UNKNOWN'"
+							>
+								<div
+									class="crowd-forecast"
+									[ngClass]="{'crowd-forecast--medium': stop['departures'][0]['crowdForecast'] == 'MEDIUM',
+                'crowd-forecast--high': stop['departures'][0]['crowdForecast'] == 'HIGH'
+                }"
+								>
+									<ng-container
+										*ngFor="let i of getNumberFromCrowdForecast(stop['departures'][0]['crowdForecast'])"
+									>
+										<fa-icon class="crowd-icon" [icon]="i"></fa-icon>
+									</ng-container>
+								</div>
+							</ng-container>
+							<ng-container
+								*ngIf="stop.status == 'DESTINATION' && stop['arrivals'][0]['crowdForecast'] != 'UNKNOWN'"
+							>
+								<div class="crowd-forecast">
+									<ng-container
+										*ngFor="let i of getNumberFromCrowdForecast(stop['arrivals'][0]['crowdForecast'])"
+									>
+										<fa-icon class="crowd-icon" [icon]="i"></fa-icon>
+									</ng-container>
+								</div>
+							</ng-container>
+						</td>
+					</ng-container>
+
+					<ng-container cdkColumnDef="afbeelding">
+						<th cdk-header-cell *cdkHeaderCellDef>Afbeelding</th>
+						<td cdk-cell *cdkCellDef="let stop" style="width: 20vw">
+							<div
+								*ngIf="stop.actualStock?.trainParts && stop.actualStock?.trainParts[0]?.image.uri; else filler"
+							>
+								<div class="carousel scroll-gradient">
+									<div
+										class="slide"
+										*ngFor="let railcar of stop.actualStock.trainParts; let isLast = last"
+									>
+										<img
+											[src]="railcar.image.uri"
+											alt="Trein"
+											height="30"
+											[ngClass]="{ 'pr-2': isLast }"
+										/>
+									</div>
+								</div>
+							</div>
+							<ng-template #filler>
+								<div class="carousel scroll-gradient">
+									<div class="slide">
+										<div style="height: 30px"></div>
+									</div>
+								</div>
+							</ng-template>
+						</td>
+					</ng-container>
+
+					<tr cdk-header-row *cdkHeaderRowDef="displayedColumns"></tr>
+					<tr cdk-row *cdkRowDef="let row; columns: displayedColumns;"></tr>
+				</table>
 			</div>
 		</div>
 	</div>

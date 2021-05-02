@@ -236,16 +236,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@angular-eslint/template-parser@npm:^4.0.0":
-  version: 4.0.0
-  resolution: "@angular-eslint/template-parser@npm:4.0.0"
+"@angular-eslint/template-parser@npm:^4.2.0":
+  version: 4.2.0
+  resolution: "@angular-eslint/template-parser@npm:4.2.0"
   dependencies:
     eslint-scope: ^5.1.0
   peerDependencies:
     "@angular/compiler": ">= 11.2.0 < 12.0.0"
     eslint: "*"
     typescript: "*"
-  checksum: 5f862d641efd9b077af3de26e57a755bbb5e540a843097ed0caf98ba26ab7e544292172679c1901034a16b9092855e562d143b71f2d994b0a90f6c91f92dea3d
+  checksum: 1579b351332a9281cce07b02f85e0399e7972bf428c01e2f0a78e4fe3fdf12bd87e190e62453ce11d58ef373ecde2cf575a748a8472597f4c9c800fa793738a7
   languageName: node
   linkType: hard
 
@@ -1809,6 +1809,13 @@ __metadata:
     is-absolute: ^1.0.0
     is-negated-glob: ^1.0.0
   checksum: 0311c70d93e46f3e078ae0c89c7cc03e9859fe017aa7a116e43435b93ed1b17fe16aa9153058cb3f69a39220584ff851c3dbff5d4d223346229667d2d2cef2f1
+  languageName: node
+  linkType: hard
+
+"@es-joy/jsdoccomment@npm:^0.1.1":
+  version: 0.1.1
+  resolution: "@es-joy/jsdoccomment@npm:0.1.1"
+  checksum: f1b83dbc360d1d1e8d082ccdcb3dd0606fa4a4dd8ab4c32c695740b3ae4a5b03d54f23c65429448950a505c94da1dfe480289bd68e2adcc7f615675e41102eff
   languageName: node
   linkType: hard
 
@@ -6929,10 +6936,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-jsdoc@npm:^32.3.4":
-  version: 32.3.4
-  resolution: "eslint-plugin-jsdoc@npm:32.3.4"
+"eslint-plugin-jsdoc@npm:^33.0.0":
+  version: 33.0.0
+  resolution: "eslint-plugin-jsdoc@npm:33.0.0"
   dependencies:
+    "@es-joy/jsdoccomment": ^0.1.1
     comment-parser: 1.1.5
     debug: ^4.3.1
     jsdoctypeparser: ^9.0.0
@@ -6942,7 +6950,7 @@ __metadata:
     spdx-expression-parse: ^3.0.1
   peerDependencies:
     eslint: ^6.0.0 || ^7.0.0
-  checksum: 877dd7ba05fdd04a2fb2800a2004562aa7b429be9e071a2b4e9ef9f97fc76e0cd496bafe4aa975133452578554949513e2d6f78eb92adbf973fe9e758b0e60f8
+  checksum: 60a462c6b0283f4f95299c00dc27d7aa3db3712559842e43b79e386a4f92ebf8d7ca5bd22caec0817d6bf7ab254a75296d7c8c48221fc28ab5503e0f651d7a18
   languageName: node
   linkType: hard
 
@@ -15936,7 +15944,7 @@ resolve@1.19.0:
     "@angular-eslint/eslint-plugin": ^4.2.0
     "@angular-eslint/eslint-plugin-template": ^4.2.0
     "@angular-eslint/schematics": ^4.2.0
-    "@angular-eslint/template-parser": ^4.0.0
+    "@angular-eslint/template-parser": ^4.2.0
     "@angular/animations": ^11.2.12
     "@angular/cdk": 11.2.11
     "@angular/cli": ^11.2.11
@@ -15971,7 +15979,7 @@ resolve@1.19.0:
     eslint-config-prettier: ^8.3.0
     eslint-plugin-import: ^2.22.1
     eslint-plugin-jasmine: ^4.1.2
-    eslint-plugin-jsdoc: ^32.3.4
+    eslint-plugin-jsdoc: ^33.0.0
     eslint-plugin-prefer-arrow: ^1.2.3
     eslint-plugin-prettier: ^3.4.0
     http-server: ^0.12.3
@@ -16001,7 +16009,7 @@ resolve@1.19.0:
     rxjs-pausable: ^1.0.0
     source-map-explorer: ^2.5.2
     ts-node: ^9.1.1
-    tslib: ^2.1.0
+    tslib: ^2.2.0
     typescript: ~4.1.5
     webpack-bundle-analyzer: ^4.4.1
     xml-formatter: ^2.4.0
@@ -16108,7 +16116,7 @@ resolve@1.19.0:
   languageName: node
   linkType: hard
 
-"tslib@npm:^2.0.0, tslib@npm:^2.1.0":
+"tslib@npm:^2.0.0, tslib@npm:^2.1.0, tslib@npm:^2.2.0":
   version: 2.2.0
   resolution: "tslib@npm:2.2.0"
   checksum: 2d35468c470410871c5246e43f12dcb6d0fc363b617c176f26443b9530e5c5ee8448966892a42956168d8f495da7865bda33dfe82c26c91991e28999974a618f

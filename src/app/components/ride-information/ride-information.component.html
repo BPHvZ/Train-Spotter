@@ -155,26 +155,35 @@
 								*ngIf="stop.status == 'ORIGIN' || stop.status == 'STOP' && stop['departures'][0]['crowdForecast'] != 'UNKNOWN'"
 							>
 								<div
-									class="crowd-forecast"
+									class="crowd-forecast text-nowrap"
 									[ngClass]="{'crowd-forecast--medium': stop['departures'][0]['crowdForecast'] == 'MEDIUM',
                 'crowd-forecast--high': stop['departures'][0]['crowdForecast'] == 'HIGH'
                 }"
+									style="padding: 0 4px"
 								>
 									<ng-container
-										*ngFor="let i of getNumberFromCrowdForecast(stop['departures'][0]['crowdForecast'])"
+										*ngFor="let i of getNumberFromCrowdForecast(stop['departures'][0]['crowdForecast']); let last = last"
 									>
-										<fa-icon class="crowd-icon" [icon]="i"></fa-icon>
+										<fa-icon
+											class="crowd-icon"
+											[icon]="i"
+											[ngStyle]="{'margin-right': last ? 0 : '3px'}"
+										></fa-icon>
 									</ng-container>
 								</div>
 							</ng-container>
 							<ng-container
 								*ngIf="stop.status == 'DESTINATION' && stop['arrivals'][0]['crowdForecast'] != 'UNKNOWN'"
 							>
-								<div class="crowd-forecast">
+								<div class="crowd-forecast text-nowrap">
 									<ng-container
-										*ngFor="let i of getNumberFromCrowdForecast(stop['arrivals'][0]['crowdForecast'])"
+										*ngFor="let i of getNumberFromCrowdForecast(stop['arrivals'][0]['crowdForecast']); let last = last"
 									>
-										<fa-icon class="crowd-icon" [icon]="i"></fa-icon>
+										<fa-icon
+											class="crowd-icon"
+											[icon]="i"
+											[ngStyle]="{'margin-right': last ? 0 : '3px'}"
+										></fa-icon>
 									</ng-container>
 								</div>
 							</ng-container>

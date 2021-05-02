@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnChanges, OnInit, SimpleChanges } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { faFrown, faMeh, faSmile, IconDefinition } from "@fortawesome/free-regular-svg-icons";
 import { Journey, Station } from "../../models/ReisinformatieAPI";
@@ -12,7 +12,7 @@ import { SharedDataService } from "../../services/shared-data.service";
 	templateUrl: "./ride-information.component.html",
 	styleUrls: ["./ride-information.component.sass"],
 })
-export class RideInformationComponent implements OnInit {
+export class RideInformationComponent implements OnInit, OnChanges {
 	/** Ride information, resolved by browser */
 	rideInformation: RideInformation;
 	/** Detailed train information */
@@ -46,24 +46,41 @@ export class RideInformationComponent implements OnInit {
 			this.rideId = Number(params["rideId"]);
 			console.log("rideId: ", this.rideId);
 		});
-		this.rideInformation = this.route.snapshot.data["rideInformation"];
-		if (this.rideInformation) {
-			this.trainInformation = this.rideInformation.trainInformation;
-			this.journey = this.rideInformation.journey;
-			this.dataSource = this.journey.stops.filter((stop) => stop.status != "PASSING");
-			if (this.trainInformation.trainDetails) {
-				this.nextStation = this.sharedDataService.findStationByCode(this.trainInformation.trainDetails.station);
-				const stops = this.journey.stops.filter((s) => {
-					if (s.status != "PASSING") return s;
-				});
-				const uicCodes = stops.map((s) => s.stop["uicCode"] as string);
-				let index = uicCodes.indexOf(this.nextStation.UICCode);
-				if (index != this.journey.stops.length) index++;
-				uicCodes.splice(index, uicCodes.length);
-				this.passedStations = uicCodes;
-				// console.log(this.passedStations);
+
+		this.route.data.subscribe((resolversData) => {
+			this.rideInformation = resolversData["rideInformation"];
+			if (this.rideInformation) {
+				this.trainInformation = this.rideInformation.trainInformation;
+				this.journey = this.rideInformation.journey;
+				this.dataSource = this.journey.stops.filter((stop) => stop.status != "PASSING");
+				if (this.trainInformation.trainDetails) {
+					this.nextStation = this.sharedDataService.findStationByCode(
+						this.trainInformation.trainDetails.station
+					);
+					const stops = this.journey.stops.filter((s) => {
+						if (s.status != "PASSING") return s;
+					});
+					const uicCodes = stops.map((s) => s.stop["uicCode"] as string);
+					let index = uicCodes.indexOf(this.nextStation.UICCode);
+					if (index != this.journey.stops.length) index++;
+					uicCodes.splice(index, uicCodes.length);
+					this.passedStations = uicCodes;
+					// console.log(this.passedStations);
+				}
 			}
-		}
+		});
+	}
+
+	/**
+	 * Update the train information
+	 * Update the arrow rotation
+	 * @param changes Updated train information
+	 */
+	ngOnChanges(changes: SimpleChanges): void {
+		console.log(changes);
+		// if (changes) {
+		//   console.log(changes.mapboxFeature.currentValue)
+		// }
 	}
 
 	getNumberFromCrowdForecast(forecast: "UNKNOWN" | "LOW" | "MEDIUM" | "HIGH"): Array<IconDefinition> {

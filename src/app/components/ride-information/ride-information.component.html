@@ -52,7 +52,7 @@
 									class="progress-stop"
 									[class.progress-stop--blue]="
 									(passedStations.length == 1 && passedStations[0] == stop.stop['uicCode']) ||
-									(passedStations.length > 2 && passedStations.includes(stop.stop['uicCode'])
+									(passedStations.length >= 2 && passedStations.includes(stop.stop['uicCode'])
 									&& passedStations[passedStations.length - 1] != stop.stop['uicCode'])"
 								>
 									<div class="progress-stop-content"></div>
@@ -63,7 +63,7 @@
 										class="progress-line"
 										[class.progress-line--blue]="
 										(passedStations.length == 1 && passedStations[0] == stop.stop['uicCode']) ||
-									(passedStations.length > 2 && passedStations.includes(stop.stop['uicCode'])
+									(passedStations.length >= 2 && passedStations.includes(stop.stop['uicCode'])
 									&& passedStations[passedStations.length - 1] != stop.stop['uicCode'])"
 									></div>
 									<div
@@ -71,7 +71,7 @@
 										class="progress-line"
 										[class.progress-line--blue]="
 										(passedStations.length == 1 && passedStations[0] == stop.stop['uicCode']) ||
-									(passedStations.length > 2 && passedStations.includes(stop.stop['uicCode'])
+									(passedStations.length >= 2 && passedStations.includes(stop.stop['uicCode'])
 									&& passedStations[passedStations.length - 1] != stop.stop['uicCode'])"
 									></div>
 									<ng-template #progressLineHidden>

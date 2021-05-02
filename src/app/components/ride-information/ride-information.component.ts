@@ -47,19 +47,22 @@ export class RideInformationComponent implements OnInit {
 			console.log("rideId: ", this.rideId);
 		});
 		this.rideInformation = this.route.snapshot.data["rideInformation"];
-		this.trainInformation = this.rideInformation.trainInformation;
-		this.journey = this.rideInformation.journey;
-		this.dataSource = this.journey.stops.filter((stop) => stop.status != "PASSING");
-		if (this.trainInformation.trainDetails) {
-			this.nextStation = this.sharedDataService.findStationByCode(this.trainInformation.trainDetails.station);
-			const stops = this.journey.stops.filter((s) => {
-				if (s.status != "PASSING") return s;
-			});
-			const uicCodes = stops.map((s) => s.stop["uicCode"] as string);
-			let index = uicCodes.indexOf(this.nextStation.UICCode);
-			if (index != this.journey.stops.length) index++;
-			uicCodes.splice(index, uicCodes.length);
-			this.passedStations = uicCodes;
+		if (this.rideInformation) {
+			this.trainInformation = this.rideInformation.trainInformation;
+			this.journey = this.rideInformation.journey;
+			this.dataSource = this.journey.stops.filter((stop) => stop.status != "PASSING");
+			if (this.trainInformation.trainDetails) {
+				this.nextStation = this.sharedDataService.findStationByCode(this.trainInformation.trainDetails.station);
+				const stops = this.journey.stops.filter((s) => {
+					if (s.status != "PASSING") return s;
+				});
+				const uicCodes = stops.map((s) => s.stop["uicCode"] as string);
+				let index = uicCodes.indexOf(this.nextStation.UICCode);
+				if (index != this.journey.stops.length) index++;
+				uicCodes.splice(index, uicCodes.length);
+				this.passedStations = uicCodes;
+				// console.log(this.passedStations);
+			}
 		}
 	}
 

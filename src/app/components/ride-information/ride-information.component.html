@@ -46,7 +46,11 @@
 					<!-- Progress Column-->
 					<ng-container cdkColumnDef="progress">
 						<th cdk-header-cell *cdkHeaderCellDef></th>
-						<td cdk-cell *cdkCellDef="let stop" style="vertical-align: middle; width: 30px">
+						<td
+							cdk-cell
+							*cdkCellDef="let stop"
+							style="vertical-align: middle; width: 30px; padding-right: 20px"
+						>
 							<div class="train-progress">
 								<div
 									class="progress-stop"

@@ -48,7 +48,7 @@ import { SharedDataService } from "../../../services/shared-data.service";
 })
 export class HeaderComponent implements OnInit, OnDestroy, AfterViewInit {
 	/**The global search input field*/
-	@ViewChild("globalTypeahead") globalTypeahead: ElementRef;
+	@ViewChild("globalTypeahead") globalTypeahead: ElementRef<HTMLInputElement>;
 
 	/**
 	 * Status of the collapsable navbar
@@ -253,9 +253,6 @@ export class HeaderComponent implements OnInit, OnDestroy, AfterViewInit {
 	 */
 	selectItemFromGlobalSearch(event: NgbTypeaheadSelectItemEvent): void {
 		const result = event.item as GlobalSearchResult;
-		// event.preventDefault();
-		// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-		this.renderer.setValue(this.globalTypeahead.nativeElement, result.searchField);
 		switch (result.resultType) {
 			case GlobalSearchResultType.Train: {
 				this.sharedDataService.flyToTrain(result.result as DetailedTrainInformation);
@@ -268,6 +265,8 @@ export class HeaderComponent implements OnInit, OnDestroy, AfterViewInit {
 		}
 		this.toggleNavbar();
 	}
+
+	globalSearchInputFormatter = (input: GlobalSearchResult) => input.searchField;
 
 	/**
 	 * Fly to a train on the map
@@ -290,5 +289,14 @@ export class HeaderComponent implements OnInit, OnDestroy, AfterViewInit {
 	navigateToRideInformation(event: Event, train: DetailedTrainInformation): void {
 		event.stopImmediatePropagation();
 		void this.router.navigate(["/rit", train.ritId]);
+	}
+
+	navigateToTrainsetInformation(event: Event, train: DetailedTrainInformation, searchField: string): void {
+		event.stopImmediatePropagation();
+		const searchFieldParts = searchField.split(" ");
+		const trainset = searchFieldParts[searchFieldParts.length - 1];
+		void this.router.navigate(["/materiaal", trainset], {
+			queryParams: { rideId: train.ritId },
+		});
 	}
 }

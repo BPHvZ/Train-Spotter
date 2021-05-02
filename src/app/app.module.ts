@@ -21,7 +21,7 @@ import { registerLocaleData } from "@angular/common";
 import { HttpClientModule } from "@angular/common/http";
 import localeNL from "@angular/common/locales/nl";
 import { LOCALE_ID, NgModule } from "@angular/core";
-import { FormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { MatButtonModule } from "@angular/material/button";
 import { MatIconModule } from "@angular/material/icon";
 import { BrowserModule } from "@angular/platform-browser";
@@ -93,6 +93,7 @@ registerLocaleData(localeNL, "nl");
 		FontAwesomeModule,
 		InlineSVGModule.forRoot(),
 		CdkTableModule,
+		ReactiveFormsModule,
 	],
 	providers: [
 		{ provide: RouteReuseStrategy, useClass: TrainSpotterRouteReuseStrategy },

@@ -28,6 +28,8 @@ export class TrainsetInformationComponent implements OnInit {
 			this.trainsetNr = Number(params["trainset"]);
 			console.log("trainsetNr: ", this.trainsetNr);
 		});
-		this.trainInformation = this.route.snapshot.data["rideInformation"];
+		this.route.data.subscribe((resolversData) => {
+			this.trainInformation = resolversData["rideInformation"];
+		});
 	}
 }

@@ -274,7 +274,7 @@ export class TrainMapComponent implements OnInit, OnDestroy {
 					this.addStationsToMap(value[0].payload);
 					this.trainTracksLayerData = value[1].payload;
 				},
-				error: (err) => {
+				error: (err: unknown) => {
 					console.log(err);
 				},
 				complete: () => {
@@ -541,7 +541,7 @@ export class TrainMapComponent implements OnInit, OnDestroy {
 					this.setTrainIconName(this.sharedDataService.trainInformationLastValue());
 					this.setDisruptionMarkers();
 				},
-				error: (err) => {
+				error: (err: unknown) => {
 					console.log(err);
 				},
 				complete: () => {
@@ -561,7 +561,7 @@ export class TrainMapComponent implements OnInit, OnDestroy {
 		)
 			.pipe(take(1))
 			.subscribe({
-				error: (err) => {
+				error: (err: unknown) => {
 					console.log(err);
 				},
 				complete: () => {
@@ -664,7 +664,7 @@ export class TrainMapComponent implements OnInit, OnDestroy {
 					this.trainIconAddedSource.complete();
 				}
 			},
-			error: (err) => console.log(err),
+			error: (err: unknown) => console.log(err),
 			complete: () => {
 				this.addTrainsToMap(detailedTrainInformation);
 			},

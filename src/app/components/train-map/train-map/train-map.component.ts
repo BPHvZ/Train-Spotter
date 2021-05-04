@@ -198,7 +198,11 @@ export class TrainMapComponent implements OnInit, OnDestroy {
 				this.renderer.setStyle(trainMapElement, "display", "none");
 				console.log(trainMapElement.offsetHeight);
 				this.renderer.setStyle(trainMapElement, "display", display);
-				this.sharedDataService.trainMap.resize();
+				const trainMapCanvasElement = document.getElementsByClassName("mapboxgl-canvas").item(0) as HTMLElement;
+				const displayCanvas = trainMapCanvasElement.style.display;
+				this.renderer.setStyle(trainMapCanvasElement, "display", "none");
+				console.log(trainMapCanvasElement.offsetHeight);
+				this.renderer.setStyle(trainMapCanvasElement, "display", displayCanvas);
 			}
 		});
 		this.subscriptions.push(sub1);

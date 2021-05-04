@@ -193,7 +193,9 @@ export class TrainMapComponent implements OnInit, OnDestroy {
 				}
 			}
 			if (event instanceof ActivationEnd && Object.is(event?.snapshot?.component, TrainMapComponent)) {
-				document.scrollingElement.scrollTop = -1;
+				setTimeout(() => {
+					document.scrollingElement.scrollTop = -1;
+				}, 500);
 			}
 		});
 		this.subscriptions.push(sub1);

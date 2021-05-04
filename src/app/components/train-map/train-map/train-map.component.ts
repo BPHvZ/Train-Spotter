@@ -17,7 +17,7 @@
  */
 
 import { Component, ElementRef, OnDestroy, OnInit, Renderer2, ViewChild } from "@angular/core";
-import { ActivatedRoute, NavigationEnd, NavigationStart, Router } from "@angular/router";
+import { ActivatedRoute, ActivationEnd, NavigationEnd, Router } from "@angular/router";
 import { Timer } from "easytimer.js";
 import { GeoJSON, MultiLineString } from "geojson";
 import {
@@ -184,9 +184,6 @@ export class TrainMapComponent implements OnInit, OnDestroy {
 		this.pauseOrResumeUpdatingTrainPositions(true);
 
 		const sub1 = this.router.events.subscribe((event) => {
-			if (event instanceof NavigationStart) {
-				// console.log(event.url);
-			}
 			if (event instanceof NavigationEnd && event.url === "/kaart") {
 				const navigationState = this.router.getCurrentNavigation().extras.state;
 				if (navigationState) {
@@ -194,6 +191,9 @@ export class TrainMapComponent implements OnInit, OnDestroy {
 						this.sharedDataService.flyToStation(navigationState.station);
 					}
 				}
+			}
+			if (event instanceof ActivationEnd && Object.is(event?.snapshot?.component, TrainMapComponent)) {
+				this.sharedDataService.trainMap.resize();
 			}
 		});
 		this.subscriptions.push(sub1);

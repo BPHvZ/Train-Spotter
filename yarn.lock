@@ -5159,9 +5159,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"codelyzer@npm:^6.0.1":
-  version: 6.0.1
-  resolution: "codelyzer@npm:6.0.1"
+"codelyzer@npm:^6.0.2":
+  version: 6.0.2
+  resolution: "codelyzer@npm:6.0.2"
   dependencies:
     "@angular/compiler": 9.0.0
     "@angular/core": 9.0.0
@@ -5178,10 +5178,10 @@ __metadata:
     tslib: ^1.10.0
     zone.js: ~0.10.3
   peerDependencies:
-    "@angular/compiler": ">=2.3.1 <12.0.0 || ^11.0.0-next || ^11.1.0-next || ^11.2.0-next"
-    "@angular/core": ">=2.3.1 <12.0.0 || ^11.0.0-next || ^11.1.0-next || ^11.2.0-next"
+    "@angular/compiler": ">=2.3.1 <13.0.0 || ^12.0.0-next || ^12.1.0-next || ^12.2.0-next"
+    "@angular/core": ">=2.3.1 <13.0.0 || ^12.0.0-next || ^12.1.0-next || ^12.2.0-next"
     tslint: ^5.0.0 || ^6.0.0
-  checksum: 3c0ce0a7d19acf6701d1971972e9b1ecc30a78c13c63e738b24b11f4398f9ea0fa816b4858acc177f6d5069b5abe4614eab3def85c6aa9d051c01a88c19331d6
+  checksum: ec580e647a79a37dfe986bb8b5fbd381565bb409b80ee7ead486bbb9a293ae19fa64298866d760e7d0db19a090d6b5954306aaadc0434fa26cab6578b71fe05e
   languageName: node
   linkType: hard
 
@@ -16186,7 +16186,7 @@ resolve@1.19.0:
     "@typescript-eslint/eslint-plugin": 4.16.1
     "@typescript-eslint/parser": 4.16.1
     bootstrap: ^4.6.0
-    codelyzer: ^6.0.1
+    codelyzer: ^6.0.2
     depcheck: ^1.4.0
     easytimer.js: ^4.3.4
     eslint: ^7.6.0

@@ -193,7 +193,12 @@ export class TrainMapComponent implements OnInit, OnDestroy {
 				}
 			}
 			if (event instanceof ActivationEnd && Object.is(event?.snapshot?.component, TrainMapComponent)) {
-				this.sharedDataService.trainMap.resize();
+				// this.sharedDataService.trainMap.resize();
+				const trainMapElement = document.getElementById("mapbox-train-map");
+				const display = trainMapElement.style.display;
+				this.renderer.setStyle(trainMapElement, "display", "none");
+				console.log(trainMapElement.offsetHeight);
+				this.renderer.setStyle(trainMapElement, "display", display);
 			}
 		});
 		this.subscriptions.push(sub1);

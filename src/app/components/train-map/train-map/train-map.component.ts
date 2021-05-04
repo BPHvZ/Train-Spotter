@@ -193,11 +193,6 @@ export class TrainMapComponent implements OnInit, OnDestroy {
 				}
 			}
 			if (event instanceof ActivationEnd && Object.is(event?.snapshot?.component, TrainMapComponent)) {
-				this.sharedDataService.trainMap.setCenter([this.lat, this.lng]);
-				this.sharedDataService.trainMap.setMaxBounds([
-					[-5.1804575292, 45.9339846217],
-					[15.0276942887, 56.0902661419],
-				]);
 				this.sharedDataService.trainMap.resize();
 			}
 		});

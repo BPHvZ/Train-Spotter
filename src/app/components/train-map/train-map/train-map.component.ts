@@ -193,7 +193,8 @@ export class TrainMapComponent implements OnInit, OnDestroy {
 				}
 			}
 			if (event instanceof ActivationEnd && Object.is(event?.snapshot?.component, TrainMapComponent)) {
-				window.scrollTo(0, 0);
+				const scrollElm = document.scrollingElement;
+				scrollElm.scrollTop = 0;
 				const trainMapElement = document.getElementById("mapbox-train-map");
 				const display = trainMapElement.style.display;
 				this.renderer.setStyle(trainMapElement, "display", "none");

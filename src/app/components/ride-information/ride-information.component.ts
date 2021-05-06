@@ -85,7 +85,7 @@ export class RideInformationComponent implements OnInit {
 		this.route.data.subscribe((resolversData) => {
 			this.rideInformation = resolversData["rideInformation"];
 			if (this.rideInformation) {
-				console.log(this.rideInformation);
+				// console.log(this.rideInformation);
 				this.trainInformation = this.rideInformation.trainInformation;
 				this.journey = this.rideInformation.journey;
 				this.routeTracksLayerData = this.rideInformation.routeGeoJSON.payload;
@@ -112,7 +112,7 @@ export class RideInformationComponent implements OnInit {
 							this.routeTracksLayerData.features[0] as Feature<LineString>,
 							geoFeature
 						);
-						console.log(this.progressTracksLayerData);
+						// console.log(this.progressTracksLayerData);
 						this.progressTracksLayerData.features.pop();
 					} catch (e) {
 						console.log(e);
@@ -195,6 +195,19 @@ export class RideInformationComponent implements OnInit {
 		}
 	}
 
+	/**
+	 * Calculate minutes difference between dates
+	 * @param planned Planned time
+	 * @param actual Actual time
+	 * @return number Number of minutes difference
+	 */
+	minuteDifference(planned: string, actual: string): number {
+		const eventStartTime = new Date(planned);
+		const eventEndTime = new Date(actual);
+		const minutes = (eventEndTime.valueOf() - eventStartTime.valueOf()) / 1000 / 60;
+		return Math.round(minutes);
+	}
+
 	flyToStation(UICCode: string): void {
 		if (UICCode) {
 			const station = this.sharedDataService.findStationByUICCode(UICCode);
@@ -220,7 +233,6 @@ export class RideInformationComponent implements OnInit {
 	onStopMarkerClick(marker: MarkerComponent): void {
 		this.selectedMarker = null;
 		this.selectedMarker = marker;
-		console.log(this.selectedMarker);
 	}
 }
 

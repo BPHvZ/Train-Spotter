@@ -206,7 +206,7 @@
 			<h2 class="card-subtitle mb-2 text-muted font-weight-bold">
 				{{journey.stops[0].stop['name']}} naar {{journey.stops[journey.stops.length - 1].destination}}
 			</h2>
-			<div style="width: 100%; overflow-x: auto" class="scroll-gradient">
+			<div style="width: 100%; overflow-x: auto; overflow-y: visible" class="scroll-gradient">
 				<table cdk-table [dataSource]="dataSource">
 					<!-- Progress Column-->
 					<ng-container cdkColumnDef="progress">
@@ -259,6 +259,16 @@
 							<ng-container *ngIf="stop.status == 'STOP' || stop.status == 'DESTINATION'">
 								<ng-container *ngIf="stop['arrivals'][0]['actualTime']; else plannedTime">
 									{{stop['arrivals'][0]['actualTime'] | date:'HH:mm'}}
+									<ng-container *ngIf="stop['arrivals'][0]['plannedTime']">
+										<div
+											class="color-disruption"
+											*ngIf="minuteDifference(stop['arrivals'][0]['plannedTime'],
+											stop['arrivals'][0]['actualTime']) > 0"
+										>
+											+{{minuteDifference(stop['arrivals'][0]['plannedTime'],
+											stop['arrivals'][0]['actualTime'])}}
+										</div>
+									</ng-container>
 								</ng-container>
 								<ng-template #plannedTime
 									>{{stop['arrivals'][0]['plannedTime'] | date:'HH:mm'}}</ng-template
@@ -275,6 +285,16 @@
 							<ng-container *ngIf="stop.status == 'ORIGIN' || stop.status == 'STOP'">
 								<ng-container *ngIf="stop['departures'][0]['actualTime']; else plannedTime">
 									{{stop['departures'][0]['actualTime'] | date:'HH:mm'}}
+									<ng-container *ngIf="stop['departures'][0]['plannedTime']">
+										<div
+											class="color-disruption"
+											*ngIf="minuteDifference(stop['departures'][0]['plannedTime'],
+											stop['departures'][0]['actualTime']) > 0"
+										>
+											+{{minuteDifference(stop['departures'][0]['plannedTime'],
+											stop['departures'][0]['actualTime'])}}
+										</div>
+									</ng-container>
 								</ng-container>
 								<ng-template #plannedTime
 									>{{stop['departures'][0]['plannedTime'] | date:'HH:mm'}}</ng-template
@@ -356,8 +376,8 @@
 					</ng-container>
 
 					<ng-container cdkColumnDef="afbeelding">
-						<th cdk-header-cell *cdkHeaderCellDef>Afbeelding</th>
-						<td cdk-cell *cdkCellDef="let stop" style="width: 20vw">
+						<th cdk-header-cell *cdkHeaderCellDef class="pl-2">Afbeelding</th>
+						<td cdk-cell *cdkCellDef="let stop" class="pl-2" style="width: 20vw">
 							<div
 								*ngIf="stop.actualStock?.trainParts && stop.actualStock?.trainParts[0]?.image.uri; else filler"
 							>

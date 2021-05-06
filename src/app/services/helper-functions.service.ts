@@ -18,6 +18,7 @@
 
 import { Injectable } from "@angular/core";
 import { Feature, FeatureCollection, Point } from "geojson";
+import { get } from "lodash";
 import { DetailedTrainInformation } from "../models/VirtualTrainAPI";
 
 /**
@@ -46,10 +47,12 @@ export class HelperFunctionsService {
 			features: [],
 		};
 		data.forEach((feature) => {
-			if (feature[point[0]] !== null && feature[point[1]] !== null) {
+			const lng = get(feature, point[0]) as number;
+			const lat = get(feature, point[1]) as number;
+			if (lng !== null && lat !== null) {
 				const geoFeature: Feature<Point, any> = {
 					geometry: {
-						coordinates: [feature[point[0]], feature[point[1]]],
+						coordinates: [lng, lat],
 						type: "Point",
 					},
 					properties: {},

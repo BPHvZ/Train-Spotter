@@ -58,6 +58,20 @@ export class ApiService {
 	}
 
 	/**
+	 * Get the train tracks of a route
+	 * [Spoorkaart-API/api/v1/spoorkaart]{@link https://apiportal.ns.nl/docs/services/Spoorkaart-api/operations/getTraject?}
+	 * @returns Observable<Response<TrainTracksGeoJSON>> Train tracks of a route as GeoJSON
+	 */
+	getRouteGeoJSON(stations: string[]): Observable<Response<TrainTracksGeoJSON>> {
+		const routeParams = new HttpParams().set("stations", stations.join(","));
+		return this.http.get({
+			url: "https://gateway.apiportal.ns.nl/Spoorkaart-API/api/v1/traject.json",
+			cacheMins: environment.production ? 5 : 60,
+			params: routeParams,
+		});
+	}
+
+	/**
 	 * Get all disrupted train tracks
 	 * [Spoorkaart-API/api/v1/storingen]{@link https://apiportal.ns.nl/docs/services/Spoorkaart-api/operations/getStoringen}
 	 * @returns Observable<Response<TrainTracksGeoJSON>> All disrupted train tracks as GeoJSON

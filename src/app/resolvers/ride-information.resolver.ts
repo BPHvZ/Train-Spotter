@@ -19,7 +19,8 @@
 import { Injectable } from "@angular/core";
 import { ActivatedRouteSnapshot, Resolve } from "@angular/router";
 import { Observable, zip } from "rxjs";
-import { map } from "rxjs/operators";
+import { map, switchMap, tap } from "rxjs/operators";
+import { Journey } from "../models/ReisinformatieAPI";
 import { RideInformation } from "../models/RideInformation";
 import { RideInformationService } from "../services/ride-information.service";
 import { SharedDataService } from "../services/shared-data.service";
@@ -43,16 +44,30 @@ export class RideInformationResolver implements Resolve<RideInformation> {
 	 */
 	resolve(route: ActivatedRouteSnapshot): Observable<RideInformation> {
 		console.log("resolve ", route.paramMap.get("rideId"));
+		let journey: Journey;
 		return zip(
 			this.rideInformationService.getRideInformationByRideId(route.params["rideId"]),
 			this.sharedDataService.getBasicInformationAboutAllStations(),
-			this.rideInformationService.getJourneyDetails(route.params["rideId"])
+			this.rideInformationService.getJourneyDetails(route.params["rideId"]).pipe(
+				tap((resp) => (journey = resp)),
+				switchMap((details) => {
+					const stationCodes = [];
+					details.stops.forEach((stop) => {
+						if (stop.id) {
+							const code = stop.id.split("_")[0];
+							stationCodes.push(code);
+						}
+					});
+					return this.rideInformationService.getRouteGeoJSON(stationCodes);
+				})
+			)
 		).pipe(
 			// eslint-disable-next-line @typescript-eslint/no-unused-vars
-			map(([train, _, journey]) => {
+			map(([train, _, routeTracks]) => {
 				return {
 					trainInformation: train,
 					journey: journey,
+					routeGeoJSON: routeTracks,
 				};
 			})
 		);

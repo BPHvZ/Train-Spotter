@@ -18,10 +18,13 @@
 
 import { definitions } from "./NS_API_swagger_models/ReisinformatieAPI";
 import { Journey } from "./ReisinformatieAPI";
+import { TrainTracksGeoJSON } from "./SpoortkaartAPI";
 import { DetailedTrainInformation } from "./VirtualTrainAPI";
 
 interface RideInformation {
 	trainInformation: DetailedTrainInformation;
 	journey: Journey;
+	routeGeoJSON: TrainTracksGeoJSON;
 }
 type JourneyStops = definitions["JourneyStop"][];
+type JourneyStop = definitions["JourneyStop"];

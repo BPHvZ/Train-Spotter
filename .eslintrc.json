@@ -14,11 +14,13 @@
 				"eslint:recommended",
 				"plugin:@typescript-eslint/recommended",
 				"plugin:@typescript-eslint/recommended-requiring-type-checking",
+				"plugin:rxjs/recommended",
 				"plugin:prettier/recommended"
 			],
 			"rules": {
 				"@typescript-eslint/no-explicit-any": "off",
 				"@typescript-eslint/no-unsafe-assignment": "off",
+				"@typescript-eslint/no-unnecessary-type-assertion": "off",
 				"@angular-eslint/component-selector": [
 					"error",
 					{

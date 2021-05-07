@@ -33,7 +33,11 @@
 						</div>
 						<div style="font-size: initial; font-weight: bold; white-space: pre-wrap">
 							<span>{{ trainInformation.trainDetails?.vervoerder }} {{ getTypeOfTrain() }} trein</span>
-							<span style="cursor: pointer" (click)="navigateToRideInformation()">
+							<span
+								class="link-hover link-hover--whitespace"
+								style="cursor: pointer"
+								(click)="navigateToRideInformation()"
+							>
 								{{ trainInformation.ritId }}
 							</span>
 							<ng-container
@@ -47,6 +51,7 @@
 										<span
 											>met
 											<span
+												class="link-hover"
 												style="cursor: pointer"
 												(click)="navigateToTrainsetInformation(trainPart.materieelnummer)"
 												>{{ trainPart.materieelnummer }}</span
@@ -56,7 +61,13 @@
 									<ng-template #other>
 										<span>
 											{{ i == (trainInformation.trainDetails.materieeldelen.length - 1) ? " " +
-											'en' : ','}} {{ trainPart.materieelnummer }}
+											'en' : ','}}
+											<span
+												class="link-hover"
+												style="cursor: pointer"
+												(click)="navigateToTrainsetInformation(trainPart.materieelnummer)"
+												>{{ trainPart.materieelnummer }}</span
+											>
 										</span>
 									</ng-template>
 								</ng-container>
@@ -65,7 +76,7 @@
 						<div
 							*ngIf="trainInformation.trainDetails?.materieeldelen && trainInformation.trainDetails?.materieeldelen[0]?.afbeelding"
 						>
-							<div id="carousel">
+							<div id="carousel" class="scroll-gradient">
 								<div
 									class="slide"
 									*ngFor="let railcar of trainInformation.trainDetails.materieeldelen; let isLast = last"

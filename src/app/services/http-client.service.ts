@@ -19,7 +19,7 @@
 import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable, of } from "rxjs";
-import { switchMap } from "rxjs/operators";
+import { map } from "rxjs/operators";
 import { CacheService } from "./cache.service";
 
 /**
@@ -88,7 +88,7 @@ export class HttpClientService {
 	 * @returns Response of type {@link T}
 	 */
 	get<T>(options: HttpOptions): Observable<Response<T>> {
-		return this.httpCall(Verbs.GET, options);
+		return this.httpCall<T>(Verbs.GET, options);
 	}
 
 	/**
@@ -156,7 +156,7 @@ export class HttpClientService {
 				params: options.params,
 			})
 			.pipe(
-				switchMap((response) => {
+				map((response) => {
 					console.log("from url");
 					// Data will be cached
 					if (options.cacheMins > 0) {
@@ -167,10 +167,10 @@ export class HttpClientService {
 							expirationMins: options.cacheMins,
 						});
 					}
-					return of<Response<T>>({
+					return {
 						data: response,
 						responseType: ResponseType.URL,
-					});
+					};
 				})
 			);
 	}

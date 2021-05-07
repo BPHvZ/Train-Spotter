@@ -18,28 +18,58 @@
 
 import { Injectable } from "@angular/core";
 import { ActivatedRouteSnapshot, Resolve } from "@angular/router";
-import { Observable } from "rxjs";
-import { DetailedTrainInformation } from "../models/VirtualTrainAPI";
+import { Observable, zip } from "rxjs";
+import { map, switchMap, tap } from "rxjs/operators";
+import { Journey } from "../models/ReisinformatieAPI";
+import { RideInformation } from "../models/RideInformation";
 import { RideInformationService } from "../services/ride-information.service";
+import { SharedDataService } from "../services/shared-data.service";
 
 /** Resolve loading train information before showing train information page */
 @Injectable({
 	providedIn: "root",
 })
-export class RideInformationResolver implements Resolve<DetailedTrainInformation> {
+export class RideInformationResolver implements Resolve<RideInformation> {
 	/**
 	 * Define services
 	 * @param rideInformationService Get ride information about a train
+	 * @param sharedDataService Shares data through the application
 	 */
-	constructor(private rideInformationService: RideInformationService) {}
+	constructor(private rideInformationService: RideInformationService, private sharedDataService: SharedDataService) {}
 
 	/**
 	 * Get ride information by the ride id
 	 * @param route Current route snapshot
-	 * @return Observable<DetailedTrainInformation> Train information
+	 * @return Observable<RideInformation> Train information
 	 */
-	resolve(route: ActivatedRouteSnapshot): Observable<DetailedTrainInformation> {
+	resolve(route: ActivatedRouteSnapshot): Observable<RideInformation> {
 		console.log("resolve ", route.paramMap.get("rideId"));
-		return this.rideInformationService.getRideInformationByRideId(route.params["rideId"]);
+		let journey: Journey;
+		return zip(
+			this.rideInformationService.getRideInformationByRideId(route.params["rideId"]),
+			this.sharedDataService.getBasicInformationAboutAllStations(),
+			this.rideInformationService.getJourneyDetails(route.params["rideId"]).pipe(
+				tap((resp) => (journey = resp)),
+				switchMap((details) => {
+					const stationCodes = [];
+					details.stops.forEach((stop) => {
+						if (stop.id) {
+							const code = stop.id.split("_")[0];
+							stationCodes.push(code);
+						}
+					});
+					return this.rideInformationService.getRouteGeoJSON(stationCodes);
+				})
+			)
+		).pipe(
+			// eslint-disable-next-line @typescript-eslint/no-unused-vars
+			map(([train, _, routeTracks]) => {
+				return {
+					trainInformation: train,
+					journey: journey,
+					routeGeoJSON: routeTracks,
+				};
+			})
+		);
 	}
 }

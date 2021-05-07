@@ -18,6 +18,7 @@
 
 import { Injectable } from "@angular/core";
 import { ActivatedRouteSnapshot, DetachedRouteHandle, RouteReuseStrategy } from "@angular/router";
+import { MetaTagService } from "./services/meta-tag.service";
 
 /** Config of a route */
 interface IRouteConfigData {
@@ -36,6 +37,7 @@ interface ICachedRoute {
 /** Cache and reuse the route */
 @Injectable()
 export class TrainSpotterRouteReuseStrategy implements RouteReuseStrategy {
+	constructor(private metaTagsService: MetaTagService) {}
 	/** store routes and their reuse config */
 	private routeCache = new Map<string, ICachedRoute>();
 
@@ -114,6 +116,11 @@ export class TrainSpotterRouteReuseStrategy implements RouteReuseStrategy {
 	retrieve(route: ActivatedRouteSnapshot): DetachedRouteHandle {
 		const url = this.getFullRouteUrl(route);
 		const data = TrainSpotterRouteReuseStrategy.getRouteData(route);
+		if (data && data.reuse && this.routeCache.has(url)) {
+			const ref = this.routeCache.get(url).handle;
+			// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+			this.metaTagsService.updateTags(ref["componentRef"]["instance"]["componentName"]);
+		}
 		return data && data.reuse && this.routeCache.has(url) ? this.routeCache.get(url).handle : null;
 	}
 

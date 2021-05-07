@@ -20,6 +20,8 @@ import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import { Observable, of } from "rxjs";
 import { catchError, concatMap, map, switchMap, take } from "rxjs/operators";
+import { Journey } from "../models/ReisinformatieAPI";
+import { TrainTracksGeoJSON } from "../models/SpoortkaartAPI";
 import { DetailedTrainInformation } from "../models/VirtualTrainAPI";
 import { ApiService } from "./api.service";
 import { SharedDataService } from "./shared-data.service";
@@ -109,5 +111,13 @@ export class RideInformationService {
 			}),
 			catchError(() => void this.router.navigateByUrl("/404"))
 		);
+	}
+
+	getJourneyDetails(rideId: string): Observable<Journey> {
+		return this.apiService.getJourneyDetails(rideId).pipe(map((response) => response.data.payload));
+	}
+
+	getRouteGeoJSON(stations: string[]): Observable<TrainTracksGeoJSON> {
+		return this.apiService.getRouteGeoJSON(stations).pipe(map((response) => response.data));
 	}
 }

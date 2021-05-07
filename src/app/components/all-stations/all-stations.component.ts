@@ -35,6 +35,7 @@ import { StationsService } from "../../services/stations.service";
 	providers: [StationsService],
 })
 export class AllStationsComponent implements OnInit {
+	componentName = "all-stations";
 	/**Stations received as search result from {@link StationsService}*/
 	stations$: Observable<Station[]>;
 	/**Number of stations found*/

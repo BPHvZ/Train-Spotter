@@ -10,7 +10,6 @@ import { ImageEditorService } from "src/app/services/image-editor.service";
 import { environment } from "../../../environments/environment";
 import { Journey, Station } from "../../models/ReisinformatieAPI";
 import { JourneyStop, JourneyStops, RideInformation } from "../../models/RideInformation";
-import { SpoortkaartFeatureCollection } from "../../models/SpoortkaartAPI";
 import { DetailedTrainInformation, TrainIconOnMap } from "../../models/VirtualTrainAPI";
 import { HelperFunctionsService } from "../../services/helper-functions.service";
 import { SharedDataService } from "../../services/shared-data.service";
@@ -43,7 +42,7 @@ export class RideInformationComponent implements OnInit {
 
 	// Train tracks layer
 	/**Train tracks layer GeoJSON*/
-	routeTracksLayerData: SpoortkaartFeatureCollection;
+	routeTracksLayerData: FeatureCollection<LineString, any>;
 	progressTracksLayerData: FeatureCollection<LineString, any>;
 	selectedMarker: MarkerComponent | null;
 	stopsLayerData: FeatureCollection<Point, JourneyStop>;
@@ -88,7 +87,10 @@ export class RideInformationComponent implements OnInit {
 				// console.log(this.rideInformation);
 				this.trainInformation = this.rideInformation.trainInformation;
 				this.journey = this.rideInformation.journey;
-				this.routeTracksLayerData = this.rideInformation.routeGeoJSON.payload;
+				this.routeTracksLayerData = this.rideInformation.routeGeoJSON.payload as FeatureCollection<
+					LineString,
+					any
+				>;
 				this.dataSource = this.journey.stops.filter((stop) => stop.status != "PASSING");
 				this.stopsLayerData = this.helperFunctions.parseToGeoJSON<JourneyStop>(
 					this.dataSource,
@@ -220,7 +222,8 @@ export class RideInformationComponent implements OnInit {
 	onMapLoad(map: MapBoxMap): void {
 		map.resize();
 		this.journeyMap = map;
-		const coordinates: Array<LngLatBoundsLike> = this.routeTracksLayerData.features[0].geometry["coordinates"];
+		const coordinates: LngLatBoundsLike[] = this.routeTracksLayerData.features[0].geometry
+			.coordinates as LngLatBoundsLike[];
 		const bounds = new LngLatBounds();
 		coordinates.forEach((coord) => {
 			bounds.extend(coord);

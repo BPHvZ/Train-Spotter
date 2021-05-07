@@ -22,6 +22,7 @@ import { Observable } from "rxjs";
 import { environment } from "../../environments/environment";
 import {
 	DisruptionsList,
+	JourneyResponse,
 	StationArrivalsResponse,
 	StationDeparturesResponse,
 	StationsResponse,
@@ -53,6 +54,20 @@ export class ApiService {
 		return this.http.get({
 			url: "https://gateway.apiportal.ns.nl/Spoorkaart-API/api/v1/spoorkaart",
 			cacheMins: environment.production ? 30 : 60,
+		});
+	}
+
+	/**
+	 * Get the train tracks of a route
+	 * [Spoorkaart-API/api/v1/spoorkaart]{@link https://apiportal.ns.nl/docs/services/Spoorkaart-api/operations/getTraject?}
+	 * @returns Observable<Response<TrainTracksGeoJSON>> Train tracks of a route as GeoJSON
+	 */
+	getRouteGeoJSON(stations: string[]): Observable<Response<TrainTracksGeoJSON>> {
+		const routeParams = new HttpParams().set("stations", stations.join(","));
+		return this.http.get({
+			url: "https://gateway.apiportal.ns.nl/Spoorkaart-API/api/v1/traject.json",
+			cacheMins: environment.production ? 5 : 60,
+			params: routeParams,
 		});
 	}
 
@@ -170,6 +185,21 @@ export class ApiService {
 			url: "https://gateway.apiportal.ns.nl/reisinformatie-api/api/v2/departures",
 			cacheMins: environment.production ? 1 : 60,
 			params: stationParams,
+		});
+	}
+
+	/**
+	 * Get information about a trains journey
+	 * [reisinformatie-api/api/v2/journey]{@link https://apiportal.ns.nl/docs/services/reisinformatie-api/operations/getJourneyDetail?}
+	 * @param rideId Ride id of the train
+	 * @returns Observable<Response<JourneyResponse>> Journey of a train
+	 */
+	getJourneyDetails(rideId: string): Observable<Response<JourneyResponse>> {
+		const journeyParams = new HttpParams().set("train", rideId);
+		return this.http.get({
+			url: "https://gateway.apiportal.ns.nl/reisinformatie-api/api/v2/journey",
+			cacheMins: environment.production ? 1 : 60,
+			params: journeyParams,
 		});
 	}
 }

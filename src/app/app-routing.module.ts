@@ -48,6 +48,7 @@ const routes: Routes = [
 		resolve: {
 			rideInformation: RideInformationResolver,
 		},
+		runGuardsAndResolvers: "paramsOrQueryParamsChange",
 		data: {
 			reuse: false,
 		},
@@ -58,6 +59,7 @@ const routes: Routes = [
 		resolve: {
 			rideInformation: TrainsetInformationResolver,
 		},
+		runGuardsAndResolvers: "paramsOrQueryParamsChange",
 		data: {
 			reuse: false,
 		},

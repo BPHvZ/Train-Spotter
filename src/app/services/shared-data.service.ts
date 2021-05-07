@@ -184,7 +184,9 @@ export class SharedDataService {
 	 * @return StationsResponse All stations
 	 */
 	stationsLastValue(): StationsResponse {
-		return this._stations.getValue();
+		let result: StationsResponse;
+		this._stations.pipe(take(1)).subscribe((s) => (result = s));
+		return result;
 	}
 
 	/**
@@ -216,7 +218,9 @@ export class SharedDataService {
 	 * @return GeoJSON.FeatureCollection<MultiLineString> All disrupted train tracks
 	 * */
 	disruptedTrainTracksLayerDataLastValue(): GeoJSON.FeatureCollection<MultiLineString> {
-		return this._disruptedTrainTracksLayerData.getValue()?.payload as GeoJSON.FeatureCollection<MultiLineString>;
+		let result: TrainTracksGeoJSON;
+		this._disruptedTrainTracksLayerData.pipe(take(1)).subscribe((s) => (result = s));
+		return result?.payload as GeoJSON.FeatureCollection<MultiLineString>;
 	}
 
 	/**
@@ -271,7 +275,9 @@ export class SharedDataService {
 	 * @return DisruptionsList All active disruptions
 	 */
 	activeDisruptionsLastValue(): DisruptionsList {
-		return this._activeDisruptions.getValue();
+		let result: DisruptionsList;
+		this._activeDisruptions.pipe(take(1)).subscribe((s) => (result = s));
+		return result;
 	}
 
 	/**
@@ -313,7 +319,9 @@ export class SharedDataService {
 	 * @return DetailedTrainInformation[] Detailed information about all trains
 	 */
 	trainInformationLastValue(): DetailedTrainInformation[] {
-		return this._detailedTrainInformation.getValue();
+		let result: DetailedTrainInformation[];
+		this._detailedTrainInformation.pipe(take(1)).subscribe((s) => (result = s));
+		return result;
 	}
 
 	/**
@@ -360,8 +368,12 @@ export class SharedDataService {
 		if (this.router.url !== "/kaart") {
 			void this.router.navigateByUrl("/kaart");
 		}
-		if (this.trainMap && disruption && this._disruptionMarkersData.getValue() != null) {
-			const markers = this._disruptionMarkersData.getValue();
+
+		let disruptionMarkersData: GeoJSON.Feature<GeoJSON.Point, DisruptionBase>[];
+		this._disruptionMarkersData.pipe(take(1)).subscribe((s) => (disruptionMarkersData = s));
+
+		if (this.trainMap && disruption && disruptionMarkersData != null) {
+			const markers = disruptionMarkersData;
 			this.closePopups();
 			this._activeMapType.next(this.mapTypes[1]);
 			const marker = markers.find((m) => m.properties === disruption);
@@ -414,6 +426,14 @@ export class SharedDataService {
 		return this.trainInformationLastValue().find((t) => t.ritId == rideId);
 	}
 
+	findStationByUICCode(UICCode: string): Station | undefined {
+		return this.stationsLastValue().payload.find((s) => s.UICCode == UICCode);
+	}
+
+	findStationByCode(code: string): Station | undefined {
+		return this.stationsLastValue().payload.find((s) => s.code == code);
+	}
+
 	/**
 	 * Close all popups on the map
 	 */
@@ -438,6 +458,8 @@ export class SharedDataService {
 	 * Open or close the sidebar
 	 */
 	toggleSidebar(): void {
-		this._sidebarState.next(this._sidebarState.getValue() === "closed" ? "open" : "closed");
+		let state: "open" | "closed";
+		this._sidebarState.pipe(take(1)).subscribe((s) => (state = s));
+		this._sidebarState.next(state === "closed" ? "open" : "closed");
 	}
 }

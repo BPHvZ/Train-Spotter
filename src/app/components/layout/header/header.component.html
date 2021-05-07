@@ -114,16 +114,34 @@
 							<button
 								class="button button--nsYellow button--crosshair"
 								style="margin-left: 8px"
-								(click)="flyToTrainOnMap(r.result)"
+								(click)="flyToTrainOnMap($event, r.result)"
 							>
 								<fa-icon [icon]="faCrosshairs" style="font-size: small"></fa-icon>
 							</button>
+							<ng-container *ngIf="r.searchField.startsWith('Treinstel'); else rideInformation">
+								<button
+									class="button button--nsYellow button--crosshair"
+									style="margin-left: 8px"
+									(click)="navigateToTrainsetInformation($event, r.result, r.searchField)"
+								>
+									<fa-icon [icon]="faInfoCircle" style="font-size: small"></fa-icon>
+								</button>
+							</ng-container>
+							<ng-template #rideInformation>
+								<button
+									class="button button--nsYellow button--crosshair"
+									style="margin-left: 8px"
+									(click)="navigateToRideInformation($event, r.result)"
+								>
+									<fa-icon [icon]="faInfoCircle" style="font-size: small"></fa-icon>
+								</button>
+							</ng-template>
 						</ng-template>
 						<ng-template #station>
 							<button
 								class="button button--nsYellow button--crosshair"
 								style="margin-left: 8px"
-								(click)="flyToStationOnMap(r.result)"
+								(click)="flyToStationOnMap($event, r.result)"
 							>
 								<fa-icon [icon]="faCrosshairs" style="font-size: small"></fa-icon>
 							</button>
@@ -140,6 +158,7 @@
 						placeholder="Zoek trein, treinstel, station, vervoerder"
 						[class.is-invalid]="searchGloballyFailed"
 						[ngbTypeahead]="searchGlobally"
+						[inputFormatter]="globalSearchInputFormatter"
 						[resultTemplate]="rt"
 						[disabled]="!globalSearchReady"
 						(selectItem)="selectItemFromGlobalSearch($event)"

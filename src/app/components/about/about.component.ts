@@ -8,6 +8,7 @@ import { faExternalLinkAlt } from "@fortawesome/free-solid-svg-icons";
 	styleUrls: ["./about.component.sass"],
 })
 export class AboutComponent implements AfterViewInit {
+	componentName = "about";
 	/** External link icon */
 	faExternalLinkAlt = faExternalLinkAlt;
 

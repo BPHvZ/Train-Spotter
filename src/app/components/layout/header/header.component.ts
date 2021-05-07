@@ -26,7 +26,8 @@ import {
 	TemplateRef,
 	ViewChild,
 } from "@angular/core";
-import { faArrowAltCircleDown, faBars, faCrosshairs } from "@fortawesome/free-solid-svg-icons";
+import { Router } from "@angular/router";
+import { faArrowAltCircleDown, faBars, faCrosshairs, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import { NgbModal, NgbTypeaheadSelectItemEvent } from "@ng-bootstrap/ng-bootstrap";
 import { Observable, of, Subscription } from "rxjs";
 import { catchError, debounceTime, distinctUntilChanged, switchMap, tap } from "rxjs/operators";
@@ -47,7 +48,7 @@ import { SharedDataService } from "../../../services/shared-data.service";
 })
 export class HeaderComponent implements OnInit, OnDestroy, AfterViewInit {
 	/**The global search input field*/
-	@ViewChild("globalTypeahead") globalTypeahead: ElementRef;
+	@ViewChild("globalTypeahead") globalTypeahead: ElementRef<HTMLInputElement>;
 
 	/**
 	 * Status of the collapsable navbar
@@ -61,6 +62,7 @@ export class HeaderComponent implements OnInit, OnDestroy, AfterViewInit {
 	faBars = faBars;
 	/**FontAwesome arrow down circle icon*/
 	faArrowAltCircleDown = faArrowAltCircleDown;
+	faInfoCircle = faInfoCircle;
 
 	/**Status of global search*/
 	searchingGlobally = false;
@@ -89,13 +91,15 @@ export class HeaderComponent implements OnInit, OnDestroy, AfterViewInit {
 	 * @param cacheService Cache object
 	 * @param modalService Open/close NgbModal
 	 * @param renderer Used to modify DOM elements
+	 * @param router Router object
 	 */
 	constructor(
 		private sharedDataService: SharedDataService,
 		private globalSearchService: GlobalSearchService,
 		private cacheService: CacheService,
 		private modalService: NgbModal,
-		private renderer: Renderer2
+		private renderer: Renderer2,
+		private router: Router
 	) {
 		const cachedShowPWAInstall: boolean = cacheService.load("showPWAInstall") ?? true;
 		if (cachedShowPWAInstall == false) {
@@ -249,9 +253,6 @@ export class HeaderComponent implements OnInit, OnDestroy, AfterViewInit {
 	 */
 	selectItemFromGlobalSearch(event: NgbTypeaheadSelectItemEvent): void {
 		const result = event.item as GlobalSearchResult;
-		event.preventDefault();
-		// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-		this.renderer.setValue(this.globalTypeahead.nativeElement, result.searchField);
 		switch (result.resultType) {
 			case GlobalSearchResultType.Train: {
 				this.sharedDataService.flyToTrain(result.result as DetailedTrainInformation);
@@ -265,11 +266,14 @@ export class HeaderComponent implements OnInit, OnDestroy, AfterViewInit {
 		this.toggleNavbar();
 	}
 
+	globalSearchInputFormatter = (input: GlobalSearchResult) => input.searchField;
+
 	/**
 	 * Fly to a train on the map
 	 * @param train The train to fly to
 	 */
-	flyToTrainOnMap(train: DetailedTrainInformation): void {
+	flyToTrainOnMap(event: Event, train: DetailedTrainInformation): void {
+		event.stopImmediatePropagation();
 		this.sharedDataService.flyToTrain(train);
 	}
 
@@ -277,7 +281,22 @@ export class HeaderComponent implements OnInit, OnDestroy, AfterViewInit {
 	 * Fly to a station on the map
 	 * @param station The station to fly to
 	 */
-	flyToStationOnMap(station: Station): void {
+	flyToStationOnMap(event: Event, station: Station): void {
 		this.sharedDataService.flyToStation(station);
+	}
+
+	/** Navigate to the train information page*/
+	navigateToRideInformation(event: Event, train: DetailedTrainInformation): void {
+		event.stopImmediatePropagation();
+		void this.router.navigate(["/rit", train.ritId]);
+	}
+
+	navigateToTrainsetInformation(event: Event, train: DetailedTrainInformation, searchField: string): void {
+		event.stopImmediatePropagation();
+		const searchFieldParts = searchField.split(" ");
+		const trainset = searchFieldParts[searchFieldParts.length - 1];
+		void this.router.navigate(["/materiaal", trainset], {
+			queryParams: { rideId: train.ritId },
+		});
 	}
 }

@@ -17,7 +17,7 @@
  */
 
 import { Component, ElementRef, OnDestroy, OnInit, Renderer2, ViewChild } from "@angular/core";
-import { ActivatedRoute, NavigationEnd, NavigationStart, Router } from "@angular/router";
+import { ActivatedRoute, ActivationEnd, NavigationEnd, Router } from "@angular/router";
 import { Timer } from "easytimer.js";
 import { GeoJSON, MultiLineString } from "geojson";
 import {
@@ -50,6 +50,8 @@ import { SharedDataService } from "../../../services/shared-data.service";
 	styleUrls: ["./train-map.component.sass"],
 })
 export class TrainMapComponent implements OnInit, OnDestroy {
+	componentName = "train-map";
+
 	/**countdown DOM element*/
 	@ViewChild("updateCountdown") countdown: ElementRef;
 
@@ -182,9 +184,6 @@ export class TrainMapComponent implements OnInit, OnDestroy {
 		this.pauseOrResumeUpdatingTrainPositions(true);
 
 		const sub1 = this.router.events.subscribe((event) => {
-			if (event instanceof NavigationStart) {
-				// console.log(event.url);
-			}
 			if (event instanceof NavigationEnd && event.url === "/kaart") {
 				const navigationState = this.router.getCurrentNavigation().extras.state;
 				if (navigationState) {
@@ -192,6 +191,11 @@ export class TrainMapComponent implements OnInit, OnDestroy {
 						this.sharedDataService.flyToStation(navigationState.station);
 					}
 				}
+			}
+			if (event instanceof ActivationEnd && Object.is(event?.snapshot?.component, TrainMapComponent)) {
+				setTimeout(() => {
+					document.scrollingElement.scrollTop = -1;
+				}, 500);
 			}
 		});
 		this.subscriptions.push(sub1);
@@ -272,7 +276,7 @@ export class TrainMapComponent implements OnInit, OnDestroy {
 					this.addStationsToMap(value[0].payload);
 					this.trainTracksLayerData = value[1].payload;
 				},
-				error: (err) => {
+				error: (err: unknown) => {
 					console.log(err);
 				},
 				complete: () => {
@@ -354,6 +358,7 @@ export class TrainMapComponent implements OnInit, OnDestroy {
 	 * @param event Map layer event to extract the station from
 	 */
 	openStationPopupOnLayerClick(event: MapLayerMouseEvent): void {
+		event.preventDefault();
 		if (event.features) {
 			const selectedFeature: MapboxGeoJSONFeature = event.features[0];
 			let stationInformation = selectedFeature.properties;
@@ -380,6 +385,7 @@ export class TrainMapComponent implements OnInit, OnDestroy {
 	 * @param event Map layer event to extract the train from
 	 */
 	openTrainPopupOnLayerClick(event: MapLayerMouseEvent): void {
+		event.preventDefault();
 		if (event.features) {
 			const selectedFeature: MapboxGeoJSONFeature = event.features[0];
 			const basicTrainInformation = selectedFeature.properties;
@@ -537,7 +543,7 @@ export class TrainMapComponent implements OnInit, OnDestroy {
 					this.setTrainIconName(this.sharedDataService.trainInformationLastValue());
 					this.setDisruptionMarkers();
 				},
-				error: (err) => {
+				error: (err: unknown) => {
 					console.log(err);
 				},
 				complete: () => {
@@ -557,7 +563,7 @@ export class TrainMapComponent implements OnInit, OnDestroy {
 		)
 			.pipe(take(1))
 			.subscribe({
-				error: (err) => {
+				error: (err: unknown) => {
 					console.log(err);
 				},
 				complete: () => {
@@ -660,7 +666,7 @@ export class TrainMapComponent implements OnInit, OnDestroy {
 					this.trainIconAddedSource.complete();
 				}
 			},
-			error: (err) => console.log(err),
+			error: (err: unknown) => console.log(err),
 			complete: () => {
 				this.addTrainsToMap(detailedTrainInformation);
 			},

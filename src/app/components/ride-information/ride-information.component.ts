@@ -106,6 +106,9 @@ export class RideInformationComponent implements OnInit {
 			this.setRideInformation(rideInformation);
 			if (this.rideInformation) {
 				this.addTrainToMap();
+				if (environment.production) {
+					this.pauseOrResumeUpdatingTrainPositions(false);
+				}
 			}
 
 			this.countdownTimer.addEventListener("targetAchieved", () => {

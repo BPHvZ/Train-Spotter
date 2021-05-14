@@ -1,12 +1,14 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, ElementRef, OnInit, Renderer2, ViewChild } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { faFrown, faMeh, faSmile, IconDefinition } from "@fortawesome/free-regular-svg-icons";
 import lineSplit from "@turf/line-split";
+import Timer from "easytimer.js";
 import { Feature, FeatureCollection, LineString, Point } from "geojson";
 import { LngLatBounds, LngLatBoundsLike, Map as MapBoxMap } from "mapbox-gl";
 import { MarkerComponent } from "ngx-mapbox-gl/lib/marker/marker.component";
 import { take } from "rxjs/operators";
 import { ImageEditorService } from "src/app/services/image-editor.service";
+import { RideInformationService } from "src/app/services/ride-information.service";
 import { environment } from "../../../environments/environment";
 import { Journey, Station } from "../../models/ReisinformatieAPI";
 import { JourneyStop, JourneyStops, RideInformation } from "../../models/RideInformation";
@@ -21,6 +23,8 @@ import { SharedDataService } from "../../services/shared-data.service";
 	styleUrls: ["./ride-information.component.sass"],
 })
 export class RideInformationComponent implements OnInit {
+	/**countdown DOM element*/
+	@ViewChild("updateCountdown") countdown: ElementRef;
 	/** Ride information, resolved by browser */
 	rideInformation: RideInformation;
 	/** Detailed train information */
@@ -48,6 +52,16 @@ export class RideInformationComponent implements OnInit {
 	stopsLayerData: FeatureCollection<Point, JourneyStop>;
 	trainsLayerData: FeatureCollection<Point, DetailedTrainInformation>;
 	trainIconOnMap: TrainIconOnMap;
+	/**CSS style of the arrow shown in the popup*/
+	directionArrowStyle: Map<string, any> = new Map<string, any>();
+
+	// Update data countdown
+	/**Is countdown paused*/
+	updateTrainsIsPaused = false;
+	/**Is currently updating train positions*/
+	isUpdatingMapData = false;
+	/**Timer that counts down until train data refresh*/
+	countdownTimer = new Timer({ countdown: true, startValues: { seconds: 30 } });
 
 	faSmile = faSmile;
 	faMeh = faMeh;
@@ -64,74 +78,90 @@ export class RideInformationComponent implements OnInit {
 	 * @param sharedDataService Shares data through the application
 	 * @param helperFunctions Helper functions
 	 * @param imageEditorService Web Worker to edit icons
+	 * @param renderer Used to modify DOM elements
+	 * @param rideInformationService Get ride information about a train
 	 */
 	constructor(
 		private route: ActivatedRoute,
 		private sharedDataService: SharedDataService,
 		private helperFunctions: HelperFunctionsService,
-		private imageEditorService: ImageEditorService
+		private imageEditorService: ImageEditorService,
+		private renderer: Renderer2,
+		private rideInformationService: RideInformationService
 	) {}
 
 	/**
 	 * Get ride information from resolve and get route params
 	 */
 	ngOnInit(): void {
+		this.pauseOrResumeUpdatingTrainPositions(true);
+
 		this.route.params.subscribe((params) => {
 			this.rideId = Number(params["rideId"]);
 			console.log("rideId: ", this.rideId);
 		});
 
 		this.route.data.subscribe((resolversData) => {
-			this.rideInformation = resolversData["rideInformation"];
+			const rideInformation = resolversData["rideInformation"];
+			this.setRideInformation(rideInformation);
 			if (this.rideInformation) {
-				// console.log(this.rideInformation);
-				this.trainInformation = this.rideInformation.trainInformation;
-				this.journey = this.rideInformation.journey;
-				this.routeTracksLayerData = this.rideInformation.routeGeoJSON.payload as FeatureCollection<
-					LineString,
-					any
-				>;
-				this.dataSource = this.journey.stops.filter((stop) => stop.status != "PASSING");
-				this.stopsLayerData = this.helperFunctions.parseToGeoJSON<JourneyStop>(
-					this.dataSource,
-					["stop.lng", "stop.lat"],
-					[],
-					true
-				);
-
-				const geoFeature: Feature<Point, any> = {
-					geometry: {
-						coordinates: [this.trainInformation.lng, this.trainInformation.lat],
-						type: "Point",
-					},
-					properties: {},
-					type: "Feature",
-				};
-
-				if (this.trainInformation.trainDetails) {
-					try {
-						this.progressTracksLayerData = lineSplit(
-							this.routeTracksLayerData.features[0] as Feature<LineString>,
-							geoFeature
-						);
-						// console.log(this.progressTracksLayerData);
-						this.progressTracksLayerData.features.pop();
-					} catch (e) {
-						console.log(e);
-					}
-
-					this.nextStation = this.sharedDataService.findStationByCode(
-						this.trainInformation.trainDetails.station
-					);
-					const uicCodes = this.dataSource.map((s) => s.stop["uicCode"] as string);
-					let index = uicCodes.indexOf(this.nextStation.UICCode);
-					if (index != this.journey.stops.length) index++;
-					uicCodes.splice(index, uicCodes.length);
-					this.passedStations = uicCodes;
-					this.addTrainToMap();
-				}
+				this.addTrainToMap();
 			}
+
+			this.countdownTimer.addEventListener("targetAchieved", () => {
+				// console.log("timer");
+				if (this.isUpdatingMapData === false) {
+					this.updateRideInformation();
+				}
+			});
 		});
+	}
+
+	setRideInformation(rideInformation: RideInformation): void {
+		this.rideInformation = rideInformation;
+		if (this.rideInformation) {
+			// console.log(this.rideInformation);
+			this.trainInformation = this.rideInformation.trainInformation;
+			this.journey = this.rideInformation.journey;
+			this.routeTracksLayerData = this.rideInformation.routeGeoJSON.payload as FeatureCollection<LineString, any>;
+			this.dataSource = this.journey.stops.filter((stop) => stop.status != "PASSING");
+			this.stopsLayerData = this.helperFunctions.parseToGeoJSON<JourneyStop>(
+				this.dataSource,
+				["stop.lng", "stop.lat"],
+				[],
+				true
+			);
+			this.directionArrowStyle.set("transform", `rotate(${this.trainInformation.richting - 90}deg)`);
+
+			const geoFeature: Feature<Point, any> = {
+				geometry: {
+					coordinates: [this.trainInformation.lng, this.trainInformation.lat],
+					type: "Point",
+				},
+				properties: {},
+				type: "Feature",
+			};
+
+			if (this.trainInformation.trainDetails) {
+				try {
+					this.progressTracksLayerData = lineSplit(
+						this.routeTracksLayerData.features[0] as Feature<LineString>,
+						geoFeature
+					);
+					// console.log(this.progressTracksLayerData);
+					this.progressTracksLayerData.features.pop();
+				} catch (e) {
+					console.log(e);
+				}
+
+				this.nextStation = this.sharedDataService.findStationByCode(this.trainInformation.trainDetails.station);
+				const uicCodes = this.dataSource.map((s) => s.stop["uicCode"] as string);
+				let index = uicCodes.indexOf(this.nextStation.UICCode);
+				if (index != this.journey.stops.length) index++;
+				uicCodes.splice(index, uicCodes.length);
+				this.passedStations = uicCodes;
+			}
+		}
 	}
 
 	addTrainToMap(): void {
@@ -185,6 +215,60 @@ export class RideInformationComponent implements OnInit {
 				},
 			});
 	}
+
+	/**
+	 * Get detailed information about all train currently riding
+	 * Set train icons when data is received
+	 * Get information about active disruptions and add markers
+	 */
+	private updateRideInformation(): void {
+		this.isUpdatingMapData = true;
+		this.pauseOrResumeUpdatingTrainPositions(true);
+		this.rideInformationService
+			.getRideInformation(this.rideId.toString())
+			.pipe(take(1))
+			.subscribe({
+				next: (rideInformation) => {
+					this.setRideInformation(rideInformation);
+				},
+				error: (err: unknown) => {
+					console.log(err);
+				},
+				complete: () => {
+					console.log("updateTrainAndJourneyInformation");
+					this.isUpdatingMapData = false;
+					this.pauseOrResumeUpdatingTrainPositions(false);
+				},
+			});
+	}
+
+	/**
+	 * Pause or resume the {@link countdownTimer}
+	 * @param pause Whether to pause {@link countdownTimer} or not
+	 */
+	pauseOrResumeUpdatingTrainPositions(pause: boolean): void {
+		if (this.isUpdatingMapData === false) {
+			if (pause === false) {
+				if (this.countdownTimer.getTimeValues().seconds <= 0) {
+					this.resetCountdownProgressbarAnimation();
+				}
+				this.countdownTimer.start();
+				this.updateTrainsIsPaused = false;
+			} else {
+				this.countdownTimer.pause();
+				this.updateTrainsIsPaused = true;
+			}
+		}
+	}
+
+	/* eslint-disable */
+	/** Reset the countdown visuals */
+	resetCountdownProgressbarAnimation(): void {
+		this.renderer.removeClass(this.countdown.nativeElement, "progress-value");
+		console.log(this.countdown.nativeElement.offsetHeight);
+		this.renderer.addClass(this.countdown.nativeElement, "progress-value");
+	}
+	/* eslint-enable */
 
 	getNumberFromCrowdForecast(forecast: "UNKNOWN" | "LOW" | "MEDIUM" | "HIGH"): Array<IconDefinition> {
 		switch (forecast) {

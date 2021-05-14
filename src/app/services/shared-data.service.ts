@@ -77,9 +77,8 @@ export class SharedDataService {
 	public readonly disruptedTrainTracksLayerData$ = this._disruptedTrainTracksLayerData.asObservable();
 
 	/**Markers for disruptions*/
-	private readonly _disruptionMarkersData: BehaviorSubject<
-		GeoJSON.Feature<GeoJSON.Point, DisruptionBase>[]
-	> = new BehaviorSubject(null);
+	private readonly _disruptionMarkersData: BehaviorSubject<GeoJSON.Feature<GeoJSON.Point, DisruptionBase>[]> =
+		new BehaviorSubject(null);
 	/**Markers for disruptions as observables*/
 	public readonly disruptionMarkersData$ = this._disruptionMarkersData.asObservable();
 

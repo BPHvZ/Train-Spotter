@@ -103,14 +103,28 @@
 						>
 							<div
 								tabindex="0"
-								class="map-marker map-marker--disruption flex-parent-inline flex-parent--center-cross flex-parent--column absolute bottom"
+								class="
+									map-marker map-marker--disruption
+									flex-parent-inline
+									flex-parent--center-cross flex-parent--column
+									absolute
+									bottom
+								"
 							>
 								<ng-template
 									[ngIf]="disruptionMarker.properties.type === 'MAINTENANCE'"
 									[ngIfElse]="elseDisruption"
 								>
 									<div
-										class="map-marker-content map-marker-content--maintenance color-white shadow-darken10 round txt-s clip txt-truncate"
+										class="
+											map-marker-content map-marker-content--maintenance
+											color-white
+											shadow-darken10
+											round
+											txt-s
+											clip
+											txt-truncate
+										"
 									>
 										<div class="marker-icon-parent color-maintenance" style="position: relative">
 											<div class="marker-hover"></div>
@@ -128,7 +142,15 @@
 								</ng-template>
 								<ng-template #elseDisruption>
 									<div
-										class="map-marker-content map-marker-content--disruption color-white shadow-darken10 round txt-s clip txt-truncate"
+										class="
+											map-marker-content map-marker-content--disruption
+											color-white
+											shadow-darken10
+											round
+											txt-s
+											clip
+											txt-truncate
+										"
 									>
 										<div class="marker-icon-parent color-disruption" style="position: relative">
 											<div class="marker-hover"></div>

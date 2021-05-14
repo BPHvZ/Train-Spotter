@@ -125,15 +125,15 @@ export class TrainMapComponent implements OnInit, OnDestroy {
 	 * Get train tracks that have disruptions
 	 * @returns GeoJSON.FeatureCollection<MultiLineString> GeoJSON data of disrupted train tracks
 	 */
-	disruptedTrainTracksLayerData$: Observable<TrainTracksGeoJSON> = this.sharedDataService
-		.disruptedTrainTracksLayerData$;
+	disruptedTrainTracksLayerData$: Observable<TrainTracksGeoJSON> =
+		this.sharedDataService.disruptedTrainTracksLayerData$;
 
 	/**
 	 * Get markers to place at current disruptions
 	 * @returns GeoJSON.Feature<GeoJSON.Point, DisruptionBase>[] GeoJSON data of disruption markers
 	 */
-	disruptionMarkersData$: Observable<GeoJSON.Feature<GeoJSON.Point, DisruptionBase>[]> = this.sharedDataService
-		.disruptionMarkersData$;
+	disruptionMarkersData$: Observable<GeoJSON.Feature<GeoJSON.Point, DisruptionBase>[]> =
+		this.sharedDataService.disruptionMarkersData$;
 
 	// Trains layer
 	/**Trains layer with current trains*/

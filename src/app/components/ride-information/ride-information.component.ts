@@ -209,14 +209,20 @@ export class RideInformationComponent implements OnInit {
 					});
 				},
 				complete: () => {
-					this.trainsLayerData = this.helperFunctions.parseToGeoJSON<DetailedTrainInformation>(
-						[this.trainInformation],
-						["lng", "lat"],
-						[],
-						true
-					);
+					this.updateTrainsLayerData();
 				},
 			});
+	}
+
+	updateTrainsLayerData(): void {
+		if (this.trainInformation) {
+			this.trainsLayerData = this.helperFunctions.parseToGeoJSON<DetailedTrainInformation>(
+				[this.trainInformation],
+				["lng", "lat"],
+				[],
+				true
+			);
+		}
 	}
 
 	/**
@@ -239,6 +245,7 @@ export class RideInformationComponent implements OnInit {
 				},
 				complete: () => {
 					console.log("updateTrainAndJourneyInformation");
+					this.updateTrainsLayerData();
 					this.isUpdatingMapData = false;
 					this.pauseOrResumeUpdatingTrainPositions(false);
 				},

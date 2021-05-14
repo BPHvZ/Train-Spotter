@@ -120,10 +120,10 @@ mgl-map
   width: 100%
   height: 100%
 
-::ng-deep .mapboxgl-popup-anchor-bottom .mapboxgl-popup-tip, .mapboxgl-popup-anchor-bottom-right .mapboxgl-popup-tip, .mapboxgl-popup-anchor-bottom-left .mapboxgl-popup-tip
+::ng-deep :-webkit-any(::ng-deep .mapboxgl-popup-anchor-bottom, ::ng-deep .mapboxgl-popup-anchor-bottom-right, ::ng-deep .mapboxgl-popup-anchor-bottom-left) .mapboxgl-popup-tip
   border-top-color: $ns-blue
 
-::ng-deep .mapboxgl-popup-anchor-top .mapboxgl-popup-tip, .mapboxgl-popup-anchor-top-right .mapboxgl-popup-tip, .mapboxgl-popup-anchor-top-left .mapboxgl-popup-tip
+::ng-deep :-webkit-any(::ng-deep .mapboxgl-popup-anchor-top, ::ng-deep .mapboxgl-popup-anchor-top-right, ::ng-deep .mapboxgl-popup-anchor-top-left) .mapboxgl-popup-tip
   border-bottom-color: $ns-blue
 
 ::ng-deep .mapboxgl-popup-anchor-left .mapboxgl-popup-tip
@@ -140,3 +140,59 @@ mgl-map
   background: $ns-blue
   width: max-content
   padding: 0
+
+#playPauseButton
+  color: $ns-blue
+  border-radius: 12px
+  text-align: center
+  width: fit-content
+
+#updatePositionsProgressbar
+  z-index: 1
+  margin: 0 10px 5px 10px
+
+#updatePositionsLabel
+  margin-left: 10px
+  color: $ns-blue
+  cursor: default
+
+#playPauseIconButton
+  margin-top: -5px
+  margin-right: 15px
+  float: right
+
+#updatingMapDataSpinner
+  margin: 7px 25px 9px 11px
+  height: 19px
+  width: 19px
+
+.countdown-progressbar
+  display: flex
+  height: 12px
+  border-radius: 6px
+  overflow: hidden
+  line-height: 0
+  font-size: 0.75rem
+  background-color: #e9ecef
+
+.progress-value
+  animation-name: load
+  animation-duration: 30s
+  animation-timing-function: linear
+  animation-play-state: paused
+  animation-fill-mode: backwards
+  border-radius: 6px 0 0 6px
+  background: $ns-blue
+  width: 100%
+  height: 100%
+
+@keyframes load
+  0%
+    width: 100%
+  100%
+    width: 0
+
+#train-information-details
+  border-radius: 12px
+  padding: 10px
+  width: fit-content

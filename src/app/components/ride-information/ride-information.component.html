@@ -47,155 +47,361 @@
 				<h2 class="card-subtitle mb-2 text-muted font-weight-bold">
 					{{journey.stops[0].stop['name']}} naar {{journey.stops[journey.stops.length - 1].destination}}
 				</h2>
-				<div class="map_box_container">
-					<mgl-map
-						[style]="mapStyle"
-						[zoom]="[zoom]"
-						[center]="[lng, lat]"
-						[interactive]="false"
-						(mapLoad)="onMapLoad($event)"
-					>
-						<mgl-geojson-source
-							id="routeTracksLayerData"
-							[data]="routeTracksLayerData"
-						></mgl-geojson-source>
-						<mgl-layer
-							id="NSTrainTracks"
-							type="line"
-							source="routeTracksLayerData"
-							[layout]="{ 'line-join': 'round', 'line-cap': 'round' }"
-							[paint]="{ 'line-color': '#6a6a79', 'line-width': 3 }"
-						>
-						</mgl-layer>
-						<ng-container *ngIf="progressTracksLayerData">
-							<mgl-geojson-source
-								id="progressTracksLayerData"
-								[data]="progressTracksLayerData"
-							></mgl-geojson-source>
-							<mgl-layer
-								id="ProgressTrainTracks"
-								type="line"
-								source="progressTracksLayerData"
-								[layout]="{ 'line-join': 'round', 'line-cap': 'round' }"
-								[paint]="{ 'line-color': '#0063D3', 'line-width': 3 }"
+				<div>
+					<div class="d-md-flex">
+						<div class="map_box_container mr-md-3 mb-3 mb-md-0">
+							<mgl-map
+								[style]="mapStyle"
+								[zoom]="[zoom]"
+								[center]="[lng, lat]"
+								[interactive]="false"
+								(mapLoad)="onMapLoad($event)"
 							>
-							</mgl-layer>
-						</ng-container>
-						<ng-container *ngIf="trainIconOnMap">
-							<mgl-image
-								[id]="trainIconOnMap.imageName"
-								[url]="trainIconOnMap.imageObjectURL"
-							></mgl-image>
-						</ng-container>
-						<mgl-geojson-source
-							*ngIf="trainsLayerData"
-							id="trainData"
-							[data]="trainsLayerData"
-						></mgl-geojson-source>
-						<mgl-layer
-							*ngIf="trainsLayerData && trainIconOnMap"
-							id="trains"
-							type="symbol"
-							source="trainData"
-							[layout]="{
+								<mgl-geojson-source
+									id="routeTracksLayerData"
+									[data]="routeTracksLayerData"
+								></mgl-geojson-source>
+								<mgl-layer
+									id="NSTrainTracks"
+									type="line"
+									source="routeTracksLayerData"
+									[layout]="{ 'line-join': 'round', 'line-cap': 'round' }"
+									[paint]="{ 'line-color': '#6a6a79', 'line-width': 3 }"
+								>
+								</mgl-layer>
+								<ng-container *ngIf="progressTracksLayerData">
+									<mgl-geojson-source
+										id="progressTracksLayerData"
+										[data]="progressTracksLayerData"
+									></mgl-geojson-source>
+									<mgl-layer
+										id="ProgressTrainTracks"
+										type="line"
+										source="progressTracksLayerData"
+										[layout]="{ 'line-join': 'round', 'line-cap': 'round' }"
+										[paint]="{ 'line-color': '#0063D3', 'line-width': 3 }"
+									>
+									</mgl-layer>
+								</ng-container>
+								<ng-container *ngIf="trainIconOnMap">
+									<mgl-image
+										[id]="trainIconOnMap.imageName"
+										[url]="trainIconOnMap.imageObjectURL"
+									></mgl-image>
+								</ng-container>
+								<mgl-geojson-source
+									*ngIf="trainsLayerData"
+									id="trainData"
+									[data]="trainsLayerData"
+								></mgl-geojson-source>
+								<mgl-layer
+									*ngIf="trainsLayerData && trainIconOnMap"
+									id="trains"
+									type="symbol"
+									source="trainData"
+									[layout]="{
                 'icon-image': ['get', 'trainIconName'],
                 'icon-size': 0.5,
                 'icon-allow-overlap': true,
                 'icon-ignore-placement': true
               }"
-						>
-						</mgl-layer>
-						<ng-container *ngIf="dataSource">
-							<ng-container *ngFor="let stop of stopsLayerData.features">
-								<mgl-marker [feature]="stop" #marker>
-									<div
-										class="progress-stop-map"
-										[class.progress-stop-map--blue]="
+								>
+								</mgl-layer>
+								<ng-container *ngIf="dataSource">
+									<ng-container *ngFor="let stop of stopsLayerData.features">
+										<mgl-marker [feature]="stop" #marker>
+											<div
+												class="progress-stop-map"
+												[class.progress-stop-map--blue]="
 															(passedStations.length == 1 && passedStations[0] == stop.properties.stop['uicCode']) ||
 															(passedStations.length >= 2 && passedStations.includes(stop.properties.stop['uicCode'])
 															&& passedStations[passedStations.length - 1] != stop.properties.stop['uicCode'])"
-										style="cursor: pointer"
-										(click)="onStopMarkerClick(marker)"
+												style="cursor: pointer"
+												(click)="onStopMarkerClick(marker)"
+											>
+												<div class="progress-stop-map-content"></div>
+											</div>
+										</mgl-marker>
+									</ng-container>
+								</ng-container>
+								<mgl-popup
+									*ngIf="selectedMarker"
+									[marker]="selectedMarker"
+									[maxWidth]="'none'"
+									[closeButton]="false"
+								>
+									<div
+										class="map-marker-content color-white shadow-darken10 round txt-s clip txt-truncate"
+										style="padding: 15px 0"
 									>
-										<div class="progress-stop-map-content"></div>
-									</div>
-								</mgl-marker>
-							</ng-container>
-						</ng-container>
-						<mgl-popup
-							*ngIf="selectedMarker"
-							[marker]="selectedMarker"
-							[maxWidth]="'none'"
-							[closeButton]="false"
-						>
-							<div
-								class="map-marker-content color-white shadow-darken10 round txt-s clip txt-truncate"
-								style="padding: 15px 0"
-							>
-								<div class="container-fluid">
-									<div class="row">
-										<div class="col">
-											<div class="d-flex">
-												<div class="float-left mr-3" style="width: fit-content">
-													<div>
-														<div class="mb-1 font-weight-bold">Station:</div>
-													</div>
-													<div class="mb-1 font-weight-bold">Aankomst:</div>
-													<div class="font-weight-bold">Vertrek:</div>
-												</div>
+										<div class="container-fluid">
+											<div class="row">
+												<div class="col">
+													<div class="d-flex">
+														<div class="float-left mr-3" style="width: fit-content">
+															<div>
+																<div class="mb-1 font-weight-bold">Station:</div>
+															</div>
+															<div class="mb-1 font-weight-bold">Aankomst:</div>
+															<div class="font-weight-bold">Vertrek:</div>
+														</div>
 
-												<div style="width: fit-content">
-													<div class="mb-1">
-														{{selectedMarker.feature.properties.stop.name}}
-													</div>
-													<div class="mb-1">
-														<ng-container
-															*ngIf="selectedMarker.feature.properties.status == 'ORIGIN'"
-															>--</ng-container
-														>
-														<ng-container
-															*ngIf="selectedMarker.feature.properties.status == 'STOP' || selectedMarker.feature.properties.status == 'DESTINATION'"
-														>
-															<ng-container
-																*ngIf="selectedMarker.feature.properties['arrivals'][0]['actualTime']; else plannedTime"
-															>
-																{{selectedMarker.feature.properties['arrivals'][0]['actualTime']
-																| date:'HH:mm'}}
-															</ng-container>
-															<ng-template #plannedTime
-																>{{selectedMarker.feature.properties['arrivals'][0]['plannedTime']
-																| date:'HH:mm'}}</ng-template
-															>
-														</ng-container>
-													</div>
-													<div>
-														<ng-container
-															*ngIf="selectedMarker.feature.properties.status == 'DESTINATION'"
-															>--</ng-container
-														>
-														<ng-container
-															*ngIf="selectedMarker.feature.properties.status == 'ORIGIN' || selectedMarker.feature.properties.status == 'STOP'"
-														>
-															<ng-container
-																*ngIf="selectedMarker.feature.properties['departures'][0]['actualTime']; else plannedTime"
-															>
-																{{selectedMarker.feature.properties['departures'][0]['actualTime']
-																| date:'HH:mm'}}
-															</ng-container>
-															<ng-template #plannedTime
-																>{{selectedMarker.feature.properties['departures'][0]['plannedTime']
-																| date:'HH:mm'}}</ng-template
-															>
-														</ng-container>
+														<div style="width: fit-content">
+															<div class="mb-1">
+																{{selectedMarker.feature.properties.stop.name}}
+															</div>
+															<div class="mb-1">
+																<ng-container
+																	*ngIf="selectedMarker.feature.properties.status == 'ORIGIN'"
+																	>--</ng-container
+																>
+																<ng-container
+																	*ngIf="selectedMarker.feature.properties.status == 'STOP' || selectedMarker.feature.properties.status == 'DESTINATION'"
+																>
+																	<ng-container
+																		*ngIf="selectedMarker.feature.properties['arrivals'][0]['actualTime']; else plannedTime"
+																	>
+																		{{selectedMarker.feature.properties['arrivals'][0]['actualTime']
+																		| date:'HH:mm'}}
+																	</ng-container>
+																	<ng-template #plannedTime
+																		>{{selectedMarker.feature.properties['arrivals'][0]['plannedTime']
+																		| date:'HH:mm'}}</ng-template
+																	>
+																</ng-container>
+															</div>
+															<div>
+																<ng-container
+																	*ngIf="selectedMarker.feature.properties.status == 'DESTINATION'"
+																	>--</ng-container
+																>
+																<ng-container
+																	*ngIf="selectedMarker.feature.properties.status == 'ORIGIN' || selectedMarker.feature.properties.status == 'STOP'"
+																>
+																	<ng-container
+																		*ngIf="selectedMarker.feature.properties['departures'][0]['actualTime']; else plannedTime"
+																	>
+																		{{selectedMarker.feature.properties['departures'][0]['actualTime']
+																		| date:'HH:mm'}}
+																	</ng-container>
+																	<ng-template #plannedTime
+																		>{{selectedMarker.feature.properties['departures'][0]['plannedTime']
+																		| date:'HH:mm'}}</ng-template
+																	>
+																</ng-container>
+															</div>
+														</div>
 													</div>
 												</div>
 											</div>
 										</div>
 									</div>
+								</mgl-popup>
+							</mgl-map>
+						</div>
+						<div style="font-size: 14px">
+							<div
+								id="playPauseButton"
+								class="border border--2 border--white bg-white shadow-darken10 z1 mb-2"
+								(click)="pauseOrResumeUpdatingTrainPositions(!updateTrainsIsPaused)"
+							>
+								<div class="row">
+									<div id="updatePositionsLabel" class="toggle txt-s">Update informatie</div>
+									<div
+										id="playPauseIconButton"
+										*ngIf="
+							isUpdatingMapData === false || updateTrainsIsPaused === false;
+							else updatingMapDataSpinner
+						"
+									>
+										<button
+											mat-icon-button
+											role="button"
+											aria-label="Pauzeer/hervat treinposities countdown"
+										>
+											<mat-icon
+												*ngIf="
+									updateTrainsIsPaused === false && isUpdatingMapData === false;
+									else playCircleIcon
+								"
+											>
+												pause_circle_filled
+											</mat-icon>
+											<ng-template #playCircleIcon>
+												<mat-icon>play_circle_filled</mat-icon>
+											</ng-template>
+										</button>
+									</div>
+									<ng-template #updatingMapDataSpinner>
+										<div
+											id="updatingMapDataSpinner"
+											class="spinner-border spinner-border-sm"
+											role="status"
+										>
+											<span class="sr-only">Laden...</span>
+										</div>
+									</ng-template>
+								</div>
+								<div id="updatePositionsProgressbar">
+									<div class="countdown-progressbar">
+										<div
+											#updateCountdown
+											class="progress-value"
+											[ngStyle]="{'animation-play-state': updateTrainsIsPaused ? 'paused' : 'running'}"
+											role="progressbar"
+											aria-valuemin="0"
+											aria-valuemax="100"
+											aria-label="Treinposities update countdown"
+										></div>
+									</div>
 								</div>
 							</div>
-						</mgl-popup>
-					</mgl-map>
+							<div
+								id="train-information-details"
+								class="border border--2 border--white bg-white shadow-darken10 z1"
+							>
+								<div class="d-flex" style="white-space: nowrap">
+									<div class="float-left mr-3">
+										<div class="mb-2 font-weight-bold">Snelheid:</div>
+										<div class="mb-2 font-weight-bold">Richting:</div>
+										<ng-container *ngIf="nextStation">
+											<div
+												[ngClass]="{'mb-2' : trainInformation.trainDetails.type }"
+												class="font-weight-bold"
+											>
+												Volgende Station:
+											</div>
+										</ng-container>
+										<ng-container *ngIf="trainInformation.trainDetails.type">
+											<div class="font-weight-bold">Type:</div>
+										</ng-container>
+									</div>
+									<div class="d-inline-block">
+										<div class="mb-2">{{ trainInformation.snelheid | number:'1.0-2' }} km/u</div>
+										<div class="mb-2 d-flex align-items-center">
+											<span>{{ trainInformation.richting }}&deg;</span>
+											<span
+												class="material-icons font-weight-bold ml-1"
+												style="font-size: 18px"
+												[ngStyle]="directionArrowStyle"
+												>arrow_right_alt</span
+											>
+										</div>
+										<ng-container *ngIf="nextStation">
+											<div [ngClass]="{'mb-2' : trainInformation.trainDetails.type }">
+												{{nextStation.namen.lang}}
+											</div>
+										</ng-container>
+										<ng-container *ngIf="trainInformation.trainDetails.type">
+											<div>{{trainInformation.trainDetails.type}}</div>
+										</ng-container>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg mt-3 mt-lg-0">
+						<!--						<div style="font-size: 14px">-->
+						<!--							<div-->
+						<!--								id="playPauseButton"-->
+						<!--								class="border border&#45;&#45;2 border&#45;&#45;white bg-white shadow-darken10 z1 mb-3"-->
+						<!--								(click)="pauseOrResumeUpdatingTrainPositions(!updateTrainsIsPaused)"-->
+						<!--							>-->
+						<!--								<div class="row">-->
+						<!--									<div id="updatePositionsLabel" class="toggle txt-s">Update informatie</div>-->
+						<!--									<div-->
+						<!--										id="playPauseIconButton"-->
+						<!--										*ngIf="-->
+						<!--							isUpdatingMapData === false || updateTrainsIsPaused === false;-->
+						<!--							else updatingMapDataSpinner-->
+						<!--						"-->
+						<!--									>-->
+						<!--										<button-->
+						<!--											mat-icon-button-->
+						<!--											role="button"-->
+						<!--											aria-label="Pauzeer/hervat treinposities countdown"-->
+						<!--										>-->
+						<!--											<mat-icon-->
+						<!--												*ngIf="-->
+						<!--									updateTrainsIsPaused === false && isUpdatingMapData === false;-->
+						<!--									else playCircleIcon-->
+						<!--								"-->
+						<!--											>-->
+						<!--												pause_circle_filled-->
+						<!--											</mat-icon>-->
+						<!--											<ng-template #playCircleIcon>-->
+						<!--												<mat-icon>play_circle_filled</mat-icon>-->
+						<!--											</ng-template>-->
+						<!--										</button>-->
+						<!--									</div>-->
+						<!--									<ng-template #updatingMapDataSpinner>-->
+						<!--										<div-->
+						<!--											id="updatingMapDataSpinner"-->
+						<!--											class="spinner-border spinner-border-sm"-->
+						<!--											role="status"-->
+						<!--										>-->
+						<!--											<span class="sr-only">Laden...</span>-->
+						<!--										</div>-->
+						<!--									</ng-template>-->
+						<!--								</div>-->
+						<!--								<div id="updatePositionsProgressbar">-->
+						<!--									<div class="countdown-progressbar">-->
+						<!--										<div-->
+						<!--											#updateCountdown-->
+						<!--											class="progress-value"-->
+						<!--											[ngStyle]="{'animation-play-state': updateTrainsIsPaused ? 'paused' : 'running'}"-->
+						<!--											role="progressbar"-->
+						<!--											aria-valuemin="0"-->
+						<!--											aria-valuemax="100"-->
+						<!--											aria-label="Treinposities update countdown"-->
+						<!--										></div>-->
+						<!--									</div>-->
+						<!--								</div>-->
+						<!--							</div>-->
+						<!--							<div-->
+						<!--								id="train-information-details"-->
+						<!--								class="border border&#45;&#45;2 border&#45;&#45;white bg-white shadow-darken10 z1"-->
+						<!--							>-->
+						<!--								<div>-->
+						<!--									<div class="float-left mr-3">-->
+						<!--										<div class="mb-2 font-weight-bold">Snelheid:</div>-->
+						<!--										<div class="mb-2 font-weight-bold">Richting:</div>-->
+						<!--										<ng-container *ngIf="nextStation">-->
+						<!--											<div-->
+						<!--												[ngClass]="{'mb-2' : trainInformation.trainDetails.type }"-->
+						<!--												class="font-weight-bold"-->
+						<!--											>-->
+						<!--												Volgende Station:-->
+						<!--											</div>-->
+						<!--										</ng-container>-->
+						<!--										<ng-container *ngIf="trainInformation.trainDetails.type">-->
+						<!--											<div class="font-weight-bold">Type:</div>-->
+						<!--										</ng-container>-->
+						<!--									</div>-->
+						<!--									<div class="d-inline-block">-->
+						<!--										<div class="mb-2">{{ trainInformation.snelheid | number:'1.0-2' }} km/u</div>-->
+						<!--										<div class="mb-2 d-flex align-items-center">-->
+						<!--											<span>{{ trainInformation.richting }}&deg;</span>-->
+						<!--											<span-->
+						<!--												class="material-icons font-weight-bold ml-1"-->
+						<!--												style="font-size: 18px"-->
+						<!--												[ngStyle]="directionArrowStyle"-->
+						<!--												>arrow_right_alt</span-->
+						<!--											>-->
+						<!--										</div>-->
+						<!--										<ng-container *ngIf="nextStation">-->
+						<!--											<div [ngClass]="{'mb-2' : trainInformation.trainDetails.type }">-->
+						<!--												{{nextStation.namen.lang}}-->
+						<!--											</div>-->
+						<!--										</ng-container>-->
+						<!--										<ng-container *ngIf="trainInformation.trainDetails.type">-->
+						<!--											<div>{{trainInformation.trainDetails.type}}</div>-->
+						<!--										</ng-container>-->
+						<!--									</div>-->
+						<!--								</div>-->
+						<!--							</div>-->
+						<!--						</div>-->
+					</div>
 				</div>
 			</div>
 		</div>
@@ -206,7 +412,7 @@
 			<h2 class="card-subtitle mb-2 text-muted font-weight-bold">
 				{{journey.stops[0].stop['name']}} naar {{journey.stops[journey.stops.length - 1].destination}}
 			</h2>
-			<div style="width: 100%; overflow-x: auto; overflow-y: visible" class="scroll-gradient">
+			<div style="width: 100%; overflow-x: auto; overflow-y: hidden" class="scroll-gradient">
 				<table cdk-table [dataSource]="dataSource">
 					<!-- Progress Column-->
 					<ng-container cdkColumnDef="progress">

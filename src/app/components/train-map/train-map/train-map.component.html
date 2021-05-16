@@ -229,7 +229,7 @@
 						name="toggle"
 						type="radio"
 						[attr.aria-label]="mapType.description"
-						[checked]="activeMapType.layerId == mapType.layerId"
+						[checked]="activeMapType.layerId === mapType.layerId"
 						[disabled]="isUpdatingMapData"
 					/>
 					<div

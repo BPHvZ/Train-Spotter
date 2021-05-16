@@ -16156,7 +16156,7 @@ resolve@1.1.7:
     webpack-bundle-analyzer: ^4.4.1
     xml-formatter: ^2.4.0
     xml2json: ^0.12.0
-    zone.js: ^0.11.4
+    zone.js: ~0.11.4
   languageName: unknown
   linkType: soft
 
@@ -17414,18 +17414,18 @@ typescript@2.9.1:
   languageName: node
   linkType: hard
 
-"zone.js@npm:^0.11.4":
+"zone.js@npm:~0.10.3":
+  version: 0.10.3
+  resolution: "zone.js@npm:0.10.3"
+  checksum: 8b6ce7691c45fcdb55b8fd5adc6e1c7b0bd43895668c686ba9cb8f75b284cda5b3de578eb088d58db9cea452fbbaf6fc548582b49477347002588d857ecdb011
+  languageName: node
+  linkType: hard
+
+"zone.js@npm:~0.11.4":
   version: 0.11.4
   resolution: "zone.js@npm:0.11.4"
   dependencies:
     tslib: ^2.0.0
   checksum: 737caa3bbc336d9fcc6a753659d79a6a99e67382fdaf95dfe366fcc0160a1508307caca1d0e0064760ef70bf15a2b9052c64e2ff3fe0a16b83ba95475cfe94cc
-  languageName: node
-  linkType: hard
-
-"zone.js@npm:~0.10.3":
-  version: 0.10.3
-  resolution: "zone.js@npm:0.10.3"
-  checksum: 8b6ce7691c45fcdb55b8fd5adc6e1c7b0bd43895668c686ba9cb8f75b284cda5b3de578eb088d58db9cea452fbbaf6fc548582b49477347002588d857ecdb011
   languageName: node
   linkType: hard

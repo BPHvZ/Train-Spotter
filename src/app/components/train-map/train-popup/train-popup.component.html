@@ -47,7 +47,7 @@
 										"
 							>
 								<ng-container *ngIf="trainPart.materieelnummer">
-									<ng-container *ngIf="i == 0; else other">
+									<ng-container *ngIf="i === 0; else other">
 										<span
 											>met
 											<span
@@ -60,7 +60,7 @@
 									</ng-container>
 									<ng-template #other>
 										<span>
-											{{ i == (trainInformation.trainDetails.materieeldelen.length - 1) ? " " +
+											{{ i === (trainInformation.trainDetails.materieeldelen.length - 1) ? " " +
 											'en' : ','}}
 											<span
 												class="link-hover"

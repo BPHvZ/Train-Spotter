@@ -12,9 +12,9 @@
 										"
 					>
 						<span *ngIf="trainPart.materieelnummer">
-							<span *ngIf="i == 0; else other"> met {{ trainPart.materieelnummer }}</span>
+							<span *ngIf="i === 0; else other"> met {{ trainPart.materieelnummer }}</span>
 							<ng-template #other
-								>{{i == (trainInformation.trainDetails.materieeldelen.length - 1) ? ' ' + 'en' : ','}}
+								>{{i === (trainInformation.trainDetails.materieeldelen.length - 1) ? ' ' + 'en' : ','}}
 								{{ trainPart.materieelnummer }}
 							</ng-template>
 						</span>
@@ -113,9 +113,9 @@
 											<div
 												class="progress-stop-map"
 												[class.progress-stop-map--blue]="
-															(passedStations.length == 1 && passedStations[0] == stop.properties.stop['uicCode']) ||
+															(passedStations.length === 1 && passedStations[0] === stop.properties.stop['uicCode']) ||
 															(passedStations.length >= 2 && passedStations.includes(stop.properties.stop['uicCode'])
-															&& passedStations[passedStations.length - 1] != stop.properties.stop['uicCode'])"
+															&& passedStations[passedStations.length - 1] !== stop.properties.stop['uicCode'])"
 												style="cursor: pointer"
 												(click)="onStopMarkerClick(marker)"
 											>
@@ -160,11 +160,11 @@
 															</div>
 															<div class="mb-1">
 																<ng-container
-																	*ngIf="selectedMarker.feature.properties.status == 'ORIGIN'"
+																	*ngIf="selectedMarker.feature.properties.status === 'ORIGIN'"
 																	>--</ng-container
 																>
 																<ng-container
-																	*ngIf="selectedMarker.feature.properties.status == 'STOP' || selectedMarker.feature.properties.status == 'DESTINATION'"
+																	*ngIf="selectedMarker.feature.properties.status === 'STOP' || selectedMarker.feature.properties.status === 'DESTINATION'"
 																>
 																	<ng-container
 																		*ngIf="selectedMarker.feature.properties['arrivals'][0]['actualTime']; else plannedTime"
@@ -180,11 +180,11 @@
 															</div>
 															<div>
 																<ng-container
-																	*ngIf="selectedMarker.feature.properties.status == 'DESTINATION'"
+																	*ngIf="selectedMarker.feature.properties.status === 'DESTINATION'"
 																	>--</ng-container
 																>
 																<ng-container
-																	*ngIf="selectedMarker.feature.properties.status == 'ORIGIN' || selectedMarker.feature.properties.status == 'STOP'"
+																	*ngIf="selectedMarker.feature.properties.status === 'ORIGIN' || selectedMarker.feature.properties.status === 'STOP'"
 																>
 																	<ng-container
 																		*ngIf="selectedMarker.feature.properties['departures'][0]['actualTime']; else plannedTime"
@@ -434,28 +434,28 @@
 								<div
 									class="progress-stop"
 									[class.progress-stop--blue]="
-									(passedStations.length == 1 && passedStations[0] == stop.stop['uicCode']) ||
+									(passedStations.length === 1 && passedStations[0] === stop.stop['uicCode']) ||
 									(passedStations.length >= 2 && passedStations.includes(stop.stop['uicCode'])
-									&& passedStations[passedStations.length - 1] != stop.stop['uicCode'])"
+									&& passedStations[passedStations.length - 1] !== stop.stop['uicCode'])"
 								>
 									<div class="progress-stop-content"></div>
 								</div>
 								<div style="height: 100%">
 									<div
-										*ngIf="stop != journey.stops[0]; else progressLineHidden"
+										*ngIf="stop !== journey.stops[0]; else progressLineHidden"
 										class="progress-line"
 										[class.progress-line--blue]="
-										(passedStations.length == 1 && passedStations[0] == stop.stop['uicCode']) ||
+										(passedStations.length === 1 && passedStations[0] === stop.stop['uicCode']) ||
 									(passedStations.length >= 2 && passedStations.includes(stop.stop['uicCode'])
-									&& passedStations[passedStations.length - 1] != stop.stop['uicCode'])"
+									&& passedStations[passedStations.length - 1] !== stop.stop['uicCode'])"
 									></div>
 									<div
-										*ngIf="stop != journey.stops[journey.stops.length - 1]; else progressLineHidden"
+										*ngIf="stop !== journey.stops[journey.stops.length - 1]; else progressLineHidden"
 										class="progress-line"
 										[class.progress-line--blue]="
-										(passedStations.length == 1 && passedStations[0] == stop.stop['uicCode']) ||
+										(passedStations.length === 1 && passedStations[0] === stop.stop['uicCode']) ||
 									(passedStations.length >= 2 && passedStations.includes(stop.stop['uicCode'])
-									&& passedStations[passedStations.length - 1] != stop.stop['uicCode'])"
+									&& passedStations[passedStations.length - 1] !== stop.stop['uicCode'])"
 									></div>
 									<ng-template #progressLineHidden>
 										<div class="progress-line progress-line--hidden"></div>
@@ -469,8 +469,8 @@
 					<ng-container cdkColumnDef="aankomst">
 						<th cdk-header-cell *cdkHeaderCellDef>Aankomst</th>
 						<td cdk-cell *cdkCellDef="let stop">
-							<ng-container *ngIf="stop.status == 'ORIGIN'">--</ng-container>
-							<ng-container *ngIf="stop.status == 'STOP' || stop.status == 'DESTINATION'">
+							<ng-container *ngIf="stop.status === 'ORIGIN'">--</ng-container>
+							<ng-container *ngIf="stop.status === 'STOP' || stop.status === 'DESTINATION'">
 								<ng-container *ngIf="stop['arrivals'][0]['actualTime']; else plannedTime">
 									{{stop['arrivals'][0]['actualTime'] | date:'HH:mm'}}
 									<ng-container *ngIf="stop['arrivals'][0]['plannedTime']">
@@ -495,8 +495,8 @@
 					<ng-container cdkColumnDef="vertrek">
 						<th cdk-header-cell *cdkHeaderCellDef>Vertrek</th>
 						<td cdk-cell *cdkCellDef="let stop">
-							<ng-container *ngIf="stop.status == 'DESTINATION'">--</ng-container>
-							<ng-container *ngIf="stop.status == 'ORIGIN' || stop.status == 'STOP'">
+							<ng-container *ngIf="stop.status === 'DESTINATION'">--</ng-container>
+							<ng-container *ngIf="stop.status === 'ORIGIN' || stop.status === 'STOP'">
 								<ng-container *ngIf="stop['departures'][0]['actualTime']; else plannedTime">
 									{{stop['departures'][0]['actualTime'] | date:'HH:mm'}}
 									<ng-container *ngIf="stop['departures'][0]['plannedTime']">
@@ -521,7 +521,7 @@
 					<ng-container cdkColumnDef="station">
 						<th cdk-header-cell *cdkHeaderCellDef>Station</th>
 						<td cdk-cell *cdkCellDef="let element">
-							<div [ngClass]="{'font-weight-bold': nextStation.namen.lang == element.stop.name}">
+							<div [ngClass]="{'font-weight-bold': nextStation.namen.lang === element.stop.name}">
 								{{element.stop.name}}
 							</div>
 						</td>
@@ -531,13 +531,13 @@
 					<ng-container cdkColumnDef="perron">
 						<th cdk-header-cell *cdkHeaderCellDef>Perron</th>
 						<td cdk-cell *cdkCellDef="let stop">
-							<ng-container *ngIf="stop.status == 'ORIGIN' || stop.status == 'STOP'">
+							<ng-container *ngIf="stop.status === 'ORIGIN' || stop.status === 'STOP'">
 								<ng-container *ngIf="stop['departures'][0]['actualTrack']; else plannedTrack">
 									{{stop['departures'][0]['actualTrack']}}
 								</ng-container>
 								<ng-template #plannedTrack>{{stop['departures'][0]['plannedTrack']}}</ng-template>
 							</ng-container>
-							<ng-container *ngIf="stop.status == 'DESTINATION'">
+							<ng-container *ngIf="stop.status === 'DESTINATION'">
 								<ng-container *ngIf="stop['arrivals'][0]['actualTrack']; else plannedTrack">
 									{{stop['arrivals'][0]['actualTrack']}}
 								</ng-container>
@@ -551,12 +551,12 @@
 						<th cdk-header-cell *cdkHeaderCellDef>Drukte</th>
 						<td cdk-cell *cdkCellDef="let stop">
 							<ng-container
-								*ngIf="stop.status == 'ORIGIN' || stop.status == 'STOP' && stop['departures'][0]['crowdForecast'] != 'UNKNOWN'"
+								*ngIf="stop.status === 'ORIGIN' || stop.status === 'STOP' && stop['departures'][0]['crowdForecast'] !== 'UNKNOWN'"
 							>
 								<div
 									class="crowd-forecast text-nowrap"
-									[ngClass]="{'crowd-forecast--medium': stop['departures'][0]['crowdForecast'] == 'MEDIUM',
-                'crowd-forecast--high': stop['departures'][0]['crowdForecast'] == 'HIGH'
+									[ngClass]="{'crowd-forecast--medium': stop['departures'][0]['crowdForecast'] === 'MEDIUM',
+                'crowd-forecast--high': stop['departures'][0]['crowdForecast'] === 'HIGH'
                 }"
 									style="padding: 0 4px"
 								>
@@ -572,7 +572,7 @@
 								</div>
 							</ng-container>
 							<ng-container
-								*ngIf="stop.status == 'DESTINATION' && stop['arrivals'][0]['crowdForecast'] != 'UNKNOWN'"
+								*ngIf="stop.status === 'DESTINATION' && stop['arrivals'][0]['crowdForecast'] !== 'UNKNOWN'"
 							>
 								<div class="crowd-forecast text-nowrap">
 									<ng-container

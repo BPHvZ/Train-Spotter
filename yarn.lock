@@ -2086,14 +2086,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@es-joy/jsdoccomment@npm:^0.4.4":
-  version: 0.4.4
-  resolution: "@es-joy/jsdoccomment@npm:0.4.4"
+"@es-joy/jsdoccomment@npm:^0.6.0":
+  version: 0.6.0
+  resolution: "@es-joy/jsdoccomment@npm:0.6.0"
   dependencies:
     comment-parser: ^1.1.5
     esquery: ^1.4.0
     jsdoctypeparser: ^9.0.0
-  checksum: 485e0e591d6ff3e62bb1da9a5b6d30c543a5ff24f30e39eb71acf40dd7b5767316cd2a235af92d9debd375d6d91d0d4fa521cc05a168cccadc3a72560d1c3233
+  checksum: 839db6d9695dca41cd189c15860be5f27cd345268f91917c67d9a695194d5f3cfa2edc8d1cde98c8b448055b2b302fa88e94be244ec27e51c5dd1a9882a8698c
   languageName: node
   linkType: hard
 
@@ -2114,15 +2114,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@fortawesome/angular-fontawesome@npm:0.8.2":
-  version: 0.8.2
-  resolution: "@fortawesome/angular-fontawesome@npm:0.8.2"
+"@fortawesome/angular-fontawesome@npm:0.9.0":
+  version: 0.9.0
+  resolution: "@fortawesome/angular-fontawesome@npm:0.9.0"
   dependencies:
-    tslib: ^2.1.0
+    tslib: ^2.2.0
   peerDependencies:
-    "@angular/core": ^11.0.0
+    "@angular/core": ^12.0.0
     "@fortawesome/fontawesome-svg-core": ^1.2.27
-  checksum: 55d98d5308cbb6fb92d8bb8ac8fc7ebbef8a3227c53d4e15d25113d8c9ab0a46c4fc68addb45101b57a8ac50efbb0c064dbb89c03d47cfbea712e9a25f558a1e
+  checksum: a04b29ed7c4a7356fd591722160b74bef0eb631b1bbc3b8220145705ec474d5f1141ad0daff201b279936b8739908aa0ca49f13015dda457289d1f0a77776e78
   languageName: node
   linkType: hard
 
@@ -7128,9 +7128,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-import@npm:^2.23.0":
-  version: 2.23.0
-  resolution: "eslint-plugin-import@npm:2.23.0"
+"eslint-plugin-import@npm:^2.23.2":
+  version: 2.23.2
+  resolution: "eslint-plugin-import@npm:2.23.2"
   dependencies:
     array-includes: ^3.1.3
     array.prototype.flat: ^1.2.4
@@ -7150,7 +7150,7 @@ __metadata:
     tsconfig-paths: ^3.9.0
   peerDependencies:
     eslint: ^2 || ^3 || ^4 || ^5 || ^6 || ^7.2.0
-  checksum: b4ed8f1225f28090d5b3be6c0be291d7098cdf64bd0aceb460fac80fe2e038f86da092be4114be1b0ad3befda0a100ccd40774544c963171c90aa00e13910e0c
+  checksum: fff1f13edbfb523c7c1075bbd45ca4a2faf892b9ccaf94122ccb2a725978c1def76b851bd70bf59fb82c514bb49aea1ed2b085c2e75c24229e0b5d437e56b159
   languageName: node
   linkType: hard
 
@@ -7161,11 +7161,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-jsdoc@npm:^33.3.0":
-  version: 33.3.0
-  resolution: "eslint-plugin-jsdoc@npm:33.3.0"
+"eslint-plugin-jsdoc@npm:^34.6.1":
+  version: 34.6.1
+  resolution: "eslint-plugin-jsdoc@npm:34.6.1"
   dependencies:
-    "@es-joy/jsdoccomment": ^0.4.4
+    "@es-joy/jsdoccomment": ^0.6.0
     comment-parser: 1.1.5
     debug: ^4.3.1
     esquery: ^1.4.0
@@ -7176,7 +7176,7 @@ __metadata:
     spdx-expression-parse: ^3.0.1
   peerDependencies:
     eslint: ^6.0.0 || ^7.0.0
-  checksum: 7ea72678c03e540c8e3b7d4c363e4b8238220d4414c184a5bede5f842f5f4dc1d5513bebce2753d60d80239f3d40b67a73783e86a8f501e9c6e9b4e47ab3767e
+  checksum: 2678e4f0ab46127e1b6c05322015acef039c7da58f4cc0cc3cd10042f01373e11ebc04bb3810f2411219254e7776daa72ddf158ee703ab05d8be7807930bfb13
   languageName: node
   linkType: hard
 
@@ -16098,7 +16098,7 @@ resolve@1.1.7:
     "@angular/router": ^12.0.0
     "@angular/service-worker": ^12.0.0
     "@compodoc/compodoc": ^1.1.11
-    "@fortawesome/angular-fontawesome": 0.8.2
+    "@fortawesome/angular-fontawesome": 0.9.0
     "@fortawesome/fontawesome-svg-core": ^1.2.35
     "@fortawesome/free-regular-svg-icons": ^5.15.3
     "@fortawesome/free-solid-svg-icons": ^5.15.3
@@ -16117,9 +16117,9 @@ resolve@1.1.7:
     easytimer.js: ^4.3.4
     eslint: ^7.26.0
     eslint-config-prettier: ^8.3.0
-    eslint-plugin-import: ^2.23.0
+    eslint-plugin-import: ^2.23.2
     eslint-plugin-jasmine: ^4.1.2
-    eslint-plugin-jsdoc: ^33.3.0
+    eslint-plugin-jsdoc: ^34.6.1
     eslint-plugin-prefer-arrow: ^1.2.3
     eslint-plugin-prettier: ^3.4.0
     eslint-plugin-rxjs: ^3.3.0

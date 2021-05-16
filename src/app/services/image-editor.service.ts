@@ -30,7 +30,7 @@ import { NSTrainIcon } from "../models/VirtualTrainAPI";
 })
 export class ImageEditorService {
 	/**Jimp Web Worker*/
-	private worker = new Worker("../workers/jimp.worker", { type: "module" });
+	private worker = new Worker(new URL("../workers/jimp.worker", import.meta.url), { type: "module" });
 	/**Browser supports Web Workers*/
 	private canUseWorker = false;
 

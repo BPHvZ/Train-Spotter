@@ -18,7 +18,7 @@
 
 import { Component, OnInit, QueryList, ViewChildren } from "@angular/core";
 import { Router } from "@angular/router";
-import { faCrosshairs } from "@fortawesome/free-solid-svg-icons";
+import { faCrosshairs, faFilter } from "@fortawesome/free-solid-svg-icons";
 import { Observable } from "rxjs";
 import { take } from "rxjs/operators";
 import { NgbdSortableHeaderDirective, SortEvent } from "../../directives/ngbd-sortable-header.directive";
@@ -42,6 +42,7 @@ export class AllStationsComponent implements OnInit {
 	total$: Observable<number>;
 	/**FontAwesome Crosshair icon*/
 	faCrosshairs = faCrosshairs;
+	faFilter = faFilter;
 
 	/**Header of the table*/
 	@ViewChildren(NgbdSortableHeaderDirective) headers: QueryList<NgbdSortableHeaderDirective>;

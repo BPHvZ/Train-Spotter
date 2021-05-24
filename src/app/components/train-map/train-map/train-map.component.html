@@ -241,20 +241,24 @@
 				</div>
 			</div>
 			<div
-				id="playPauseButton"
+				id="playPauseContainer"
 				class="border border--2 border--white bg-white shadow-darken10 z1"
 				(click)="pauseOrResumeUpdatingTrainPositions(!updateTrainsIsPaused)"
 			>
-				<div class="row">
-					<div id="updatePositionsLabel" class="toggle txt-s">Update posities</div>
+				<div class="d-flex align-items-center">
+					<div id="updatePositionsLabel">Update posities</div>
 					<div
-						id="playPauseIconButton"
 						*ngIf="
 							isUpdatingMapData === false || updateTrainsIsPaused === false;
 							else updatingMapDataSpinner
 						"
 					>
-						<button mat-icon-button role="button" aria-label="Pauzeer/hervat treinposities countdown">
+						<button
+							style="margin-top: -6px; margin-bottom: -4px"
+							mat-icon-button
+							role="button"
+							aria-label="Pauzeer/hervat treinposities countdown"
+						>
 							<mat-icon
 								*ngIf="
 									updateTrainsIsPaused === false && isUpdatingMapData === false;
@@ -269,8 +273,14 @@
 						</button>
 					</div>
 					<ng-template #updatingMapDataSpinner>
-						<div id="updatingMapDataSpinner" class="spinner-border spinner-border-sm" role="status">
-							<span class="sr-only">Loading...</span>
+						<div id="updatingMapDataSpinner">
+							<div
+								class="spinner-border spinner-border-sm"
+								style="width: 20px; height: 20px"
+								role="status"
+							>
+								<span class="sr-only">Loading...</span>
+							</div>
 						</div>
 					</ng-template>
 				</div>

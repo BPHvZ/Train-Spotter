@@ -18,16 +18,24 @@
 
 <div class="card mt-3 shadow p-1 p-lg-3 mb-1 mb-lg-3 bg-white rounded mat-typography">
 	<div class="card-body">
-		<div class="form-group form-inline">
-			<span class="mr-2">Zoeken:</span>
-			<input
-				class="form-control"
-				type="text"
-				placeholder="Naam, Land, EVA- & UICCode"
-				name="searchTerm"
-				[(ngModel)]="getStationsService().searchTerm"
-			/>
-			<span class="ml-md-3 mt-md-0 mt-2" *ngIf="getStationsService().loading$ | async">Laden...</span>
+		<div class="row mb-3">
+			<div class="col-sm-4">
+				<label class="form-label fw-bold">Filteren:</label>
+				<div>
+					<input
+						class="form-control"
+						type="text"
+						placeholder="Naam, Land, EVA- & UICCode"
+						name="searchTerm"
+						[(ngModel)]="getStationsService().searchTerm"
+					/>
+					<div class="spinner-border spinner-border-sm" style="width: 20px; height: 20px" role="status">
+						<span class="sr-only">Laden...</span>
+					</div>
+				</div>
+				<!--				<div class="searching form-control-feedback">Laden...</div>-->
+			</div>
+			<!--			<span class="ms-md-3 mt-md-0 mt-2" *ngIf="getStationsService().loading$ | async">Laden...</span>-->
 		</div>
 
 		<div class="table-responsive">
@@ -89,12 +97,7 @@
 			>
 			</ngb-pagination>
 
-			<select
-				class="custom-select"
-				style="width: auto"
-				name="pageSize"
-				[(ngModel)]="getStationsService().pageSize"
-			>
+			<select class="form-select" style="width: auto" name="pageSize" [(ngModel)]="getStationsService().pageSize">
 				<option [ngValue]="50">50 items per pagina</option>
 				<option [ngValue]="100">100 items per pagina</option>
 				<option [ngValue]="200">200 items per pagina</option>

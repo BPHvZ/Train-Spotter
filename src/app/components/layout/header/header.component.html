@@ -61,95 +61,99 @@
 
 <header class="fixed-top mat-typography">
 	<nav class="navbar navbar-expand-md navbar-dark bg-blue">
-		<a class="navbar-brand" [routerLink]="'kaart'" style="cursor: pointer">
-			<strong style="color: white">TrainSpotter</strong>
-		</a>
+		<div class="container-fluid">
+			<a class="navbar-brand" [routerLink]="'kaart'" style="cursor: pointer">
+				<strong style="color: white">TrainSpotter</strong>
+			</a>
 
-		<button class="button-border navbar-toggler" type="button" (click)="toggleNavbar()">
-			<fa-icon [icon]="faBars"></fa-icon>
-		</button>
+			<button class="button-border navbar-toggler" type="button" (click)="toggleNavbar()">
+				<fa-icon [icon]="faBars"></fa-icon>
+			</button>
 
-		<div class="collapse navbar-collapse" [ngbCollapse]="navbarCollapsed">
-			<ul class="navbar-nav mr-auto">
-				<li class="nav-item align-self-md-center pr-md-3" style="cursor: pointer">
-					<a class="nav-link router-link-hover d-flex" routerLink="kaart" (click)="toggleNavbar()">
-						<img
-							[routerLink]="'kaart'"
-							src="../../../../assets/icons/icon-192x192.png"
-							height="20"
-							width="20"
-							alt="TrainSpotter"
-							style="margin-right: 4px"
-						/>
-						<strong class="link-hover" routerLinkActive="link-active">Kaart</strong></a
+			<div class="collapse navbar-collapse" [ngbCollapse]="navbarCollapsed">
+				<ul class="navbar-nav me-auto">
+					<li class="nav-item align-self-md-center pe-md-3" style="cursor: pointer">
+						<a class="nav-link router-link-hover d-flex" routerLink="kaart" (click)="toggleNavbar()">
+							<img
+								[routerLink]="'kaart'"
+								src="../../../../assets/icons/icon-192x192.png"
+								height="20"
+								width="20"
+								alt="TrainSpotter"
+								style="margin-right: 4px"
+							/>
+							<strong class="link-hover" routerLinkActive="link-active">Kaart</strong></a
+						>
+					</li>
+					<li class="nav-item align-self-md-center pe-md-3" style="cursor: pointer">
+						<a class="nav-link router-link-hover d-flex" routerLink="stations" (click)="toggleNavbar()">
+							<strong class="link-hover" routerLinkActive="link-active">Stations</strong></a
+						>
+					</li>
+					<li class="nav-item align-self-md-center pe-md-3" style="cursor: pointer">
+						<a class="nav-link router-link-hover d-flex" routerLink="over" (click)="toggleNavbar()">
+							<strong class="link-hover" routerLinkActive="link-active">Over</strong></a
+						>
+					</li>
+					<li
+						*ngIf="showPWAInstallButton"
+						class="nav-item align-self-md-center pe-md-3"
+						style="cursor: pointer"
 					>
-				</li>
-				<li class="nav-item align-self-md-center pr-md-3" style="cursor: pointer">
-					<a class="nav-link router-link-hover d-flex" routerLink="stations" (click)="toggleNavbar()">
-						<strong class="link-hover" routerLinkActive="link-active">Stations</strong></a
-					>
-				</li>
-				<li class="nav-item align-self-md-center pr-md-3" style="cursor: pointer">
-					<a class="nav-link router-link-hover d-flex" routerLink="over" (click)="toggleNavbar()">
-						<strong class="link-hover" routerLinkActive="link-active">Over</strong></a
-					>
-				</li>
-				<li *ngIf="showPWAInstallButton" class="nav-item align-self-md-center pr-md-3" style="cursor: pointer">
-					<a class="nav-link router-link-hover d-flex" (click)="openPWAInstallModal(content)">
-						<fa-icon [icon]="faArrowAltCircleDown" style="margin-right: 4px"></fa-icon>
-						<strong>Installeer App</strong>
-					</a>
-				</li>
-			</ul>
-			<form class="nav-item form-inline my-md-2 my-lg-0 flex-nowrap">
-				<ng-template #rt let-r="result" let-t="term">
-					<div [ngSwitch]="r.resultType" style="display: inline">
-						<ng-container *ngSwitchCase="0"
-							><ng-container *ngTemplateOutlet="train"></ng-container
-						></ng-container>
-						<ng-container *ngSwitchCase="1"
-							><ng-container *ngTemplateOutlet="station"></ng-container
-						></ng-container>
-						<ng-template #train>
-							<button
-								class="button button--nsYellow button--crosshair"
-								style="margin-left: 8px"
-								(click)="flyToTrainOnMap($event, r.result)"
-							>
-								<fa-icon [icon]="faCrosshairs" style="font-size: small"></fa-icon>
-							</button>
-							<ng-container *ngIf="r.searchField.startsWith('Treinstel'); else rideInformation">
+						<a class="nav-link router-link-hover d-flex" (click)="openPWAInstallModal(content)">
+							<fa-icon [icon]="faArrowAltCircleDown" style="margin-right: 4px"></fa-icon>
+							<strong>Installeer App</strong>
+						</a>
+					</li>
+				</ul>
+				<form class="d-flex my-md-2 my-lg-0 flex-nowrap">
+					<ng-template #rt let-r="result" let-t="term">
+						<div [ngSwitch]="r.resultType" style="display: inline">
+							<ng-container *ngSwitchCase="0"
+								><ng-container *ngTemplateOutlet="train"></ng-container
+							></ng-container>
+							<ng-container *ngSwitchCase="1"
+								><ng-container *ngTemplateOutlet="station"></ng-container
+							></ng-container>
+							<ng-template #train>
 								<button
 									class="button button--nsYellow button--crosshair"
 									style="margin-left: 8px"
-									(click)="navigateToTrainsetInformation($event, r.result, r.searchField)"
+									(click)="flyToTrainOnMap($event, r.result)"
 								>
-									<fa-icon [icon]="faInfoCircle" style="font-size: small"></fa-icon>
+									<fa-icon [icon]="faCrosshairs" style="font-size: small"></fa-icon>
 								</button>
-							</ng-container>
-							<ng-template #rideInformation>
+								<ng-container *ngIf="r.searchField.startsWith('Treinstel'); else rideInformation">
+									<button
+										class="button button--nsYellow button--crosshair"
+										style="margin-left: 8px"
+										(click)="navigateToTrainsetInformation($event, r.result, r.searchField)"
+									>
+										<fa-icon [icon]="faInfoCircle" style="font-size: small"></fa-icon>
+									</button>
+								</ng-container>
+								<ng-template #rideInformation>
+									<button
+										class="button button--nsYellow button--crosshair"
+										style="margin-left: 8px"
+										(click)="navigateToRideInformation($event, r.result)"
+									>
+										<fa-icon [icon]="faInfoCircle" style="font-size: small"></fa-icon>
+									</button>
+								</ng-template>
+							</ng-template>
+							<ng-template #station>
 								<button
 									class="button button--nsYellow button--crosshair"
 									style="margin-left: 8px"
-									(click)="navigateToRideInformation($event, r.result)"
+									(click)="flyToStationOnMap($event, r.result)"
 								>
-									<fa-icon [icon]="faInfoCircle" style="font-size: small"></fa-icon>
+									<fa-icon [icon]="faCrosshairs" style="font-size: small"></fa-icon>
 								</button>
 							</ng-template>
-						</ng-template>
-						<ng-template #station>
-							<button
-								class="button button--nsYellow button--crosshair"
-								style="margin-left: 8px"
-								(click)="flyToStationOnMap($event, r.result)"
-							>
-								<fa-icon [icon]="faCrosshairs" style="font-size: small"></fa-icon>
-							</button>
-						</ng-template>
-					</div>
-					<ngb-highlight [result]="r.searchField" [term]="t" style="vertical-align: sub"></ngb-highlight>
-				</ng-template>
-				<div id="scrollable-dropdown-menu">
+						</div>
+						<ngb-highlight [result]="r.searchField" [term]="t" style="vertical-align: sub"></ngb-highlight>
+					</ng-template>
 					<input
 						#globalTypeahead
 						id="global-typeahead"
@@ -163,9 +167,11 @@
 						[disabled]="!globalSearchReady"
 						(selectItem)="selectItemFromGlobalSearch($event)"
 					/>
-				</div>
-				<button class="button button--nsYellow button--small ml-2" [disabled]="!globalSearchReady">Zoek</button>
-			</form>
+					<button class="button button--nsYellow button--small ms-2" [disabled]="!globalSearchReady">
+						Zoek
+					</button>
+				</form>
+			</div>
 		</div>
 	</nav>
 </header>

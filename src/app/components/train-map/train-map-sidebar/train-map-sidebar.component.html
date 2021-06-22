@@ -32,28 +32,28 @@
 		<div [@sidebar-shadow]="sidebarState" class="frosted" id="sidebar">
 			<div class="container" id="sidebar-content">
 				<div class="col">
-					<div class="row justify-content-around" style="padding: 8px 0; align-items: center">
-						<button (click)="toggleSidebar()" class="button button--close">
+					<div class="row justify-content-around p-2" style="align-items: center">
+						<button (click)="toggleSidebar()" class="button button--close width-fit">
 							<strong>&times;</strong>
 						</button>
-						<div *ngIf="disruptionsLastUpdated$ | async as date" class="text-center">
+						<div *ngIf="disruptionsLastUpdated$ | async as date" class="text-center width-fit">
 							<span style="font-size: small">Bijgewerkt op:<br /></span>
 							{{ date | date: "EEEE d LLL HH:mm" }}
 						</div>
-						<button (click)="updateDisruptions.emit(null)" class="button button--nsYellow button--close">
+						<button
+							(click)="updateDisruptions.emit(null)"
+							class="button button--nsYellow button--close width-fit"
+						>
 							<strong><fa-icon [icon]="faSyncAlt" style="font-size: small"></fa-icon></strong>
 						</button>
 					</div>
 					<ng-container *ngIf="activeDisruptions === null || activeDisruptions.length === 0">
-						<div
-							class="d-flex flex-column flex-wrap mb-3 mt-2 disruption-totals-border p-3"
-							style="margin: 0 -15px"
-						>
+						<div class="d-flex flex-column flex-wrap mb-3 mt-2 disruption-totals-border p-3">
 							<div>Geen storingen en werkzaamheden op dit moment</div>
 						</div>
 					</ng-container>
 					<ng-container *ngIf="getDisruptionCount('MAINTENANCE') + getDisruptionCount('DISRUPTION') > 0">
-						<div class="d-flex flex-column mb-3 mt-2 disruption-totals-border p-1" style="margin: 0 -15px">
+						<div class="d-flex flex-column mb-3 mt-2 disruption-totals-border p-1">
 							<ng-container *ngIf="getDisruptionCount('DISRUPTION') as count">
 								<div *ngIf="count > 0" class="color-disruption">
 									<div style="display: inline">

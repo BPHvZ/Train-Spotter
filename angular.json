@@ -25,16 +25,20 @@
 						"main": "src/main.ts",
 						"polyfills": "src/polyfills.ts",
 						"tsConfig": "tsconfig.app.json",
-						"aot": true,
 						"assets": ["src/favicon.ico", "src/assets", "src/manifest.webmanifest", "src/sitemap.xml"],
 						"styles": [
 							"src/custom-theme.scss",
 							"node_modules/bootstrap/dist/css/bootstrap.min.css",
-							"./node_modules/mapbox-gl/dist/mapbox-gl.css",
 							"src/styles.sass"
 						],
 						"scripts": [],
-						"webWorkerTsConfig": "tsconfig.worker.json"
+						"webWorkerTsConfig": "tsconfig.worker.json",
+						"vendorChunk": true,
+						"extractLicenses": false,
+						"buildOptimizer": false,
+						"sourceMap": true,
+						"optimization": false,
+						"namedChunks": true
 					},
 					"configurations": {
 						"production": {
@@ -65,19 +69,23 @@
 							],
 							"serviceWorker": true,
 							"ngswConfigPath": "ngsw-config.json"
-						}
-					}
+						},
+						"development": {}
+					},
+					"defaultConfiguration": "production"
 				},
 				"serve": {
 					"builder": "@angular-devkit/build-angular:dev-server",
-					"options": {
-						"browserTarget": "trainSpotter:build"
-					},
+					"options": {},
 					"configurations": {
 						"production": {
 							"browserTarget": "trainSpotter:build:production"
+						},
+						"development": {
+							"browserTarget": "trainSpotter:build:development"
 						}
-					}
+					},
+					"defaultConfiguration": "development"
 				},
 				"extract-i18n": {
 					"builder": "@angular-devkit/build-angular:extract-i18n",
@@ -96,10 +104,10 @@
 						"styles": [
 							"src/custom-theme.scss",
 							"node_modules/bootstrap/dist/css/bootstrap.min.css",
-							"./node_modules/mapbox-gl/dist/mapbox-gl.css",
 							"src/styles.sass"
 						],
-						"scripts": []
+						"scripts": [],
+						"webWorkerTsConfig": "tsconfig.worker.json"
 					},
 					"configurations": {
 						"ci-release": {
@@ -118,14 +126,17 @@
 				"e2e": {
 					"builder": "@angular-devkit/build-angular:protractor",
 					"options": {
-						"protractorConfig": "e2e/protractor.conf.js",
-						"devServerTarget": "trainSpotter:serve"
+						"protractorConfig": "e2e/protractor.conf.js"
 					},
 					"configurations": {
 						"production": {
 							"devServerTarget": "trainSpotter:serve:production"
+						},
+						"development": {
+							"devServerTarget": "trainSpotter:serve:development"
 						}
-					}
+					},
+					"defaultConfiguration": "development"
 				}
 			}
 		}

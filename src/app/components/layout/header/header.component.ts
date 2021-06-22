@@ -266,7 +266,7 @@ export class HeaderComponent implements OnInit, OnDestroy, AfterViewInit {
 		this.toggleNavbar();
 	}
 
-	globalSearchInputFormatter = (input: GlobalSearchResult) => input.searchField;
+	globalSearchInputFormatter = (input: GlobalSearchResult): string => input.searchField;
 
 	/**
 	 * Fly to a train on the map

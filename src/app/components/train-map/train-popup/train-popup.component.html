@@ -26,7 +26,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="col">
-						<div class="ml-auto mb-1" style="width: fit-content">
+						<div class="ms-auto mb-1" style="width: fit-content">
 							<button class="button button--nsYellow button--close" (click)="closePopup.emit()">
 								<strong>&times;</strong>
 							</button>
@@ -47,7 +47,7 @@
 										"
 							>
 								<ng-container *ngIf="trainPart.materieelnummer">
-									<ng-container *ngIf="i == 0; else other">
+									<ng-container *ngIf="i === 0; else other">
 										<span
 											>met
 											<span
@@ -60,7 +60,7 @@
 									</ng-container>
 									<ng-template #other>
 										<span>
-											{{ i == (trainInformation.trainDetails.materieeldelen.length - 1) ? " " +
+											{{ i === (trainInformation.trainDetails.materieeldelen.length - 1) ? " " +
 											'en' : ','}}
 											<span
 												class="link-hover"
@@ -85,18 +85,18 @@
 										[src]="railcar.afbeelding"
 										alt="Trein"
 										height="45"
-										[ngClass]="{ 'pr-2': isLast }"
+										[ngClass]="{ 'pe-2': isLast }"
 									/>
 								</div>
 							</div>
 						</div>
 						<div class="mt-2">
-							<div class="float-left mr-3" style="width: fit-content">
+							<div class="float-start me-3" style="width: fit-content">
 								<div *ngIf="trainInformation.trainDetails.type">
-									<div class="mb-1 font-weight-bold">Type:</div>
+									<div class="mb-1 fw-bold">Type:</div>
 								</div>
-								<div class="mb-1 font-weight-bold">Snelheid:</div>
-								<div class="font-weight-bold">Richting:</div>
+								<div class="mb-1 fw-bold">Snelheid:</div>
+								<div class="fw-bold">Richting:</div>
 							</div>
 
 							<div style="width: fit-content">
@@ -107,7 +107,7 @@
 								<div class="d-flex align-items-center">
 									<span>{{ trainInformation.richting }}&deg;</span>
 									<span
-										class="material-icons font-weight-bold ml-1"
+										class="material-icons fw-bold ms-1"
 										style="font-size: 18px"
 										[ngStyle]="directionArrowStyle"
 										>arrow_right_alt</span
@@ -134,12 +134,12 @@
 								>
 									<div class="d-flex">
 										Deel trein
-										<span class="material-icons ml-1" style="font-size: 16px">ios_share</span>
+										<span class="material-icons ms-1" style="font-size: 16px">ios_share</span>
 									</div>
 								</button>
 							</div>
 						</div>
-						<div class="mt-2 ml-auto" style="width: fit-content">
+						<div class="mt-2 ms-auto" style="width: fit-content">
 							<div style="align-self: flex-end" *ngIf="updatedAt">
 								<div id="lastUpdated">Laatste update {{ updatedAt | date: "HH:mm:ss" }}</div>
 							</div>

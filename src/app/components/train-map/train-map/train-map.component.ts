@@ -639,6 +639,7 @@ export class TrainMapComponent implements OnInit, OnDestroy {
 			.pipe(take(1))
 			.subscribe({
 				next: (result) => {
+					console.log("getAndAddTrainIconsToMap: ", result);
 					result.forEach((image) => {
 						this.trainIconNames.add(image.imageName);
 						this.trainIconsForMap.push({

@@ -207,6 +207,7 @@ export class SharedDataService {
 		return this.apiService.getDisruptedTrainTracksGeoJSON(force).pipe(
 			take(1),
 			map((response) => {
+				// console.log("updateDisruptedTrainTracksGeoJSON: ", response.data);
 				this._disruptedTrainTracksLayerData.next(response.data);
 			})
 		);
@@ -264,6 +265,7 @@ export class SharedDataService {
 
 				const disruptionsSorted = calamities.concat(disruptions, maintenance);
 
+				// console.log("updateActiveDisruptions: ", disruptionsSorted);
 				this._activeDisruptions.next(disruptionsSorted);
 			})
 		);
@@ -308,6 +310,7 @@ export class SharedDataService {
 						(details) => details.ritnummer.toString() === basicTrain.ritId
 					);
 				});
+				// console.log("train details: ", trainInformation);
 				this._detailedTrainInformation.next(trainInformation);
 			})
 		);

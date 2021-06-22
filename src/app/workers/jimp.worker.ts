@@ -18,7 +18,7 @@
 
 /// <reference lib="webworker" />
 import { take } from "rxjs/operators";
-import { jimpPrepareIcons } from "../helpers/jimp-helper";
+import { jimpPrepareIcons } from "src/app/helpers/jimp-helper";
 
 /**
  * Receive Web Worker message
@@ -33,6 +33,7 @@ import { jimpPrepareIcons } from "../helpers/jimp-helper";
 // eslint-disable-next-line @typescript-eslint/no-misused-promises
 addEventListener("message", ({ data }: { data: Map<string, string> }) => {
 	const iconURLs: Map<string, string> = data;
+	// console.log("jimp worker message: ", iconURLs);
 	jimpPrepareIcons(iconURLs)
 		.pipe(take(1))
 		.subscribe((value) => postMessage(value));

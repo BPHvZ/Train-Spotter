@@ -30,7 +30,7 @@ import { NSTrainIcon } from "../models/VirtualTrainAPI";
 })
 export class ImageEditorService {
 	/**Jimp Web Worker*/
-	private worker = new Worker(new URL("../workers/jimp.worker", import.meta.url), { type: "module" });
+	worker: Worker;
 	/**Browser supports Web Workers*/
 	private canUseWorker = false;
 
@@ -40,6 +40,7 @@ export class ImageEditorService {
 	constructor() {
 		if (typeof Worker !== "undefined") {
 			this.canUseWorker = true;
+			this.worker = new Worker(new URL("src/app/workers/jimp.worker", import.meta.url), { type: "module" });
 		}
 	}
 
@@ -51,11 +52,20 @@ export class ImageEditorService {
 	 */
 	prepareTrainIcons(iconURLs: Map<string, string>): Observable<NSTrainIcon[]> {
 		const resultSubject = new Subject<NSTrainIcon[]>();
-		if (this.canUseWorker) {
+		console.log("canUseWorker: ", this.canUseWorker);
+		if (this.canUseWorker && this.worker) {
+			this.worker.onerror = (e) => {
+				console.log(e);
+			};
+			this.worker.onmessageerror = (e) => {
+				console.log(e);
+			};
 			this.worker.onmessage = ({ data }: { data: NSTrainIcon[] }) => {
+				console.log("worker.onmessage: ", data);
 				resultSubject.next(data);
 				resultSubject.complete();
 			};
+			// console.log("prepareTrainIcons: ", iconURLs);
 			this.worker.postMessage(iconURLs);
 		} else {
 			jimpPrepareIcons(iconURLs)

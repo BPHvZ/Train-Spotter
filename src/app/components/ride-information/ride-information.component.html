@@ -310,108 +310,6 @@
 							</div>
 						</div>
 					</div>
-					<div class="col-lg mt-3 mt-lg-0">
-						<!--						<div style="font-size: 14px">-->
-						<!--							<div-->
-						<!--								id="playPauseButton"-->
-						<!--								class="border border&#45;&#45;2 border&#45;&#45;white bg-white shadow-darken10 z1 mb-3"-->
-						<!--								(click)="pauseOrResumeUpdatingTrainPositions(!updateTrainsIsPaused)"-->
-						<!--							>-->
-						<!--								<div class="row">-->
-						<!--									<div id="updatePositionsLabel" class="toggle txt-s">Update informatie</div>-->
-						<!--									<div-->
-						<!--										id="playPauseIconButton"-->
-						<!--										*ngIf="-->
-						<!--							isUpdatingMapData === false || updateTrainsIsPaused === false;-->
-						<!--							else updatingMapDataSpinner-->
-						<!--						"-->
-						<!--									>-->
-						<!--										<button-->
-						<!--											mat-icon-button-->
-						<!--											role="button"-->
-						<!--											aria-label="Pauzeer/hervat treinposities countdown"-->
-						<!--										>-->
-						<!--											<mat-icon-->
-						<!--												*ngIf="-->
-						<!--									updateTrainsIsPaused === false && isUpdatingMapData === false;-->
-						<!--									else playCircleIcon-->
-						<!--								"-->
-						<!--											>-->
-						<!--												pause_circle_filled-->
-						<!--											</mat-icon>-->
-						<!--											<ng-template #playCircleIcon>-->
-						<!--												<mat-icon>play_circle_filled</mat-icon>-->
-						<!--											</ng-template>-->
-						<!--										</button>-->
-						<!--									</div>-->
-						<!--									<ng-template #updatingMapDataSpinner>-->
-						<!--										<div-->
-						<!--											id="updatingMapDataSpinner"-->
-						<!--											class="spinner-border spinner-border-sm"-->
-						<!--											role="status"-->
-						<!--										>-->
-						<!--											<span class="sr-only">Laden...</span>-->
-						<!--										</div>-->
-						<!--									</ng-template>-->
-						<!--								</div>-->
-						<!--								<div id="updatePositionsProgressbar">-->
-						<!--									<div class="countdown-progressbar">-->
-						<!--										<div-->
-						<!--											#updateCountdown-->
-						<!--											class="progress-value"-->
-						<!--											[ngStyle]="{'animation-play-state': updateTrainsIsPaused ? 'paused' : 'running'}"-->
-						<!--											role="progressbar"-->
-						<!--											aria-valuemin="0"-->
-						<!--											aria-valuemax="100"-->
-						<!--											aria-label="Treinposities update countdown"-->
-						<!--										></div>-->
-						<!--									</div>-->
-						<!--								</div>-->
-						<!--							</div>-->
-						<!--							<div-->
-						<!--								id="train-information-details"-->
-						<!--								class="border border&#45;&#45;2 border&#45;&#45;white bg-white shadow-darken10 z1"-->
-						<!--							>-->
-						<!--								<div>-->
-						<!--									<div class="float-start me-3">-->
-						<!--										<div class="mb-2 fw-bold">Snelheid:</div>-->
-						<!--										<div class="mb-2 fw-bold">Richting:</div>-->
-						<!--										<ng-container *ngIf="nextStation">-->
-						<!--											<div-->
-						<!--												[ngClass]="{'mb-2' : trainInformation.trainDetails.type }"-->
-						<!--												class="fw-bold"-->
-						<!--											>-->
-						<!--												Volgende Station:-->
-						<!--											</div>-->
-						<!--										</ng-container>-->
-						<!--										<ng-container *ngIf="trainInformation.trainDetails.type">-->
-						<!--											<div class="fw-bold">Type:</div>-->
-						<!--										</ng-container>-->
-						<!--									</div>-->
-						<!--									<div class="d-inline-block">-->
-						<!--										<div class="mb-2">{{ trainInformation.snelheid | number:'1.0-2' }} km/u</div>-->
-						<!--										<div class="mb-2 d-flex align-items-center">-->
-						<!--											<span>{{ trainInformation.richting }}&deg;</span>-->
-						<!--											<span-->
-						<!--												class="material-icons fw-bold ms-1"-->
-						<!--												style="font-size: 18px"-->
-						<!--												[ngStyle]="directionArrowStyle"-->
-						<!--												>arrow_right_alt</span-->
-						<!--											>-->
-						<!--										</div>-->
-						<!--										<ng-container *ngIf="nextStation">-->
-						<!--											<div [ngClass]="{'mb-2' : trainInformation.trainDetails.type }">-->
-						<!--												{{nextStation.namen.lang}}-->
-						<!--											</div>-->
-						<!--										</ng-container>-->
-						<!--										<ng-container *ngIf="trainInformation.trainDetails.type">-->
-						<!--											<div>{{trainInformation.trainDetails.type}}</div>-->
-						<!--										</ng-container>-->
-						<!--									</div>-->
-						<!--								</div>-->
-						<!--							</div>-->
-						<!--						</div>-->
-					</div>
 				</div>
 			</div>
 		</div>
@@ -422,7 +320,7 @@
 			<h2 class="card-subtitle mb-2 text-muted fw-bold">
 				{{journey.stops[0].stop['name']}} naar {{journey.stops[journey.stops.length - 1].destination}}
 			</h2>
-			<div style="width: 100%; overflow-x: auto; overflow-y: hidden" class="scroll-gradient">
+			<div style="width: 100%" class="scroll-gradient">
 				<table cdk-table [dataSource]="dataSource">
 					<!-- Progress Column-->
 					<ng-container cdkColumnDef="progress">

@@ -226,7 +226,7 @@ $button__border__radius: 4px;
 	height: toRem($button-height);
 	text-align: left; // for text-indent to work
 	min-width: toRem(1px); // overrule min-width on .button
-	padding: toRem(($button-height - $icon-size-base)/ 2);
+	padding: toRem(($button-height - $icon-size-base) * 0.5);
 }
 
 // ---------------------------------------------------------------------------
@@ -382,12 +382,12 @@ Styleguide 1.1.2
 */
 
 .button--fixedIcon {
-	padding-left: toRem($button-horizontal-space/2 * 2 + $icon-size-base);
-	padding-right: toRem($button-horizontal-space/2 * 2 + $icon-size-base);
+	padding-left: toRem($button-horizontal-space * 0.5 * 2 + $icon-size-base);
+	padding-right: toRem($button-horizontal-space * 0.5 * 2 + $icon-size-base);
 
 	.button__icon {
 		position: absolute;
-		top: toRem($button-height - $icon-size-base) / 2;
+		top: toRem($button-height - $icon-size-base) * 0.5;
 		left: toRem(5px);
 	}
 
@@ -491,7 +491,7 @@ Styleguide 1.1.4
 	$play-button-size: 60px;
 
 	border: none;
-	padding: toRem(($play-button-size - $icon-size-base)/2); //Centers the button
+	padding: toRem(($play-button-size - $icon-size-base) * 0.5); //Centers the button
 	width: toRem($play-button-size);
 	height: toRem($play-button-size);
 	background-color: $ns-light-blue;

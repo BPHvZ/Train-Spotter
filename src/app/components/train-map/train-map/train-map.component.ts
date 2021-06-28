@@ -40,6 +40,7 @@ import { DetailedTrainInformation, TrainIconOnMap } from "../../../models/Virtua
 import { HelperFunctionsService } from "../../../services/helper-functions.service";
 import { ImageEditorService } from "../../../services/image-editor.service";
 import { SharedDataService } from "../../../services/shared-data.service";
+import { Toast, ToastPosition, ToastService } from "../../../services/toast.service";
 
 /**
  * Train map with stations and trains that get update every x seconds
@@ -159,6 +160,9 @@ export class TrainMapComponent implements OnInit, OnDestroy {
 	/**All observable subscriptions*/
 	subscriptions: Subscription[] = [];
 
+	//Toast notification
+	private toast: Toast;
+
 	/**
 	 * Define services
 	 * @param sharedDataService Shares data through the application
@@ -167,6 +171,7 @@ export class TrainMapComponent implements OnInit, OnDestroy {
 	 * @param imageEditorService Web Worker to edit icons
 	 * @param renderer Used to modify DOM elements
 	 * @param activatedRoute Current route, used to get route params
+	 * @param toastService Show or delete toast notifications
 	 */
 	constructor(
 		private sharedDataService: SharedDataService,
@@ -174,7 +179,8 @@ export class TrainMapComponent implements OnInit, OnDestroy {
 		private router: Router,
 		private imageEditorService: ImageEditorService,
 		private renderer: Renderer2,
-		private activatedRoute: ActivatedRoute
+		private activatedRoute: ActivatedRoute,
+		private toastService: ToastService
 	) {}
 
 	/**
@@ -265,6 +271,15 @@ export class TrainMapComponent implements OnInit, OnDestroy {
 		this.sharedDataService.trainMap = trainMap;
 		trainMap.resize();
 		this.isUpdatingMapData = true;
+
+		this.toast = {
+			textOrTpl: "Treinenkaart wordt geladen...",
+			position: ToastPosition.Center,
+			classname: "",
+			delay: 5000,
+			autoHide: false,
+		};
+		this.toastService.show(this.toast);
 		zip(
 			this.sharedDataService.getBasicInformationAboutAllStations(),
 			this.sharedDataService.getTrainTracksGeoJSON()
@@ -440,6 +455,8 @@ export class TrainMapComponent implements OnInit, OnDestroy {
 		}
 		if (this.firstTrainsHaveBeenAdded == false) {
 			this.firstTrainsHaveBeenAdded = true;
+			//TODO
+			// this.toastService.remove(this.toast);
 			this.flyToTrainFromQueryParam();
 		}
 	}

@@ -22,8 +22,8 @@
 // ---------------------------------------------------------------------------
 
 $global--grid-gutter: 28px;
-$global--grid-halfgutter: $global--grid-gutter / 2;
-$global--grid-quartergutter: $global--grid-gutter / 4;
+$global--grid-halfgutter: $global--grid-gutter * 0.5;
+$global--grid-quartergutter: $global--grid-gutter * 0.25;
 
 $global--container-content-width: 1200px - $global--grid-gutter;
 $container-extended-width: 1400px;
@@ -93,7 +93,7 @@ $font-fallback: "Segoe UI", Myriad, Verdana, sans-serif;
 $form-element-height: 45px;
 $form-element-font-size: 16px;
 $form-element-line-height: 25px;
-$form-element-vertical-space: ($form-element-height - $form-element-line-height)/2;
+$form-element-vertical-space: ($form-element-height - $form-element-line-height) * 0.5;
 
 // Icon-sizes
 // ---------------------------------------------------------------------------

@@ -17,3 +17,15 @@
   -->
 
 <app-main-layout class="mat-typography"></app-main-layout>
+
+<ng-template #NewVersionAvailableTpl>
+	<div style="text-align: center">
+		<div>
+			<fa-icon [icon]="faArrowAltCircleUp"></fa-icon>
+			Er is een nieuwe versie van de website beschikbaar. De pagina wordt over 5 seconden herladen.
+		</div>
+		<button class="button button--nsYellow button--close ms-1" (click)="activateUpdateAndReload()">
+			<fa-icon [icon]="faRedo" style="font-size: small"></fa-icon>
+		</button>
+	</div>
+</ng-template>

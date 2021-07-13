@@ -17,9 +17,12 @@
  */
 
 /* eslint-disable */
-import { Component, OnDestroy } from "@angular/core";
+import { AfterViewInit, Component, OnDestroy, TemplateRef, ViewChild } from "@angular/core";
 import { SwUpdate } from "@angular/service-worker";
+import { faArrowAltCircleUp } from "@fortawesome/free-regular-svg-icons";
+import { faRedo } from "@fortawesome/free-solid-svg-icons";
 import { Subscription } from "rxjs";
+import { ToastPosition, ToastService } from "./services/toast.service";
 
 /**
  * TrainSpotter starting point
@@ -29,7 +32,11 @@ import { Subscription } from "rxjs";
 	templateUrl: "./app.component.html",
 	styleUrls: ["./app.component.sass"],
 })
-export class AppComponent implements OnDestroy {
+export class AppComponent implements OnDestroy, AfterViewInit {
+	@ViewChild("NewVersionAvailableTpl") newVersionAvailableRef: TemplateRef<any>;
+	faRedo = faRedo;
+	faArrowAltCircleUp = faArrowAltCircleUp;
+
 	/**All observable subscriptions*/
 	subscriptions: Subscription[] = [];
 
@@ -37,16 +44,35 @@ export class AppComponent implements OnDestroy {
 	 * Define services
 	 * Refresh the page when a new version of TrainSpotter is available
 	 * @param updates Service Worker service
+	 * @param toastService Show or delete toast notifications
 	 */
-	constructor(private updates: SwUpdate) {
-		const sub1 = updates.available.subscribe(() => {
-			console.log("updated");
-			updates.activateUpdate().then(() => document.location.reload());
-		});
+	constructor(private updates: SwUpdate, private toastService: ToastService) {
 		const sub2 = updates.unrecoverable.subscribe((event) => {
 			document.location.reload();
 		});
-		this.subscriptions.push(sub1, sub2);
+		this.subscriptions.push(sub2);
+	}
+
+	ngAfterViewInit() {
+		const sub1 = this.updates.available.subscribe(() => {
+			console.log("update available");
+			const toast = {
+				textOrTpl: this.newVersionAvailableRef,
+				position: ToastPosition.Center,
+				classname: "",
+				delay: 5000,
+				autoHide: false,
+			};
+			this.toastService.show(toast);
+			setTimeout(() => {
+				this.activateUpdateAndReload();
+			}, 5000);
+		});
+		this.subscriptions.push(sub1);
+	}
+
+	activateUpdateAndReload(): void {
+		this.updates.activateUpdate().then(() => document.location.reload());
 	}
 
 	/** Unsubscribe from observables on destroy */

@@ -14,14 +14,7 @@
 		"target": "es2015",
 		"lib": ["es2018", "dom"],
 		"resolveJsonModule": true,
-		"esModuleInterop": true,
-		"paths": {
-			"path": ["./node_modules/path-browserify", "./node_modules/util", "./node_modules/assert"],
-			"http": ["./node_modules/stream-http"],
-			"https": ["./node_modules/https-browserify"],
-			"zlib": ["./node_modules/browserify-zlib"],
-			"stream": ["./node_modules/stream-browserify"]
-		}
+		"esModuleInterop": true
 	},
 	"angularCompilerOptions": {
 		"fullTemplateTypeCheck": true,

@@ -19,12 +19,21 @@
 import { Injectable } from "@angular/core";
 import { Meta, Title } from "@angular/platform-browser";
 
+/**Changes meta tag of page to provide correct meta information to search engines*/
 @Injectable({
 	providedIn: "root",
 })
 export class MetaTagService {
+	/**
+	 * @param meta Manage HTML meta tag
+	 * @param titleService Get and set title of page
+	 */
 	constructor(private meta: Meta, private titleService: Title) {}
 
+	/**
+	 * Update meta tags of page
+	 * @param componentName Name of the component
+	 */
 	updateTags(componentName: string): void {
 		if (componentName) {
 			if (componentName == "all-stations") {

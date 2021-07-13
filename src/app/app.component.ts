@@ -33,8 +33,11 @@ import { ToastPosition, ToastService } from "./services/toast.service";
 	styleUrls: ["./app.component.sass"],
 })
 export class AppComponent implements OnDestroy, AfterViewInit {
+	/**New version toast template*/
 	@ViewChild("NewVersionAvailableTpl") newVersionAvailableRef: TemplateRef<any>;
+	/**Redo icon*/
 	faRedo = faRedo;
+	/**Refresh icon*/
 	faArrowAltCircleUp = faArrowAltCircleUp;
 
 	/**All observable subscriptions*/
@@ -53,6 +56,9 @@ export class AppComponent implements OnDestroy, AfterViewInit {
 		this.subscriptions.push(sub2);
 	}
 
+	/**
+	 * After DOM is loaded, check for updates
+	 */
 	ngAfterViewInit() {
 		const sub1 = this.updates.available.subscribe(() => {
 			console.log("update available");
@@ -71,6 +77,9 @@ export class AppComponent implements OnDestroy, AfterViewInit {
 		this.subscriptions.push(sub1);
 	}
 
+	/**
+	 * Activate update and reload page
+	 */
 	activateUpdateAndReload(): void {
 		this.updates.activateUpdate().then(() => document.location.reload());
 	}

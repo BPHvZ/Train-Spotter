@@ -110,13 +110,7 @@
 						"scripts": [],
 						"webWorkerTsConfig": "tsconfig.worker.json"
 					},
-					"configurations": {
-						"ci-release": {
-							"watch": false,
-							"codeCoverage": true,
-							"reporters": ["teamcity", "coverage"]
-						}
-					}
+					"configurations": {}
 				},
 				"lint": {
 					"builder": "@angular-eslint/builder:lint",

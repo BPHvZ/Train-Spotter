@@ -53,46 +53,20 @@ export class ToastService {
 
 	/**
 	 * Show a toast notification
-	 * @param textOrTpl Text or template, content of the toast
-	 * @param position Position of the toast on the screen
-	 * @param classname Styling classes to add to the toast
-	 * @param delay Number of milliseconds to show the toast
-	 * @param autoHide Whether to hide the toast automatically or not
+	 * @param toast The toast notification
 	 */
-	show(
-		textOrTpl: string | TemplateRef<any>,
-		position: ToastPosition = ToastPosition.Right,
-		classname = "",
-		delay = 5000,
-		autoHide = true
-	): void {
-		switch (position) {
+	show(toast: Toast): void {
+		toast.delay = toast.delay ?? 5000;
+		toast.autoHide = toast.autoHide ?? true;
+		switch (toast.position) {
 			case ToastPosition.Right:
-				this.toastsRight.push({
-					textOrTpl: textOrTpl,
-					position: position,
-					classname: classname,
-					delay: delay,
-					autoHide: autoHide,
-				});
+				this.toastsRight.push(toast);
 				break;
 			case ToastPosition.Left:
-				this.toastsLeft.push({
-					textOrTpl: textOrTpl,
-					position: position,
-					classname: classname,
-					delay: delay,
-					autoHide: autoHide,
-				});
+				this.toastsLeft.push(toast);
 				break;
 			case ToastPosition.Center:
-				this.toastsCenter.push({
-					textOrTpl: textOrTpl,
-					position: position,
-					classname: classname,
-					delay: delay,
-					autoHide: autoHide,
-				});
+				this.toastsCenter.push(toast);
 				break;
 		}
 	}

@@ -52,7 +52,7 @@ export class ImageEditorService {
 	 */
 	prepareTrainIcons(iconURLs: Map<string, string>): Observable<NSTrainIcon[]> {
 		const resultSubject = new Subject<NSTrainIcon[]>();
-		console.log("canUseWorker: ", this.canUseWorker);
+		// console.log("canUseWorker: ", this.canUseWorker);
 		if (this.canUseWorker && this.worker) {
 			this.worker.onerror = (e) => {
 				console.log(e);
@@ -61,7 +61,7 @@ export class ImageEditorService {
 				console.log(e);
 			};
 			this.worker.onmessage = ({ data }: { data: NSTrainIcon[] }) => {
-				console.log("worker.onmessage: ", data);
+				// console.log("worker.onmessage: ", data);
 				resultSubject.next(data);
 				resultSubject.complete();
 			};

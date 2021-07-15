@@ -19,13 +19,17 @@
 import { TestBed, waitForAsync } from "@angular/core/testing";
 import { RouterTestingModule } from "@angular/router/testing";
 import { ServiceWorkerModule } from "@angular/service-worker";
+import { environment } from "../environments/environment";
 import { AppComponent } from "./app.component";
 
 describe("AppComponent", () => {
 	beforeEach(
 		waitForAsync(() => {
 			void TestBed.configureTestingModule({
-				imports: [RouterTestingModule, ServiceWorkerModule.register("ngsw-worker.js", { enabled: false })],
+				imports: [
+					RouterTestingModule,
+					ServiceWorkerModule.register("ngsw-worker.js", { enabled: environment.production }),
+				],
 				declarations: [AppComponent],
 			}).compileComponents();
 		})

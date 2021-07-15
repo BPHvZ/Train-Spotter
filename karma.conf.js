@@ -11,7 +11,6 @@ module.exports = function (config) {
 			require("karma-jasmine-html-reporter"),
 			require("karma-coverage"),
 			require("@angular-devkit/build-angular/plugins/karma"),
-			require("karma-teamcity-reporter"),
 		],
 		client: {
 			jasmine: {
@@ -30,7 +29,7 @@ module.exports = function (config) {
 			subdir: ".",
 			reporters: [{ type: "html" }, { type: "text-summary" }],
 		},
-		reporters: ["progress", "kjhtml", "teamcity"],
+		reporters: ["progress", "kjhtml"],
 		port: 9876,
 		colors: true,
 		logLevel: config.LOG_INFO,

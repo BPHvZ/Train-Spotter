@@ -129,7 +129,10 @@ export class TrainPopupComponent implements OnChanges {
 			},
 			() => {
 				this.clipboardService.copy(url);
-				this.toastService.show(template, ToastPosition.Center);
+				this.toastService.show({
+					textOrTpl: template,
+					position: ToastPosition.Center,
+				});
 			}
 		);
 	}

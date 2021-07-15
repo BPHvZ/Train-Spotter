@@ -20,6 +20,8 @@
  *  Calculates the number of rem/em units based on the input pixel count.
  *  Allows a fallback to px units later on (say for IE8 support)
  */
+@use "sass:math";
+
 $old-ie: false !default;
 @function toRem($pixels) {
 	@if ($old-ie) {
@@ -27,7 +29,7 @@ $old-ie: false !default;
 	} @else if (strip-units($pixels) == 0) {
 		@return 0;
 	} @else {
-		@return $pixels/16px * 1rem;
+		@return math.div($pixels, 16px) * 1rem;
 	}
 }
 
@@ -35,7 +37,7 @@ $old-ie: false !default;
 	@if (strip-units($pixels) == 0) {
 		@return 0;
 	} @else {
-		@return $pixels/16px * 1em;
+		@return math.div($pixels, 16px) * 1em;
 	}
 }
 
@@ -139,5 +141,5 @@ $old-ie: false !default;
 }
 
 @function strip-units($number) {
-	@return $number / ($number * 0 + 1);
+	@return math.div($number, $number * 0 + 1);
 }

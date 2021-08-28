@@ -16,140 +16,271 @@
   ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   -->
 
-<div style="pointer-events: auto" *ngIf="trainInformation" class="mat-typography">
-	<div class="map-marker flex-parent-inline flex-parent--center-cross flex-parent--column absolute bottom">
-		<div
-			id="train-marker-content"
-			class="map-marker-content color-white shadow-darken10 round txt-s clip txt-truncate"
-			style="padding: 15px 0"
-		>
-			<div class="container">
-				<div class="row">
-					<div class="col">
-						<div class="ms-auto mb-1" style="width: fit-content">
-							<button class="button button--nsYellow button--close" (click)="closePopup.emit()">
-								<strong>&times;</strong>
-							</button>
-						</div>
-						<div style="font-size: initial; font-weight: bold; white-space: pre-wrap">
-							<span>{{ trainInformation.trainDetails?.vervoerder }} {{ getTypeOfTrain() }} trein</span>
-							<span
-								class="link-hover link-hover--whitespace"
-								style="cursor: pointer"
-								(click)="navigateToRideInformation()"
-							>
-								{{ trainInformation.ritId }}
-							</span>
-							<ng-container
-								*ngFor="
+<div
+	id="train-marker-content"
+	class="map-marker-content color-white shadow-darken10 round txt-s clip txt-truncate mat-typography"
+	style="pointer-events: auto; padding: 15px 0"
+	*ngIf="trainInformation"
+>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col">
+				<div class="">
+					<div class="ms-auto mb-1" style="width: fit-content">
+						<button class="button button--nsYellow button--close" (click)="closePopup.emit()">
+							<strong>&times;</strong>
+						</button>
+					</div>
+					<div style="font-size: initial; font-weight: bold; white-space: pre-wrap">
+						<span>{{ trainInformation.trainDetails?.vervoerder }} {{ getTypeOfTrain() }} trein</span>
+						<span
+							class="link-hover link-hover--whitespace"
+							style="cursor: pointer"
+							(click)="navigateToRideInformation()"
+						>
+							{{ trainInformation.ritId }}
+						</span>
+						<ng-container
+							*ngFor="
 											let trainPart of trainInformation.trainDetails?.materieeldelen;
 											let i = index
 										"
-							>
-								<ng-container *ngIf="trainPart.materieelnummer">
-									<ng-container *ngIf="i === 0; else other">
-										<span
-											>met
-											<span
-												class="link-hover"
-												style="cursor: pointer"
-												(click)="navigateToTrainsetInformation(trainPart.materieelnummer)"
-												>{{ trainPart.materieelnummer }}</span
-											>
-										</span>
-									</ng-container>
-									<ng-template #other>
-										<span>
-											{{ i === (trainInformation.trainDetails.materieeldelen.length - 1) ? " " +
-											'en' : ','}}
-											<span
-												class="link-hover"
-												style="cursor: pointer"
-												(click)="navigateToTrainsetInformation(trainPart.materieelnummer)"
-												>{{ trainPart.materieelnummer }}</span
-											>
-										</span>
-									</ng-template>
-								</ng-container>
-							</ng-container>
-						</div>
-						<div
-							*ngIf="trainInformation.trainDetails?.materieeldelen && trainInformation.trainDetails?.materieeldelen[0]?.afbeelding"
 						>
-							<div id="carousel" class="scroll-gradient">
-								<div
-									class="slide"
-									*ngFor="let railcar of trainInformation.trainDetails.materieeldelen; let isLast = last"
-								>
-									<img
-										[src]="railcar.afbeelding"
-										alt="Trein"
-										height="45"
-										[ngClass]="{ 'pe-2': isLast }"
-									/>
-								</div>
-							</div>
-						</div>
-						<div class="mt-2">
-							<div class="float-start me-3" style="width: fit-content">
-								<div *ngIf="trainInformation.trainDetails.type">
-									<div class="mb-1 fw-bold">Type:</div>
-								</div>
-								<div class="mb-1 fw-bold">Snelheid:</div>
-								<div class="fw-bold">Richting:</div>
-							</div>
-
-							<div style="width: fit-content">
-								<div *ngIf="trainInformation.trainDetails.type">
-									<div class="mb-1">{{trainInformation.trainDetails.type}}</div>
-								</div>
-								<div class="mb-1">{{ trainInformation.snelheid | number:'1.0-2' }} km/u</div>
-								<div class="d-flex align-items-center">
-									<span>{{ trainInformation.richting }}&deg;</span>
+							<ng-container *ngIf="trainPart.materieelnummer">
+								<ng-container *ngIf="i === 0; else other">
 									<span
-										class="material-icons fw-bold ms-1"
-										style="font-size: 18px"
-										[ngStyle]="directionArrowStyle"
-										>arrow_right_alt</span
-									>
+										>met
+										<span
+											class="link-hover"
+											style="cursor: pointer"
+											(click)="navigateToTrainsetInformation(trainPart.materieelnummer)"
+											>{{ trainPart.materieelnummer }}</span
+										>
+									</span>
+								</ng-container>
+								<ng-template #other>
+									<span>
+										{{ i === (trainInformation.trainDetails.materieeldelen.length - 1) ? " " + 'en'
+										: ','}}
+										<span
+											class="link-hover"
+											style="cursor: pointer"
+											(click)="navigateToTrainsetInformation(trainPart.materieelnummer)"
+											>{{ trainPart.materieelnummer }}</span
+										>
+									</span>
+								</ng-template>
+							</ng-container>
+						</ng-container>
+					</div>
+					<div
+						*ngIf="trainInformation.trainDetails?.materieeldelen && trainInformation.trainDetails?.materieeldelen[0]?.afbeelding"
+					>
+						<div id="carousel" class="scroll-gradient">
+							<div
+								class="slide"
+								*ngFor="let railcar of trainInformation.trainDetails.materieeldelen; let isLast = last"
+							>
+								<img
+									[src]="railcar.afbeelding"
+									alt="Trein"
+									height="45"
+									[ngClass]="{ 'pe-2': isLast }"
+								/>
+							</div>
+						</div>
+					</div>
+					<div class="mt-2">
+						<div class="float-start me-3" style="width: fit-content">
+							<div *ngIf="trainInformation.trainDetails.type">
+								<div class="mb-1 fw-bold">Type:</div>
+							</div>
+							<div class="mb-1 fw-bold">Snelheid:</div>
+							<div class="fw-bold">Richting:</div>
+						</div>
+
+						<div style="width: fit-content">
+							<div *ngIf="trainInformation.trainDetails.type">
+								<div class="mb-1">{{trainInformation.trainDetails.type}}</div>
+							</div>
+							<div class="mb-1">{{ trainInformation.snelheid | number:'1.0-2' }} km/u</div>
+							<div class="d-flex align-items-center">
+								<span>{{ trainInformation.richting }}&deg;</span>
+								<span
+									class="material-icons fw-bold ms-1"
+									style="font-size: 18px"
+									[ngStyle]="directionArrowStyle"
+									>arrow_right_alt</span
+								>
+							</div>
+						</div>
+					</div>
+					<div class="mt-2 d-flex justify-content-between">
+						<div>
+							<button
+								id="moreInfoButton"
+								class="button button--nsYellow"
+								(click)="navigateToRideInformation()"
+							>
+								Meer info
+								<fa-icon [icon]="faInfoCircle" style="font-size: small"></fa-icon>
+							</button>
+						</div>
+						<div>
+							<button
+								id="shareTrainButton"
+								class="button button--nsYellow"
+								(click)="shareTrain(copiedShareUrlTpl)"
+							>
+								<div class="d-flex">
+									Deel trein
+									<span class="material-icons ms-1" style="font-size: 16px">ios_share</span>
 								</div>
-							</div>
+							</button>
 						</div>
-						<div class="mt-2 d-flex justify-content-between">
-							<div>
-								<button
-									id="moreInfoButton"
-									class="button button--nsYellow"
-									(click)="navigateToRideInformation()"
-								>
-									Meer info
-									<fa-icon [icon]="faInfoCircle" style="font-size: small"></fa-icon>
-								</button>
-							</div>
-							<div>
-								<button
-									id="shareTrainButton"
-									class="button button--nsYellow"
-									(click)="shareTrain(copiedShareUrlTpl)"
-								>
-									<div class="d-flex">
-										Deel trein
-										<span class="material-icons ms-1" style="font-size: 16px">ios_share</span>
-									</div>
-								</button>
-							</div>
-						</div>
-						<div class="mt-2 ms-auto" style="width: fit-content">
-							<div style="align-self: flex-end" *ngIf="updatedAt">
-								<div id="lastUpdated">Laatste update {{ updatedAt | date: "HH:mm:ss" }}</div>
-							</div>
+					</div>
+					<div class="mt-2 ms-auto" style="width: fit-content">
+						<div style="align-self: flex-end" *ngIf="updatedAt">
+							<div id="lastUpdated">Laatste update {{ updatedAt | date: "HH:mm:ss" }}</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-		<span class="flex-child triangle triangle--d" style="color: #00337f"></span>
 	</div>
+	<!--	<div class="map-marker flex-parent-inline flex-parent&#45;&#45;center-cross flex-parent&#45;&#45;column absolute bottom">-->
+	<!--		<div-->
+	<!--			id="train-marker-content"-->
+	<!--			class="map-marker-content color-white shadow-darken10 round txt-s clip txt-truncate"-->
+	<!--			style="padding: 15px 0"-->
+	<!--		>-->
+	<!--			<div class="container">-->
+	<!--				<div class="row">-->
+	<!--					<div class="col">-->
+	<!--						<div class="ms-auto mb-1" style="width: fit-content">-->
+	<!--							<button class="button button&#45;&#45;nsYellow button&#45;&#45;close" (click)="closePopup.emit()">-->
+	<!--								<strong>&times;</strong>-->
+	<!--							</button>-->
+	<!--						</div>-->
+	<!--						<div style="font-size: initial; font-weight: bold; white-space: pre-wrap">-->
+	<!--							<span>{{ trainInformation.trainDetails?.vervoerder }} {{ getTypeOfTrain() }} trein</span>-->
+	<!--							<span-->
+	<!--								class="link-hover link-hover&#45;&#45;whitespace"-->
+	<!--								style="cursor: pointer"-->
+	<!--								(click)="navigateToRideInformation()"-->
+	<!--							>-->
+	<!--								{{ trainInformation.ritId }}-->
+	<!--							</span>-->
+	<!--							<ng-container-->
+	<!--								*ngFor="-->
+	<!--											let trainPart of trainInformation.trainDetails?.materieeldelen;-->
+	<!--											let i = index-->
+	<!--										"-->
+	<!--							>-->
+	<!--								<ng-container *ngIf="trainPart.materieelnummer">-->
+	<!--									<ng-container *ngIf="i === 0; else other">-->
+	<!--										<span-->
+	<!--											>met-->
+	<!--											<span-->
+	<!--												class="link-hover"-->
+	<!--												style="cursor: pointer"-->
+	<!--												(click)="navigateToTrainsetInformation(trainPart.materieelnummer)"-->
+	<!--												>{{ trainPart.materieelnummer }}</span-->
+	<!--											>-->
+	<!--										</span>-->
+	<!--									</ng-container>-->
+	<!--									<ng-template #other>-->
+	<!--										<span>-->
+	<!--											{{ i === (trainInformation.trainDetails.materieeldelen.length - 1) ? " " +-->
+	<!--											'en' : ','}}-->
+	<!--											<span-->
+	<!--												class="link-hover"-->
+	<!--												style="cursor: pointer"-->
+	<!--												(click)="navigateToTrainsetInformation(trainPart.materieelnummer)"-->
+	<!--												>{{ trainPart.materieelnummer }}</span-->
+	<!--											>-->
+	<!--										</span>-->
+	<!--									</ng-template>-->
+	<!--								</ng-container>-->
+	<!--							</ng-container>-->
+	<!--						</div>-->
+	<!--						<div-->
+	<!--							*ngIf="trainInformation.trainDetails?.materieeldelen && trainInformation.trainDetails?.materieeldelen[0]?.afbeelding"-->
+	<!--						>-->
+	<!--							<div id="carousel" class="scroll-gradient">-->
+	<!--								<div-->
+	<!--									class="slide"-->
+	<!--									*ngFor="let railcar of trainInformation.trainDetails.materieeldelen; let isLast = last"-->
+	<!--								>-->
+	<!--									<img-->
+	<!--										[src]="railcar.afbeelding"-->
+	<!--										alt="Trein"-->
+	<!--										height="45"-->
+	<!--										[ngClass]="{ 'pe-2': isLast }"-->
+	<!--									/>-->
+	<!--								</div>-->
+	<!--							</div>-->
+	<!--						</div>-->
+	<!--						<div class="mt-2">-->
+	<!--							<div class="float-start me-3" style="width: fit-content">-->
+	<!--								<div *ngIf="trainInformation.trainDetails.type">-->
+	<!--									<div class="mb-1 fw-bold">Type:</div>-->
+	<!--								</div>-->
+	<!--								<div class="mb-1 fw-bold">Snelheid:</div>-->
+	<!--								<div class="fw-bold">Richting:</div>-->
+	<!--							</div>-->
+
+	<!--							<div style="width: fit-content">-->
+	<!--								<div *ngIf="trainInformation.trainDetails.type">-->
+	<!--									<div class="mb-1">{{trainInformation.trainDetails.type}}</div>-->
+	<!--								</div>-->
+	<!--								<div class="mb-1">{{ trainInformation.snelheid | number:'1.0-2' }} km/u</div>-->
+	<!--								<div class="d-flex align-items-center">-->
+	<!--									<span>{{ trainInformation.richting }}&deg;</span>-->
+	<!--									<span-->
+	<!--										class="material-icons fw-bold ms-1"-->
+	<!--										style="font-size: 18px"-->
+	<!--										[ngStyle]="directionArrowStyle"-->
+	<!--										>arrow_right_alt</span-->
+	<!--									>-->
+	<!--								</div>-->
+	<!--							</div>-->
+	<!--						</div>-->
+	<!--						<div class="mt-2 d-flex justify-content-between">-->
+	<!--							<div>-->
+	<!--								<button-->
+	<!--									id="moreInfoButton"-->
+	<!--									class="button button&#45;&#45;nsYellow"-->
+	<!--									(click)="navigateToRideInformation()"-->
+	<!--								>-->
+	<!--									Meer info-->
+	<!--									<fa-icon [icon]="faInfoCircle" style="font-size: small"></fa-icon>-->
+	<!--								</button>-->
+	<!--							</div>-->
+	<!--							<div>-->
+	<!--								<button-->
+	<!--									id="shareTrainButton"-->
+	<!--									class="button button&#45;&#45;nsYellow"-->
+	<!--									(click)="shareTrain(copiedShareUrlTpl)"-->
+	<!--								>-->
+	<!--									<div class="d-flex">-->
+	<!--										Deel trein-->
+	<!--										<span class="material-icons ms-1" style="font-size: 16px">ios_share</span>-->
+	<!--									</div>-->
+	<!--								</button>-->
+	<!--							</div>-->
+	<!--						</div>-->
+	<!--						<div class="mt-2 ms-auto" style="width: fit-content">-->
+	<!--							<div style="align-self: flex-end" *ngIf="updatedAt">-->
+	<!--								<div id="lastUpdated">Laatste update {{ updatedAt | date: "HH:mm:ss" }}</div>-->
+	<!--							</div>-->
+	<!--						</div>-->
+	<!--					</div>-->
+	<!--				</div>-->
+	<!--			</div>-->
+	<!--		</div>-->
+	<!--			<span class="flex-child triangle triangle&#45;&#45;d" style="color: #00337f"></span>-->
+	<!--	</div>-->
 </div>
 
 <ng-template #copiedShareUrlTpl>

@@ -413,9 +413,9 @@ export class TrainMapComponent implements OnInit, OnDestroy {
 				selectedFeature.properties = basicTrainInformation;
 				this.sharedDataService.selectedTrainOnMapFeature = selectedFeature;
 
-				this.sharedDataService.trainMap.easeTo({
-					center: [basicTrainInformation.lng, basicTrainInformation.lat],
-				});
+				// this.sharedDataService.trainMap.easeTo({
+				// 	center: [basicTrainInformation.lng, basicTrainInformation.lat],
+				// });
 			}
 		}
 	}

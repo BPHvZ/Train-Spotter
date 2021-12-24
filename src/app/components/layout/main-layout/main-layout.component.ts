@@ -66,6 +66,6 @@ export class MainLayoutComponent implements OnDestroy {
 	}
 
 	onRouterOutletActivate(component: Component): void {
-		this.metaTagsService.updateTags(component["componentName"]);
+		this.metaTagsService.updateTags(component["componentName"] as string);
 	}
 }

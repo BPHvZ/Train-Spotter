@@ -260,8 +260,12 @@ export class SharedDataService {
 				calamities.sort((a, b) => ("" + a.type).localeCompare(b.type));
 
 				calamities.sort((a, b) => ("" + a.type).localeCompare(b.type));
-				disruptions.sort((a, b) => new Date(a["start"]).valueOf() - new Date(b["start"]).valueOf());
-				maintenance.sort((a, b) => new Date(a["start"]).valueOf() - new Date(b["start"]).valueOf());
+				disruptions.sort(
+					(a, b) => new Date(a["start"] as string).valueOf() - new Date(b["start"] as string).valueOf()
+				);
+				maintenance.sort(
+					(a, b) => new Date(a["start"] as string).valueOf() - new Date(b["start"] as string).valueOf()
+				);
 
 				const disruptionsSorted = calamities.concat(disruptions, maintenance);
 

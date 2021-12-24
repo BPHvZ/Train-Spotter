@@ -56,7 +56,7 @@
 					</mgl-layer>
 				</ng-container>
 				<ng-container *ngIf="trainTracksLayerData">
-					<mgl-geojson-source id="trainTracksLayerData" [data]="trainTracksLayerData"></mgl-geojson-source>
+					<mgl-geojson-source id="trainTracksLayerData" [data]="trainTracksLayerData!"></mgl-geojson-source>
 					<mgl-layer
 						id="NSTrainTracks"
 						type="line"
@@ -68,7 +68,7 @@
 					</mgl-layer>
 				</ng-container>
 				<ng-container *ngIf="disruptedTrainTracksLayerData$ | async as data">
-					<mgl-geojson-source id="disruptedTrainTracksSource" [data]="data.payload"></mgl-geojson-source>
+					<mgl-geojson-source id="disruptedTrainTracksSource" [data]="data!.payload!"></mgl-geojson-source>
 					<mgl-layer
 						id="disruptedTrainTracks"
 						type="line"
@@ -89,7 +89,7 @@
 					<mgl-geojson-source id="disruptionMarkersSource">
 						<mgl-marker
 							*ngFor="let disruptionMarker of disruptionMarkers"
-							[feature]="disruptionMarker"
+							[feature]="disruptionMarker!"
 							[ngInit]="addMarkerComponentToSet(marker)"
 							#marker
 						>
@@ -103,28 +103,14 @@
 							>
 								<div
 									tabindex="0"
-									class="
-										map-marker map-marker--disruption
-										inline-flex
-										flex--center-cross flex--column
-										absolute
-										bottom
-									"
+									class="map-marker map-marker--disruption inline-flex flex--center-cross flex--column absolute bottom"
 								>
 									<ng-template
 										[ngIf]="disruptionMarker.properties.type === 'MAINTENANCE'"
 										[ngIfElse]="elseDisruption"
 									>
 										<div
-											class="
-												map-marker-content map-marker-content--maintenance
-												color-white
-												shadow-darken10
-												round
-												txt-s
-												clip
-												txt-truncate
-											"
+											class="map-marker-content map-marker-content--maintenance color-white shadow-darken10 round txt-s clip txt-truncate"
 										>
 											<div
 												class="marker-icon-parent color-maintenance"
@@ -145,15 +131,7 @@
 									</ng-template>
 									<ng-template #elseDisruption>
 										<div
-											class="
-												map-marker-content map-marker-content--disruption
-												color-white
-												shadow-darken10
-												round
-												txt-s
-												clip
-												txt-truncate
-											"
+											class="map-marker-content map-marker-content--disruption color-white shadow-darken10 round txt-s clip txt-truncate"
 										>
 											<div class="marker-icon-parent color-disruption" style="position: relative">
 												<div class="marker-hover"></div>
@@ -178,7 +156,7 @@
 				<mgl-geojson-source
 					*ngIf="trainsLayerData"
 					id="trainData"
-					[data]="trainsLayerData"
+					[data]="trainsLayerData!"
 				></mgl-geojson-source>
 				<mgl-layer
 					*ngIf="trainsLayerData && trainIconsForMap"

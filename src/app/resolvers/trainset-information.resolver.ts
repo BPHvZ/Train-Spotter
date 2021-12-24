@@ -41,8 +41,8 @@ export class TrainsetInformationResolver implements Resolve<DetailedTrainInforma
 	resolve(route: ActivatedRouteSnapshot): Observable<DetailedTrainInformation> {
 		console.log("resolve ", route.paramMap.get("trainset"));
 		return this.rideInformationService.getRideInformationByTrainsetNr(
-			route.params["trainset"],
-			route.queryParams["rideId"]
+			route.params["trainset"] as number,
+			route.queryParams["rideId"] as string
 		);
 	}
 }

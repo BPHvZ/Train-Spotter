@@ -62,7 +62,7 @@
     "@types/node": "^17.0.4",
     "bootstrap": "^5.0.0",
     "easytimer.js": "^4.5.1",
-    "jimp": "^0.16.1",
+    "jimp": "0.14.0",
     "lodash": "^4.17.21",
     "mapbox-gl": "^2.6.1",
     "ng-inline-svg": "^13.1.2",
@@ -131,5 +131,9 @@
     "webpack-bundle-analyzer": "^4.5.0",
     "xml-formatter": "^2.6.0",
     "xml2json": "^0.12.0"
+  },
+  "resolutions": {
+    "jimp": "0.14.0",
+    "replace-color/jimp": "0.14.0"
   }
 }

@@ -70,6 +70,7 @@
     "ngx-mapbox-gl": "^7.1.2",
     "replace-color": "^2.3.0",
     "rxjs": "^7.4.0",
+    "sass": "^1.45.1",
     "tslib": "^2.3.1",
     "zone.js": "^0.11.4"
   },

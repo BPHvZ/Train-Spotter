@@ -95,12 +95,12 @@
 								tabindex="0"
 							>
 								<app-calamity-item
-									[calamity]="disruption"
+									[calamity]="$any(disruption)"
 									*ngSwitchCase="'CALAMITY'"
 								></app-calamity-item>
 								<app-disruption-item
 									tabindex="0"
-									[disruption]="disruption"
+									[disruption]="$any(disruption)"
 									(mouseenter)="onMouseEnterDisruptionCard($event, disruption)"
 									(mouseleave)="onMouseLeaveDisruptionCard($event, disruption)"
 									(click)="flyToDisruption(disruption)"

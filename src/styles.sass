@@ -19,20 +19,16 @@
 
 /* Importing Bootstrap SCSS file. */
 @import '~bootstrap/scss/bootstrap'
-
 @import '~mapbox-gl/dist/mapbox-gl.css'
-
 @import "styles/buttons"
+@import '@angular/material'
+@import '@angular/material/theming'
+@import "https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.css"
 
-@import '~@angular/material/theming'
-
-@import "https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.css"
-@import "https://api.mapbox.com/mapbox-assembly/v0.26.0/assembly.min.css"
-
-$custom-typography: mat-typography-config($font-family: "Poppins, Roboto, Helvetica Neue, Sans Serif")
+$custom-typography: define-typography-config($font-family: "Poppins, Roboto, Helvetica Neue, Sans Serif")
 
 // Override typography CSS classes (e.g., mat-h1, mat-display-1, mat-typography, etc.).
-@include mat-base-typography($custom-typography)
+@include  mat-base-typography($custom-typography)
 
 // Override typography for a specific Angular Material components.
 @include mat-checkbox-typography($custom-typography)

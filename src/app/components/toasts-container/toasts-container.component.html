@@ -8,7 +8,7 @@
 		(hidden)="toastService.remove(toast)"
 	>
 		<ng-template [ngIf]="isTemplate(toast)" [ngIfElse]="text">
-			<ng-template [ngTemplateOutlet]="toast.textOrTpl"></ng-template>
+			<ng-template [ngTemplateOutlet]="toast.textOrTpl!"></ng-template>
 		</ng-template>
 
 		<ng-template #text>{{ toast.textOrTpl }}</ng-template>
@@ -25,7 +25,7 @@
 		(hidden)="toastService.remove(toast)"
 	>
 		<ng-template [ngIf]="isTemplate(toast)" [ngIfElse]="text">
-			<ng-template [ngTemplateOutlet]="toast.textOrTpl"></ng-template>
+			<ng-template [ngTemplateOutlet]="toast.textOrTpl!"></ng-template>
 		</ng-template>
 
 		<ng-template #text>{{ toast.textOrTpl }}</ng-template>
@@ -42,7 +42,7 @@
 		(hidden)="toastService.remove(toast)"
 	>
 		<ng-template [ngIf]="isTemplate(toast)" [ngIfElse]="text">
-			<ng-template [ngTemplateOutlet]="toast.textOrTpl"></ng-template>
+			<ng-template [ngTemplateOutlet]="toast.textOrTpl!"></ng-template>
 		</ng-template>
 
 		<ng-template #text>{{ toast.textOrTpl }}</ng-template>

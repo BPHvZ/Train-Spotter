@@ -118,7 +118,7 @@ export class TrainSpotterRouteReuseStrategy implements RouteReuseStrategy {
 		const data = TrainSpotterRouteReuseStrategy.getRouteData(route);
 		if (data && data.reuse && this.routeCache.has(url)) {
 			const ref = this.routeCache.get(url).handle;
-			// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+			// eslint-disable-next-line @typescript-eslint/no-unsafe-argument,@typescript-eslint/no-unsafe-member-access
 			this.metaTagsService.updateTags(ref["componentRef"]["instance"]["componentName"]);
 		}
 		return data && data.reuse && this.routeCache.has(url) ? this.routeCache.get(url).handle : null;

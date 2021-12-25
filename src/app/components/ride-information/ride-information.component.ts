@@ -102,7 +102,7 @@ export class RideInformationComponent implements OnInit {
 		});
 
 		this.route.data.subscribe((resolversData) => {
-			const rideInformation = resolversData["rideInformation"];
+			const rideInformation = resolversData["rideInformation"] as RideInformation;
 			this.setRideInformation(rideInformation);
 			if (this.rideInformation) {
 				this.addTrainToMap();

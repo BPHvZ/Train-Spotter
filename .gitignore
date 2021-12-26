@@ -54,4 +54,6 @@ Thumbs.db
 !.yarn/releases
 !.yarn/sdks
 !.yarn/versions
-/.angular/
+
+# Angular cache
+.angular/**

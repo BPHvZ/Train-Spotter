@@ -100,7 +100,9 @@ export class HelperFunctionsService {
 	 */
 	// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 	objectsAreEqual(object1: any, object2: any): boolean {
+		// eslint-disable-next-line @typescript-eslint/no-unsafe-argument
 		const keys1 = Object.keys(object1);
+		// eslint-disable-next-line @typescript-eslint/no-unsafe-argument
 		const keys2 = Object.keys(object2);
 
 		if (keys1.length !== keys2.length) {

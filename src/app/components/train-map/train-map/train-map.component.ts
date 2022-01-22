@@ -194,7 +194,7 @@ export class TrainMapComponent implements OnInit, OnDestroy {
 				const navigationState = this.router.getCurrentNavigation().extras.state;
 				if (navigationState) {
 					if (navigationState.station) {
-						this.sharedDataService.flyToStation(navigationState.station);
+						this.sharedDataService.flyToStation(navigationState.station as Station);
 					}
 				}
 			}
@@ -380,9 +380,9 @@ export class TrainMapComponent implements OnInit, OnDestroy {
 
 			if (stationInformation) {
 				/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-				stationInformation.namen = JSON.parse(stationInformation.namen);
-				stationInformation.synoniemen = JSON.parse(stationInformation.synoniemen);
-				stationInformation.sporen = JSON.parse(stationInformation.sporen);
+				stationInformation.namen = JSON.parse(stationInformation.namen as string);
+				stationInformation.synoniemen = JSON.parse(stationInformation.synoniemen as string);
+				stationInformation.sporen = JSON.parse(stationInformation.sporen as string);
 				/* eslint-enable @typescript-eslint/no-unsafe-assignment */
 				stationInformation = stationInformation as Station;
 				selectedFeature.properties = stationInformation;
@@ -408,14 +408,14 @@ export class TrainMapComponent implements OnInit, OnDestroy {
 			if (basicTrainInformation) {
 				// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 				if (basicTrainInformation.trainDetails) {
-					basicTrainInformation.trainDetails = JSON.parse(basicTrainInformation.trainDetails);
+					basicTrainInformation.trainDetails = JSON.parse(basicTrainInformation.trainDetails as string);
 				}
 				selectedFeature.properties = basicTrainInformation;
 				this.sharedDataService.selectedTrainOnMapFeature = selectedFeature;
 
-				this.sharedDataService.trainMap.easeTo({
-					center: [basicTrainInformation.lng, basicTrainInformation.lat],
-				});
+				// this.sharedDataService.trainMap.easeTo({
+				// 	center: [basicTrainInformation.lng, basicTrainInformation.lat],
+				// });
 			}
 		}
 	}
@@ -605,7 +605,7 @@ export class TrainMapComponent implements OnInit, OnDestroy {
 			if (
 				train.trainDetails &&
 				train.trainDetails.materieeldelen &&
-				train.trainDetails.materieeldelen[0].afbeelding
+				train.trainDetails.materieeldelen[0]?.afbeelding
 			) {
 				const materiaaldelen = train.trainDetails.materieeldelen;
 				// Get last part of url, like 'virm_4.png', to be used as a name

@@ -17,13 +17,10 @@
  */
 
 import Jimp from "jimp";
+import replaceColor from "replace-color";
 import { forkJoin, from, Observable } from "rxjs";
 import { map, mergeMap } from "rxjs/operators";
 import { NSTrainIcon } from "../models/VirtualTrainAPI";
-
-/**ReplaceColor library*/
-// eslint-disable-next-line @typescript-eslint/no-var-requires,@typescript-eslint/no-unsafe-assignment
-const replaceColor = require("replace-color");
 
 /**
  * For each icon:
@@ -47,7 +44,7 @@ export const jimpPrepareIcons = (iconURLs: Map<string, string>): Observable<NSTr
 				}),
 				mergeMap((buffer) =>
 					from<Observable<Jimp>>(
-						// eslint-disable-next-line @typescript-eslint/no-unsafe-call
+						// eslint-disable-next-line @typescript-eslint/no-unsafe-argument,@typescript-eslint/no-unsafe-call
 						replaceColor({
 							image: buffer,
 							colors: {

@@ -48,7 +48,7 @@ export class RideInformationService {
 			this.getJourneyDetails(rideId).pipe(
 				tap((resp) => (journey = resp)),
 				switchMap((details) => {
-					const stationCodes = [];
+					const stationCodes: string[] = [];
 					details.stops.forEach((stop) => {
 						if (stop.id) {
 							const code = stop.id.split("_")[0];

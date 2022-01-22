@@ -30,7 +30,7 @@ import { RouteReuseStrategy } from "@angular/router";
 import { ServiceWorkerModule } from "@angular/service-worker";
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
-import { InlineSVGModule } from "ng-inline-svg";
+import { InlineSVGModule } from "ng-inline-svg-2";
 import { NgxMapboxGLModule } from "ngx-mapbox-gl";
 import { environment } from "../environments/environment";
 import { TrainSpotterRouteReuseStrategy } from "./app-route-reuse.strategy";

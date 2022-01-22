@@ -605,7 +605,7 @@ export class TrainMapComponent implements OnInit, OnDestroy {
 			if (
 				train.trainDetails &&
 				train.trainDetails.materieeldelen &&
-				train.trainDetails.materieeldelen[0].afbeelding
+				train.trainDetails.materieeldelen[0]?.afbeelding
 			) {
 				const materiaaldelen = train.trainDetails.materieeldelen;
 				// Get last part of url, like 'virm_4.png', to be used as a name

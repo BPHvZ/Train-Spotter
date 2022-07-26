@@ -33,7 +33,10 @@
 			[style.minHeight]="isTrainMap ? 'unset' : '100vh'"
 			[style.height]="isTrainMap ? innerHeight + 'px' : 'unset'"
 		>
-			<div class="container-fluid d-flex flex-column">
+			<div
+				class="container-fluid d-flex flex-column"
+				[style.max-width]="isTrainMap ? 'unset !important' : '1280px'"
+			>
 				<router-outlet (activate)="onRouterOutletActivate($event)"></router-outlet>
 			</div>
 		</div>

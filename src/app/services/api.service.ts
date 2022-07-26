@@ -16,7 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { HttpParams } from "@angular/common/http";
+import { HttpHeaders, HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { environment } from "../../environments/environment";
@@ -141,6 +141,9 @@ export class ApiService {
 			cacheMins: environment.production ? 1 : 60,
 			params: disruptionParams,
 			force: force,
+			headers: new HttpHeaders({
+				"Accept-Language": "nl",
+			}),
 		});
 	}
 

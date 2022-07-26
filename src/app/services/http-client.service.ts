@@ -136,7 +136,7 @@ export class HttpClientService {
 
 		options.headers.set("Accept-Encoding", ["gzip", "deflate", "br"]);
 
-		if (options.cacheMins > 0 && options.force == false) {
+		if (options.cacheMins > 0 && !options.force) {
 			// Get data from cache
 			const data = this.cacheService.load(options.url, params);
 			// Return data from cache

@@ -23,6 +23,7 @@ import { LngLatLike, Map as MapBoxMap, MapboxGeoJSONFeature } from "mapbox-gl";
 import { MarkerComponent } from "ngx-mapbox-gl/lib/marker/marker.component";
 import { BehaviorSubject, combineLatest, fromEvent, Observable } from "rxjs";
 import { debounceTime, map, switchMap, take, tap } from "rxjs/operators";
+import { environment } from "../../environments/environment";
 import { DisruptionBase, DisruptionsList, Station, StationsResponse } from "../models/ReisinformatieAPI";
 import { TrainTracksGeoJSON } from "../models/SpoortkaartAPI";
 import { TrainMapType } from "../models/TrainMapType";
@@ -241,6 +242,9 @@ export class SharedDataService {
 		return this.apiService.getActiveDisruptions(force).pipe(
 			take(1),
 			tap((response) => {
+				if (!environment.production) {
+					console.log(response);
+				}
 				if (response.responseType == ResponseType.URL) {
 					const date = new Date();
 					this._disruptionsLastUpdated.next(date);

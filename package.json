@@ -6,7 +6,7 @@
     "serve": "ng serve --hmr",
     "serve_no_hmr": "ng serve",
     "pre_serve_production": "ng build --outputHashing=all",
-    "_serve_production": "yarn pre_serve_production && http-server -p 8080 -c-1 dist/trainSpotter",
+    "_serve_production": "yarn pre_serve_production && http-server -p 8080 --cors -S=true -C='/Users/bart/server.crt' -K='/Users/bart/server.key' -c-1 dist/trainSpotter",
     "---------------- Inspect Bundles ----------------": "",
     "prebundle-report": "ng build --stats-json",
     "bundle-report": "yarn prebundle-report && webpack-bundle-analyzer dist/trainSpotter/stats.json",

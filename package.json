@@ -13,7 +13,7 @@
     "prebuild-sme": "ng build --source-map --stats-json",
     "sme-report": "yarn prebuild-sme && source-map-explorer dist/trainSpotter/**/*.js",
     "---------------- Build Application ----------------": "ng",
-    "prebuild:release": "yarn install --immutable",
+    "prebuild:release": "yarn install",
     "build:release": "yarn prebuild:release && yarn test:release && ng build --outputHashing=all",
     "---------------- Test Application ----------------": "ng",
     "test:release": "ng test --karma-config=karma-ci.conf.js --no-progress",

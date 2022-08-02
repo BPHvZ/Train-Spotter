@@ -61,9 +61,9 @@ yarn install'''
     stage("Deploy") {
       steps {
         script {
-          withCredentials([sshUserPrivateKey(credentialsId: 'sshUser', keyFileVariable: 'identity', passphraseVariable: '', usernameVariable: 'userName')]) {
-              remote.user = userName
-              remote.identityFile = identity
+          withCredentials([usernamePassword(credentialsId: 'strato_sftp', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+              remote.user = USERNAME
+              remote.identityFile = PASSWORD
               sshCommand remote: remote, command: 'set nonomatch'
               sshCommand remote: remote, command: 'cd Beta/TrainSpotter'
               sshCommand remote: remote, command: 'ls -I "robots*" -I "sitemap*" | xargs rm -rf'

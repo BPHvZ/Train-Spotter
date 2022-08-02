@@ -63,8 +63,8 @@ yarn install'''
             remote.allowAnyHosts = true
             remote.user = USERNAME
             remote.password = PASSWORD
-            sshCommand remote: remote, command: 'set nonomatch', sudo: true
             sshCommand remote: remote, command: 'cd Beta/TrainSpotter'
+            sshCommand remote: remote, command: 'set nonomatch', sudo: true
             sshCommand remote: remote, command: 'ls -I "robots*" -I "sitemap*" | xargs rm -rf'
           }
         }

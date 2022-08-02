@@ -68,8 +68,8 @@ yarn install'''
             sh '''cd docs && git init && \
 git add . && \
 git commit -m "Deploy to GitHub Pages" && \
-git remote add origin https://$PAT@github.com/BPHvZ/Train-Spotter.git && \
-git push -uf origin docs'''
+git remote add origin https://github.com/BPHvZ/Train-Spotter.git && \
+git push -u origin docs'''
           }
         }
 

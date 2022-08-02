@@ -55,7 +55,7 @@ yarn install'''
 
     stage('Deploy') {
       steps {
-        sshPublisher(publishers: [sshPublisher(publishers: [sshPublisherDesc(configName: 'Strato - Beta - TrainSpotter', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: 'ls -I "robots*" -I "sitemap*" | xargs rm -rf', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '', remoteDirectorySDF: false, removePrefix: '', sourceFiles: '', useSftpForExec: true)], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])])
+        sshPublisher(publishers: [sshPublisher(publishers: [sshPublisherDesc(configName: 'Strato - Beta - TrainSpotter', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: 'ls -I "robots*" -I "sitemap*" | xargs rm -rf', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '', remoteDirectorySDF: false, removePrefix: '', sourceFiles: '')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])])
       }
     }
 

@@ -54,23 +54,29 @@ yarn install'''
     }
 
     stage('Deploy docs') {
-      when { branch 'develop' }
+      when {
+        branch 'develop'
+      }
       steps {
         nodejs('NodeJS 18.7.0') {
           sh 'rm -rf docs'
           sh 'yarn run compodoc'
         }
+
         script {
           withCredentials([usernamePassword(credentialsId: '0fcceade-e11a-48f2-8a3d-22765c8229f9', usernameVariable: 'EMAIL', passwordVariable: 'PAT')]) {
             sh 'cd docs && git init && git add . && git commit -m "Deploy to GitHub Pages" && git remote add origin https://$PAT@github.com/BPHvZ/Train-Spotter.git'
-            sh 'git push --force origin main:docs'
+            sh 'git push --force origin master:docs'
           }
         }
+
       }
     }
 
     stage('Deploy beta') {
-      when { branch 'develop' }
+      when {
+        branch 'develop'
+      }
       steps {
         script {
           withCredentials([usernamePassword(credentialsId: 'strato_sftp', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
@@ -90,7 +96,9 @@ yarn install'''
     }
 
     stage('Deploy main') {
-      when { branch 'main' }
+      when {
+        branch 'main'
+      }
       steps {
         script {
           withCredentials([usernamePassword(credentialsId: 'strato_sftp', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {

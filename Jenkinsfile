@@ -7,7 +7,7 @@ pipeline {
           sh 'corepack enable'
         }
 
-        yarn 'install'
+        sh 'yarn install'
       }
     }
 

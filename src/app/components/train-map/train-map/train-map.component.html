@@ -24,9 +24,9 @@
 				[zoom]="[zoom]"
 				[center]="[lng, lat]"
 				[maxBounds]="[
-				[-5.1804575292, 45.9339846217],
-				[15.0276942887, 56.0902661419]
-			]"
+[-5.3512001, 45.1400355],
+[24.1800499, 57.3180871]
+]"
 				(mapLoad)="onMapLoad($event)"
 				(mapMouseMove)="onMapMouseMove($event)"
 				(zoomEvt)="onMapZoom($event)"
@@ -184,7 +184,6 @@
 						(imageError)="onIconError($event)"
 					></mgl-image>
 				</ng-container>
-				<!--        [offset]="[0, 5]"-->
 				<mgl-popup
 					*ngIf="selectedTrainOnMapFeature"
 					[maxWidth]="'90vw'"

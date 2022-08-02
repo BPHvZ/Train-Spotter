@@ -25,14 +25,12 @@ describe("TrainMapComponent", () => {
 	let component: TrainMapComponent;
 	let fixture: ComponentFixture<TrainMapComponent>;
 
-	beforeEach(
-		waitForAsync(() => {
-			void TestBed.configureTestingModule({
-				declarations: [TrainMapComponent],
-				imports: [HttpClientTestingModule, RouterTestingModule],
-			}).compileComponents();
-		})
-	);
+	beforeEach(waitForAsync(() => {
+		void TestBed.configureTestingModule({
+			declarations: [TrainMapComponent],
+			imports: [HttpClientTestingModule, RouterTestingModule],
+		}).compileComponents();
+	}));
 
 	beforeEach(() => {
 		fixture = TestBed.createComponent(TrainMapComponent);
@@ -40,7 +38,7 @@ describe("TrainMapComponent", () => {
 		fixture.detectChanges();
 	});
 
-	// it("should create", () => {
-	// 	expect(component).toBeTruthy();
-	// });
+	it("should create", () => {
+		expect(component).toBeTruthy();
+	});
 });

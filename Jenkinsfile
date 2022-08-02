@@ -64,12 +64,12 @@ yarn install'''
         }
 
         script {
-          withCredentials([usernamePassword(credentialsId: '0fcceade-e11a-48f2-8a3d-22765c8229f9', usernameVariable: 'EMAIL', passwordVariable: 'PAT')]) {
+          withCredentials([gitUsernamePassword(credentialsId: '0fcceade-e11a-48f2-8a3d-22765c8229f9', gitToolName: 'git-tool')]) {
             sh '''cd docs && git init && \
 git add . && \
 git commit -m "Deploy to GitHub Pages" && \
 git remote add origin https://github.com/BPHvZ/Train-Spotter.git && \
-git push -u origin docs'''
+git push -uf origin main:docs'''
           }
         }
 

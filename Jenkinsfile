@@ -1,8 +1,3 @@
-def remote = [:]
-remote.name = "Strato"
-remote.host = "ssh.strato.com"
-remote.allowAnyHosts = true
-
 pipeline {
   agent any
   stages {
@@ -58,18 +53,20 @@ yarn install'''
       }
     }
 
-    stage("Deploy") {
+    stage('Deploy') {
       steps {
         script {
           withCredentials([usernamePassword(credentialsId: 'strato_sftp', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
-              remote.user = USERNAME
-              remote.identityFile = PASSWORD
-              sshCommand remote: remote, command: 'set nonomatch'
-              sshCommand remote: remote, command: 'cd Beta/TrainSpotter'
-              sshCommand remote: remote, command: 'ls -I "robots*" -I "sitemap*" | xargs rm -rf'
+            remote.user = USERNAME
+            remote.password = PASSWORD
+            sshCommand remote: remote, command: 'set nonomatch'
+            sshCommand remote: remote, command: 'cd Beta/TrainSpotter'
+            sshCommand remote: remote, command: 'ls -I "robots*" -I "sitemap*" | xargs rm -rf'
           }
         }
+
       }
     }
+
   }
 }

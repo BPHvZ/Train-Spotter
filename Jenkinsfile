@@ -65,7 +65,7 @@ yarn install'''
             remote.password = PASSWORD
             sshCommand remote: remote, command: 'set nonomatch && cd Beta/TrainSpotter && ls -I "robots*" -I "sitemap*" | xargs rm -rf'
             sshPut remote: remote, from: 'dist/trainSpotter', into: 'Beta/TrainSpotter'
-            sshCommand remote: remote, command: 'mv Beta/TrainSpotter/trainSpotter/. Beta/TrainSpotter/ && rm -rf Beta/TrainSpotter/trainSpotter'
+            sshCommand remote: remote, command: 'find Beta/TrainSpotter/trainSpotter/. -maxdepth 1 -exec mv {} .. && rm -rf Beta/TrainSpotter/trainSpotter'
           }
         }
 

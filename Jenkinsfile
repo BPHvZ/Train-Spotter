@@ -58,8 +58,8 @@ yarn install'''
         script {
           withCredentials([usernamePassword(credentialsId: 'strato_sftp', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
             def remote = [:]
-            remote.name = "ssh.strato.com"
-            remote.host = "ssh.strato.com"
+            remote.name = "ssh.strato.de"
+            remote.host = "ssh.strato.de"
             remote.allowAnyHosts = true
             remote.user = USERNAME
             remote.password = PASSWORD

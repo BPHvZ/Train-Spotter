@@ -1,3 +1,8 @@
+def remote = [:]
+remote.name = "Strato"
+remote.host = "ssh.strato.com"
+remote.allowAnyHosts = true
+
 pipeline {
   agent any
   stages {
@@ -53,11 +58,18 @@ yarn install'''
       }
     }
 
-    stage('Deploy') {
+    stage("Deploy") {
       steps {
-        sshPublisher(publishers: [sshPublisher(publishers: [sshPublisherDesc(configName: 'Strato - Beta - TrainSpotter', transfers: [sshTransfer(cleanRemote: false, excludes: 'robots, sitemap, .htaccess', execCommand: 'rm -rf', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '', remoteDirectorySDF: false, removePrefix: '', sourceFiles: '', useSftpForExec: true)], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])])
+        script {
+          withCredentials([sshUserPrivateKey(credentialsId: 'sshUser', keyFileVariable: 'identity', passphraseVariable: '', usernameVariable: 'userName')]) {
+              remote.user = userName
+              remote.identityFile = identity
+              sshCommand remote: remote, command: 'set nonomatch'
+              sshCommand remote: remote, command: 'cd Beta/TrainSpotter'
+              sshCommand remote: remote, command: 'ls -I "robots*" -I "sitemap*" | xargs rm -rf'
+          }
+        }
       }
     }
-
   }
 }

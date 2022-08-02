@@ -3,7 +3,10 @@ pipeline {
   stages {
     stage('Prepare') {
       steps {
-        sh 'corepack enable'
+        nodejs('NodeJS 18.7.0') {
+          sh 'corepack enable'
+        }
+
         yarn 'install'
       }
     }

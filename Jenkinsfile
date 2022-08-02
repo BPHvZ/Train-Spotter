@@ -1,3 +1,7 @@
+triggers {
+  pollSCM 'H/5 * * * *'
+}
+
 pipeline {
   agent any
   stages {

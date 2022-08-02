@@ -44,5 +44,19 @@ yarn install'''
       }
     }
 
+    stage('Build') {
+      steps {
+        nodejs('NodeJS 18.7.0') {
+          sh 'yarn run build:release'
+        }
+      }
+    }
+
+    stage('Deploy') {
+      steps {
+        sshPublisher(publishers: [sshPublisherDesc(configName: 'Strato - Beta - TrainSpotter', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: 'set nonomatch && ls -I "robots*" -I "sitemap*" | xargs rm -rf', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '', remoteDirectorySDF: false, removePrefix: '', sourceFiles: ''), sshTransfer(cleanRemote: false, excludes: '', execCommand: '', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '', remoteDirectorySDF: false, removePrefix: '', sourceFiles: 'dist/trainSpotter/**/*.*')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
+      }
+    }
+
   }
 }

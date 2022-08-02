@@ -62,16 +62,8 @@ yarn install'''
         }
         script {
           withCredentials([usernamePassword(credentialsId: '0fcceade-e11a-48f2-8a3d-22765c8229f9', usernameVariable: 'EMAIL', passwordVariable: 'PAT')]) {
-            def remote = [:]
-            remote.name = "ssh.strato.de"
-            remote.host = "ssh.strato.de"
-            remote.allowAnyHosts = true
-            remote.user = USERNAME
-            remote.password = PASSWORD
-            sh 'cd docs'
-            sh 'git init && git add . && git commit -m "Deploy to GitHub Pages"'
-            sh 'git remote add origin https://$PAT@github.com/BPHvZ/Train-Spotter.git'
-            sh 'git push --force origin master:docs'
+            sh 'cd docs && git init && git add . && git commit -m "Deploy to GitHub Pages" && git remote add origin https://$PAT@github.com/BPHvZ/Train-Spotter.git'
+            sh 'git push --force origin main:docs'
           }
         }
       }

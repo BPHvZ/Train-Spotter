@@ -64,7 +64,7 @@ yarn install'''
             remote.user = USERNAME
             remote.password = PASSWORD
             sshCommand remote: remote, command: 'set nonomatch && cd Beta/TrainSpotter && ls -I "robots*" -I "sitemap*" | xargs rm -rf'
-            sshPut remote: remote, from: 'dist/trainSpotter', into: 'Beta/TrainSpotter'
+            sshPut remote: remote, from: 'dist/trainSpotter/**', into: 'Beta/TrainSpotter'
           }
         }
 

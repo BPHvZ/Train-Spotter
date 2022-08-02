@@ -4922,6 +4922,25 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/karma-junit-reporter@npm:^2":
+  version: 2.0.1
+  resolution: "@types/karma-junit-reporter@npm:2.0.1"
+  dependencies:
+    "@types/karma": "*"
+  checksum: 08250c19b1da08e1d0867cdb0efc3d73896f8dada88a2b2893d395350f96e15ca83d79dcdfc6a2e04996cd40c56a1d3f452ac52bd0220dabc72c94126e2110f9
+  languageName: node
+  linkType: hard
+
+"@types/karma@npm:*":
+  version: 6.3.3
+  resolution: "@types/karma@npm:6.3.3"
+  dependencies:
+    "@types/node": "*"
+    log4js: ^6.4.1
+  checksum: 623d6c0575c26d9f0513ccadbfec1c563dd7826e1a2cd4e5b2f6fea26aac366627ac25336e26256efa726f57cc65c607715ae123a3cc903913309c9b8919dcad
+  languageName: node
+  linkType: hard
+
 "@types/lodash@npm:^4.14.182":
   version: 4.14.182
   resolution: "@types/lodash@npm:4.14.182"
@@ -11682,6 +11701,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"karma-junit-reporter@npm:^2.0.1":
+  version: 2.0.1
+  resolution: "karma-junit-reporter@npm:2.0.1"
+  dependencies:
+    path-is-absolute: ^1.0.0
+    xmlbuilder: 12.0.0
+  peerDependencies:
+    karma: ">=0.9"
+  checksum: f4c92725f68c19740e34ccf71b9acb9bdc4127b8f5a7c2417167d045bb3b8ba682f7ef5b9f1c7c1c5482b1c53b0d69533cf93748368bd0c0fb9c2967ba23c02d
+  languageName: node
+  linkType: hard
+
 "karma-source-map-support@npm:1.4.0":
   version: 1.4.0
   resolution: "karma-source-map-support@npm:1.4.0"
@@ -16938,6 +16969,7 @@ __metadata:
     "@turf/line-split": ^6.5.0
     "@types/http-server": ^0.12.1
     "@types/jasmine": ^3.10.6
+    "@types/karma-junit-reporter": ^2
     "@types/lodash": ^4.14.182
     "@types/mapbox-gl": ^2.7.4
     "@types/node": ^17.0.45
@@ -16968,6 +17000,7 @@ __metadata:
     karma-coverage: ^2.2.0
     karma-jasmine: ^5.1.0
     karma-jasmine-html-reporter: ^2.0.0
+    karma-junit-reporter: ^2.0.1
     karma-teamcity-reporter: ^1.1.0
     lint-staged: ^13.0.3
     lodash: ^4.17.21
@@ -18178,6 +18211,13 @@ __metadata:
   bin:
     xml2json: bin/xml2json
   checksum: e9184bde4384a61ca27cf6d0012ffbc3123bca9e09a4f5b2a420bace276d38b542eef7aef4fd72d105e64633f3c22185e4b81a521f907921315815c675882029
+  languageName: node
+  linkType: hard
+
+"xmlbuilder@npm:12.0.0":
+  version: 12.0.0
+  resolution: "xmlbuilder@npm:12.0.0"
+  checksum: b384b2ae80f42fc8f4671078dc7b4266849ead31c7be8393cf95906103cacf48c98eac10cf3686c87baeb4a4e44f2639ef49a67a60acd105e87526b4d98d4ef8
   languageName: node
   linkType: hard
 

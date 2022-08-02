@@ -55,7 +55,7 @@ yarn install'''
 
     stage('Deploy docs') {
       when {
-        branch 'develop'
+        branch 'main'
       }
       steps {
         nodejs('NodeJS 18.7.0') {

@@ -15,7 +15,7 @@ yarn install'''
       steps {
         nodejs('NodeJS 18.7.0') {
           sh 'yarn run build:release'
-          junit '*.xml'
+          junit './test-results/*.xml'
         }
 
       }

@@ -2,6 +2,9 @@ pipeline {
   triggers {
     pollSCM 'H/5 * * * *'
   }
+  options {
+    disableConcurrentBuilds abortPrevious: true
+  }
   agent any
   stages {
     stage('Prepare') {

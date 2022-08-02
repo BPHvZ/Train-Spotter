@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('Prepare') {
       steps {
-        sh 'yarn install'
+        yarn 'install'
       }
     }
 

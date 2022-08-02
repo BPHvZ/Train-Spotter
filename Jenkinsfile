@@ -57,6 +57,10 @@ yarn install'''
       steps {
         script {
           withCredentials([usernamePassword(credentialsId: 'strato_sftp', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+            def remote = [:]
+            remote.name = "Strato"
+            remote.host = "ssh.strato.com"
+            remote.allowAnyHosts = true
             remote.user = USERNAME
             remote.password = PASSWORD
             sshCommand remote: remote, command: 'set nonomatch'

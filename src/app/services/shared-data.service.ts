@@ -299,6 +299,9 @@ export class SharedDataService {
 			take(1),
 			map((response) => {
 				const trains = response.data;
+				if (!environment.production) {
+					console.log(trains);
+				}
 				trainInformation = trains.payload.treinen;
 				let trainIds = "";
 				trains.payload.treinen.forEach((train) => {

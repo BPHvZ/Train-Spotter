@@ -18,7 +18,7 @@
 
 import { ElementRef, Injectable } from "@angular/core";
 import { Router } from "@angular/router";
-import { GeoJSON, MultiLineString } from "geojson";
+import { FeatureCollection, MultiLineString } from "geojson";
 import { LngLatLike, Map as MapBoxMap, MapboxGeoJSONFeature } from "mapbox-gl";
 import { MarkerComponent } from "ngx-mapbox-gl/lib/marker/marker.component";
 import { BehaviorSubject, combineLatest, fromEvent, Observable } from "rxjs";
@@ -218,10 +218,10 @@ export class SharedDataService {
 	 * Get disrupted train track last response
 	 * @return GeoJSON.FeatureCollection<MultiLineString> All disrupted train tracks
 	 * */
-	disruptedTrainTracksLayerDataLastValue(): GeoJSON.FeatureCollection<MultiLineString> {
+	disruptedTrainTracksLayerDataLastValue(): FeatureCollection<MultiLineString> {
 		let result: TrainTracksGeoJSON;
 		this._disruptedTrainTracksLayerData.pipe(take(1)).subscribe((s) => (result = s));
-		return result?.payload as GeoJSON.FeatureCollection<MultiLineString>;
+		return result?.payload as FeatureCollection<MultiLineString>;
 	}
 
 	/**

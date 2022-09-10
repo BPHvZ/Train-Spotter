@@ -19,7 +19,7 @@
 import { Component, ElementRef, OnDestroy, OnInit, Renderer2, ViewChild } from "@angular/core";
 import { ActivatedRoute, ActivationEnd, NavigationEnd, Router } from "@angular/router";
 import { Timer } from "easytimer.js";
-import { GeoJSON, MultiLineString } from "geojson";
+import { Feature, FeatureCollection, Geometry, MultiLineString, Point } from "geojson";
 import {
 	EventData,
 	GeoJSONSourceOptions,
@@ -133,12 +133,12 @@ export class TrainMapComponent implements OnInit, OnDestroy {
 	 * Get markers to place at current disruptions
 	 * @returns GeoJSON.Feature<GeoJSON.Point, DisruptionBase>[] GeoJSON data of disruption markers
 	 */
-	disruptionMarkersData$: Observable<GeoJSON.Feature<GeoJSON.Point, DisruptionBase>[]> =
+	disruptionMarkersData$: Observable<Feature<Point, DisruptionBase>[]> =
 		this.sharedDataService.disruptionMarkersData$;
 
 	// Trains layer
 	/**Trains layer with current trains*/
-	trainsLayerData: GeoJSON.FeatureCollection<GeoJSON.Geometry>;
+	trainsLayerData: FeatureCollection<Geometry>;
 
 	/**Whether trains have been loaded onto the map*/
 	firstTrainsHaveBeenAdded = false;
@@ -508,9 +508,9 @@ export class TrainMapComponent implements OnInit, OnDestroy {
 	 * Set the disruption markers for each disruption
 	 */
 	private setDisruptionMarkers(): void {
-		const markers: GeoJSON.Feature<GeoJSON.Point, DisruptionBase>[] = [];
+		const markers: Feature<Point, DisruptionBase>[] = [];
 
-		const uniqueDisruptions: GeoJSON.Feature<MultiLineString, { [p: string]: any }>[] = [];
+		const uniqueDisruptions: Feature<MultiLineString, { [p: string]: any }>[] = [];
 		const idMap = new Map();
 		const features = this.sharedDataService.disruptedTrainTracksLayerDataLastValue().features;
 		for (const feature of features) {

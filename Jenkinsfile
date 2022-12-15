@@ -88,17 +88,7 @@ git push -uf origin main:docs'''
       }
       steps {
         script {
-          withCredentials([usernamePassword(credentialsId: 'strato_sftp', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
-            def remote = [:]
-            remote.name = "ssh.strato.de"
-            remote.host = "ssh.strato.de"
-            remote.allowAnyHosts = true
-            remote.user = USERNAME
-            remote.password = PASSWORD
-            sshCommand remote: remote, command: 'set nonomatch && cd Beta/TrainSpotter && ls -I "robots*" -I "sitemap*" | xargs rm -rf'
-            sshPut remote: remote, from: 'dist/trainSpotter', into: 'Beta/TrainSpotter'
-            sshCommand remote: remote, command: 'cp -R Beta/TrainSpotter/trainSpotter/. Beta/TrainSpotter && rm -rf Beta/TrainSpotter/trainSpotter'
-          }
+          ftpPublisher alwaysPublishFromMaster: false, continueOnError: false, failOnError: false, paramPublish: [parameterName: ''], masterNodeName: 'master', publishers: [[configName: 'bartvanzeist.nl', transfers: [[asciiMode: false, cleanRemote: true, excludes: '', flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: 'betatreinenkaart.bartvanzeist.nl', remoteDirectorySDF: false, removePrefix: 'dist/trainSpotter', sourceFiles: 'dist/trainSpotter/']], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false]]
         }
 
       }
@@ -110,17 +100,7 @@ git push -uf origin main:docs'''
       }
       steps {
         script {
-          withCredentials([usernamePassword(credentialsId: 'strato_sftp', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
-            def remote = [:]
-            remote.name = "ssh.strato.de"
-            remote.host = "ssh.strato.de"
-            remote.allowAnyHosts = true
-            remote.user = USERNAME
-            remote.password = PASSWORD
-            sshCommand remote: remote, command: 'set nonomatch && cd TrainSpotter && ls -I "robots*" -I "sitemap*" -I "google*" | xargs rm -rf'
-            sshPut remote: remote, from: 'dist/trainSpotter', into: 'TrainSpotter'
-            sshCommand remote: remote, command: 'cp -R TrainSpotter/trainSpotter/. TrainSpotter && rm -rf TrainSpotter/trainSpotter'
-          }
+          ftpPublisher alwaysPublishFromMaster: false, continueOnError: false, failOnError: false, paramPublish: [parameterName: ''], masterNodeName: 'master', publishers: [[configName: 'bartvanzeist.nl', transfers: [[asciiMode: false, cleanRemote: true, excludes: '', flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: 'treinenkaart.bartvanzeist.nl', remoteDirectorySDF: false, removePrefix: 'dist/trainSpotter', sourceFiles: 'dist/trainSpotter/']], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false]]
         }
 
       }

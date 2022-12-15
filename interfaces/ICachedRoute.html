@@ -1,0 +1,420 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>TrainSpotter Documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+        <link rel="stylesheet" href="../styles/material.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">TrainSpotter Documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content interface">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li>Interfaces</li>
+  <li
+  >
+  ICachedRoute</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/app/app-route-reuse.strategy.ts</code>
+        </p>
+
+
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Cache a route</p>
+
+            </p>
+
+
+        <section>
+            <h3 id="index">Index</h3>
+            <table class="table table-sm table-bordered index-table">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <h6><b>Properties</b></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                        <a href="#data" 
+>
+                                            data
+                                        </a>
+                                </li>
+                                <li>
+                                        <a href="#handle" 
+>
+                                            handle
+                                        </a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+
+
+            <section>
+                <h3 id="inputs">Properties</h3>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="data"></a>
+                                        <span class="name "><b>data</b>
+                                            <a href="#data">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>data:         <code><a href="../interfaces/IRouteConfigData.html" target="_self" >IRouteConfigData</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="../interfaces/IRouteConfigData.html" target="_self" >IRouteConfigData</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Route reuse config</p>
+</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="handle"></a>
+                                        <span class="name "><b>handle</b>
+                                            <a href="#handle">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>handle:         <code><a href="https://angular.io/api/router/DetachedRouteHandle" target="_blank" >DetachedRouteHandle</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="https://angular.io/api/router/DetachedRouteHandle" target="_blank" >DetachedRouteHandle</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Detached route tree</p>
+</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+            </section>
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &quot;@angular/core&quot;;
+import { ActivatedRouteSnapshot, DetachedRouteHandle, RouteReuseStrategy } from &quot;@angular/router&quot;;
+import { MetaTagService } from &quot;./services/meta-tag.service&quot;;
+
+/** Config of a route */
+interface IRouteConfigData {
+	/** Reuse the route or not */
+	reuse: boolean;
+}
+
+/** Cache a route */
+interface ICachedRoute {
+	/** Detached route tree */
+	handle: DetachedRouteHandle;
+	/** Route reuse config */
+	data: IRouteConfigData;
+}
+
+/** Cache and reuse the route */
+@Injectable()
+export class TrainSpotterRouteReuseStrategy implements RouteReuseStrategy {
+	constructor(private metaTagsService: MetaTagService) {}
+	/** store routes and their reuse config */
+	private routeCache &#x3D; new Map&lt;string, ICachedRoute&gt;();
+
+	/**
+	 * Get the path from the URL
+	 * @param route Current route snapshot
+	 * @return string[] Segments of the URL
+	 */
+	private static getRouteUrlPaths(route: ActivatedRouteSnapshot): string[] {
+		return route.url.map((urlSegment) &#x3D;&gt; urlSegment.path);
+	}
+
+	/**
+	 * Get the reuse config
+	 * @param route Current route snapshot
+	 * @return IRouteConfigData Reuse config
+	 */
+	private static getRouteData(route: ActivatedRouteSnapshot): IRouteConfigData {
+		return route.routeConfig &amp;&amp; (route.routeConfig.data as IRouteConfigData);
+	}
+
+	/**
+	 * Determine to reuse the route or not
+	 * @param future Route to navigate to
+	 * @param curr Current route
+	 * @return boolean Reuse the route or not
+	 */
+	shouldReuseRoute(future: ActivatedRouteSnapshot, curr: ActivatedRouteSnapshot): boolean {
+		const ret &#x3D; future.routeConfig &#x3D;&#x3D;&#x3D; curr.routeConfig;
+		if (ret) {
+			this.addRedirectsRecursively(future); // update redirects
+		}
+		return ret;
+	}
+
+	/**
+	 * Detach if not needed to reuse
+	 * @param route Current route snapshot
+	 * @return boolean Detach the route or not
+	 */
+	shouldDetach(route: ActivatedRouteSnapshot): boolean {
+		const data &#x3D; TrainSpotterRouteReuseStrategy.getRouteData(route);
+		return data &amp;&amp; data.reuse;
+	}
+
+	/**
+	 * Store the route to reuse it
+	 * @param route Current route snapshot
+	 * @param handle The detached route tree
+	 */
+	store(route: ActivatedRouteSnapshot, handle: DetachedRouteHandle): void {
+		const url &#x3D; this.getFullRouteUrl(route);
+		const data &#x3D; TrainSpotterRouteReuseStrategy.getRouteData(route);
+		this.routeCache.set(url, {
+			handle,
+			data,
+		});
+		this.addRedirectsRecursively(route);
+	}
+
+	/**
+	 * Attach if needed to reuse
+	 * @param route Current route snapshot
+	 * @return boolean Whether the to attach if not already doing so
+	 */
+	shouldAttach(route: ActivatedRouteSnapshot): boolean {
+		const url &#x3D; this.getFullRouteUrl(route);
+		return this.routeCache.has(url);
+	}
+
+	/**
+	 * Retrieve the route
+	 * @param route Current route snapshot
+	 * @return DetachedRouteHandle The detached route tree
+	 */
+	retrieve(route: ActivatedRouteSnapshot): DetachedRouteHandle {
+		const url &#x3D; this.getFullRouteUrl(route);
+		const data &#x3D; TrainSpotterRouteReuseStrategy.getRouteData(route);
+		if (data &amp;&amp; data.reuse &amp;&amp; this.routeCache.has(url)) {
+			const ref &#x3D; this.routeCache.get(url).handle;
+			// eslint-disable-next-line @typescript-eslint/no-unsafe-argument,@typescript-eslint/no-unsafe-member-access
+			this.metaTagsService.updateTags(ref[&quot;componentRef&quot;][&quot;instance&quot;][&quot;componentName&quot;]);
+		}
+		return data &amp;&amp; data.reuse &amp;&amp; this.routeCache.has(url) ? this.routeCache.get(url).handle : null;
+	}
+
+	/**
+	 * Update redirects
+	 * @param route Current route snapshot
+	 */
+	private addRedirectsRecursively(route: ActivatedRouteSnapshot): void {
+		const config &#x3D; route.routeConfig;
+		if (config) {
+			if (!config.loadChildren) {
+				const routeFirstChild &#x3D; route.firstChild;
+				const routeFirstChildUrl &#x3D; routeFirstChild
+					? TrainSpotterRouteReuseStrategy.getRouteUrlPaths(routeFirstChild).join(&quot;/&quot;)
+					: &quot;&quot;;
+				const childConfigs &#x3D; config.children;
+				if (childConfigs) {
+					const childConfigWithRedirect &#x3D; childConfigs.find((c) &#x3D;&gt; c.path &#x3D;&#x3D;&#x3D; &quot;&quot; &amp;&amp; !!c.redirectTo);
+					if (childConfigWithRedirect) {
+						childConfigWithRedirect.redirectTo &#x3D; routeFirstChildUrl;
+					}
+				}
+			}
+			route.children.forEach((childRoute) &#x3D;&gt; this.addRedirectsRecursively(childRoute));
+		}
+	}
+
+	/**
+	 * Get the full router url from paths
+	 * @param route Current route snapshot
+	 * @return string Full router url
+	 */
+	private getFullRouteUrl(route: ActivatedRouteSnapshot): string {
+		return this.getFullRouteUrlPaths(route).filter(Boolean).join(&quot;/&quot;);
+	}
+
+	/**
+	 * Get route paths
+	 * @param route Current route snapshot
+	 * @return string[] route paths
+	 */
+	private getFullRouteUrlPaths(route: ActivatedRouteSnapshot): string[] {
+		const paths &#x3D; TrainSpotterRouteReuseStrategy.getRouteUrlPaths(route);
+		return route.parent ? [...this.getFullRouteUrlPaths(route.parent), ...paths] : paths;
+	}
+}
+</code></pre>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'interface';
+            var COMPODOC_CURRENT_PAGE_URL = 'ICachedRoute.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

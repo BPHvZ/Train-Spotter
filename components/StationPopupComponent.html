@@ -1,0 +1,1357 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>TrainSpotter Documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+        <link rel="stylesheet" href="../styles/material.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">TrainSpotter Documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li
+  >
+  StationPopupComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li >
+            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li >
+            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li >
+            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/components/train-map/station-popup/station-popup.component.ts</code>
+</p>
+
+
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>Show a popup with information about a station on the map</p>
+
+    </p>
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.io/api/core/OnChanges" target="_blank" >OnChanges</a></code>
+    </p>
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-station-popup</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./station-popup.component.sass</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./station-popup.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#activeTable" >activeTable</a>
+                            </li>
+                            <li>
+                                <a href="#arrivalDelays" >arrivalDelays</a>
+                            </li>
+                            <li>
+                                <a href="#departureDelays" >departureDelays</a>
+                            </li>
+                            <li>
+                                <a href="#faCrosshairs" >faCrosshairs</a>
+                            </li>
+                            <li>
+                                <a href="#stationArrivalsAndDepartures$" >stationArrivalsAndDepartures$</a>
+                            </li>
+                            <li>
+                                <a href="#stationInformation" >stationInformation</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#flyToTrainByNumber" >flyToTrainByNumber</a>
+                            </li>
+                            <li>
+                                <a href="#minuteDifference" >minuteDifference</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnChanges" >ngOnChanges</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Inputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#mapboxFeature" >mapboxFeature</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Outputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#closePopup" >closePopup</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(apiService: <a href="../injectables/ApiService.html" target="_self">ApiService</a>, sharedDataService: <a href="../injectables/SharedDataService.html" target="_self">SharedDataService</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/app/components/train-map/station-popup/station-popup.component.ts:53</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Define services</p>
+</div>
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>apiService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/ApiService.html" target="_self" >ApiService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <p>Requests for NS API</p>
+
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>sharedDataService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/SharedDataService.html" target="_self" >SharedDataService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <p>Shares data through the application</p>
+
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+    <section>
+    <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="mapboxFeature"></a>
+                        <b>mapboxFeature</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>MapboxGeoJSONFeature</code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/app/components/train-map/station-popup/station-popup.component.ts:40</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>The Mapbox Feature of the station</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+    <section>
+    <h3 id="outputs">Outputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="closePopup"></a>
+                        <b>closePopup</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>EventEmitter&lt;void&gt;</code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/app/components/train-map/station-popup/station-popup.component.ts:38</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Notify the map when to close the popup</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+    <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="flyToTrainByNumber"></a>
+                    <span class="name">
+                        <span ><b>flyToTrainByNumber</b></span>
+                        <a href="#flyToTrainByNumber"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>flyToTrainByNumber(number: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="125"
+                            class="link-to-prism">src/app/components/train-map/station-popup/station-popup.component.ts:125</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Find the train by ride id and fly to it</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>number</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Ride id of the train</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="minuteDifference"></a>
+                    <span class="name">
+                        <span ><b>minuteDifference</b></span>
+                        <a href="#minuteDifference"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>minuteDifference(planned: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, actual: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="114"
+                            class="link-to-prism">src/app/components/train-map/station-popup/station-popup.component.ts:114</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Calculate minutes difference between dates</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>planned</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Planned time</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>actual</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Actual time</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>number Number of minutes difference</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnChanges"></a>
+                    <span class="name">
+                        <span ><b>ngOnChanges</b></span>
+                        <a href="#ngOnChanges"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnChanges(changes: <a href="https://angular.io/api/core/SimpleChanges" target="_blank">SimpleChanges</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="66"
+                            class="link-to-prism">src/app/components/train-map/station-popup/station-popup.component.ts:66</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Set the station information on changes</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>changes</td>
+                                    <td>
+                                                <code><a href="https://angular.io/api/core/SimpleChanges" target="_blank" >SimpleChanges</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>New station to show the popup of</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section>
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="activeTable"></a>
+                    <span class="name">
+                        <span ><b>activeTable</b></span>
+                        <a href="#activeTable"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>&quot;arrivals&quot; | &quot;departures&quot;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&quot;arrivals&quot;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/app/components/train-map/station-popup/station-popup.component.ts:53</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>State which table is currently shown</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="arrivalDelays"></a>
+                    <span class="name">
+                        <span ><b>arrivalDelays</b></span>
+                        <a href="#arrivalDelays"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Map&lt;string | number&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new Map()</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/app/components/train-map/station-popup/station-popup.component.ts:49</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Calculated delays of the arrivals</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="departureDelays"></a>
+                    <span class="name">
+                        <span ><b>departureDelays</b></span>
+                        <a href="#departureDelays"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Map&lt;string | number&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new Map()</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/app/components/train-map/station-popup/station-popup.component.ts:51</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Calculated delays of the departures</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="faCrosshairs"></a>
+                    <span class="name">
+                        <span ><b>faCrosshairs</b></span>
+                        <a href="#faCrosshairs"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>faCrosshairs</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/app/components/train-map/station-popup/station-popup.component.ts:44</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>FontAwesome crosshair icon</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="stationArrivalsAndDepartures$"></a>
+                    <span class="name">
+                        <span ><b>stationArrivalsAndDepartures$</b></span>
+                        <a href="#stationArrivalsAndDepartures$"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Observable&lt;&gt;</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/app/components/train-map/station-popup/station-popup.component.ts:47</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Arrival and departure information of the station</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="stationInformation"></a>
+                    <span class="name">
+                        <span ><b>stationInformation</b></span>
+                        <a href="#stationInformation"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Station</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/app/components/train-map/station-popup/station-popup.component.ts:42</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>The selected station</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from &quot;@angular/core&quot;;
+import { faCrosshairs } from &quot;@fortawesome/free-solid-svg-icons&quot;;
+import { MapboxGeoJSONFeature } from &quot;mapbox-gl&quot;;
+import { Observable, zip } from &quot;rxjs&quot;;
+import { map, take, tap } from &quot;rxjs/operators&quot;;
+import { Station, StationArrivalsList, StationDeparturesList } from &quot;../../../models/ReisinformatieAPI&quot;;
+import { ApiService } from &quot;../../../services/api.service&quot;;
+import { SharedDataService } from &quot;../../../services/shared-data.service&quot;;
+
+/**
+ * Show a popup with information about a station on the map
+ */
+@Component({
+	selector: &quot;app-station-popup&quot;,
+	templateUrl: &quot;./station-popup.component.html&quot;,
+	styleUrls: [&quot;./station-popup.component.sass&quot;],
+})
+export class StationPopupComponent implements OnChanges {
+	/**Notify the map when to close the popup*/
+	@Output() public closePopup: EventEmitter&lt;void&gt; &#x3D; new EventEmitter&lt;void&gt;();
+	/**The Mapbox Feature of the station*/
+	@Input() mapboxFeature: MapboxGeoJSONFeature;
+	/**The selected station*/
+	stationInformation: Station;
+	/**FontAwesome crosshair icon*/
+	faCrosshairs &#x3D; faCrosshairs;
+
+	/**Arrival and departure information of the station*/
+	stationArrivalsAndDepartures$: Observable&lt;[StationArrivalsList, StationDeparturesList]&gt;;
+	/**Calculated delays of the arrivals*/
+	arrivalDelays: Map&lt;string, number&gt; &#x3D; new Map();
+	/**Calculated delays of the departures*/
+	departureDelays: Map&lt;string, number&gt; &#x3D; new Map();
+	/**State which table is currently shown*/
+	activeTable: &quot;arrivals&quot; | &quot;departures&quot; &#x3D; &quot;arrivals&quot;;
+
+	/**
+	 * Define services
+	 * @param apiService Requests for NS API
+	 * @param sharedDataService Shares data through the application
+	 */
+	constructor(private apiService: ApiService, private sharedDataService: SharedDataService) {}
+
+	/**
+	 * Set the station information on changes
+	 * @param changes New station to show the popup of
+	 */
+	ngOnChanges(changes: SimpleChanges): void {
+		if (changes.mapboxFeature.currentValue) {
+			this.stationInformation &#x3D; this.mapboxFeature.properties as Station;
+			this.activeTable &#x3D; &quot;arrivals&quot;;
+			this.stationArrivalsAndDepartures$ &#x3D; zip(
+				this.apiService.getStationArrivals(this.stationInformation.UICCode, 3),
+				this.apiService.getStationDepartures(this.stationInformation.UICCode, 3)
+			).pipe(
+				take(1),
+				tap((responses) &#x3D;&gt; {
+					const arrivalsResponse &#x3D; responses[0];
+					const departuresResponse &#x3D; responses[1];
+
+					// console.log(arrivalsResponse?.data?.payload);
+					// console.log(departuresResponse?.data?.payload);
+					this.arrivalDelays.clear();
+
+					arrivalsResponse?.data?.payload?.arrivals?.forEach((arrival) &#x3D;&gt; {
+						if (arrival.plannedDateTime &amp;&amp; arrival.actualDateTime) {
+							this.arrivalDelays[arrival.name] &#x3D; this.minuteDifference(
+								arrival.plannedDateTime,
+								arrival.actualDateTime
+							);
+						}
+					});
+
+					departuresResponse?.data?.payload?.departures?.forEach((departure) &#x3D;&gt; {
+						if (departure.plannedDateTime &amp;&amp; departure.actualDateTime) {
+							this.departureDelays[departure.name] &#x3D; this.minuteDifference(
+								departure.plannedDateTime,
+								departure.actualDateTime
+							);
+						}
+					});
+				}),
+				map((responses) &#x3D;&gt; {
+					return [responses[0].data?.payload?.arrivals, responses[1].data?.payload?.departures];
+				})
+			);
+		}
+	}
+
+	/**
+	 * Calculate minutes difference between dates
+	 * @param planned Planned time
+	 * @param actual Actual time
+	 * @return number Number of minutes difference
+	 */
+	minuteDifference(planned: string, actual: string): number {
+		const eventStartTime &#x3D; new Date(planned);
+		const eventEndTime &#x3D; new Date(actual);
+		const minutes &#x3D; (eventEndTime.valueOf() - eventStartTime.valueOf()) / 1000 / 60;
+		return Math.round(minutes);
+	}
+
+	/**
+	 * Find the train by ride id and fly to it
+	 * @param number Ride id of the train
+	 */
+	flyToTrainByNumber(number: string): void {
+		if (number) {
+			const trainDetails &#x3D; this.sharedDataService.findTrainByRideId(number);
+			if (trainDetails) {
+				this.sharedDataService.flyToTrain(trainDetails);
+			}
+		}
+	}
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;!--
+  ~ trainSpotter
+  ~ Copyright (C) 2021 bart
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.
+  --&gt;
+
+&lt;div style&#x3D;&quot;pointer-events: auto&quot; *ngIf&#x3D;&quot;stationInformation&quot; class&#x3D;&quot;mat-typography&quot;&gt;
+	&lt;div class&#x3D;&quot;map-marker inline-flex flex--center-cross flex--column absolute bottom&quot;&gt;
+		&lt;div
+			id&#x3D;&quot;station-marker-content&quot;
+			class&#x3D;&quot;map-marker-content color-white shadow-darken10 round txt-s clip txt-truncate&quot;
+		&gt;
+			&lt;div class&#x3D;&quot;container&quot;&gt;
+				&lt;div class&#x3D;&quot;row flex-nowrap justify-content-between&quot;&gt;
+					&lt;div style&#x3D;&quot;margin: unset; width: max-content; font-size: medium&quot;&gt;
+						&lt;strong&gt; {{ stationInformation.namen.lang }} &lt;/strong&gt;&lt;br /&gt;
+						&lt;div class&#x3D;&quot;card-subtitle&quot; style&#x3D;&quot;color: #bac1c7; margin: unset; font-size: 11px&quot;&gt;
+							&lt;strong&gt; {{ stationInformation.code }} &lt;/strong&gt;
+						&lt;/div&gt;
+					&lt;/div&gt;
+					&lt;button
+						class&#x3D;&quot;button button--nsYellow button--close w-auto&quot;
+						style&#x3D;&quot;margin-left: 10px&quot;
+						(click)&#x3D;&quot;closePopup.emit()&quot;
+					&gt;
+						&lt;strong&gt;&amp;times;&lt;/strong&gt;
+					&lt;/button&gt;
+				&lt;/div&gt;
+				&lt;div class&#x3D;&quot;row&quot;&gt;
+					&lt;div class&#x3D;&quot;d-flex mt-2&quot;&gt;
+						&lt;div
+							class&#x3D;&quot;me-3&quot;
+							style&#x3D;&quot;font-weight: 700; font-size: larger; cursor: pointer&quot;
+							(click)&#x3D;&quot;activeTable &#x3D; &#x27;arrivals&#x27;&quot;
+						&gt;
+							&lt;p
+								class&#x3D;&quot;arrival-departure-link mb-2&quot;
+								[ngClass]&#x3D;&quot;{&#x27;arrival-departure-active&#x27;: activeTable &#x3D;&#x3D;&#x3D; &#x27;arrivals&#x27;}&quot;
+							&gt;
+								Aankomst
+							&lt;/p&gt;
+						&lt;/div&gt;
+						&lt;div
+							style&#x3D;&quot;font-weight: 700; font-size: larger; cursor: pointer&quot;
+							(click)&#x3D;&quot;activeTable &#x3D; &#x27;departures&#x27;&quot;
+						&gt;
+							&lt;p
+								class&#x3D;&quot;arrival-departure-link mb-2&quot;
+								[ngClass]&#x3D;&quot;{&#x27;arrival-departure-active&#x27;: activeTable &#x3D;&#x3D;&#x3D; &#x27;departures&#x27;}&quot;
+							&gt;
+								Vertrek
+							&lt;/p&gt;
+						&lt;/div&gt;
+					&lt;/div&gt;
+				&lt;/div&gt;
+				&lt;div class&#x3D;&quot;row&quot;&gt;
+					&lt;ng-container
+						*ngIf&#x3D;&quot;stationArrivalsAndDepartures$ | async as arrivalsAndDepartures; else loadingArrivalsAndDepartures&quot;
+					&gt;
+						&lt;div class&#x3D;&quot;arrivals-board&quot; *ngIf&#x3D;&quot;activeTable &#x3D;&#x3D;&#x3D; &#x27;arrivals&#x27;&quot;&gt;
+							&lt;ng-container *ngIf&#x3D;&quot;arrivalsAndDepartures[0]?.length &gt; 0; else noArrivals&quot;&gt;
+								&lt;table id&#x3D;&quot;arrival-table&quot;&gt;
+									&lt;thead&gt;
+										&lt;tr&gt;
+											&lt;th&gt;Aankomst&lt;/th&gt;
+											&lt;th&gt;Vanuit&lt;/th&gt;
+											&lt;th&gt;Spoor&lt;/th&gt;
+											&lt;th&gt;Trein&lt;/th&gt;
+											&lt;th&gt;&lt;/th&gt;
+										&lt;/tr&gt;
+									&lt;/thead&gt;
+									&lt;tbody&gt;
+										&lt;tr *ngFor&#x3D;&quot;let arrival of arrivalsAndDepartures[0]&quot;&gt;
+											&lt;td class&#x3D;&quot;pb-1 pt-1&quot;&gt;
+												&lt;div&gt;{{arrival.plannedDateTime | date: &#x27;HH:mm&#x27;}}&lt;/div&gt;
+												&lt;ng-container *ngIf&#x3D;&quot;arrival.actualDateTime&quot;&gt;
+													&lt;div class&#x3D;&quot;color-disruption&quot;&gt;
+														&lt;ng-container *ngIf&#x3D;&quot;arrivalDelays[arrival.name]; let delay&quot;&gt;
+															{{delay &gt; 0 ? &#x27;+&#x27; : &#x27;&#x27;}}{{delay}}
+														&lt;/ng-container&gt;
+													&lt;/div&gt;
+												&lt;/ng-container&gt;
+											&lt;/td&gt;
+											&lt;td&gt;{{arrival.origin}}&lt;/td&gt;
+											&lt;td&gt;
+												&lt;div
+													[ngStyle]&#x3D;&quot;{&#x27;text-decoration-line&#x27;: arrival.actualTrack ? &#x27;line-through&#x27; : &#x27;unset&#x27;}&quot;
+												&gt;
+													{{arrival.plannedTrack}}
+												&lt;/div&gt;
+												&lt;ng-container *ngIf&#x3D;&quot;arrival.actualTrack&quot;&gt;
+													&lt;div class&#x3D;&quot;color-disruption&quot;&gt;{{arrival.actualTrack}}&lt;/div&gt;
+												&lt;/ng-container&gt;
+											&lt;/td&gt;
+											&lt;td&gt;{{arrival.product.shortCategoryName}} {{arrival.product.number}}&lt;/td&gt;
+											&lt;td style&#x3D;&quot;padding-right: 8px&quot;&gt;
+												&lt;div class&#x3D;&quot;fly-to-train-button&quot;&gt;
+													&lt;button
+														class&#x3D;&quot;button button--nsYellow button--crosshair&quot;
+														(click)&#x3D;&quot;flyToTrainByNumber(arrival.product.number)&quot;
+													&gt;
+														&lt;fa-icon
+															[icon]&#x3D;&quot;faCrosshairs&quot;
+															style&#x3D;&quot;font-size: small&quot;
+														&gt;&lt;/fa-icon&gt;
+													&lt;/button&gt;
+												&lt;/div&gt;
+											&lt;/td&gt;
+										&lt;/tr&gt;
+									&lt;/tbody&gt;
+								&lt;/table&gt;
+							&lt;/ng-container&gt;
+							&lt;ng-template #noArrivals&gt;
+								&lt;div class&#x3D;&quot;w-100&quot; style&#x3D;&quot;padding: 7px 7px 15px 7px; text-align-last: center&quot;&gt;
+									Er zijn geen aankomsttijden
+								&lt;/div&gt;
+							&lt;/ng-template&gt;
+						&lt;/div&gt;
+						&lt;div class&#x3D;&quot;departures-board&quot; *ngIf&#x3D;&quot;activeTable &#x3D;&#x3D;&#x3D; &#x27;departures&#x27;&quot;&gt;
+							&lt;ng-container *ngIf&#x3D;&quot;arrivalsAndDepartures[1]?.length &gt; 0; else noDepartures&quot;&gt;
+								&lt;table id&#x3D;&quot;departures-table&quot;&gt;
+									&lt;thead&gt;
+										&lt;tr&gt;
+											&lt;th&gt;Vertrek&lt;/th&gt;
+											&lt;th&gt;Naar&lt;/th&gt;
+											&lt;th&gt;Spoor&lt;/th&gt;
+											&lt;th&gt;Trein&lt;/th&gt;
+											&lt;th&gt;&lt;/th&gt;
+										&lt;/tr&gt;
+									&lt;/thead&gt;
+									&lt;tbody&gt;
+										&lt;tr *ngFor&#x3D;&quot;let departure of arrivalsAndDepartures[1]; let l &#x3D; count&quot;&gt;
+											&lt;td class&#x3D;&quot;pb-1 pt-1&quot;&gt;
+												&lt;div&gt;{{departure.plannedDateTime | date: &#x27;HH:mm&#x27;}}&lt;/div&gt;
+												&lt;ng-container *ngIf&#x3D;&quot;departure.actualDateTime&quot;&gt;
+													&lt;div class&#x3D;&quot;color-disruption&quot;&gt;
+														&lt;ng-container
+															*ngIf&#x3D;&quot;departureDelays[departure.name]; let delay&quot;
+														&gt;
+															{{delay &gt; 0 ? &#x27;+&#x27; : &#x27;&#x27;}}{{delay}}
+														&lt;/ng-container&gt;
+													&lt;/div&gt;
+												&lt;/ng-container&gt;
+											&lt;/td&gt;
+											&lt;td&gt;{{departure.direction}}&lt;/td&gt;
+											&lt;td&gt;
+												&lt;div
+													[ngStyle]&#x3D;&quot;{&#x27;text-decoration-line&#x27;: departure.actualTrack ? &#x27;line-through&#x27; : &#x27;unset&#x27;}&quot;
+												&gt;
+													{{departure.plannedTrack}}
+												&lt;/div&gt;
+												&lt;ng-container
+													*ngIf&#x3D;&quot;departure.actualTrack&quot;
+													[ngStyle]&#x3D;&quot;{&#x27;text-decoration-line&#x27;: departure.actualTrack ? &#x27;line-through&#x27; : &#x27;unset&#x27;}&quot;
+												&gt;
+													&lt;div class&#x3D;&quot;color-disruption&quot;&gt;{{departure.actualTrack}}&lt;/div&gt;
+												&lt;/ng-container&gt;
+											&lt;/td&gt;
+											&lt;td&gt;
+												{{departure.product.shortCategoryName}} {{departure.product.number}}
+											&lt;/td&gt;
+											&lt;td style&#x3D;&quot;padding-right: 8px&quot;&gt;
+												&lt;div class&#x3D;&quot;fly-to-train-button&quot;&gt;
+													&lt;button
+														class&#x3D;&quot;button button--nsYellow button--crosshair&quot;
+														(click)&#x3D;&quot;flyToTrainByNumber(departure.product.number)&quot;
+													&gt;
+														&lt;fa-icon
+															[icon]&#x3D;&quot;faCrosshairs&quot;
+															style&#x3D;&quot;font-size: small&quot;
+														&gt;&lt;/fa-icon&gt;
+													&lt;/button&gt;
+												&lt;/div&gt;
+											&lt;/td&gt;
+										&lt;/tr&gt;
+									&lt;/tbody&gt;
+								&lt;/table&gt;
+							&lt;/ng-container&gt;
+							&lt;ng-template #noDepartures&gt;
+								&lt;div class&#x3D;&quot;w-100&quot; style&#x3D;&quot;padding: 7px 7px 15px 7px; text-align-last: center&quot;&gt;
+									Er zijn geen vertrektijden
+								&lt;/div&gt;
+							&lt;/ng-template&gt;
+						&lt;/div&gt;
+					&lt;/ng-container&gt;
+					&lt;ng-template #loadingArrivalsAndDepartures&gt;
+						&lt;div class&#x3D;&quot;arrivals-board w-100 align-center&quot; style&#x3D;&quot;height: 50px; padding-bottom: 8px&quot;&gt;
+							&lt;div id&#x3D;&quot;updatingMapDataSpinner&quot; class&#x3D;&quot;spinner-border spinner-border-sm&quot; role&#x3D;&quot;status&quot;&gt;
+								&lt;span class&#x3D;&quot;sr-only&quot;&gt;Loading...&lt;/span&gt;
+							&lt;/div&gt;
+						&lt;/div&gt;
+					&lt;/ng-template&gt;
+				&lt;/div&gt;
+			&lt;/div&gt;
+		&lt;/div&gt;
+		&lt;span class&#x3D;&quot;flex-child triangle triangle--d&quot; style&#x3D;&quot;color: #00337f&quot;&gt;&lt;/span&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-styleData">
+                <p class="comment">
+                    <code>./station-popup.component.sass</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">/*!
+ / trainSpotter
+ / Copyright (C) 2021 bart
+ /
+ / This program is free software: you can redistribute it and/or modify
+ / it under the terms of the GNU General Public License as published by
+ / the Free Software Foundation, either version 3 of the License, or
+ / (at your option) any later version.
+ /
+ / This program is distributed in the hope that it will be useful,
+ / but WITHOUT ANY WARRANTY; without even the implied warranty of
+ / MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ / GNU General Public License for more details.
+ /
+ / You should have received a copy of the GNU General Public License
+ / along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.
+ /
+
+@import &quot;../../../../styles/colors&quot;
+
+#station-marker-content
+  width: fit-content
+  max-width: 90vw
+
+.arrivals-board, .departures-board
+  background: white
+  border-radius: 5px
+  color: #212529
+  padding: 8px 8px 0 8px
+  min-width: 200px
+  width: 100%
+  overflow: scroll
+
+.button--crosshair
+  padding: 2px 6px
+  float: right
+
+tr &gt; * + *
+  padding-left: 12px
+
+#arrival-table, #departures-table
+  border-collapse: collapse
+
+tbody tr
+  border-bottom: solid 1px $ns-grey-alpha-20
+
+.fly-to-train-button
+  display: inline-flex
+  padding: 8px 0
+
+.arrival-departure-link
+  position: relative
+  color: white
+
+  &amp;:before
+    content: &quot;&quot;
+    position: absolute
+    width: 0
+    height: 2px
+    bottom: 0
+    left: 0
+    background-color: $ns-yellow-2
+    visibility: hidden
+    transition: all 0.3s ease-in-out
+
+  &amp;:hover:before
+    visibility: visible
+    width: 100%
+
+.arrival-departure-active
+  position: relative
+  color: white
+
+  &amp;:before
+    content: &quot;&quot;
+    position: absolute
+    height: 2px
+    bottom: 0
+    left: 0
+    background-color: $ns-yellow-2
+    visibility: visible
+    width: 100%
+
+#updatingMapDataSpinner
+  margin-top: 8px
+  height: 19px
+  width: 19px
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><!--  ~ trainSpotter  ~ Copyright (C) 2021 bart  ~  ~ This program is free software: you can redistribute it and/or modify  ~ it under the terms of the GNU General Public License as published by  ~ the Free Software Foundation, either version 3 of the License, or  ~ (at your option) any later version.  ~  ~ This program is distributed in the hope that it will be useful,  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  ~ GNU General Public License for more details.  ~  ~ You should have received a copy of the GNU General Public License  ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.  --><div style="pointer-events: auto" *ngIf="stationInformation" class="mat-typography">	<div class="map-marker inline-flex flex--center-cross flex--column absolute bottom">		<div			id="station-marker-content"			class="map-marker-content color-white shadow-darken10 round txt-s clip txt-truncate"		>			<div class="container">				<div class="row flex-nowrap justify-content-between">					<div style="margin: unset; width: max-content; font-size: medium">						<strong> {{ stationInformation.namen.lang }} </strong><br />						<div class="card-subtitle" style="color: #bac1c7; margin: unset; font-size: 11px">							<strong> {{ stationInformation.code }} </strong>						</div>					</div>					<button						class="button button--nsYellow button--close w-auto"						style="margin-left: 10px"						(click)="closePopup.emit()"					>						<strong>&times;</strong>					</button>				</div>				<div class="row">					<div class="d-flex mt-2">						<div							class="me-3"							style="font-weight: 700; font-size: larger; cursor: pointer"							(click)="activeTable = \'arrivals\'"						>							<p								class="arrival-departure-link mb-2"								[ngClass]="{\'arrival-departure-active\': activeTable === \'arrivals\'}"							>								Aankomst							</p>						</div>						<div							style="font-weight: 700; font-size: larger; cursor: pointer"							(click)="activeTable = \'departures\'"						>							<p								class="arrival-departure-link mb-2"								[ngClass]="{\'arrival-departure-active\': activeTable === \'departures\'}"							>								Vertrek							</p>						</div>					</div>				</div>				<div class="row">					<ng-container						*ngIf="stationArrivalsAndDepartures$ | async as arrivalsAndDepartures; else loadingArrivalsAndDepartures"					>						<div class="arrivals-board" *ngIf="activeTable === \'arrivals\'">							<ng-container *ngIf="arrivalsAndDepartures[0]?.length > 0; else noArrivals">								<table id="arrival-table">									<thead>										<tr>											<th>Aankomst</th>											<th>Vanuit</th>											<th>Spoor</th>											<th>Trein</th>											<th></th>										</tr>									</thead>									<tbody>										<tr *ngFor="let arrival of arrivalsAndDepartures[0]">											<td class="pb-1 pt-1">												<div>{{arrival.plannedDateTime | date: \'HH:mm\'}}</div>												<ng-container *ngIf="arrival.actualDateTime">													<div class="color-disruption">														<ng-container *ngIf="arrivalDelays[arrival.name]; let delay">															{{delay > 0 ? \'+\' : \'\'}}{{delay}}														</ng-container>													</div>												</ng-container>											</td>											<td>{{arrival.origin}}</td>											<td>												<div													[ngStyle]="{\'text-decoration-line\': arrival.actualTrack ? \'line-through\' : \'unset\'}"												>													{{arrival.plannedTrack}}												</div>												<ng-container *ngIf="arrival.actualTrack">													<div class="color-disruption">{{arrival.actualTrack}}</div>												</ng-container>											</td>											<td>{{arrival.product.shortCategoryName}} {{arrival.product.number}}</td>											<td style="padding-right: 8px">												<div class="fly-to-train-button">													<button														class="button button--nsYellow button--crosshair"														(click)="flyToTrainByNumber(arrival.product.number)"													>														<fa-icon															[icon]="faCrosshairs"															style="font-size: small"														></fa-icon>													</button>												</div>											</td>										</tr>									</tbody>								</table>							</ng-container>							<ng-template #noArrivals>								<div class="w-100" style="padding: 7px 7px 15px 7px; text-align-last: center">									Er zijn geen aankomsttijden								</div>							</ng-template>						</div>						<div class="departures-board" *ngIf="activeTable === \'departures\'">							<ng-container *ngIf="arrivalsAndDepartures[1]?.length > 0; else noDepartures">								<table id="departures-table">									<thead>										<tr>											<th>Vertrek</th>											<th>Naar</th>											<th>Spoor</th>											<th>Trein</th>											<th></th>										</tr>									</thead>									<tbody>										<tr *ngFor="let departure of arrivalsAndDepartures[1]; let l = count">											<td class="pb-1 pt-1">												<div>{{departure.plannedDateTime | date: \'HH:mm\'}}</div>												<ng-container *ngIf="departure.actualDateTime">													<div class="color-disruption">														<ng-container															*ngIf="departureDelays[departure.name]; let delay"														>															{{delay > 0 ? \'+\' : \'\'}}{{delay}}														</ng-container>													</div>												</ng-container>											</td>											<td>{{departure.direction}}</td>											<td>												<div													[ngStyle]="{\'text-decoration-line\': departure.actualTrack ? \'line-through\' : \'unset\'}"												>													{{departure.plannedTrack}}												</div>												<ng-container													*ngIf="departure.actualTrack"													[ngStyle]="{\'text-decoration-line\': departure.actualTrack ? \'line-through\' : \'unset\'}"												>													<div class="color-disruption">{{departure.actualTrack}}</div>												</ng-container>											</td>											<td>												{{departure.product.shortCategoryName}} {{departure.product.number}}											</td>											<td style="padding-right: 8px">												<div class="fly-to-train-button">													<button														class="button button--nsYellow button--crosshair"														(click)="flyToTrainByNumber(departure.product.number)"													>														<fa-icon															[icon]="faCrosshairs"															style="font-size: small"														></fa-icon>													</button>												</div>											</td>										</tr>									</tbody>								</table>							</ng-container>							<ng-template #noDepartures>								<div class="w-100" style="padding: 7px 7px 15px 7px; text-align-last: center">									Er zijn geen vertrektijden								</div>							</ng-template>						</div>					</ng-container>					<ng-template #loadingArrivalsAndDepartures>						<div class="arrivals-board w-100 align-center" style="height: 50px; padding-bottom: 8px">							<div id="updatingMapDataSpinner" class="spinner-border spinner-border-sm" role="status">								<span class="sr-only">Loading...</span>							</div>						</div>					</ng-template>				</div>			</div>		</div>		<span class="flex-child triangle triangle--d" style="color: #00337f"></span>	</div></div></div>'
+    var COMPONENTS = [{'name': 'AboutComponent', 'selector': 'app-about'},{'name': 'AllStationsComponent', 'selector': 'app-all-stations'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'CalamityItemComponent', 'selector': 'app-calamity-item'},{'name': 'DisruptionItemComponent', 'selector': 'app-disruption-item'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'MainLayoutComponent', 'selector': 'app-main-layout'},{'name': 'PageNotFoundComponent', 'selector': 'app-page-not-found'},{'name': 'RideInformationComponent', 'selector': 'app-ride-information'},{'name': 'StationPopupComponent', 'selector': 'app-station-popup'},{'name': 'ToastsContainerComponent', 'selector': 'app-toasts-container'},{'name': 'TrainMapComponent', 'selector': 'app-train-map'},{'name': 'TrainMapSidebarComponent', 'selector': 'app-train-map-sidebar'},{'name': 'TrainPopupComponent', 'selector': 'app-train-popup'},{'name': 'TrainsetInformationComponent', 'selector': 'app-trainset-information'}];
+    var DIRECTIVES = [{'name': 'NgbdSortableHeaderDirective', 'selector': '[appNgbdSortableHeader]'},{'name': 'NgInitDirective', 'selector': '[ngInit]'}];
+    var ACTUAL_COMPONENT = {'name': 'StationPopupComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'StationPopupComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

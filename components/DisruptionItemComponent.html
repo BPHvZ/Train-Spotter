@@ -1,0 +1,617 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>TrainSpotter Documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+        <link rel="stylesheet" href="../styles/material.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">TrainSpotter Documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li
+  >
+  DisruptionItemComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li >
+            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li >
+            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li >
+            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/components/train-map/train-map-sidebar/disruption-item/disruption-item.component.ts</code>
+</p>
+
+
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>Sidebar card item to show a disruption</p>
+
+    </p>
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.io/api/core/AfterViewInit" target="_blank" >AfterViewInit</a></code>
+                    <code><a href="https://angular.io/api/core/OnDestroy" target="_blank" >OnDestroy</a></code>
+    </p>
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-disruption-item</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./disruption-item.component.sass</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./disruption-item.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#ngAfterViewInit" >ngAfterViewInit</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnDestroy" >ngOnDestroy</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Inputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#disruption" >disruption</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(sharedDataService: <a href="../injectables/SharedDataService.html" target="_self">SharedDataService</a>, cardElement: <a href="https://angular.io/api/core/ElementRef" target="_blank">ElementRef</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/components/train-map/train-map-sidebar/disruption-item/disruption-item.component.ts:33</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Define services</p>
+</div>
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>sharedDataService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/SharedDataService.html" target="_self" >SharedDataService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <p>Shares data through the application</p>
+
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>cardElement</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/core/ElementRef" target="_blank" >ElementRef</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <p>DOM element</p>
+
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+    <section>
+    <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="disruption"></a>
+                        <b>disruption</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Disruption</code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/components/train-map/train-map-sidebar/disruption-item/disruption-item.component.ts:33</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Disruption information</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+    <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngAfterViewInit"></a>
+                    <span class="name">
+                        <span ><b>ngAfterViewInit</b></span>
+                        <a href="#ngAfterViewInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngAfterViewInit()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="43"
+                            class="link-to-prism">src/app/components/train-map/train-map-sidebar/disruption-item/disruption-item.component.ts:43</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Add the disruption card to shared data</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnDestroy"></a>
+                    <span class="name">
+                        <span ><b>ngOnDestroy</b></span>
+                        <a href="#ngOnDestroy"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnDestroy()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="48"
+                            class="link-to-prism">src/app/components/train-map/train-map-sidebar/disruption-item/disruption-item.component.ts:48</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Remove the disruption card from shared data</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { AfterViewInit, Component, ElementRef, Input, OnDestroy } from &quot;@angular/core&quot;;
+import { Disruption } from &quot;../../../../models/ReisinformatieAPI&quot;;
+import { SharedDataService } from &quot;../../../../services/shared-data.service&quot;;
+
+/**
+ * Sidebar card item to show a disruption
+ * */
+@Component({
+	selector: &quot;app-disruption-item&quot;,
+	templateUrl: &quot;./disruption-item.component.html&quot;,
+	styleUrls: [&quot;./disruption-item.component.sass&quot;],
+})
+export class DisruptionItemComponent implements AfterViewInit, OnDestroy {
+	/**Disruption information*/
+	@Input() disruption: Disruption;
+
+	/**
+	 * Define services
+	 * @param sharedDataService Shares data through the application
+	 * @param cardElement DOM element
+	 */
+	constructor(private sharedDataService: SharedDataService, private cardElement: ElementRef) {}
+
+	/**Add the disruption card to shared data*/
+	ngAfterViewInit(): void {
+		this.sharedDataService.disruptionCardElements[this.disruption.id] &#x3D; this.cardElement;
+	}
+
+	/**Remove the disruption card from shared data*/
+	ngOnDestroy(): void {
+		this.sharedDataService.disruptionCardElements.delete(this.disruption.id);
+	}
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;!--
+  ~ trainSpotter
+  ~ Copyright (C) 2021 bart
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.
+  --&gt;
+
+&lt;div *ngIf&#x3D;&quot;disruption&quot; class&#x3D;&quot;mat-typography&quot; tabindex&#x3D;&quot;0&quot;&gt;
+	&lt;div class&#x3D;&quot;card-header headingS&quot; style&#x3D;&quot;font-weight: 600&quot;&gt;
+		&lt;ng-container *ngIf&#x3D;&quot;disruption.type &#x3D;&#x3D;&#x3D; &#x27;MAINTENANCE&#x27; else disruptionHeader&quot;&gt;
+			&lt;div style&#x3D;&quot;display: inline&quot;&gt;
+				&lt;div
+					id&#x3D;&quot;maintenance-svg&quot;
+					[inlineSVG]&#x3D;&quot;&#x27;../../../assets/maintenance--35x35.svg&#x27;&quot;
+					[setSVGAttributes]&#x3D;&quot;{&#x27;width&#x27;: &#x27;30px&#x27;, &#x27;height&#x27;: &#x27;30px&#x27;}&quot;
+				&gt;&lt;/div&gt;
+			&lt;/div&gt;
+		&lt;/ng-container&gt;
+		&lt;ng-template #disruptionHeader&gt;
+			&lt;div style&#x3D;&quot;display: inline&quot;&gt;
+				&lt;div
+					id&#x3D;&quot;disruption-svg&quot;
+					[inlineSVG]&#x3D;&quot;&#x27;../../../assets/alert--35x35.svg&#x27;&quot;
+					[setSVGAttributes]&#x3D;&quot;{&#x27;width&#x27;: &#x27;30px&#x27;, &#x27;height&#x27;: &#x27;30px&#x27;}&quot;
+				&gt;&lt;/div&gt;
+			&lt;/div&gt;
+		&lt;/ng-template&gt;
+		{{ disruption.title }}
+	&lt;/div&gt;
+	&lt;div class&#x3D;&quot;card-body&quot;&gt;
+		&lt;ng-container *ngIf&#x3D;&quot;disruption.type &#x3D;&#x3D;&#x3D; &#x27;MAINTENANCE&#x27;; else disruptionBody&quot;&gt;
+			&lt;div&gt;
+				&lt;p class&#x3D;&quot;card-text color-maintenance m-0&quot; style&#x3D;&quot;font-weight: 700&quot;&gt;Werkzaamheden&lt;/p&gt;
+				&lt;h5 class&#x3D;&quot;card-title&quot;&gt;{{ disruption.period }}&lt;/h5&gt;
+				&lt;p class&#x3D;&quot;card-text&quot;&gt;{{ disruption.timespans[0].situation.label }}&lt;/p&gt;
+				&lt;p class&#x3D;&quot;card-text&quot; *ngIf&#x3D;&quot;disruption.timespans[0].additionalTravelTime&quot;&gt;
+					{{ disruption.timespans[0].additionalTravelTime?.label }}
+				&lt;/p&gt;
+			&lt;/div&gt;
+		&lt;/ng-container&gt;
+		&lt;ng-template #disruptionBody&gt;
+			&lt;div&gt;
+				&lt;div class&#x3D;&quot;d-flex flex-row justify-content-between flex-wrap mb-2&quot;&gt;
+					&lt;p class&#x3D;&quot;card-text color-disruption m-0&quot; style&#x3D;&quot;font-weight: 700&quot;&gt;Verstoring&lt;/p&gt;
+					&lt;p class&#x3D;&quot;card-text m-0&quot; style&#x3D;&quot;color: #6a6a79&quot;&gt;
+						Update: {{disruption.releaseTime | date: &#x27;HH:mm&#x27;}}
+					&lt;/p&gt;
+				&lt;/div&gt;
+				&lt;p class&#x3D;&quot;card-text&quot;&gt;{{ disruption.timespans[0].situation.label }}&lt;/p&gt;
+				&lt;p class&#x3D;&quot;card-text&quot;&gt;{{ disruption.expectedDuration.description }}&lt;/p&gt;
+			&lt;/div&gt;
+		&lt;/ng-template&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-styleData">
+                <p class="comment">
+                    <code>./disruption-item.component.sass</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">/*!
+ / trainSpotter
+ / Copyright (C) 2021 bart
+ /
+ / This program is free software: you can redistribute it and/or modify
+ / it under the terms of the GNU General Public License as published by
+ / the Free Software Foundation, either version 3 of the License, or
+ / (at your option) any later version.
+ /
+ / This program is distributed in the hope that it will be useful,
+ / but WITHOUT ANY WARRANTY; without even the implied warranty of
+ / MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ / GNU General Public License for more details.
+ /
+ / You should have received a copy of the GNU General Public License
+ / along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.
+ /
+
+#maintenance-svg
+  position: inherit
+  display: inline
+  filter: invert(50%) sepia(45%) saturate(7499%) hue-rotate(5deg) brightness(107%) contrast(101%)
+
+#disruption-svg
+  position: inherit
+  display: inline
+  filter: invert(30%) sepia(93%) saturate(7490%) hue-rotate(335deg) brightness(88%) contrast(112%)
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><!--  ~ trainSpotter  ~ Copyright (C) 2021 bart  ~  ~ This program is free software: you can redistribute it and/or modify  ~ it under the terms of the GNU General Public License as published by  ~ the Free Software Foundation, either version 3 of the License, or  ~ (at your option) any later version.  ~  ~ This program is distributed in the hope that it will be useful,  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  ~ GNU General Public License for more details.  ~  ~ You should have received a copy of the GNU General Public License  ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.  --><div *ngIf="disruption" class="mat-typography" tabindex="0">	<div class="card-header headingS" style="font-weight: 600">		<ng-container *ngIf="disruption.type === \'MAINTENANCE\' else disruptionHeader">			<div style="display: inline">				<div					id="maintenance-svg"					[inlineSVG]="\'../../../assets/maintenance--35x35.svg\'"					[setSVGAttributes]="{\'width\': \'30px\', \'height\': \'30px\'}"				></div>			</div>		</ng-container>		<ng-template #disruptionHeader>			<div style="display: inline">				<div					id="disruption-svg"					[inlineSVG]="\'../../../assets/alert--35x35.svg\'"					[setSVGAttributes]="{\'width\': \'30px\', \'height\': \'30px\'}"				></div>			</div>		</ng-template>		{{ disruption.title }}	</div>	<div class="card-body">		<ng-container *ngIf="disruption.type === \'MAINTENANCE\'; else disruptionBody">			<div>				<p class="card-text color-maintenance m-0" style="font-weight: 700">Werkzaamheden</p>				<h5 class="card-title">{{ disruption.period }}</h5>				<p class="card-text">{{ disruption.timespans[0].situation.label }}</p>				<p class="card-text" *ngIf="disruption.timespans[0].additionalTravelTime">					{{ disruption.timespans[0].additionalTravelTime?.label }}				</p>			</div>		</ng-container>		<ng-template #disruptionBody>			<div>				<div class="d-flex flex-row justify-content-between flex-wrap mb-2">					<p class="card-text color-disruption m-0" style="font-weight: 700">Verstoring</p>					<p class="card-text m-0" style="color: #6a6a79">						Update: {{disruption.releaseTime | date: \'HH:mm\'}}					</p>				</div>				<p class="card-text">{{ disruption.timespans[0].situation.label }}</p>				<p class="card-text">{{ disruption.expectedDuration.description }}</p>			</div>		</ng-template>	</div></div></div>'
+    var COMPONENTS = [{'name': 'AboutComponent', 'selector': 'app-about'},{'name': 'AllStationsComponent', 'selector': 'app-all-stations'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'CalamityItemComponent', 'selector': 'app-calamity-item'},{'name': 'DisruptionItemComponent', 'selector': 'app-disruption-item'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'MainLayoutComponent', 'selector': 'app-main-layout'},{'name': 'PageNotFoundComponent', 'selector': 'app-page-not-found'},{'name': 'RideInformationComponent', 'selector': 'app-ride-information'},{'name': 'StationPopupComponent', 'selector': 'app-station-popup'},{'name': 'ToastsContainerComponent', 'selector': 'app-toasts-container'},{'name': 'TrainMapComponent', 'selector': 'app-train-map'},{'name': 'TrainMapSidebarComponent', 'selector': 'app-train-map-sidebar'},{'name': 'TrainPopupComponent', 'selector': 'app-train-popup'},{'name': 'TrainsetInformationComponent', 'selector': 'app-trainset-information'}];
+    var DIRECTIVES = [{'name': 'NgbdSortableHeaderDirective', 'selector': '[appNgbdSortableHeader]'},{'name': 'NgInitDirective', 'selector': '[ngInit]'}];
+    var ACTUAL_COMPONENT = {'name': 'DisruptionItemComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'DisruptionItemComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

@@ -1,0 +1,1589 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>TrainSpotter Documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+        <link rel="stylesheet" href="../styles/material.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">TrainSpotter Documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li
+  >
+  TrainPopupComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li >
+            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li >
+            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li >
+            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/components/train-map/train-popup/train-popup.component.ts</code>
+</p>
+
+
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>Show a popup with information about a train on the map</p>
+
+    </p>
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.io/api/core/OnChanges" target="_blank" >OnChanges</a></code>
+    </p>
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-train-popup</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./train-popup.component.sass</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./train-popup.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#closeButtonElm" >closeButtonElm</a>
+                            </li>
+                            <li>
+                                <a href="#directionArrowStyle" >directionArrowStyle</a>
+                            </li>
+                            <li>
+                                <a href="#faCopy" >faCopy</a>
+                            </li>
+                            <li>
+                                <a href="#faInfoCircle" >faInfoCircle</a>
+                            </li>
+                            <li>
+                                <a href="#faShareSquare" >faShareSquare</a>
+                            </li>
+                            <li>
+                                <a href="#trainInformation" >trainInformation</a>
+                            </li>
+                            <li>
+                                <a href="#updatedAt" >updatedAt</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#getTypeOfTrain" >getTypeOfTrain</a>
+                            </li>
+                            <li>
+                                <a href="#navigateToRideInformation" >navigateToRideInformation</a>
+                            </li>
+                            <li>
+                                <a href="#navigateToTrainsetInformation" >navigateToTrainsetInformation</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnChanges" >ngOnChanges</a>
+                            </li>
+                            <li>
+                                <a href="#shareTrain" >shareTrain</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Inputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#mapboxFeature" >mapboxFeature</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Outputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#closePopup" >closePopup</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(helperFunctions: <a href="../injectables/HelperFunctionsService.html" target="_self">HelperFunctionsService</a>, router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>, shareService: <a href="../injectables/ShareService.html" target="_self">ShareService</a>, toastService: <a href="../injectables/ToastService.html" target="_self">ToastService</a>, clipboardService: ClipboardService)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">src/app/components/train-map/train-popup/train-popup.component.ts:65</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Define services</p>
+</div>
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>helperFunctions</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/HelperFunctionsService.html" target="_self" >HelperFunctionsService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <p>Helper functions</p>
+
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>router</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/router/Router" target="_blank" >Router</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <p>Router object</p>
+
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>shareService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/ShareService.html" target="_self" >ShareService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <p>Share using browser Navigator.share</p>
+
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>toastService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/ToastService.html" target="_self" >ToastService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <p>Show or delete toast notifications</p>
+
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>clipboardService</td>
+                                                  
+                                                        <td>
+                                                                    <code>ClipboardService</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <p>Copy to device clipboard</p>
+
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+    <section>
+    <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="mapboxFeature"></a>
+                        <b>mapboxFeature</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>MapboxGeoJSONFeature</code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/app/components/train-map/train-popup/train-popup.component.ts:53</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Mapbox Feature of this train</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+    <section>
+    <h3 id="outputs">Outputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="closePopup"></a>
+                        <b>closePopup</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>EventEmitter&lt;void&gt;</code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/app/components/train-map/train-popup/train-popup.component.ts:51</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Notify the map to close the popup</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+    <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getTypeOfTrain"></a>
+                    <span class="name">
+                        <span ><b>getTypeOfTrain</b></span>
+                        <a href="#getTypeOfTrain"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getTypeOfTrain()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="101"
+                            class="link-to-prism">src/app/components/train-map/train-popup/train-popup.component.ts:101</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Get the type of train as full words</p>
+</div>
+
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>string Train type</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="navigateToRideInformation"></a>
+                    <span class="name">
+                        <span ><b>navigateToRideInformation</b></span>
+                        <a href="#navigateToRideInformation"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>navigateToRideInformation()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="106"
+                            class="link-to-prism">src/app/components/train-map/train-popup/train-popup.component.ts:106</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Navigate to the train information page</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="navigateToTrainsetInformation"></a>
+                    <span class="name">
+                        <span ><b>navigateToTrainsetInformation</b></span>
+                        <a href="#navigateToTrainsetInformation"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>navigateToTrainsetInformation(trainsetNr: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="114"
+                            class="link-to-prism">src/app/components/train-map/train-popup/train-popup.component.ts:114</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Navigate to the trainset information page</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>trainsetNr</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Trainset number to navigate to</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnChanges"></a>
+                    <span class="name">
+                        <span ><b>ngOnChanges</b></span>
+                        <a href="#ngOnChanges"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnChanges(changes: <a href="https://angular.io/api/core/SimpleChanges" target="_blank">SimpleChanges</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="88"
+                            class="link-to-prism">src/app/components/train-map/train-popup/train-popup.component.ts:88</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Update the train information
+Update the arrow rotation</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>changes</td>
+                                    <td>
+                                                <code><a href="https://angular.io/api/core/SimpleChanges" target="_blank" >SimpleChanges</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Updated train information</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="shareTrain"></a>
+                    <span class="name">
+                        <span ><b>shareTrain</b></span>
+                        <a href="#shareTrain"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>shareTrain(template: TemplateRef<any>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="124"
+                            class="link-to-prism">src/app/components/train-map/train-popup/train-popup.component.ts:124</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Share a URL of the train on the map</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>template</td>
+                                    <td>
+                                            <code>TemplateRef&lt;any&gt;</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Template of the toast notification</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section>
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="closeButtonElm"></a>
+                    <span class="name">
+                        <span ><b>closeButtonElm</b></span>
+                        <a href="#closeButtonElm"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Element</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ViewChild(&#x27;closeButton&#x27;)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/app/components/train-map/train-popup/train-popup.component.ts:49</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Close button DOM element</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="directionArrowStyle"></a>
+                    <span class="name">
+                        <span ><b>directionArrowStyle</b></span>
+                        <a href="#directionArrowStyle"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Map&lt;string | any&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new Map&lt;string, any&gt;()</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/app/components/train-map/train-popup/train-popup.component.ts:57</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>CSS style of the arrow shown in the popup</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="faCopy"></a>
+                    <span class="name">
+                        <span ><b>faCopy</b></span>
+                        <a href="#faCopy"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>faCopy</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">src/app/components/train-map/train-popup/train-popup.component.ts:65</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Cop icon</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="faInfoCircle"></a>
+                    <span class="name">
+                        <span ><b>faInfoCircle</b></span>
+                        <a href="#faInfoCircle"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>faInfoCircle</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">src/app/components/train-map/train-popup/train-popup.component.ts:61</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Info icon</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="faShareSquare"></a>
+                    <span class="name">
+                        <span ><b>faShareSquare</b></span>
+                        <a href="#faShareSquare"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>faShareSquare</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="63" class="link-to-prism">src/app/components/train-map/train-popup/train-popup.component.ts:63</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Share icons</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="trainInformation"></a>
+                    <span class="name">
+                        <span ><b>trainInformation</b></span>
+                        <a href="#trainInformation"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>DetailedTrainInformation</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/app/components/train-map/train-popup/train-popup.component.ts:55</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Detailed train information</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="updatedAt"></a>
+                    <span class="name">
+                        <span ><b>updatedAt</b></span>
+                        <a href="#updatedAt"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date" target="_blank" >Date</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">src/app/components/train-map/train-popup/train-popup.component.ts:59</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Last date when data was refreshed</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
+	Component,
+	EventEmitter,
+	Input,
+	OnChanges,
+	Output,
+	SimpleChanges,
+	TemplateRef,
+	ViewChild,
+} from &quot;@angular/core&quot;;
+import { Router } from &quot;@angular/router&quot;;
+import { faCopy } from &quot;@fortawesome/free-regular-svg-icons&quot;;
+import { faInfoCircle, faShareSquare } from &quot;@fortawesome/free-solid-svg-icons&quot;;
+import { MapboxGeoJSONFeature } from &quot;mapbox-gl&quot;;
+import { ClipboardService } from &quot;ngx-clipboard&quot;;
+import { DetailedTrainInformation } from &quot;../../../models/VirtualTrainAPI&quot;;
+import { HelperFunctionsService } from &quot;../../../services/helper-functions.service&quot;;
+import { ShareService } from &quot;../../../services/share.service&quot;;
+import { ToastPosition, ToastService } from &quot;../../../services/toast.service&quot;;
+
+/**
+ * Show a popup with information about a train on the map
+ */
+@Component({
+	selector: &quot;app-train-popup&quot;,
+	templateUrl: &quot;./train-popup.component.html&quot;,
+	styleUrls: [&quot;./train-popup.component.sass&quot;],
+})
+export class TrainPopupComponent implements OnChanges {
+	/**Close button DOM element*/
+	@ViewChild(&quot;closeButton&quot;) closeButtonElm: Element;
+	/**Notify the map to close the popup*/
+	@Output() public closePopup: EventEmitter&lt;void&gt; &#x3D; new EventEmitter&lt;void&gt;();
+	/**Mapbox Feature of this train*/
+	@Input() mapboxFeature: MapboxGeoJSONFeature;
+	/**Detailed train information*/
+	trainInformation: DetailedTrainInformation;
+	/**CSS style of the arrow shown in the popup*/
+	directionArrowStyle: Map&lt;string, any&gt; &#x3D; new Map&lt;string, any&gt;();
+	/**Last date when data was refreshed*/
+	updatedAt: Date;
+	/**Info icon*/
+	faInfoCircle &#x3D; faInfoCircle;
+	/**Share icons*/
+	faShareSquare &#x3D; faShareSquare;
+	/**Cop icon*/
+	faCopy &#x3D; faCopy;
+
+	/**
+	 * Define services
+	 * @param helperFunctions Helper functions
+	 * @param router Router object
+	 * @param shareService Share using browser Navigator.share
+	 * @param toastService Show or delete toast notifications
+	 * @param clipboardService Copy to device clipboard
+	 */
+	constructor(
+		private helperFunctions: HelperFunctionsService,
+		private router: Router,
+		private shareService: ShareService,
+		private toastService: ToastService,
+		private clipboardService: ClipboardService
+	) {}
+
+	/**
+	 * Update the train information
+	 * Update the arrow rotation
+	 * @param changes Updated train information
+	 */
+	ngOnChanges(changes: SimpleChanges): void {
+		console.log(changes);
+		if (changes.mapboxFeature.currentValue) {
+			this.trainInformation &#x3D; this.mapboxFeature.properties as DetailedTrainInformation;
+			this.directionArrowStyle.set(&quot;transform&quot;, &#x60;rotate(${this.trainInformation.richting - 90}deg)&#x60;);
+			this.updatedAt &#x3D; new Date(this.trainInformation?.updatedAt);
+		}
+	}
+
+	/**
+	 * Get the type of train as full words
+	 * @returns string Train type
+	 */
+	getTypeOfTrain(): string {
+		return this.helperFunctions.getTypeOfTrain(this.trainInformation);
+	}
+
+	/** Navigate to the train information page*/
+	navigateToRideInformation(): void {
+		void this.router.navigate([&quot;/rit&quot;, this.trainInformation.ritId]);
+	}
+
+	/**
+	 * Navigate to the trainset information page
+	 * @param trainsetNr Trainset number to navigate to
+	 */
+	navigateToTrainsetInformation(trainsetNr: number): void {
+		void this.router.navigate([&quot;/materiaal&quot;, trainsetNr], {
+			queryParams: { rideId: this.trainInformation.ritId },
+		});
+	}
+
+	/**
+	 * Share a URL of the train on the map
+	 * @param template Template of the toast notification
+	 */
+	shareTrain(template: TemplateRef&lt;any&gt;): void {
+		const url &#x3D; &#x60;treinenkaart.bartvanzeist.nl/kaart?rit&#x3D;${this.trainInformation.ritId}&#x60;;
+		void this.shareService.share(
+			{
+				url: url,
+			},
+			() &#x3D;&gt; {
+				this.clipboardService.copy(url);
+				this.toastService.show({
+					textOrTpl: template,
+					position: ToastPosition.Center,
+				});
+			}
+		);
+	}
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;!--
+  ~ trainSpotter
+  ~ Copyright (C) 2021 bart
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.
+  --&gt;
+
+&lt;div
+	id&#x3D;&quot;train-marker-content&quot;
+	class&#x3D;&quot;map-marker-content color-white shadow-darken10 round txt-s clip txt-truncate mat-typography&quot;
+	style&#x3D;&quot;pointer-events: auto; padding: 15px 0&quot;
+	*ngIf&#x3D;&quot;trainInformation&quot;
+&gt;
+	&lt;div class&#x3D;&quot;container-fluid&quot;&gt;
+		&lt;div class&#x3D;&quot;row&quot;&gt;
+			&lt;div class&#x3D;&quot;col&quot;&gt;
+				&lt;div class&#x3D;&quot;&quot;&gt;
+					&lt;div class&#x3D;&quot;ms-auto mb-1&quot; style&#x3D;&quot;width: fit-content&quot;&gt;
+						&lt;button class&#x3D;&quot;button button--nsYellow button--close&quot; (click)&#x3D;&quot;closePopup.emit()&quot;&gt;
+							&lt;strong&gt;&amp;times;&lt;/strong&gt;
+						&lt;/button&gt;
+					&lt;/div&gt;
+					&lt;div style&#x3D;&quot;font-size: initial; font-weight: bold; white-space: pre-wrap&quot;&gt;
+						&lt;span&gt;{{ trainInformation.trainDetails?.vervoerder }} {{ getTypeOfTrain() }} trein&lt;/span&gt;
+						&lt;span
+							class&#x3D;&quot;link-hover link-hover--whitespace&quot;
+							style&#x3D;&quot;cursor: pointer&quot;
+							(click)&#x3D;&quot;navigateToRideInformation()&quot;
+						&gt;
+							{{ trainInformation.ritId }}
+						&lt;/span&gt;
+						&lt;ng-container
+							*ngFor&#x3D;&quot;
+											let trainPart of trainInformation.trainDetails?.materieeldelen;
+											let i &#x3D; index
+										&quot;
+						&gt;
+							&lt;ng-container *ngIf&#x3D;&quot;trainPart.materieelnummer&quot;&gt;
+								&lt;ng-container *ngIf&#x3D;&quot;i &#x3D;&#x3D;&#x3D; 0; else other&quot;&gt;
+									&lt;span
+										&gt;met
+										&lt;span
+											class&#x3D;&quot;link-hover&quot;
+											style&#x3D;&quot;cursor: pointer&quot;
+											(click)&#x3D;&quot;navigateToTrainsetInformation(trainPart.materieelnummer)&quot;
+											&gt;{{ trainPart.materieelnummer }}&lt;/span
+										&gt;
+									&lt;/span&gt;
+								&lt;/ng-container&gt;
+								&lt;ng-template #other&gt;
+									&lt;span&gt;
+										{{ i &#x3D;&#x3D;&#x3D; (trainInformation.trainDetails.materieeldelen.length - 1) ? &quot; &quot; + &#x27;en&#x27;
+										: &#x27;,&#x27;}}
+										&lt;span
+											class&#x3D;&quot;link-hover&quot;
+											style&#x3D;&quot;cursor: pointer&quot;
+											(click)&#x3D;&quot;navigateToTrainsetInformation(trainPart.materieelnummer)&quot;
+											&gt;{{ trainPart.materieelnummer }}&lt;/span
+										&gt;
+									&lt;/span&gt;
+								&lt;/ng-template&gt;
+							&lt;/ng-container&gt;
+						&lt;/ng-container&gt;
+					&lt;/div&gt;
+					&lt;div
+						*ngIf&#x3D;&quot;trainInformation.trainDetails?.materieeldelen &amp;&amp; trainInformation.trainDetails?.materieeldelen[0]?.afbeelding&quot;
+					&gt;
+						&lt;div id&#x3D;&quot;carousel&quot; class&#x3D;&quot;scroll-gradient&quot;&gt;
+							&lt;div
+								class&#x3D;&quot;slide&quot;
+								*ngFor&#x3D;&quot;let railcar of trainInformation.trainDetails.materieeldelen; let isLast &#x3D; last&quot;
+							&gt;
+								&lt;img
+									[src]&#x3D;&quot;railcar.afbeelding&quot;
+									alt&#x3D;&quot;Trein&quot;
+									height&#x3D;&quot;45&quot;
+									[ngClass]&#x3D;&quot;{ &#x27;pe-2&#x27;: isLast }&quot;
+								/&gt;
+							&lt;/div&gt;
+						&lt;/div&gt;
+					&lt;/div&gt;
+					&lt;div class&#x3D;&quot;mt-2&quot;&gt;
+						&lt;div class&#x3D;&quot;float-start me-3&quot; style&#x3D;&quot;width: fit-content&quot;&gt;
+							&lt;div *ngIf&#x3D;&quot;trainInformation.trainDetails.type&quot;&gt;
+								&lt;div class&#x3D;&quot;mb-1 fw-bold&quot;&gt;Type:&lt;/div&gt;
+							&lt;/div&gt;
+							&lt;div class&#x3D;&quot;mb-1 fw-bold&quot;&gt;Snelheid:&lt;/div&gt;
+							&lt;div class&#x3D;&quot;fw-bold&quot;&gt;Richting:&lt;/div&gt;
+						&lt;/div&gt;
+
+						&lt;div style&#x3D;&quot;width: fit-content&quot;&gt;
+							&lt;div *ngIf&#x3D;&quot;trainInformation.trainDetails.type&quot;&gt;
+								&lt;div class&#x3D;&quot;mb-1&quot;&gt;{{trainInformation.trainDetails.type}}&lt;/div&gt;
+							&lt;/div&gt;
+							&lt;div class&#x3D;&quot;mb-1&quot;&gt;{{ trainInformation.snelheid | number:&#x27;1.0-2&#x27; }} km/u&lt;/div&gt;
+							&lt;div class&#x3D;&quot;d-flex align-items-center&quot;&gt;
+								&lt;span&gt;{{ trainInformation.richting }}&amp;deg;&lt;/span&gt;
+								&lt;span
+									class&#x3D;&quot;material-icons fw-bold ms-1&quot;
+									style&#x3D;&quot;font-size: 18px&quot;
+									[ngStyle]&#x3D;&quot;directionArrowStyle&quot;
+									&gt;arrow_right_alt&lt;/span
+								&gt;
+							&lt;/div&gt;
+						&lt;/div&gt;
+					&lt;/div&gt;
+					&lt;div class&#x3D;&quot;mt-2 d-flex justify-content-between&quot;&gt;
+						&lt;div&gt;
+							&lt;button
+								id&#x3D;&quot;moreInfoButton&quot;
+								class&#x3D;&quot;button button--nsYellow&quot;
+								(click)&#x3D;&quot;navigateToRideInformation()&quot;
+							&gt;
+								Meer info
+								&lt;fa-icon [icon]&#x3D;&quot;faInfoCircle&quot; style&#x3D;&quot;font-size: small&quot;&gt;&lt;/fa-icon&gt;
+							&lt;/button&gt;
+						&lt;/div&gt;
+						&lt;div&gt;
+							&lt;button
+								id&#x3D;&quot;shareTrainButton&quot;
+								class&#x3D;&quot;button button--nsYellow&quot;
+								(click)&#x3D;&quot;shareTrain(copiedShareUrlTpl)&quot;
+							&gt;
+								&lt;div class&#x3D;&quot;d-flex&quot;&gt;
+									Deel trein
+									&lt;span class&#x3D;&quot;material-icons ms-1&quot; style&#x3D;&quot;font-size: 16px&quot;&gt;ios_share&lt;/span&gt;
+								&lt;/div&gt;
+							&lt;/button&gt;
+						&lt;/div&gt;
+					&lt;/div&gt;
+					&lt;div class&#x3D;&quot;mt-2 ms-auto&quot; style&#x3D;&quot;width: fit-content&quot;&gt;
+						&lt;div style&#x3D;&quot;align-self: flex-end&quot; *ngIf&#x3D;&quot;updatedAt&quot;&gt;
+							&lt;div id&#x3D;&quot;lastUpdated&quot;&gt;Laatste update {{ updatedAt | date: &quot;HH:mm:ss&quot; }}&lt;/div&gt;
+						&lt;/div&gt;
+					&lt;/div&gt;
+				&lt;/div&gt;
+			&lt;/div&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;
+	&lt;!--	&lt;div class&#x3D;&quot;map-marker flex-parent-inline flex-parent&amp;#45;&amp;#45;center-cross flex-parent&amp;#45;&amp;#45;column absolute bottom&quot;&gt;--&gt;
+	&lt;!--		&lt;div--&gt;
+	&lt;!--			id&#x3D;&quot;train-marker-content&quot;--&gt;
+	&lt;!--			class&#x3D;&quot;map-marker-content color-white shadow-darken10 round txt-s clip txt-truncate&quot;--&gt;
+	&lt;!--			style&#x3D;&quot;padding: 15px 0&quot;--&gt;
+	&lt;!--		&gt;--&gt;
+	&lt;!--			&lt;div class&#x3D;&quot;container&quot;&gt;--&gt;
+	&lt;!--				&lt;div class&#x3D;&quot;row&quot;&gt;--&gt;
+	&lt;!--					&lt;div class&#x3D;&quot;col&quot;&gt;--&gt;
+	&lt;!--						&lt;div class&#x3D;&quot;ms-auto mb-1&quot; style&#x3D;&quot;width: fit-content&quot;&gt;--&gt;
+	&lt;!--							&lt;button class&#x3D;&quot;button button&amp;#45;&amp;#45;nsYellow button&amp;#45;&amp;#45;close&quot; (click)&#x3D;&quot;closePopup.emit()&quot;&gt;--&gt;
+	&lt;!--								&lt;strong&gt;&amp;times;&lt;/strong&gt;--&gt;
+	&lt;!--							&lt;/button&gt;--&gt;
+	&lt;!--						&lt;/div&gt;--&gt;
+	&lt;!--						&lt;div style&#x3D;&quot;font-size: initial; font-weight: bold; white-space: pre-wrap&quot;&gt;--&gt;
+	&lt;!--							&lt;span&gt;{{ trainInformation.trainDetails?.vervoerder }} {{ getTypeOfTrain() }} trein&lt;/span&gt;--&gt;
+	&lt;!--							&lt;span--&gt;
+	&lt;!--								class&#x3D;&quot;link-hover link-hover&amp;#45;&amp;#45;whitespace&quot;--&gt;
+	&lt;!--								style&#x3D;&quot;cursor: pointer&quot;--&gt;
+	&lt;!--								(click)&#x3D;&quot;navigateToRideInformation()&quot;--&gt;
+	&lt;!--							&gt;--&gt;
+	&lt;!--								{{ trainInformation.ritId }}--&gt;
+	&lt;!--							&lt;/span&gt;--&gt;
+	&lt;!--							&lt;ng-container--&gt;
+	&lt;!--								*ngFor&#x3D;&quot;--&gt;
+	&lt;!--											let trainPart of trainInformation.trainDetails?.materieeldelen;--&gt;
+	&lt;!--											let i &#x3D; index--&gt;
+	&lt;!--										&quot;--&gt;
+	&lt;!--							&gt;--&gt;
+	&lt;!--								&lt;ng-container *ngIf&#x3D;&quot;trainPart.materieelnummer&quot;&gt;--&gt;
+	&lt;!--									&lt;ng-container *ngIf&#x3D;&quot;i &#x3D;&#x3D;&#x3D; 0; else other&quot;&gt;--&gt;
+	&lt;!--										&lt;span--&gt;
+	&lt;!--											&gt;met--&gt;
+	&lt;!--											&lt;span--&gt;
+	&lt;!--												class&#x3D;&quot;link-hover&quot;--&gt;
+	&lt;!--												style&#x3D;&quot;cursor: pointer&quot;--&gt;
+	&lt;!--												(click)&#x3D;&quot;navigateToTrainsetInformation(trainPart.materieelnummer)&quot;--&gt;
+	&lt;!--												&gt;{{ trainPart.materieelnummer }}&lt;/span--&gt;
+	&lt;!--											&gt;--&gt;
+	&lt;!--										&lt;/span&gt;--&gt;
+	&lt;!--									&lt;/ng-container&gt;--&gt;
+	&lt;!--									&lt;ng-template #other&gt;--&gt;
+	&lt;!--										&lt;span&gt;--&gt;
+	&lt;!--											{{ i &#x3D;&#x3D;&#x3D; (trainInformation.trainDetails.materieeldelen.length - 1) ? &quot; &quot; +--&gt;
+	&lt;!--											&#x27;en&#x27; : &#x27;,&#x27;}}--&gt;
+	&lt;!--											&lt;span--&gt;
+	&lt;!--												class&#x3D;&quot;link-hover&quot;--&gt;
+	&lt;!--												style&#x3D;&quot;cursor: pointer&quot;--&gt;
+	&lt;!--												(click)&#x3D;&quot;navigateToTrainsetInformation(trainPart.materieelnummer)&quot;--&gt;
+	&lt;!--												&gt;{{ trainPart.materieelnummer }}&lt;/span--&gt;
+	&lt;!--											&gt;--&gt;
+	&lt;!--										&lt;/span&gt;--&gt;
+	&lt;!--									&lt;/ng-template&gt;--&gt;
+	&lt;!--								&lt;/ng-container&gt;--&gt;
+	&lt;!--							&lt;/ng-container&gt;--&gt;
+	&lt;!--						&lt;/div&gt;--&gt;
+	&lt;!--						&lt;div--&gt;
+	&lt;!--							*ngIf&#x3D;&quot;trainInformation.trainDetails?.materieeldelen &amp;&amp; trainInformation.trainDetails?.materieeldelen[0]?.afbeelding&quot;--&gt;
+	&lt;!--						&gt;--&gt;
+	&lt;!--							&lt;div id&#x3D;&quot;carousel&quot; class&#x3D;&quot;scroll-gradient&quot;&gt;--&gt;
+	&lt;!--								&lt;div--&gt;
+	&lt;!--									class&#x3D;&quot;slide&quot;--&gt;
+	&lt;!--									*ngFor&#x3D;&quot;let railcar of trainInformation.trainDetails.materieeldelen; let isLast &#x3D; last&quot;--&gt;
+	&lt;!--								&gt;--&gt;
+	&lt;!--									&lt;img--&gt;
+	&lt;!--										[src]&#x3D;&quot;railcar.afbeelding&quot;--&gt;
+	&lt;!--										alt&#x3D;&quot;Trein&quot;--&gt;
+	&lt;!--										height&#x3D;&quot;45&quot;--&gt;
+	&lt;!--										[ngClass]&#x3D;&quot;{ &#x27;pe-2&#x27;: isLast }&quot;--&gt;
+	&lt;!--									/&gt;--&gt;
+	&lt;!--								&lt;/div&gt;--&gt;
+	&lt;!--							&lt;/div&gt;--&gt;
+	&lt;!--						&lt;/div&gt;--&gt;
+	&lt;!--						&lt;div class&#x3D;&quot;mt-2&quot;&gt;--&gt;
+	&lt;!--							&lt;div class&#x3D;&quot;float-start me-3&quot; style&#x3D;&quot;width: fit-content&quot;&gt;--&gt;
+	&lt;!--								&lt;div *ngIf&#x3D;&quot;trainInformation.trainDetails.type&quot;&gt;--&gt;
+	&lt;!--									&lt;div class&#x3D;&quot;mb-1 fw-bold&quot;&gt;Type:&lt;/div&gt;--&gt;
+	&lt;!--								&lt;/div&gt;--&gt;
+	&lt;!--								&lt;div class&#x3D;&quot;mb-1 fw-bold&quot;&gt;Snelheid:&lt;/div&gt;--&gt;
+	&lt;!--								&lt;div class&#x3D;&quot;fw-bold&quot;&gt;Richting:&lt;/div&gt;--&gt;
+	&lt;!--							&lt;/div&gt;--&gt;
+
+	&lt;!--							&lt;div style&#x3D;&quot;width: fit-content&quot;&gt;--&gt;
+	&lt;!--								&lt;div *ngIf&#x3D;&quot;trainInformation.trainDetails.type&quot;&gt;--&gt;
+	&lt;!--									&lt;div class&#x3D;&quot;mb-1&quot;&gt;{{trainInformation.trainDetails.type}}&lt;/div&gt;--&gt;
+	&lt;!--								&lt;/div&gt;--&gt;
+	&lt;!--								&lt;div class&#x3D;&quot;mb-1&quot;&gt;{{ trainInformation.snelheid | number:&#x27;1.0-2&#x27; }} km/u&lt;/div&gt;--&gt;
+	&lt;!--								&lt;div class&#x3D;&quot;d-flex align-items-center&quot;&gt;--&gt;
+	&lt;!--									&lt;span&gt;{{ trainInformation.richting }}&amp;deg;&lt;/span&gt;--&gt;
+	&lt;!--									&lt;span--&gt;
+	&lt;!--										class&#x3D;&quot;material-icons fw-bold ms-1&quot;--&gt;
+	&lt;!--										style&#x3D;&quot;font-size: 18px&quot;--&gt;
+	&lt;!--										[ngStyle]&#x3D;&quot;directionArrowStyle&quot;--&gt;
+	&lt;!--										&gt;arrow_right_alt&lt;/span--&gt;
+	&lt;!--									&gt;--&gt;
+	&lt;!--								&lt;/div&gt;--&gt;
+	&lt;!--							&lt;/div&gt;--&gt;
+	&lt;!--						&lt;/div&gt;--&gt;
+	&lt;!--						&lt;div class&#x3D;&quot;mt-2 d-flex justify-content-between&quot;&gt;--&gt;
+	&lt;!--							&lt;div&gt;--&gt;
+	&lt;!--								&lt;button--&gt;
+	&lt;!--									id&#x3D;&quot;moreInfoButton&quot;--&gt;
+	&lt;!--									class&#x3D;&quot;button button&amp;#45;&amp;#45;nsYellow&quot;--&gt;
+	&lt;!--									(click)&#x3D;&quot;navigateToRideInformation()&quot;--&gt;
+	&lt;!--								&gt;--&gt;
+	&lt;!--									Meer info--&gt;
+	&lt;!--									&lt;fa-icon [icon]&#x3D;&quot;faInfoCircle&quot; style&#x3D;&quot;font-size: small&quot;&gt;&lt;/fa-icon&gt;--&gt;
+	&lt;!--								&lt;/button&gt;--&gt;
+	&lt;!--							&lt;/div&gt;--&gt;
+	&lt;!--							&lt;div&gt;--&gt;
+	&lt;!--								&lt;button--&gt;
+	&lt;!--									id&#x3D;&quot;shareTrainButton&quot;--&gt;
+	&lt;!--									class&#x3D;&quot;button button&amp;#45;&amp;#45;nsYellow&quot;--&gt;
+	&lt;!--									(click)&#x3D;&quot;shareTrain(copiedShareUrlTpl)&quot;--&gt;
+	&lt;!--								&gt;--&gt;
+	&lt;!--									&lt;div class&#x3D;&quot;d-flex&quot;&gt;--&gt;
+	&lt;!--										Deel trein--&gt;
+	&lt;!--										&lt;span class&#x3D;&quot;material-icons ms-1&quot; style&#x3D;&quot;font-size: 16px&quot;&gt;ios_share&lt;/span&gt;--&gt;
+	&lt;!--									&lt;/div&gt;--&gt;
+	&lt;!--								&lt;/button&gt;--&gt;
+	&lt;!--							&lt;/div&gt;--&gt;
+	&lt;!--						&lt;/div&gt;--&gt;
+	&lt;!--						&lt;div class&#x3D;&quot;mt-2 ms-auto&quot; style&#x3D;&quot;width: fit-content&quot;&gt;--&gt;
+	&lt;!--							&lt;div style&#x3D;&quot;align-self: flex-end&quot; *ngIf&#x3D;&quot;updatedAt&quot;&gt;--&gt;
+	&lt;!--								&lt;div id&#x3D;&quot;lastUpdated&quot;&gt;Laatste update {{ updatedAt | date: &quot;HH:mm:ss&quot; }}&lt;/div&gt;--&gt;
+	&lt;!--							&lt;/div&gt;--&gt;
+	&lt;!--						&lt;/div&gt;--&gt;
+	&lt;!--					&lt;/div&gt;--&gt;
+	&lt;!--				&lt;/div&gt;--&gt;
+	&lt;!--			&lt;/div&gt;--&gt;
+	&lt;!--		&lt;/div&gt;--&gt;
+	&lt;!--			&lt;span class&#x3D;&quot;flex-child triangle triangle&amp;#45;&amp;#45;d&quot; style&#x3D;&quot;color: #00337f&quot;&gt;&lt;/span&gt;--&gt;
+	&lt;!--	&lt;/div&gt;--&gt;
+&lt;/div&gt;
+
+&lt;ng-template #copiedShareUrlTpl&gt;
+	&lt;fa-icon [icon]&#x3D;&quot;faCopy&quot; style&#x3D;&quot;font-size: small&quot;&gt;&lt;/fa-icon&gt;
+	Link gekopieerd naar klembord
+&lt;/ng-template&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-styleData">
+                <p class="comment">
+                    <code>./train-popup.component.sass</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">/*!
+ / trainSpotter
+ / Copyright (C) 2021 bart
+ /
+ / This program is free software: you can redistribute it and/or modify
+ / it under the terms of the GNU General Public License as published by
+ / the Free Software Foundation, either version 3 of the License, or
+ / (at your option) any later version.
+ /
+ / This program is distributed in the hope that it will be useful,
+ / but WITHOUT ANY WARRANTY; without even the implied warranty of
+ / MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ / GNU General Public License for more details.
+ /
+ / You should have received a copy of the GNU General Public License
+ / along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.
+ /
+@import &quot;src/styles/colors&quot;
+
+#train-marker-content
+  width: fit-content
+  max-width: 400px
+  min-width: 300px
+
+@media (max-width: 767px)
+  #train-marker-content
+    max-width: 90vw
+    min-width: 90vw
+
+#carousel
+  width: 100%
+  min-height: 40px
+  display: flex
+  flex-wrap: nowrap
+  overflow-x: auto
+  background-color: #fffffff5
+  border-radius: 5px
+  padding: 2px 10px 2px 10px
+  margin-top: 8px
+
+  .slide
+    flex: 0 0 auto
+
+#rotateArrow
+  transform: rotate(calc(360deg * var(--rotation)))
+
+#moreInfoButton
+  padding: 6px 10px
+  font-size: 14px
+
+#shareTrainButton
+  padding: 6px 10px
+  font-size: 14px
+
+.link-hover
+  position: relative
+
+  &amp;:before
+    content: &quot;&quot;
+    position: absolute
+    width: 100%
+    height: 2px
+    bottom: 2px
+    left: 0
+    background-color: white
+    transition: all 0.3s ease-in-out
+
+  &amp;--whitespace:before
+    content: &quot;&quot;
+    position: absolute
+    width: calc(100% - 8px)
+    margin: 0 4px
+    height: 2px
+    bottom: 2px
+    left: 0
+    background-color: white
+    transition: all 0.3s ease-in-out
+
+  &amp;:hover:before
+    background-color: $ns-yellow-2
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><!--  ~ trainSpotter  ~ Copyright (C) 2021 bart  ~  ~ This program is free software: you can redistribute it and/or modify  ~ it under the terms of the GNU General Public License as published by  ~ the Free Software Foundation, either version 3 of the License, or  ~ (at your option) any later version.  ~  ~ This program is distributed in the hope that it will be useful,  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  ~ GNU General Public License for more details.  ~  ~ You should have received a copy of the GNU General Public License  ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.  --><div	id="train-marker-content"	class="map-marker-content color-white shadow-darken10 round txt-s clip txt-truncate mat-typography"	style="pointer-events: auto; padding: 15px 0"	*ngIf="trainInformation">	<div class="container-fluid">		<div class="row">			<div class="col">				<div class="">					<div class="ms-auto mb-1" style="width: fit-content">						<button class="button button--nsYellow button--close" (click)="closePopup.emit()">							<strong>&times;</strong>						</button>					</div>					<div style="font-size: initial; font-weight: bold; white-space: pre-wrap">						<span>{{ trainInformation.trainDetails?.vervoerder }} {{ getTypeOfTrain() }} trein</span>						<span							class="link-hover link-hover--whitespace"							style="cursor: pointer"							(click)="navigateToRideInformation()"						>							{{ trainInformation.ritId }}						</span>						<ng-container							*ngFor="											let trainPart of trainInformation.trainDetails?.materieeldelen;											let i = index										"						>							<ng-container *ngIf="trainPart.materieelnummer">								<ng-container *ngIf="i === 0; else other">									<span										>met										<span											class="link-hover"											style="cursor: pointer"											(click)="navigateToTrainsetInformation(trainPart.materieelnummer)"											>{{ trainPart.materieelnummer }}</span										>									</span>								</ng-container>								<ng-template #other>									<span>										{{ i === (trainInformation.trainDetails.materieeldelen.length - 1) ? " " + \'en\'										: \',\'}}										<span											class="link-hover"											style="cursor: pointer"											(click)="navigateToTrainsetInformation(trainPart.materieelnummer)"											>{{ trainPart.materieelnummer }}</span										>									</span>								</ng-template>							</ng-container>						</ng-container>					</div>					<div						*ngIf="trainInformation.trainDetails?.materieeldelen && trainInformation.trainDetails?.materieeldelen[0]?.afbeelding"					>						<div id="carousel" class="scroll-gradient">							<div								class="slide"								*ngFor="let railcar of trainInformation.trainDetails.materieeldelen; let isLast = last"							>								<img									[src]="railcar.afbeelding"									alt="Trein"									height="45"									[ngClass]="{ \'pe-2\': isLast }"								/>							</div>						</div>					</div>					<div class="mt-2">						<div class="float-start me-3" style="width: fit-content">							<div *ngIf="trainInformation.trainDetails.type">								<div class="mb-1 fw-bold">Type:</div>							</div>							<div class="mb-1 fw-bold">Snelheid:</div>							<div class="fw-bold">Richting:</div>						</div>						<div style="width: fit-content">							<div *ngIf="trainInformation.trainDetails.type">								<div class="mb-1">{{trainInformation.trainDetails.type}}</div>							</div>							<div class="mb-1">{{ trainInformation.snelheid | number:\'1.0-2\' }} km/u</div>							<div class="d-flex align-items-center">								<span>{{ trainInformation.richting }}&deg;</span>								<span									class="material-icons fw-bold ms-1"									style="font-size: 18px"									[ngStyle]="directionArrowStyle"									>arrow_right_alt</span								>							</div>						</div>					</div>					<div class="mt-2 d-flex justify-content-between">						<div>							<button								id="moreInfoButton"								class="button button--nsYellow"								(click)="navigateToRideInformation()"							>								Meer info								<fa-icon [icon]="faInfoCircle" style="font-size: small"></fa-icon>							</button>						</div>						<div>							<button								id="shareTrainButton"								class="button button--nsYellow"								(click)="shareTrain(copiedShareUrlTpl)"							>								<div class="d-flex">									Deel trein									<span class="material-icons ms-1" style="font-size: 16px">ios_share</span>								</div>							</button>						</div>					</div>					<div class="mt-2 ms-auto" style="width: fit-content">						<div style="align-self: flex-end" *ngIf="updatedAt">							<div id="lastUpdated">Laatste update {{ updatedAt | date: "HH:mm:ss" }}</div>						</div>					</div>				</div>			</div>		</div>	</div>	<!--	<div class="map-marker flex-parent-inline flex-parent&#45;&#45;center-cross flex-parent&#45;&#45;column absolute bottom">-->	<!--		<div-->	<!--			id="train-marker-content"-->	<!--			class="map-marker-content color-white shadow-darken10 round txt-s clip txt-truncate"-->	<!--			style="padding: 15px 0"-->	<!--		>-->	<!--			<div class="container">-->	<!--				<div class="row">-->	<!--					<div class="col">-->	<!--						<div class="ms-auto mb-1" style="width: fit-content">-->	<!--							<button class="button button&#45;&#45;nsYellow button&#45;&#45;close" (click)="closePopup.emit()">-->	<!--								<strong>&times;</strong>-->	<!--							</button>-->	<!--						</div>-->	<!--						<div style="font-size: initial; font-weight: bold; white-space: pre-wrap">-->	<!--							<span>{{ trainInformation.trainDetails?.vervoerder }} {{ getTypeOfTrain() }} trein</span>-->	<!--							<span-->	<!--								class="link-hover link-hover&#45;&#45;whitespace"-->	<!--								style="cursor: pointer"-->	<!--								(click)="navigateToRideInformation()"-->	<!--							>-->	<!--								{{ trainInformation.ritId }}-->	<!--							</span>-->	<!--							<ng-container-->	<!--								*ngFor="-->	<!--											let trainPart of trainInformation.trainDetails?.materieeldelen;-->	<!--											let i = index-->	<!--										"-->	<!--							>-->	<!--								<ng-container *ngIf="trainPart.materieelnummer">-->	<!--									<ng-container *ngIf="i === 0; else other">-->	<!--										<span-->	<!--											>met-->	<!--											<span-->	<!--												class="link-hover"-->	<!--												style="cursor: pointer"-->	<!--												(click)="navigateToTrainsetInformation(trainPart.materieelnummer)"-->	<!--												>{{ trainPart.materieelnummer }}</span-->	<!--											>-->	<!--										</span>-->	<!--									</ng-container>-->	<!--									<ng-template #other>-->	<!--										<span>-->	<!--											{{ i === (trainInformation.trainDetails.materieeldelen.length - 1) ? " " +-->	<!--											\'en\' : \',\'}}-->	<!--											<span-->	<!--												class="link-hover"-->	<!--												style="cursor: pointer"-->	<!--												(click)="navigateToTrainsetInformation(trainPart.materieelnummer)"-->	<!--												>{{ trainPart.materieelnummer }}</span-->	<!--											>-->	<!--										</span>-->	<!--									</ng-template>-->	<!--								</ng-container>-->	<!--							</ng-container>-->	<!--						</div>-->	<!--						<div-->	<!--							*ngIf="trainInformation.trainDetails?.materieeldelen && trainInformation.trainDetails?.materieeldelen[0]?.afbeelding"-->	<!--						>-->	<!--							<div id="carousel" class="scroll-gradient">-->	<!--								<div-->	<!--									class="slide"-->	<!--									*ngFor="let railcar of trainInformation.trainDetails.materieeldelen; let isLast = last"-->	<!--								>-->	<!--									<img-->	<!--										[src]="railcar.afbeelding"-->	<!--										alt="Trein"-->	<!--										height="45"-->	<!--										[ngClass]="{ \'pe-2\': isLast }"-->	<!--									/>-->	<!--								</div>-->	<!--							</div>-->	<!--						</div>-->	<!--						<div class="mt-2">-->	<!--							<div class="float-start me-3" style="width: fit-content">-->	<!--								<div *ngIf="trainInformation.trainDetails.type">-->	<!--									<div class="mb-1 fw-bold">Type:</div>-->	<!--								</div>-->	<!--								<div class="mb-1 fw-bold">Snelheid:</div>-->	<!--								<div class="fw-bold">Richting:</div>-->	<!--							</div>-->	<!--							<div style="width: fit-content">-->	<!--								<div *ngIf="trainInformation.trainDetails.type">-->	<!--									<div class="mb-1">{{trainInformation.trainDetails.type}}</div>-->	<!--								</div>-->	<!--								<div class="mb-1">{{ trainInformation.snelheid | number:\'1.0-2\' }} km/u</div>-->	<!--								<div class="d-flex align-items-center">-->	<!--									<span>{{ trainInformation.richting }}&deg;</span>-->	<!--									<span-->	<!--										class="material-icons fw-bold ms-1"-->	<!--										style="font-size: 18px"-->	<!--										[ngStyle]="directionArrowStyle"-->	<!--										>arrow_right_alt</span-->	<!--									>-->	<!--								</div>-->	<!--							</div>-->	<!--						</div>-->	<!--						<div class="mt-2 d-flex justify-content-between">-->	<!--							<div>-->	<!--								<button-->	<!--									id="moreInfoButton"-->	<!--									class="button button&#45;&#45;nsYellow"-->	<!--									(click)="navigateToRideInformation()"-->	<!--								>-->	<!--									Meer info-->	<!--									<fa-icon [icon]="faInfoCircle" style="font-size: small"></fa-icon>-->	<!--								</button>-->	<!--							</div>-->	<!--							<div>-->	<!--								<button-->	<!--									id="shareTrainButton"-->	<!--									class="button button&#45;&#45;nsYellow"-->	<!--									(click)="shareTrain(copiedShareUrlTpl)"-->	<!--								>-->	<!--									<div class="d-flex">-->	<!--										Deel trein-->	<!--										<span class="material-icons ms-1" style="font-size: 16px">ios_share</span>-->	<!--									</div>-->	<!--								</button>-->	<!--							</div>-->	<!--						</div>-->	<!--						<div class="mt-2 ms-auto" style="width: fit-content">-->	<!--							<div style="align-self: flex-end" *ngIf="updatedAt">-->	<!--								<div id="lastUpdated">Laatste update {{ updatedAt | date: "HH:mm:ss" }}</div>-->	<!--							</div>-->	<!--						</div>-->	<!--					</div>-->	<!--				</div>-->	<!--			</div>-->	<!--		</div>-->	<!--			<span class="flex-child triangle triangle&#45;&#45;d" style="color: #00337f"></span>-->	<!--	</div>--></div><ng-template #copiedShareUrlTpl>	<fa-icon [icon]="faCopy" style="font-size: small"></fa-icon>	Link gekopieerd naar klembord</ng-template></div>'
+    var COMPONENTS = [{'name': 'AboutComponent', 'selector': 'app-about'},{'name': 'AllStationsComponent', 'selector': 'app-all-stations'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'CalamityItemComponent', 'selector': 'app-calamity-item'},{'name': 'DisruptionItemComponent', 'selector': 'app-disruption-item'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'MainLayoutComponent', 'selector': 'app-main-layout'},{'name': 'PageNotFoundComponent', 'selector': 'app-page-not-found'},{'name': 'RideInformationComponent', 'selector': 'app-ride-information'},{'name': 'StationPopupComponent', 'selector': 'app-station-popup'},{'name': 'ToastsContainerComponent', 'selector': 'app-toasts-container'},{'name': 'TrainMapComponent', 'selector': 'app-train-map'},{'name': 'TrainMapSidebarComponent', 'selector': 'app-train-map-sidebar'},{'name': 'TrainPopupComponent', 'selector': 'app-train-popup'},{'name': 'TrainsetInformationComponent', 'selector': 'app-trainset-information'}];
+    var DIRECTIVES = [{'name': 'NgbdSortableHeaderDirective', 'selector': '[appNgbdSortableHeader]'},{'name': 'NgInitDirective', 'selector': '[ngInit]'}];
+    var ACTUAL_COMPONENT = {'name': 'TrainPopupComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'TrainPopupComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

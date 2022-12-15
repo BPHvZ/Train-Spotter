@@ -1,0 +1,766 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>TrainSpotter Documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+        <link rel="stylesheet" href="../styles/material.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">TrainSpotter Documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li
+  >
+  MainLayoutComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li >
+            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li >
+            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li >
+            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/components/layout/main-layout/main-layout.component.ts</code>
+</p>
+
+
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>Main layout of the application</p>
+
+    </p>
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.io/api/core/OnDestroy" target="_blank" >OnDestroy</a></code>
+    </p>
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-main-layout</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./main-layout.component.sass</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./main-layout.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#innerHeight" >innerHeight</a>
+                            </li>
+                            <li>
+                                <a href="#isTrainMap" >isTrainMap</a>
+                            </li>
+                            <li>
+                                <a href="#subscriptions" >subscriptions</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#ngOnDestroy" >ngOnDestroy</a>
+                            </li>
+                            <li>
+                                <a href="#onRouterOutletActivate" >onRouterOutletActivate</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>, sharedDataService: <a href="../injectables/SharedDataService.html" target="_self">SharedDataService</a>, metaTagsService: <a href="../injectables/MetaTagService.html" target="_self">MetaTagService</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/app/components/layout/main-layout/main-layout.component.ts:39</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Subscribe to the current route</p>
+</div>
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>router</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/router/Router" target="_blank" >Router</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <p>Router object</p>
+
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>sharedDataService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/SharedDataService.html" target="_self" >SharedDataService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>metaTagsService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/MetaTagService.html" target="_self" >MetaTagService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnDestroy"></a>
+                    <span class="name">
+                        <span ><b>ngOnDestroy</b></span>
+                        <a href="#ngOnDestroy"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnDestroy()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="64"
+                            class="link-to-prism">src/app/components/layout/main-layout/main-layout.component.ts:64</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Unsubscribe from observables on destroy</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onRouterOutletActivate"></a>
+                    <span class="name">
+                        <span ><b>onRouterOutletActivate</b></span>
+                        <a href="#onRouterOutletActivate"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onRouterOutletActivate(component: <a href="https://angular.io/api/core/Component" target="_blank">Component</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="68"
+                            class="link-to-prism">src/app/components/layout/main-layout/main-layout.component.ts:68</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>component</td>
+                                    <td>
+                                                <code><a href="https://angular.io/api/core/Component" target="_blank" >Component</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section>
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="innerHeight"></a>
+                    <span class="name">
+                        <span ><b>innerHeight</b></span>
+                        <a href="#innerHeight"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>window.innerHeight</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/app/components/layout/main-layout/main-layout.component.ts:37</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Window inner height</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isTrainMap"></a>
+                    <span class="name">
+                        <span ><b>isTrainMap</b></span>
+                        <a href="#isTrainMap"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/app/components/layout/main-layout/main-layout.component.ts:35</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>True if the current page is the train map</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="subscriptions"></a>
+                    <span class="name">
+                        <span ><b>subscriptions</b></span>
+                        <a href="#subscriptions"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Subscription[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/app/components/layout/main-layout/main-layout.component.ts:39</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>All observable subscriptions</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnDestroy } from &quot;@angular/core&quot;;
+import { Router } from &quot;@angular/router&quot;;
+import { Subscription } from &quot;rxjs&quot;;
+import { MetaTagService } from &quot;../../../services/meta-tag.service&quot;;
+import { SharedDataService } from &quot;../../../services/shared-data.service&quot;;
+
+/**
+ * Main layout of the application
+ */
+@Component({
+	selector: &quot;app-main-layout&quot;,
+	templateUrl: &quot;./main-layout.component.html&quot;,
+	styleUrls: [&quot;./main-layout.component.sass&quot;],
+})
+export class MainLayoutComponent implements OnDestroy {
+	/**True if the current page is the train map*/
+	isTrainMap &#x3D; false;
+	/**Window inner height*/
+	innerHeight &#x3D; window.innerHeight;
+	/**All observable subscriptions*/
+	subscriptions: Subscription[] &#x3D; [];
+
+	/**
+	 * Subscribe to the current route
+	 * @param router Router object
+	 * @param sharedDataService
+	 */
+	constructor(
+		private router: Router,
+		private sharedDataService: SharedDataService,
+		private metaTagsService: MetaTagService
+	) {
+		// eslint-disable-next-line @typescript-eslint/no-unused-vars
+		const sub1 &#x3D; router.events.subscribe((_) &#x3D;&gt; {
+			// if on train map remove padding
+			this.isTrainMap &#x3D; router.url.endsWith(&quot;kaart&quot;);
+		});
+
+		const sub2 &#x3D; sharedDataService.innerHeight$.subscribe((height) &#x3D;&gt; {
+			this.innerHeight &#x3D; height;
+		});
+		this.subscriptions.push(sub1, sub2);
+	}
+
+	/** Unsubscribe from observables on destroy */
+	ngOnDestroy(): void {
+		this.subscriptions.forEach((subscription) &#x3D;&gt; subscription.unsubscribe());
+	}
+
+	onRouterOutletActivate(component: Component): void {
+		this.metaTagsService.updateTags(component[&quot;componentName&quot;] as string);
+	}
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;!--
+  ~ trainSpotter
+  ~ Copyright (C) 2021 bart
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.
+  --&gt;
+
+&lt;div id&#x3D;&quot;page&quot; style&#x3D;&quot;position: relative&quot; class&#x3D;&quot;mat-typography&quot;&gt;
+	&lt;app-header id&#x3D;&quot;header&quot;&gt;&lt;/app-header&gt;
+	&lt;main class&#x3D;&quot;d-flex&quot; role&#x3D;&quot;main&quot;&gt;
+		&lt;app-toasts-container
+			class&#x3D;&quot;position-absolute page-padding&quot;
+			style&#x3D;&quot;z-index: 1000; min-width: 10vw; max-width: 50vw; margin-top: 0.75rem&quot;
+			aria-live&#x3D;&quot;polite&quot;
+			aria-atomic&#x3D;&quot;true&quot;
+		&gt;&lt;/app-toasts-container&gt;
+		&lt;div
+			class&#x3D;&quot;main-content d-flex page-padding&quot;
+			[style.paddingLeft]&#x3D;&quot;isTrainMap ? &#x27;0&#x27; : null&quot;
+			[style.paddingRight]&#x3D;&quot;isTrainMap ? &#x27;0&#x27; : null&quot;
+			[style.paddingBottom]&#x3D;&quot;isTrainMap ? &#x27;0&#x27; : null&quot;
+			[style.minHeight]&#x3D;&quot;isTrainMap ? &#x27;unset&#x27; : &#x27;100vh&#x27;&quot;
+			[style.height]&#x3D;&quot;isTrainMap ? innerHeight + &#x27;px&#x27; : &#x27;unset&#x27;&quot;
+		&gt;
+			&lt;div
+				class&#x3D;&quot;container-fluid d-flex flex-column&quot;
+				[style.max-width]&#x3D;&quot;isTrainMap ? &#x27;unset !important&#x27; : &#x27;1280px&#x27;&quot;
+			&gt;
+				&lt;router-outlet (activate)&#x3D;&quot;onRouterOutletActivate($event)&quot;&gt;&lt;/router-outlet&gt;
+			&lt;/div&gt;
+		&lt;/div&gt;
+	&lt;/main&gt;
+&lt;/div&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-styleData">
+                <p class="comment">
+                    <code>./main-layout.component.sass</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">/*!
+ / trainSpotter
+ / Copyright (C) 2021 bart
+ /
+ / This program is free software: you can redistribute it and/or modify
+ / it under the terms of the GNU General Public License as published by
+ / the Free Software Foundation, either version 3 of the License, or
+ / (at your option) any later version.
+ /
+ / This program is distributed in the hope that it will be useful,
+ / but WITHOUT ANY WARRANTY; without even the implied warranty of
+ / MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ / GNU General Public License for more details.
+ /
+ / You should have received a copy of the GNU General Public License
+ / along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.
+ /
+@import &quot;src/styles/colors&quot;
+
+\:host ::ng-deep router-outlet + *:not(nav)
+  height: 100%
+  float: right
+
+.page-padding
+  padding-top: 72px
+
+.container-fluid
+    position: relative
+    padding: 0
+    max-width: 1280px
+
+main
+  .main-content
+    padding-left: 1.333rem
+    padding-bottom: 1.333rem
+    padding-right: 1.333rem
+    min-height: 100vh
+    width: 100%
+
+  .container-fluid
+    position: relative
+    padding: 0
+    max-width: 1280px
+
+@media (max-width: 767px)
+  main
+    .main-content
+      padding-left: 0.5rem
+      padding-bottom: 0.5rem
+      padding-right: 0.5rem
+
+@media (max-width: 767px)
+  .page-padding
+    padding-top: 48px
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><!--  ~ trainSpotter  ~ Copyright (C) 2021 bart  ~  ~ This program is free software: you can redistribute it and/or modify  ~ it under the terms of the GNU General Public License as published by  ~ the Free Software Foundation, either version 3 of the License, or  ~ (at your option) any later version.  ~  ~ This program is distributed in the hope that it will be useful,  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  ~ GNU General Public License for more details.  ~  ~ You should have received a copy of the GNU General Public License  ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.  --><div id="page" style="position: relative" class="mat-typography">	<app-header id="header"></app-header>	<main class="d-flex" role="main">		<app-toasts-container			class="position-absolute page-padding"			style="z-index: 1000; min-width: 10vw; max-width: 50vw; margin-top: 0.75rem"			aria-live="polite"			aria-atomic="true"		></app-toasts-container>		<div			class="main-content d-flex page-padding"			[style.paddingLeft]="isTrainMap ? \'0\' : null"			[style.paddingRight]="isTrainMap ? \'0\' : null"			[style.paddingBottom]="isTrainMap ? \'0\' : null"			[style.minHeight]="isTrainMap ? \'unset\' : \'100vh\'"			[style.height]="isTrainMap ? innerHeight + \'px\' : \'unset\'"		>			<div				class="container-fluid d-flex flex-column"				[style.max-width]="isTrainMap ? \'unset !important\' : \'1280px\'"			>				<router-outlet (activate)="onRouterOutletActivate($event)"></router-outlet>			</div>		</div>	</main></div></div>'
+    var COMPONENTS = [{'name': 'AboutComponent', 'selector': 'app-about'},{'name': 'AllStationsComponent', 'selector': 'app-all-stations'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'CalamityItemComponent', 'selector': 'app-calamity-item'},{'name': 'DisruptionItemComponent', 'selector': 'app-disruption-item'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'MainLayoutComponent', 'selector': 'app-main-layout'},{'name': 'PageNotFoundComponent', 'selector': 'app-page-not-found'},{'name': 'RideInformationComponent', 'selector': 'app-ride-information'},{'name': 'StationPopupComponent', 'selector': 'app-station-popup'},{'name': 'ToastsContainerComponent', 'selector': 'app-toasts-container'},{'name': 'TrainMapComponent', 'selector': 'app-train-map'},{'name': 'TrainMapSidebarComponent', 'selector': 'app-train-map-sidebar'},{'name': 'TrainPopupComponent', 'selector': 'app-train-popup'},{'name': 'TrainsetInformationComponent', 'selector': 'app-trainset-information'}];
+    var DIRECTIVES = [{'name': 'NgbdSortableHeaderDirective', 'selector': '[appNgbdSortableHeader]'},{'name': 'NgInitDirective', 'selector': '[ngInit]'}];
+    var ACTUAL_COMPONENT = {'name': 'MainLayoutComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'MainLayoutComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

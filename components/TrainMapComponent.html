@@ -1,0 +1,4719 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>TrainSpotter Documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+        <link rel="stylesheet" href="../styles/material.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">TrainSpotter Documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li
+  >
+  TrainMapComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li >
+            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li >
+            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li >
+            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/components/train-map/train-map/train-map.component.ts</code>
+</p>
+
+
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>Train map with stations and trains that get update every x seconds</p>
+
+    </p>
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+                    <code><a href="https://angular.io/api/core/OnDestroy" target="_blank" >OnDestroy</a></code>
+    </p>
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-train-map</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./train-map.component.sass</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./train-map.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_focusedDisruptionCard" >_focusedDisruptionCard</a>
+                            </li>
+                            <li>
+                                <a href="#activeDisruptions$" >activeDisruptions$</a>
+                            </li>
+                            <li>
+                                <a href="#activeMapType$" >activeMapType$</a>
+                            </li>
+                            <li>
+                                <a href="#componentName" >componentName</a>
+                            </li>
+                            <li>
+                                <a href="#countdown" >countdown</a>
+                            </li>
+                            <li>
+                                <a href="#countdownTimer" >countdownTimer</a>
+                            </li>
+                            <li>
+                                <a href="#disruptedTrainTracksLayerData$" >disruptedTrainTracksLayerData$</a>
+                            </li>
+                            <li>
+                                <a href="#disruptionMarkersData$" >disruptionMarkersData$</a>
+                            </li>
+                            <li>
+                                <a href="#firstTrainsHaveBeenAdded" >firstTrainsHaveBeenAdded</a>
+                            </li>
+                            <li>
+                                <a href="#isUpdatingMapData" >isUpdatingMapData</a>
+                            </li>
+                            <li>
+                                <a href="#lat" >lat</a>
+                            </li>
+                            <li>
+                                <a href="#lng" >lng</a>
+                            </li>
+                            <li>
+                                <a href="#mapStyle" >mapStyle</a>
+                            </li>
+                            <li>
+                                <a href="#mapTypesArray" >mapTypesArray</a>
+                            </li>
+                            <li>
+                                <a href="#stationsLayerData" >stationsLayerData</a>
+                            </li>
+                            <li>
+                                <a href="#subscriptions" >subscriptions</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#toast" >toast</a>
+                            </li>
+                            <li>
+                                <a href="#trainIconAdded$" >trainIconAdded$</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#trainIconAddedSource" >trainIconAddedSource</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#trainIconNames" >trainIconNames</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#trainIconsAdded" >trainIconsAdded</a>
+                            </li>
+                            <li>
+                                <a href="#trainIconsForMap" >trainIconsForMap</a>
+                            </li>
+                            <li>
+                                <a href="#trainsLayerData" >trainsLayerData</a>
+                            </li>
+                            <li>
+                                <a href="#trainTracksLayerData" >trainTracksLayerData</a>
+                            </li>
+                            <li>
+                                <a href="#updateTrainsIsPaused" >updateTrainsIsPaused</a>
+                            </li>
+                            <li>
+                                <a href="#zoom" >zoom</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_updateTrainPopupInformation" >_updateTrainPopupInformation</a>
+                            </li>
+                            <li>
+                                <a href="#addMarkerComponentToSet" >addMarkerComponentToSet</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#addStationsToMap" >addStationsToMap</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#addTrainsToMap" >addTrainsToMap</a>
+                            </li>
+                            <li>
+                                <a href="#changeMapLayerType" >changeMapLayerType</a>
+                            </li>
+                            <li>
+                                <a href="#closePopup" >closePopup</a>
+                            </li>
+                            <li>
+                                <a href="#flyToDisruption" >flyToDisruption</a>
+                            </li>
+                            <li>
+                                <a href="#flyToTrainFromQueryParam" >flyToTrainFromQueryParam</a>
+                            </li>
+                            <li>
+                                <a href="#getAndAddTrainIconsToMap" >getAndAddTrainIconsToMap</a>
+                            </li>
+                            <li>
+                                <a href="#listenForTrainIcons" >listenForTrainIcons</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnDestroy" >ngOnDestroy</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#onIconError" >onIconError</a>
+                            </li>
+                            <li>
+                                <a href="#onIconLoad" >onIconLoad</a>
+                            </li>
+                            <li>
+                                <a href="#onMapLoad" >onMapLoad</a>
+                            </li>
+                            <li>
+                                <a href="#onMapMouseMove" >onMapMouseMove</a>
+                            </li>
+                            <li>
+                                <a href="#onMapSourceData" >onMapSourceData</a>
+                            </li>
+                            <li>
+                                <a href="#onMapZoom" >onMapZoom</a>
+                            </li>
+                            <li>
+                                <a href="#onMouseEnterDisruptionMarker" >onMouseEnterDisruptionMarker</a>
+                            </li>
+                            <li>
+                                <a href="#onMouseLeaveDisruptionMarker" >onMouseLeaveDisruptionMarker</a>
+                            </li>
+                            <li>
+                                <a href="#onPopupClose" >onPopupClose</a>
+                            </li>
+                            <li>
+                                <a href="#openStationPopupOnLayerClick" >openStationPopupOnLayerClick</a>
+                            </li>
+                            <li>
+                                <a href="#openTrainPopupOnLayerClick" >openTrainPopupOnLayerClick</a>
+                            </li>
+                            <li>
+                                <a href="#pauseOrResumeUpdatingTrainPositions" >pauseOrResumeUpdatingTrainPositions</a>
+                            </li>
+                            <li>
+                                <a href="#resetCountdownProgressbarAnimation" >resetCountdownProgressbarAnimation</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#setDisruptionMarkers" >setDisruptionMarkers</a>
+                            </li>
+                            <li>
+                                <a href="#setTrainIconName" >setTrainIconName</a>
+                            </li>
+                            <li>
+                                <a href="#updateDisruptions" >updateDisruptions</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#updateTrainsAndDisruptions" >updateTrainsAndDisruptions</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <h6><b>Accessors</b></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                    <a href="#selectedTrainOnMapFeature" >selectedTrainOnMapFeature</a>
+                                </li>
+                                <li>
+                                    <a href="#selectedStationOnMapFeature" >selectedStationOnMapFeature</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(sharedDataService: <a href="../injectables/SharedDataService.html" target="_self">SharedDataService</a>, helperFunctions: <a href="../injectables/HelperFunctionsService.html" target="_self">HelperFunctionsService</a>, router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>, imageEditorService: <a href="../injectables/ImageEditorService.html" target="_self">ImageEditorService</a>, renderer: <a href="https://angular.io/api/core/Renderer2" target="_blank">Renderer2</a>, activatedRoute: <a href="https://angular.io/api/router/ActivatedRoute" target="_blank">ActivatedRoute</a>, toastService: <a href="../injectables/ToastService.html" target="_self">ToastService</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="164" class="link-to-prism">src/app/components/train-map/train-map/train-map.component.ts:164</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Define services</p>
+</div>
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>sharedDataService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/SharedDataService.html" target="_self" >SharedDataService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <p>Shares data through the application</p>
+
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>helperFunctions</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/HelperFunctionsService.html" target="_self" >HelperFunctionsService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <p>Helper functions</p>
+
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>router</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/router/Router" target="_blank" >Router</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <p>Router object</p>
+
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>imageEditorService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/ImageEditorService.html" target="_self" >ImageEditorService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <p>Web Worker to edit icons</p>
+
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>renderer</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/core/Renderer2" target="_blank" >Renderer2</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <p>Used to modify DOM elements</p>
+
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>activatedRoute</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/router/ActivatedRoute" target="_blank" >ActivatedRoute</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <p>Current route, used to get route params</p>
+
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>toastService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/ToastService.html" target="_self" >ToastService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <p>Show or delete toast notifications</p>
+
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_updateTrainPopupInformation"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>_updateTrainPopupInformation</b></span>
+                        <a href="#_updateTrainPopupInformation"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_updateTrainPopupInformation()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="477"
+                            class="link-to-prism">src/app/components/train-map/train-map/train-map.component.ts:477</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Update a train popup with new information</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="addMarkerComponentToSet"></a>
+                    <span class="name">
+                        <span ><b>addMarkerComponentToSet</b></span>
+                        <a href="#addMarkerComponentToSet"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>addMarkerComponentToSet(marker: MarkerComponent)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="698"
+                            class="link-to-prism">src/app/components/train-map/train-map/train-map.component.ts:698</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Add marker component to shared data</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>marker</td>
+                                    <td>
+                                            <code>MarkerComponent</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Marker component to add to set</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>() Function that adds the marker</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="addStationsToMap"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>addStationsToMap</b></span>
+                        <a href="#addStationsToMap"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>addStationsToMap(stations: Station[])</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="435"
+                            class="link-to-prism">src/app/components/train-map/train-map/train-map.component.ts:435</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Add stations to the map using GeoJSON</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>stations</td>
+                                    <td>
+                                            <code>Station[]</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>All stations</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="addTrainsToMap"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>addTrainsToMap</b></span>
+                        <a href="#addTrainsToMap"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>addTrainsToMap(detailedTrainInformation: DetailedTrainInformation[])</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="444"
+                            class="link-to-prism">src/app/components/train-map/train-map/train-map.component.ts:444</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Add all trains to the map with GeoJSON</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>detailedTrainInformation</td>
+                                    <td>
+                                            <code>DetailedTrainInformation[]</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>All current trains, with detailed information</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="changeMapLayerType"></a>
+                    <span class="name">
+                        <span ><b>changeMapLayerType</b></span>
+                        <a href="#changeMapLayerType"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>changeMapLayerType(layer: <a href="../interfaces/TrainMapType.html" target="_self">TrainMapType</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="358"
+                            class="link-to-prism">src/app/components/train-map/train-map/train-map.component.ts:358</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Change the map <a href="mapTypes">mapTypes</a></p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>layer</td>
+                                    <td>
+                                                <code><a href="../interfaces/TrainMapType.html" target="_self" >TrainMapType</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Map type to change to</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="closePopup"></a>
+                    <span class="name">
+                        <span ><b>closePopup</b></span>
+                        <a href="#closePopup"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>closePopup()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="426"
+                            class="link-to-prism">src/app/components/train-map/train-map/train-map.component.ts:426</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Close all popups</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="flyToDisruption"></a>
+                    <span class="name">
+                        <span ><b>flyToDisruption</b></span>
+                        <a href="#flyToDisruption"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>flyToDisruption(disruption: DisruptionBase)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="710"
+                            class="link-to-prism">src/app/components/train-map/train-map/train-map.component.ts:710</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Fly to a disruption on the map</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>disruption</td>
+                                    <td>
+                                            <code>DisruptionBase</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Disruption to fly to</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="flyToTrainFromQueryParam"></a>
+                    <span class="name">
+                        <span ><b>flyToTrainFromQueryParam</b></span>
+                        <a href="#flyToTrainFromQueryParam"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>flyToTrainFromQueryParam()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="464"
+                            class="link-to-prism">src/app/components/train-map/train-map/train-map.component.ts:464</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Fly to a train using the ride id from query params</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getAndAddTrainIconsToMap"></a>
+                    <span class="name">
+                        <span ><b>getAndAddTrainIconsToMap</b></span>
+                        <a href="#getAndAddTrainIconsToMap"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getAndAddTrainIconsToMap(iconURLs: Map<string | string>, detailedTrainInformation: DetailedTrainInformation[])</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="649"
+                            class="link-to-prism">src/app/components/train-map/train-map/train-map.component.ts:649</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Download and edit train icons. Add them to the map</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>iconURLs</td>
+                                    <td>
+                                            <code>Map&lt;string | string&gt;</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Icon name and url</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>detailedTrainInformation</td>
+                                    <td>
+                                            <code>DetailedTrainInformation[]</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Detailed information about all trains</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="listenForTrainIcons"></a>
+                    <span class="name">
+                        <span ><b>listenForTrainIcons</b></span>
+                        <a href="#listenForTrainIcons"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>listenForTrainIcons(detailedTrainInformation: DetailedTrainInformation[])</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="678"
+                            class="link-to-prism">src/app/components/train-map/train-map/train-map.component.ts:678</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Listen if all train icons have been added to the map,
+then add the trains to the map with GeoJSON and stop the updating process.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>detailedTrainInformation</td>
+                                    <td>
+                                            <code>DetailedTrainInformation[]</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Detailed information about all trains</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnDestroy"></a>
+                    <span class="name">
+                        <span ><b>ngOnDestroy</b></span>
+                        <a href="#ngOnDestroy"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnDestroy()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="218"
+                            class="link-to-prism">src/app/components/train-map/train-map/train-map.component.ts:218</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Unsubscribe from observables on destroy</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="189"
+                            class="link-to-prism">src/app/components/train-map/train-map/train-map.component.ts:189</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Fly to station when this component is reused and navigated to from another component with extra state parameters</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onIconError"></a>
+                    <span class="name">
+                        <span ><b>onIconError</b></span>
+                        <a href="#onIconError"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onIconError(error: literal type)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="234"
+                            class="link-to-prism">src/app/components/train-map/train-map/train-map.component.ts:234</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Error when train icon cannot be loaded</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>error</td>
+                                    <td>
+                                            <code>literal type</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Error with train number</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onIconLoad"></a>
+                    <span class="name">
+                        <span ><b>onIconLoad</b></span>
+                        <a href="#onIconLoad"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onIconLoad(trainIconName: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="226"
+                            class="link-to-prism">src/app/components/train-map/train-map/train-map.component.ts:226</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Emit an event when a train icon has been loaded</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>trainIconName</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Name of the icon that has been loaded</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onMapLoad"></a>
+                    <span class="name">
+                        <span ><b>onMapLoad</b></span>
+                        <a href="#onMapLoad"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onMapLoad(trainMap: MapBoxMap)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="270"
+                            class="link-to-prism">src/app/components/train-map/train-map/train-map.component.ts:270</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Get station, train and disruption information when map is loaded</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>trainMap</td>
+                                    <td>
+                                            <code>MapBoxMap</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Mapbox map</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onMapMouseMove"></a>
+                    <span class="name">
+                        <span ><b>onMapMouseMove</b></span>
+                        <a href="#onMapMouseMove"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onMapMouseMove(event: MapLayerMouseEvent)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="331"
+                            class="link-to-prism">src/app/components/train-map/train-map/train-map.component.ts:331</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Change cursor style when hovering over a station or train</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>event</td>
+                                    <td>
+                                            <code>MapLayerMouseEvent</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Mouse event</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onMapSourceData"></a>
+                    <span class="name">
+                        <span ><b>onMapSourceData</b></span>
+                        <a href="#onMapSourceData"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onMapSourceData(event)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="346"
+                            class="link-to-prism">src/app/components/train-map/train-map/train-map.component.ts:346</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Track when layer source data is updated
+Update an active train popup with new data</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>event</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Map source data event</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onMapZoom"></a>
+                    <span class="name">
+                        <span ><b>onMapZoom</b></span>
+                        <a href="#onMapZoom"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onMapZoom(event)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="314"
+                            class="link-to-prism">src/app/components/train-map/train-map/train-map.component.ts:314</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Alter train icon size when the map is zoomed</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>event</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Zoom event</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onMouseEnterDisruptionMarker"></a>
+                    <span class="name">
+                        <span ><b>onMouseEnterDisruptionMarker</b></span>
+                        <a href="#onMouseEnterDisruptionMarker"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onMouseEnterDisruptionMarker(event: MouseEvent, disruption: DisruptionBase, markerElement: MarkerComponent)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="720"
+                            class="link-to-prism">src/app/components/train-map/train-map/train-map.component.ts:720</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Focus on a sidebar disruption card when hovering on it</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>event</td>
+                                    <td>
+                                            <code>MouseEvent</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Mouse event</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>disruption</td>
+                                    <td>
+                                            <code>DisruptionBase</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Disruption of the card</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>markerElement</td>
+                                    <td>
+                                            <code>MarkerComponent</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Marker that is being hovered</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onMouseLeaveDisruptionMarker"></a>
+                    <span class="name">
+                        <span ><b>onMouseLeaveDisruptionMarker</b></span>
+                        <a href="#onMouseLeaveDisruptionMarker"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onMouseLeaveDisruptionMarker(event: MouseEvent, disruption: DisruptionBase, markerElement: MarkerComponent)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="739"
+                            class="link-to-prism">src/app/components/train-map/train-map/train-map.component.ts:739</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Loose focus on a sidebar disruption card when not hovering over the marker anymore</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>event</td>
+                                    <td>
+                                            <code>MouseEvent</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Mouse event</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>disruption</td>
+                                    <td>
+                                            <code>DisruptionBase</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Disruption of the card</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>markerElement</td>
+                                    <td>
+                                            <code>MarkerComponent</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Marker that is being hovered</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onPopupClose"></a>
+                    <span class="name">
+                        <span ><b>onPopupClose</b></span>
+                        <a href="#onPopupClose"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onPopupClose()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="367"
+                            class="link-to-prism">src/app/components/train-map/train-map/train-map.component.ts:367</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Receive an event when a Mapbox popup is closed
+Clear the popup data</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="openStationPopupOnLayerClick"></a>
+                    <span class="name">
+                        <span ><b>openStationPopupOnLayerClick</b></span>
+                        <a href="#openStationPopupOnLayerClick"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>openStationPopupOnLayerClick(event: MapLayerMouseEvent)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="375"
+                            class="link-to-prism">src/app/components/train-map/train-map/train-map.component.ts:375</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Open a station popup when clicking on a station</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>event</td>
+                                    <td>
+                                            <code>MapLayerMouseEvent</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Map layer event to extract the station from</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="openTrainPopupOnLayerClick"></a>
+                    <span class="name">
+                        <span ><b>openTrainPopupOnLayerClick</b></span>
+                        <a href="#openTrainPopupOnLayerClick"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>openTrainPopupOnLayerClick(event: MapLayerMouseEvent)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="402"
+                            class="link-to-prism">src/app/components/train-map/train-map/train-map.component.ts:402</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Open a train popup when clicking on a train</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>event</td>
+                                    <td>
+                                            <code>MapLayerMouseEvent</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Map layer event to extract the train from</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="pauseOrResumeUpdatingTrainPositions"></a>
+                    <span class="name">
+                        <span ><b>pauseOrResumeUpdatingTrainPositions</b></span>
+                        <a href="#pauseOrResumeUpdatingTrainPositions"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>pauseOrResumeUpdatingTrainPositions(pause: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="242"
+                            class="link-to-prism">src/app/components/train-map/train-map/train-map.component.ts:242</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Pause or resume the <a href="countdownTimer">countdownTimer</a></p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>pause</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Whether to pause <a href="countdownTimer">countdownTimer</a> or not</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="resetCountdownProgressbarAnimation"></a>
+                    <span class="name">
+                        <span ><b>resetCountdownProgressbarAnimation</b></span>
+                        <a href="#resetCountdownProgressbarAnimation"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>resetCountdownProgressbarAnimation()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="259"
+                            class="link-to-prism">src/app/components/train-map/train-map/train-map.component.ts:259</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Reset the countdown visuals</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="setDisruptionMarkers"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>setDisruptionMarkers</b></span>
+                        <a href="#setDisruptionMarkers"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>setDisruptionMarkers()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="510"
+                            class="link-to-prism">src/app/components/train-map/train-map/train-map.component.ts:510</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Set the disruption markers for each disruption</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="setTrainIconName"></a>
+                    <span class="name">
+                        <span ><b>setTrainIconName</b></span>
+                        <a href="#setTrainIconName"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>setTrainIconName(detailedTrainInformation: DetailedTrainInformation[])</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="597"
+                            class="link-to-prism">src/app/components/train-map/train-map/train-map.component.ts:597</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Add the train icon to the map for each type of train
+Set the icon name for each train by train type</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>detailedTrainInformation</td>
+                                    <td>
+                                            <code>DetailedTrainInformation[]</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Detailed information about all trains</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="updateDisruptions"></a>
+                    <span class="name">
+                        <span ><b>updateDisruptions</b></span>
+                        <a href="#updateDisruptions"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>updateDisruptions()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="575"
+                            class="link-to-prism">src/app/components/train-map/train-map/train-map.component.ts:575</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Get and update information about active disruptions and add markers
+NOTE: Specifically used by the sidebar to force an update</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="updateTrainsAndDisruptions"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>updateTrainsAndDisruptions</b></span>
+                        <a href="#updateTrainsAndDisruptions"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>updateTrainsAndDisruptions()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="547"
+                            class="link-to-prism">src/app/components/train-map/train-map/train-map.component.ts:547</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Get detailed information about all train currently riding
+Set train icons when data is received
+Get information about active disruptions and add markers</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section>
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_focusedDisruptionCard"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_focusedDisruptionCard</b></span>
+                        <a href="#_focusedDisruptionCard"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://angular.io/api/core/ElementRef" target="_blank" >ElementRef</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="159" class="link-to-prism">src/app/components/train-map/train-map/train-map.component.ts:159</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Sidebar disruption card that is currently focused</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="activeDisruptions$"></a>
+                    <span class="name">
+                        <span ><b>activeDisruptions$</b></span>
+                        <a href="#activeDisruptions$"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Observable&lt;DisruptionsList&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>this.sharedDataService.activeDisruptions$</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="123" class="link-to-prism">src/app/components/train-map/train-map/train-map.component.ts:123</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Get active disruptions</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="activeMapType$"></a>
+                    <span class="name">
+                        <span ><b>activeMapType$</b></span>
+                        <a href="#activeMapType$"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/TrainMapType.html" target="_self" >Observable&lt;TrainMapType&gt;</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>this.sharedDataService.activeMapType$</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="82" class="link-to-prism">src/app/components/train-map/train-map/train-map.component.ts:82</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Get current map type</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="componentName"></a>
+                    <span class="name">
+                        <span ><b>componentName</b></span>
+                        <a href="#componentName"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&quot;train-map&quot;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/app/components/train-map/train-map/train-map.component.ts:54</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="countdown"></a>
+                    <span class="name">
+                        <span ><b>countdown</b></span>
+                        <a href="#countdown"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://angular.io/api/core/ElementRef" target="_blank" >ElementRef</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ViewChild(&#x27;updateCountdown&#x27;)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/app/components/train-map/train-map/train-map.component.ts:57</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>countdown DOM element</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="countdownTimer"></a>
+                    <span class="name">
+                        <span ><b>countdownTimer</b></span>
+                        <a href="#countdownTimer"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new Timer({ countdown: true, startValues: { seconds: 10 } })</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="108" class="link-to-prism">src/app/components/train-map/train-map/train-map.component.ts:108</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Timer that counts down until train data refresh</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="disruptedTrainTracksLayerData$"></a>
+                    <span class="name">
+                        <span ><b>disruptedTrainTracksLayerData$</b></span>
+                        <a href="#disruptedTrainTracksLayerData$"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Observable&lt;TrainTracksGeoJSON&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>this.sharedDataService.disruptedTrainTracksLayerData$</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="129" class="link-to-prism">src/app/components/train-map/train-map/train-map.component.ts:129</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Get train tracks that have disruptions</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="disruptionMarkersData$"></a>
+                    <span class="name">
+                        <span ><b>disruptionMarkersData$</b></span>
+                        <a href="#disruptionMarkersData$"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Observable&lt;Feature[]&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>this.sharedDataService.disruptionMarkersData$</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="136" class="link-to-prism">src/app/components/train-map/train-map/train-map.component.ts:136</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Get markers to place at current disruptions</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="firstTrainsHaveBeenAdded"></a>
+                    <span class="name">
+                        <span ><b>firstTrainsHaveBeenAdded</b></span>
+                        <a href="#firstTrainsHaveBeenAdded"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="144" class="link-to-prism">src/app/components/train-map/train-map/train-map.component.ts:144</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Whether trains have been loaded onto the map</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isUpdatingMapData"></a>
+                    <span class="name">
+                        <span ><b>isUpdatingMapData</b></span>
+                        <a href="#isUpdatingMapData"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="106" class="link-to-prism">src/app/components/train-map/train-map/train-map.component.ts:106</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Is currently updating train positions</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="lat"></a>
+                    <span class="name">
+                        <span ><b>lat</b></span>
+                        <a href="#lat"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>52.1284</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="73" class="link-to-prism">src/app/components/train-map/train-map/train-map.component.ts:73</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Map latitude position</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="lng"></a>
+                    <span class="name">
+                        <span ><b>lng</b></span>
+                        <a href="#lng"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>5.476</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="71" class="link-to-prism">src/app/components/train-map/train-map/train-map.component.ts:71</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Map longitude position</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="mapStyle"></a>
+                    <span class="name">
+                        <span ><b>mapStyle</b></span>
+                        <a href="#mapStyle"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>environment.MAPBOX_STYLE</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">src/app/components/train-map/train-map/train-map.component.ts:61</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Mapbox map style</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="mapTypesArray"></a>
+                    <span class="name">
+                        <span ><b>mapTypesArray</b></span>
+                        <a href="#mapTypesArray"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>this.sharedDataService.mapTypes</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="84" class="link-to-prism">src/app/components/train-map/train-map/train-map.component.ts:84</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>All map types</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="stationsLayerData"></a>
+                    <span class="name">
+                        <span ><b>stationsLayerData</b></span>
+                        <a href="#stationsLayerData"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="112" class="link-to-prism">src/app/components/train-map/train-map/train-map.component.ts:112</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Station layer GeoJSON</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="subscriptions"></a>
+                    <span class="name">
+                        <span ><b>subscriptions</b></span>
+                        <a href="#subscriptions"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Subscription[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="161" class="link-to-prism">src/app/components/train-map/train-map/train-map.component.ts:161</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>All observable subscriptions</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="toast"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>toast</b></span>
+                        <a href="#toast"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/Toast.html" target="_self" >Toast</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="164" class="link-to-prism">src/app/components/train-map/train-map/train-map.component.ts:164</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="trainIconAdded$"></a>
+                    <span class="name">
+                        <span ><b>trainIconAdded$</b></span>
+                        <a href="#trainIconAdded$"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>this.trainIconAddedSource.asObservable()</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="150" class="link-to-prism">src/app/components/train-map/train-map/train-map.component.ts:150</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Observable to keep tracks of train icons that have been added</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="trainIconAddedSource"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>trainIconAddedSource</b></span>
+                        <a href="#trainIconAddedSource"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new Subject&lt;string&gt;()</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="148" class="link-to-prism">src/app/components/train-map/train-map/train-map.component.ts:148</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Observe train icons added to the map</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="trainIconNames"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>trainIconNames</b></span>
+                        <a href="#trainIconNames"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Set&lt;string&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new Set&lt;string&gt;()</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="152" class="link-to-prism">src/app/components/train-map/train-map/train-map.component.ts:152</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>All train icon names</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="trainIconsAdded"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>trainIconsAdded</b></span>
+                        <a href="#trainIconsAdded"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Set&lt;string&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new Set&lt;string&gt;()</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="154" class="link-to-prism">src/app/components/train-map/train-map/train-map.component.ts:154</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Set to store icons names of icons that have been added to the map</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="trainIconsForMap"></a>
+                    <span class="name">
+                        <span ><b>trainIconsForMap</b></span>
+                        <a href="#trainIconsForMap"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>TrainIconOnMap[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="156" class="link-to-prism">src/app/components/train-map/train-map/train-map.component.ts:156</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Train icons to be added to the map</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="trainsLayerData"></a>
+                    <span class="name">
+                        <span ><b>trainsLayerData</b></span>
+                        <a href="#trainsLayerData"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>FeatureCollection&lt;Geometry&gt;</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="141" class="link-to-prism">src/app/components/train-map/train-map/train-map.component.ts:141</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Trains layer with current trains</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="trainTracksLayerData"></a>
+                    <span class="name">
+                        <span ><b>trainTracksLayerData</b></span>
+                        <a href="#trainTracksLayerData"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>SpoortkaartFeatureCollection</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="116" class="link-to-prism">src/app/components/train-map/train-map/train-map.component.ts:116</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Train tracks layer GeoJSON</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="updateTrainsIsPaused"></a>
+                    <span class="name">
+                        <span ><b>updateTrainsIsPaused</b></span>
+                        <a href="#updateTrainsIsPaused"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="104" class="link-to-prism">src/app/components/train-map/train-map/train-map.component.ts:104</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Is countdown paused</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="zoom"></a>
+                    <span class="name">
+                        <span ><b>zoom</b></span>
+                        <a href="#zoom"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>6.73</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="75" class="link-to-prism">src/app/components/train-map/train-map/train-map.component.ts:75</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Map zoom level</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="accessors">
+        Accessors
+    </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="selectedTrainOnMapFeature"></a>
+                        <span class="name"><b>selectedTrainOnMapFeature</b><a href="#selectedTrainOnMapFeature"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>selectedTrainOnMapFeature()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="91" class="link-to-prism">src/app/components/train-map/train-map/train-map.component.ts:91</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>Returns the selected train</p>
+</div>
+
+                                <div>
+                                </div>
+                                <div class="io-description">
+                                    <b>Returns : </b>    <code>MapboxGeoJSONFeature</code>
+
+                                </div>
+                        </td>
+                    </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="selectedStationOnMapFeature"></a>
+                        <span class="name"><b>selectedStationOnMapFeature</b><a href="#selectedStationOnMapFeature"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>selectedStationOnMapFeature()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="98" class="link-to-prism">src/app/components/train-map/train-map/train-map.component.ts:98</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>Returns the selected station</p>
+</div>
+
+                                <div>
+                                </div>
+                                <div class="io-description">
+                                    <b>Returns : </b>    <code>MapboxGeoJSONFeature</code>
+
+                                </div>
+                        </td>
+                    </tr>
+
+            </tbody>
+        </table>
+</section>
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, ElementRef, OnDestroy, OnInit, Renderer2, ViewChild } from &quot;@angular/core&quot;;
+import { ActivatedRoute, ActivationEnd, NavigationEnd, Router } from &quot;@angular/router&quot;;
+import { Timer } from &quot;easytimer.js&quot;;
+import { Feature, FeatureCollection, Geometry, MultiLineString, Point } from &quot;geojson&quot;;
+import {
+	EventData,
+	GeoJSONSourceOptions,
+	Map as MapBoxMap,
+	MapboxEvent,
+	MapboxGeoJSONFeature,
+	MapLayerMouseEvent,
+	MapSourceDataEvent,
+} from &quot;mapbox-gl&quot;;
+import { MarkerComponent } from &quot;ngx-mapbox-gl/lib/marker/marker.component&quot;;
+import { Observable, Subject, Subscription, zip } from &quot;rxjs&quot;;
+import { take } from &quot;rxjs/operators&quot;;
+import { environment } from &quot;../../../../environments/environment&quot;;
+import { DisruptionBase, DisruptionsList, Station, StationsResponse } from &quot;../../../models/ReisinformatieAPI&quot;;
+import { SpoortkaartFeatureCollection, TrainTracksGeoJSON } from &quot;../../../models/SpoortkaartAPI&quot;;
+import { TrainMapType } from &quot;../../../models/TrainMapType&quot;;
+import { DetailedTrainInformation, TrainIconOnMap } from &quot;../../../models/VirtualTrainAPI&quot;;
+import { HelperFunctionsService } from &quot;../../../services/helper-functions.service&quot;;
+import { ImageEditorService } from &quot;../../../services/image-editor.service&quot;;
+import { SharedDataService } from &quot;../../../services/shared-data.service&quot;;
+import { Toast, ToastPosition, ToastService } from &quot;../../../services/toast.service&quot;;
+
+/**
+ * Train map with stations and trains that get update every x seconds
+ */
+@Component({
+	selector: &quot;app-train-map&quot;,
+	templateUrl: &quot;./train-map.component.html&quot;,
+	styleUrls: [&quot;./train-map.component.sass&quot;],
+})
+export class TrainMapComponent implements OnInit, OnDestroy {
+	componentName &#x3D; &quot;train-map&quot;;
+
+	/**countdown DOM element*/
+	@ViewChild(&quot;updateCountdown&quot;) countdown: ElementRef;
+
+	// MapBox setup
+	/**Mapbox map style*/
+	mapStyle &#x3D; environment.MAPBOX_STYLE;
+
+	// /**Map longitude position*/
+	// lng &#x3D; 5.969649757101934;
+	// /**Map latitude position*/
+	// lat &#x3D; 52.20936378530308;
+	// /**Map zoom level*/
+	// zoom &#x3D; 16.119951544463053;
+
+	/**Map longitude position*/
+	lng &#x3D; 5.476;
+	/**Map latitude position*/
+	lat &#x3D; 52.1284;
+	/**Map zoom level*/
+	zoom &#x3D; 6.73;
+
+	// Map types
+	/**
+	 * Get current map type
+	 * @returns TrainMapType current map type
+	 */
+	activeMapType$: Observable&lt;TrainMapType&gt; &#x3D; this.sharedDataService.activeMapType$;
+	/**All map types*/
+	mapTypesArray &#x3D; this.sharedDataService.mapTypes;
+
+	// Map popups
+	/**
+	 * Returns the selected train
+	 * @returns MapboxGeoJSONFeature Feature of the selected train
+	 */
+	get selectedTrainOnMapFeature(): MapboxGeoJSONFeature {
+		return this.sharedDataService.selectedTrainOnMapFeature;
+	}
+	/**
+	 * Returns the selected station
+	 * @returns MapboxGeoJSONFeature Feature of the selected station
+	 */
+	get selectedStationOnMapFeature(): MapboxGeoJSONFeature {
+		return this.sharedDataService.selectedStationOnMapFeature;
+	}
+
+	// Update data countdown
+	/**Is countdown paused*/
+	updateTrainsIsPaused &#x3D; false;
+	/**Is currently updating train positions*/
+	isUpdatingMapData &#x3D; false;
+	/**Timer that counts down until train data refresh*/
+	countdownTimer &#x3D; new Timer({ countdown: true, startValues: { seconds: 10 } });
+
+	// Station layer
+	/**Station layer GeoJSON*/
+	stationsLayerData: GeoJSONSourceOptions[&quot;data&quot;];
+
+	// Train tracks layer
+	/**Train tracks layer GeoJSON*/
+	trainTracksLayerData: SpoortkaartFeatureCollection;
+
+	// Disruptions layer
+	/**
+	 * Get active disruptions
+	 * @returns DisruptionsList List of current disruptions
+	 */
+	activeDisruptions$: Observable&lt;DisruptionsList&gt; &#x3D; this.sharedDataService.activeDisruptions$;
+
+	/**
+	 * Get train tracks that have disruptions
+	 * @returns GeoJSON.FeatureCollection&lt;MultiLineString&gt; GeoJSON data of disrupted train tracks
+	 */
+	disruptedTrainTracksLayerData$: Observable&lt;TrainTracksGeoJSON&gt; &#x3D;
+		this.sharedDataService.disruptedTrainTracksLayerData$;
+
+	/**
+	 * Get markers to place at current disruptions
+	 * @returns GeoJSON.Feature&lt;GeoJSON.Point, DisruptionBase&gt;[] GeoJSON data of disruption markers
+	 */
+	disruptionMarkersData$: Observable&lt;Feature&lt;Point, DisruptionBase&gt;[]&gt; &#x3D;
+		this.sharedDataService.disruptionMarkersData$;
+
+	// Trains layer
+	/**Trains layer with current trains*/
+	trainsLayerData: FeatureCollection&lt;Geometry&gt;;
+
+	/**Whether trains have been loaded onto the map*/
+	firstTrainsHaveBeenAdded &#x3D; false;
+
+	// Train icons
+	/**Observe train icons added to the map*/
+	private trainIconAddedSource &#x3D; new Subject&lt;string&gt;();
+	/**Observable to keep tracks of train icons that have been added*/
+	trainIconAdded$ &#x3D; this.trainIconAddedSource.asObservable();
+	/**All train icon names*/
+	private trainIconNames: Set&lt;string&gt; &#x3D; new Set&lt;string&gt;();
+	/**Set to store icons names of icons that have been added to the map*/
+	private trainIconsAdded: Set&lt;string&gt; &#x3D; new Set&lt;string&gt;();
+	/**Train icons to be added to the map*/
+	trainIconsForMap: TrainIconOnMap[] &#x3D; [];
+
+	/**Sidebar disruption card that is currently focused*/
+	private _focusedDisruptionCard: ElementRef &#x3D; null;
+	/**All observable subscriptions*/
+	subscriptions: Subscription[] &#x3D; [];
+
+	//Toast notification
+	private toast: Toast;
+
+	/**
+	 * Define services
+	 * @param sharedDataService Shares data through the application
+	 * @param helperFunctions Helper functions
+	 * @param router Router object
+	 * @param imageEditorService Web Worker to edit icons
+	 * @param renderer Used to modify DOM elements
+	 * @param activatedRoute Current route, used to get route params
+	 * @param toastService Show or delete toast notifications
+	 */
+	constructor(
+		private sharedDataService: SharedDataService,
+		private helperFunctions: HelperFunctionsService,
+		private router: Router,
+		private imageEditorService: ImageEditorService,
+		private renderer: Renderer2,
+		private activatedRoute: ActivatedRoute,
+		private toastService: ToastService
+	) {}
+
+	/**
+	 * Fly to station when this component is reused and navigated to from another component with extra state parameters
+	 */
+	ngOnInit(): void {
+		this.pauseOrResumeUpdatingTrainPositions(true);
+
+		const sub1 &#x3D; this.router.events.subscribe((event) &#x3D;&gt; {
+			if (event instanceof NavigationEnd &amp;&amp; event.url &#x3D;&#x3D;&#x3D; &quot;/kaart&quot;) {
+				const navigationState &#x3D; this.router.getCurrentNavigation().extras.state;
+				if (navigationState) {
+					if (navigationState.station) {
+						this.sharedDataService.flyToStation(navigationState.station as Station);
+					}
+				}
+			}
+			if (event instanceof ActivationEnd &amp;&amp; Object.is(event?.snapshot?.component, TrainMapComponent)) {
+				setTimeout(() &#x3D;&gt; {
+					document.scrollingElement.scrollTop &#x3D; -1;
+				}, 500);
+			}
+		});
+		this.subscriptions.push(sub1);
+
+		this.countdownTimer.addEventListener(&quot;targetAchieved&quot;, () &#x3D;&gt; {
+			// console.log(&quot;timer&quot;);
+			if (this.isUpdatingMapData &#x3D;&#x3D;&#x3D; false) {
+				this.updateTrainsAndDisruptions();
+			}
+		});
+	}
+
+	/** Unsubscribe from observables on destroy */
+	ngOnDestroy(): void {
+		this.subscriptions.forEach((subscription) &#x3D;&gt; subscription.unsubscribe());
+	}
+
+	/**
+	 * Emit an event when a train icon has been loaded
+	 * @param trainIconName Name of the icon that has been loaded
+	 */
+	onIconLoad(trainIconName: string): void {
+		this.trainIconAddedSource.next(trainIconName);
+	}
+
+	/**
+	 * Error when train icon cannot be loaded
+	 * @param error Error with train number
+	 */
+	onIconError(error: { status: number }): void {
+		console.error(error);
+	}
+
+	/**
+	 * Pause or resume the {@link countdownTimer}
+	 * @param pause Whether to pause {@link countdownTimer} or not
+	 */
+	pauseOrResumeUpdatingTrainPositions(pause: boolean): void {
+		if (this.isUpdatingMapData &#x3D;&#x3D;&#x3D; false) {
+			if (pause &#x3D;&#x3D;&#x3D; false) {
+				if (this.countdownTimer.getTimeValues().seconds &lt;&#x3D; 0) {
+					this.resetCountdownProgressbarAnimation();
+				}
+				this.countdownTimer.start();
+				this.updateTrainsIsPaused &#x3D; false;
+			} else {
+				this.countdownTimer.pause();
+				this.updateTrainsIsPaused &#x3D; true;
+			}
+		}
+	}
+
+	/* eslint-disable */
+	/** Reset the countdown visuals */
+	resetCountdownProgressbarAnimation(): void {
+		this.renderer.removeClass(this.countdown.nativeElement, &quot;progress-value&quot;);
+		console.log(this.countdown.nativeElement.offsetHeight);
+		this.renderer.addClass(this.countdown.nativeElement, &quot;progress-value&quot;);
+	}
+	/* eslint-enable */
+
+	/**
+	 * Get station, train and disruption information when map is loaded
+	 * @param trainMap Mapbox map
+	 */
+	onMapLoad(trainMap: MapBoxMap): void {
+		this.sharedDataService.trainMap &#x3D; trainMap;
+		trainMap.resize();
+		this.isUpdatingMapData &#x3D; true;
+
+		this.toast &#x3D; {
+			textOrTpl: &quot;Treinenkaart wordt geladen...&quot;,
+			position: ToastPosition.Center,
+			classname: &quot;&quot;,
+			delay: 5000,
+			autoHide: false,
+		};
+		this.toastService.show(this.toast);
+		zip(
+			this.sharedDataService.getBasicInformationAboutAllStations(),
+			this.sharedDataService.getTrainTracksGeoJSON()
+		)
+			.pipe(take(1))
+			.subscribe({
+				next: (value: [StationsResponse, TrainTracksGeoJSON]) &#x3D;&gt; {
+					// console.log(value);
+					this.addStationsToMap(value[0].payload);
+					this.trainTracksLayerData &#x3D; value[1].payload;
+				},
+				error: (err: unknown) &#x3D;&gt; {
+					console.log(err);
+				},
+				complete: () &#x3D;&gt; {
+					this.updateTrainsAndDisruptions();
+				},
+			});
+
+		// Add rel&#x3D;noopener to mapbox links. Lighthouse improvement
+		const children &#x3D; document.querySelector(&quot;.mapboxgl-ctrl-attrib-inner&quot;).children;
+		for (let i &#x3D; 0; i &lt; children.length; i++) {
+			this.renderer.setAttribute(children[i], &quot;rel&quot;, &quot;noopener&quot;);
+			this.renderer.setAttribute(children[i], &quot;role&quot;, &quot;listitem&quot;);
+		}
+	}
+
+	/**
+	 * Alter train icon size when the map is zoomed
+	 * @param event Zoom event
+	 */
+	onMapZoom(event: MapboxEvent&lt;MouseEvent | TouchEvent | WheelEvent | undefined&gt; &amp; EventData): void {
+		const trainLayer &#x3D; event.target.getLayer(&quot;trains&quot;);
+		if (trainLayer) {
+			const zoom &#x3D; event.target.getZoom();
+			// console.log(zoom);
+			// console.log(event.target.getCenter());
+			if (zoom &gt;&#x3D; 7) {
+				const iconSize &#x3D; zoom * (0.4 / 7);
+				event.target.setLayoutProperty(&quot;trains&quot;, &quot;icon-size&quot;, iconSize);
+			}
+		}
+	}
+
+	/**
+	 * Change cursor style when hovering over a station or train
+	 * @param event Mouse event
+	 */
+	onMapMouseMove(event: MapLayerMouseEvent): void {
+		const trainLayer &#x3D; event.target.getLayer(&quot;trains&quot;);
+		if (this.stationsLayerData &amp;&amp; this.trainsLayerData &amp;&amp; this.trainIconsForMap &amp;&amp; trainLayer) {
+			const features &#x3D; event.target.queryRenderedFeatures(event.point, {
+				layers: [&quot;trains&quot;, &quot;stations&quot;],
+			});
+			this.renderer.setStyle(event.target.getCanvas(), &quot;cursor&quot;, features.length ? &quot;pointer&quot; : &quot;&quot;);
+		}
+	}
+
+	/**
+	 * Track when layer source data is updated
+	 * Update an active train popup with new data
+	 * @param event Map source data event
+	 */
+	onMapSourceData(event: MapSourceDataEvent &amp; EventData): void {
+		if (event.isSourceLoaded) {
+			if (event.sourceId &#x3D;&#x3D;&#x3D; &quot;trainData&quot; &amp;&amp; event.sourceCacheId &#x3D;&#x3D;&#x3D; &quot;symbol:trainData&quot;) {
+				this._updateTrainPopupInformation();
+			}
+		}
+	}
+
+	/**
+	 * Change the map {@link mapTypes}
+	 * @param layer Map type to change to
+	 */
+	changeMapLayerType(layer: TrainMapType): void {
+		// console.log(layer);
+		this.sharedDataService.changeMapLayerType(layer);
+	}
+
+	/**
+	 * Receive an event when a Mapbox popup is closed
+	 * Clear the popup data
+	 */
+	onPopupClose(): void {
+		this.sharedDataService.closePopups();
+	}
+
+	/**
+	 * Open a station popup when clicking on a station
+	 * @param event Map layer event to extract the station from
+	 */
+	openStationPopupOnLayerClick(event: MapLayerMouseEvent): void {
+		event.preventDefault();
+		if (event.features) {
+			const selectedFeature: MapboxGeoJSONFeature &#x3D; event.features[0];
+			let stationInformation &#x3D; selectedFeature.properties;
+
+			if (stationInformation) {
+				/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+				stationInformation.namen &#x3D; JSON.parse(stationInformation.namen as string);
+				stationInformation.synoniemen &#x3D; JSON.parse(stationInformation.synoniemen as string);
+				stationInformation.sporen &#x3D; JSON.parse(stationInformation.sporen as string);
+				/* eslint-enable @typescript-eslint/no-unsafe-assignment */
+				stationInformation &#x3D; stationInformation as Station;
+				selectedFeature.properties &#x3D; stationInformation;
+				this.sharedDataService.selectedStationOnMapFeature &#x3D; selectedFeature;
+
+				this.sharedDataService.trainMap.easeTo({
+					center: [stationInformation.lng, stationInformation.lat],
+				});
+			}
+		}
+	}
+
+	/**
+	 * Open a train popup when clicking on a train
+	 * @param event Map layer event to extract the train from
+	 */
+	openTrainPopupOnLayerClick(event: MapLayerMouseEvent): void {
+		event.preventDefault();
+		if (event.features) {
+			const selectedFeature: MapboxGeoJSONFeature &#x3D; event.features[0];
+			const basicTrainInformation &#x3D; selectedFeature.properties;
+
+			if (basicTrainInformation) {
+				// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+				if (basicTrainInformation.trainDetails) {
+					basicTrainInformation.trainDetails &#x3D; JSON.parse(basicTrainInformation.trainDetails as string);
+				}
+				selectedFeature.properties &#x3D; basicTrainInformation;
+				this.sharedDataService.selectedTrainOnMapFeature &#x3D; selectedFeature;
+
+				// this.sharedDataService.trainMap.easeTo({
+				// 	center: [basicTrainInformation.lng, basicTrainInformation.lat],
+				// });
+			}
+		}
+	}
+
+	/**
+	 * Close all popups
+	 */
+	closePopup(): void {
+		this.sharedDataService.selectedTrainOnMapFeature &#x3D; null;
+		this.sharedDataService.selectedStationOnMapFeature &#x3D; null;
+	}
+
+	/**
+	 * Add stations to the map using GeoJSON
+	 * @param stations All stations
+	 */
+	private addStationsToMap(stations: Station[]): void {
+		// console.log(stations);
+		this.stationsLayerData &#x3D; this.helperFunctions.parseToGeoJSON&lt;Station&gt;(stations, [&quot;lng&quot;, &quot;lat&quot;], [], true);
+	}
+
+	/**
+	 * Add all trains to the map with GeoJSON
+	 * @param detailedTrainInformation All current trains, with detailed information
+	 */
+	private addTrainsToMap(detailedTrainInformation: DetailedTrainInformation[]): void {
+		this.trainsLayerData &#x3D; this.helperFunctions.parseToGeoJSON&lt;DetailedTrainInformation&gt;(
+			detailedTrainInformation,
+			[&quot;lng&quot;, &quot;lat&quot;],
+			[],
+			true
+		);
+		this.isUpdatingMapData &#x3D; false;
+		this.pauseOrResumeUpdatingTrainPositions(false);
+		if (environment.production &#x3D;&#x3D;&#x3D; false) {
+			this.pauseOrResumeUpdatingTrainPositions(true);
+		}
+		if (this.firstTrainsHaveBeenAdded &#x3D;&#x3D; false) {
+			this.firstTrainsHaveBeenAdded &#x3D; true;
+			this.toastService.remove(this.toast);
+			this.flyToTrainFromQueryParam();
+		}
+	}
+
+	/** Fly to a train using the ride id from query params */
+	flyToTrainFromQueryParam(): void {
+		const rideId &#x3D; this.activatedRoute.snapshot.queryParamMap.get(&quot;rit&quot;);
+		if (rideId) {
+			const train &#x3D; this.sharedDataService.findTrainByRideId(rideId);
+			if (train) {
+				this.sharedDataService.flyToTrain(train);
+			}
+		}
+	}
+
+	/**
+	 * Update a train popup with new information
+	 */
+	private _updateTrainPopupInformation(): void {
+		if (this.sharedDataService.selectedTrainOnMapFeature) {
+			const selectedFeature &#x3D; this.sharedDataService.selectedTrainOnMapFeature;
+			const oldTrainInformation &#x3D; selectedFeature.properties as DetailedTrainInformation;
+			const rideId &#x3D; oldTrainInformation.ritId;
+			const queriedFeatures &#x3D; this.sharedDataService.trainMap.querySourceFeatures(&quot;trainData&quot;, {
+				filter: [&quot;&#x3D;&#x3D;&quot;, [&quot;get&quot;, &quot;ritId&quot;], rideId],
+			});
+			if (queriedFeatures &amp;&amp; !this.helperFunctions.objectsAreEqual(queriedFeatures[0], oldTrainInformation)) {
+				this.closePopup();
+				this.openTrainPopupOnLayerClick({
+					defaultPrevented: true,
+					lngLat: undefined,
+					originalEvent: undefined,
+					point: undefined,
+					// eslint-disable-next-line @typescript-eslint/no-empty-function
+					preventDefault(): void {},
+					target: undefined,
+					type: undefined,
+					features: queriedFeatures,
+				});
+				this.sharedDataService.trainMap.easeTo({
+					center: [queriedFeatures[0].properties.lng, queriedFeatures[0].properties.lat],
+				});
+			} else {
+				this.closePopup();
+			}
+		}
+	}
+
+	/**
+	 * Set the disruption markers for each disruption
+	 */
+	private setDisruptionMarkers(): void {
+		const markers: Feature&lt;Point, DisruptionBase&gt;[] &#x3D; [];
+
+		const uniqueDisruptions: Feature&lt;MultiLineString, { [p: string]: any }&gt;[] &#x3D; [];
+		const idMap &#x3D; new Map();
+		const features &#x3D; this.sharedDataService.disruptedTrainTracksLayerDataLastValue().features;
+		for (const feature of features) {
+			if (!idMap.has(feature.id)) {
+				idMap.set(feature.id, true);
+				uniqueDisruptions.push(feature);
+			}
+		}
+
+		uniqueDisruptions.forEach((feature) &#x3D;&gt; {
+			const disruptionInfo &#x3D; this.sharedDataService
+				.activeDisruptionsLastValue()
+				.find((disruption: DisruptionBase) &#x3D;&gt; disruption.id &#x3D;&#x3D;&#x3D; feature.id);
+			if (disruptionInfo) {
+				const linePart &#x3D; feature.geometry.coordinates[0];
+				markers.push({
+					type: &quot;Feature&quot;,
+					properties: disruptionInfo,
+					geometry: {
+						type: &quot;Point&quot;,
+						coordinates: linePart[Math.ceil(linePart.length / 2) - 1],
+					},
+				});
+			}
+		});
+		this.sharedDataService.updateDisruptionMarkersData(markers);
+	}
+
+	/**
+	 * Get detailed information about all train currently riding
+	 * Set train icons when data is received
+	 * Get information about active disruptions and add markers
+	 */
+	private updateTrainsAndDisruptions(): void {
+		this.isUpdatingMapData &#x3D; true;
+		this.pauseOrResumeUpdatingTrainPositions(true);
+		zip(
+			this.sharedDataService.updateDetailedInformationAboutActiveTrains(),
+			this.sharedDataService.updateDisruptedTrainTracksGeoJSON(),
+			this.sharedDataService.updateActiveDisruptions()
+		)
+			.pipe(take(1))
+			.subscribe({
+				// eslint-disable-next-line @typescript-eslint/no-unused-vars
+				next: (_) &#x3D;&gt; {
+					this.setTrainIconName(this.sharedDataService.trainInformationLastValue());
+					this.setDisruptionMarkers();
+				},
+				error: (err: unknown) &#x3D;&gt; {
+					console.log(err);
+				},
+				complete: () &#x3D;&gt; {
+					console.log(&quot;updateTrainsAndDisruptions&quot;);
+				},
+			});
+	}
+
+	/**
+	 * Get and update information about active disruptions and add markers
+	 * NOTE: Specifically used by the sidebar to force an update
+	 */
+	updateDisruptions(): void {
+		zip(
+			this.sharedDataService.updateDisruptedTrainTracksGeoJSON(true),
+			this.sharedDataService.updateActiveDisruptions(true)
+		)
+			.pipe(take(1))
+			.subscribe({
+				error: (err: unknown) &#x3D;&gt; {
+					console.log(err);
+				},
+				complete: () &#x3D;&gt; {
+					console.log(&quot;updateDisruptions&quot;);
+					this.setDisruptionMarkers();
+				},
+			});
+	}
+
+	/**
+	 * Add the train icon to the map for each type of train
+	 * Set the icon name for each train by train type
+	 * @param detailedTrainInformation Detailed information about all trains
+	 */
+	setTrainIconName(detailedTrainInformation: DetailedTrainInformation[]): void {
+		const iconURLs: Map&lt;string, string&gt; &#x3D; new Map&lt;string, string&gt;();
+
+		detailedTrainInformation.forEach((train) &#x3D;&gt; {
+			let imageName &#x3D; &quot;alternative&quot;;
+			let imageURL &#x3D; &quot;../../assets/alternative-train.png&quot;;
+
+			// If train has details about material, add the image url
+			if (
+				train.trainDetails &amp;&amp;
+				train.trainDetails.materieeldelen &amp;&amp;
+				train.trainDetails.materieeldelen[0]?.afbeelding
+			) {
+				const materiaaldelen &#x3D; train.trainDetails.materieeldelen;
+				// Get last part of url, like &#x27;virm_4.png&#x27;, to be used as a name
+				// console.log(basicTrain);
+				const urlParts &#x3D; materiaaldelen[0].afbeelding.split(&quot;/&quot;);
+				imageName &#x3D; urlParts[urlParts.length - 1];
+				const allIconNames &#x3D; Array.from(iconURLs.keys());
+				// Add the url for an icon name if it has not been added
+				if (allIconNames.includes(imageName) &#x3D;&#x3D;&#x3D; false) {
+					const firstTrainPart &#x3D; materiaaldelen[0];
+					if (firstTrainPart.afbeelding) {
+						imageURL &#x3D; firstTrainPart.afbeelding;
+					}
+					if (firstTrainPart.bakken &amp;&amp; firstTrainPart.bakken.length &gt; 0) {
+						imageURL &#x3D; firstTrainPart.bakken[0].afbeelding.url;
+					}
+					iconURLs.set(imageName, imageURL);
+				}
+				// Set the icon name for this train
+				train.trainIconName &#x3D; imageName;
+			} else {
+				// If the train has no details set to alternative and add alternative-train.png
+				console.log(train);
+				train.trainIconName &#x3D; imageName;
+				iconURLs.set(imageName, imageURL);
+			}
+		});
+
+		if (this.trainIconsForMap.length &#x3D;&#x3D;&#x3D; 0) {
+			this.getAndAddTrainIconsToMap(iconURLs, detailedTrainInformation);
+		} else {
+			this.addTrainsToMap(detailedTrainInformation);
+		}
+	}
+
+	/**
+	 * Download and edit train icons. Add them to the map
+	 * @param iconURLs Icon name and url
+	 * @param detailedTrainInformation Detailed information about all trains
+	 */
+	getAndAddTrainIconsToMap(
+		iconURLs: Map&lt;string, string&gt;,
+		detailedTrainInformation: DetailedTrainInformation[]
+	): void {
+		this.imageEditorService
+			.prepareTrainIcons(iconURLs)
+			.pipe(take(1))
+			.subscribe({
+				next: (result) &#x3D;&gt; {
+					// console.log(&quot;getAndAddTrainIconsToMap: &quot;, result);
+					result.forEach((image) &#x3D;&gt; {
+						this.trainIconNames.add(image.imageName);
+						this.trainIconsForMap.push({
+							imageName: image.imageName,
+							imageObjectURL: window.URL.createObjectURL(new Blob([image.image], { type: &quot;image/png&quot; })),
+						});
+					});
+				},
+				complete: () &#x3D;&gt; {
+					this.listenForTrainIcons(detailedTrainInformation);
+				},
+			});
+	}
+
+	/**
+	 * Listen if all train icons have been added to the map,
+	 * then add the trains to the map with GeoJSON and stop the updating process.
+	 * @param detailedTrainInformation Detailed information about all trains
+	 */
+	listenForTrainIcons(detailedTrainInformation: DetailedTrainInformation[]): void {
+		this.trainIconAdded$.pipe(take(this.trainIconNames.size)).subscribe({
+			next: (trainIconName) &#x3D;&gt; {
+				this.trainIconsAdded.add(trainIconName);
+				if (this.trainIconNames.size &#x3D;&#x3D;&#x3D; this.trainIconsAdded.size) {
+					this.trainIconAddedSource.complete();
+				}
+			},
+			error: (err: unknown) &#x3D;&gt; console.log(err),
+			complete: () &#x3D;&gt; {
+				this.addTrainsToMap(detailedTrainInformation);
+			},
+		});
+	}
+
+	/**
+	 * Add marker component to shared data
+	 * @param marker Marker component to add to set
+	 * @return () Function that adds the marker
+	 */
+	addMarkerComponentToSet(marker: MarkerComponent): () &#x3D;&gt; void {
+		return () &#x3D;&gt; {
+			this.sharedDataService.disruptionMarkerElements.add(marker);
+			// console.log(this.sharedDataService.disruptionMarkerElements);
+			// console.log(this.sharedDataService.disruptionCardElements);
+		};
+	}
+
+	/**
+	 * Fly to a disruption on the map
+	 * @param disruption Disruption to fly to
+	 */
+	flyToDisruption(disruption: DisruptionBase): void {
+		this.sharedDataService.flyToDisruption(disruption);
+	}
+
+	/**
+	 * Focus on a sidebar disruption card when hovering on it
+	 * @param event Mouse event
+	 * @param disruption Disruption of the card
+	 * @param markerElement Marker that is being hovered
+	 */
+	onMouseEnterDisruptionMarker(event: MouseEvent, disruption: DisruptionBase, markerElement: MarkerComponent): void {
+		// find disruption in sidebar and focus
+		event.preventDefault();
+		const card &#x3D; this.sharedDataService.disruptionCardElements[disruption.id] as ElementRef;
+		if (card) {
+			this._focusedDisruptionCard &#x3D; card;
+			const cardElement &#x3D; this.renderer.selectRootElement(card.nativeElement, true) as HTMLElement;
+			this.renderer.setStyle(markerElement.content.nativeElement, &quot;zIndex&quot;, 1);
+			cardElement.parentElement.focus();
+		}
+		event.preventDefault();
+	}
+
+	/**
+	 * Loose focus on a sidebar disruption card when not hovering over the marker anymore
+	 * @param event Mouse event
+	 * @param disruption Disruption of the card
+	 * @param markerElement Marker that is being hovered
+	 */
+	onMouseLeaveDisruptionMarker(event: MouseEvent, disruption: DisruptionBase, markerElement: MarkerComponent): void {
+		// find disruption in sidebar and remove focus
+		event.preventDefault();
+		let card &#x3D; this._focusedDisruptionCard;
+		if (card &#x3D;&#x3D; null) {
+			card &#x3D; this.sharedDataService.disruptionCardElements[disruption.id] as ElementRef;
+		}
+		if (card) {
+			const cardElement &#x3D; this.renderer.selectRootElement(card.nativeElement, true) as HTMLElement;
+			cardElement.parentElement.blur();
+			this.renderer.setStyle(markerElement.content.nativeElement, &quot;zIndex&quot;, &quot;unset&quot;);
+		}
+		this._focusedDisruptionCard &#x3D; null;
+		event.preventDefault();
+	}
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;!--
+  ~ trainSpotter
+  ~ Copyright (C) 2021 bart
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.
+  --&gt;
+
+&lt;div class&#x3D;&quot;mat-typography&quot;&gt;
+	&lt;div class&#x3D;&quot;h-100 w-100&quot; *ngIf&#x3D;&quot;activeMapType$ | async as activeMapType&quot;&gt;
+		&lt;div class&#x3D;&quot;h-100 w-100&quot; style&#x3D;&quot;z-index: 100&quot;&gt;
+			&lt;mgl-map
+				[style]&#x3D;&quot;mapStyle&quot;
+				[zoom]&#x3D;&quot;[zoom]&quot;
+				[center]&#x3D;&quot;[lng, lat]&quot;
+				[maxBounds]&#x3D;&quot;[
+[-5.3512001, 45.1400355],
+[24.1800499, 57.3180871]
+]&quot;
+				(mapLoad)&#x3D;&quot;onMapLoad($event)&quot;
+				(mapMouseMove)&#x3D;&quot;onMapMouseMove($event)&quot;
+				(zoomEvt)&#x3D;&quot;onMapZoom($event)&quot;
+				(sourceData)&#x3D;&quot;onMapSourceData($event)&quot;
+			&gt;
+				&lt;mgl-control mglNavigation position&#x3D;&quot;top-right&quot;&gt;&lt;/mgl-control&gt;
+				&lt;mgl-control
+					mglGeolocate
+					[trackUserLocation]&#x3D;&quot;true&quot;
+					[fitBoundsOptions]&#x3D;&quot;{maxZoom:10}&quot;
+					position&#x3D;&quot;top-right&quot;
+				&gt;&lt;/mgl-control&gt;
+				&lt;ng-container *ngIf&#x3D;&quot;stationsLayerData&quot;&gt;
+					&lt;mgl-geojson-source id&#x3D;&quot;stationsData&quot; [data]&#x3D;&quot;stationsLayerData&quot;&gt;&lt;/mgl-geojson-source&gt;
+					&lt;mgl-layer
+						id&#x3D;&quot;stations&quot;
+						type&#x3D;&quot;symbol&quot;
+						source&#x3D;&quot;stationsData&quot;
+						[layout]&#x3D;&quot;{
+					&#x27;icon-image&#x27;: &#x27;NS&#x27;,
+					&#x27;icon-size&#x27;: 0.15,
+					&#x27;icon-allow-overlap&#x27;: true
+				}&quot;
+						[minzoom]&#x3D;&quot;10&quot;
+						(layerClick)&#x3D;&quot;openStationPopupOnLayerClick($event)&quot;
+					&gt;
+					&lt;/mgl-layer&gt;
+				&lt;/ng-container&gt;
+				&lt;ng-container *ngIf&#x3D;&quot;trainTracksLayerData&quot;&gt;
+					&lt;mgl-geojson-source id&#x3D;&quot;trainTracksLayerData&quot; [data]&#x3D;&quot;trainTracksLayerData!&quot;&gt;&lt;/mgl-geojson-source&gt;
+					&lt;mgl-layer
+						id&#x3D;&quot;NSTrainTracks&quot;
+						type&#x3D;&quot;line&quot;
+						source&#x3D;&quot;trainTracksLayerData&quot;
+						[layout]&#x3D;&quot;{ &#x27;line-join&#x27;: &#x27;round&#x27;, &#x27;line-cap&#x27;: &#x27;round&#x27; }&quot;
+						[paint]&#x3D;&quot;{ &#x27;line-color&#x27;: &#x27;#9C9CA6&#x27;, &#x27;line-width&#x27;: 2 }&quot;
+						[before]&#x3D;&quot;&#x27;stations&#x27;&quot;
+					&gt;
+					&lt;/mgl-layer&gt;
+				&lt;/ng-container&gt;
+				&lt;ng-container *ngIf&#x3D;&quot;disruptedTrainTracksLayerData$ | async as data&quot;&gt;
+					&lt;mgl-geojson-source id&#x3D;&quot;disruptedTrainTracksSource&quot; [data]&#x3D;&quot;data!.payload!&quot;&gt;&lt;/mgl-geojson-source&gt;
+					&lt;mgl-layer
+						id&#x3D;&quot;disruptedTrainTracks&quot;
+						type&#x3D;&quot;line&quot;
+						source&#x3D;&quot;disruptedTrainTracksSource&quot;
+						[layout]&#x3D;&quot;{
+					visibility: activeMapType.layerId &#x3D;&#x3D;&#x3D; &#x27;storingen-railroad&#x27; ? &#x27;visible&#x27; : &#x27;none&#x27;,
+					&#x27;line-join&#x27;: &#x27;round&#x27;,
+					&#x27;line-cap&#x27;: &#x27;round&#x27;
+				}&quot;
+						[paint]&#x3D;&quot;{
+				&#x27;line-color&#x27;: [&#x27;match&#x27;, [&#x27;get&#x27;, &#x27;disruptionType&#x27;], &#x27;STORING&#x27;, &#x27;#ec0045&#x27;, &#x27;#fe6200&#x27;],
+				&#x27;line-width&#x27;: 4 }&quot;
+						[before]&#x3D;&quot;&#x27;stations&#x27;&quot;
+					&gt;
+					&lt;/mgl-layer&gt;
+				&lt;/ng-container&gt;
+				&lt;ng-container *ngIf&#x3D;&quot;disruptionMarkersData$ | async as disruptionMarkers&quot;&gt;
+					&lt;mgl-geojson-source id&#x3D;&quot;disruptionMarkersSource&quot;&gt;
+						&lt;mgl-marker
+							*ngFor&#x3D;&quot;let disruptionMarker of disruptionMarkers&quot;
+							[feature]&#x3D;&quot;disruptionMarker!&quot;
+							[ngInit]&#x3D;&quot;addMarkerComponentToSet(marker)&quot;
+							#marker
+						&gt;
+							&lt;div
+								(mouseenter)&#x3D;&quot;onMouseEnterDisruptionMarker($event, disruptionMarker.properties, marker)&quot;
+								(mouseleave)&#x3D;&quot;onMouseLeaveDisruptionMarker($event, disruptionMarker.properties, marker)&quot;
+								(click)&#x3D;&quot;flyToDisruption(disruptionMarker.properties)&quot;
+								style&#x3D;&quot;pointer-events: auto&quot;
+								[ngStyle]&#x3D;&quot;{ display: activeMapType.layerId &#x3D;&#x3D;&#x3D; &#x27;storingen-railroad&#x27; ? &#x27;unset&#x27; : &#x27;none&#x27; }&quot;
+								tabindex&#x3D;&quot;0&quot;
+							&gt;
+								&lt;div
+									tabindex&#x3D;&quot;0&quot;
+									class&#x3D;&quot;map-marker map-marker--disruption inline-flex flex--center-cross flex--column absolute bottom&quot;
+								&gt;
+									&lt;ng-template
+										[ngIf]&#x3D;&quot;disruptionMarker.properties.type &#x3D;&#x3D;&#x3D; &#x27;MAINTENANCE&#x27;&quot;
+										[ngIfElse]&#x3D;&quot;elseDisruption&quot;
+									&gt;
+										&lt;div
+											class&#x3D;&quot;map-marker-content map-marker-content--maintenance color-white shadow-darken10 round txt-s clip txt-truncate&quot;
+										&gt;
+											&lt;div
+												class&#x3D;&quot;marker-icon-parent color-maintenance&quot;
+												style&#x3D;&quot;position: relative&quot;
+											&gt;
+												&lt;div class&#x3D;&quot;marker-hover&quot;&gt;&lt;/div&gt;
+												&lt;div
+													id&#x3D;&quot;maintenance-svg&quot;
+													[inlineSVG]&#x3D;&quot;&#x27;../../../assets/maintenance--35x35.svg&#x27;&quot;
+													[setSVGAttributes]&#x3D;&quot;{&#x27;width&#x27;: &#x27;30px&#x27;, &#x27;height&#x27;: &#x27;30px&#x27;}&quot;
+												&gt;&lt;/div&gt;
+											&lt;/div&gt;
+										&lt;/div&gt;
+										&lt;span
+											class&#x3D;&quot;flex-child triangle triangle--d color-maintenance&quot;
+											style&#x3D;&quot;margin-top: -1px&quot;
+										&gt;&lt;/span&gt;
+									&lt;/ng-template&gt;
+									&lt;ng-template #elseDisruption&gt;
+										&lt;div
+											class&#x3D;&quot;map-marker-content map-marker-content--disruption color-white shadow-darken10 round txt-s clip txt-truncate&quot;
+										&gt;
+											&lt;div class&#x3D;&quot;marker-icon-parent color-disruption&quot; style&#x3D;&quot;position: relative&quot;&gt;
+												&lt;div class&#x3D;&quot;marker-hover&quot;&gt;&lt;/div&gt;
+												&lt;div
+													id&#x3D;&quot;disruption-svg&quot;
+													[inlineSVG]&#x3D;&quot;&#x27;../../../assets/alert--35x35.svg&#x27;&quot;
+													[setSVGAttributes]&#x3D;&quot;{&#x27;width&#x27;: &#x27;30px&#x27;, &#x27;height&#x27;: &#x27;30px&#x27;}&quot;
+												&gt;&lt;/div&gt;
+											&lt;/div&gt;
+										&lt;/div&gt;
+										&lt;span
+											class&#x3D;&quot;flex-child triangle triangle--d color-disruption&quot;
+											style&#x3D;&quot;margin-top: -1px&quot;
+										&gt;&lt;/span&gt;
+									&lt;/ng-template&gt;
+								&lt;/div&gt;
+							&lt;/div&gt;
+						&lt;/mgl-marker&gt;
+					&lt;/mgl-geojson-source&gt;
+					&lt;mgl-layer id&#x3D;&quot;disruptionMarkers&quot; type&#x3D;&quot;symbol&quot; source&#x3D;&quot;disruptionMarkersSource&quot;&gt;&lt;/mgl-layer&gt;
+				&lt;/ng-container&gt;
+				&lt;mgl-geojson-source
+					*ngIf&#x3D;&quot;trainsLayerData&quot;
+					id&#x3D;&quot;trainData&quot;
+					[data]&#x3D;&quot;trainsLayerData!&quot;
+				&gt;&lt;/mgl-geojson-source&gt;
+				&lt;mgl-layer
+					*ngIf&#x3D;&quot;trainsLayerData &amp;&amp; trainIconsForMap&quot;
+					id&#x3D;&quot;trains&quot;
+					type&#x3D;&quot;symbol&quot;
+					source&#x3D;&quot;trainData&quot;
+					[layout]&#x3D;&quot;{
+					visibility: activeMapType.layerId &#x3D;&#x3D;&#x3D; &#x27;ns-railroad&#x27; ? &#x27;visible&#x27; : &#x27;none&#x27;,
+					&#x27;icon-image&#x27;: [&#x27;get&#x27;, &#x27;trainIconName&#x27;],
+					&#x27;icon-size&#x27;: 0.4,
+					&#x27;icon-allow-overlap&#x27;: true,
+					&#x27;icon-ignore-placement&#x27;: true
+				}&quot;
+					[minzoom]&#x3D;&quot;6&quot;
+					[maxzoom]&#x3D;&quot;20&quot;
+					(layerClick)&#x3D;&quot;openTrainPopupOnLayerClick($event)&quot;
+				&gt;
+				&lt;/mgl-layer&gt;
+				&lt;ng-container *ngIf&#x3D;&quot;trainIconsForMap&quot;&gt;
+					&lt;mgl-image
+						*ngFor&#x3D;&quot;let trainIcon of trainIconsForMap&quot;
+						[id]&#x3D;&quot;trainIcon.imageName&quot;
+						[url]&#x3D;&quot;trainIcon.imageObjectURL&quot;
+						(imageLoaded)&#x3D;&quot;onIconLoad(trainIcon.imageName)&quot;
+						(imageError)&#x3D;&quot;onIconError($event)&quot;
+					&gt;&lt;/mgl-image&gt;
+				&lt;/ng-container&gt;
+				&lt;mgl-popup
+					*ngIf&#x3D;&quot;selectedTrainOnMapFeature&quot;
+					[maxWidth]&#x3D;&quot;&#x27;90vw&#x27;&quot;
+					[closeButton]&#x3D;&quot;false&quot;
+					[lngLat]&#x3D;&quot;selectedTrainOnMapFeature?.geometry?.coordinates&quot;
+					(popupClose)&#x3D;&quot;onPopupClose()&quot;
+				&gt;
+					&lt;app-train-popup [mapboxFeature]&#x3D;&quot;selectedTrainOnMapFeature&quot; (closePopup)&#x3D;&quot;closePopup()&quot;&gt;
+					&lt;/app-train-popup&gt;
+				&lt;/mgl-popup&gt;
+				&lt;mgl-popup
+					*ngIf&#x3D;&quot;selectedStationOnMapFeature&quot;
+					[offset]&#x3D;&quot;[0, 5]&quot;
+					[closeButton]&#x3D;&quot;false&quot;
+					[lngLat]&#x3D;&quot;selectedStationOnMapFeature?.geometry?.coordinates&quot;
+					(popupClose)&#x3D;&quot;onPopupClose()&quot;
+				&gt;
+					&lt;app-station-popup [mapboxFeature]&#x3D;&quot;selectedStationOnMapFeature&quot; (closePopup)&#x3D;&quot;closePopup()&quot;&gt;
+					&lt;/app-station-popup&gt;
+				&lt;/mgl-popup&gt;
+			&lt;/mgl-map&gt;
+			&lt;div id&#x3D;&quot;mapControls&quot; *ngIf&#x3D;&quot;true; else loadingMap&quot;&gt;
+				&lt;div
+					id&#x3D;&quot;mapTypeControl&quot;
+					class&#x3D;&quot;toggle-group border border--2 border--white bg-white shadow-darken10 z1&quot;
+				&gt;
+					&lt;div class&#x3D;&quot;toggle-container mb-0&quot; *ngFor&#x3D;&quot;let mapType of mapTypesArray&quot;&gt;
+						&lt;input
+							[id]&#x3D;&quot;mapType.layerId&quot;
+							class&#x3D;&quot;mapTypeInput&quot;
+							name&#x3D;&quot;toggle&quot;
+							type&#x3D;&quot;radio&quot;
+							[attr.aria-label]&#x3D;&quot;mapType.description&quot;
+							[checked]&#x3D;&quot;activeMapType.layerId &#x3D;&#x3D;&#x3D; mapType.layerId&quot;
+							[disabled]&#x3D;&quot;isUpdatingMapData&quot;
+						/&gt;
+						&lt;div
+							class&#x3D;&quot;mapTypeToggle toggle txt-s py3 toggle--active-white fw-bold&quot;
+							(click)&#x3D;&quot;changeMapLayerType(mapType)&quot;
+						&gt;
+							{{ mapType.name }}
+						&lt;/div&gt;
+					&lt;/div&gt;
+				&lt;/div&gt;
+				&lt;div
+					id&#x3D;&quot;playPauseContainer&quot;
+					class&#x3D;&quot;border border--2 border--white bg-white shadow-darken10 z1&quot;
+					(click)&#x3D;&quot;pauseOrResumeUpdatingTrainPositions(!updateTrainsIsPaused)&quot;
+				&gt;
+					&lt;div class&#x3D;&quot;d-flex align-items-center&quot;&gt;
+						&lt;div id&#x3D;&quot;updatePositionsLabel&quot;&gt;Update posities&lt;/div&gt;
+						&lt;div
+							*ngIf&#x3D;&quot;
+							isUpdatingMapData &#x3D;&#x3D;&#x3D; false || updateTrainsIsPaused &#x3D;&#x3D;&#x3D; false;
+							else updatingMapDataSpinner
+						&quot;
+						&gt;
+							&lt;button
+								style&#x3D;&quot;margin-top: -6px; margin-bottom: -4px&quot;
+								mat-icon-button
+								role&#x3D;&quot;button&quot;
+								aria-label&#x3D;&quot;Pauzeer/hervat treinposities countdown&quot;
+							&gt;
+								&lt;mat-icon
+									*ngIf&#x3D;&quot;
+									updateTrainsIsPaused &#x3D;&#x3D;&#x3D; false &amp;&amp; isUpdatingMapData &#x3D;&#x3D;&#x3D; false;
+									else playCircleIcon
+								&quot;
+								&gt;
+									pause_circle_filled
+								&lt;/mat-icon&gt;
+								&lt;ng-template #playCircleIcon&gt;
+									&lt;mat-icon&gt;play_circle_filled&lt;/mat-icon&gt;
+								&lt;/ng-template&gt;
+							&lt;/button&gt;
+						&lt;/div&gt;
+						&lt;ng-template #updatingMapDataSpinner&gt;
+							&lt;div id&#x3D;&quot;updatingMapDataSpinner&quot;&gt;
+								&lt;div
+									class&#x3D;&quot;spinner-border spinner-border-sm&quot;
+									style&#x3D;&quot;width: 20px; height: 20px&quot;
+									role&#x3D;&quot;status&quot;
+								&gt;
+									&lt;span class&#x3D;&quot;sr-only&quot;&gt;Loading...&lt;/span&gt;
+								&lt;/div&gt;
+							&lt;/div&gt;
+						&lt;/ng-template&gt;
+					&lt;/div&gt;
+					&lt;div id&#x3D;&quot;updatePositionsProgressbar&quot;&gt;
+						&lt;div class&#x3D;&quot;countdown-progressbar&quot;&gt;
+							&lt;div
+								#updateCountdown
+								class&#x3D;&quot;progress-value&quot;
+								[ngStyle]&#x3D;&quot;{&#x27;animation-play-state&#x27;: updateTrainsIsPaused ? &#x27;paused&#x27; : &#x27;running&#x27;}&quot;
+								role&#x3D;&quot;progressbar&quot;
+								aria-valuemin&#x3D;&quot;0&quot;
+								aria-valuemax&#x3D;&quot;100&quot;
+								aria-label&#x3D;&quot;Treinposities update countdown&quot;
+							&gt;&lt;/div&gt;
+						&lt;/div&gt;
+					&lt;/div&gt;
+				&lt;/div&gt;
+			&lt;/div&gt;
+			&lt;ng-template #loadingMap&gt;
+				&lt;div class&#x3D;&quot;loader&quot; style&#x3D;&quot;z-index: 1&quot;&gt;
+					&lt;div class&#x3D;&quot;bar&quot;&gt;&lt;/div&gt;
+				&lt;/div&gt;
+			&lt;/ng-template&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;
+	&lt;div&gt;
+		&lt;div id&#x3D;&quot;sidebar-component&quot; *ngIf&#x3D;&quot;activeDisruptions$ | async as disruptions&quot;&gt;
+			&lt;app-train-map-sidebar
+				[activeDisruptions]&#x3D;&quot;disruptions&quot;
+				(updateDisruptions)&#x3D;&quot;updateDisruptions()&quot;
+			&gt;&lt;/app-train-map-sidebar&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-styleData">
+                <p class="comment">
+                    <code>./train-map.component.sass</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">/*!
+ / trainSpotter
+ / Copyright (C) 2021 bart
+ /
+ / This program is free software: you can redistribute it and/or modify
+ / it under the terms of the GNU General Public License as published by
+ / the Free Software Foundation, either version 3 of the License, or
+ / (at your option) any later version.
+ /
+ / This program is distributed in the hope that it will be useful,
+ / but WITHOUT ANY WARRANTY; without even the implied warranty of
+ / MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ / GNU General Public License for more details.
+ /
+ / You should have received a copy of the GNU General Public License
+ / along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.
+ /
+@import &quot;../../../../styles/colors&quot;
+
+mgl-map
+  position: absolute
+  top: 0
+  bottom: 0
+  width: 100%
+  height: 100%
+  z-index: 0
+
+#mapControls
+  position: absolute
+  z-index: 1
+
+#mapTypeControl
+  margin-top: 12px
+  margin-left: 12px
+  padding: 3px
+
+.mapTypeInput:checked + .toggle
+    color: white
+    background: $ns-blue
+
+.mapTypeToggle:hover
+  color: $ns-blue
+  background: $ns-yellow
+
+#playPauseContainer
+  margin-top: 8px
+  margin-left: 12px
+  color: $ns-blue
+  border-radius: 18px
+  text-align: center
+  width: fit-content
+
+#updatePositionsLabel
+  color: $ns-blue
+  cursor: default
+  font-weight: 700
+  font-size: 12px
+  padding: 0 0 0 12px
+  background-color: transparent
+
+#updatingMapDataSpinner
+  margin: 4px 10px 3px 10px
+
+#updatePositionsProgressbar
+  z-index: 1
+  margin: 0 10px 5px 10px
+
+#playPauseContainer *
+  cursor: pointer
+
+#sidebar-component
+  height: 100%
+  z-index: 200
+  right: 0
+  position: absolute
+
+.countdown-progressbar
+  display: flex
+  height: 12px
+  border-radius: 6px
+  overflow: hidden
+  line-height: 0
+  font-size: 0.75rem
+  background-color: #e9ecef
+
+.progress-value
+  animation-name: load
+  animation-duration: 10s
+  animation-timing-function: linear
+  animation-play-state: paused
+  animation-fill-mode: backwards
+  border-radius: 6px 0 0 6px
+  background: $ns-blue
+  width: 100%
+  height: 100%
+
+@keyframes load
+  0%
+    width: 100%
+  100%
+    width: 0
+
+.marker-hover
+  display: none
+  width: 35px
+  height: 35px
+
+#maintenance-svg
+  width: 30px
+  height: 30px
+
+#disruption-svg
+  width: 30px
+  height: 30px
+
+.map-marker--disruption:hover, .map-marker--disruption:focus
+
+  .map-marker-content
+    border-radius: 25px !important
+
+  .marker-icon-parent
+    padding: 0.25rem
+
+  .marker-hover
+    display: block
+    color: white
+    background: white
+    border-radius: 20px
+
+  #maintenance-svg
+    position: absolute
+    top: 16%
+    left: 16%
+    filter: invert(50%) sepia(45%) saturate(7499%) hue-rotate(5deg) brightness(107%) contrast(101%)
+
+  #disruption-svg
+    position: absolute
+    top: 12%
+    left: 16%
+    filter: invert(30%) sepia(93%) saturate(7490%) hue-rotate(335deg) brightness(88%) contrast(112%)
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><!--  ~ trainSpotter  ~ Copyright (C) 2021 bart  ~  ~ This program is free software: you can redistribute it and/or modify  ~ it under the terms of the GNU General Public License as published by  ~ the Free Software Foundation, either version 3 of the License, or  ~ (at your option) any later version.  ~  ~ This program is distributed in the hope that it will be useful,  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  ~ GNU General Public License for more details.  ~  ~ You should have received a copy of the GNU General Public License  ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.  --><div class="mat-typography">	<div class="h-100 w-100" *ngIf="activeMapType$ | async as activeMapType">		<div class="h-100 w-100" style="z-index: 100">			<mgl-map				[style]="mapStyle"				[zoom]="[zoom]"				[center]="[lng, lat]"				[maxBounds]="[[-5.3512001, 45.1400355],[24.1800499, 57.3180871]]"				(mapLoad)="onMapLoad($event)"				(mapMouseMove)="onMapMouseMove($event)"				(zoomEvt)="onMapZoom($event)"				(sourceData)="onMapSourceData($event)"			>				<mgl-control mglNavigation position="top-right"></mgl-control>				<mgl-control					mglGeolocate					[trackUserLocation]="true"					[fitBoundsOptions]="{maxZoom:10}"					position="top-right"				></mgl-control>				<ng-container *ngIf="stationsLayerData">					<mgl-geojson-source id="stationsData" [data]="stationsLayerData"></mgl-geojson-source>					<mgl-layer						id="stations"						type="symbol"						source="stationsData"						[layout]="{					\'icon-image\': \'NS\',					\'icon-size\': 0.15,					\'icon-allow-overlap\': true				}"						[minzoom]="10"						(layerClick)="openStationPopupOnLayerClick($event)"					>					</mgl-layer>				</ng-container>				<ng-container *ngIf="trainTracksLayerData">					<mgl-geojson-source id="trainTracksLayerData" [data]="trainTracksLayerData!"></mgl-geojson-source>					<mgl-layer						id="NSTrainTracks"						type="line"						source="trainTracksLayerData"						[layout]="{ \'line-join\': \'round\', \'line-cap\': \'round\' }"						[paint]="{ \'line-color\': \'#9C9CA6\', \'line-width\': 2 }"						[before]="\'stations\'"					>					</mgl-layer>				</ng-container>				<ng-container *ngIf="disruptedTrainTracksLayerData$ | async as data">					<mgl-geojson-source id="disruptedTrainTracksSource" [data]="data!.payload!"></mgl-geojson-source>					<mgl-layer						id="disruptedTrainTracks"						type="line"						source="disruptedTrainTracksSource"						[layout]="{					visibility: activeMapType.layerId === \'storingen-railroad\' ? \'visible\' : \'none\',					\'line-join\': \'round\',					\'line-cap\': \'round\'				}"						[paint]="{				\'line-color\': [\'match\', [\'get\', \'disruptionType\'], \'STORING\', \'#ec0045\', \'#fe6200\'],				\'line-width\': 4 }"						[before]="\'stations\'"					>					</mgl-layer>				</ng-container>				<ng-container *ngIf="disruptionMarkersData$ | async as disruptionMarkers">					<mgl-geojson-source id="disruptionMarkersSource">						<mgl-marker							*ngFor="let disruptionMarker of disruptionMarkers"							[feature]="disruptionMarker!"							[ngInit]="addMarkerComponentToSet(marker)"							#marker						>							<div								(mouseenter)="onMouseEnterDisruptionMarker($event, disruptionMarker.properties, marker)"								(mouseleave)="onMouseLeaveDisruptionMarker($event, disruptionMarker.properties, marker)"								(click)="flyToDisruption(disruptionMarker.properties)"								style="pointer-events: auto"								[ngStyle]="{ display: activeMapType.layerId === \'storingen-railroad\' ? \'unset\' : \'none\' }"								tabindex="0"							>								<div									tabindex="0"									class="map-marker map-marker--disruption inline-flex flex--center-cross flex--column absolute bottom"								>									<ng-template										[ngIf]="disruptionMarker.properties.type === \'MAINTENANCE\'"										[ngIfElse]="elseDisruption"									>										<div											class="map-marker-content map-marker-content--maintenance color-white shadow-darken10 round txt-s clip txt-truncate"										>											<div												class="marker-icon-parent color-maintenance"												style="position: relative"											>												<div class="marker-hover"></div>												<div													id="maintenance-svg"													[inlineSVG]="\'../../../assets/maintenance--35x35.svg\'"													[setSVGAttributes]="{\'width\': \'30px\', \'height\': \'30px\'}"												></div>											</div>										</div>										<span											class="flex-child triangle triangle--d color-maintenance"											style="margin-top: -1px"										></span>									</ng-template>									<ng-template #elseDisruption>										<div											class="map-marker-content map-marker-content--disruption color-white shadow-darken10 round txt-s clip txt-truncate"										>											<div class="marker-icon-parent color-disruption" style="position: relative">												<div class="marker-hover"></div>												<div													id="disruption-svg"													[inlineSVG]="\'../../../assets/alert--35x35.svg\'"													[setSVGAttributes]="{\'width\': \'30px\', \'height\': \'30px\'}"												></div>											</div>										</div>										<span											class="flex-child triangle triangle--d color-disruption"											style="margin-top: -1px"										></span>									</ng-template>								</div>							</div>						</mgl-marker>					</mgl-geojson-source>					<mgl-layer id="disruptionMarkers" type="symbol" source="disruptionMarkersSource"></mgl-layer>				</ng-container>				<mgl-geojson-source					*ngIf="trainsLayerData"					id="trainData"					[data]="trainsLayerData!"				></mgl-geojson-source>				<mgl-layer					*ngIf="trainsLayerData && trainIconsForMap"					id="trains"					type="symbol"					source="trainData"					[layout]="{					visibility: activeMapType.layerId === \'ns-railroad\' ? \'visible\' : \'none\',					\'icon-image\': [\'get\', \'trainIconName\'],					\'icon-size\': 0.4,					\'icon-allow-overlap\': true,					\'icon-ignore-placement\': true				}"					[minzoom]="6"					[maxzoom]="20"					(layerClick)="openTrainPopupOnLayerClick($event)"				>				</mgl-layer>				<ng-container *ngIf="trainIconsForMap">					<mgl-image						*ngFor="let trainIcon of trainIconsForMap"						[id]="trainIcon.imageName"						[url]="trainIcon.imageObjectURL"						(imageLoaded)="onIconLoad(trainIcon.imageName)"						(imageError)="onIconError($event)"					></mgl-image>				</ng-container>				<mgl-popup					*ngIf="selectedTrainOnMapFeature"					[maxWidth]="\'90vw\'"					[closeButton]="false"					[lngLat]="selectedTrainOnMapFeature?.geometry?.coordinates"					(popupClose)="onPopupClose()"				>					<app-train-popup [mapboxFeature]="selectedTrainOnMapFeature" (closePopup)="closePopup()">					</app-train-popup>				</mgl-popup>				<mgl-popup					*ngIf="selectedStationOnMapFeature"					[offset]="[0, 5]"					[closeButton]="false"					[lngLat]="selectedStationOnMapFeature?.geometry?.coordinates"					(popupClose)="onPopupClose()"				>					<app-station-popup [mapboxFeature]="selectedStationOnMapFeature" (closePopup)="closePopup()">					</app-station-popup>				</mgl-popup>			</mgl-map>			<div id="mapControls" *ngIf="true; else loadingMap">				<div					id="mapTypeControl"					class="toggle-group border border--2 border--white bg-white shadow-darken10 z1"				>					<div class="toggle-container mb-0" *ngFor="let mapType of mapTypesArray">						<input							[id]="mapType.layerId"							class="mapTypeInput"							name="toggle"							type="radio"							[attr.aria-label]="mapType.description"							[checked]="activeMapType.layerId === mapType.layerId"							[disabled]="isUpdatingMapData"						/>						<div							class="mapTypeToggle toggle txt-s py3 toggle--active-white fw-bold"							(click)="changeMapLayerType(mapType)"						>							{{ mapType.name }}						</div>					</div>				</div>				<div					id="playPauseContainer"					class="border border--2 border--white bg-white shadow-darken10 z1"					(click)="pauseOrResumeUpdatingTrainPositions(!updateTrainsIsPaused)"				>					<div class="d-flex align-items-center">						<div id="updatePositionsLabel">Update posities</div>						<div							*ngIf="							isUpdatingMapData === false || updateTrainsIsPaused === false;							else updatingMapDataSpinner						"						>							<button								style="margin-top: -6px; margin-bottom: -4px"								mat-icon-button								role="button"								aria-label="Pauzeer/hervat treinposities countdown"							>								<mat-icon									*ngIf="									updateTrainsIsPaused === false && isUpdatingMapData === false;									else playCircleIcon								"								>									pause_circle_filled								</mat-icon>								<ng-template #playCircleIcon>									<mat-icon>play_circle_filled</mat-icon>								</ng-template>							</button>						</div>						<ng-template #updatingMapDataSpinner>							<div id="updatingMapDataSpinner">								<div									class="spinner-border spinner-border-sm"									style="width: 20px; height: 20px"									role="status"								>									<span class="sr-only">Loading...</span>								</div>							</div>						</ng-template>					</div>					<div id="updatePositionsProgressbar">						<div class="countdown-progressbar">							<div								#updateCountdown								class="progress-value"								[ngStyle]="{\'animation-play-state\': updateTrainsIsPaused ? \'paused\' : \'running\'}"								role="progressbar"								aria-valuemin="0"								aria-valuemax="100"								aria-label="Treinposities update countdown"							></div>						</div>					</div>				</div>			</div>			<ng-template #loadingMap>				<div class="loader" style="z-index: 1">					<div class="bar"></div>				</div>			</ng-template>		</div>	</div>	<div>		<div id="sidebar-component" *ngIf="activeDisruptions$ | async as disruptions">			<app-train-map-sidebar				[activeDisruptions]="disruptions"				(updateDisruptions)="updateDisruptions()"			></app-train-map-sidebar>		</div>	</div></div></div>'
+    var COMPONENTS = [{'name': 'AboutComponent', 'selector': 'app-about'},{'name': 'AllStationsComponent', 'selector': 'app-all-stations'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'CalamityItemComponent', 'selector': 'app-calamity-item'},{'name': 'DisruptionItemComponent', 'selector': 'app-disruption-item'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'MainLayoutComponent', 'selector': 'app-main-layout'},{'name': 'PageNotFoundComponent', 'selector': 'app-page-not-found'},{'name': 'RideInformationComponent', 'selector': 'app-ride-information'},{'name': 'StationPopupComponent', 'selector': 'app-station-popup'},{'name': 'ToastsContainerComponent', 'selector': 'app-toasts-container'},{'name': 'TrainMapComponent', 'selector': 'app-train-map'},{'name': 'TrainMapSidebarComponent', 'selector': 'app-train-map-sidebar'},{'name': 'TrainPopupComponent', 'selector': 'app-train-popup'},{'name': 'TrainsetInformationComponent', 'selector': 'app-trainset-information'}];
+    var DIRECTIVES = [{'name': 'NgbdSortableHeaderDirective', 'selector': '[appNgbdSortableHeader]'},{'name': 'NgInitDirective', 'selector': '[ngInit]'}];
+    var ACTUAL_COMPONENT = {'name': 'TrainMapComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'TrainMapComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

@@ -1,0 +1,881 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>TrainSpotter Documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+        <link rel="stylesheet" href="../styles/material.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">TrainSpotter Documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content injectable">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li>Injectables</li>
+  <li >RideInformationService</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/app/services/ride-information.service.ts</code>
+        </p>
+
+
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Used by resolver, get train information from shared data or fetch from API</p>
+
+            </p>
+
+
+
+            <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#getDetailedInformationAboutOneTrain" >getDetailedInformationAboutOneTrain</a>
+                            </li>
+                            <li>
+                                <a href="#getJourneyDetails" >getJourneyDetails</a>
+                            </li>
+                            <li>
+                                <a href="#getRideInformation" >getRideInformation</a>
+                            </li>
+                            <li>
+                                <a href="#getRideInformationByRideId" >getRideInformationByRideId</a>
+                            </li>
+                            <li>
+                                <a href="#getRideInformationByTrainsetNr" >getRideInformationByTrainsetNr</a>
+                            </li>
+                            <li>
+                                <a href="#getRouteGeoJSON" >getRouteGeoJSON</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+            <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(sharedDataService: <a href="../injectables/SharedDataService.html" target="_self">SharedDataService</a>, apiService: <a href="../injectables/ApiService.html" target="_self">ApiService</a>, router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/services/ride-information.service.ts:34</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Define services</p>
+</div>
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>sharedDataService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/SharedDataService.html" target="_self" >SharedDataService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <p>Shares data through the application</p>
+
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>apiService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/ApiService.html" target="_self" >ApiService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <p>Requests for NS API</p>
+
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>router</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/router/Router" target="_blank" >Router</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <p>Router object</p>
+
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+            <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getDetailedInformationAboutOneTrain"></a>
+                    <span class="name">
+                        <span ><b>getDetailedInformationAboutOneTrain</b></span>
+                        <a href="#getDetailedInformationAboutOneTrain"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getDetailedInformationAboutOneTrain(rideId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="77"
+                            class="link-to-prism">src/app/services/ride-information.service.ts:77</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Get detailed information about a certain train</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>rideId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Observable&lt;DetailedTrainInformation&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>Observable<void> Detailed information about all trains</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getJourneyDetails"></a>
+                    <span class="name">
+                        <span ><b>getJourneyDetails</b></span>
+                        <a href="#getJourneyDetails"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getJourneyDetails(rideId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="147"
+                            class="link-to-prism">src/app/services/ride-information.service.ts:147</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>rideId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Observable&lt;Journey&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getRideInformation"></a>
+                    <span class="name">
+                        <span ><b>getRideInformation</b></span>
+                        <a href="#getRideInformation"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getRideInformation(rideId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="43"
+                            class="link-to-prism">src/app/services/ride-information.service.ts:43</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>rideId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Observable&lt;RideInformation&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getRideInformationByRideId"></a>
+                    <span class="name">
+                        <span ><b>getRideInformationByRideId</b></span>
+                        <a href="#getRideInformationByRideId"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getRideInformationByRideId(rideId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="109"
+                            class="link-to-prism">src/app/services/ride-information.service.ts:109</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Get train information by ride id, used by the resolver.
+Will check shared data and otherwise get data from the API</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>rideId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Ride id of the train</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Observable&lt;DetailedTrainInformation&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>Observable<DetailedTrainInformation> Train information</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getRideInformationByTrainsetNr"></a>
+                    <span class="name">
+                        <span ><b>getRideInformationByTrainsetNr</b></span>
+                        <a href="#getRideInformationByTrainsetNr"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getRideInformationByTrainsetNr(trainsetNr: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, rideId?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="129"
+                            class="link-to-prism">src/app/services/ride-information.service.ts:129</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Get train information by trainset number, used by the resolver.
+Trainset number will be converted to the ride id of the train that its part of.
+Will check shared data and otherwise get data from the API</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>trainsetNr</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Number of the trainset</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>rideId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        Yes
+                                    </td>
+
+
+                                    <td>
+                                        <p>Ride id of the train of which the trainset is a part of.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Observable&lt;DetailedTrainInformation&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>Observable<DetailedTrainInformation> Train information</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getRouteGeoJSON"></a>
+                    <span class="name">
+                        <span ><b>getRouteGeoJSON</b></span>
+                        <a href="#getRouteGeoJSON"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getRouteGeoJSON(stations: string[])</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="151"
+                            class="link-to-prism">src/app/services/ride-information.service.ts:151</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>stations</td>
+                                    <td>
+                                            <code>string[]</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Observable&lt;TrainTracksGeoJSON&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &quot;@angular/core&quot;;
+import { Router } from &quot;@angular/router&quot;;
+import { Observable, of, zip } from &quot;rxjs&quot;;
+import { catchError, concatMap, map, switchMap, take, tap } from &quot;rxjs/operators&quot;;
+import { Journey } from &quot;../models/ReisinformatieAPI&quot;;
+import { RideInformation } from &quot;../models/RideInformation&quot;;
+import { TrainTracksGeoJSON } from &quot;../models/SpoortkaartAPI&quot;;
+import { DetailedTrainInformation } from &quot;../models/VirtualTrainAPI&quot;;
+import { ApiService } from &quot;./api.service&quot;;
+import { SharedDataService } from &quot;./shared-data.service&quot;;
+
+/** Used by resolver, get train information from shared data or fetch from API */
+@Injectable({
+	providedIn: &quot;root&quot;,
+})
+export class RideInformationService {
+	/**
+	 * Define services
+	 * @param sharedDataService Shares data through the application
+	 * @param apiService Requests for NS API
+	 * @param router Router object
+	 */
+	constructor(private sharedDataService: SharedDataService, private apiService: ApiService, private router: Router) {}
+
+	getRideInformation(rideId: string): Observable&lt;RideInformation&gt; {
+		let journey: Journey;
+		return zip(
+			this.getRideInformationByRideId(rideId),
+			this.sharedDataService.getBasicInformationAboutAllStations(),
+			this.getJourneyDetails(rideId).pipe(
+				tap((resp) &#x3D;&gt; (journey &#x3D; resp)),
+				switchMap((details) &#x3D;&gt; {
+					const stationCodes: string[] &#x3D; [];
+					details.stops.forEach((stop) &#x3D;&gt; {
+						if (stop.id) {
+							const code &#x3D; stop.id.split(&quot;_&quot;)[0];
+							stationCodes.push(code);
+						}
+					});
+					return this.getRouteGeoJSON(stationCodes);
+				})
+			)
+		).pipe(
+			// eslint-disable-next-line @typescript-eslint/no-unused-vars
+			map(([train, _, routeTracks]) &#x3D;&gt; {
+				return {
+					trainInformation: train,
+					journey: journey,
+					routeGeoJSON: routeTracks,
+				};
+			})
+		);
+	}
+
+	/**
+	 * Get detailed information about a certain train
+	 * @returns Observable&lt;void&gt; Detailed information about all trains
+	 */
+	getDetailedInformationAboutOneTrain(rideId: string): Observable&lt;DetailedTrainInformation&gt; {
+		let trainInformation: DetailedTrainInformation;
+		return this.apiService.getBasicInformationAboutAllTrains().pipe(
+			take(1),
+			map((response) &#x3D;&gt; {
+				const trains &#x3D; response.data;
+				const allTrains &#x3D; trains.payload.treinen;
+				trainInformation &#x3D; allTrains.find((t) &#x3D;&gt; t.ritId &#x3D;&#x3D; rideId);
+				if (trainInformation &#x3D;&#x3D; null) {
+					throw Error(&#x60;Traininformation for train ${rideId} not found&#x60;);
+				}
+			}),
+			switchMap(() &#x3D;&gt; {
+				return this.apiService.getTrainDetailsByRideId(rideId);
+			}),
+			map((response) &#x3D;&gt; {
+				const detailedTrainInformation &#x3D; response.data;
+				trainInformation.trainDetails &#x3D; detailedTrainInformation.find(
+					(details) &#x3D;&gt; details.ritnummer.toString() &#x3D;&#x3D;&#x3D; trainInformation.ritId
+				);
+				return trainInformation;
+			}),
+			catchError(() &#x3D;&gt; void this.router.navigateByUrl(&quot;/404&quot;))
+		);
+	}
+
+	/**
+	 * Get train information by ride id, used by the resolver.
+	 * Will check shared data and otherwise get data from the API
+	 * @param rideId Ride id of the train
+	 * @return Observable&lt;DetailedTrainInformation&gt; Train information
+	 */
+	getRideInformationByRideId(rideId: string): Observable&lt;DetailedTrainInformation&gt; {
+		const allTrainInformation &#x3D; this.sharedDataService.trainInformationLastValue();
+		if (allTrainInformation !&#x3D; null &amp;&amp; allTrainInformation.length &gt; 0) {
+			console.log(&quot;finding in shared data&quot;);
+			const train &#x3D; allTrainInformation.find((train) &#x3D;&gt; train.ritId &#x3D;&#x3D; rideId);
+			if (train !&#x3D; null) {
+				return of(train);
+			}
+		}
+		return this.getDetailedInformationAboutOneTrain(rideId);
+	}
+
+	/**
+	 * Get train information by trainset number, used by the resolver.
+	 * Trainset number will be converted to the ride id of the train that its part of.
+	 * Will check shared data and otherwise get data from the API
+	 * @param trainsetNr Number of the trainset
+	 * @param rideId Ride id of the train of which the trainset is a part of.
+	 * @return Observable&lt;DetailedTrainInformation&gt; Train information
+	 */
+	getRideInformationByTrainsetNr(trainsetNr: number, rideId?: string): Observable&lt;DetailedTrainInformation&gt; {
+		const allTrainInformation &#x3D; this.sharedDataService.trainInformationLastValue();
+		if (allTrainInformation !&#x3D; null &amp;&amp; allTrainInformation.length &gt; 0 &amp;&amp; rideId) {
+			console.log(&quot;finding in shared data&quot;);
+			const train &#x3D; allTrainInformation.find((train) &#x3D;&gt; train.ritId &#x3D;&#x3D; rideId);
+			if (train !&#x3D; null) {
+				return of(train);
+			}
+		}
+		return this.apiService.convertTrainsetNrToRideId(trainsetNr.toString()).pipe(
+			concatMap((response) &#x3D;&gt; {
+				console.log(response.data);
+				return this.getDetailedInformationAboutOneTrain(response.data.toString());
+			}),
+			catchError(() &#x3D;&gt; void this.router.navigateByUrl(&quot;/404&quot;))
+		);
+	}
+
+	getJourneyDetails(rideId: string): Observable&lt;Journey&gt; {
+		return this.apiService.getJourneyDetails(rideId).pipe(map((response) &#x3D;&gt; response.data.payload));
+	}
+
+	getRouteGeoJSON(stations: string[]): Observable&lt;TrainTracksGeoJSON&gt; {
+		return this.apiService.getRouteGeoJSON(stations).pipe(map((response) &#x3D;&gt; response.data));
+	}
+}
+</code></pre>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
+            var COMPODOC_CURRENT_PAGE_URL = 'RideInformationService.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

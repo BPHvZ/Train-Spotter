@@ -1,0 +1,1612 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>TrainSpotter Documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+        <link rel="stylesheet" href="../styles/material.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">TrainSpotter Documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li
+  >
+  TrainMapSidebarComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li >
+            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li >
+            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li >
+            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/components/train-map/train-map-sidebar/train-map-sidebar.component.ts</code>
+</p>
+
+
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>Sidebar with disruption information</p>
+
+    </p>
+
+
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-train-map-sidebar</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./train-map-sidebar.component.sass</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./train-map-sidebar.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_focusedDisruptionMarker" >_focusedDisruptionMarker</a>
+                            </li>
+                            <li>
+                                <a href="#disruptionsLastUpdated$" >disruptionsLastUpdated$</a>
+                            </li>
+                            <li>
+                                <a href="#faSyncAlt" >faSyncAlt</a>
+                            </li>
+                            <li>
+                                <a href="#sidebarState$" >sidebarState$</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#flyToDisruption" >flyToDisruption</a>
+                            </li>
+                            <li>
+                                <a href="#getDisruptionCount" >getDisruptionCount</a>
+                            </li>
+                            <li>
+                                <a href="#onMouseEnterDisruptionCard" >onMouseEnterDisruptionCard</a>
+                            </li>
+                            <li>
+                                <a href="#onMouseLeaveDisruptionCard" >onMouseLeaveDisruptionCard</a>
+                            </li>
+                            <li>
+                                <a href="#sidebarAnimationFinished" >sidebarAnimationFinished</a>
+                            </li>
+                            <li>
+                                <a href="#sidebarAnimationStarted" >sidebarAnimationStarted</a>
+                            </li>
+                            <li>
+                                <a href="#toggleSidebar" >toggleSidebar</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Inputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#activeDisruptions" >activeDisruptions</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Outputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#updateDisruptions" >updateDisruptions</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(sharedDataService: <a href="../injectables/SharedDataService.html" target="_self">SharedDataService</a>, renderer: <a href="https://angular.io/api/core/Renderer2" target="_blank">Renderer2</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="104" class="link-to-prism">src/app/components/train-map/train-map-sidebar/train-map-sidebar.component.ts:104</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Define services</p>
+</div>
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>sharedDataService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/SharedDataService.html" target="_self" >SharedDataService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <p>Shares data through the application</p>
+
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>renderer</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/core/Renderer2" target="_blank" >Renderer2</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <p>Used to modify DOM elements</p>
+
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+    <section>
+    <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="activeDisruptions"></a>
+                        <b>activeDisruptions</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>DisruptionsList</code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="91" class="link-to-prism">src/app/components/train-map/train-map-sidebar/train-map-sidebar.component.ts:91</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Active disruptions</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+    <section>
+    <h3 id="outputs">Outputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="updateDisruptions"></a>
+                        <b>updateDisruptions</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://angular.io/api/core/EventEmitter" target="_blank" >EventEmitter</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="93" class="link-to-prism">src/app/components/train-map/train-map-sidebar/train-map-sidebar.component.ts:93</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Notify train map component to force update disruptions</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+    <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="flyToDisruption"></a>
+                    <span class="name">
+                        <span ><b>flyToDisruption</b></span>
+                        <a href="#flyToDisruption"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>flyToDisruption(disruption: DisruptionBase)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="185"
+                            class="link-to-prism">src/app/components/train-map/train-map-sidebar/train-map-sidebar.component.ts:185</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Fly to a disruption on the map
+Close the sidebar on small screens</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>disruption</td>
+                                    <td>
+                                            <code>DisruptionBase</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Disruption to fly to</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getDisruptionCount"></a>
+                    <span class="name">
+                        <span ><b>getDisruptionCount</b></span>
+                        <a href="#getDisruptionCount"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getDisruptionCount(type: "CALAMITY" | "DISRUPTION" | "MAINTENANCE")</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="118"
+                            class="link-to-prism">src/app/components/train-map/train-map-sidebar/train-map-sidebar.component.ts:118</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Count disruption by type</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>type</td>
+                                    <td>
+                                            <code>&quot;CALAMITY&quot; | &quot;DISRUPTION&quot; | &quot;MAINTENANCE&quot;</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Disruption type to count</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>number Number of disruptions</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onMouseEnterDisruptionCard"></a>
+                    <span class="name">
+                        <span ><b>onMouseEnterDisruptionCard</b></span>
+                        <a href="#onMouseEnterDisruptionCard"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onMouseEnterDisruptionCard(event: MouseEvent, disruption: DisruptionBase)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="197"
+                            class="link-to-prism">src/app/components/train-map/train-map-sidebar/train-map-sidebar.component.ts:197</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Focus on a disruption card when hovering on it</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>event</td>
+                                    <td>
+                                            <code>MouseEvent</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Mouse event</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>disruption</td>
+                                    <td>
+                                            <code>DisruptionBase</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Disruption of the card</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onMouseLeaveDisruptionCard"></a>
+                    <span class="name">
+                        <span ><b>onMouseLeaveDisruptionCard</b></span>
+                        <a href="#onMouseLeaveDisruptionCard"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onMouseLeaveDisruptionCard(event: MouseEvent, disruption: DisruptionBase)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="217"
+                            class="link-to-prism">src/app/components/train-map/train-map-sidebar/train-map-sidebar.component.ts:217</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Loose focus on a disruption card when not hovering over it anymore</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>event</td>
+                                    <td>
+                                            <code>MouseEvent</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Mouse event</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>disruption</td>
+                                    <td>
+                                            <code>DisruptionBase</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Disruption of the card</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="sidebarAnimationFinished"></a>
+                    <span class="name">
+                        <span ><b>sidebarAnimationFinished</b></span>
+                        <a href="#sidebarAnimationFinished"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>sidebarAnimationFinished(event: <a href="https://angular.io/api/animations/AnimationEvent" target="_blank">AnimationEvent</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="129"
+                            class="link-to-prism">src/app/components/train-map/train-map-sidebar/train-map-sidebar.component.ts:129</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Is run when the sidebar animation has finished
+Sets the css display mode to none to not occupy space on the train map
+NOTE: without this, the area of the open sidebar can not be interacted with</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>event</td>
+                                    <td>
+                                                <code><a href="https://angular.io/api/animations/AnimationEvent" target="_blank" >AnimationEvent</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Animation event</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="sidebarAnimationStarted"></a>
+                    <span class="name">
+                        <span ><b>sidebarAnimationStarted</b></span>
+                        <a href="#sidebarAnimationStarted"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>sidebarAnimationStarted(event: <a href="https://angular.io/api/animations/AnimationEvent" target="_blank">AnimationEvent</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="156"
+                            class="link-to-prism">src/app/components/train-map/train-map-sidebar/train-map-sidebar.component.ts:156</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Set the css display mode to block, e.g. visible before the open animation</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>event</td>
+                                    <td>
+                                                <code><a href="https://angular.io/api/animations/AnimationEvent" target="_blank" >AnimationEvent</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Animation event</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="toggleSidebar"></a>
+                    <span class="name">
+                        <span ><b>toggleSidebar</b></span>
+                        <a href="#toggleSidebar"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>toggleSidebar()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="176"
+                            class="link-to-prism">src/app/components/train-map/train-map-sidebar/train-map-sidebar.component.ts:176</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Open or close the sidebar</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section>
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_focusedDisruptionMarker"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_focusedDisruptionMarker</b></span>
+                        <a href="#_focusedDisruptionMarker"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>MarkerComponent</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="104" class="link-to-prism">src/app/components/train-map/train-map-sidebar/train-map-sidebar.component.ts:104</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Current disruption marker that is focused</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="disruptionsLastUpdated$"></a>
+                    <span class="name">
+                        <span ><b>disruptionsLastUpdated$</b></span>
+                        <a href="#disruptionsLastUpdated$"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Observable&lt;Date&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>this.sharedDataService.disruptionsLastUpdated$</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="101" class="link-to-prism">src/app/components/train-map/train-map-sidebar/train-map-sidebar.component.ts:101</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Date when disruptions have been last updated</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="faSyncAlt"></a>
+                    <span class="name">
+                        <span ><b>faSyncAlt</b></span>
+                        <a href="#faSyncAlt"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>faSyncAlt</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="98" class="link-to-prism">src/app/components/train-map/train-map-sidebar/train-map-sidebar.component.ts:98</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>FontAwesome sync icon</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="sidebarState$"></a>
+                    <span class="name">
+                        <span ><b>sidebarState$</b></span>
+                        <a href="#sidebarState$"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Observable&lt;&quot;open&quot; | &quot;closed&quot;&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>this.sharedDataService.sidebarState$</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="96" class="link-to-prism">src/app/components/train-map/train-map-sidebar/train-map-sidebar.component.ts:96</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Sidebar open/closed state</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
+	animate,
+	animateChild,
+	AnimationEvent,
+	group,
+	query,
+	state,
+	style,
+	transition,
+	trigger,
+} from &quot;@angular/animations&quot;;
+import { Component, EventEmitter, Input, Output, Renderer2, RendererStyleFlags2 } from &quot;@angular/core&quot;;
+import { faSyncAlt } from &quot;@fortawesome/free-solid-svg-icons&quot;;
+import { MarkerComponent } from &quot;ngx-mapbox-gl/lib/marker/marker.component&quot;;
+import { Observable } from &quot;rxjs&quot;;
+import { DisruptionBase, DisruptionsList } from &quot;../../../models/ReisinformatieAPI&quot;;
+import { SharedDataService } from &quot;../../../services/shared-data.service&quot;;
+
+/**
+ * Sidebar with disruption information
+ * */
+@Component({
+	selector: &quot;app-train-map-sidebar&quot;,
+	templateUrl: &quot;./train-map-sidebar.component.html&quot;,
+	styleUrls: [&quot;./train-map-sidebar.component.sass&quot;],
+	animations: [
+		trigger(&quot;openClose-sidebar&quot;, [
+			state(
+				&quot;open&quot;,
+				style({
+					transform: &quot;translate(0%)&quot;,
+				})
+			),
+			state(
+				&quot;closed&quot;,
+				style({
+					transform: &quot;translate(calc(100% - 30px))&quot;,
+				})
+			),
+			transition(
+				&quot;open &lt;&#x3D;&gt; closed&quot;,
+				group([
+					query(&quot;@sidebar-shadow&quot;, animateChild()),
+					query(&quot;@rotatedState&quot;, animateChild()),
+					animate(&quot;0.5s cubic-bezier(0.55, 0.31, 0.15, 0.93)&quot;),
+				])
+			),
+		]),
+		trigger(&quot;sidebar-shadow&quot;, [
+			state(
+				&quot;open&quot;,
+				style({
+					boxShadow: &quot;-15px 0 1rem -2px rgba(0, 0, 0, 0.15)&quot;,
+				})
+			),
+			state(
+				&quot;closed&quot;,
+				style({
+					boxShadow: &quot;0 0 0 0 rgba(0, 0, 0, 0.15)&quot;,
+				})
+			),
+			transition(&quot;open &lt;&#x3D;&gt; closed&quot;, animate(&quot;0.5s cubic-bezier(0.55, 0.31, 0.15, 0.93)&quot;)),
+		]),
+		trigger(&quot;rotatedState&quot;, [
+			state(&quot;closed&quot;, style({ transform: &quot;rotate(90deg)&quot; })),
+			state(&quot;open&quot;, style({ transform: &quot;rotate(-90deg)&quot; })),
+			transition(&quot;open &lt;&#x3D;&gt; closed&quot;, animate(&quot;0.5s cubic-bezier(0.55, 0.31, 0.15, 0.93)&quot;)),
+		]),
+	],
+})
+export class TrainMapSidebarComponent {
+	/**Active disruptions*/
+	@Input() activeDisruptions: DisruptionsList;
+	/**Notify train map component to force update disruptions*/
+	@Output() updateDisruptions &#x3D; new EventEmitter();
+
+	/**Sidebar open/closed state*/
+	sidebarState$: Observable&lt;&quot;open&quot; | &quot;closed&quot;&gt; &#x3D; this.sharedDataService.sidebarState$;
+	/**FontAwesome sync icon*/
+	faSyncAlt &#x3D; faSyncAlt;
+
+	/**Date when disruptions have been last updated*/
+	disruptionsLastUpdated$: Observable&lt;Date&gt; &#x3D; this.sharedDataService.disruptionsLastUpdated$;
+
+	/**Current disruption marker that is focused*/
+	private _focusedDisruptionMarker: MarkerComponent &#x3D; null;
+
+	/**
+	 * Define services
+	 * @param sharedDataService Shares data through the application
+	 * @param renderer Used to modify DOM elements
+	 */
+	constructor(private sharedDataService: SharedDataService, private renderer: Renderer2) {}
+
+	/**
+	 * Count disruption by type
+	 * @param type Disruption type to count
+	 * @return number Number of disruptions
+	 */
+	getDisruptionCount(type: &quot;CALAMITY&quot; | &quot;DISRUPTION&quot; | &quot;MAINTENANCE&quot;): number {
+		const disruptions &#x3D; this.activeDisruptions.filter((c) &#x3D;&gt; c.type &#x3D;&#x3D;&#x3D; type);
+		return disruptions.length;
+	}
+
+	/**
+	 * Is run when the sidebar animation has finished
+	 * Sets the css display mode to none to not occupy space on the train map
+	 * NOTE: without this, the area of the open sidebar can not be interacted with
+	 * @param event Animation event
+	 */
+	sidebarAnimationFinished(event: AnimationEvent): void {
+		const sidebarComponent &#x3D; document.getElementById(&quot;sidebar-component&quot;);
+		const sidebarWrapper &#x3D; document.getElementById(&quot;sidebar-wrapper&quot;);
+		const sidebarContainer &#x3D; document.getElementById(&quot;sidebar-container&quot;);
+		const sidebar &#x3D; document.getElementById(&quot;sidebar&quot;);
+
+		this.renderer.setStyle(sidebarContainer, &quot;willChange&quot;, &quot;auto&quot;);
+		if (event.toState &#x3D;&#x3D;&#x3D; &quot;closed&quot;) {
+			this.renderer.setStyle(sidebarWrapper, &quot;position&quot;, &quot;absolute&quot;);
+			this.renderer.setStyle(sidebarWrapper, &quot;right&quot;, &quot;0&quot;);
+			this.renderer.setStyle(sidebarWrapper, &quot;height&quot;, &quot;unset&quot;);
+			this.renderer.setStyle(sidebarWrapper, &quot;top&quot;, &quot;calc(50% - (135px / 2))&quot;);
+			this.renderer.setStyle(sidebarWrapper, &quot;padding&quot;, &quot;30px 0 30px 30px&quot;);
+			this.renderer.setStyle(sidebar, &quot;display&quot;, &quot;none&quot;, RendererStyleFlags2.Important);
+
+			// FIX - redraws sidebar in safari. Otherwise still occupies the sidebar area and no interaction is available
+			const display &#x3D; sidebarComponent.style.display;
+			this.renderer.setStyle(sidebarComponent, &quot;display&quot;, &quot;none&quot;);
+			console.log(sidebarComponent.offsetHeight);
+			this.renderer.setStyle(sidebarComponent, &quot;display&quot;, display);
+		}
+	}
+
+	/**
+	 * Set the css display mode to block, e.g. visible before the open animation
+	 * @param event Animation event
+	 */
+	sidebarAnimationStarted(event: AnimationEvent): void {
+		const sidebarWrapper &#x3D; document.getElementById(&quot;sidebar-wrapper&quot;);
+		const sidebarContainer &#x3D; document.getElementById(&quot;sidebar-container&quot;);
+		const sidebar &#x3D; document.getElementById(&quot;sidebar&quot;);
+
+		this.renderer.setStyle(sidebarWrapper, &quot;position&quot;, &quot;relative&quot;);
+		this.renderer.setStyle(sidebarWrapper, &quot;right&quot;, &quot;unset&quot;);
+		this.renderer.setStyle(sidebarWrapper, &quot;height&quot;, &quot;100%&quot;);
+		this.renderer.setStyle(sidebarWrapper, &quot;top&quot;, &quot;unset&quot;);
+		this.renderer.setStyle(sidebarWrapper, &quot;padding&quot;, &quot;0 0 0 30px&quot;);
+		this.renderer.setStyle(sidebarContainer, &quot;willChange&quot;, &quot;contents&quot;);
+
+		if (event.toState &#x3D;&#x3D;&#x3D; &quot;open&quot;) {
+			this.renderer.setStyle(sidebar, &quot;display&quot;, &quot;block&quot;, RendererStyleFlags2.Important);
+		}
+	}
+
+	/**
+	 * Open or close the sidebar
+	 */
+	toggleSidebar(): void {
+		this.sharedDataService.toggleSidebar();
+	}
+
+	/**
+	 * Fly to a disruption on the map
+	 * Close the sidebar on small screens
+	 * @param disruption Disruption to fly to
+	 */
+	flyToDisruption(disruption: DisruptionBase): void {
+		if (this.sharedDataService.screenWidth &lt;&#x3D; 767) {
+			this.toggleSidebar();
+		}
+		this.sharedDataService.flyToDisruption(disruption);
+	}
+
+	/**
+	 * Focus on a disruption card when hovering on it
+	 * @param event Mouse event
+	 * @param disruption Disruption of the card
+	 */
+	onMouseEnterDisruptionCard(event: MouseEvent, disruption: DisruptionBase): void {
+		// find disruption on map and hover
+		event.preventDefault();
+		const markers &#x3D; Array.from(this.sharedDataService.disruptionMarkerElements);
+		const marker &#x3D; markers.find((m) &#x3D;&gt; m.feature.properties.id &#x3D;&#x3D; disruption.id);
+		if (marker) {
+			this._focusedDisruptionMarker &#x3D; marker;
+			const markerElement &#x3D; marker.content.nativeElement as HTMLElement;
+			const markerChild &#x3D; markerElement.firstChild.firstChild as HTMLElement;
+			this.renderer.setStyle(markerElement, &quot;zIndex&quot;, &quot;1&quot;);
+			markerChild.focus();
+		}
+		event.preventDefault();
+	}
+
+	/**
+	 * Loose focus on a disruption card when not hovering over it anymore
+	 * @param event Mouse event
+	 * @param disruption Disruption of the card
+	 */
+	onMouseLeaveDisruptionCard(event: MouseEvent, disruption: DisruptionBase): void {
+		// find disruption on map and hover
+		event.preventDefault();
+		let marker &#x3D; this._focusedDisruptionMarker;
+		if (marker &#x3D;&#x3D;&#x3D; null) {
+			const markers &#x3D; Array.from(this.sharedDataService.disruptionMarkerElements);
+			marker &#x3D; markers.find((m) &#x3D;&gt; m.feature.properties.id &#x3D;&#x3D; disruption.id);
+		}
+		if (marker) {
+			const markerElement &#x3D; marker.content.nativeElement as HTMLElement;
+			const markerChild &#x3D; markerElement.firstChild.firstChild as HTMLElement;
+			markerChild.blur();
+			this.renderer.setStyle(markerElement, &quot;zIndex&quot;, &quot;unset&quot;);
+		}
+		event.preventDefault();
+	}
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;!--
+  ~ trainSpotter
+  ~ Copyright (C) 2021 bart
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.
+  --&gt;
+
+&lt;div id&#x3D;&quot;sidebar-wrapper&quot; *ngIf&#x3D;&quot;sidebarState$ | async as sidebarState&quot;&gt;
+	&lt;div
+		(@openClose-sidebar.start)&#x3D;&quot;sidebarAnimationStarted($event)&quot;
+		(@openClose-sidebar.done)&#x3D;&quot;sidebarAnimationFinished($event)&quot;
+		[@openClose-sidebar]&#x3D;&quot;sidebarState&quot;
+		id&#x3D;&quot;sidebar-container&quot;
+		class&#x3D;&quot;mat-typography&quot;
+	&gt;
+		&lt;div (click)&#x3D;&quot;toggleSidebar()&quot; class&#x3D;&quot;frosted left-shadow&quot; id&#x3D;&quot;sidebar-arrow&quot;&gt;
+			&lt;span [@rotatedState]&#x3D;&quot;sidebarState&quot; class&#x3D;&quot;material-icons&quot; style&#x3D;&quot;margin-top: 85%; font-size: 26px&quot;&gt;
+				expand_more
+			&lt;/span&gt;
+		&lt;/div&gt;
+		&lt;div [@sidebar-shadow]&#x3D;&quot;sidebarState&quot; class&#x3D;&quot;frosted&quot; id&#x3D;&quot;sidebar&quot;&gt;
+			&lt;div class&#x3D;&quot;container&quot; id&#x3D;&quot;sidebar-content&quot;&gt;
+				&lt;div class&#x3D;&quot;col&quot;&gt;
+					&lt;div class&#x3D;&quot;row justify-content-around p-2&quot; style&#x3D;&quot;align-items: center&quot;&gt;
+						&lt;button (click)&#x3D;&quot;toggleSidebar()&quot; class&#x3D;&quot;button button--close width-fit&quot;&gt;
+							&lt;strong&gt;&amp;times;&lt;/strong&gt;
+						&lt;/button&gt;
+						&lt;div *ngIf&#x3D;&quot;disruptionsLastUpdated$ | async as date&quot; class&#x3D;&quot;text-center width-fit&quot;&gt;
+							&lt;span style&#x3D;&quot;font-size: small&quot;&gt;Bijgewerkt op:&lt;br /&gt;&lt;/span&gt;
+							{{ date | date: &quot;EEEE d LLL HH:mm&quot; }}
+						&lt;/div&gt;
+						&lt;button
+							(click)&#x3D;&quot;updateDisruptions.emit(null)&quot;
+							class&#x3D;&quot;button button--nsYellow button--close width-fit&quot;
+						&gt;
+							&lt;strong&gt;&lt;fa-icon [icon]&#x3D;&quot;faSyncAlt&quot; style&#x3D;&quot;font-size: small&quot;&gt;&lt;/fa-icon&gt;&lt;/strong&gt;
+						&lt;/button&gt;
+					&lt;/div&gt;
+					&lt;ng-container *ngIf&#x3D;&quot;activeDisruptions &#x3D;&#x3D;&#x3D; null || activeDisruptions.length &#x3D;&#x3D;&#x3D; 0&quot;&gt;
+						&lt;div class&#x3D;&quot;d-flex flex-column flex-wrap mb-3 mt-2 disruption-totals-border p-3&quot;&gt;
+							&lt;div&gt;Geen storingen en werkzaamheden op dit moment&lt;/div&gt;
+						&lt;/div&gt;
+					&lt;/ng-container&gt;
+					&lt;ng-container *ngIf&#x3D;&quot;getDisruptionCount(&#x27;MAINTENANCE&#x27;) + getDisruptionCount(&#x27;DISRUPTION&#x27;) &gt; 0&quot;&gt;
+						&lt;div class&#x3D;&quot;d-flex flex-column mb-3 mt-2 disruption-totals-border p-1&quot;&gt;
+							&lt;ng-container *ngIf&#x3D;&quot;getDisruptionCount(&#x27;DISRUPTION&#x27;) as count&quot;&gt;
+								&lt;div *ngIf&#x3D;&quot;count &gt; 0&quot; class&#x3D;&quot;color-disruption&quot;&gt;
+									&lt;div style&#x3D;&quot;display: inline&quot;&gt;
+										&lt;div
+											id&#x3D;&quot;disruption-svg&quot;
+											[inlineSVG]&#x3D;&quot;&#x27;../../assets/alert--35x35.svg&#x27;&quot;
+											[setSVGAttributes]&#x3D;&quot;{&#x27;width&#x27;: &#x27;30px&#x27;, &#x27;height&#x27;: &#x27;30px&#x27;}&quot;
+										&gt;&lt;/div&gt;
+									&lt;/div&gt;
+									{{count}} {{count &gt; 1 ? &#x27;verstoringen&#x27; : &#x27;verstoring&#x27;}}
+								&lt;/div&gt;
+							&lt;/ng-container&gt;
+							&lt;ng-container
+								*ngIf&#x3D;&quot;getDisruptionCount(&#x27;MAINTENANCE&#x27;) &gt; 0 &amp;&amp; getDisruptionCount(&#x27;DISRUPTION&#x27;) &gt; 0&quot;
+							&gt;
+								&lt;div class&#x3D;&quot;dropdown-divider&quot;&gt;&lt;/div&gt;
+							&lt;/ng-container&gt;
+							&lt;ng-container *ngIf&#x3D;&quot;getDisruptionCount(&#x27;MAINTENANCE&#x27;) as count&quot;&gt;
+								&lt;div *ngIf&#x3D;&quot;count &gt; 0&quot; class&#x3D;&quot;color-maintenance&quot;&gt;
+									&lt;div style&#x3D;&quot;display: inline&quot;&gt;
+										&lt;div
+											id&#x3D;&quot;maintenance-svg&quot;
+											[inlineSVG]&#x3D;&quot;&#x27;../../assets/maintenance--35x35.svg&#x27;&quot;
+											[setSVGAttributes]&#x3D;&quot;{&#x27;width&#x27;: &#x27;30px&#x27;, &#x27;height&#x27;: &#x27;30px&#x27;}&quot;
+										&gt;&lt;/div&gt;
+									&lt;/div&gt;
+									{{count}} {{count &gt; 1 ? &#x27;werkzaamheden&#x27; : &#x27;werkzaamheid&#x27;}}
+								&lt;/div&gt;
+							&lt;/ng-container&gt;
+						&lt;/div&gt;
+					&lt;/ng-container&gt;
+					&lt;div class&#x3D;&quot;row&quot;&gt;
+						&lt;div *ngIf&#x3D;&quot;activeDisruptions&quot;&gt;
+							&lt;div
+								*ngFor&#x3D;&quot;let disruption of activeDisruptions&quot;
+								[ngSwitch]&#x3D;&quot;disruption.type&quot;
+								[ngClass]&#x3D;&quot;{&#x27;disruption-cards--maintenance-border&#x27;: disruption.type &#x3D;&#x3D;&#x3D; &#x27;MAINTENANCE&#x27;}&quot;
+								class&#x3D;&quot;disruption-cards card card-max-width bg-light mb-3&quot;
+								tabindex&#x3D;&quot;0&quot;
+							&gt;
+								&lt;app-calamity-item
+									[calamity]&#x3D;&quot;$any(disruption)&quot;
+									*ngSwitchCase&#x3D;&quot;&#x27;CALAMITY&#x27;&quot;
+								&gt;&lt;/app-calamity-item&gt;
+								&lt;app-disruption-item
+									tabindex&#x3D;&quot;0&quot;
+									[disruption]&#x3D;&quot;$any(disruption)&quot;
+									(mouseenter)&#x3D;&quot;onMouseEnterDisruptionCard($event, disruption)&quot;
+									(mouseleave)&#x3D;&quot;onMouseLeaveDisruptionCard($event, disruption)&quot;
+									(click)&#x3D;&quot;flyToDisruption(disruption)&quot;
+									style&#x3D;&quot;cursor: pointer&quot;
+									*ngSwitchDefault
+								&gt;&lt;/app-disruption-item&gt;
+							&lt;/div&gt;
+						&lt;/div&gt;
+					&lt;/div&gt;
+				&lt;/div&gt;
+			&lt;/div&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-styleData">
+                <p class="comment">
+                    <code>./train-map-sidebar.component.sass</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">/*!
+ / trainSpotter
+ / Copyright (C) 2021 bart
+ /
+ / This program is free software: you can redistribute it and/or modify
+ / it under the terms of the GNU General Public License as published by
+ / the Free Software Foundation, either version 3 of the License, or
+ / (at your option) any later version.
+ /
+ / This program is distributed in the hope that it will be useful,
+ / but WITHOUT ANY WARRANTY; without even the implied warranty of
+ / MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ / GNU General Public License for more details.
+ /
+ / You should have received a copy of the GNU General Public License
+ / along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.
+ /
+@import &quot;../../../../styles/colors&quot;
+
+.frosted
+  background-color: rgba(255, 255, 255, .9)
+
+@supports (backdrop-filter: blur(10px)) or (-webkit-backdrop-filter: blur(10))
+  .frosted
+    -webkit-backdrop-filter: blur(20px) !important
+    backdrop-filter: blur(20px) !important
+    background-color: rgba(255, 255, 255, 0.5) !important
+
+.left-shadow
+  box-shadow: -15px 0 1rem -2px rgba(0, 0, 0, 0.15)
+
+#close-button
+  margin: 8px 0 8px 0
+
+#sidebar-wrapper
+  height: 100%
+  overflow: hidden
+
+#sidebar-container
+  height: 100%
+  float: right
+
+#sidebar
+  height: 100%
+  max-height: 100%
+  transform-origin: right
+  float: right
+
+#sidebar-content
+  overflow: scroll
+  height: 100%
+  min-width: 260px
+  width: max-content
+  transform-origin: right
+
+#sidebar-arrow
+  height: 75px
+  width: 30px
+  border-top-left-radius: 8px
+  border-bottom-left-radius: 8px
+  top: calc(50% - (75px / 2))
+  text-align: center
+  cursor: pointer
+  float: left
+  position: relative
+  transform-origin: right
+  z-index: 1
+
+.card-max-width
+  max-width: 18rem
+
+@media (max-width: 767px)
+  .card-max-width
+    max-width: none
+
+@media (max-width: 600px)
+  .container
+    max-width: calc(100vw - 60px)
+
+.disruption-cards
+  box-shadow: 0 0.1875rem 0.375rem rgb(0 48 130 / 8%)
+  transition: transform .4s ease-out
+  background: #fff
+  width: 100%
+
+  &amp;:hover, &amp;:focus
+    box-shadow: 0 0.25rem 0.75rem rgb(0 48 130 / 25%)
+    border: none
+    border-bottom: .125rem solid $ns-acc-red
+    transform: scale(1.03)
+
+  &amp;--maintenance-border
+    &amp;:hover, &amp;:focus
+      border-bottom: .125rem solid $ns-acc-orange
+
+#maintenance-svg
+  position: inherit
+  display: inline
+  filter: invert(50%) sepia(45%) saturate(7499%) hue-rotate(5deg) brightness(107%) contrast(101%)
+
+#disruption-svg
+  position: inherit
+  display: inline
+  filter: invert(30%) sepia(93%) saturate(7490%) hue-rotate(335deg) brightness(88%) contrast(112%)
+
+.disruption-totals-border
+  border-radius: .5rem
+  border: .0625rem solid #e6e6e9
+
+.width-fit
+  width: fit-content
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><!--  ~ trainSpotter  ~ Copyright (C) 2021 bart  ~  ~ This program is free software: you can redistribute it and/or modify  ~ it under the terms of the GNU General Public License as published by  ~ the Free Software Foundation, either version 3 of the License, or  ~ (at your option) any later version.  ~  ~ This program is distributed in the hope that it will be useful,  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  ~ GNU General Public License for more details.  ~  ~ You should have received a copy of the GNU General Public License  ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.  --><div id="sidebar-wrapper" *ngIf="sidebarState$ | async as sidebarState">	<div		(@openClose-sidebar.start)="sidebarAnimationStarted($event)"		(@openClose-sidebar.done)="sidebarAnimationFinished($event)"		[@openClose-sidebar]="sidebarState"		id="sidebar-container"		class="mat-typography"	>		<div (click)="toggleSidebar()" class="frosted left-shadow" id="sidebar-arrow">			<span [@rotatedState]="sidebarState" class="material-icons" style="margin-top: 85%; font-size: 26px">				expand_more			</span>		</div>		<div [@sidebar-shadow]="sidebarState" class="frosted" id="sidebar">			<div class="container" id="sidebar-content">				<div class="col">					<div class="row justify-content-around p-2" style="align-items: center">						<button (click)="toggleSidebar()" class="button button--close width-fit">							<strong>&times;</strong>						</button>						<div *ngIf="disruptionsLastUpdated$ | async as date" class="text-center width-fit">							<span style="font-size: small">Bijgewerkt op:<br /></span>							{{ date | date: "EEEE d LLL HH:mm" }}						</div>						<button							(click)="updateDisruptions.emit(null)"							class="button button--nsYellow button--close width-fit"						>							<strong><fa-icon [icon]="faSyncAlt" style="font-size: small"></fa-icon></strong>						</button>					</div>					<ng-container *ngIf="activeDisruptions === null || activeDisruptions.length === 0">						<div class="d-flex flex-column flex-wrap mb-3 mt-2 disruption-totals-border p-3">							<div>Geen storingen en werkzaamheden op dit moment</div>						</div>					</ng-container>					<ng-container *ngIf="getDisruptionCount(\'MAINTENANCE\') + getDisruptionCount(\'DISRUPTION\') > 0">						<div class="d-flex flex-column mb-3 mt-2 disruption-totals-border p-1">							<ng-container *ngIf="getDisruptionCount(\'DISRUPTION\') as count">								<div *ngIf="count > 0" class="color-disruption">									<div style="display: inline">										<div											id="disruption-svg"											[inlineSVG]="\'../../assets/alert--35x35.svg\'"											[setSVGAttributes]="{\'width\': \'30px\', \'height\': \'30px\'}"										></div>									</div>									{{count}} {{count > 1 ? \'verstoringen\' : \'verstoring\'}}								</div>							</ng-container>							<ng-container								*ngIf="getDisruptionCount(\'MAINTENANCE\') > 0 && getDisruptionCount(\'DISRUPTION\') > 0"							>								<div class="dropdown-divider"></div>							</ng-container>							<ng-container *ngIf="getDisruptionCount(\'MAINTENANCE\') as count">								<div *ngIf="count > 0" class="color-maintenance">									<div style="display: inline">										<div											id="maintenance-svg"											[inlineSVG]="\'../../assets/maintenance--35x35.svg\'"											[setSVGAttributes]="{\'width\': \'30px\', \'height\': \'30px\'}"										></div>									</div>									{{count}} {{count > 1 ? \'werkzaamheden\' : \'werkzaamheid\'}}								</div>							</ng-container>						</div>					</ng-container>					<div class="row">						<div *ngIf="activeDisruptions">							<div								*ngFor="let disruption of activeDisruptions"								[ngSwitch]="disruption.type"								[ngClass]="{\'disruption-cards--maintenance-border\': disruption.type === \'MAINTENANCE\'}"								class="disruption-cards card card-max-width bg-light mb-3"								tabindex="0"							>								<app-calamity-item									[calamity]="$any(disruption)"									*ngSwitchCase="\'CALAMITY\'"								></app-calamity-item>								<app-disruption-item									tabindex="0"									[disruption]="$any(disruption)"									(mouseenter)="onMouseEnterDisruptionCard($event, disruption)"									(mouseleave)="onMouseLeaveDisruptionCard($event, disruption)"									(click)="flyToDisruption(disruption)"									style="cursor: pointer"									*ngSwitchDefault								></app-disruption-item>							</div>						</div>					</div>				</div>			</div>		</div>	</div></div></div>'
+    var COMPONENTS = [{'name': 'AboutComponent', 'selector': 'app-about'},{'name': 'AllStationsComponent', 'selector': 'app-all-stations'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'CalamityItemComponent', 'selector': 'app-calamity-item'},{'name': 'DisruptionItemComponent', 'selector': 'app-disruption-item'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'MainLayoutComponent', 'selector': 'app-main-layout'},{'name': 'PageNotFoundComponent', 'selector': 'app-page-not-found'},{'name': 'RideInformationComponent', 'selector': 'app-ride-information'},{'name': 'StationPopupComponent', 'selector': 'app-station-popup'},{'name': 'ToastsContainerComponent', 'selector': 'app-toasts-container'},{'name': 'TrainMapComponent', 'selector': 'app-train-map'},{'name': 'TrainMapSidebarComponent', 'selector': 'app-train-map-sidebar'},{'name': 'TrainPopupComponent', 'selector': 'app-train-popup'},{'name': 'TrainsetInformationComponent', 'selector': 'app-trainset-information'}];
+    var DIRECTIVES = [{'name': 'NgbdSortableHeaderDirective', 'selector': '[appNgbdSortableHeader]'},{'name': 'NgInitDirective', 'selector': '[ngInit]'}];
+    var ACTUAL_COMPONENT = {'name': 'TrainMapSidebarComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'TrainMapSidebarComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

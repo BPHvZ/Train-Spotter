@@ -1,0 +1,3162 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>TrainSpotter Documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+        <link rel="stylesheet" href="../styles/material.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">TrainSpotter Documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li
+  >
+  RideInformationComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li >
+            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li >
+            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li >
+            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/components/ride-information/ride-information.component.ts</code>
+</p>
+
+
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>Show information about a train</p>
+
+    </p>
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+    </p>
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-ride-information</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./ride-information.component.sass</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./ride-information.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#countdown" >countdown</a>
+                            </li>
+                            <li>
+                                <a href="#countdownTimer" >countdownTimer</a>
+                            </li>
+                            <li>
+                                <a href="#dataSource" >dataSource</a>
+                            </li>
+                            <li>
+                                <a href="#directionArrowStyle" >directionArrowStyle</a>
+                            </li>
+                            <li>
+                                <a href="#displayedColumns" >displayedColumns</a>
+                            </li>
+                            <li>
+                                <a href="#faFrown" >faFrown</a>
+                            </li>
+                            <li>
+                                <a href="#faMeh" >faMeh</a>
+                            </li>
+                            <li>
+                                <a href="#faSmile" >faSmile</a>
+                            </li>
+                            <li>
+                                <a href="#isUpdatingMapData" >isUpdatingMapData</a>
+                            </li>
+                            <li>
+                                <a href="#journey" >journey</a>
+                            </li>
+                            <li>
+                                <a href="#journeyMap" >journeyMap</a>
+                            </li>
+                            <li>
+                                <a href="#lat" >lat</a>
+                            </li>
+                            <li>
+                                <a href="#lng" >lng</a>
+                            </li>
+                            <li>
+                                <a href="#mapStyle" >mapStyle</a>
+                            </li>
+                            <li>
+                                <a href="#nextStation" >nextStation</a>
+                            </li>
+                            <li>
+                                <a href="#passedStations" >passedStations</a>
+                            </li>
+                            <li>
+                                <a href="#progressTracksLayerData" >progressTracksLayerData</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#rideId" >rideId</a>
+                            </li>
+                            <li>
+                                <a href="#rideInformation" >rideInformation</a>
+                            </li>
+                            <li>
+                                <a href="#routeTracksLayerData" >routeTracksLayerData</a>
+                            </li>
+                            <li>
+                                <a href="#selectedMarker" >selectedMarker</a>
+                            </li>
+                            <li>
+                                <a href="#stopsLayerData" >stopsLayerData</a>
+                            </li>
+                            <li>
+                                <a href="#trainIconOnMap" >trainIconOnMap</a>
+                            </li>
+                            <li>
+                                <a href="#trainInformation" >trainInformation</a>
+                            </li>
+                            <li>
+                                <a href="#trainsLayerData" >trainsLayerData</a>
+                            </li>
+                            <li>
+                                <a href="#updateTrainsIsPaused" >updateTrainsIsPaused</a>
+                            </li>
+                            <li>
+                                <a href="#zoom" >zoom</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#addTrainToMap" >addTrainToMap</a>
+                            </li>
+                            <li>
+                                <a href="#flyToStation" >flyToStation</a>
+                            </li>
+                            <li>
+                                <a href="#getNumberFromCrowdForecast" >getNumberFromCrowdForecast</a>
+                            </li>
+                            <li>
+                                <a href="#minuteDifference" >minuteDifference</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#onMapLoad" >onMapLoad</a>
+                            </li>
+                            <li>
+                                <a href="#onStopMarkerClick" >onStopMarkerClick</a>
+                            </li>
+                            <li>
+                                <a href="#pauseOrResumeUpdatingTrainPositions" >pauseOrResumeUpdatingTrainPositions</a>
+                            </li>
+                            <li>
+                                <a href="#resetCountdownProgressbarAnimation" >resetCountdownProgressbarAnimation</a>
+                            </li>
+                            <li>
+                                <a href="#setRideInformation" >setRideInformation</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#updateRideInformation" >updateRideInformation</a>
+                            </li>
+                            <li>
+                                <a href="#updateTrainsLayerData" >updateTrainsLayerData</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(route: <a href="https://angular.io/api/router/ActivatedRoute" target="_blank">ActivatedRoute</a>, sharedDataService: <a href="../injectables/SharedDataService.html" target="_self">SharedDataService</a>, helperFunctions: <a href="../injectables/HelperFunctionsService.html" target="_self">HelperFunctionsService</a>, imageEditorService: <a href="../injectables/ImageEditorService.html" target="_self">ImageEditorService</a>, renderer: <a href="https://angular.io/api/core/Renderer2" target="_blank">Renderer2</a>, rideInformationService: <a href="../injectables/RideInformationService.html" target="_self">RideInformationService</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="73" class="link-to-prism">src/app/components/ride-information/ride-information.component.ts:73</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Define services</p>
+</div>
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>route</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/router/ActivatedRoute" target="_blank" >ActivatedRoute</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <p>Current route</p>
+
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>sharedDataService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/SharedDataService.html" target="_self" >SharedDataService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <p>Shares data through the application</p>
+
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>helperFunctions</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/HelperFunctionsService.html" target="_self" >HelperFunctionsService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <p>Helper functions</p>
+
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>imageEditorService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/ImageEditorService.html" target="_self" >ImageEditorService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <p>Web Worker to edit icons</p>
+
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>renderer</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/core/Renderer2" target="_blank" >Renderer2</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <p>Used to modify DOM elements</p>
+
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>rideInformationService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/RideInformationService.html" target="_self" >RideInformationService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <p>Get ride information about a train</p>
+
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="addTrainToMap"></a>
+                    <span class="name">
+                        <span ><b>addTrainToMap</b></span>
+                        <a href="#addTrainToMap"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>addTrainToMap()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="170"
+                            class="link-to-prism">src/app/components/ride-information/ride-information.component.ts:170</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="flyToStation"></a>
+                    <span class="name">
+                        <span ><b>flyToStation</b></span>
+                        <a href="#flyToStation"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>flyToStation(UICCode: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="307"
+                            class="link-to-prism">src/app/components/ride-information/ride-information.component.ts:307</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>UICCode</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getNumberFromCrowdForecast"></a>
+                    <span class="name">
+                        <span ><b>getNumberFromCrowdForecast</b></span>
+                        <a href="#getNumberFromCrowdForecast"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getNumberFromCrowdForecast(forecast: "UNKNOWN" | "LOW" | "MEDIUM" | "HIGH")</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="283"
+                            class="link-to-prism">src/app/components/ride-information/ride-information.component.ts:283</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>forecast</td>
+                                    <td>
+                                            <code>&quot;UNKNOWN&quot; | &quot;LOW&quot; | &quot;MEDIUM&quot; | &quot;HIGH&quot;</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Array&lt;IconDefinition&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="minuteDifference"></a>
+                    <span class="name">
+                        <span ><b>minuteDifference</b></span>
+                        <a href="#minuteDifference"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>minuteDifference(planned: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, actual: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="300"
+                            class="link-to-prism">src/app/components/ride-information/ride-information.component.ts:300</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Calculate minutes difference between dates</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>planned</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Planned time</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>actual</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Actual time</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>number Number of minutes difference</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="96"
+                            class="link-to-prism">src/app/components/ride-information/ride-information.component.ts:96</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Get ride information from resolve and get route params</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onMapLoad"></a>
+                    <span class="name">
+                        <span ><b>onMapLoad</b></span>
+                        <a href="#onMapLoad"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onMapLoad(map: MapBoxMap)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="316"
+                            class="link-to-prism">src/app/components/ride-information/ride-information.component.ts:316</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>map</td>
+                                    <td>
+                                            <code>MapBoxMap</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onStopMarkerClick"></a>
+                    <span class="name">
+                        <span ><b>onStopMarkerClick</b></span>
+                        <a href="#onStopMarkerClick"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onStopMarkerClick(marker: MarkerComponent)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="330"
+                            class="link-to-prism">src/app/components/ride-information/ride-information.component.ts:330</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>marker</td>
+                                    <td>
+                                            <code>MarkerComponent</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="pauseOrResumeUpdatingTrainPositions"></a>
+                    <span class="name">
+                        <span ><b>pauseOrResumeUpdatingTrainPositions</b></span>
+                        <a href="#pauseOrResumeUpdatingTrainPositions"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>pauseOrResumeUpdatingTrainPositions(pause: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="259"
+                            class="link-to-prism">src/app/components/ride-information/ride-information.component.ts:259</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Pause or resume the <a href="countdownTimer">countdownTimer</a></p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>pause</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Whether to pause <a href="countdownTimer">countdownTimer</a> or not</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="resetCountdownProgressbarAnimation"></a>
+                    <span class="name">
+                        <span ><b>resetCountdownProgressbarAnimation</b></span>
+                        <a href="#resetCountdownProgressbarAnimation"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>resetCountdownProgressbarAnimation()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="276"
+                            class="link-to-prism">src/app/components/ride-information/ride-information.component.ts:276</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Reset the countdown visuals</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="setRideInformation"></a>
+                    <span class="name">
+                        <span ><b>setRideInformation</b></span>
+                        <a href="#setRideInformation"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>setRideInformation(rideInformation: RideInformation)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="123"
+                            class="link-to-prism">src/app/components/ride-information/ride-information.component.ts:123</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>rideInformation</td>
+                                    <td>
+                                            <code>RideInformation</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="updateRideInformation"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>updateRideInformation</b></span>
+                        <a href="#updateRideInformation"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>updateRideInformation()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="233"
+                            class="link-to-prism">src/app/components/ride-information/ride-information.component.ts:233</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Get detailed information about all train currently riding
+Set train icons when data is received
+Get information about active disruptions and add markers</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="updateTrainsLayerData"></a>
+                    <span class="name">
+                        <span ><b>updateTrainsLayerData</b></span>
+                        <a href="#updateTrainsLayerData"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>updateTrainsLayerData()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="217"
+                            class="link-to-prism">src/app/components/ride-information/ride-information.component.ts:217</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section>
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="countdown"></a>
+                    <span class="name">
+                        <span ><b>countdown</b></span>
+                        <a href="#countdown"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://angular.io/api/core/ElementRef" target="_blank" >ElementRef</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ViewChild(&#x27;updateCountdown&#x27;)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/components/ride-information/ride-information.component.ts:27</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>countdown DOM element</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="countdownTimer"></a>
+                    <span class="name">
+                        <span ><b>countdownTimer</b></span>
+                        <a href="#countdownTimer"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new Timer({ countdown: true, startValues: { seconds: 30 } })</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="64" class="link-to-prism">src/app/components/ride-information/ride-information.component.ts:64</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Timer that counts down until train data refresh</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="dataSource"></a>
+                    <span class="name">
+                        <span ><b>dataSource</b></span>
+                        <a href="#dataSource"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>JourneyStops</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="71" class="link-to-prism">src/app/components/ride-information/ride-information.component.ts:71</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="directionArrowStyle"></a>
+                    <span class="name">
+                        <span ><b>directionArrowStyle</b></span>
+                        <a href="#directionArrowStyle"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Map&lt;string | any&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new Map&lt;string, any&gt;()</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/app/components/ride-information/ride-information.component.ts:56</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>CSS style of the arrow shown in the popup</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="displayedColumns"></a>
+                    <span class="name">
+                        <span ><b>displayedColumns</b></span>
+                        <a href="#displayedColumns"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>string[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[&quot;progress&quot;, &quot;aankomst&quot;, &quot;vertrek&quot;, &quot;station&quot;, &quot;perron&quot;, &quot;drukte&quot;, &quot;afbeelding&quot;]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="70" class="link-to-prism">src/app/components/ride-information/ride-information.component.ts:70</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="faFrown"></a>
+                    <span class="name">
+                        <span ><b>faFrown</b></span>
+                        <a href="#faFrown"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>faFrown</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="68" class="link-to-prism">src/app/components/ride-information/ride-information.component.ts:68</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="faMeh"></a>
+                    <span class="name">
+                        <span ><b>faMeh</b></span>
+                        <a href="#faMeh"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>faMeh</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="67" class="link-to-prism">src/app/components/ride-information/ride-information.component.ts:67</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="faSmile"></a>
+                    <span class="name">
+                        <span ><b>faSmile</b></span>
+                        <a href="#faSmile"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>faSmile</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="66" class="link-to-prism">src/app/components/ride-information/ride-information.component.ts:66</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isUpdatingMapData"></a>
+                    <span class="name">
+                        <span ><b>isUpdatingMapData</b></span>
+                        <a href="#isUpdatingMapData"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="62" class="link-to-prism">src/app/components/ride-information/ride-information.component.ts:62</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Is currently updating train positions</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="journey"></a>
+                    <span class="name">
+                        <span ><b>journey</b></span>
+                        <a href="#journey"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Journey</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/components/ride-information/ride-information.component.ts:33</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Journey details</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="journeyMap"></a>
+                    <span class="name">
+                        <span ><b>journeyMap</b></span>
+                        <a href="#journeyMap"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>MapBoxMap</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/app/components/ride-information/ride-information.component.ts:37</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="lat"></a>
+                    <span class="name">
+                        <span ><b>lat</b></span>
+                        <a href="#lat"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>52.1284</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/app/components/ride-information/ride-information.component.ts:43</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Map latitude position</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="lng"></a>
+                    <span class="name">
+                        <span ><b>lng</b></span>
+                        <a href="#lng"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>5.476</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/app/components/ride-information/ride-information.component.ts:41</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Map longitude position</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="mapStyle"></a>
+                    <span class="name">
+                        <span ><b>mapStyle</b></span>
+                        <a href="#mapStyle"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>environment.MAPBOX_STYLE</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/app/components/ride-information/ride-information.component.ts:39</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Mapbox map style</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="nextStation"></a>
+                    <span class="name">
+                        <span ><b>nextStation</b></span>
+                        <a href="#nextStation"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Station</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="72" class="link-to-prism">src/app/components/ride-information/ride-information.component.ts:72</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="passedStations"></a>
+                    <span class="name">
+                        <span ><b>passedStations</b></span>
+                        <a href="#passedStations"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>string[]</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="73" class="link-to-prism">src/app/components/ride-information/ride-information.component.ts:73</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="progressTracksLayerData"></a>
+                    <span class="name">
+                        <span ><b>progressTracksLayerData</b></span>
+                        <a href="#progressTracksLayerData"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>FeatureCollection&lt;LineString | any&gt;</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/app/components/ride-information/ride-information.component.ts:50</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="rideId"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>rideId</b></span>
+                        <a href="#rideId"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/app/components/ride-information/ride-information.component.ts:35</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>rideId of the train</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="rideInformation"></a>
+                    <span class="name">
+                        <span ><b>rideInformation</b></span>
+                        <a href="#rideInformation"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>RideInformation</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/components/ride-information/ride-information.component.ts:29</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Ride information, resolved by browser</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="routeTracksLayerData"></a>
+                    <span class="name">
+                        <span ><b>routeTracksLayerData</b></span>
+                        <a href="#routeTracksLayerData"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>FeatureCollection&lt;LineString | any&gt;</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/app/components/ride-information/ride-information.component.ts:49</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Train tracks layer GeoJSON</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="selectedMarker"></a>
+                    <span class="name">
+                        <span ><b>selectedMarker</b></span>
+                        <a href="#selectedMarker"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>MarkerComponent | null</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/app/components/ride-information/ride-information.component.ts:51</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="stopsLayerData"></a>
+                    <span class="name">
+                        <span ><b>stopsLayerData</b></span>
+                        <a href="#stopsLayerData"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>FeatureCollection&lt;Point | JourneyStop&gt;</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/app/components/ride-information/ride-information.component.ts:52</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="trainIconOnMap"></a>
+                    <span class="name">
+                        <span ><b>trainIconOnMap</b></span>
+                        <a href="#trainIconOnMap"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>TrainIconOnMap</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/app/components/ride-information/ride-information.component.ts:54</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="trainInformation"></a>
+                    <span class="name">
+                        <span ><b>trainInformation</b></span>
+                        <a href="#trainInformation"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>DetailedTrainInformation</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/app/components/ride-information/ride-information.component.ts:31</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Detailed train information</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="trainsLayerData"></a>
+                    <span class="name">
+                        <span ><b>trainsLayerData</b></span>
+                        <a href="#trainsLayerData"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>FeatureCollection&lt;Point | DetailedTrainInformation&gt;</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/app/components/ride-information/ride-information.component.ts:53</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="updateTrainsIsPaused"></a>
+                    <span class="name">
+                        <span ><b>updateTrainsIsPaused</b></span>
+                        <a href="#updateTrainsIsPaused"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/app/components/ride-information/ride-information.component.ts:60</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Is countdown paused</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="zoom"></a>
+                    <span class="name">
+                        <span ><b>zoom</b></span>
+                        <a href="#zoom"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>6.73</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/app/components/ride-information/ride-information.component.ts:45</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Map zoom level</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, ElementRef, OnInit, Renderer2, ViewChild } from &quot;@angular/core&quot;;
+import { ActivatedRoute } from &quot;@angular/router&quot;;
+import { faFrown, faMeh, faSmile, IconDefinition } from &quot;@fortawesome/free-regular-svg-icons&quot;;
+import lineSplit from &quot;@turf/line-split&quot;;
+import Timer from &quot;easytimer.js&quot;;
+import { Feature, FeatureCollection, LineString, Point } from &quot;geojson&quot;;
+import { LngLatBounds, LngLatBoundsLike, Map as MapBoxMap } from &quot;mapbox-gl&quot;;
+import { MarkerComponent } from &quot;ngx-mapbox-gl/lib/marker/marker.component&quot;;
+import { take } from &quot;rxjs/operators&quot;;
+import { ImageEditorService } from &quot;src/app/services/image-editor.service&quot;;
+import { RideInformationService } from &quot;src/app/services/ride-information.service&quot;;
+import { environment } from &quot;../../../environments/environment&quot;;
+import { Journey, Station } from &quot;../../models/ReisinformatieAPI&quot;;
+import { JourneyStop, JourneyStops, RideInformation } from &quot;../../models/RideInformation&quot;;
+import { DetailedTrainInformation, TrainIconOnMap } from &quot;../../models/VirtualTrainAPI&quot;;
+import { HelperFunctionsService } from &quot;../../services/helper-functions.service&quot;;
+import { SharedDataService } from &quot;../../services/shared-data.service&quot;;
+
+/** Show information about a train */
+@Component({
+	selector: &quot;app-ride-information&quot;,
+	templateUrl: &quot;./ride-information.component.html&quot;,
+	styleUrls: [&quot;./ride-information.component.sass&quot;],
+})
+export class RideInformationComponent implements OnInit {
+	/**countdown DOM element*/
+	@ViewChild(&quot;updateCountdown&quot;) countdown: ElementRef;
+	/** Ride information, resolved by browser */
+	rideInformation: RideInformation;
+	/** Detailed train information */
+	trainInformation: DetailedTrainInformation;
+	/** Journey details*/
+	journey: Journey;
+	/** rideId of the train */
+	private rideId: number &#x3D; null;
+
+	journeyMap: MapBoxMap;
+	/**Mapbox map style*/
+	mapStyle &#x3D; environment.MAPBOX_STYLE;
+	/**Map longitude position*/
+	lng &#x3D; 5.476;
+	/**Map latitude position*/
+	lat &#x3D; 52.1284;
+	/**Map zoom level*/
+	zoom &#x3D; 6.73;
+
+	// Train tracks layer
+	/**Train tracks layer GeoJSON*/
+	routeTracksLayerData: FeatureCollection&lt;LineString, any&gt;;
+	progressTracksLayerData: FeatureCollection&lt;LineString, any&gt;;
+	selectedMarker: MarkerComponent | null;
+	stopsLayerData: FeatureCollection&lt;Point, JourneyStop&gt;;
+	trainsLayerData: FeatureCollection&lt;Point, DetailedTrainInformation&gt;;
+	trainIconOnMap: TrainIconOnMap;
+	/**CSS style of the arrow shown in the popup*/
+	directionArrowStyle: Map&lt;string, any&gt; &#x3D; new Map&lt;string, any&gt;();
+
+	// Update data countdown
+	/**Is countdown paused*/
+	updateTrainsIsPaused &#x3D; false;
+	/**Is currently updating train positions*/
+	isUpdatingMapData &#x3D; false;
+	/**Timer that counts down until train data refresh*/
+	countdownTimer &#x3D; new Timer({ countdown: true, startValues: { seconds: 30 } });
+
+	faSmile &#x3D; faSmile;
+	faMeh &#x3D; faMeh;
+	faFrown &#x3D; faFrown;
+
+	displayedColumns: string[] &#x3D; [&quot;progress&quot;, &quot;aankomst&quot;, &quot;vertrek&quot;, &quot;station&quot;, &quot;perron&quot;, &quot;drukte&quot;, &quot;afbeelding&quot;];
+	dataSource: JourneyStops;
+	nextStation: Station;
+	passedStations: string[];
+
+	/**
+	 * Define services
+	 * @param route Current route
+	 * @param sharedDataService Shares data through the application
+	 * @param helperFunctions Helper functions
+	 * @param imageEditorService Web Worker to edit icons
+	 * @param renderer Used to modify DOM elements
+	 * @param rideInformationService Get ride information about a train
+	 */
+	constructor(
+		private route: ActivatedRoute,
+		private sharedDataService: SharedDataService,
+		private helperFunctions: HelperFunctionsService,
+		private imageEditorService: ImageEditorService,
+		private renderer: Renderer2,
+		private rideInformationService: RideInformationService
+	) {}
+
+	/**
+	 * Get ride information from resolve and get route params
+	 */
+	ngOnInit(): void {
+		this.pauseOrResumeUpdatingTrainPositions(true);
+
+		this.route.params.subscribe((params) &#x3D;&gt; {
+			this.rideId &#x3D; Number(params[&quot;rideId&quot;]);
+			console.log(&quot;rideId: &quot;, this.rideId);
+		});
+
+		this.route.data.subscribe((resolversData) &#x3D;&gt; {
+			const rideInformation &#x3D; resolversData[&quot;rideInformation&quot;] as RideInformation;
+			this.setRideInformation(rideInformation);
+			if (this.rideInformation) {
+				this.addTrainToMap();
+				if (environment.production) {
+					this.pauseOrResumeUpdatingTrainPositions(false);
+				}
+			}
+
+			this.countdownTimer.addEventListener(&quot;targetAchieved&quot;, () &#x3D;&gt; {
+				// console.log(&quot;timer&quot;);
+				if (this.isUpdatingMapData &#x3D;&#x3D;&#x3D; false) {
+					this.updateRideInformation();
+				}
+			});
+		});
+	}
+
+	setRideInformation(rideInformation: RideInformation): void {
+		this.rideInformation &#x3D; rideInformation;
+		if (this.rideInformation) {
+			// console.log(this.rideInformation);
+			this.trainInformation &#x3D; this.rideInformation.trainInformation;
+			this.journey &#x3D; this.rideInformation.journey;
+			this.routeTracksLayerData &#x3D; this.rideInformation.routeGeoJSON.payload as FeatureCollection&lt;LineString, any&gt;;
+			this.dataSource &#x3D; this.journey.stops.filter((stop) &#x3D;&gt; stop.status !&#x3D; &quot;PASSING&quot;);
+			this.stopsLayerData &#x3D; this.helperFunctions.parseToGeoJSON&lt;JourneyStop&gt;(
+				this.dataSource,
+				[&quot;stop.lng&quot;, &quot;stop.lat&quot;],
+				[],
+				true
+			);
+			this.directionArrowStyle.set(&quot;transform&quot;, &#x60;rotate(${this.trainInformation.richting - 90}deg)&#x60;);
+
+			const geoFeature: Feature&lt;Point, any&gt; &#x3D; {
+				geometry: {
+					coordinates: [this.trainInformation.lng, this.trainInformation.lat],
+					type: &quot;Point&quot;,
+				},
+				properties: {},
+				type: &quot;Feature&quot;,
+			};
+
+			if (this.trainInformation.trainDetails) {
+				try {
+					this.progressTracksLayerData &#x3D; lineSplit(
+						this.routeTracksLayerData.features[0] as Feature&lt;LineString&gt;,
+						geoFeature
+					);
+					// console.log(this.progressTracksLayerData);
+					this.progressTracksLayerData.features.pop();
+				} catch (e) {
+					console.log(e);
+				}
+
+				this.nextStation &#x3D; this.sharedDataService.findStationByCode(this.trainInformation.trainDetails.station);
+				const uicCodes &#x3D; this.dataSource.map((s) &#x3D;&gt; s.stop[&quot;uicCode&quot;] as string);
+				let index &#x3D; uicCodes.indexOf(this.nextStation.UICCode);
+				if (index !&#x3D; this.journey.stops.length) index++;
+				uicCodes.splice(index, uicCodes.length);
+				this.passedStations &#x3D; uicCodes;
+			}
+		}
+	}
+
+	addTrainToMap(): void {
+		let imageName &#x3D; &quot;alternative&quot;;
+		let imageURL &#x3D; &quot;../../assets/alternative-train.png&quot;;
+		const trainImage &#x3D; new Map&lt;string, string&gt;();
+
+		// If train has details about material, add the image url
+		if (
+			this.trainInformation &amp;&amp;
+			this.trainInformation.trainDetails.materieeldelen &amp;&amp;
+			this.trainInformation.trainDetails.materieeldelen[0].afbeelding
+		) {
+			const materiaaldelen &#x3D; this.trainInformation.trainDetails.materieeldelen;
+			// Get last part of url, like &#x27;virm_4.png&#x27;, to be used as a name
+			// console.log(basicTrain);
+			const urlParts &#x3D; materiaaldelen[0].afbeelding.split(&quot;/&quot;);
+			imageName &#x3D; urlParts[urlParts.length - 1];
+
+			const firstTrainPart &#x3D; materiaaldelen[0];
+			if (firstTrainPart.afbeelding) {
+				imageURL &#x3D; firstTrainPart.afbeelding;
+			}
+			if (firstTrainPart.bakken &amp;&amp; firstTrainPart.bakken.length &gt; 0) {
+				imageURL &#x3D; firstTrainPart.bakken[0].afbeelding.url;
+			}
+		}
+		// Set the icon name for this train
+		this.trainInformation.trainIconName &#x3D; imageName;
+		trainImage.set(imageName, imageURL);
+
+		this.imageEditorService
+			.prepareTrainIcons(trainImage)
+			.pipe(take(1))
+			.subscribe({
+				next: (result) &#x3D;&gt; {
+					result.forEach((image) &#x3D;&gt; {
+						this.trainIconOnMap &#x3D; {
+							imageName: image.imageName,
+							imageObjectURL: window.URL.createObjectURL(new Blob([image.image], { type: &quot;image/png&quot; })),
+						};
+					});
+				},
+				complete: () &#x3D;&gt; {
+					this.updateTrainsLayerData();
+				},
+			});
+	}
+
+	updateTrainsLayerData(): void {
+		if (this.trainInformation) {
+			this.trainsLayerData &#x3D; this.helperFunctions.parseToGeoJSON&lt;DetailedTrainInformation&gt;(
+				[this.trainInformation],
+				[&quot;lng&quot;, &quot;lat&quot;],
+				[],
+				true
+			);
+		}
+	}
+
+	/**
+	 * Get detailed information about all train currently riding
+	 * Set train icons when data is received
+	 * Get information about active disruptions and add markers
+	 */
+	private updateRideInformation(): void {
+		this.isUpdatingMapData &#x3D; true;
+		this.pauseOrResumeUpdatingTrainPositions(true);
+		this.rideInformationService
+			.getRideInformation(this.rideId.toString())
+			.pipe(take(1))
+			.subscribe({
+				next: (rideInformation) &#x3D;&gt; {
+					this.setRideInformation(rideInformation);
+				},
+				error: (err: unknown) &#x3D;&gt; {
+					console.log(err);
+				},
+				complete: () &#x3D;&gt; {
+					console.log(&quot;updateTrainAndJourneyInformation&quot;);
+					this.updateTrainsLayerData();
+					this.isUpdatingMapData &#x3D; false;
+					this.pauseOrResumeUpdatingTrainPositions(false);
+				},
+			});
+	}
+
+	/**
+	 * Pause or resume the {@link countdownTimer}
+	 * @param pause Whether to pause {@link countdownTimer} or not
+	 */
+	pauseOrResumeUpdatingTrainPositions(pause: boolean): void {
+		if (this.isUpdatingMapData &#x3D;&#x3D;&#x3D; false) {
+			if (pause &#x3D;&#x3D;&#x3D; false) {
+				if (this.countdownTimer.getTimeValues().seconds &lt;&#x3D; 0) {
+					this.resetCountdownProgressbarAnimation();
+				}
+				this.countdownTimer.start();
+				this.updateTrainsIsPaused &#x3D; false;
+			} else {
+				this.countdownTimer.pause();
+				this.updateTrainsIsPaused &#x3D; true;
+			}
+		}
+	}
+
+	/* eslint-disable */
+	/** Reset the countdown visuals */
+	resetCountdownProgressbarAnimation(): void {
+		this.renderer.removeClass(this.countdown.nativeElement, &quot;progress-value&quot;);
+		console.log(this.countdown.nativeElement.offsetHeight);
+		this.renderer.addClass(this.countdown.nativeElement, &quot;progress-value&quot;);
+	}
+	/* eslint-enable */
+
+	getNumberFromCrowdForecast(forecast: &quot;UNKNOWN&quot; | &quot;LOW&quot; | &quot;MEDIUM&quot; | &quot;HIGH&quot;): Array&lt;IconDefinition&gt; {
+		switch (forecast) {
+			case &quot;LOW&quot;:
+				return Array&lt;IconDefinition&gt;(1).fill(faSmile);
+			case &quot;MEDIUM&quot;:
+				return Array&lt;IconDefinition&gt;(2).fill(faMeh);
+			case &quot;HIGH&quot;:
+				return Array&lt;IconDefinition&gt;(3).fill(faFrown);
+		}
+	}
+
+	/**
+	 * Calculate minutes difference between dates
+	 * @param planned Planned time
+	 * @param actual Actual time
+	 * @return number Number of minutes difference
+	 */
+	minuteDifference(planned: string, actual: string): number {
+		const eventStartTime &#x3D; new Date(planned);
+		const eventEndTime &#x3D; new Date(actual);
+		const minutes &#x3D; (eventEndTime.valueOf() - eventStartTime.valueOf()) / 1000 / 60;
+		return Math.round(minutes);
+	}
+
+	flyToStation(UICCode: string): void {
+		if (UICCode) {
+			const station &#x3D; this.sharedDataService.findStationByUICCode(UICCode);
+			if (station) {
+				this.sharedDataService.flyToStation(station);
+			}
+		}
+	}
+
+	onMapLoad(map: MapBoxMap): void {
+		map.resize();
+		this.journeyMap &#x3D; map;
+		const coordinates: LngLatBoundsLike[] &#x3D; this.routeTracksLayerData.features[0].geometry
+			.coordinates as LngLatBoundsLike[];
+		const bounds &#x3D; new LngLatBounds();
+		coordinates.forEach((coord) &#x3D;&gt; {
+			bounds.extend(coord);
+		});
+		map.fitBounds(bounds, {
+			padding: 20,
+		});
+	}
+
+	onStopMarkerClick(marker: MarkerComponent): void {
+		this.selectedMarker &#x3D; null;
+		this.selectedMarker &#x3D; marker;
+	}
+}
+
+// /**
+//  * Data source to provide what data should be rendered in the table. Note that the data source
+//  * can retrieve its data in any way. In this case, the data source is provided a reference
+//  * to a common data base, ExampleDatabase. It is not the data source&#x27;s responsibility to manage
+//  * the underlying data. Instead, it only needs to take the data and send the table exactly what
+//  * should be rendered.
+//  */
+// export class ExampleDataSource extends DataSource&lt;PeriodicElement&gt; {
+// 	/** Stream of data that is provided to the table. */
+// 	data &#x3D; new BehaviorSubject&lt;PeriodicElement[]&gt;(ELEMENT_DATA);
+//
+// 	/** Connect function called by the table to retrieve one stream containing the data to render. */
+// 	connect(): Observable&lt;PeriodicElement[]&gt; {
+// 		return this.data;
+// 	}
+//
+// 	disconnect() {}
+// }
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;div&gt;
+	&lt;div class&#x3D;&quot;card mt-3 shadow p-1 p-lg-3 mb-3 bg-white rounded mat-typography&quot; *ngIf&#x3D;&quot;trainInformation&quot;&gt;
+		&lt;div class&#x3D;&quot;card-body&quot;&gt;
+			&lt;div&gt;
+				&lt;h1 class&#x3D;&quot;card-title fw-bold mb-0&quot;&gt;Ritnummer {{trainInformation.ritId}}&lt;/h1&gt;
+				&lt;h2 class&#x3D;&quot;card-subtitle mb-2 text-muted fw-bold&quot;&gt;
+					{{ trainInformation.trainDetails?.vervoerder }} trein {{ trainInformation.ritId }}
+					&lt;span
+						*ngFor&#x3D;&quot;
+											let trainPart of trainInformation.trainDetails?.materieeldelen;
+											let i &#x3D; index
+										&quot;
+					&gt;
+						&lt;span *ngIf&#x3D;&quot;trainPart.materieelnummer&quot;&gt;
+							&lt;span *ngIf&#x3D;&quot;i &#x3D;&#x3D;&#x3D; 0; else other&quot;&gt; met {{ trainPart.materieelnummer }}&lt;/span&gt;
+							&lt;ng-template #other
+								&gt;{{i &#x3D;&#x3D;&#x3D; (trainInformation.trainDetails.materieeldelen.length - 1) ? &#x27; &#x27; + &#x27;en&#x27; : &#x27;,&#x27;}}
+								{{ trainPart.materieelnummer }}
+							&lt;/ng-template&gt;
+						&lt;/span&gt;
+					&lt;/span&gt;
+				&lt;/h2&gt;
+				&lt;div
+					*ngIf&#x3D;&quot;trainInformation.trainDetails?.materieeldelen &amp;&amp; trainInformation.trainDetails?.materieeldelen[0]?.afbeelding&quot;
+				&gt;
+					&lt;div class&#x3D;&quot;carousel scroll-gradient&quot;&gt;
+						&lt;div
+							class&#x3D;&quot;slide&quot;
+							*ngFor&#x3D;&quot;let railcar of trainInformation.trainDetails.materieeldelen; let isLast &#x3D; last&quot;
+						&gt;
+							&lt;img [src]&#x3D;&quot;railcar.afbeelding&quot; alt&#x3D;&quot;Trein&quot; height&#x3D;&quot;45&quot; [ngClass]&#x3D;&quot;{ &#x27;pe-2&#x27;: isLast }&quot; /&gt;
+							&lt;div class&#x3D;&quot;trainset-chip&quot;&gt;Treinstel {{railcar.materieelnummer}}&lt;/div&gt;
+						&lt;/div&gt;
+					&lt;/div&gt;
+				&lt;/div&gt;
+			&lt;/div&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;
+	&lt;div
+		id&#x3D;&quot;map-card&quot;
+		class&#x3D;&quot;card mt-3 shadow p-1 p-lg-3 mb-3 bg-white rounded mat-typography&quot;
+		*ngIf&#x3D;&quot;trainInformation &amp;&amp; routeTracksLayerData&quot;
+	&gt;
+		&lt;div class&#x3D;&quot;card-body&quot;&gt;
+			&lt;div style&#x3D;&quot;height: 100%; position: relative&quot;&gt;
+				&lt;h1 class&#x3D;&quot;card-title fw-bold mb-0&quot;&gt;Route&lt;/h1&gt;
+				&lt;h2 class&#x3D;&quot;card-subtitle mb-2 text-muted fw-bold&quot;&gt;
+					{{journey.stops[0].stop[&#x27;name&#x27;]}} naar {{journey.stops[journey.stops.length - 1].destination}}
+				&lt;/h2&gt;
+				&lt;div&gt;
+					&lt;div class&#x3D;&quot;d-md-flex&quot;&gt;
+						&lt;div class&#x3D;&quot;map_box_container me-md-3 mb-3 mb-md-0&quot;&gt;
+							&lt;mgl-map
+								[style]&#x3D;&quot;mapStyle&quot;
+								[zoom]&#x3D;&quot;[zoom]&quot;
+								[center]&#x3D;&quot;[lng, lat]&quot;
+								[interactive]&#x3D;&quot;false&quot;
+								(mapLoad)&#x3D;&quot;onMapLoad($event)&quot;
+							&gt;
+								&lt;mgl-geojson-source
+									id&#x3D;&quot;routeTracksLayerData&quot;
+									[data]&#x3D;&quot;routeTracksLayerData&quot;
+								&gt;&lt;/mgl-geojson-source&gt;
+								&lt;mgl-layer
+									id&#x3D;&quot;NSTrainTracks&quot;
+									type&#x3D;&quot;line&quot;
+									source&#x3D;&quot;routeTracksLayerData&quot;
+									[layout]&#x3D;&quot;{ &#x27;line-join&#x27;: &#x27;round&#x27;, &#x27;line-cap&#x27;: &#x27;round&#x27; }&quot;
+									[paint]&#x3D;&quot;{ &#x27;line-color&#x27;: &#x27;#6a6a79&#x27;, &#x27;line-width&#x27;: 3 }&quot;
+								&gt;
+								&lt;/mgl-layer&gt;
+								&lt;ng-container *ngIf&#x3D;&quot;progressTracksLayerData&quot;&gt;
+									&lt;mgl-geojson-source
+										id&#x3D;&quot;progressTracksLayerData&quot;
+										[data]&#x3D;&quot;progressTracksLayerData&quot;
+									&gt;&lt;/mgl-geojson-source&gt;
+									&lt;mgl-layer
+										id&#x3D;&quot;ProgressTrainTracks&quot;
+										type&#x3D;&quot;line&quot;
+										source&#x3D;&quot;progressTracksLayerData&quot;
+										[layout]&#x3D;&quot;{ &#x27;line-join&#x27;: &#x27;round&#x27;, &#x27;line-cap&#x27;: &#x27;round&#x27; }&quot;
+										[paint]&#x3D;&quot;{ &#x27;line-color&#x27;: &#x27;#0063D3&#x27;, &#x27;line-width&#x27;: 3 }&quot;
+									&gt;
+									&lt;/mgl-layer&gt;
+								&lt;/ng-container&gt;
+								&lt;ng-container *ngIf&#x3D;&quot;trainIconOnMap&quot;&gt;
+									&lt;mgl-image
+										[id]&#x3D;&quot;trainIconOnMap.imageName&quot;
+										[url]&#x3D;&quot;trainIconOnMap.imageObjectURL&quot;
+									&gt;&lt;/mgl-image&gt;
+								&lt;/ng-container&gt;
+								&lt;mgl-geojson-source
+									*ngIf&#x3D;&quot;trainsLayerData&quot;
+									id&#x3D;&quot;trainData&quot;
+									[data]&#x3D;&quot;trainsLayerData&quot;
+								&gt;&lt;/mgl-geojson-source&gt;
+								&lt;mgl-layer
+									*ngIf&#x3D;&quot;trainsLayerData &amp;&amp; trainIconOnMap&quot;
+									id&#x3D;&quot;trains&quot;
+									type&#x3D;&quot;symbol&quot;
+									source&#x3D;&quot;trainData&quot;
+									[layout]&#x3D;&quot;{
+                &#x27;icon-image&#x27;: [&#x27;get&#x27;, &#x27;trainIconName&#x27;],
+                &#x27;icon-size&#x27;: 0.5,
+                &#x27;icon-allow-overlap&#x27;: true,
+                &#x27;icon-ignore-placement&#x27;: true
+              }&quot;
+								&gt;
+								&lt;/mgl-layer&gt;
+								&lt;ng-container *ngIf&#x3D;&quot;dataSource&quot;&gt;
+									&lt;ng-container *ngFor&#x3D;&quot;let stop of stopsLayerData.features&quot;&gt;
+										&lt;mgl-marker [feature]&#x3D;&quot;stop&quot; #marker&gt;
+											&lt;div
+												class&#x3D;&quot;progress-stop-map&quot;
+												[class.progress-stop-map--blue]&#x3D;&quot;
+															(passedStations.length &#x3D;&#x3D;&#x3D; 1 &amp;&amp; passedStations[0] &#x3D;&#x3D;&#x3D; stop.properties.stop[&#x27;uicCode&#x27;]) ||
+															(passedStations.length &gt;&#x3D; 2 &amp;&amp; passedStations.includes(stop.properties.stop[&#x27;uicCode&#x27;])
+															&amp;&amp; passedStations[passedStations.length - 1] !&#x3D;&#x3D; stop.properties.stop[&#x27;uicCode&#x27;])&quot;
+												style&#x3D;&quot;cursor: pointer&quot;
+												(click)&#x3D;&quot;onStopMarkerClick(marker)&quot;
+											&gt;
+												&lt;div class&#x3D;&quot;progress-stop-map-content&quot;&gt;&lt;/div&gt;
+											&lt;/div&gt;
+										&lt;/mgl-marker&gt;
+									&lt;/ng-container&gt;
+								&lt;/ng-container&gt;
+								&lt;mgl-popup
+									*ngIf&#x3D;&quot;selectedMarker&quot;
+									[marker]&#x3D;&quot;selectedMarker&quot;
+									[maxWidth]&#x3D;&quot;&#x27;none&#x27;&quot;
+									[closeButton]&#x3D;&quot;false&quot;
+								&gt;
+									&lt;div
+										class&#x3D;&quot;map-marker-content color-white shadow-darken10 round txt-s clip txt-truncate&quot;
+										style&#x3D;&quot;padding: 15px 0&quot;
+									&gt;
+										&lt;div class&#x3D;&quot;container-fluid&quot;&gt;
+											&lt;div class&#x3D;&quot;row&quot;&gt;
+												&lt;div class&#x3D;&quot;col&quot;&gt;
+													&lt;div class&#x3D;&quot;d-flex&quot;&gt;
+														&lt;div class&#x3D;&quot;float-start me-3&quot; style&#x3D;&quot;width: fit-content&quot;&gt;
+															&lt;div&gt;
+																&lt;div class&#x3D;&quot;mb-1 fw-bold&quot;&gt;Station:&lt;/div&gt;
+															&lt;/div&gt;
+															&lt;div class&#x3D;&quot;mb-1 fw-bold&quot;&gt;Aankomst:&lt;/div&gt;
+															&lt;div class&#x3D;&quot;fw-bold&quot;&gt;Vertrek:&lt;/div&gt;
+														&lt;/div&gt;
+
+														&lt;div style&#x3D;&quot;width: fit-content&quot;&gt;
+															&lt;div class&#x3D;&quot;mb-1&quot;&gt;
+																{{selectedMarker.feature.properties.stop.name}}
+															&lt;/div&gt;
+															&lt;div class&#x3D;&quot;mb-1&quot;&gt;
+																&lt;ng-container
+																	*ngIf&#x3D;&quot;selectedMarker.feature.properties.status &#x3D;&#x3D;&#x3D; &#x27;ORIGIN&#x27;&quot;
+																	&gt;--&lt;/ng-container
+																&gt;
+																&lt;ng-container
+																	*ngIf&#x3D;&quot;selectedMarker.feature.properties.status &#x3D;&#x3D;&#x3D; &#x27;STOP&#x27; || selectedMarker.feature.properties.status &#x3D;&#x3D;&#x3D; &#x27;DESTINATION&#x27;&quot;
+																&gt;
+																	&lt;ng-container
+																		*ngIf&#x3D;&quot;selectedMarker.feature.properties[&#x27;arrivals&#x27;][0][&#x27;actualTime&#x27;]; else plannedTime&quot;
+																	&gt;
+																		{{selectedMarker.feature.properties[&#x27;arrivals&#x27;][0][&#x27;actualTime&#x27;]
+																		| date:&#x27;HH:mm&#x27;}}
+																	&lt;/ng-container&gt;
+																	&lt;ng-template #plannedTime
+																		&gt;{{selectedMarker.feature.properties[&#x27;arrivals&#x27;][0][&#x27;plannedTime&#x27;]
+																		| date:&#x27;HH:mm&#x27;}}&lt;/ng-template
+																	&gt;
+																&lt;/ng-container&gt;
+															&lt;/div&gt;
+															&lt;div&gt;
+																&lt;ng-container
+																	*ngIf&#x3D;&quot;selectedMarker.feature.properties.status &#x3D;&#x3D;&#x3D; &#x27;DESTINATION&#x27;&quot;
+																	&gt;--&lt;/ng-container
+																&gt;
+																&lt;ng-container
+																	*ngIf&#x3D;&quot;selectedMarker.feature.properties.status &#x3D;&#x3D;&#x3D; &#x27;ORIGIN&#x27; || selectedMarker.feature.properties.status &#x3D;&#x3D;&#x3D; &#x27;STOP&#x27;&quot;
+																&gt;
+																	&lt;ng-container
+																		*ngIf&#x3D;&quot;selectedMarker.feature.properties[&#x27;departures&#x27;][0][&#x27;actualTime&#x27;]; else plannedTime&quot;
+																	&gt;
+																		{{selectedMarker.feature.properties[&#x27;departures&#x27;][0][&#x27;actualTime&#x27;]
+																		| date:&#x27;HH:mm&#x27;}}
+																	&lt;/ng-container&gt;
+																	&lt;ng-template #plannedTime
+																		&gt;{{selectedMarker.feature.properties[&#x27;departures&#x27;][0][&#x27;plannedTime&#x27;]
+																		| date:&#x27;HH:mm&#x27;}}&lt;/ng-template
+																	&gt;
+																&lt;/ng-container&gt;
+															&lt;/div&gt;
+														&lt;/div&gt;
+													&lt;/div&gt;
+												&lt;/div&gt;
+											&lt;/div&gt;
+										&lt;/div&gt;
+									&lt;/div&gt;
+								&lt;/mgl-popup&gt;
+							&lt;/mgl-map&gt;
+						&lt;/div&gt;
+						&lt;div style&#x3D;&quot;font-size: 14px&quot;&gt;
+							&lt;div
+								id&#x3D;&quot;playPauseContainer&quot;
+								class&#x3D;&quot;border border--2 border--white bg-white shadow-darken10 z1 mb-2&quot;
+								(click)&#x3D;&quot;pauseOrResumeUpdatingTrainPositions(!updateTrainsIsPaused)&quot;
+							&gt;
+								&lt;div class&#x3D;&quot;d-flex align-items-center&quot;&gt;
+									&lt;div id&#x3D;&quot;updatePositionsLabel&quot;&gt;Update informatie&lt;/div&gt;
+									&lt;div
+										*ngIf&#x3D;&quot;
+							isUpdatingMapData &#x3D;&#x3D;&#x3D; false || updateTrainsIsPaused &#x3D;&#x3D;&#x3D; false;
+							else updatingMapDataSpinner
+						&quot;
+									&gt;
+										&lt;button
+											style&#x3D;&quot;margin-top: -6px; margin-bottom: -4px&quot;
+											mat-icon-button
+											role&#x3D;&quot;button&quot;
+											aria-label&#x3D;&quot;Pauzeer/hervat treinposities countdown&quot;
+										&gt;
+											&lt;mat-icon
+												*ngIf&#x3D;&quot;
+									updateTrainsIsPaused &#x3D;&#x3D;&#x3D; false &amp;&amp; isUpdatingMapData &#x3D;&#x3D;&#x3D; false;
+									else playCircleIcon
+								&quot;
+											&gt;
+												pause_circle_filled
+											&lt;/mat-icon&gt;
+											&lt;ng-template #playCircleIcon&gt;
+												&lt;mat-icon&gt;play_circle_filled&lt;/mat-icon&gt;
+											&lt;/ng-template&gt;
+										&lt;/button&gt;
+									&lt;/div&gt;
+									&lt;ng-template #updatingMapDataSpinner&gt;
+										&lt;div id&#x3D;&quot;updatingMapDataSpinner&quot;&gt;
+											&lt;div
+												class&#x3D;&quot;spinner-border spinner-border-sm&quot;
+												style&#x3D;&quot;width: 20px; height: 20px&quot;
+												role&#x3D;&quot;status&quot;
+											&gt;
+												&lt;span class&#x3D;&quot;sr-only&quot;&gt;Laden...&lt;/span&gt;
+											&lt;/div&gt;
+										&lt;/div&gt;
+									&lt;/ng-template&gt;
+								&lt;/div&gt;
+								&lt;div id&#x3D;&quot;updatePositionsProgressbar&quot;&gt;
+									&lt;div class&#x3D;&quot;countdown-progressbar&quot;&gt;
+										&lt;div
+											#updateCountdown
+											class&#x3D;&quot;progress-value&quot;
+											[ngStyle]&#x3D;&quot;{&#x27;animation-play-state&#x27;: updateTrainsIsPaused ? &#x27;paused&#x27; : &#x27;running&#x27;}&quot;
+											role&#x3D;&quot;progressbar&quot;
+											aria-valuemin&#x3D;&quot;0&quot;
+											aria-valuemax&#x3D;&quot;100&quot;
+											aria-label&#x3D;&quot;Treinposities update countdown&quot;
+										&gt;&lt;/div&gt;
+									&lt;/div&gt;
+								&lt;/div&gt;
+							&lt;/div&gt;
+							&lt;div
+								id&#x3D;&quot;train-information-details&quot;
+								class&#x3D;&quot;border border--2 border--white bg-white shadow-darken10 z1&quot;
+							&gt;
+								&lt;div class&#x3D;&quot;d-flex&quot; style&#x3D;&quot;white-space: nowrap&quot;&gt;
+									&lt;div class&#x3D;&quot;float-start me-3&quot;&gt;
+										&lt;div class&#x3D;&quot;mb-2 fw-bold&quot;&gt;Snelheid:&lt;/div&gt;
+										&lt;div class&#x3D;&quot;mb-2 fw-bold&quot;&gt;Richting:&lt;/div&gt;
+										&lt;ng-container *ngIf&#x3D;&quot;nextStation&quot;&gt;
+											&lt;div
+												[ngClass]&#x3D;&quot;{&#x27;mb-2&#x27; : trainInformation.trainDetails.type }&quot;
+												class&#x3D;&quot;fw-bold&quot;
+											&gt;
+												Volgende Station:
+											&lt;/div&gt;
+										&lt;/ng-container&gt;
+										&lt;ng-container *ngIf&#x3D;&quot;trainInformation.trainDetails.type&quot;&gt;
+											&lt;div class&#x3D;&quot;fw-bold&quot;&gt;Type:&lt;/div&gt;
+										&lt;/ng-container&gt;
+									&lt;/div&gt;
+									&lt;div class&#x3D;&quot;d-inline-block&quot;&gt;
+										&lt;div class&#x3D;&quot;mb-2&quot;&gt;{{ trainInformation.snelheid | number:&#x27;1.0-2&#x27; }} km/u&lt;/div&gt;
+										&lt;div class&#x3D;&quot;mb-2 d-flex align-items-center&quot;&gt;
+											&lt;span&gt;{{ trainInformation.richting }}&amp;deg;&lt;/span&gt;
+											&lt;span
+												class&#x3D;&quot;material-icons fw-bold ms-1&quot;
+												style&#x3D;&quot;font-size: 18px&quot;
+												[ngStyle]&#x3D;&quot;directionArrowStyle&quot;
+												&gt;arrow_right_alt&lt;/span
+											&gt;
+										&lt;/div&gt;
+										&lt;ng-container *ngIf&#x3D;&quot;nextStation&quot;&gt;
+											&lt;div [ngClass]&#x3D;&quot;{&#x27;mb-2&#x27; : trainInformation.trainDetails.type }&quot;&gt;
+												{{nextStation.namen.lang}}
+											&lt;/div&gt;
+										&lt;/ng-container&gt;
+										&lt;ng-container *ngIf&#x3D;&quot;trainInformation.trainDetails.type&quot;&gt;
+											&lt;div&gt;{{trainInformation.trainDetails.type}}&lt;/div&gt;
+										&lt;/ng-container&gt;
+									&lt;/div&gt;
+								&lt;/div&gt;
+							&lt;/div&gt;
+						&lt;/div&gt;
+					&lt;/div&gt;
+				&lt;/div&gt;
+			&lt;/div&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;
+	&lt;div class&#x3D;&quot;card mt-3 shadow p-1 p-lg-3 mb-3 bg-white rounded mat-typography&quot; *ngIf&#x3D;&quot;journey&quot;&gt;
+		&lt;div class&#x3D;&quot;card-body&quot;&gt;
+			&lt;h1 class&#x3D;&quot;card-title fw-bold mb-0&quot;&gt;Reis&lt;/h1&gt;
+			&lt;h2 class&#x3D;&quot;card-subtitle mb-2 text-muted fw-bold&quot;&gt;
+				{{journey.stops[0].stop[&#x27;name&#x27;]}} naar {{journey.stops[journey.stops.length - 1].destination}}
+			&lt;/h2&gt;
+			&lt;div style&#x3D;&quot;width: 100%&quot; class&#x3D;&quot;scroll-gradient&quot;&gt;
+				&lt;table cdk-table [dataSource]&#x3D;&quot;dataSource&quot;&gt;
+					&lt;!-- Progress Column--&gt;
+					&lt;ng-container cdkColumnDef&#x3D;&quot;progress&quot;&gt;
+						&lt;th cdk-header-cell *cdkHeaderCellDef&gt;&lt;/th&gt;
+						&lt;td
+							cdk-cell
+							*cdkCellDef&#x3D;&quot;let stop&quot;
+							style&#x3D;&quot;vertical-align: middle; width: 30px; padding-right: 20px&quot;
+						&gt;
+							&lt;div class&#x3D;&quot;train-progress&quot;&gt;
+								&lt;div
+									class&#x3D;&quot;progress-stop&quot;
+									[class.progress-stop--blue]&#x3D;&quot;
+									(passedStations.length &#x3D;&#x3D;&#x3D; 1 &amp;&amp; passedStations[0] &#x3D;&#x3D;&#x3D; stop.stop[&#x27;uicCode&#x27;]) ||
+									(passedStations.length &gt;&#x3D; 2 &amp;&amp; passedStations.includes(stop.stop[&#x27;uicCode&#x27;])
+									&amp;&amp; passedStations[passedStations.length - 1] !&#x3D;&#x3D; stop.stop[&#x27;uicCode&#x27;])&quot;
+								&gt;
+									&lt;div class&#x3D;&quot;progress-stop-content&quot;&gt;&lt;/div&gt;
+								&lt;/div&gt;
+								&lt;div style&#x3D;&quot;height: 100%&quot;&gt;
+									&lt;div
+										*ngIf&#x3D;&quot;stop !&#x3D;&#x3D; journey.stops[0]; else progressLineHidden&quot;
+										class&#x3D;&quot;progress-line&quot;
+										[class.progress-line--blue]&#x3D;&quot;
+										(passedStations.length &#x3D;&#x3D;&#x3D; 1 &amp;&amp; passedStations[0] &#x3D;&#x3D;&#x3D; stop.stop[&#x27;uicCode&#x27;]) ||
+									(passedStations.length &gt;&#x3D; 2 &amp;&amp; passedStations.includes(stop.stop[&#x27;uicCode&#x27;])
+									&amp;&amp; passedStations[passedStations.length - 1] !&#x3D;&#x3D; stop.stop[&#x27;uicCode&#x27;])&quot;
+									&gt;&lt;/div&gt;
+									&lt;div
+										*ngIf&#x3D;&quot;stop !&#x3D;&#x3D; journey.stops[journey.stops.length - 1]; else progressLineHidden&quot;
+										class&#x3D;&quot;progress-line&quot;
+										[class.progress-line--blue]&#x3D;&quot;
+										(passedStations.length &#x3D;&#x3D;&#x3D; 1 &amp;&amp; passedStations[0] &#x3D;&#x3D;&#x3D; stop.stop[&#x27;uicCode&#x27;]) ||
+									(passedStations.length &gt;&#x3D; 2 &amp;&amp; passedStations.includes(stop.stop[&#x27;uicCode&#x27;])
+									&amp;&amp; passedStations[passedStations.length - 1] !&#x3D;&#x3D; stop.stop[&#x27;uicCode&#x27;])&quot;
+									&gt;&lt;/div&gt;
+									&lt;ng-template #progressLineHidden&gt;
+										&lt;div class&#x3D;&quot;progress-line progress-line--hidden&quot;&gt;&lt;/div&gt;
+									&lt;/ng-template&gt;
+								&lt;/div&gt;
+							&lt;/div&gt;
+						&lt;/td&gt;
+					&lt;/ng-container&gt;
+
+					&lt;!-- Aankomst Column --&gt;
+					&lt;ng-container cdkColumnDef&#x3D;&quot;aankomst&quot;&gt;
+						&lt;th cdk-header-cell *cdkHeaderCellDef&gt;Aankomst&lt;/th&gt;
+						&lt;td cdk-cell *cdkCellDef&#x3D;&quot;let stop&quot;&gt;
+							&lt;ng-container *ngIf&#x3D;&quot;stop.status &#x3D;&#x3D;&#x3D; &#x27;ORIGIN&#x27;&quot;&gt;--&lt;/ng-container&gt;
+							&lt;ng-container *ngIf&#x3D;&quot;stop.status &#x3D;&#x3D;&#x3D; &#x27;STOP&#x27; || stop.status &#x3D;&#x3D;&#x3D; &#x27;DESTINATION&#x27;&quot;&gt;
+								&lt;ng-container *ngIf&#x3D;&quot;stop[&#x27;arrivals&#x27;][0][&#x27;actualTime&#x27;]; else plannedTime&quot;&gt;
+									{{stop[&#x27;arrivals&#x27;][0][&#x27;actualTime&#x27;] | date:&#x27;HH:mm&#x27;}}
+									&lt;ng-container *ngIf&#x3D;&quot;stop[&#x27;arrivals&#x27;][0][&#x27;plannedTime&#x27;]&quot;&gt;
+										&lt;div
+											class&#x3D;&quot;color-disruption&quot;
+											*ngIf&#x3D;&quot;minuteDifference(stop[&#x27;arrivals&#x27;][0][&#x27;plannedTime&#x27;],
+											stop[&#x27;arrivals&#x27;][0][&#x27;actualTime&#x27;]) &gt; 0&quot;
+										&gt;
+											+{{minuteDifference(stop[&#x27;arrivals&#x27;][0][&#x27;plannedTime&#x27;],
+											stop[&#x27;arrivals&#x27;][0][&#x27;actualTime&#x27;])}}
+										&lt;/div&gt;
+									&lt;/ng-container&gt;
+								&lt;/ng-container&gt;
+								&lt;ng-template #plannedTime
+									&gt;{{stop[&#x27;arrivals&#x27;][0][&#x27;plannedTime&#x27;] | date:&#x27;HH:mm&#x27;}}&lt;/ng-template
+								&gt;
+							&lt;/ng-container&gt;
+						&lt;/td&gt;
+					&lt;/ng-container&gt;
+
+					&lt;!-- Vertrek Column --&gt;
+					&lt;ng-container cdkColumnDef&#x3D;&quot;vertrek&quot;&gt;
+						&lt;th cdk-header-cell *cdkHeaderCellDef&gt;Vertrek&lt;/th&gt;
+						&lt;td cdk-cell *cdkCellDef&#x3D;&quot;let stop&quot;&gt;
+							&lt;ng-container *ngIf&#x3D;&quot;stop.status &#x3D;&#x3D;&#x3D; &#x27;DESTINATION&#x27;&quot;&gt;--&lt;/ng-container&gt;
+							&lt;ng-container *ngIf&#x3D;&quot;stop.status &#x3D;&#x3D;&#x3D; &#x27;ORIGIN&#x27; || stop.status &#x3D;&#x3D;&#x3D; &#x27;STOP&#x27;&quot;&gt;
+								&lt;ng-container *ngIf&#x3D;&quot;stop[&#x27;departures&#x27;][0][&#x27;actualTime&#x27;]; else plannedTime&quot;&gt;
+									{{stop[&#x27;departures&#x27;][0][&#x27;actualTime&#x27;] | date:&#x27;HH:mm&#x27;}}
+									&lt;ng-container *ngIf&#x3D;&quot;stop[&#x27;departures&#x27;][0][&#x27;plannedTime&#x27;]&quot;&gt;
+										&lt;div
+											class&#x3D;&quot;color-disruption&quot;
+											*ngIf&#x3D;&quot;minuteDifference(stop[&#x27;departures&#x27;][0][&#x27;plannedTime&#x27;],
+											stop[&#x27;departures&#x27;][0][&#x27;actualTime&#x27;]) &gt; 0&quot;
+										&gt;
+											+{{minuteDifference(stop[&#x27;departures&#x27;][0][&#x27;plannedTime&#x27;],
+											stop[&#x27;departures&#x27;][0][&#x27;actualTime&#x27;])}}
+										&lt;/div&gt;
+									&lt;/ng-container&gt;
+								&lt;/ng-container&gt;
+								&lt;ng-template #plannedTime
+									&gt;{{stop[&#x27;departures&#x27;][0][&#x27;plannedTime&#x27;] | date:&#x27;HH:mm&#x27;}}&lt;/ng-template
+								&gt;
+							&lt;/ng-container&gt;
+						&lt;/td&gt;
+					&lt;/ng-container&gt;
+
+					&lt;!-- Station Column --&gt;
+					&lt;ng-container cdkColumnDef&#x3D;&quot;station&quot;&gt;
+						&lt;th cdk-header-cell *cdkHeaderCellDef&gt;Station&lt;/th&gt;
+						&lt;td cdk-cell *cdkCellDef&#x3D;&quot;let element&quot;&gt;
+							&lt;div [ngClass]&#x3D;&quot;{&#x27;fw-bold&#x27;: nextStation.namen.lang &#x3D;&#x3D;&#x3D; element.stop.name}&quot;&gt;
+								{{element.stop.name}}
+							&lt;/div&gt;
+						&lt;/td&gt;
+					&lt;/ng-container&gt;
+
+					&lt;!-- Perron Column --&gt;
+					&lt;ng-container cdkColumnDef&#x3D;&quot;perron&quot;&gt;
+						&lt;th cdk-header-cell *cdkHeaderCellDef&gt;Perron&lt;/th&gt;
+						&lt;td cdk-cell *cdkCellDef&#x3D;&quot;let stop&quot;&gt;
+							&lt;ng-container *ngIf&#x3D;&quot;stop.status &#x3D;&#x3D;&#x3D; &#x27;ORIGIN&#x27; || stop.status &#x3D;&#x3D;&#x3D; &#x27;STOP&#x27;&quot;&gt;
+								&lt;ng-container *ngIf&#x3D;&quot;stop[&#x27;departures&#x27;][0][&#x27;actualTrack&#x27;]; else plannedTrack&quot;&gt;
+									{{stop[&#x27;departures&#x27;][0][&#x27;actualTrack&#x27;]}}
+								&lt;/ng-container&gt;
+								&lt;ng-template #plannedTrack&gt;{{stop[&#x27;departures&#x27;][0][&#x27;plannedTrack&#x27;]}}&lt;/ng-template&gt;
+							&lt;/ng-container&gt;
+							&lt;ng-container *ngIf&#x3D;&quot;stop.status &#x3D;&#x3D;&#x3D; &#x27;DESTINATION&#x27;&quot;&gt;
+								&lt;ng-container *ngIf&#x3D;&quot;stop[&#x27;arrivals&#x27;][0][&#x27;actualTrack&#x27;]; else plannedTrack&quot;&gt;
+									{{stop[&#x27;arrivals&#x27;][0][&#x27;actualTrack&#x27;]}}
+								&lt;/ng-container&gt;
+								&lt;ng-template #plannedTrack&gt;{{stop[&#x27;arrivals&#x27;][0][&#x27;plannedTrack&#x27;]}}&lt;/ng-template&gt;
+							&lt;/ng-container&gt;
+						&lt;/td&gt;
+					&lt;/ng-container&gt;
+
+					&lt;!-- Drukte Column --&gt;
+					&lt;ng-container cdkColumnDef&#x3D;&quot;drukte&quot;&gt;
+						&lt;th cdk-header-cell *cdkHeaderCellDef&gt;Drukte&lt;/th&gt;
+						&lt;td cdk-cell *cdkCellDef&#x3D;&quot;let stop&quot;&gt;
+							&lt;ng-container
+								*ngIf&#x3D;&quot;stop.status &#x3D;&#x3D;&#x3D; &#x27;ORIGIN&#x27; || stop.status &#x3D;&#x3D;&#x3D; &#x27;STOP&#x27; &amp;&amp; stop[&#x27;departures&#x27;][0][&#x27;crowdForecast&#x27;] !&#x3D;&#x3D; &#x27;UNKNOWN&#x27;&quot;
+							&gt;
+								&lt;div
+									class&#x3D;&quot;crowd-forecast text-nowrap&quot;
+									[ngClass]&#x3D;&quot;{&#x27;crowd-forecast--medium&#x27;: stop[&#x27;departures&#x27;][0][&#x27;crowdForecast&#x27;] &#x3D;&#x3D;&#x3D; &#x27;MEDIUM&#x27;,
+                &#x27;crowd-forecast--high&#x27;: stop[&#x27;departures&#x27;][0][&#x27;crowdForecast&#x27;] &#x3D;&#x3D;&#x3D; &#x27;HIGH&#x27;
+                }&quot;
+									style&#x3D;&quot;padding: 0 4px&quot;
+								&gt;
+									&lt;ng-container
+										*ngFor&#x3D;&quot;let i of getNumberFromCrowdForecast(stop[&#x27;departures&#x27;][0][&#x27;crowdForecast&#x27;]); let last &#x3D; last&quot;
+									&gt;
+										&lt;fa-icon
+											class&#x3D;&quot;crowd-icon&quot;
+											[icon]&#x3D;&quot;i&quot;
+											[ngStyle]&#x3D;&quot;{&#x27;margin-right&#x27;: last ? 0 : &#x27;3px&#x27;}&quot;
+										&gt;&lt;/fa-icon&gt;
+									&lt;/ng-container&gt;
+								&lt;/div&gt;
+							&lt;/ng-container&gt;
+							&lt;ng-container
+								*ngIf&#x3D;&quot;stop.status &#x3D;&#x3D;&#x3D; &#x27;DESTINATION&#x27; &amp;&amp; stop[&#x27;arrivals&#x27;][0][&#x27;crowdForecast&#x27;] !&#x3D;&#x3D; &#x27;UNKNOWN&#x27;&quot;
+							&gt;
+								&lt;div class&#x3D;&quot;crowd-forecast text-nowrap&quot;&gt;
+									&lt;ng-container
+										*ngFor&#x3D;&quot;let i of getNumberFromCrowdForecast(stop[&#x27;arrivals&#x27;][0][&#x27;crowdForecast&#x27;]); let last &#x3D; last&quot;
+									&gt;
+										&lt;fa-icon
+											class&#x3D;&quot;crowd-icon&quot;
+											[icon]&#x3D;&quot;i&quot;
+											[ngStyle]&#x3D;&quot;{&#x27;margin-right&#x27;: last ? 0 : &#x27;3px&#x27;}&quot;
+										&gt;&lt;/fa-icon&gt;
+									&lt;/ng-container&gt;
+								&lt;/div&gt;
+							&lt;/ng-container&gt;
+						&lt;/td&gt;
+					&lt;/ng-container&gt;
+
+					&lt;ng-container cdkColumnDef&#x3D;&quot;afbeelding&quot;&gt;
+						&lt;th cdk-header-cell *cdkHeaderCellDef class&#x3D;&quot;ps-2&quot;&gt;Afbeelding&lt;/th&gt;
+						&lt;td cdk-cell *cdkCellDef&#x3D;&quot;let stop&quot; class&#x3D;&quot;ps-2&quot; style&#x3D;&quot;width: 20vw&quot;&gt;
+							&lt;div
+								*ngIf&#x3D;&quot;stop.actualStock?.trainParts &amp;&amp; stop.actualStock?.trainParts[0]?.image.uri; else filler&quot;
+							&gt;
+								&lt;div class&#x3D;&quot;carousel scroll-gradient&quot;&gt;
+									&lt;div
+										class&#x3D;&quot;slide&quot;
+										*ngFor&#x3D;&quot;let railcar of stop.actualStock.trainParts; let isLast &#x3D; last&quot;
+									&gt;
+										&lt;img
+											[src]&#x3D;&quot;railcar.image.uri&quot;
+											alt&#x3D;&quot;Trein&quot;
+											height&#x3D;&quot;30&quot;
+											[ngClass]&#x3D;&quot;{ &#x27;pe-2&#x27;: isLast }&quot;
+										/&gt;
+									&lt;/div&gt;
+								&lt;/div&gt;
+							&lt;/div&gt;
+							&lt;ng-template #filler&gt;
+								&lt;div class&#x3D;&quot;carousel scroll-gradient&quot;&gt;
+									&lt;div class&#x3D;&quot;slide&quot;&gt;
+										&lt;div style&#x3D;&quot;height: 30px&quot;&gt;&lt;/div&gt;
+									&lt;/div&gt;
+								&lt;/div&gt;
+							&lt;/ng-template&gt;
+						&lt;/td&gt;
+					&lt;/ng-container&gt;
+
+					&lt;tr cdk-header-row *cdkHeaderRowDef&#x3D;&quot;displayedColumns&quot;&gt;&lt;/tr&gt;
+					&lt;tr cdk-row *cdkRowDef&#x3D;&quot;let row; columns: displayedColumns;&quot;&gt;&lt;/tr&gt;
+				&lt;/table&gt;
+			&lt;/div&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-styleData">
+                <p class="comment">
+                    <code>./ride-information.component.sass</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">@import &quot;src/styles/colors&quot;
+
+.carousel
+  width: 100%
+  min-height: 40px
+  display: flex
+  flex-wrap: nowrap
+  overflow-x: auto
+  background-color: #fffffff5
+  border-radius: 5px
+  margin-top: 8px
+
+  .slide
+    flex: 0 0 auto
+
+table
+  width: 100%
+  height: 100%
+
+th
+  text-align: left
+  padding-right: 5px
+
+td
+  padding-right: 5px
+  display: table-cell
+  height: 100%
+
+.crowd-forecast
+  background-color: $ns-green
+  border-radius: 3px
+  text-align-last: center
+  text-align: center
+  color: white
+  margin: 5px 0
+
+  &amp;--medium
+    background-color: $ns-orange
+
+  &amp;--high
+    background-color: $ns-red-alert
+
+.crowd-icon
+  display: inline-block
+  padding-top: 2px
+
+.train-progress
+  height: 100%
+  -moz-box-sizing: border-box
+  position: relative
+
+  .progress-line
+    background-color: $ns-yellow
+    width: 5px
+    height: 50%
+    margin-left: 6px
+
+    &amp;--blue
+      background-color: $ns-light-blue
+
+    &amp;--hidden
+      background-color: transparent
+
+  .progress-stop
+    background-color: $ns-yellow
+    width: 18px
+    height: 18px
+    border-radius: 10px
+    position: absolute
+    top: 31%
+    z-index: 1
+
+    &amp;--blue
+      background-color: $ns-light-blue
+
+    .progress-stop-content
+      background-color: white
+      width: 10px
+      height: 10px
+      border-radius: 5px
+      margin: 4px
+
+.progress-stop-map
+  background-color: $ns-yellow-2
+  width: 16px
+  height: 16px
+  border-radius: 10px
+
+  &amp;--blue
+    background-color: $ns-light-blue
+
+  .progress-stop-map-content
+    display: inline-block
+    background-color: white
+    width: 8px
+    height: 8px
+    border-radius: 5px
+    margin: 4px
+
+.trainset-chip
+  width: fit-content
+  background: lightgray
+  border-radius: 15px
+  padding: 0 12px
+  font-size: 12px
+  color: black
+
+.grey-40
+  color: $ns-grey-40
+
+.map_box_container
+  position: relative
+  height: 25vh
+  width: 100%
+
+mgl-map
+  position: absolute
+  top: 0
+  bottom: 0
+  width: 100%
+  height: 100%
+
+::ng-deep :-webkit-any(::ng-deep .mapboxgl-popup-anchor-bottom, ::ng-deep .mapboxgl-popup-anchor-bottom-right, ::ng-deep .mapboxgl-popup-anchor-bottom-left) .mapboxgl-popup-tip
+  border-top-color: $ns-blue
+
+::ng-deep :-webkit-any(::ng-deep .mapboxgl-popup-anchor-top, ::ng-deep .mapboxgl-popup-anchor-top-right, ::ng-deep .mapboxgl-popup-anchor-top-left) .mapboxgl-popup-tip
+  border-bottom-color: $ns-blue
+
+::ng-deep .mapboxgl-popup-anchor-left .mapboxgl-popup-tip
+  border-right-color: $ns-blue
+
+::ng-deep .mapboxgl-popup-anchor-right .mapboxgl-popup-tip
+  border-left-color: $ns-blue
+
+::ng-deep .mapboxgl-popup-close-button
+  display: none
+
+::ng-deep .mapboxgl-popup-content
+  color: white
+  background: $ns-blue
+  width: max-content
+  padding: 0
+
+#playPauseContainer
+  color: $ns-blue
+  border-radius: 12px
+  text-align: center
+  width: fit-content
+
+#updatePositionsLabel
+  color: $ns-blue
+  cursor: default
+  font-weight: 700
+  font-size: 12px
+  padding: 0 0 0 12px
+  background-color: transparent
+
+#updatingMapDataSpinner
+  margin: 4px 10px 3px 10px
+
+#updatePositionsProgressbar
+  z-index: 1
+  margin: 0 10px 5px 10px
+
+#playPauseContainer *
+  cursor: pointer
+
+.countdown-progressbar
+  display: flex
+  height: 12px
+  border-radius: 6px
+  overflow: hidden
+  line-height: 0
+  font-size: 0.75rem
+  background-color: #e9ecef
+
+.progress-value
+  animation-name: load
+  animation-duration: 30s
+  animation-timing-function: linear
+  animation-play-state: paused
+  animation-fill-mode: backwards
+  border-radius: 6px 0 0 6px
+  background: $ns-blue
+  width: 100%
+  height: 100%
+
+@keyframes load
+  0%
+    width: 100%
+  100%
+    width: 0
+
+#train-information-details
+  border-radius: 12px
+  padding: 10px
+  width: fit-content
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div>	<div class="card mt-3 shadow p-1 p-lg-3 mb-3 bg-white rounded mat-typography" *ngIf="trainInformation">		<div class="card-body">			<div>				<h1 class="card-title fw-bold mb-0">Ritnummer {{trainInformation.ritId}}</h1>				<h2 class="card-subtitle mb-2 text-muted fw-bold">					{{ trainInformation.trainDetails?.vervoerder }} trein {{ trainInformation.ritId }}					<span						*ngFor="											let trainPart of trainInformation.trainDetails?.materieeldelen;											let i = index										"					>						<span *ngIf="trainPart.materieelnummer">							<span *ngIf="i === 0; else other"> met {{ trainPart.materieelnummer }}</span>							<ng-template #other								>{{i === (trainInformation.trainDetails.materieeldelen.length - 1) ? \' \' + \'en\' : \',\'}}								{{ trainPart.materieelnummer }}							</ng-template>						</span>					</span>				</h2>				<div					*ngIf="trainInformation.trainDetails?.materieeldelen && trainInformation.trainDetails?.materieeldelen[0]?.afbeelding"				>					<div class="carousel scroll-gradient">						<div							class="slide"							*ngFor="let railcar of trainInformation.trainDetails.materieeldelen; let isLast = last"						>							<img [src]="railcar.afbeelding" alt="Trein" height="45" [ngClass]="{ \'pe-2\': isLast }" />							<div class="trainset-chip">Treinstel {{railcar.materieelnummer}}</div>						</div>					</div>				</div>			</div>		</div>	</div>	<div		id="map-card"		class="card mt-3 shadow p-1 p-lg-3 mb-3 bg-white rounded mat-typography"		*ngIf="trainInformation && routeTracksLayerData"	>		<div class="card-body">			<div style="height: 100%; position: relative">				<h1 class="card-title fw-bold mb-0">Route</h1>				<h2 class="card-subtitle mb-2 text-muted fw-bold">					{{journey.stops[0].stop[\'name\']}} naar {{journey.stops[journey.stops.length - 1].destination}}				</h2>				<div>					<div class="d-md-flex">						<div class="map_box_container me-md-3 mb-3 mb-md-0">							<mgl-map								[style]="mapStyle"								[zoom]="[zoom]"								[center]="[lng, lat]"								[interactive]="false"								(mapLoad)="onMapLoad($event)"							>								<mgl-geojson-source									id="routeTracksLayerData"									[data]="routeTracksLayerData"								></mgl-geojson-source>								<mgl-layer									id="NSTrainTracks"									type="line"									source="routeTracksLayerData"									[layout]="{ \'line-join\': \'round\', \'line-cap\': \'round\' }"									[paint]="{ \'line-color\': \'#6a6a79\', \'line-width\': 3 }"								>								</mgl-layer>								<ng-container *ngIf="progressTracksLayerData">									<mgl-geojson-source										id="progressTracksLayerData"										[data]="progressTracksLayerData"									></mgl-geojson-source>									<mgl-layer										id="ProgressTrainTracks"										type="line"										source="progressTracksLayerData"										[layout]="{ \'line-join\': \'round\', \'line-cap\': \'round\' }"										[paint]="{ \'line-color\': \'#0063D3\', \'line-width\': 3 }"									>									</mgl-layer>								</ng-container>								<ng-container *ngIf="trainIconOnMap">									<mgl-image										[id]="trainIconOnMap.imageName"										[url]="trainIconOnMap.imageObjectURL"									></mgl-image>								</ng-container>								<mgl-geojson-source									*ngIf="trainsLayerData"									id="trainData"									[data]="trainsLayerData"								></mgl-geojson-source>								<mgl-layer									*ngIf="trainsLayerData && trainIconOnMap"									id="trains"									type="symbol"									source="trainData"									[layout]="{                \'icon-image\': [\'get\', \'trainIconName\'],                \'icon-size\': 0.5,                \'icon-allow-overlap\': true,                \'icon-ignore-placement\': true              }"								>								</mgl-layer>								<ng-container *ngIf="dataSource">									<ng-container *ngFor="let stop of stopsLayerData.features">										<mgl-marker [feature]="stop" #marker>											<div												class="progress-stop-map"												[class.progress-stop-map--blue]="															(passedStations.length === 1 && passedStations[0] === stop.properties.stop[\'uicCode\']) ||															(passedStations.length >= 2 && passedStations.includes(stop.properties.stop[\'uicCode\'])															&& passedStations[passedStations.length - 1] !== stop.properties.stop[\'uicCode\'])"												style="cursor: pointer"												(click)="onStopMarkerClick(marker)"											>												<div class="progress-stop-map-content"></div>											</div>										</mgl-marker>									</ng-container>								</ng-container>								<mgl-popup									*ngIf="selectedMarker"									[marker]="selectedMarker"									[maxWidth]="\'none\'"									[closeButton]="false"								>									<div										class="map-marker-content color-white shadow-darken10 round txt-s clip txt-truncate"										style="padding: 15px 0"									>										<div class="container-fluid">											<div class="row">												<div class="col">													<div class="d-flex">														<div class="float-start me-3" style="width: fit-content">															<div>																<div class="mb-1 fw-bold">Station:</div>															</div>															<div class="mb-1 fw-bold">Aankomst:</div>															<div class="fw-bold">Vertrek:</div>														</div>														<div style="width: fit-content">															<div class="mb-1">																{{selectedMarker.feature.properties.stop.name}}															</div>															<div class="mb-1">																<ng-container																	*ngIf="selectedMarker.feature.properties.status === \'ORIGIN\'"																	>--</ng-container																>																<ng-container																	*ngIf="selectedMarker.feature.properties.status === \'STOP\' || selectedMarker.feature.properties.status === \'DESTINATION\'"																>																	<ng-container																		*ngIf="selectedMarker.feature.properties[\'arrivals\'][0][\'actualTime\']; else plannedTime"																	>																		{{selectedMarker.feature.properties[\'arrivals\'][0][\'actualTime\']																		| date:\'HH:mm\'}}																	</ng-container>																	<ng-template #plannedTime																		>{{selectedMarker.feature.properties[\'arrivals\'][0][\'plannedTime\']																		| date:\'HH:mm\'}}</ng-template																	>																</ng-container>															</div>															<div>																<ng-container																	*ngIf="selectedMarker.feature.properties.status === \'DESTINATION\'"																	>--</ng-container																>																<ng-container																	*ngIf="selectedMarker.feature.properties.status === \'ORIGIN\' || selectedMarker.feature.properties.status === \'STOP\'"																>																	<ng-container																		*ngIf="selectedMarker.feature.properties[\'departures\'][0][\'actualTime\']; else plannedTime"																	>																		{{selectedMarker.feature.properties[\'departures\'][0][\'actualTime\']																		| date:\'HH:mm\'}}																	</ng-container>																	<ng-template #plannedTime																		>{{selectedMarker.feature.properties[\'departures\'][0][\'plannedTime\']																		| date:\'HH:mm\'}}</ng-template																	>																</ng-container>															</div>														</div>													</div>												</div>											</div>										</div>									</div>								</mgl-popup>							</mgl-map>						</div>						<div style="font-size: 14px">							<div								id="playPauseContainer"								class="border border--2 border--white bg-white shadow-darken10 z1 mb-2"								(click)="pauseOrResumeUpdatingTrainPositions(!updateTrainsIsPaused)"							>								<div class="d-flex align-items-center">									<div id="updatePositionsLabel">Update informatie</div>									<div										*ngIf="							isUpdatingMapData === false || updateTrainsIsPaused === false;							else updatingMapDataSpinner						"									>										<button											style="margin-top: -6px; margin-bottom: -4px"											mat-icon-button											role="button"											aria-label="Pauzeer/hervat treinposities countdown"										>											<mat-icon												*ngIf="									updateTrainsIsPaused === false && isUpdatingMapData === false;									else playCircleIcon								"											>												pause_circle_filled											</mat-icon>											<ng-template #playCircleIcon>												<mat-icon>play_circle_filled</mat-icon>											</ng-template>										</button>									</div>									<ng-template #updatingMapDataSpinner>										<div id="updatingMapDataSpinner">											<div												class="spinner-border spinner-border-sm"												style="width: 20px; height: 20px"												role="status"											>												<span class="sr-only">Laden...</span>											</div>										</div>									</ng-template>								</div>								<div id="updatePositionsProgressbar">									<div class="countdown-progressbar">										<div											#updateCountdown											class="progress-value"											[ngStyle]="{\'animation-play-state\': updateTrainsIsPaused ? \'paused\' : \'running\'}"											role="progressbar"											aria-valuemin="0"											aria-valuemax="100"											aria-label="Treinposities update countdown"										></div>									</div>								</div>							</div>							<div								id="train-information-details"								class="border border--2 border--white bg-white shadow-darken10 z1"							>								<div class="d-flex" style="white-space: nowrap">									<div class="float-start me-3">										<div class="mb-2 fw-bold">Snelheid:</div>										<div class="mb-2 fw-bold">Richting:</div>										<ng-container *ngIf="nextStation">											<div												[ngClass]="{\'mb-2\' : trainInformation.trainDetails.type }"												class="fw-bold"											>												Volgende Station:											</div>										</ng-container>										<ng-container *ngIf="trainInformation.trainDetails.type">											<div class="fw-bold">Type:</div>										</ng-container>									</div>									<div class="d-inline-block">										<div class="mb-2">{{ trainInformation.snelheid | number:\'1.0-2\' }} km/u</div>										<div class="mb-2 d-flex align-items-center">											<span>{{ trainInformation.richting }}&deg;</span>											<span												class="material-icons fw-bold ms-1"												style="font-size: 18px"												[ngStyle]="directionArrowStyle"												>arrow_right_alt</span											>										</div>										<ng-container *ngIf="nextStation">											<div [ngClass]="{\'mb-2\' : trainInformation.trainDetails.type }">												{{nextStation.namen.lang}}											</div>										</ng-container>										<ng-container *ngIf="trainInformation.trainDetails.type">											<div>{{trainInformation.trainDetails.type}}</div>										</ng-container>									</div>								</div>							</div>						</div>					</div>				</div>			</div>		</div>	</div>	<div class="card mt-3 shadow p-1 p-lg-3 mb-3 bg-white rounded mat-typography" *ngIf="journey">		<div class="card-body">			<h1 class="card-title fw-bold mb-0">Reis</h1>			<h2 class="card-subtitle mb-2 text-muted fw-bold">				{{journey.stops[0].stop[\'name\']}} naar {{journey.stops[journey.stops.length - 1].destination}}			</h2>			<div style="width: 100%" class="scroll-gradient">				<table cdk-table [dataSource]="dataSource">					<!-- Progress Column-->					<ng-container cdkColumnDef="progress">						<th cdk-header-cell *cdkHeaderCellDef></th>						<td							cdk-cell							*cdkCellDef="let stop"							style="vertical-align: middle; width: 30px; padding-right: 20px"						>							<div class="train-progress">								<div									class="progress-stop"									[class.progress-stop--blue]="									(passedStations.length === 1 && passedStations[0] === stop.stop[\'uicCode\']) ||									(passedStations.length >= 2 && passedStations.includes(stop.stop[\'uicCode\'])									&& passedStations[passedStations.length - 1] !== stop.stop[\'uicCode\'])"								>									<div class="progress-stop-content"></div>								</div>								<div style="height: 100%">									<div										*ngIf="stop !== journey.stops[0]; else progressLineHidden"										class="progress-line"										[class.progress-line--blue]="										(passedStations.length === 1 && passedStations[0] === stop.stop[\'uicCode\']) ||									(passedStations.length >= 2 && passedStations.includes(stop.stop[\'uicCode\'])									&& passedStations[passedStations.length - 1] !== stop.stop[\'uicCode\'])"									></div>									<div										*ngIf="stop !== journey.stops[journey.stops.length - 1]; else progressLineHidden"										class="progress-line"										[class.progress-line--blue]="										(passedStations.length === 1 && passedStations[0] === stop.stop[\'uicCode\']) ||									(passedStations.length >= 2 && passedStations.includes(stop.stop[\'uicCode\'])									&& passedStations[passedStations.length - 1] !== stop.stop[\'uicCode\'])"									></div>									<ng-template #progressLineHidden>										<div class="progress-line progress-line--hidden"></div>									</ng-template>								</div>							</div>						</td>					</ng-container>					<!-- Aankomst Column -->					<ng-container cdkColumnDef="aankomst">						<th cdk-header-cell *cdkHeaderCellDef>Aankomst</th>						<td cdk-cell *cdkCellDef="let stop">							<ng-container *ngIf="stop.status === \'ORIGIN\'">--</ng-container>							<ng-container *ngIf="stop.status === \'STOP\' || stop.status === \'DESTINATION\'">								<ng-container *ngIf="stop[\'arrivals\'][0][\'actualTime\']; else plannedTime">									{{stop[\'arrivals\'][0][\'actualTime\'] | date:\'HH:mm\'}}									<ng-container *ngIf="stop[\'arrivals\'][0][\'plannedTime\']">										<div											class="color-disruption"											*ngIf="minuteDifference(stop[\'arrivals\'][0][\'plannedTime\'],											stop[\'arrivals\'][0][\'actualTime\']) > 0"										>											+{{minuteDifference(stop[\'arrivals\'][0][\'plannedTime\'],											stop[\'arrivals\'][0][\'actualTime\'])}}										</div>									</ng-container>								</ng-container>								<ng-template #plannedTime									>{{stop[\'arrivals\'][0][\'plannedTime\'] | date:\'HH:mm\'}}</ng-template								>							</ng-container>						</td>					</ng-container>					<!-- Vertrek Column -->					<ng-container cdkColumnDef="vertrek">						<th cdk-header-cell *cdkHeaderCellDef>Vertrek</th>						<td cdk-cell *cdkCellDef="let stop">							<ng-container *ngIf="stop.status === \'DESTINATION\'">--</ng-container>							<ng-container *ngIf="stop.status === \'ORIGIN\' || stop.status === \'STOP\'">								<ng-container *ngIf="stop[\'departures\'][0][\'actualTime\']; else plannedTime">									{{stop[\'departures\'][0][\'actualTime\'] | date:\'HH:mm\'}}									<ng-container *ngIf="stop[\'departures\'][0][\'plannedTime\']">										<div											class="color-disruption"											*ngIf="minuteDifference(stop[\'departures\'][0][\'plannedTime\'],											stop[\'departures\'][0][\'actualTime\']) > 0"										>											+{{minuteDifference(stop[\'departures\'][0][\'plannedTime\'],											stop[\'departures\'][0][\'actualTime\'])}}										</div>									</ng-container>								</ng-container>								<ng-template #plannedTime									>{{stop[\'departures\'][0][\'plannedTime\'] | date:\'HH:mm\'}}</ng-template								>							</ng-container>						</td>					</ng-container>					<!-- Station Column -->					<ng-container cdkColumnDef="station">						<th cdk-header-cell *cdkHeaderCellDef>Station</th>						<td cdk-cell *cdkCellDef="let element">							<div [ngClass]="{\'fw-bold\': nextStation.namen.lang === element.stop.name}">								{{element.stop.name}}							</div>						</td>					</ng-container>					<!-- Perron Column -->					<ng-container cdkColumnDef="perron">						<th cdk-header-cell *cdkHeaderCellDef>Perron</th>						<td cdk-cell *cdkCellDef="let stop">							<ng-container *ngIf="stop.status === \'ORIGIN\' || stop.status === \'STOP\'">								<ng-container *ngIf="stop[\'departures\'][0][\'actualTrack\']; else plannedTrack">									{{stop[\'departures\'][0][\'actualTrack\']}}								</ng-container>								<ng-template #plannedTrack>{{stop[\'departures\'][0][\'plannedTrack\']}}</ng-template>							</ng-container>							<ng-container *ngIf="stop.status === \'DESTINATION\'">								<ng-container *ngIf="stop[\'arrivals\'][0][\'actualTrack\']; else plannedTrack">									{{stop[\'arrivals\'][0][\'actualTrack\']}}								</ng-container>								<ng-template #plannedTrack>{{stop[\'arrivals\'][0][\'plannedTrack\']}}</ng-template>							</ng-container>						</td>					</ng-container>					<!-- Drukte Column -->					<ng-container cdkColumnDef="drukte">						<th cdk-header-cell *cdkHeaderCellDef>Drukte</th>						<td cdk-cell *cdkCellDef="let stop">							<ng-container								*ngIf="stop.status === \'ORIGIN\' || stop.status === \'STOP\' && stop[\'departures\'][0][\'crowdForecast\'] !== \'UNKNOWN\'"							>								<div									class="crowd-forecast text-nowrap"									[ngClass]="{\'crowd-forecast--medium\': stop[\'departures\'][0][\'crowdForecast\'] === \'MEDIUM\',                \'crowd-forecast--high\': stop[\'departures\'][0][\'crowdForecast\'] === \'HIGH\'                }"									style="padding: 0 4px"								>									<ng-container										*ngFor="let i of getNumberFromCrowdForecast(stop[\'departures\'][0][\'crowdForecast\']); let last = last"									>										<fa-icon											class="crowd-icon"											[icon]="i"											[ngStyle]="{\'margin-right\': last ? 0 : \'3px\'}"										></fa-icon>									</ng-container>								</div>							</ng-container>							<ng-container								*ngIf="stop.status === \'DESTINATION\' && stop[\'arrivals\'][0][\'crowdForecast\'] !== \'UNKNOWN\'"							>								<div class="crowd-forecast text-nowrap">									<ng-container										*ngFor="let i of getNumberFromCrowdForecast(stop[\'arrivals\'][0][\'crowdForecast\']); let last = last"									>										<fa-icon											class="crowd-icon"											[icon]="i"											[ngStyle]="{\'margin-right\': last ? 0 : \'3px\'}"										></fa-icon>									</ng-container>								</div>							</ng-container>						</td>					</ng-container>					<ng-container cdkColumnDef="afbeelding">						<th cdk-header-cell *cdkHeaderCellDef class="ps-2">Afbeelding</th>						<td cdk-cell *cdkCellDef="let stop" class="ps-2" style="width: 20vw">							<div								*ngIf="stop.actualStock?.trainParts && stop.actualStock?.trainParts[0]?.image.uri; else filler"							>								<div class="carousel scroll-gradient">									<div										class="slide"										*ngFor="let railcar of stop.actualStock.trainParts; let isLast = last"									>										<img											[src]="railcar.image.uri"											alt="Trein"											height="30"											[ngClass]="{ \'pe-2\': isLast }"										/>									</div>								</div>							</div>							<ng-template #filler>								<div class="carousel scroll-gradient">									<div class="slide">										<div style="height: 30px"></div>									</div>								</div>							</ng-template>						</td>					</ng-container>					<tr cdk-header-row *cdkHeaderRowDef="displayedColumns"></tr>					<tr cdk-row *cdkRowDef="let row; columns: displayedColumns;"></tr>				</table>			</div>		</div>	</div></div></div>'
+    var COMPONENTS = [{'name': 'AboutComponent', 'selector': 'app-about'},{'name': 'AllStationsComponent', 'selector': 'app-all-stations'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'CalamityItemComponent', 'selector': 'app-calamity-item'},{'name': 'DisruptionItemComponent', 'selector': 'app-disruption-item'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'MainLayoutComponent', 'selector': 'app-main-layout'},{'name': 'PageNotFoundComponent', 'selector': 'app-page-not-found'},{'name': 'RideInformationComponent', 'selector': 'app-ride-information'},{'name': 'StationPopupComponent', 'selector': 'app-station-popup'},{'name': 'ToastsContainerComponent', 'selector': 'app-toasts-container'},{'name': 'TrainMapComponent', 'selector': 'app-train-map'},{'name': 'TrainMapSidebarComponent', 'selector': 'app-train-map-sidebar'},{'name': 'TrainPopupComponent', 'selector': 'app-train-popup'},{'name': 'TrainsetInformationComponent', 'selector': 'app-trainset-information'}];
+    var DIRECTIVES = [{'name': 'NgbdSortableHeaderDirective', 'selector': '[appNgbdSortableHeader]'},{'name': 'NgInitDirective', 'selector': '[ngInit]'}];
+    var ACTUAL_COMPONENT = {'name': 'RideInformationComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'RideInformationComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

@@ -1,0 +1,1262 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>TrainSpotter Documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+        <link rel="stylesheet" href="../styles/material.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">TrainSpotter Documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content injectable">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li>Injectables</li>
+  <li >ApiService</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/app/services/api.service.ts</code>
+        </p>
+
+
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Network request for the NS API</p>
+
+            </p>
+
+
+
+            <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#convertTrainsetNrToRideId" >convertTrainsetNrToRideId</a>
+                            </li>
+                            <li>
+                                <a href="#getActiveDisruptions" >getActiveDisruptions</a>
+                            </li>
+                            <li>
+                                <a href="#getBasicInformationAboutAllStations" >getBasicInformationAboutAllStations</a>
+                            </li>
+                            <li>
+                                <a href="#getBasicInformationAboutAllTrains" >getBasicInformationAboutAllTrains</a>
+                            </li>
+                            <li>
+                                <a href="#getDisruptedTrainTracksGeoJSON" >getDisruptedTrainTracksGeoJSON</a>
+                            </li>
+                            <li>
+                                <a href="#getJourneyDetails" >getJourneyDetails</a>
+                            </li>
+                            <li>
+                                <a href="#getRouteGeoJSON" >getRouteGeoJSON</a>
+                            </li>
+                            <li>
+                                <a href="#getStationArrivals" >getStationArrivals</a>
+                            </li>
+                            <li>
+                                <a href="#getStationDepartures" >getStationDepartures</a>
+                            </li>
+                            <li>
+                                <a href="#getTrainDetailsByRideId" >getTrainDetailsByRideId</a>
+                            </li>
+                            <li>
+                                <a href="#getTrainTracksGeoJSON" >getTrainTracksGeoJSON</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+            <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(http: <a href="../injectables/HttpClientService.html" target="_self">HttpClientService</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/app/services/api.service.ts:40</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Define services</p>
+</div>
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>http</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/HttpClientService.html" target="_self" >HttpClientService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <p>Http service with caching</p>
+
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+            <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="convertTrainsetNrToRideId"></a>
+                    <span class="name">
+                        <span ><b>convertTrainsetNrToRideId</b></span>
+                        <a href="#convertTrainsetNrToRideId"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>convertTrainsetNrToRideId(trainsetNr: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="123"
+                            class="link-to-prism">src/app/services/api.service.ts:123</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Convert a trainset number to the rideId it&#39;s part of
+<a href="https://apiportal.ns.nl/docs/services/virtual-train-api/operations/getTreinInformatie?">virtual-train-api/api/v1/trein</a></p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>trainsetNr</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Number of the trainset</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../interfaces/Response.html" target="_self" >Observable&lt;Response&lt;number&gt;&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>Observable&lt;Response<number>&gt; RideId of which the</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getActiveDisruptions"></a>
+                    <span class="name">
+                        <span ><b>getActiveDisruptions</b></span>
+                        <a href="#getActiveDisruptions"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getActiveDisruptions(force)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="137"
+                            class="link-to-prism">src/app/services/api.service.ts:137</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Get information about current disruptions
+<a href="https://apiportal.ns.nl/docs/services/reisinformatie-api/operations/getDisruptions_v3?">reisinformatie-api/api/v3/disruptions</a></p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                    <td>Default value</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>force</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+                                    <td>
+                                        <code>false</code>
+                                    </td>
+
+                                    <td>
+                                        <p>Force an update, do not check cache</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../interfaces/Response.html" target="_self" >Observable&lt;Response&lt;DisruptionsList&gt;&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>Observable&lt;Response<DisruptionsList>&gt; Information about current disruptions</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getBasicInformationAboutAllStations"></a>
+                    <span class="name">
+                        <span ><b>getBasicInformationAboutAllStations</b></span>
+                        <a href="#getBasicInformationAboutAllStations"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getBasicInformationAboutAllStations()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="155"
+                            class="link-to-prism">src/app/services/api.service.ts:155</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Get information about all stations
+<a href="https://apiportal.ns.nl/docs/services/reisinformatie-api/operations/getStations?">reisinformatie-api/api/v2/stations</a></p>
+</div>
+
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../interfaces/Response.html" target="_self" >Observable&lt;Response&lt;StationsResponse&gt;&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>Observable&lt;Response<StationsResponse>&gt; Information about all stations</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getBasicInformationAboutAllTrains"></a>
+                    <span class="name">
+                        <span ><b>getBasicInformationAboutAllTrains</b></span>
+                        <a href="#getBasicInformationAboutAllTrains"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getBasicInformationAboutAllTrains()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="95"
+                            class="link-to-prism">src/app/services/api.service.ts:95</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Get minimal information about all trains
+<a href="https://apiportal.ns.nl/docs/services/virtual-train-api/operations/getVehicles?">virtual-train-api/api/vehicle</a></p>
+</div>
+
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../interfaces/Response.html" target="_self" >Observable&lt;Response&lt;TrainInformationResponse&gt;&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>Observable&lt;Response<TrainInformationResponse>&gt; Minimal information about all trains</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getDisruptedTrainTracksGeoJSON"></a>
+                    <span class="name">
+                        <span ><b>getDisruptedTrainTracksGeoJSON</b></span>
+                        <a href="#getDisruptedTrainTracksGeoJSON"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getDisruptedTrainTracksGeoJSON(force)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="79"
+                            class="link-to-prism">src/app/services/api.service.ts:79</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Get all disrupted train tracks
+<a href="https://apiportal.ns.nl/docs/services/Spoorkaart-api/operations/getStoringen">Spoorkaart-API/api/v1/storingen</a></p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                    <td>Default value</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>force</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+                                    <td>
+                                        <code>false</code>
+                                    </td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../interfaces/Response.html" target="_self" >Observable&lt;Response&lt;TrainTracksGeoJSON&gt;&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>Observable&lt;Response<TrainTracksGeoJSON>&gt; All disrupted train tracks as GeoJSON</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getJourneyDetails"></a>
+                    <span class="name">
+                        <span ><b>getJourneyDetails</b></span>
+                        <a href="#getJourneyDetails"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getJourneyDetails(rideId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="200"
+                            class="link-to-prism">src/app/services/api.service.ts:200</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Get information about a trains journey
+<a href="https://apiportal.ns.nl/docs/services/reisinformatie-api/operations/getJourneyDetail?">reisinformatie-api/api/v2/journey</a></p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>rideId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Ride id of the train</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../interfaces/Response.html" target="_self" >Observable&lt;Response&lt;JourneyResponse&gt;&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>Observable&lt;Response<JourneyResponse>&gt; Journey of a train</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getRouteGeoJSON"></a>
+                    <span class="name">
+                        <span ><b>getRouteGeoJSON</b></span>
+                        <a href="#getRouteGeoJSON"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getRouteGeoJSON(stations: string[])</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="65"
+                            class="link-to-prism">src/app/services/api.service.ts:65</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Get the train tracks of a route
+<a href="https://apiportal.ns.nl/docs/services/Spoorkaart-api/operations/getTraject?">Spoorkaart-API/api/v1/spoorkaart</a></p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>stations</td>
+                                    <td>
+                                            <code>string[]</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../interfaces/Response.html" target="_self" >Observable&lt;Response&lt;TrainTracksGeoJSON&gt;&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>Observable&lt;Response<TrainTracksGeoJSON>&gt; Train tracks of a route as GeoJSON</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getStationArrivals"></a>
+                    <span class="name">
+                        <span ><b>getStationArrivals</b></span>
+                        <a href="#getStationArrivals"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getStationArrivals(uicCode: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, maxJourneys: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="169"
+                            class="link-to-prism">src/app/services/api.service.ts:169</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Get information about a stations current arrivals
+<a href="https://apiportal.ns.nl/docs/services/reisinformatie-api/operations/getArrivals?">reisinformatie-api/api/v2/getArrivals</a></p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Default value</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>uicCode</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+                                    <td>
+                                    </td>
+
+                                    <td>
+                                        <p>UIC code of the Stations</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>maxJourneys</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+                                    <td>
+                                        <code>40</code>
+                                    </td>
+
+                                    <td>
+                                        <p>Number of arrivals to retrieve</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../interfaces/Response.html" target="_self" >Observable&lt;Response&lt;StationArrivalsResponse&gt;&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>Observable&lt;Response<StationArrivalsResponse>&gt; Stations current arrivals</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getStationDepartures"></a>
+                    <span class="name">
+                        <span ><b>getStationDepartures</b></span>
+                        <a href="#getStationDepartures"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getStationDepartures(uicCode: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, maxJourneys: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="185"
+                            class="link-to-prism">src/app/services/api.service.ts:185</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Get information about a stations current departures
+<a href="https://apiportal.ns.nl/docs/services/reisinformatie-api/operations/getDepartures?">reisinformatie-api/api/v2/departures</a></p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Default value</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>uicCode</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+                                    <td>
+                                    </td>
+
+                                    <td>
+                                        <p>UIC code of the Stations</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>maxJourneys</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+                                    <td>
+                                        <code>40</code>
+                                    </td>
+
+                                    <td>
+                                        <p>Number of departures to retrieve</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../interfaces/Response.html" target="_self" >Observable&lt;Response&lt;StationDeparturesResponse&gt;&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>Observable&lt;Response<StationArrivalsResponse>&gt; Stations current departures</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getTrainDetailsByRideId"></a>
+                    <span class="name">
+                        <span ><b>getTrainDetailsByRideId</b></span>
+                        <a href="#getTrainDetailsByRideId"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getTrainDetailsByRideId(rideIds: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="108"
+                            class="link-to-prism">src/app/services/api.service.ts:108</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Get detailed information about all trains by their ride id&#39;s
+<a href="https://apiportal.ns.nl/docs/services/virtual-train-api/operations/getTreinInformatie_2?">virtual-train-api/api/v1/trein</a></p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>rideIds</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Comma separated string of all ride id&#39;s</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../interfaces/Response.html" target="_self" >Observable&lt;Response&lt;TrainInformation[]&gt;&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>Observable&lt;Response&lt;TrainInformation[]&gt;&gt; Detailed information about all trains</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getTrainTracksGeoJSON"></a>
+                    <span class="name">
+                        <span ><b>getTrainTracksGeoJSON</b></span>
+                        <a href="#getTrainTracksGeoJSON"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getTrainTracksGeoJSON()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="53"
+                            class="link-to-prism">src/app/services/api.service.ts:53</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Get all train tracks
+<a href="https://apiportal.ns.nl/docs/services/Spoorkaart-api/operations/getSpoorkaart">Spoorkaart-API/api/v1/spoorkaart</a></p>
+</div>
+
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../interfaces/Response.html" target="_self" >Observable&lt;Response&lt;TrainTracksGeoJSON&gt;&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>Observable&lt;Response<TrainTracksGeoJSON>&gt; All train tracks as GeoJSON</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { HttpHeaders, HttpParams } from &quot;@angular/common/http&quot;;
+import { Injectable } from &quot;@angular/core&quot;;
+import { Observable } from &quot;rxjs&quot;;
+import { environment } from &quot;../../environments/environment&quot;;
+import {
+	DisruptionsList,
+	JourneyResponse,
+	StationArrivalsResponse,
+	StationDeparturesResponse,
+	StationsResponse,
+} from &quot;../models/ReisinformatieAPI&quot;;
+import { TrainTracksGeoJSON } from &quot;../models/SpoortkaartAPI&quot;;
+import { TrainInformation, TrainInformationResponse } from &quot;../models/VirtualTrainAPI&quot;;
+import { HttpClientService, Response } from &quot;./http-client.service&quot;;
+
+/**
+ * Network request for the NS API
+ */
+@Injectable({
+	providedIn: &quot;root&quot;,
+})
+export class ApiService {
+	// Section: Spoorkaart-API
+	/**
+	 * Define services
+	 * @param http Http service with caching
+	 */
+	constructor(private http: HttpClientService) {}
+
+	/**
+	 * Get all train tracks
+	 * [Spoorkaart-API/api/v1/spoorkaart]{@link https://apiportal.ns.nl/docs/services/Spoorkaart-api/operations/getSpoorkaart}
+	 * @returns Observable&lt;Response&lt;TrainTracksGeoJSON&gt;&gt; All train tracks as GeoJSON
+	 */
+	getTrainTracksGeoJSON(): Observable&lt;Response&lt;TrainTracksGeoJSON&gt;&gt; {
+		return this.http.get({
+			url: &quot;https://gateway.apiportal.ns.nl/Spoorkaart-API/api/v1/spoorkaart&quot;,
+			cacheMins: environment.production ? 30 : 60,
+		});
+	}
+
+	/**
+	 * Get the train tracks of a route
+	 * [Spoorkaart-API/api/v1/spoorkaart]{@link https://apiportal.ns.nl/docs/services/Spoorkaart-api/operations/getTraject?}
+	 * @returns Observable&lt;Response&lt;TrainTracksGeoJSON&gt;&gt; Train tracks of a route as GeoJSON
+	 */
+	getRouteGeoJSON(stations: string[]): Observable&lt;Response&lt;TrainTracksGeoJSON&gt;&gt; {
+		const routeParams &#x3D; new HttpParams().set(&quot;stations&quot;, stations.join(&quot;,&quot;));
+		return this.http.get({
+			url: &quot;https://gateway.apiportal.ns.nl/Spoorkaart-API/api/v1/traject.json&quot;,
+			cacheMins: environment.production ? 5 : 60,
+			params: routeParams,
+		});
+	}
+
+	/**
+	 * Get all disrupted train tracks
+	 * [Spoorkaart-API/api/v1/storingen]{@link https://apiportal.ns.nl/docs/services/Spoorkaart-api/operations/getStoringen}
+	 * @returns Observable&lt;Response&lt;TrainTracksGeoJSON&gt;&gt; All disrupted train tracks as GeoJSON
+	 */
+	getDisruptedTrainTracksGeoJSON(force &#x3D; false): Observable&lt;Response&lt;TrainTracksGeoJSON&gt;&gt; {
+		const disruptionParams &#x3D; new HttpParams().set(&quot;actual&quot;, &quot;true&quot;);
+		return this.http.get({
+			url: &quot;https://gateway.apiportal.ns.nl/Spoorkaart-API/api/v1/storingen&quot;,
+			cacheMins: environment.production ? 1 : 60,
+			params: disruptionParams,
+			force: force,
+		});
+	}
+
+	// Section: virtual-train-api
+	/**
+	 * Get minimal information about all trains
+	 * [virtual-train-api/api/vehicle]{@link https://apiportal.ns.nl/docs/services/virtual-train-api/operations/getVehicles?}
+	 * @returns Observable&lt;Response&lt;TrainInformationResponse&gt;&gt; Minimal information about all trains
+	 */
+	getBasicInformationAboutAllTrains(): Observable&lt;Response&lt;TrainInformationResponse&gt;&gt; {
+		return this.http.get({
+			url: &quot;https://gateway.apiportal.ns.nl/virtual-train-api/api/vehicle&quot;,
+			cacheMins: environment.production ? 0 : 60,
+		});
+	}
+
+	/**
+	 * Get detailed information about all trains by their ride id&#x27;s
+	 * [virtual-train-api/api/v1/trein]{@link https://apiportal.ns.nl/docs/services/virtual-train-api/operations/getTreinInformatie_2?}
+	 * @param rideIds Comma separated string of all ride id&#x27;s
+	 * @returns Observable&lt;Response&lt;TrainInformation[]&gt;&gt; Detailed information about all trains
+	 */
+	getTrainDetailsByRideId(rideIds: string): Observable&lt;Response&lt;TrainInformation[]&gt;&gt; {
+		const trainParams &#x3D; new HttpParams().set(&quot;ids&quot;, rideIds).set(&quot;all&quot;, &quot;false&quot;);
+		return this.http.get({
+			url: &quot;https://gateway.apiportal.ns.nl/virtual-train-api/api/v1/trein&quot;,
+			cacheMins: environment.production ? 0 : 60,
+			params: trainParams,
+		});
+	}
+
+	/**
+	 * Convert a trainset number to the rideId it&#x27;s part of
+	 * [virtual-train-api/api/v1/trein]{@link https://apiportal.ns.nl/docs/services/virtual-train-api/operations/getTreinInformatie?}
+	 * @param trainsetNr Number of the trainset
+	 * @returns Observable&lt;Response&lt;number&gt;&gt; RideId of which the
+	 */
+	convertTrainsetNrToRideId(trainsetNr: string): Observable&lt;Response&lt;number&gt;&gt; {
+		return this.http.get({
+			url: &#x60;https://gateway.apiportal.ns.nl/virtual-train-api/api/v1/ritnummer/${trainsetNr}&#x60;,
+			cacheMins: environment.production ? 1 : 1,
+		});
+	}
+
+	// Section: reisinformatie-api
+	/**
+	 * Get information about current disruptions
+	 * [reisinformatie-api/api/v3/disruptions]{@link https://apiportal.ns.nl/docs/services/reisinformatie-api/operations/getDisruptions_v3?}
+	 * @param force Force an update, do not check cache
+	 * @returns Observable&lt;Response&lt;DisruptionsList&gt;&gt; Information about current disruptions
+	 */
+	getActiveDisruptions(force &#x3D; false): Observable&lt;Response&lt;DisruptionsList&gt;&gt; {
+		const disruptionParams &#x3D; new HttpParams().set(&quot;isActive&quot;, &quot;true&quot;);
+		return this.http.get({
+			url: &quot;https://gateway.apiportal.ns.nl/reisinformatie-api/api/v3/disruptions&quot;,
+			cacheMins: environment.production ? 1 : 60,
+			params: disruptionParams,
+			force: force,
+			headers: new HttpHeaders({
+				&quot;Accept-Language&quot;: &quot;nl&quot;,
+			}),
+		});
+	}
+
+	/**
+	 * Get information about all stations
+	 * [reisinformatie-api/api/v2/stations]{@link https://apiportal.ns.nl/docs/services/reisinformatie-api/operations/getStations?}
+	 * @returns Observable&lt;Response&lt;StationsResponse&gt;&gt; Information about all stations
+	 */
+	getBasicInformationAboutAllStations(): Observable&lt;Response&lt;StationsResponse&gt;&gt; {
+		return this.http.get({
+			url: &quot;https://gateway.apiportal.ns.nl/reisinformatie-api/api/v2/stations&quot;,
+			cacheMins: 60,
+		});
+	}
+
+	/**
+	 * Get information about a stations current arrivals
+	 * [reisinformatie-api/api/v2/getArrivals]{@link https://apiportal.ns.nl/docs/services/reisinformatie-api/operations/getArrivals?}
+	 * @param uicCode UIC code of the Stations
+	 * @param maxJourneys Number of arrivals to retrieve
+	 * @returns Observable&lt;Response&lt;StationArrivalsResponse&gt;&gt; Stations current arrivals
+	 */
+	getStationArrivals(uicCode: string, maxJourneys &#x3D; 40): Observable&lt;Response&lt;StationArrivalsResponse&gt;&gt; {
+		const stationParams &#x3D; new HttpParams().set(&quot;uicCode&quot;, uicCode).set(&quot;maxJourneys&quot;, maxJourneys.toString());
+		return this.http.get({
+			url: &quot;https://gateway.apiportal.ns.nl/reisinformatie-api/api/v2/arrivals&quot;,
+			cacheMins: environment.production ? 1 : 60,
+			params: stationParams,
+		});
+	}
+
+	/**
+	 * Get information about a stations current departures
+	 * [reisinformatie-api/api/v2/departures]{@link https://apiportal.ns.nl/docs/services/reisinformatie-api/operations/getDepartures?}
+	 * @param uicCode UIC code of the Stations
+	 * @param maxJourneys Number of departures to retrieve
+	 * @returns Observable&lt;Response&lt;StationArrivalsResponse&gt;&gt; Stations current departures
+	 */
+	getStationDepartures(uicCode: string, maxJourneys &#x3D; 40): Observable&lt;Response&lt;StationDeparturesResponse&gt;&gt; {
+		const stationParams &#x3D; new HttpParams().set(&quot;uicCode&quot;, uicCode).set(&quot;maxJourneys&quot;, maxJourneys.toString());
+		return this.http.get({
+			url: &quot;https://gateway.apiportal.ns.nl/reisinformatie-api/api/v2/departures&quot;,
+			cacheMins: environment.production ? 1 : 60,
+			params: stationParams,
+		});
+	}
+
+	/**
+	 * Get information about a trains journey
+	 * [reisinformatie-api/api/v2/journey]{@link https://apiportal.ns.nl/docs/services/reisinformatie-api/operations/getJourneyDetail?}
+	 * @param rideId Ride id of the train
+	 * @returns Observable&lt;Response&lt;JourneyResponse&gt;&gt; Journey of a train
+	 */
+	getJourneyDetails(rideId: string): Observable&lt;Response&lt;JourneyResponse&gt;&gt; {
+		const journeyParams &#x3D; new HttpParams().set(&quot;train&quot;, rideId);
+		return this.http.get({
+			url: &quot;https://gateway.apiportal.ns.nl/reisinformatie-api/api/v2/journey&quot;,
+			cacheMins: environment.production ? 1 : 60,
+			params: journeyParams,
+		});
+	}
+}
+</code></pre>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
+            var COMPODOC_CURRENT_PAGE_URL = 'ApiService.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>
